@@ -1,8 +1,9 @@
+  
 ![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don&apos;t panic.'")
 
 **By Jim Lehmer**
 
-v0.1
+v0.2
 
 <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
@@ -214,3 +215,4 @@ get you through that "Can you get in and poke around and see if you can
 figure it out?" scenario, above. And if Linux should start becoming more of
 your job, maybe this will help as a gentle push toward "RTFM" along with
 thinking in "The UNIX Way."
+  

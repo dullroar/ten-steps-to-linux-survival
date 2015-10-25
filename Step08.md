@@ -80,9 +80,9 @@ command, which unlike most in this book updates dynamically every second
 by default:
 
 ```bash
-top - 14:11:26 up 106 days,  5:24,  2 users,  load average: 0.11, 0.05, 0.05
+top - 14:11:26 up 106 days,  5:24,  2 users,  load average: 0.11, 0.05, ...
 Tasks:  95 total,   1 running,  94 sleeping,   0 stopped,   0 zombie
-%Cpu(s):  0.2 us,  0.8 sy,  0.0 ni, 99.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+%Cpu(s):  0.2 us,  0.8 sy,  0.0 ni, 99.0 id,  0.0 wa,  0.0 hi,  0.0 si, ...
 KiB Mem:   2061136 total,  1909468 used,   151668 free,   151632 buffers
 KiB Swap:  4191228 total,   287620 used,  3903608 free,   654900 cached
 
@@ -119,17 +119,16 @@ that looks like directories and files:
 
 ```bash
 # ls /proc
-1     1776  2     2244   2308   2415   2599   2693   5     9171       cmdline      fb           key-users   mpt           swaps          vmstat
-10    178   20    2269   2311   2416   26     3      5030  9174       consoles     filesystems  kmsg        mtrr          sys            zoneinfo
-12    1781  2052  2287   2333   2417   2611   3120   5032  9715       cpuinfo      fs           kpagecount  net           sysrq-trigger
-13    1783  21    22899  2338   2418   2612   31651  560   9718       crypto       interrupts   kpageflags  pagetypeinfo  sysvipc
-130   1790  211   2297   2367   2422   2613   3197   570   99         devices      iomem        loadavg     partitions    timer_list
-14    18    212   23     23835  2432   2614   32502  5991  acpi       diskstats    ioports      locks       sched_debug   timer_stats
-15    180   2165  2304   23841  24426  2615   355    6     asound     dma          irq          meminfo     self          tty
-16    181   2191  2305   2395   25     2616   4691   7     buddyinfo  dri          kallsyms     misc        slabinfo      uptime
-17    182   22    2306   24     2550   26735  479    8     bus        driver       kcore        modules     softirqs      version
-1713  19    2225  2307   2414   2556   26736  480    88    cgroups    execdomains  keys         mounts      stat          vmallocinfo
-
+1     1776  2     2244   2308   2415   2599   2693   5     9171       cm...
+10    178   20    2269   2311   2416   26     3      5030  9174       co...
+12    1781  2052  2287   2333   2417   2611   3120   5032  9715       cp...
+13    1783  21    22899  2338   2418   2612   31651  560   9718       cr...
+130   1790  211   2297   2367   2422   2613   3197   570   99         de...
+14    18    212   23     23835  2432   2614   32502  5991  acpi       di...
+15    180   2165  2304   23841  24426  2615   355    6     asound     dma
+16    181   2191  2305   2395   25     2616   4691   7     buddyinfo  dri
+17    182   22    2306   24     2550   26735  479    8     bus        dr...
+1713  19    2225  2307   2414   2556   26736  480    88    cgroups    ex...
 ```
 
 What is all that? Well if we look a little closer:
@@ -204,16 +203,16 @@ standard directory listing for it on a Debian system:
 
 ```bash
 # ls /var/log
-alternatives.log       auth.log.2.gz    debug       dmesg.4.gz     kern.log       mail.info       mail.warn       news         syslog.4.gz    wtmp.1
-alternatives.log.1     auth.log.3.gz    debug.1     dpkg.log       kern.log.1     mail.info.1     mail.warn.1     nginx        syslog.5.gz
-alternatives.log.2.gz  auth.log.4.gz    debug.2.gz  dpkg.log.1     kern.log.2.gz  mail.info.2.gz  mail.warn.2.gz  postgresql   syslog.6.gz
-alternatives.log.3.gz  btmp             debug.3.gz  dpkg.log.2.gz  kern.log.3.gz  mail.info.3.gz  mail.warn.3.gz  rancid       syslog.7.gz
-apache2                btmp.1           debug.4.gz  dpkg.log.3.gz  kern.log.4.gz  mail.info.4.gz  mail.warn.4.gz  redis        user.log
-apt                    daemon.log       dmesg       dpkg.log.4.gz  lastlog        mail.log        messages        samba        user.log.1
-aptitude               daemon.log.1     dmesg.0     exim4          lpr.log        mail.log.1      messages.1      syslog       user.log.2.gz
-aptitude.1.gz          daemon.log.2.gz  dmesg.1.gz  faillog        mail.err       mail.log.2.gz   messages.2.gz   syslog.1     user.log.3.gz
-auth.log               daemon.log.3.gz  dmesg.2.gz  fsck           mail.err.1     mail.log.3.gz   messages.3.gz   syslog.2.gz  user.log.4.gz
-auth.log.1             daemon.log.4.gz  dmesg.3.gz  installer      mail.err.2.gz  mail.log.4.gz   messages.4.gz   syslog.3.gz  wtmp
+alternatives.log       auth.log.2.gz    debug       dmesg.4.gz     kern....
+alternatives.log.1     auth.log.3.gz    debug.1     dpkg.log       kern....
+alternatives.log.2.gz  auth.log.4.gz    debug.2.gz  dpkg.log.1     kern....
+alternatives.log.3.gz  btmp             debug.3.gz  dpkg.log.2.gz  kern....
+apache2                btmp.1           debug.4.gz  dpkg.log.3.gz  kern....
+apt                    daemon.log       dmesg       dpkg.log.4.gz  lastlog
+aptitude               daemon.log.1     dmesg.0     exim4          lpr.log
+aptitude.1.gz          daemon.log.2.gz  dmesg.1.gz  faillog        mail.err
+auth.log               daemon.log.3.gz  dmesg.2.gz  fsck           mail....
+auth.log.1             daemon.log.4.gz  dmesg.3.gz  installer      mail....
 ```
 
 Some, like `samba` are their own subdirectories with log files under that.

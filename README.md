@@ -3,7 +3,7 @@ panic."](./images/Merv.jpg "Merv sez, 'Don't panic.'")
 
 **By Jim Lehmer**
 
-v0.1
+v0.2
 
 <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
@@ -563,14 +563,14 @@ Use `man -k' or `info' to find out more about commands not in this list.
 
 A star (*) next to a name means that the command is disabled.
 
- job_spec [&]                            history [-c] [-d offset] [n] or hist>
- (( expression ))                        if COMMANDS; then COMMANDS; [ elif C>
- . filename [arguments]                  jobs [-lnprs] [jobspec ...] or jobs >
- :                                       kill [-s sigspec | -n signum | -sigs>
+ job_spec [&]                            history [-c] [-d offset] [n] or...
+ (( expression ))                        if COMMANDS; then COMMANDS; [ e...
+ . filename [arguments]                  jobs [-lnprs] [jobspec ...] or ...
+ :                                       kill [-s sigspec | -n signum |
  [ arg... ]                              let arg [arg ...]
  [[ expression ]]                        local [option] name[=value] ...
  alias [-p] [name[=value] ... ]          logout [n]
- bg [job_spec ...]                       mapfile [-n count] [-O origin] [-s c>
+ bg [job_spec ...]                       mapfile [-n count] [-O origin] ...
  bind [-lpsvPSVX] [-m keymap] [-f file>  popd [-n] [+N | -N]
  break [n]                               printf [-v var] format [arguments]
  builtin [shell-builtin [arg ...]]       pushd [-n] [+N | -N | dir]
@@ -647,7 +647,7 @@ BASH_LINENO=()
     C:\> set
     ALLUSERSPROFILE=C:\ProgramData
     APPDATA=C:\Users\myuser\AppData\Roaming
-    CLIENTNAME=JLEHMER650
+    CLIENTNAME=MYMACHINE
     CommandPromptType=Native
     CommonProgramFiles=C:\Program Files\Common Files
     CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
@@ -697,7 +697,7 @@ program, to the point that `bash` has built-in "one-line" support for
 it:
 
 ~~~~ {.bash}
-FOO=myval /home/lehmer/myscript
+FOO=myval /home/myuser/myscript
 ~~~~
 
 This sets the environment variable `FOO` to "myval" but only for the
@@ -712,7 +712,7 @@ You can set or override multiple variables for a single command or
 script execution simply by separating them with spaces:
 
 ~~~~ {.bash}
-FOO=myval BAR=yourval BAZ=ourvals /home/lehmer/myscript
+FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript
 ~~~~
 
 Note that passing in values in this way does not safeguard sensitive
@@ -728,6 +728,29 @@ $ filetype=`file --print --mime-type --no-pad --print0 otschecker.csv`
 $ echo $filetype
 otschecker.csv: text/plain
 ~~~~
+
+### Who Am I?
+
+When writing scripts that can be run by any user, it may be helpful to
+know their user name at run-time. There are at least two different ways
+to determine that. The first is via environment variables:
+
+~~~~ {.bash}
+$ echo $USER
+myuser
+~~~~
+
+The second is with a command with one of the best names, ever -
+[`whoami`](http://linux.die.net/man/1/whoami):
+
+~~~~ {.bash}
+$ whoami
+myuser
+~~~~
+
+Some environments set the `$USER` environment variable, some set a
+`$USERNAME` variable, and some like Mint set both. I think it is better
+to use `whoami`, which tends to be on almost all systems.
 
 Paths (a Part of Any Balanced Shrubbery)
 ----------------------------------------
@@ -885,7 +908,7 @@ commands at the bottom.
 
 The `bash` shell supports a rich interactive environment for searching
 for, editing and saving command history. However, the biggest thing you
-needf to remember to fake it is simply that the up and down arrows work
+need to remember to fake it is simply that the up and down arrows work
 in the command prompt and bring back your recent commands so you can
 update them and re-execute them.
 
@@ -1067,14 +1090,12 @@ cd ~
 git clone git://github.com/FreeRDP/FreeRDP.git
 cd FreeRDP
 sudo apt-get -y install build-essential git-core cmake libssl-dev \
-  libx11-dev libxext-dev libxinerama-dev libxcursor-dev \
-  libxdamage-dev libxv-dev libxkbfile-dev libasound2-dev libcups2-dev \
-  libxml2 libxml2-dev libxrandr-dev libgstreamer0.10-dev \
+  libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \
+  libxv-dev libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \
+  libxml2-dev libxrandr-dev libgstreamer0.10-dev \
   libgstreamer-plugins-base0.10-dev libxi-dev \
-  libgstreamer-plugins-base1.0-dev
-sudo apt-get -y install libavutil-dev libavcodec-dev
-sudo apt-get -y install libcunit1-dev libdirectfb-dev xmlto doxygen \
-  libxtst-dev
+  libgstreamer-plugins-base1.0-dev libavutil-dev libavcodec-dev \
+  libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
 cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
 make
 sudo make install
@@ -1172,7 +1193,7 @@ files in real time:
 ...new lines will appear here over time...
 ~~~~
 
-If we know nothing about a file, we can use the
+If we know nothing about a *file*, we can use the
 [`file`](http://linux.die.net/man/1/file) command to help us guess:
 
 ~~~~ {.bash}
@@ -1195,7 +1216,7 @@ Sorting Things Out
 ------------------
 
 The [`sort`](http://linux.die.net/man/1/sort) command can be used to not
-just sort files, but also to merge them and remove duplicates.
+just *sort* files, but also to merge them and remove duplicates.
 
 Let's say we have three files:
 
@@ -1547,7 +1568,7 @@ simply use `cd`:
 $ cd
 
 $ pwd
-/home/jlehmer
+/home/myuser
 ~~~~
 
 The tilde (`~`) character is an alias for the current user's home
@@ -1557,7 +1578,7 @@ directory. The following example is equivalent to above:
 $ cd ~
 
 $ pwd
-/home/jlehmer
+/home/myuser
 ~~~~
 
 More useful is that the tilde can be combined with a user name to
@@ -3468,8 +3489,8 @@ the second you see a file open in `nano`:
     href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
     Attribution-ShareAlike 4.0 International License</a>.
                                        [ Read 18 lines ]
-    ^G Get Help   ^O WriteOut   ^R Read File  ^Y Prev Page  ^K Cut Text   ^C Cur Pos
-    ^X Exit       ^J Justify    ^W Where Is   ^V Next Page  ^U UnCut Text ^T To Spell
+    ^G Get Help   ^O WriteOut   ^R Read File  ^Y Prev Page  ^K Cut Text   ^C...
+    ^X Exit       ^J Justify    ^W Where Is   ^V Next Page  ^U UnCut Text ^T...
 
 Two things to note about the above:
 
@@ -3511,16 +3532,16 @@ there:
 ~~~~ {.bash}
 # ping www.yahoo.com
 PING fd-fp3.wg1.b.yahoo.com (98.138.253.109) 56(84) bytes of data.
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=1 ttl=46 time=62.1 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=2 ttl=46 time=61.9 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=3 ttl=46 time=70.9 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=4 ttl=46 time=65.0 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=5 ttl=46 time=63.6 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=6 ttl=46 time=59.9 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=7 ttl=46 time=60.8 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=8 ttl=46 time=60.8 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=9 ttl=46 time=60.3 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=10 ttl=46 time=60.1 ms
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=1 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=2 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=3 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=4 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=5 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=6 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=7 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=8 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=9 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=10 ttl...
 ^C
 --- fd-fp3.wg1.b.yahoo.com ping statistics ---
 10 packets transmitted, 10 received, 0% packet loss, time 9004ms
@@ -3542,13 +3563,13 @@ traceroute to www.yahoo.com (98.138.252.30), 30 hops max, 60 byte packets
  1  10.208.3.254 (10.208.3.254)  0.720 ms  0.706 ms  0.693 ms
  2  10.208.6.53 (10.208.6.53)  0.808 ms  0.896 ms  0.943 ms
  3  10.208.6.46 (10.208.6.46)  2.632 ms  2.636 ms  2.634 ms
- 4  kcm-priv-20.inet.qwest.net (63.159.159.185)  30.786 ms  30.852 ms  31.350 ms
+ 4  kcm-priv-20.inet.qwest.net (63.159.159.185)  30.786 ms  30.852 ms  3...
  5  * * *
  6  67.134.114.230 (67.134.114.230)  30.441 ms  29.811 ms  30.372 ms
  7  67.130.10.174 (67.130.10.174)  32.267 ms  32.700 ms  32.789 ms
  8  67.130.10.103 (67.130.10.103)  32.416 ms  32.421 ms  32.420 ms
- 9  min-edge-13.inet.qwest.net (67.130.30.21)  33.878 ms  31.719 ms  34.749 ms
-10  chp-brdr-03.inet.qwest.net (67.14.8.194)  45.668 ms  55.177 ms  45.629 ms
+ 9  min-edge-13.inet.qwest.net (67.130.30.21)  33.878 ms  31.719 ms  34....
+10  chp-brdr-03.inet.qwest.net (67.14.8.194)  45.668 ms  55.177 ms  45.6...
 11  63.146.27.18 (63.146.27.18)  46.371 ms  46.333 ms  47.234 ms
 ...and so on...
 ~~~~
@@ -3624,10 +3645,10 @@ Here is a really common example on Debian-based systems:
 
 ~~~~ {.bash}
 $ apt-get update
-E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permissi...
 E: Unable to lock directory /var/lib/apt/lists/
-E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
-E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
+E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission de...
+E: Unable to lock the administration directory (/var/lib/dpkg/), are you...
 ~~~~
 
 The error message, especially the last line, is pretty clear. Let's try
@@ -3666,13 +3687,13 @@ yields:
 
        Google
 
-                                                       _______________________________________________________
-                                                       Google Search  I'm Feeling Lucky                          Advanced search
+       _______________________________________________________
+       Google Search  I'm Feeling Lucky                          Advanced search
                                                                                                                  Language tools
 
        Advertising Programs     Business Solutions     +Google     About Google
 
-                                                                              © 2015 - Privacy - Terms
+       © 2015 - Privacy - Terms
 
 There are two other commands that are used to pull down web resources
 and save them locally - [`curl`](http://linux.die.net/man/1/curl) and
@@ -3745,7 +3766,7 @@ P3P: CP="This is not a P3P policy! See http://www.google.com/support/acc...
 Server: gws
 X-XSS-Protection: 1; mode=block
 X-Frame-Options: SAMEORIGIN
-Set-Cookie: PREF=ID=1111111111111111:FF=0:TM=1445624764:LM=1445624764:V=1:S=YV3fLcTe...
+Set-Cookie: PREF=ID=1111111111111111:FF=0:TM=1445624764:LM=1445624764:V=...
 Set-Cookie: NID=72=HLgGubMnO1ThhvhOAmvehue96EKTh9D6F19zidZQU-E9AibEg2Op6...
 Accept-Ranges: none
 Vary: Accept-Encoding
@@ -3934,9 +3955,9 @@ command, which unlike most in this book updates dynamically every second
 by default:
 
 ~~~~ {.bash}
-top - 14:11:26 up 106 days,  5:24,  2 users,  load average: 0.11, 0.05, 0.05
+top - 14:11:26 up 106 days,  5:24,  2 users,  load average: 0.11, 0.05, ...
 Tasks:  95 total,   1 running,  94 sleeping,   0 stopped,   0 zombie
-%Cpu(s):  0.2 us,  0.8 sy,  0.0 ni, 99.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+%Cpu(s):  0.2 us,  0.8 sy,  0.0 ni, 99.0 id,  0.0 wa,  0.0 hi,  0.0 si, ...
 KiB Mem:   2061136 total,  1909468 used,   151668 free,   151632 buffers
 KiB Swap:  4191228 total,   287620 used,  3903608 free,   654900 cached
 
@@ -3975,16 +3996,16 @@ that looks like directories and files:
 
 ~~~~ {.bash}
 # ls /proc
-1     1776  2     2244   2308   2415   2599   2693   5     9171       cmdline      fb           key-users   mpt           swaps          vmstat
-10    178   20    2269   2311   2416   26     3      5030  9174       consoles     filesystems  kmsg        mtrr          sys            zoneinfo
-12    1781  2052  2287   2333   2417   2611   3120   5032  9715       cpuinfo      fs           kpagecount  net           sysrq-trigger
-13    1783  21    22899  2338   2418   2612   31651  560   9718       crypto       interrupts   kpageflags  pagetypeinfo  sysvipc
-130   1790  211   2297   2367   2422   2613   3197   570   99         devices      iomem        loadavg     partitions    timer_list
-14    18    212   23     23835  2432   2614   32502  5991  acpi       diskstats    ioports      locks       sched_debug   timer_stats
-15    180   2165  2304   23841  24426  2615   355    6     asound     dma          irq          meminfo     self          tty
-16    181   2191  2305   2395   25     2616   4691   7     buddyinfo  dri          kallsyms     misc        slabinfo      uptime
-17    182   22    2306   24     2550   26735  479    8     bus        driver       kcore        modules     softirqs      version
-1713  19    2225  2307   2414   2556   26736  480    88    cgroups    execdomains  keys         mounts      stat          vmallocinfo
+1     1776  2     2244   2308   2415   2599   2693   5     9171       cm...
+10    178   20    2269   2311   2416   26     3      5030  9174       co...
+12    1781  2052  2287   2333   2417   2611   3120   5032  9715       cp...
+13    1783  21    22899  2338   2418   2612   31651  560   9718       cr...
+130   1790  211   2297   2367   2422   2613   3197   570   99         de...
+14    18    212   23     23835  2432   2614   32502  5991  acpi       di...
+15    180   2165  2304   23841  24426  2615   355    6     asound     dma
+16    181   2191  2305   2395   25     2616   4691   7     buddyinfo  dri
+17    182   22    2306   24     2550   26735  479    8     bus        dr...
+1713  19    2225  2307   2414   2556   26736  480    88    cgroups    ex...
 ~~~~
 
 What is all that? Well if we look a little closer:
@@ -4060,16 +4081,16 @@ standard directory listing for it on a Debian system:
 
 ~~~~ {.bash}
 # ls /var/log
-alternatives.log       auth.log.2.gz    debug       dmesg.4.gz     kern.log       mail.info       mail.warn       news         syslog.4.gz    wtmp.1
-alternatives.log.1     auth.log.3.gz    debug.1     dpkg.log       kern.log.1     mail.info.1     mail.warn.1     nginx        syslog.5.gz
-alternatives.log.2.gz  auth.log.4.gz    debug.2.gz  dpkg.log.1     kern.log.2.gz  mail.info.2.gz  mail.warn.2.gz  postgresql   syslog.6.gz
-alternatives.log.3.gz  btmp             debug.3.gz  dpkg.log.2.gz  kern.log.3.gz  mail.info.3.gz  mail.warn.3.gz  rancid       syslog.7.gz
-apache2                btmp.1           debug.4.gz  dpkg.log.3.gz  kern.log.4.gz  mail.info.4.gz  mail.warn.4.gz  redis        user.log
-apt                    daemon.log       dmesg       dpkg.log.4.gz  lastlog        mail.log        messages        samba        user.log.1
-aptitude               daemon.log.1     dmesg.0     exim4          lpr.log        mail.log.1      messages.1      syslog       user.log.2.gz
-aptitude.1.gz          daemon.log.2.gz  dmesg.1.gz  faillog        mail.err       mail.log.2.gz   messages.2.gz   syslog.1     user.log.3.gz
-auth.log               daemon.log.3.gz  dmesg.2.gz  fsck           mail.err.1     mail.log.3.gz   messages.3.gz   syslog.2.gz  user.log.4.gz
-auth.log.1             daemon.log.4.gz  dmesg.3.gz  installer      mail.err.2.gz  mail.log.4.gz   messages.4.gz   syslog.3.gz  wtmp
+alternatives.log       auth.log.2.gz    debug       dmesg.4.gz     kern....
+alternatives.log.1     auth.log.3.gz    debug.1     dpkg.log       kern....
+alternatives.log.2.gz  auth.log.4.gz    debug.2.gz  dpkg.log.1     kern....
+alternatives.log.3.gz  btmp             debug.3.gz  dpkg.log.2.gz  kern....
+apache2                btmp.1           debug.4.gz  dpkg.log.3.gz  kern....
+apt                    daemon.log       dmesg       dpkg.log.4.gz  lastlog
+aptitude               daemon.log.1     dmesg.0     exim4          lpr.log
+aptitude.1.gz          daemon.log.2.gz  dmesg.1.gz  faillog        mail.err
+auth.log               daemon.log.3.gz  dmesg.2.gz  fsck           mail....
+auth.log.1             daemon.log.4.gz  dmesg.3.gz  installer      mail....
 ~~~~
 
 Some, like `samba` are their own subdirectories with log files under
@@ -4127,7 +4148,7 @@ documentation within *IX itself -
 for most \*IX commands. For example, `man ls` shows:
 
 ~~~~ {.bash}
-LS(1)                                                             User Commands                                                             LS(1)
+LS(1)                                                             User C...
 
 NAME
        ls - list directory contents
@@ -4140,7 +4161,7 @@ DESCRIPTION
        default).  Sort entries alphabetically if none of -cftuvSUX nor
        --sort is specified.
 
-       Mandatory arguments to long options are mandatory for short options too.
+       Mandatory arguments to long options are mandatory for short optio...
 
        -a, --all
               do not ignore entries starting with .
@@ -4169,7 +4190,7 @@ case section 1, usually referred to as `passwd(1)` to disambiguate which
 thing we're talking about:
 
 ~~~~ {.bash}
-PASSWD(1)                                                         User Commands                                                         PASSWD(1)
+PASSWD(1)                                                         User C...
 
 NAME
        passwd - change user password
@@ -4178,11 +4199,15 @@ SYNOPSIS
        passwd [options] [LOGIN]
 
 DESCRIPTION
-       The passwd command changes passwords for user accounts. A normal user may only change the password for his/her own account, while the
-       superuser may change the password for any account.  passwd also changes the account or associated password validity period.
+       The passwd command changes passwords for user accounts. A normal user
+       may only change the password for his/her own account, while the
+       superuser may change the password for any account.  passwd also
+       changes the account or associated password validity period.
 
    Password Changes
-       The user is first prompted for his/her old password, if one is present. This password is then encrypted and compared against the stored
+       The user is first prompted for his/her old password, if one is
+       present. This password is then encrypted and compared against the
+       stored
 ...and so on...
 ~~~~
 
@@ -4190,13 +4215,14 @@ To see the `man` page for the `passwd` file format, we have to
 explicitly specify the section, in this case by using `man 5 passwd`:
 
 ~~~~ {.bash}
-PASSWD(5)                                                  File Formats and Conversions                                                 PASSWD(5)
+PASSWD(5)                                                  File Formats ...
 
 NAME
        passwd - the password file
 
 DESCRIPTION
-       /etc/passwd contains one line for each user account, with seven fields delimited by colons (“:”). These fields are:
+       /etc/passwd contains one line for each user account, with seven
+       fields delimited by colons (“:”). These fields are:
 
        ·   login name
 
@@ -4273,8 +4299,8 @@ jfs_debugfs (8)      - shell-type JFS file system editor
 pdbedit (8)          - manage the SAM database (Database of Samba Users)
 samba-regedit (8)    - ncurses based tool to manage the Samba registry
 sudoedit (8)         - execute a command as another user
-vigr (8)             - edit the password, group, shadow-password or shadow-group file
-vipw (8)             - edit the password, group, shadow-password or shadow-group file
+vigr (8)             - edit the password, group, shadow-password or shad...
+vipw (8)             - edit the password, group, shadow-password or shad...
 visudo (8)           - edit the sudoers file
 ~~~~
 
@@ -4427,14 +4453,14 @@ configuration files. If the service has a script in `/etc/init.d`:
 
 ~~~~ {.bash}
 # ls /etc/init.d
-acpid                   console-setup  kbd                    mountkernfs.sh         nginx          README        sendsigs       udev-mtab
-apache2                 cron           keyboard-setup         mountnfs-bootclean.sh  openbsd-inetd  reboot        single         umountfs
-atd                     dbus           killprocs              mountnfs.sh            postfix        redis-server  skeleton       umountnfs.sh
-bootlogs                exim4          kmod                   mpt-statusd            postgresql     rmnologin     smartd         umountroot
-bootmisc.sh             gitlab         motd                   mtab.sh                procps         rpcbind       smartmontools  urandom
-checkfs.sh              halt           mountall-bootclean.sh  networking             rc             rsync         ssh            winbind
-checkroot-bootclean.sh  hostname.sh    mountall.sh            nfs-common             rc.local       rsyslog       sudo
-checkroot.sh            hwclock.sh     mountdevsubfs.sh       nfs-kernel-server      rcS            samba         udev
+acpid                   console-setup  kbd                    mountkernf...
+apache2                 cron           keyboard-setup         mountnfs-b...
+atd                     dbus           killprocs              mountnfs.s...
+bootlogs                exim4          kmod                   mpt-status...
+bootmisc.sh             gitlab         motd                   mtab.sh
+checkfs.sh              halt           mountall-bootclean.sh  networking
+checkroot-bootclean.sh  hostname.sh    mountall.sh            nfs-common
+checkroot.sh            hwclock.sh     mountdevsubfs.sh       nfs-kernel...
 ~~~~
 
 ...then chances are it will respond to a fairly standard set of
@@ -5033,6 +5059,8 @@ access files and the like.
 -   [**`ps`**](linux.die.net/man/1/ps) - list running processes.
 -   [**`pwd`**](linux.die.net/man/1/pwd) - print the current (working)
     directory name.
+-   [**`rename`**](linux.die.net/man/1/rename) - rename files in more
+    complex ways than `mv` can.
 -   [**`rm`**](linux.die.net/man/1/rm) - delete (remove) files or
     directories.
 -   [**`set`**](linux.die.net/man/1/set) - set an environment variable,
@@ -5060,6 +5088,8 @@ access files and the like.
     editor.
 -   [**`wget`**](http://linux.die.net/man/1/wget) - download files from
     the internet.
+-   [**`whoami`**](http://linux.die.net/man/1/whoami) - the answer to
+    life's most existential question.
 -   [**`whois`**](http://linux.die.net/man/1/whois) - look up DNS
     ownership info on an address.
 -   [**`zip`**](http://linux.die.net/man/1/zip) - compress files and
@@ -5128,10 +5158,10 @@ examples):
 
 ~~~~ {.bash}
 $ grep '\[' *.md | grep -v ']'
-Step01.md: (( expression ))                        if COMMANDS; then COMMANDS; [ elif C>
-Step01.md: :                                       kill [-s sigspec | -n signum | -sigs>
-Step04.md:./FileCheckers/otschecker:        if [ $rc != 0 -a "$pdfinfo" != "Comma...
-Step04.md:./FileCheckers/pdfpwdchecker:        if [ $rc != 0 -a "$pdfinfo" = "Com...
+Step01.md: (( expression ))           if COMMANDS; then COMMANDS; [ elif C>
+Step01.md: :                          kill [-s sigspec | -n signum | -sigs>
+Step04.md:./FileCheckers/otschecker:  [ $rc != 0 -a "$pdfinfo" != "Comma...
+Step04.md:./FileCheckers/pdfpwdchecker: if [ $rc != 0 -a "$pdfinfo" = "C...
 ~~~~
 
 What makes this simple? Finding `[` with the first `grep` and then
@@ -5142,6 +5172,36 @@ on `]`.
 Markdown were the issue. In fact, now that I generate Markdown as an
 output format for the `README.md` file, I've noticed it does the same
 thing. So I still haven't figured it out! Ideas welcome.
+
+### Chain Gangs
+
+Remembering that `&&` only executes the next command if the prior one is
+successful, we can do things like set up a sample directory and (empty)
+files for playing around with files and directories in one fell swoop:
+
+~~~~ {.bash}
+$ mkdir -p /tmp/foo/d && cd /tmp/foo && touch a b c d/e
+
+$ ls
+a  b  c  d
+~~~~
+
+That is roughly equivalent to:
+
+~~~~ {.bash}
+$ cd /tmp
+
+$ mkdir -p foo
+
+$ cd foo
+
+$ mkdir -p d
+
+$ touch a b c d/e
+
+$ ls
+a  b  c  d
+~~~~
 
 ### Simple Scripts
 
@@ -5222,10 +5282,11 @@ Markdown](http://pandoc.org/README.html#pandocs-markdown) using
 [`vi`](http://linux.die.net/man/1/vi) and
 [ReText](https://github.com/retext-project/retext), among others.
 
-Output produced using [`pandoc`](http://pandoc.org/),
-[`pdflatex`](http://linux.die.net/man/1/pdflatex) and
-[`make`](http://linux.die.net/man/1/make), based on the [@evangoer 's
-work](https://github.com/evangoer/pandoc-ebook-template).
+Output produced using [`pandoc`](http://pandoc.org/), [TeX
+Live](http://www.tug.org/texlive/) and
+[`pdflatex`](http://linux.die.net/man/1/pdflatex),
+[`make`](http://linux.die.net/man/1/make), originally based on the
+[@evangoer 's work](https://github.com/evangoer/pandoc-ebook-template).
 
 Source code control is provided by
 [`git`](http://linux.die.net/man/1/git). You can view [the files used to

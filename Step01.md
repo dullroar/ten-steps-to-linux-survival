@@ -68,14 +68,14 @@ Use `man -k' or `info' to find out more about commands not in this list.
 
 A star (*) next to a name means that the command is disabled.
 
- job_spec [&]                            history [-c] [-d offset] [n] or hist>
- (( expression ))                        if COMMANDS; then COMMANDS; [ elif C>
- . filename [arguments]                  jobs [-lnprs] [jobspec ...] or jobs >
- :                                       kill [-s sigspec | -n signum | -sigs>
+ job_spec [&]                            history [-c] [-d offset] [n] or...
+ (( expression ))                        if COMMANDS; then COMMANDS; [ e...
+ . filename [arguments]                  jobs [-lnprs] [jobspec ...] or ...
+ :                                       kill [-s sigspec | -n signum |
  [ arg... ]                              let arg [arg ...]
  [[ expression ]]                        local [option] name[=value] ...
  alias [-p] [name[=value] ... ]          logout [n]
- bg [job_spec ...]                       mapfile [-n count] [-O origin] [-s c>
+ bg [job_spec ...]                       mapfile [-n count] [-O origin] ...
  bind [-lpsvPSVX] [-m keymap] [-f file>  popd [-n] [+N | -N]
  break [n]                               printf [-v var] format [arguments]
  builtin [shell-builtin [arg ...]]       pushd [-n] [+N | -N | dir]
@@ -234,6 +234,29 @@ $ echo $filetype
 otschecker.csv: text/plain
 ```
 
+### Who Am I?
+
+When writing scripts that can be run by any user, it may be helpful to
+know their user name at run-time. There are at least two different ways to
+determine that. The first is via environment variables:
+
+```bash
+$ echo $USER
+myuser
+```
+
+The second is with a command with one of the best names, ever -
+[`whoami`](http://linux.die.net/man/1/whoami):
+
+```bash
+$ whoami
+myuser
+```
+
+Some environments set the `$USER` environment variable, some set a
+`$USERNAME` variable, and some like Mint set both. I think it is better
+to use `whoami`, which tends to be on almost all systems.
+
 ## Paths (a Part of Any Balanced Shrubbery)
 
 The concept of a "path" for finding executables is almost identical, and
@@ -387,7 +410,7 @@ Inside, `.bash_history` is just a text file, with the most recent commands
 at the bottom.
 
 The `bash` shell supports a rich interactive environment for searching for,
-editing and saving command history. However, the biggest thing you needf
+editing and saving command history. However, the biggest thing you need
 to remember to fake it is simply that the up and down arrows work in
 the command prompt and bring back your recent commands so you can update
 them and re-execute them.

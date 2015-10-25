@@ -167,14 +167,12 @@ cd ~
 git clone git://github.com/FreeRDP/FreeRDP.git
 cd FreeRDP
 sudo apt-get -y install build-essential git-core cmake libssl-dev \
-  libx11-dev libxext-dev libxinerama-dev libxcursor-dev \
-  libxdamage-dev libxv-dev libxkbfile-dev libasound2-dev libcups2-dev \
-  libxml2 libxml2-dev libxrandr-dev libgstreamer0.10-dev \
+  libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \
+  libxv-dev libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \
+  libxml2-dev libxrandr-dev libgstreamer0.10-dev \
   libgstreamer-plugins-base0.10-dev libxi-dev \
-  libgstreamer-plugins-base1.0-dev
-sudo apt-get -y install libavutil-dev libavcodec-dev
-sudo apt-get -y install libcunit1-dev libdirectfb-dev xmlto doxygen \
-  libxtst-dev
+  libgstreamer-plugins-base1.0-dev libavutil-dev libavcodec-dev \
+  libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
 cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
 make
 sudo make install
@@ -271,8 +269,7 @@ time:
 ...new lines will appear here over time...
 ```
 
-
-If we know nothing about a file, we can use the
+If we know nothing about a *file*, we can use the
 [`file`](http://linux.die.net/man/1/file) command to help us guess:
 
 ```bash
@@ -294,7 +291,7 @@ the utility of the `file` command.
 ## Sorting Things Out
 
 The [`sort`](http://linux.die.net/man/1/sort) command can be used to not
-just sort files, but also to merge them and remove duplicates.
+just *sort* files, but also to merge them and remove duplicates.
 
 Let's say we have three files:
 

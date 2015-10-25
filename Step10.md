@@ -72,14 +72,14 @@ service has a script in `/etc/init.d`:
 
 ```bash
 # ls /etc/init.d
-acpid                   console-setup  kbd                    mountkernfs.sh         nginx          README        sendsigs       udev-mtab
-apache2                 cron           keyboard-setup         mountnfs-bootclean.sh  openbsd-inetd  reboot        single         umountfs
-atd                     dbus           killprocs              mountnfs.sh            postfix        redis-server  skeleton       umountnfs.sh
-bootlogs                exim4          kmod                   mpt-statusd            postgresql     rmnologin     smartd         umountroot
-bootmisc.sh             gitlab         motd                   mtab.sh                procps         rpcbind       smartmontools  urandom
-checkfs.sh              halt           mountall-bootclean.sh  networking             rc             rsync         ssh            winbind
-checkroot-bootclean.sh  hostname.sh    mountall.sh            nfs-common             rc.local       rsyslog       sudo
-checkroot.sh            hwclock.sh     mountdevsubfs.sh       nfs-kernel-server      rcS            samba         udev
+acpid                   console-setup  kbd                    mountkernf...
+apache2                 cron           keyboard-setup         mountnfs-b...
+atd                     dbus           killprocs              mountnfs.s...
+bootlogs                exim4          kmod                   mpt-status...
+bootmisc.sh             gitlab         motd                   mtab.sh
+checkfs.sh              halt           mountall-bootclean.sh  networking
+checkroot-bootclean.sh  hostname.sh    mountall.sh            nfs-common
+checkroot.sh            hwclock.sh     mountdevsubfs.sh       nfs-kernel...
 ```
 
 ...then chances are it will respond to a fairly standard set of commands,

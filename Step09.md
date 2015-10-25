@@ -24,7 +24,7 @@ within *IX itself - [`man`](http://linux.die.net/man/1/man),
 most *IX commands. For example, `man ls` shows:
 
 ```bash
-LS(1)                                                             User Commands                                                             LS(1)
+LS(1)                                                             User C...
 
 NAME
        ls - list directory contents
@@ -37,7 +37,7 @@ DESCRIPTION
        default).  Sort entries alphabetically if none of -cftuvSUX nor
        --sort is specified.
 
-       Mandatory arguments to long options are mandatory for short options too.
+       Mandatory arguments to long options are mandatory for short optio...
 
        -a, --all
               do not ignore entries starting with .
@@ -65,7 +65,7 @@ usually referred to as `passwd(1)` to disambiguate which thing we're
 talking about:
 
 ```bash
-PASSWD(1)                                                         User Commands                                                         PASSWD(1)
+PASSWD(1)                                                         User C...
 
 NAME
        passwd - change user password
@@ -74,11 +74,15 @@ SYNOPSIS
        passwd [options] [LOGIN]
 
 DESCRIPTION
-       The passwd command changes passwords for user accounts. A normal user may only change the password for his/her own account, while the
-       superuser may change the password for any account.  passwd also changes the account or associated password validity period.
+       The passwd command changes passwords for user accounts. A normal user
+       may only change the password for his/her own account, while the
+       superuser may change the password for any account.  passwd also
+       changes the account or associated password validity period.
 
    Password Changes
-       The user is first prompted for his/her old password, if one is present. This password is then encrypted and compared against the stored
+       The user is first prompted for his/her old password, if one is
+       present. This password is then encrypted and compared against the
+       stored
 ...and so on...
 ```
 
@@ -86,13 +90,14 @@ To see the `man` page for the `passwd` file format, we have to explicitly
 specify the section, in this case by using `man 5 passwd`:
 
 ```bash
-PASSWD(5)                                                  File Formats and Conversions                                                 PASSWD(5)
+PASSWD(5)                                                  File Formats ...
 
 NAME
        passwd - the password file
 
 DESCRIPTION
-       /etc/passwd contains one line for each user account, with seven fields delimited by colons (“:”). These fields are:
+       /etc/passwd contains one line for each user account, with seven
+       fields delimited by colons (“:”). These fields are:
 
        ·   login name
 
@@ -170,8 +175,8 @@ jfs_debugfs (8)      - shell-type JFS file system editor
 pdbedit (8)          - manage the SAM database (Database of Samba Users)
 samba-regedit (8)    - ncurses based tool to manage the Samba registry
 sudoedit (8)         - execute a command as another user
-vigr (8)             - edit the password, group, shadow-password or shadow-group file
-vipw (8)             - edit the password, group, shadow-password or shadow-group file
+vigr (8)             - edit the password, group, shadow-password or shad...
+vipw (8)             - edit the password, group, shadow-password or shad...
 visudo (8)           - edit the sudoers file
 ```
 

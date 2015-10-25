@@ -15,16 +15,16 @@ For example, our friend [`ping`](http://linux.die.net/man/8/ping) is there:
 ```bash
 # ping www.yahoo.com
 PING fd-fp3.wg1.b.yahoo.com (98.138.253.109) 56(84) bytes of data.
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=1 ttl=46 time=62.1 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=2 ttl=46 time=61.9 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=3 ttl=46 time=70.9 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=4 ttl=46 time=65.0 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=5 ttl=46 time=63.6 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=6 ttl=46 time=59.9 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=7 ttl=46 time=60.8 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=8 ttl=46 time=60.8 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=9 ttl=46 time=60.3 ms
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=10 ttl=46 time=60.1 ms
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=1 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=2 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=3 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=4 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=5 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=6 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=7 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=8 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=9 ttl=...
+64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=10 ttl...
 ^C
 --- fd-fp3.wg1.b.yahoo.com ping statistics ---
 10 packets transmitted, 10 received, 0% packet loss, time 9004ms
@@ -46,13 +46,13 @@ traceroute to www.yahoo.com (98.138.252.30), 30 hops max, 60 byte packets
  1  10.208.3.254 (10.208.3.254)  0.720 ms  0.706 ms  0.693 ms
  2  10.208.6.53 (10.208.6.53)  0.808 ms  0.896 ms  0.943 ms
  3  10.208.6.46 (10.208.6.46)  2.632 ms  2.636 ms  2.634 ms
- 4  kcm-priv-20.inet.qwest.net (63.159.159.185)  30.786 ms  30.852 ms  31.350 ms
+ 4  kcm-priv-20.inet.qwest.net (63.159.159.185)  30.786 ms  30.852 ms  3...
  5  * * *
  6  67.134.114.230 (67.134.114.230)  30.441 ms  29.811 ms  30.372 ms
  7  67.130.10.174 (67.130.10.174)  32.267 ms  32.700 ms  32.789 ms
  8  67.130.10.103 (67.130.10.103)  32.416 ms  32.421 ms  32.420 ms
- 9  min-edge-13.inet.qwest.net (67.130.30.21)  33.878 ms  31.719 ms  34.749 ms
-10  chp-brdr-03.inet.qwest.net (67.14.8.194)  45.668 ms  55.177 ms  45.629 ms
+ 9  min-edge-13.inet.qwest.net (67.130.30.21)  33.878 ms  31.719 ms  34....
+10  chp-brdr-03.inet.qwest.net (67.14.8.194)  45.668 ms  55.177 ms  45.6...
 11  63.146.27.18 (63.146.27.18)  46.371 ms  46.333 ms  47.234 ms
 ...and so on...
 ```
@@ -126,10 +126,10 @@ Here is a really common example on Debian-based systems:
 
 ```bash
 $ apt-get update
-E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denied)
+E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permissi...
 E: Unable to lock directory /var/lib/apt/lists/
-E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
-E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
+E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission de...
+E: Unable to lock the administration directory (/var/lib/dpkg/), are you...
 ```
 
 The error message, especially the last line, is pretty clear. Let's try it
@@ -167,13 +167,13 @@ from a command prompt). For example, `lynx http://google.com` yields:
 
    Google
 
-                                                   _______________________________________________________
-                                                   Google Search  I'm Feeling Lucky                          Advanced search
+   _______________________________________________________
+   Google Search  I'm Feeling Lucky                          Advanced search
                                                                                                              Language tools
 
    Advertising Programs     Business Solutions     +Google     About Google
 
-                                                                          © 2015 - Privacy - Terms
+   © 2015 - Privacy - Terms
 
 ```
 
@@ -245,7 +245,7 @@ P3P: CP="This is not a P3P policy! See http://www.google.com/support/acc...
 Server: gws
 X-XSS-Protection: 1; mode=block
 X-Frame-Options: SAMEORIGIN
-Set-Cookie: PREF=ID=1111111111111111:FF=0:TM=1445624764:LM=1445624764:V=1:S=YV3fLcTe...
+Set-Cookie: PREF=ID=1111111111111111:FF=0:TM=1445624764:LM=1445624764:V=...
 Set-Cookie: NID=72=HLgGubMnO1ThhvhOAmvehue96EKTh9D6F19zidZQU-E9AibEg2Op6...
 Accept-Ranges: none
 Vary: Accept-Encoding

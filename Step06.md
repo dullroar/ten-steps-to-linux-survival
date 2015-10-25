@@ -481,8 +481,8 @@ Lehmer</span> is licensed under a <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
 Attribution-ShareAlike 4.0 International License</a>.
                                    [ Read 18 lines ]
-^G Get Help   ^O WriteOut   ^R Read File  ^Y Prev Page  ^K Cut Text   ^C Cur Pos
-^X Exit       ^J Justify    ^W Where Is   ^V Next Page  ^U UnCut Text ^T To Spell
+^G Get Help   ^O WriteOut   ^R Read File  ^Y Prev Page  ^K Cut Text   ^C...
+^X Exit       ^J Justify    ^W Where Is   ^V Next Page  ^U UnCut Text ^T...
 ```
 
 Two things to note about the above:

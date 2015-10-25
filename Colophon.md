@@ -26,8 +26,9 @@ using [`vi`](http://linux.die.net/man/1/vi) and
 [ReText](https://github.com/retext-project/retext), among others.
 
 Output produced using [`pandoc`](http://pandoc.org/),
-[`pdflatex`](http://linux.die.net/man/1/pdflatex) and
-[`make`](http://linux.die.net/man/1/make), based on the
+[TeX Live](http://www.tug.org/texlive/) and
+[`pdflatex`](http://linux.die.net/man/1/pdflatex),
+[`make`](http://linux.die.net/man/1/make), originally based on the
 [@evangoer's work](https://github.com/evangoer/pandoc-ebook-template).
 
 Source code control is provided by [`git`](http://linux.die.net/man/1/git).

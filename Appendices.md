@@ -125,6 +125,8 @@ quits.
 * [**`ps`**](linux.die.net/man/1/ps) - list running processes.
 * [**`pwd`**](linux.die.net/man/1/pwd) - print the current (working)
 directory name.
+* [**`rename`**](linux.die.net/man/1/rename) - rename files in more complex
+ways than `mv` can.
 * [**`rm`**](linux.die.net/man/1/rm) - delete (remove) files or
 directories.
 * [**`set`**](linux.die.net/man/1/set) - set an environment variable, or
@@ -151,6 +153,8 @@ files.
 editor.
 * [**`wget`**](http://linux.die.net/man/1/wget) - download files from the
 internet.
+* [**`whoami`**](http://linux.die.net/man/1/whoami) - the answer to life's
+most existential question.
 * [**`whois`**](http://linux.die.net/man/1/whois) - look up DNS ownership
 info on an address.
 * [**`zip`**](http://linux.die.net/man/1/zip) - compress files and
@@ -216,10 +220,10 @@ examples):
 
 ```bash
 $ grep '\[' *.md | grep -v ']'
-Step01.md: (( expression ))                        if COMMANDS; then COMMANDS; [ elif C>
-Step01.md: :                                       kill [-s sigspec | -n signum | -sigs>
-Step04.md:./FileCheckers/otschecker:        if [ $rc != 0 -a "$pdfinfo" != "Comma...
-Step04.md:./FileCheckers/pdfpwdchecker:        if [ $rc != 0 -a "$pdfinfo" = "Com...
+Step01.md: (( expression ))           if COMMANDS; then COMMANDS; [ elif C>
+Step01.md: :                          kill [-s sigspec | -n signum | -sigs>
+Step04.md:./FileCheckers/otschecker:  [ $rc != 0 -a "$pdfinfo" != "Comma...
+Step04.md:./FileCheckers/pdfpwdchecker: if [ $rc != 0 -a "$pdfinfo" = "C...
 ```
 
 What makes this simple? Finding `[` with the first `grep` and then simply
@@ -229,6 +233,36 @@ piping it to a second `grep` and inverting the match logic (`-v`) on `]`.
 Markdown were the issue. In fact, now that I generate Markdown as an output
 format for the `README.md` file, I've noticed it does the same thing.
 So I still haven't figured it out! Ideas welcome.
+
+### Chain Gangs
+
+Remembering that `&&` only executes the next command if the prior one is
+successful, we can do things like set up a sample directory and (empty)
+files for playing around with files and directories in one fell swoop:
+
+```bash
+$ mkdir -p /tmp/foo/d && cd /tmp/foo && touch a b c d/e
+
+$ ls
+a  b  c  d
+```
+
+That is roughly equivalent to:
+
+```bash
+$ cd /tmp
+
+$ mkdir -p foo
+
+$ cd foo
+
+$ mkdir -p d
+
+$ touch a b c d/e
+
+$ ls
+a  b  c  d
+```
 
 ### Simple Scripts
 
