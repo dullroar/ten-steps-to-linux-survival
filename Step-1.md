@@ -14,6 +14,12 @@ Lehmer</span> is licensed under a <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
 Attribution-ShareAlike 4.0 International License</a>.
 
+**Dedicated to my first three technical mentors** - Jim Proffer, who taught
+me digging deeper was fun and let me do so (often in production). Jerry
+Wood, who taught me to stop and think. And Kim Manchak, who let me be more
+than he hired me to be. Thank you, gentlemen. I've tried to pay it forward.
+This book is part of that.
+
 # Step -1. Introduction
 
 > *"And you may ask yourself, 'Well, how did I ***get*** here?'"* -
