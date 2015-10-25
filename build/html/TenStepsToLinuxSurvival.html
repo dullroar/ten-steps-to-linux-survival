@@ -139,7 +139,10 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li><a href="#commands">Commands</a></li>
 <li><a href="#system-commands">System Commands</a></li>
 </ul></li>
-<li><a href="#examples">Examples</a></li>
+<li><a href="#examples">Examples</a><ul>
+<li><a href="#keep-it-simple-stupid">Keep It Simple, Stupid</a></li>
+<li><a href="#simple-scripts">Simple Scripts</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#colophon">Colophon</a></li>
 </ul>
@@ -157,7 +160,7 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <p><strong>Dedicated to my first three technical mentors</strong> - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think (and once called me an &quot;inveterate toolmaker&quot; in a review). And Kim Manchak, who let me be more than he hired me to be (and continues to be a great chess opponent). Thank you, gentlemen. I've tried to pay it forward. This book is part of that.</p>
 <h1 id="step--1.-introduction"><a href="#step--1.-introduction">Step -1. Introduction</a></h1>
 <blockquote>
-<p><em>&quot;And you may ask yourself, 'Well, how did I </em><strong>get</strong>* here?'&quot;* - Talking Heads (<em>Once in a Lifetime</em>)</p>
+<p><em>&quot;And you may ask yourself, 'Well, how did I get here?'&quot;</em> - Talking Heads (<em>Once in a Lifetime</em>)</p>
 </blockquote>
 <p>This is my little &quot;Linux and Bash in 10 steps&quot; guide. It's based around what I consider the essentials for <del>floundering around</del> acting like I know what I'm doing in Linux, BSD and *IX-flavored systems and looking impressive among people who have only worked on Windows in the GUI. Your &quot;10 steps&quot; may be different than mine and that's fine, but this list is mine.</p>
 <p>I said ten things, but I lied, because history is really important, so we will start at step #0. And since this is before even that I guess that means this is a 12-step program...</p>
@@ -2688,6 +2691,46 @@ $ <span class="kw">echo</span> <span class="ot">$?</span>
 <li><a href="http://linux.die.net/man/8/traceroute"><strong><code>traceroute</code></strong></a> - trace the route to an IP address.</li>
 </ul>
 <h2 id="examples"><a href="#examples">Examples</a></h2>
+<p>The following are meant to be simple, mostly &quot;one-liner&quot; type samples to reinforce the concepts here and continue to show you &quot;the UNIX philosophy&quot; of approaching solutions in multiple small steps.</p>
+<h3 id="keep-it-simple-stupid"><a href="#keep-it-simple-stupid">Keep It Simple, Stupid</a></h3>
+<p>Here's a good example. During the debugging of this book I kept having problems with internal links to other parts of the generated PDF not working. Some did, some didn't. And they <strong><em>all</em></strong> worked in epub and HTML outputs.</p>
+<p>I had a suspicion it was because I was wrapping links from one line to the next in Markdown (trying to keep below a certain column count), so I wanted to find all lines that had an opening square bracket but <strong><em>not</em></strong> a closing one, e.g., I wanted to catch the first line in the following:</p>
+<pre class="sourceCode markdown"><code class="sourceCode markdown">See [Important System
+Directories.](http://linux.die.net/abs-guide/systemdirs.html)</code></pre>
+<p>Now you could spend a long time with regular expressions trying to figure out how to do negative matching on that closing <code>]</code>. Good luck!</p>
+<p>Or you could do something as simple as this, which shows the source files now, after I've cleaned them all up (the only remnants are now in examples):</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">grep</span> <span class="st">&#39;\[&#39;</span> *.md <span class="kw">|</span> <span class="kw">grep</span> -v <span class="st">&#39;]&#39;</span>
+<span class="kw">Step01.md</span>: (( expression ))                        <span class="kw">if</span> <span class="kw">COMMANDS;</span> <span class="kw">then</span> <span class="kw">COMMANDS; [</span> elif C&gt;
+Step01.md: :                                       kill [<span class="ot">-s</span> sigspec | <span class="ot">-n</span> signum | -sigs&gt;
+Step04.md:./FileCheckers/otschecker:        if [ <span class="ot">$rc</span> <span class="ot">!=</span> 0 <span class="ot">-a</span> <span class="st">&quot;</span><span class="ot">$pdfinfo</span><span class="st">&quot;</span> <span class="ot">!=</span> <span class="st">&quot;Comma...</span>
+<span class="st">Step04.md:./FileCheckers/pdfpwdchecker:        if [ </span><span class="ot">$rc</span><span class="st"> != 0 -a &quot;</span><span class="ot">$pdfinfo</span><span class="st">&quot; = &quot;</span>Com...</code></pre>
+<p>What makes this simple? Finding <code>[</code> with the first <code>grep</code> and then simply piping it to a second <code>grep</code> and inverting the match logic (<code>-v</code>) on <code>]</code>.</p>
+<p><strong>Note:</strong> For what it's worth, it doesn't look like the wrapped links in Markdown were the issue. In fact, now that I generate Markdown as an output format for the <code>README.md</code> file, I've noticed it does the same thing. So I still haven't figured it out! Ideas welcome.</p>
+<h3 id="simple-scripts"><a href="#simple-scripts">Simple Scripts</a></h3>
+<p>I said I wasn't going to cover scripting, especially logical constructs like <code>if</code>/<code>fi</code>. But simple scripts that just &quot;do things&quot; in a certain order are within scope, and the following, which installs <a href="https://github.com/freerdp/freerdp"><code>freerdp</code></a>, is a good example of simply taking the guesswork out of doing something repetitive across multiple machines. I keep this <code>installrdp</code> script in Dropbox so I can run it on any new machine I set up quickly and easily (once I get Dropbox set up on the machine!)</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="co">#!/bin/bash</span>
+<span class="kw">sudo</span> apt-get -y install git
+<span class="kw">cd</span> ~
+<span class="kw">git</span> clone git://github.com/FreeRDP/FreeRDP.git
+<span class="kw">cd</span> FreeRDP
+<span class="kw">sudo</span> apt-get -y install build-essential git-core cmake libssl-dev \
+  <span class="kw">libx11-dev</span> libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \
+  <span class="kw">libxv-dev</span> libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \
+  <span class="kw">libxml2-dev</span> libxrandr-dev libgstreamer0.10-dev \
+  <span class="kw">libgstreamer-plugins-base0.10-dev</span> libxi-dev \
+  <span class="kw">libgstreamer-plugins-base1.0-dev</span> libavutil-dev libavcodec-dev \
+  <span class="kw">libcunit1-dev</span> libdirectfb-dev xmlto doxygen libxtst-dev
+<span class="kw">cmake</span> -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
+<span class="kw">make</span>
+<span class="kw">sudo</span> make install
+<span class="kw">sudo</span> echo <span class="st">&quot;/usr/local/lib/freerdp&quot;</span> <span class="kw">&gt;</span> /etc/ld.so.conf.d/freerdp.conf
+<span class="kw">sudo</span> echo <span class="st">&quot;/usr/local/lib64/freerdp&quot;</span> <span class="kw">&gt;&gt;</span> /etc/ld.so.conf.d/freerdp.conf
+<span class="kw">sudo</span> echo <span class="st">&quot;/usr/local/lib&quot;</span> <span class="kw">&gt;&gt;</span> /etc/ld.so.conf.d/freerdp.conf
+<span class="kw">sudo</span> ldconfig
+<span class="kw">which</span> xfreerdp
+<span class="kw">xfreerdp</span> --version</code></pre>
+<p>You should be able to understand all of the above now, or know where to look to figure it out. The only nuance we may not have covered is that at the shell prompt and in scripts both you can put a <code>\</code> at the end of a line and it will &quot;escape&quot; the newline (<code>\r</code>) so you can continue the same command on the next line. This is useful because some interactive terminals don't &quot;wrap&quot; well, and it makes more readable script files, too.</p>
+<p>And yes, in the section on package management I talked about the dangers of installing packages directly from source. In this case, though, <code>freerdp</code> in the Mint repositories is lagging far enough behind the new RDP protocol version 8 support that I want to use the latest and greatest <code>freerdp</code> from GitHub for performance reasons. But now it's up to me to track and update the software (if I care).</p>
 <h1 id="colophon"><a href="#colophon">Colophon</a></h1>
 <blockquote>
 <p><em>&quot;I can't come back, I don't know how it works! Good-bye, folks!&quot;</em> - The Wizard of Oz</p>

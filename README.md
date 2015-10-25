@@ -28,8 +28,8 @@ that.
 Step -1. Introduction
 =====================
 
-> *"And you may ask yourself, 'Well, how did I **get** here?'"* -
-> Talking Heads (*Once in a Lifetime*)
+> *"And you may ask yourself, 'Well, how did I get here?'"* - Talking
+> Heads (*Once in a Lifetime*)
 
 This is my little "Linux and Bash in 10 steps" guide. It's based around
 what I consider the essentials for ~~floundering around~~ acting like I
@@ -5096,6 +5096,102 @@ restrict the use of `ping`!
 
 Examples
 --------
+
+The following are meant to be simple, mostly "one-liner" type samples to
+reinforce the concepts here and continue to show you "the UNIX
+philosophy" of approaching solutions in multiple small steps.
+
+### Keep It Simple, Stupid
+
+Here's a good example. During the debugging of this book I kept having
+problems with internal links to other parts of the generated PDF not
+working. Some did, some didn't. And they ***all*** worked in epub and
+HTML outputs.
+
+I had a suspicion it was because I was wrapping links from one line to
+the next in Markdown (trying to keep below a certain column count), so I
+wanted to find all lines that had an opening square bracket but
+***not*** a closing one, e.g., I wanted to catch the first line in the
+following:
+
+~~~~ {.markdown}
+See [Important System
+Directories.](http://linux.die.net/abs-guide/systemdirs.html)
+~~~~
+
+Now you could spend a long time with regular expressions trying to
+figure out how to do negative matching on that closing `]`. Good luck!
+
+Or you could do something as simple as this, which shows the source
+files now, after I've cleaned them all up (the only remnants are now in
+examples):
+
+~~~~ {.bash}
+$ grep '\[' *.md | grep -v ']'
+Step01.md: (( expression ))                        if COMMANDS; then COMMANDS; [ elif C>
+Step01.md: :                                       kill [-s sigspec | -n signum | -sigs>
+Step04.md:./FileCheckers/otschecker:        if [ $rc != 0 -a "$pdfinfo" != "Comma...
+Step04.md:./FileCheckers/pdfpwdchecker:        if [ $rc != 0 -a "$pdfinfo" = "Com...
+~~~~
+
+What makes this simple? Finding `[` with the first `grep` and then
+simply piping it to a second `grep` and inverting the match logic (`-v`)
+on `]`.
+
+**Note:** For what it's worth, it doesn't look like the wrapped links in
+Markdown were the issue. In fact, now that I generate Markdown as an
+output format for the `README.md` file, I've noticed it does the same
+thing. So I still haven't figured it out! Ideas welcome.
+
+### Simple Scripts
+
+I said I wasn't going to cover scripting, especially logical constructs
+like `if`/`fi`. But simple scripts that just "do things" in a certain
+order are within scope, and the following, which installs
+[`freerdp`](https://github.com/freerdp/freerdp), is a good example of
+simply taking the guesswork out of doing something repetitive across
+multiple machines. I keep this `installrdp` script in Dropbox so I can
+run it on any new machine I set up quickly and easily (once I get
+Dropbox set up on the machine!)
+
+~~~~ {.bash}
+#!/bin/bash
+sudo apt-get -y install git
+cd ~
+git clone git://github.com/FreeRDP/FreeRDP.git
+cd FreeRDP
+sudo apt-get -y install build-essential git-core cmake libssl-dev \
+  libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \
+  libxv-dev libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \
+  libxml2-dev libxrandr-dev libgstreamer0.10-dev \
+  libgstreamer-plugins-base0.10-dev libxi-dev \
+  libgstreamer-plugins-base1.0-dev libavutil-dev libavcodec-dev \
+  libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
+cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
+make
+sudo make install
+sudo echo "/usr/local/lib/freerdp" > /etc/ld.so.conf.d/freerdp.conf
+sudo echo "/usr/local/lib64/freerdp" >> /etc/ld.so.conf.d/freerdp.conf
+sudo echo "/usr/local/lib" >> /etc/ld.so.conf.d/freerdp.conf
+sudo ldconfig
+which xfreerdp
+xfreerdp --version
+~~~~
+
+You should be able to understand all of the above now, or know where to
+look to figure it out. The only nuance we may not have covered is that
+at the shell prompt and in scripts both you can put a `\` at the end of
+a line and it will "escape" the newline (`\r`) so you can continue the
+same command on the next line. This is useful because some interactive
+terminals don't "wrap" well, and it makes more readable script files,
+too.
+
+And yes, in the section on package management I talked about the dangers
+of installing packages directly from source. In this case, though,
+`freerdp` in the Mint repositories is lagging far enough behind the new
+RDP protocol version 8 support that I want to use the latest and
+greatest `freerdp` from GitHub for performance reasons. But now it's up
+to me to track and update the software (if I care).
 
 Colophon
 ========

@@ -27,7 +27,7 @@ you, gentlemen. I've tried to pay it forward. This book is part of that.
 
 # Step -1. Introduction
 
-> *"And you may ask yourself, 'Well, how did I **get** here?'"* -
+> *"And you may ask yourself, 'Well, how did I get here?'"* -
 > Talking Heads (*Once in a Lifetime*)
 
 This is my little "Linux and Bash in 10 steps" guide. It's based around
