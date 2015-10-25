@@ -7,3 +7,8 @@ systems and looking impressive among people who have only worked on
 Windows in the GUI. Your "10 steps" may be different than mine and that's
 fine, but this list is mine.
 
+## To-Do's
+
+* **Some good examples** - gather some good "one-liner" examples for the
+appendix, esp. things that illustrate "the UNIX philosophy" of approaching
+a problem in byte-sized pieces.

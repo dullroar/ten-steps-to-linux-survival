@@ -119,7 +119,11 @@ Windows.
 That said, if you find something amiss in here - a typo, a misconception or
 mistake, or a command or parameter you ***really, really, really*** think
 should be in here even though I said I am not trying to be exhaustive, feel
-free to send me a `git pull` request.
+free to [clone it from
+GitHub](https://github.com/dullroar/ten-steps-to-linux-survival.git), make
+your changes and send me a `git pull` request. Or you can try to [file it
+as an issue](https://github.com/dullroar/ten-steps-to-linux-survival/issues?q=is%3Aopen+is%3Aissue)
+and I'll see how I feel that day.
 
 ## Why?
 

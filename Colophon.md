@@ -30,5 +30,7 @@ Output produced using [`pandoc`](http://pandoc.org/),
 work](https://github.com/evangoer/pandoc-ebook-template).
 
 Source code control is provided by [`git`](http://linux.die.net/man/1/git).
+You can view [the files used to create this
+book](https://github.com/dullroar/ten-steps-to-linux-survival) on GitHub.
 
 The cover photo is of our dog, Merv, who is reminding you, "Don't panic!"
