@@ -1,3 +1,4 @@
+  
 # Step 4. Grokking `grep`
 
 ***And probably gawking at `awk` while we are at it, which means regular
@@ -8,12 +9,12 @@ expressions, too. Now we have two problems.***
 
 If the `file` command is useful for finding file system entries based
 on their attributes, the [`grep`](http://linux.die.net/man/1/grep) command
-is good for finding files with contents that match a [regular
-expression](https://en.wikipedia.org/wiki/Regular_expression). You already
-know at least one regular expression, the wildcard `*` character from even
-the `CMD.EXE` prompt and Windows Explorer. It means "match zero or more
-characters." We'll cover more on regular expressions, or "regexes," in a
-moment.
+is good for finding files with contents that match a
+[regular expression](https://en.wikipedia.org/wiki/Regular_expression).
+You already know at least one regular expression, the wildcard `*`
+character from even the `CMD.EXE` prompt and Windows Explorer. It means
+"match zero or more characters." We'll cover more on regular expressions,
+or "regexes," in a moment.
 
 First, an example of `grep`, showing all files in a directory with the
 pattern "is" in them:
@@ -51,14 +52,14 @@ In the `grep` example, we can see a regular expression can be as
 simple as "is". It can also be as complicated as:
 
 ```
-(?bhttp://[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@#/%=~_()|]
+(?bhttp://[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@f
 ```
 
-That shows at least one attempt at being [a very complete parser of valid
-HTTP URLs](http://blog.codinghorror.com/the-problem-with-urls/). Wow!
-What's all that? Now you see why you have two problems. Even if you get
-that all figured out, or if you actually sit and create something like that
-from scratch yourself (and it works!), imagine coming back six months
+That shows at least one attempt at being
+[a very complete parser of valid HTTP URLs](http://blog.codinghorror.com/the-problem-with-urls/).
+Wow! What's all that? Now you see why you have two problems. Even if you
+get that all figured out, or if you actually sit and create something like
+that from scratch yourself (and it works!), imagine coming back six months
 later and trying to decipher it again.
 
 There are literally [whole web sites](http://www.regular-expressions.info/)
@@ -226,10 +227,10 @@ before handing them to `grep`.
 I don't have much to say about [`awk`](http://linux.die.net/man/1/awk)
 other than:
 
-1. It is named after its three authors, [Aho, Weinberger and
-Kernighan](https://en.wikipedia.org/wiki/AWK), all three of whom are
-computer science greats from Bell Labs. The GNU version is called `gawk`,
-of course!
+1. It is named after its three authors,
+[Aho, Weinberger and Kernighan](https://en.wikipedia.org/wiki/AWK), all
+three of whom are computer science greats from Bell Labs. The GNU version
+is called `gawk`, of course!
 
 2. It is a "data driven scripting language." That's a fancy way of saying
 it was written specifically with slicing and dicing text in mind.
@@ -245,9 +246,9 @@ That said, it is a powerful knife in the tool belt, and you should be
 aware it exists.
 
 To whet your taste, here is the type of "one-liner" for which `awk` is
-famous, in this case [formatting and printing a report on user
-ids](http://www.ibm.com/developerworks/library/l-awk1/) from
-`/etc/passwd`:
+famous, in this case
+[formatting and printing a report on user ids](http://www.ibm.com/developerworks/library/l-awk1/)
+from `/etc/passwd`:
 
 ```bash
 $ awk -F":" '{ print "username: " $1 "\t\tuid:" $3 }' /etc/passwd
@@ -264,3 +265,4 @@ username: news		uid:9
 username: uucp		uid:10
 ...and so on...
 ```
+  

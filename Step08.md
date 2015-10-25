@@ -1,3 +1,4 @@
+  
 # Step 8. The Man Behind the Curtain
 
 ***`/proc`, `/dev`, `ps`, `/var/log`, `/tmp` and other things under the
@@ -239,3 +240,4 @@ By convention, temporary files are written to `/tmp`. You can place your
 own temporary or "work" files there, too. It's a great place to unzip
 install bits, for example. Just note that the temporariness is enforced in
 that when the system reboots, `/tmp` is reset to empty.
+  

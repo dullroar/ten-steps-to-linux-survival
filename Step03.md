@@ -1,3 +1,4 @@
+  
 # Step 3. Finding Meaning
 
 ***The `find` command in all its glory. Probably the single most useful
@@ -91,8 +92,8 @@ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
 ```
           
 There are five (5) backslash (`\`) characters in the above. In each case,
-the backslash is preventing [shell
-expansion](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html):
+the backslash is preventing
+[shell expansion](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html):
 
 1. **`\*.dat`** - preserves the `*` for `find` to use as it recursively
 searches through directories, instead of the shell expanding it to all
@@ -214,3 +215,4 @@ The `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`breaks down as:
 * **`%TT`** - the time expressed in ***hh:mm:ss.hhhhhh*** format.
 * **`\n\n`** - two new lines.
 * **`"`** - prevent shell expansion on the format string.
+  

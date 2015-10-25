@@ -1,3 +1,4 @@
+  
 # Step 1. Come Out of Your Shell
 
 ***`sh` vs. `ash` vs. `bash` vs. everything else, "REPL”, interactive vs.
@@ -39,11 +40,11 @@ Bourne shell in UNIX, which spawned:
 
 * [**`csh`**](https://en.wikipedia.org/wiki/C_shell) - C shell,
 historically it is the default shell on BSD systems (although there are
-arguments on why you should [***never use
-it***](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)).
+arguments on why you should
+[***never use it***](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)).
 
-* **...and many more!** - [tons,
-really](https://en.wikipedia.org/wiki/Unix_shell#Shell_categories).
+* **...and many more!** -
+[tons, really](https://en.wikipedia.org/wiki/Unix_shell#Shell_categories).
 
 Most Linux distros use `bash`, but the BSDs are all over the place. We're
 going to assume `bash` for the rest of this tutorial. With few
@@ -394,3 +395,4 @@ them and re-execute them.
 **Note:** If you start multiple sessions under the same account,
 the saved history will be of the last login to successfully write back out
 `.bash_history`.
+  

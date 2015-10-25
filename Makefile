@@ -7,18 +7,22 @@ TOC = --toc --toc-depth=3
 COVER_IMAGE = images/Merv.jpg
 LATEX_CLASS = report
 
-all: book
+all: book markdown
 
 book: epub html pdf
 
 clean:
 	rm -r $(BUILD)
 
+debug: markdown
+
 epub: $(BUILD)/epub/$(BOOKNAME).epub
 
 html: $(BUILD)/html/$(BOOKNAME).html
 
 pdf: $(BUILD)/pdf/$(BOOKNAME).pdf
+
+markdown: $(BUILD)/markdown/$(BOOKNAME).md
 
 $(BUILD)/epub/$(BOOKNAME).epub: $(TITLE) $(CHAPTERS)
 	mkdir -p $(BUILD)/epub
@@ -33,5 +37,11 @@ $(BUILD)/html/$(BOOKNAME).html: $(CHAPTERS)
 $(BUILD)/pdf/$(BOOKNAME).pdf: $(TITLE) $(CHAPTERS)
 	mkdir -p $(BUILD)/pdf
 	pandoc $(TOC) --latex-engine=pdflatex -V documentclass=$(LATEX_CLASS) -o $@ $^
+
+$(BUILD)/markdown/$(BOOKNAME).md: $(CHAPTERS)
+	mkdir -p $(BUILD)/markdown
+	mkdir -p $(BUILD)/markdown/images
+	cp images/* $(BUILD)/markdown/images/.
+	pandoc $(TOC) --to=markdown -o $@ $^
 
 .PHONY: all book clean epub html pdf

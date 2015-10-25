@@ -1,3 +1,4 @@
+  
 # Appendices
 
 > *"That rug really tied the room together, did it not?"* - Walter Sobchak
@@ -50,8 +51,8 @@ prompt (also a nice example of a hidden "dotfile").
 
 ### System Directories
 
-See [Important System
-Directories.](http://linux.die.net/abs-guide/systemdirs.html)
+See
+[Important System Directories.](http://linux.die.net/abs-guide/systemdirs.html)
 
 * **`/etc`** - configuration files location.
 * **`/home`** - "home" or user profile directories.
@@ -185,3 +186,4 @@ route to an IP address.
 
 ## Examples
 
+  

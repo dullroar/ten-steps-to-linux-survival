@@ -1,3 +1,4 @@
+  
 # Step 9. How Do You Know What You Don’t Know, `man`?
 
 ***`man`, `info`, `apropos`, Linux Documentation Project, Debian and Arch
@@ -208,14 +209,13 @@ can go there directly and look up a command.
 There are several consistently high-quality free sources of information on
 various parts of Linux and related systems on the internet.
 
-* [**The Linux Documentation Project
-(LDP)**](http://www.tldp.org/guides.html) - has fallen a bit behind over
-the years, but still has two of the best `bash` scripting books out there,
-[*Bash Guide for
-Beginners*](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html)
-and [*Advanced Bash-Scripting
-Guide*](http://www.tldp.org/LDP/abs/html/index.html). I continue to use
-the latter all the time.
+* [**The Linux Documentation Project (LDP)**](http://www.tldp.org/guides.html) -
+has fallen a bit behind over the years, but still has two of the best
+`bash` scripting books out there,
+[*Bash Guide for Beginners*](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html)
+and
+[*Advanced Bash-Scripting Guide*](http://www.tldp.org/LDP/abs/html/index.html).
+I continue to use the latter all the time.
 
 * [**Arch Linux Wiki**](https://wiki.archlinux.org/) - you may not think
 this would be useful if you are running Debian or Fedora or something else,
@@ -227,8 +227,9 @@ wiki.
 you are not running a Debian-based distro, this can be handy because it
 describes how to administer Linux in a way that often transcends distro
 specifics (and at least explains how Debian approaches the differences).
-The best books in the series are [*The Debian Administrator's
-Handbook*](https://www.debian.org/doc/manuals/debian-handbook/) and the
+The best books in the series are
+[*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/)
+and the
 [*Debian Reference*](https://www.debian.org/doc/manuals/debian-reference/),
 which is a lot more formal attempt at the same type of territory this
 guide covers.
@@ -238,6 +239,7 @@ of course StackOverflow and its family are also very useful.
 
 Besides the above, if you are dealing with a package that is not part of
 the "core" OS, such as [Samba](https://www.samba.org/samba/) for setting up
-CIFS shares on Linux, you should always look at [the package site's
-documentation](https://www.samba.org/samba/docs/) as well as any specific
-info you can find about the distro you are running.  
+CIFS shares on Linux, you should always look at
+[the package site's documentation](https://www.samba.org/samba/docs/) as
+well as any specific info you can find about the distro you are running.  
+  

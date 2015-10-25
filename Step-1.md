@@ -7,8 +7,10 @@ v0.1
 <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
 alt="Creative Commons License" style="border-width:0"
-src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"
-/></a><br /><span xmlns:dct="http://purl.org/dc/terms/"
+src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a>
+<br />
+<br />
+<span xmlns:dct="http://purl.org/dc/terms/"
 property="dct:title"><i>Jim's Ten Steps to Linux Survival</i></span>
 by <span xmlns:cc="http://creativecommons.org/ns#"
 property="cc:attributionName">James
@@ -18,9 +20,10 @@ Attribution-ShareAlike 4.0 International License</a>.
 
 **Dedicated to my first three technical mentors** - Jim Proffer, who taught
 me digging deeper was fun and let me do so (often in production). Jerry
-Wood, who taught me to stop and think. And Kim Manchak, who let me be more
-than he hired me to be. Thank you, gentlemen. I've tried to pay it forward.
-This book is part of that.
+Wood, who taught me to stop and think (and once called me an "inveterate
+toolmaker" in a review). And Kim Manchak, who let me be more
+than he hired me to be (and continues to be a great chess opponent). Thank
+you, gentlemen. I've tried to pay it forward. This book is part of that.
 
 # Step -1. Introduction
 
@@ -28,7 +31,7 @@ This book is part of that.
 > Talking Heads (*Once in a Lifetime*)
 
 This is my little "Linux and Bash in 10 steps" guide. It's based around
-what I consider the essentials for <strike>floundering around</strike>
+what I consider the essentials for ~~floundering around~~
 acting like I know what I'm doing in Linux, BSD and *IX-flavored
 systems and looking impressive among people who have only worked on
 Windows in the GUI. Your "10 steps" may be different than mine and that's
@@ -76,8 +79,7 @@ Outlook.
 `/proc`, `/dev`, `ps`, `/var/log`, `/tmp` and other things under the
 covers.
 
-9. [**How Do You Know What You Don’t Know, 
-`man`?**](#step-9.-how-do-you-know-what-you-dont-know-man) –
+9. [**How Do You Know What You Don’t Know, `man`?**](#step-9.-how-do-you-know-what-you-dont-know-man) –
 `man`, `info`, `apropos`, Linux Documentation Project, Debian and Arch
 guides, StackOverflow and the dangers of searching for “`man find`” or
 “`man touch`” on the internet.
@@ -121,10 +123,10 @@ Windows.
 That said, if you find something amiss in here - a typo, a misconception or
 mistake, or a command or parameter you ***really, really, really*** think
 should be in here even though I said I am not trying to be exhaustive, feel
-free to [clone it from
-GitHub](https://github.com/dullroar/ten-steps-to-linux-survival.git), make
-your changes and send me a `git pull` request. Or you can try to [file it
-as an issue](https://github.com/dullroar/ten-steps-to-linux-survival/issues?q=is%3Aopen+is%3Aissue)
+free to
+[clone it from GitHub](https://github.com/dullroar/ten-steps-to-linux-survival.git),
+make your changes and send me a `git pull` request. Or you can try to
+[file it as an issue](https://github.com/dullroar/ten-steps-to-linux-survival/issues?q=is%3Aopen+is%3Aissue)
 and I'll see how I feel that day.
 
 ## Why?
@@ -203,12 +205,12 @@ chapter because I don't mention a parameter on a command or an entire
 subject at all! And that's right - because this "survival guide" is already
 long enough.
 
-This book is not meant to be an authoritative source, but instead a ["fake
-book"](https://en.wikipedia.org/wiki/Fake_book) for getting up and running
-***quickly*** with the sheer basics, plus knowing where to go for help. It
-is not a replacement for reading the real documentation and doing research
-and testing, especially in production! But hopefully it will help get you
-through that "Can you get in and poke around and see if you can figure it
-out?" scenario, above. And if Linux should start becoming more of your job,
-maybe this will help as a gentle push toward "RTFM" along with thinking in
-"The UNIX Way."
+This book is not meant to be an authoritative source, but instead a
+["fake book"](https://en.wikipedia.org/wiki/Fake_book) for getting up and
+running ***quickly*** with the sheer basics, plus knowing where to go for
+help. It is not a replacement for reading the real documentation and doing
+research and testing, especially in production! But hopefully it will help
+get you through that "Can you get in and poke around and see if you can
+figure it out?" scenario, above. And if Linux should start becoming more of
+your job, maybe this will help as a gentle push toward "RTFM" along with
+thinking in "The UNIX Way."

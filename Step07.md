@@ -1,3 +1,4 @@
+  
 # Step 7. The Whole Wide World
 
 ***`curl`, `wget`, `ifconfig`, `ping`, `ssh`, `telnet`, `/etc/hosts` and
@@ -31,10 +32,10 @@ rtt min/avg/max/mdev = 59.933/62.581/70.935/3.191 ms
 ```
 
 One difference with `ping` is that by default in Linux `ping` doesn't stop
-until the user presses `Ctrl-C` (which sends the [`SIGINT`
-interrupt](https://en.wikipedia.org/wiki/Unix_signal) to the program).
-In this way it acts more like `ping -t` in `CMD.EXE`. Also, be aware that
-on Cygwin `ping` is still the system (Windows) `ping`.
+until the user presses `Ctrl-C` (which sends the
+[`SIGINT` interrupt](https://en.wikipedia.org/wiki/Unix_signal) to the
+program). In this way it acts more like `ping -t` in `CMD.EXE`. Also, be
+aware that on Cygwin `ping` is still the system (Windows) `ping`.
 
 [`traceroute`](http://linux.die.net/man/8/traceroute) works, too (although
 for once its name is longer than the `CMD.EXE` counterpart).
@@ -348,3 +349,4 @@ And to see any local overrides of network names or aliases:
 
 **Note:** The UNIX `hosts` file is the basis for the Windows version
 (`C:\Windows\System32\drivers\etc\hosts`) and has similar syntax.
+  

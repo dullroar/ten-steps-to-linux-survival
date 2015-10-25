@@ -1,3 +1,4 @@
+  
 # Step 5. “Just a Series of Pipes”
 
 ***`stdin`/`stdout`/`stderr`, redirects and piping between commands.***
@@ -251,3 +252,4 @@ This would write the results of finding all files names `error.log` to
 the console and also to `errorlogs.txt`. This is useful when you are
 manually running things and want to see the results immediately, but also
 want a log of what you did. 
+  

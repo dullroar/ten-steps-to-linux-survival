@@ -20,17 +20,19 @@ This document was produced in the environments it discusses, including
 I could have done something with my Raspberry Pi, too, but that would just
 be showing off.
 
-Written in [CommonMark](http://commonmark.org/) using
-[`vi`](http://linux.die.net/man/1/vi) and
+Written in
+[`pandoc`-flavored Markdown](http://pandoc.org/README.html#pandocs-markdown)
+using [`vi`](http://linux.die.net/man/1/vi) and
 [ReText](https://github.com/retext-project/retext), among others.
 
 Output produced using [`pandoc`](http://pandoc.org/),
 [`pdflatex`](http://linux.die.net/man/1/pdflatex) and
-[`make`](http://linux.die.net/man/1/make), based on the [@evangoer's
-work](https://github.com/evangoer/pandoc-ebook-template).
+[`make`](http://linux.die.net/man/1/make), based on the
+[@evangoer's work](https://github.com/evangoer/pandoc-ebook-template).
 
 Source code control is provided by [`git`](http://linux.die.net/man/1/git).
-You can view [the files used to create this
-book](https://github.com/dullroar/ten-steps-to-linux-survival) on GitHub.
+You can view
+[the files used to create this book](https://github.com/dullroar/ten-steps-to-linux-survival)
+on GitHub.
 
 The cover photo is of our dog, Merv, who is reminding you, "Don't panic!"

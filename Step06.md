@@ -1,3 +1,4 @@
+  
 # Step 6. `vi`
 
 ***How to stay sane for 10 minutes in `vi`. Navigation, basic editing, find,
@@ -395,11 +396,11 @@ That and that and that.
 ## The Unseen World
 
 Any technical person knows that all the binary permutations of possible
-values for a byte aren't mapped to visible characters. Some are ["control
-characters"](https://en.wikipedia.org/wiki/Control_character) that range
-back to the teletype days. For example, a tab character is hexadecimal 9
-(`0x09`), but is often represented as `\t` in many programming languages,
-regular expressions and the like.
+values for a byte aren't mapped to visible characters. Some are
+["control characters"](https://en.wikipedia.org/wiki/Control_character)
+that range back to the teletype days. For example, a tab character is
+hexadecimal 9 (`0x09`), but is often represented as `\t` in many
+programming languages, regular expressions and the like.
 
 Similarly, the "end of line" is marked by a control character. Or in the
 case of Windows, ***two*** control characters. And this causes no end of
@@ -504,3 +505,4 @@ it! But if you don't, grit your teeth, remember "insert mode" vs.
 "command mode", and use `vi`.
 
 And if you have the opportunity to use `emacs`...don't.
+  

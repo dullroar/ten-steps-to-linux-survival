@@ -1,3 +1,4 @@
+  
 # Step 0. Some History
 
 ***UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,”
@@ -20,8 +21,8 @@ depths of time:
 blah blah blah...
 
 * **More Trouble From Berkeley** - late 1970s, Carter, disco, Iran
-hostages, UC Berkely releases the [Berkeley Software
-Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution)
+hostages, UC Berkely releases the
+[Berkeley Software Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution)
 (BSD), a port based on the Bell Labs UNIX. Let the forking begin!
 
 * **Goes commercial** - 1980s, Reagan, Iran Contra, *E.T.*, AT&T releases
@@ -43,8 +44,8 @@ Gulf War I, proliferation of proprietary (and different) "UNIX" platforms:
     HP-UX, AIX and Solaris.
 
 
-* **Linux** - 1991+, Clinton I, grunge, *Titanic*, [Linus
-Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) releases
+* **Linux** - 1991+, Clinton I, grunge, *Titanic*,
+[Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) releases
 a project called [Linux](https://en.wikipedia.org/wiki/Linux) based on
 [MINIX](https://en.wikipedia.org/wiki/MINIX)
 (and hence why Linus says Linux is pronounced like "MINIX" and not like
@@ -65,10 +66,10 @@ still out there among a generation of sysadmins that Linux is for the
 desktop and BSDs for servers, but that reality shifted a long time ago.
 
 * **Ports of call** - 2000+, Bush II & Obama, Afghanistan & Gulf War 2,
-lots of cross-porting of everything open source. However, [licenses
-matter](https://en.wikipedia.org/wiki/Open-source_license),
-and [there sure are a lot of
-them](https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses). While it has settled down some with the
+lots of cross-porting of everything open source. However,
+[licenses matter](https://en.wikipedia.org/wiki/Open-source_license),
+and
+[there sure are a lot of them](https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses). While it has settled down some with the
 dismissal of the SCO lawsuit, intellectual property remains a problem area
 in open source, even as its use has exploded.
 
@@ -90,12 +91,12 @@ code will run there unchanged.
 
 * [**GNU Project**](https://en.wikipedia.org/wiki/GNU_Project) - [Richard
 Stallman](https://en.wikipedia.org/wiki/Richard_Stallman) founded the
-[Free Software
-Foundation](https://en.wikipedia.org/wiki/Free_Software_Foundation) (FSF)
+[Free Software Foundation](https://en.wikipedia.org/wiki/Free_Software_Foundation) (FSF)
 and GNU project in the mid-1980s, ***long*** before Linux (GNU = "GNU's Not
-Unix"). The GNU project delivers [a suite of programs and
-tools](https://www.gnu.org/software/software.html), many of which are
-used in both Linux and BSD variants as de facto standards.
+Unix"). The GNU project delivers
+[a suite of programs and tools](https://www.gnu.org/software/software.html),
+many of which are used in both Linux and BSD variants as de facto
+standards.
 
 * **Various Linux Efforts** - there have also been various movements over
 the years, some more successful than others, to "standardize" Linux or some
@@ -246,3 +247,4 @@ box. You can do a lot of amazing things with Cygwin with enough effort
 (including running X and a desktop environment like GNOME!), but at some
 point why not expend that effort in standing up a "real" Linux (virtual)
 machine anyway?
+  

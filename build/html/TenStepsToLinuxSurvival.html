@@ -148,18 +148,18 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <img src="./images/Merv.jpg" title="Merv sez, &#39;Don&#39;t panic.&#39;" alt="Merv sez, &quot;Don&#39;t panic.&quot;" /><figcaption>Merv sez, &quot;Don't panic.&quot;</figcaption>
 </figure>
 <p><strong>By Jim Lehmer</strong></p>
+<p>v0.1</p>
 <p><a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
 alt="Creative Commons License" style="border-width:0"
-src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"
-/></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><i>Jim's Ten Steps to Linux Survival</i></span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">James Lehmer</span> is licensed under a <a rel="license"
+src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a> <br /> <br /> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><i>Jim's Ten Steps to Linux Survival</i></span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">James Lehmer</span> is licensed under a <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
-<p><strong>Dedicated to my first three technical mentors</strong> - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think. And Kim Manchak, who let me be more than he hired me to be. Thank you, gentlemen. I've tried to pay it forward. This book is part of that.</p>
+<p><strong>Dedicated to my first three technical mentors</strong> - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think (and once called me an &quot;inveterate toolmaker&quot; in a review). And Kim Manchak, who let me be more than he hired me to be (and continues to be a great chess opponent). Thank you, gentlemen. I've tried to pay it forward. This book is part of that.</p>
 <h1 id="step--1.-introduction"><a href="#step--1.-introduction">Step -1. Introduction</a></h1>
 <blockquote>
 <p><em>&quot;And you may ask yourself, 'Well, how did I </em><strong>get</strong>* here?'&quot;* - Talking Heads (<em>Once in a Lifetime</em>)</p>
 </blockquote>
-<p>This is my little &quot;Linux and Bash in 10 steps&quot; guide. It's based around what I consider the essentials for <strike>floundering around</strike> acting like I know what I'm doing in Linux, BSD and *IX-flavored systems and looking impressive among people who have only worked on Windows in the GUI. Your &quot;10 steps&quot; may be different than mine and that's fine, but this list is mine.</p>
+<p>This is my little &quot;Linux and Bash in 10 steps&quot; guide. It's based around what I consider the essentials for <del>floundering around</del> acting like I know what I'm doing in Linux, BSD and *IX-flavored systems and looking impressive among people who have only worked on Windows in the GUI. Your &quot;10 steps&quot; may be different than mine and that's fine, but this list is mine.</p>
 <p>I said ten things, but I lied, because history is really important, so we will start at step #0. And since this is before even that I guess that means this is a 12-step program...</p>
 <p>Here is what we'll cover in the rest of this book:</p>
 <ol start="0" type="1">
@@ -187,7 +187,7 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 </ul>
 <p>Plus so much more. Again, this is not meant to be exhaustive, but to help someone whose system administration experience has been limited to &quot;Next-Next-Next-Finish&quot; installs and filling in text boxes in wizards on Windows.</p>
 <h2 id="please-give-generously"><a href="#please-give-generously">Please, Give Generously</a></h2>
-<p>That said, if you find something amiss in here - a typo, a misconception or mistake, or a command or parameter you <strong><em>really, really, really</em></strong> think should be in here even though I said I am not trying to be exhaustive, feel free to send me a <code>git pull</code> request.</p>
+<p>That said, if you find something amiss in here - a typo, a misconception or mistake, or a command or parameter you <strong><em>really, really, really</em></strong> think should be in here even though I said I am not trying to be exhaustive, feel free to <a href="https://github.com/dullroar/ten-steps-to-linux-survival.git">clone it from GitHub</a>, make your changes and send me a <code>git pull</code> request. Or you can try to <a href="https://github.com/dullroar/ten-steps-to-linux-survival/issues?q=is%3Aopen+is%3Aissue">file it as an issue</a> and I'll see how I feel that day.</p>
 <h2 id="why"><a href="#why">Why?</a></h2>
 <p>Because I work in a primarily Windows-oriented shop, and I seem to be &quot;the guy&quot; that everyone comes to when they need help on a Linux or related system. I don't count myself a Linux guru (<strong><em>at all</em></strong>), but I have been running it since 1996 (Slackware on a laptop with 8MB of memory!), and have worked on or run at home various ports and flavors and and versions and distros of &quot;*IX&quot; over the years, including:</p>
 <ul>
@@ -1411,7 +1411,7 @@ $ <span class="kw">grep</span> is *
 <pre><code>This sequence of characters is called a &quot;string&quot;.</code></pre>
 <p>That is a string. So is, &quot;That is a string.&quot; And &quot;That&quot; and &quot;T&quot; and so on. <strong><em>In general</em></strong> (with many exceptions), the UNIX world view is that everything is composed of text (or &quot;strings&quot;), and that creating, changing, finding and passing around text is the primary mode of operation.</p>
 <p>In the <code>grep</code> example, we can see a regular expression can be as simple as &quot;is&quot;. It can also be as complicated as:</p>
-<pre><code>(?bhttp://[-A-Za-z0-9+&amp;@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&amp;@#/%=~_()|]</code></pre>
+<pre><code>(?bhttp://[-A-Za-z0-9+&amp;@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&amp;@f</code></pre>
 <p>That shows at least one attempt at being <a href="http://blog.codinghorror.com/the-problem-with-urls/">a very complete parser of valid HTTP URLs</a>. Wow! What's all that? Now you see why you have two problems. Even if you get that all figured out, or if you actually sit and create something like that from scratch yourself (and it works!), imagine coming back six months later and trying to decipher it again.</p>
 <p>There are literally <a href="http://www.regular-expressions.info/">whole web sites</a> and <a href="http://shop.oreilly.com/product/9781565922570.do">books</a> on just regular expressions. With variations they are used in all *IX shells, Perl, Python, Javascript, Java, C# and more. So obviously (a) they are really useful, and (b) we're not going to cover regexes all here.</p>
 <p>There are so many things you can do, the only thing to it is to remember &quot;regular expressions&quot; when you think &quot;I need to find things based on a pattern&quot; and then research what it will take to define the pattern you want.</p>
@@ -2700,9 +2700,9 @@ $ <span class="kw">echo</span> <span class="ot">$?</span>
 <li><p><a href="http://linuxmint.com/"><strong>Linux Mint</strong></a> - <code>3.16.0-38-generic #52~14.04.1-Ubuntu SMP Fri May 8 09:43:57 UTC 2015</code></p></li>
 </ul>
 <p>I could have done something with my Raspberry Pi, too, but that would just be showing off.</p>
-<p>Written in <a href="http://commonmark.org/">CommonMark</a> using <a href="http://linux.die.net/man/1/vi"><code>vi</code></a> and <a href="https://github.com/retext-project/retext">ReText</a>, among others.</p>
+<p>Written in <a href="http://pandoc.org/README.html#pandocs-markdown"><code>pandoc</code>-flavored Markdown</a> using <a href="http://linux.die.net/man/1/vi"><code>vi</code></a> and <a href="https://github.com/retext-project/retext">ReText</a>, among others.</p>
 <p>Output produced using <a href="http://pandoc.org/"><code>pandoc</code></a>, <a href="http://linux.die.net/man/1/pdflatex"><code>pdflatex</code></a> and <a href="http://linux.die.net/man/1/make"><code>make</code></a>, based on the <span class="citation" data-cites="evangoer">[@evangoer's work]</span>(https://github.com/evangoer/pandoc-ebook-template).</p>
-<p>Source code control is provided by <a href="http://linux.die.net/man/1/git"><code>git</code></a>.</p>
+<p>Source code control is provided by <a href="http://linux.die.net/man/1/git"><code>git</code></a>. You can view <a href="https://github.com/dullroar/ten-steps-to-linux-survival">the files used to create this book</a> on GitHub.</p>
 <p>The cover photo is of our dog, Merv, who is reminding you, &quot;Don't panic!&quot;</p>
 </body>
 </html>
