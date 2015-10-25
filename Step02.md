@@ -642,7 +642,7 @@ the "root" id. To change to a user's "home" directory, simply use `cd`:
 $ cd
 
 $ pwd
-/home/jlehmer
+/home/myuser
 ```
 
 The tilde (`~`) character is an alias for the current user's home
@@ -652,7 +652,7 @@ directory. The following example is equivalent to above:
 $ cd ~
 
 $ pwd
-/home/jlehmer
+/home/myuser
 ```
 
 More useful is that the tilde can be combined with a user name to specify

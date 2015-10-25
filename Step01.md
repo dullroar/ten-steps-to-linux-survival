@@ -152,7 +152,7 @@ BASH_LINENO=()
 C:\> set
 ALLUSERSPROFILE=C:\ProgramData
 APPDATA=C:\Users\myuser\AppData\Roaming
-CLIENTNAME=JLEHMER650
+CLIENTNAME=MYMACHINE
 CommandPromptType=Native
 CommonProgramFiles=C:\Program Files\Common Files
 CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
@@ -203,7 +203,7 @@ override a given environment variable for the single execution of a
 program, to the point that `bash` has built-in "one-line" support for it:
 
 ```bash
-FOO=myval /home/lehmer/myscript
+FOO=myval /home/myuser/myscript
 ```
 
 This sets the environment variable `FOO` to "myval" but only for the
@@ -217,7 +217,7 @@ You can set or override multiple variables for a single command or script
 execution simply by separating them with spaces:
 
 ```bash
-FOO=myval BAR=yourval BAZ=ourvals /home/lehmer/myscript
+FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript
 ```
 
 Note that passing in values in this way does not safeguard sensitive
