@@ -43,7 +43,7 @@ $(BUILD)/markdown/$(BOOKNAME).md: $(CHAPTERS)
 	mkdir -p $(BUILD)/markdown
 	mkdir -p $(BUILD)/markdown/images
 	cp images/* $(BUILD)/markdown/images/.
-	pandoc $(TOC) $(SYNTAX) --to=markdown -o $@ $^
+	pandoc $(TOC) $(SYNTAX) --to=markdown_github -o $@ $^
 	cp $(BUILD)/markdown/$(BOOKNAME).md README.md
 
 .PHONY: all book clean epub html pdf
