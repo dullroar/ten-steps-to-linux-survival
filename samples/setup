@@ -1,0 +1,12 @@
+#!/bin/bash
+
+#
+# Trivial script to set up directory and files used for various
+# examples.
+#
+
+mkdir --parents Foo/d
+cd Foo
+touch a b c d/e
+ls -l --recursive
+echo Done!
