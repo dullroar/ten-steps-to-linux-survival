@@ -17,7 +17,7 @@ Step -1. Introduction
 
 > *"And you may ask yourself, 'Well, how did I get here?'"* - Talking Heads (*Once in a Lifetime*)
 
-This is my little "Linux and Bash in 10 steps" guide. It's based around what I consider the essentials for ~~floundering around~~ acting like I know what I'm doing in Linux, BSD and \*IX-flavored systems and looking impressive among people who have only worked on Windows in the GUI. Your "10 steps" may be different than mine and that's fine, but this list is mine.
+This is my little "Linux and Bash in 10 steps" guide. It's based around what I consider the essentials for ~~floundering around~~ acting like I know what I'm doing in Linux, BSD and "UNIX-flavored" systems and looking impressive among people who have only worked on Windows in the GUI. Your "10 steps" may be different than mine and that's fine, but this list is mine.
 
 I said ten things, but I lied, because history is really important, so we will start at step \#0. And since this is before even that I guess that means this is a 12-step program...
 
@@ -29,7 +29,7 @@ Here is what we'll cover in the rest of this book:
 
 3.  [**File Under "Directories"**](#step-2.-file-under-directories) – `ls`, `mv`, `cp`, `rm` (`-rf *`), `cat`, `chmod`/`chgrp`/`chown` and everyone's favorite, `touch`.
 
-4.  [**Finding Meaning**](#step-3.-finding-meaning) – the `find` command in all its glory. Probably the single most useful command in \*IX (I think).
+4.  [**Finding Meaning**](#step-3.-finding-meaning) – the `find` command in all its glory. Probably the single most useful command in "UNIX" (I think).
 
 5.  [**Grokking `grep`**](#step-4.-grokking-grep) – and probably gawking at `awk` while we are at it, which means regular expressions, too. Now we have two problems.
 
@@ -52,11 +52,11 @@ Batteries Not Included
 
 It should be obvious that there is ***plenty*** that is not covered:
 
--   **System initialization** - besides, the whole \*IX world is in flux right now over system initialization architecture and the shift from ["init"](https://en.wikipedia.org/wiki/Init) scripts to [`systemd`](https://en.wikipedia.org/wiki/Systemd).
+-   **System initialization** - besides, the whole "UNIX" world is in flux right now over system initialization architecture and the shift from ["init"](https://en.wikipedia.org/wiki/Init) scripts to [`systemd`](https://en.wikipedia.org/wiki/Systemd).
 
 -   **Scripting logic** - scripting, logic constructs (`if`/`fi`, `while`/`done`, and the like).
 
--   **Desktops** - X Windows and the plethora of desktop environments like GNOME, KDE, Cinnamon, Mate, Unity and on and on. This is where \*IX systems get the farthest apart in terms of interoperability, settings and customization.
+-   **Desktops** - X Windows and the plethora of desktop environments like GNOME, KDE, Cinnamon, Mate, Unity and on and on. This is where "UNIX" systems get the farthest apart in terms of interoperability, settings and customization.
 
 -   **Servers** - setting up or configuring web servers like Apache or node, email servers like dovecot, Samba servers for file shares, and so on.
 
@@ -72,7 +72,7 @@ That said, if you find something amiss in here - a typo, a misconception or mist
 Why?
 ----
 
-Because I work in a primarily Windows-oriented shop, and I seem to be "the guy" that everyone comes to when they need help on a Linux or related system. I don't count myself a Linux guru (***at all***), but I have been running it since 1996 (Slackware on a laptop with 8MB of memory!), and have worked on or run at home various ports and flavors and and versions and distros of "\*IX" over the years, including:
+Because I work in a primarily Windows-oriented shop, and I seem to be "the guy" that everyone comes to when they need help on a Linux or related system. I don't count myself a Linux guru (***at all***), but I have been running it since 1996 (Slackware on a laptop with 8MB of memory!), and have worked on or run at home various ports and flavors and and versions and distros of "UNIX" over the years, including:
 
 -   **AIX**
 
@@ -128,7 +128,7 @@ UNIX and its successors such as Linux have a long history reaching into the dept
 
 -   **Goes commercial** - 1980s, Reagan, Iran Contra, *E.T.*, AT&T releases [System V](https://en.wikipedia.org/wiki/UNIX_System_V) as first commercial UNIX. From the same background as Bell Labs UNIX, but evolved with subtle and not so subtle differences in approaches to command syntax, networking and much more. It is this release and AT&T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.
 
--   \*\*Explosion of \*IX\*\* -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) "UNIX" platforms:
+-   **Explosion of "UNIX"** -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) "UNIX" platforms:
 
     -   **HP HP-UX**
     -   **Sun SunOS** - BSD flavor.
@@ -154,12 +154,12 @@ To further muddy the waters, there have been multiple attempts to "standardize" 
 
 -   **Various Linux Efforts** - there have also been various movements over the years, some more successful than others, to "standardize" Linux or some part of it, such as the file system layout, the `init` system, documentation, and now even what is part of the most basic "core OS" for things like better containerization.
 
-For the rest of this we will use "Linux" or "\*IX" to stand in for a "generic" UNIX-flavored OS unless a difference is specifically called out.
+For the rest of this we will use "Linux" or "UNIX" to stand in for a "generic" UNIX-flavored OS unless a difference is specifically called out.
 
 Why Does This Matter?
 ---------------------
 
-Because there are various "flavors" of commands and tools, based on whether you're dealing with a System V (Linux) or BSD (Free/Net/Open) descendant. Some of the OS versions are strong in security, or networking, or as a desktop. Certain things are "built-in" to the operating system but most are installed as packages, and depending on the source of the package it may or may not work correctly on another "\*IX" system without effort.
+Because there are various "flavors" of commands and tools, based on whether you're dealing with a System V (Linux) or BSD (Free/Net/Open) descendant. Some of the OS versions are strong in security, or networking, or as a desktop. Certain things are "built-in" to the operating system but most are installed as packages, and depending on the source of the package it may or may not work correctly on another "UNIX" system without effort.
 
 It is similar to the history and relationship between `COMMAND.EXE` in DOS and `CMD.EXE` in Windows 10, where this would work in both:
 
@@ -169,7 +169,7 @@ But only the later, network-and-NTFS-aware `CMD.EXE` could handle:
 
     COPY "My 2015 Tax Returns.pdf" \\MyServer\Finances\.
 
-In \*IX-land over time these differences seem to be getting better, but there are still "gotchas," often involving the differences in open source licenses in the underlying code. There are fundamental differences and assumptions between the "GNU" and "GPL" licenses on the one side and "MIT" and "BSD" licenses on the other. I am not a lawyer, but I would summarize:
+In UNIX-land over time these differences seem to be getting better, but there are still "gotchas," often involving the differences in open source licenses in the underlying code. There are fundamental differences and assumptions between the "GNU" and "GPL" licenses on the one side and "MIT" and "BSD" licenses on the other. I am not a lawyer, but I would summarize:
 
 -   **FSF/GNU/GPL** - mostly concerned with keeping open source "open," that is sharable and modifiable by all.
 
@@ -226,7 +226,7 @@ In the BSD world each major port has its own approach. In the Linux world the jo
 Get Embed With Me
 -----------------
 
-A lot of firmware in embedded devices is based on some sort of \*IX flavor. Networking gear at both the consumer and enterprise level, storage devices and so on all tend to run something that "looks like" UNIX at some level. Of course, as to what's actually available, who knows? If you can get a shell (command prompt) the best thing to do is see what works.
+A lot of firmware in embedded devices is based on some sort of "UNIX" flavor. Networking gear at both the consumer and enterprise level, storage devices and so on all tend to run something that "looks like" UNIX at some level. Of course, as to what's actually available, who knows? If you can get a shell (command prompt) the best thing to do is see what works.
 
 Cygwin
 ------
@@ -652,7 +652,7 @@ drwx------  3 myuser mygroup      4096 Sep  7 04:16 .dbus
 A Brief Detour Around Parameters
 --------------------------------
 
-In `bash` and many Linux commands in general, there are old, "short" (terse) parameter names, like `ls -a`, and newer, longer, descriptive parameter names like `ls --all` that mean the same thing. It is typically good to use the shorter version during interactive sessions and testing, but I prefer long parameter names in scripts, because when I come back and look at it in two years, I may not remember what `rm -rf *` means (in the \*IX world it means you're toast if you run it in the wrong directory by mistake), thus `rm --recursive --force *` seems a bit more "intuitive."
+In `bash` and many Linux commands in general, there are old, "short" (terse) parameter names, like `ls -a`, and newer, longer, descriptive parameter names like `ls --all` that mean the same thing. It is typically good to use the shorter version during interactive sessions and testing, but I prefer long parameter names in scripts, because when I come back and look at it in two years, I may not remember what `rm -rf *` means (in the "UNIX" world it means you're toast if you run it in the wrong directory by mistake), thus `rm --recursive --force *` seems a bit more "intuitive."
 
 > ***The behind you save in the future by describing things well today may well be your own.*** - me
 
@@ -1362,7 +1362,7 @@ replace foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
 
 Not too exciting, but you get the drift. There is typically support for other compression algorithms, too, using [`bzip2`](http://linux.die.net/man/1/bzip2) and [`7z`](http://linux.die.net/man/1/7z) (7-zip) commands.
 
-However, the "native" way to "archive" a directory's contents in \*IX is with [`tar`](http://linux.die.net/man/1/tar), which is so old that `tar` stands for "tape archive." Its purpose is to take virtually any directory structure and create a single output "stream" or file of it. That is then typically ran through a compression command and the result is called a "tarball":
+However, the "native" way to "archive" a directory's contents in "UNIX" is with [`tar`](http://linux.die.net/man/1/tar), which is so old that `tar` stands for "tape archive." Its purpose is to take virtually any directory structure and create a single output "stream" or file of it. That is then typically ran through a compression command and the result is called a "tarball":
 
 ~~~~ {.bash}
 $ tar cvf foo.tar foo/*
@@ -1681,11 +1681,11 @@ Now we can more easily see that line \#1 changed (`1c1`) from `FOO=1` on the "le
 Step 3. Finding Meaning
 =======================
 
-***The `find` command in all its glory. Probably the single most useful command in *IX (I think).**\*
+***The `find` command in all its glory. Probably the single most useful command in "UNIX" (I think).***
 
 > *"If we had bacon, we could have bacon and eggs, if we had eggs."* - old joke
 
-Different people will have different answers to "What is the single most useful \*IX command?" There certainly are many to consider. But I keep coming back to [`find`](http://linux.die.net/man/1/find). It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.
+Different people will have different answers to "What is the single most useful "UNIX" command?" There certainly are many to consider. But I keep coming back to [`find`](http://linux.die.net/man/1/find). It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.
 
 The main concepts of `find` is simple:
 
@@ -1880,7 +1880,7 @@ In the `grep` example, we can see a regular expression can be as simple as "is".
 
 That shows at least one attempt at being [a very complete parser of valid HTTP URLs](http://blog.codinghorror.com/the-problem-with-urls/). Wow! What's all that? Now you see why you have two problems. Even if you get that all figured out, or if you actually sit and create something like that from scratch yourself (and it works!), imagine coming back six months later and trying to decipher it again.
 
-There are literally [whole web sites](http://www.regular-expressions.info/) and [books](http://shop.oreilly.com/product/9781565922570.do) on just regular expressions. With variations they are used in all \*IX shells, Perl, Python, Javascript, Java, C\# and more. So obviously (a) they are really useful, and (b) we're not going to cover regexes all here.
+There are literally [whole web sites](http://www.regular-expressions.info/) and [books](http://shop.oreilly.com/product/9781565922570.do) on just regular expressions. With variations they are used in all "UNIX" shells, Perl, Python, Javascript, Java, C\# and more. So obviously (a) they are really useful, and (b) we're not going to cover regexes all here.
 
 There are so many things you can do, the only thing to it is to remember "regular expressions" when you think "I need to find things based on a pattern" and then research what it will take to define the pattern you want.
 
@@ -2024,7 +2024,7 @@ I don't have much to say about [`awk`](http://linux.die.net/man/1/awk) other tha
 
 2.  It is a "data driven scripting language." That's a fancy way of saying it was written specifically with slicing and dicing text in mind.
 
-3.  It generally is broken out when the typical \*IX commands and shell features like pipes and redirection aren't enough.
+3.  It generally is broken out when the typical "UNIX" commands and shell features like pipes and redirection aren't enough.
 
 4.  Usually, if I start thinking of `awk`, I start thinking of a way to program the answer in another language, or reframe the question to get an answer not requiring `awk`.
 
@@ -2057,7 +2057,7 @@ Step 5. “Just a Series of Pipes”
 
 The ["UNIX philosophy"](https://en.wikipedia.org/wiki/Unix_philosophy) tends to be to have a bunch of small programs that each do one thing very well, and then to combine them together in interesting ways. The "glue" for combining them together is often the "piping" or redirection of "streams" of data (typically text) between programs, each doing one small change to the stream until it is finally emitted on the console or saved to a file or sent over the Internet.
 
-The first thing to note is there are three "file I/O streams" that are open by default in every \*IX process:
+The first thing to note is there are three "file I/O streams" that are open by default in every "UNIX" process:
 
 -   **stdin** - input, typically from the console in an interactive session. In the underlying C file system APIs, this is file descriptor 0.
 
@@ -2069,7 +2069,7 @@ The first thing to note is there are three "file I/O streams" that are open by d
 
 When a program written in C calls `printf`, it is writing to `stdout`. When a `bash` script calls `echo`, it too is writing to `stdout`. When a command writes an error message, it is writing to `stderr`. If a command or program accepts input from the console, it is reading from `stdin`.
 
-In this example, `cat` is started with no file name, so it will read from `stdin` (a quite common \*IX command convention), and echo each line to `stdout` until the "end of file," which in an interactive session can be emulated with `Ctrl-D`, in the example below shown as `^D` but not seen on the console in real life:
+In this example, `cat` is started with no file name, so it will read from `stdin` (a quite common "UNIX" command convention), and echo each line to `stdout` until the "end of file," which in an interactive session can be emulated with `Ctrl-D`, in the example below shown as `^D` but not seen on the console in real life:
 
 ~~~~ {.bash}
 $ cat
@@ -2100,7 +2100,7 @@ Hello, world
 
 In this case the `> hw` tells `bash` to take the output that `echo` sends to `stdout` and send it to the file `hw` instead.
 
-As mentioned above many \*IX commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from `stdin`. The `cat` command does that. While it doesn't save us anything over the above example, the following is illustrative of redirecting a file to `stdin` for a command or program:
+As mentioned above many "UNIX" commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from `stdin`. The `cat` command does that. While it doesn't save us anything over the above example, the following is illustrative of redirecting a file to `stdin` for a command or program:
 
 ~~~~ {.bash}
 $ cat < hw
@@ -2200,7 +2200,7 @@ $ find . -exec cat \{\} \; >>/tmp/find.log
 Everyone Line Up
 ----------------
 
-So we can see that we could pass things between programs by redirecting `stdout` to a file and then redirecting that file to `stdin` on the next program, and so on. But \*IX environments take it a bit further with the concept of a command "pipeline" that allows directly sending `stdout` from one program into `stdin` of another.
+So we can see that we could pass things between programs by redirecting `stdout` to a file and then redirecting that file to `stdin` on the next program, and so on. But "UNIX" environments take it a bit further with the concept of a command "pipeline" that allows directly sending `stdout` from one program into `stdin` of another.
 
 ~~~~ {.bash}
 $ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
@@ -2534,13 +2534,13 @@ The Unseen World
 
 Any technical person knows that all the binary permutations of possible values for a byte aren't mapped to visible characters. Some are ["control characters"](https://en.wikipedia.org/wiki/Control_character) that range back to the teletype days. For example, a tab character is hexadecimal 9 (`0x09`), but is often represented as `\t` in many programming languages, regular expressions and the like.
 
-Similarly, the "end of line" is marked by a control character. Or in the case of Windows, ***two*** control characters. And this causes no end of problems when editing files that can be opened on both \*IX systems and Windows.
+Similarly, the "end of line" is marked by a control character. Or in the case of Windows, ***two*** control characters. And this causes no end of problems when editing files that can be opened on both "UNIX" systems and Windows.
 
-On \*IX, the line feed control character (`0x0a`, or `\n`) is all that marks the end of a line. For historical reasons (CP/M), Windows ends each line with two control characters, carriage return (`0x0d`, or `\r`) and line feed. The two together are often referred to as "CRLF."
+On "UNIX," the line feed control character (`0x0a`, or `\n`) is all that marks the end of a line. For historical reasons (CP/M), Windows ends each line with two control characters, carriage return (`0x0d`, or `\r`) and line feed. The two together are often referred to as "CRLF."
 
 This difference manifests in two ways:
 
-1.  If you've ever opened a file on Windows in Notepad and all the lines "flow" even though they're supposed to be individual lines, that means it is probably using \*IX end-of-lines (`\n`) only. Use a line feed aware editor such as Notepad++ instead.
+1.  If you've ever opened a file on Windows in Notepad and all the lines "flow" even though they're supposed to be individual lines, that means it is probably using "UNIX" end-of-lines (`\n`) only. Use a line feed aware editor such as Notepad++ instead.
 
 2.  If you open a file in `vi` and it has a `^M` at the end of every line and/or at the bottom you see something like:
 
@@ -3108,14 +3108,14 @@ Step 9. How Do You Know What You Don’t Know, `man`?
 
 > *"You're soaking in it."* - Palmolive commercial
 
-The biggest issue with bootstrapping into \*IX is not the lack of documentation but almost the surplus of it, coupled with a severe "RTFM" attitude by most old-timers toward most newbies. Besides the typical "Google" and "StackOverflow" answers, there are actually lots of very reliable places to turn to for information:
+The biggest issue with bootstrapping into "UNIX" is not the lack of documentation but almost the surplus of it, coupled with a severe "RTFM" attitude by most old-timers toward most newbies. Besides the typical "Google" and "StackOverflow" answers, there are actually lots of very reliable places to turn to for information:
 
 `man`, is that `info` `apropos`?
 --------------------------------
 
-There are three commands that are the basis for reading *IX documentation within *IX itself - [`man`](http://linux.die.net/man/1/man), [`info`](http://linux.die.net/man/1/info) and [`apropos`](http://linux.die.net/man/1/apropos).
+There are three commands that are the basis for reading "UNIX" documentation within "UNIX" itself - [`man`](http://linux.die.net/man/1/man), [`info`](http://linux.die.net/man/1/info) and [`apropos`](http://linux.die.net/man/1/apropos).
 
-`man` is short for *manual pages*, and is used to display the main help for most \*IX commands. For example, `man ls` shows:
+`man` is short for *manual pages*, and is used to display the main help for most "UNIX" commands. For example, `man ls` shows:
 
 ~~~~ {.bash}
 LS(1)                                                             User C...
@@ -3230,7 +3230,7 @@ visudo (8)           - edit the sudoers file
 
 Note the `man` section numbers after each command name. Also note that `apropos` is not sophisticated - it is simply searching for the exact string you give it in the very limited "brief descriptions" from the `man` pages. That's all. But a lot of time that's all you need to remember, "Ah, yes, `nano` is the other editor I was thinking about and like better than `vi`."
 
-**Note:** `man`, `info` and `apropos` are just normal \*IX commands like all the others, so while they may default to displaying with a paginator on an interactive terminal, you can run their output through other commands, just like any other. For example, maybe we remember only that the command had something with "edit" and was a system administration ("section 8") command:
+**Note:** `man`, `info` and `apropos` are just normal "UNIX" commands like all the others, so while they may default to displaying with a paginator on an interactive terminal, you can run their output through other commands, just like any other. For example, maybe we remember only that the command had something with "edit" and was a system administration ("section 8") command:
 
 ~~~~ {.bash}
 $ apropos edit | grep "(8)"
@@ -3259,7 +3259,7 @@ And yes, you can `man man`, `man info`, `info info` and `info man`, for that mat
 How Do You Google, `man`?
 -------------------------
 
-You can often search the internet for \*IX documentation, and the `man` pages have long been online. A site I like (and link to a lot here) is <http://linux.die.net/man/>. Often, though, you can just google ["man ls"](https://www.google.com/#q=man+ls) and the top hits will be what you want.
+You can often search the internet for "UNIX" documentation, and the `man` pages have long been online. A site I like (and link to a lot here) is <http://linux.die.net/man/>. Often, though, you can just google ["man ls"](https://www.google.com/#q=man+ls) and the top hits will be what you want.
 
 ***However***, there are times you need to be careful. Googling for either `man touch` or `man tail`, for example, will probably not give you the results you seek and may set off filters at work, so be careful out there and remember to bookmark a couple of actual `man` page sites so that you can go there directly and look up a command.
 
@@ -3270,7 +3270,7 @@ There are several consistently high-quality free sources of information on vario
 
 -   [**The Linux Documentation Project (LDP)**](http://www.tldp.org/guides.html) - has fallen a bit behind over the years, but still has two of the best `bash` scripting books out there, [*Bash Guide for Beginners*](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html) and [*Advanced Bash-Scripting Guide*](http://www.tldp.org/LDP/abs/html/index.html). I continue to use the latter all the time.
 
--   [**Arch Linux Wiki**](https://wiki.archlinux.org/) - you may not think this would be useful if you are running Debian or Fedora or something else, but remember most \*IX systems are all very similar, and often the best documentation on a package or setting something up in Linux is in the Arch wiki.
+-   [**Arch Linux Wiki**](https://wiki.archlinux.org/) - you may not think this would be useful if you are running Debian or Fedora or something else, but remember most "UNIX" systems are all very similar, and often the best documentation on a package or setting something up in Linux is in the Arch wiki.
 
 -   [**Debian documentation**](https://www.debian.org/doc/) - again, even if you are not running a Debian-based distro, this can be handy because it describes how to administer Linux in a way that often transcends distro specifics (and at least explains how Debian approaches the differences). The best books in the series are [*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/) and the [*Debian Reference*](https://www.debian.org/doc/manuals/debian-reference/), which is a lot more formal attempt at the same type of territory this guide covers.
 

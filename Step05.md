@@ -14,7 +14,7 @@ change to the stream until it is finally emitted on the console or saved
 to a file or sent over the Internet.
 
 The first thing to note is there are three "file I/O streams" that are open
-by default in every *IX process:
+by default in every "UNIX" process:
 
 * **stdin** - input, typically from the console in an interactive session.
 In the underlying C file system APIs, this is file descriptor 0.
@@ -35,7 +35,7 @@ writes an error message, it is writing to `stderr`. If a command or program
 accepts input from the console, it is reading from `stdin`.
 
 In this example, `cat` is started with no file name, so it will read from
-`stdin` (a quite common *IX command convention), and echo each line to
+`stdin` (a quite common "UNIX" command convention), and echo each line to
 `stdout` until the "end of file," which in an interactive session can be
 emulated with `Ctrl-D`, in the example below shown as `^D` but not seen on
 the console in real life:
@@ -73,7 +73,7 @@ Hello, world
 In this case the `> hw` tells `bash` to take the output that `echo` sends
 to `stdout` and send it to the file `hw` instead.
 
-As mentioned above many *IX commands are set up to take one or more file
+As mentioned above many "UNIX" commands are set up to take one or more file
 names from the command line as parameters, and if there aren't any, to
 read from `stdin`. The `cat` command does that. While it doesn't save us
 anything over the above example, the following is illustrative of
@@ -198,7 +198,7 @@ is used mostly in scripting and is outside the scope of this book.
 
 So we can see that we could pass things between programs by redirecting
 `stdout` to a file and then redirecting that file to `stdin` on the next
-program, and so on. But *IX environments take it a bit further with the
+program, and so on. But "UNIX" environments take it a bit further with the
 concept of a command "pipeline" that allows directly sending `stdout` from
 one program into `stdin` of another.
 

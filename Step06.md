@@ -463,10 +463,10 @@ programming languages, regular expressions and the like.
 
 Similarly, the "end of line" is marked by a control character. Or in the
 case of Windows, ***two*** control characters. And this causes no end of
-problems when editing files that can be opened on both *IX systems and
+problems when editing files that can be opened on both "UNIX" systems and
 Windows.
 
-On *IX, the line feed control character (`0x0a`, or `\n`) is all that
+On "UNIX," the line feed control character (`0x0a`, or `\n`) is all that
 marks the end of a line. For historical reasons (CP/M), Windows ends each
 line with two control characters, carriage return (`0x0d`, or `\r`) and
 line feed. The two together are often referred to as "CRLF."
@@ -475,7 +475,7 @@ This difference manifests in two ways:
 
 1. If you've ever opened a file on Windows in Notepad and all the lines
 "flow" even though they're supposed to be individual lines, that means it
-is probably using *IX end-of-lines (`\n`) only. Use a line feed aware
+is probably using "UNIX" end-of-lines (`\n`) only. Use a line feed aware
 editor such as Notepad++ instead.
 
 2. If you open a file in `vi` and it has a `^M` at the end of every

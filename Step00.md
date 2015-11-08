@@ -32,7 +32,7 @@ and not so subtle differences in approaches to command syntax, networking
 and much more. It is this release and AT&T's copyrights that are the basis
 of all the SCO-vs-Linux lawsuits 2-3 decades later.
 
-* **Explosion of *IX** -late 1980s/early 1990s, Bush I, Berlin Wall falls,
+* **Explosion of "UNIX"** -late 1980s/early 1990s, Bush I, Berlin Wall falls,
 Gulf War I, proliferation of proprietary (and different) "UNIX" platforms:
 
     * **HP HP-UX**
@@ -104,7 +104,7 @@ part of it, such as the file system layout, the `init` system,
 documentation, and now even what is part of the most basic "core OS" for
 things like better containerization.
 
-For the rest of this we will use "Linux" or "*IX" to stand in for a
+For the rest of this we will use "Linux" or "UNIX" to stand in for a
 "generic" UNIX-flavored OS unless a difference is specifically called out.
 
 ## Why Does This Matter?
@@ -114,7 +114,7 @@ you're dealing with a System V (Linux) or BSD (Free/Net/Open) descendant.
 Some of the OS versions are strong in security, or networking, or as a
 desktop. Certain things are "built-in" to the operating system but most are
 installed as packages, and depending on the source of the package it may
-or may not work correctly on another "*IX" system without effort.
+or may not work correctly on another "UNIX" system without effort.
 
 It is similar to the history and relationship between `COMMAND.EXE` in DOS
 and `CMD.EXE` in Windows 10, where this would work in both:
@@ -129,7 +129,7 @@ But only the later, network-and-NTFS-aware `CMD.EXE` could handle:
 COPY "My 2015 Tax Returns.pdf" \\MyServer\Finances\.
 ```
 
-In *IX-land over time these differences seem to be getting better, but
+In UNIX-land over time these differences seem to be getting better, but
 there are still "gotchas," often involving the differences in open source
 licenses in the underlying code. There are fundamental differences and
 assumptions between the "GNU" and "GPL" licenses on the one side and "MIT"
@@ -218,7 +218,7 @@ zipped directories. Common on
 
 ## Get Embed With Me
 
-A lot of firmware in embedded devices is based on some sort of *IX flavor.
+A lot of firmware in embedded devices is based on some sort of "UNIX" flavor.
 Networking gear at both the consumer and enterprise level, storage devices
 and so on all tend to run something that "looks like" UNIX at some level.
 Of course, as to what's actually available, who knows? If you can get

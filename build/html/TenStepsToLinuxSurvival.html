@@ -150,14 +150,14 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <blockquote>
 <p><em>&quot;And you may ask yourself, 'Well, how did I get here?'&quot;</em> - Talking Heads (<em>Once in a Lifetime</em>)</p>
 </blockquote>
-<p>This is my little &quot;Linux and Bash in 10 steps&quot; guide. It's based around what I consider the essentials for <del>floundering around</del> acting like I know what I'm doing in Linux, BSD and *IX-flavored systems and looking impressive among people who have only worked on Windows in the GUI. Your &quot;10 steps&quot; may be different than mine and that's fine, but this list is mine.</p>
+<p>This is my little &quot;Linux and Bash in 10 steps&quot; guide. It's based around what I consider the essentials for <del>floundering around</del> acting like I know what I'm doing in Linux, BSD and &quot;UNIX-flavored&quot; systems and looking impressive among people who have only worked on Windows in the GUI. Your &quot;10 steps&quot; may be different than mine and that's fine, but this list is mine.</p>
 <p>I said ten things, but I lied, because history is really important, so we will start at step #0. And since this is before even that I guess that means this is a 12-step program...</p>
 <p>Here is what we'll cover in the rest of this book:</p>
 <ol start="0" type="1">
 <li><p><a href="#step-0.-some-history"><strong>Some History</strong></a> – UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,” Cygwin, and why any of this matters now, “Why does this script off the internet work on this system and not on that one?”</p></li>
 <li><p><a href="#step-1.-come-out-of-your-shell"><strong>Come Out of Your Shell</strong></a> – <code>sh</code> vs. <code>ash</code> vs. <code>bash</code> vs. everything else, &quot;REPL”, interactive vs. scripts, command history, tab expansion, environment variables and &quot;A path! A path!&quot;</p></li>
 <li><p><a href="#step-2.-file-under-directories"><strong>File Under &quot;Directories&quot;</strong></a> – <code>ls</code>, <code>mv</code>, <code>cp</code>, <code>rm</code> (<code>-rf *</code>), <code>cat</code>, <code>chmod</code>/<code>chgrp</code>/<code>chown</code> and everyone's favorite, <code>touch</code>.</p></li>
-<li><p><a href="#step-3.-finding-meaning"><strong>Finding Meaning</strong></a> – the <code>find</code> command in all its glory. Probably the single most useful command in *IX (I think).</p></li>
+<li><p><a href="#step-3.-finding-meaning"><strong>Finding Meaning</strong></a> – the <code>find</code> command in all its glory. Probably the single most useful command in &quot;UNIX&quot; (I think).</p></li>
 <li><p><a href="#step-4.-grokking-grep"><strong>Grokking <code>grep</code></strong></a> – and probably gawking at <code>awk</code> while we are at it, which means regular expressions, too. Now we have two problems.</p></li>
 <li><p><a href="#step-5.-just-a-series-of-pipes"><strong>“Just a Series of Pipes”</strong></a> – <code>stdin</code>/<code>stdout</code>/<code>stderr</code>, redirects, piping between commands.</p></li>
 <li><p><a href="#step-6.-vi"><strong><code>vi</code></strong></a> (had to be #6, if you think about it) – how to stay sane for 10 minutes in <code>vi</code>. Navigation, basic editing, find, change/change-all, cut and paste, undo, saving and canceling. Plus easier alternatives like <code>nano</code>, and why <code>vi</code> still matters.</p></li>
@@ -170,9 +170,9 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <h2 id="batteries-not-included"><a href="#batteries-not-included">Batteries Not Included</a></h2>
 <p>It should be obvious that there is <strong><em>plenty</em></strong> that is not covered:</p>
 <ul>
-<li><p><strong>System initialization</strong> - besides, the whole *IX world is in flux right now over system initialization architecture and the shift from <a href="https://en.wikipedia.org/wiki/Init">&quot;init&quot;</a> scripts to <a href="https://en.wikipedia.org/wiki/Systemd"><code>systemd</code></a>.</p></li>
+<li><p><strong>System initialization</strong> - besides, the whole &quot;UNIX&quot; world is in flux right now over system initialization architecture and the shift from <a href="https://en.wikipedia.org/wiki/Init">&quot;init&quot;</a> scripts to <a href="https://en.wikipedia.org/wiki/Systemd"><code>systemd</code></a>.</p></li>
 <li><p><strong>Scripting logic</strong> - scripting, logic constructs (<code>if</code>/<code>fi</code>, <code>while</code>/<code>done</code>, and the like).</p></li>
-<li><p><strong>Desktops</strong> - X Windows and the plethora of desktop environments like GNOME, KDE, Cinnamon, Mate, Unity and on and on. This is where *IX systems get the farthest apart in terms of interoperability, settings and customization.</p></li>
+<li><p><strong>Desktops</strong> - X Windows and the plethora of desktop environments like GNOME, KDE, Cinnamon, Mate, Unity and on and on. This is where &quot;UNIX&quot; systems get the farthest apart in terms of interoperability, settings and customization.</p></li>
 <li><p><strong>Servers</strong> - setting up or configuring web servers like Apache or node, email servers like dovecot, Samba servers for file shares, and so on.</p></li>
 <li><p><strong>Security</strong> - other than the simple basics of the file system security model.</p></li>
 </ul>
@@ -180,7 +180,7 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <h2 id="please-give-generously"><a href="#please-give-generously">Please, Give Generously</a></h2>
 <p>That said, if you find something amiss in here - a typo, a misconception or mistake, or a command or parameter you <strong><em>really, really, really</em></strong> think should be in here even though I said I am not trying to be exhaustive, feel free to <a href="https://github.com/dullroar/ten-steps-to-linux-survival.git">clone it from GitHub</a>, make your changes and send me a <code>git pull</code> request. Or you can try to <a href="https://github.com/dullroar/ten-steps-to-linux-survival/issues?q=is%3Aopen+is%3Aissue">file it as an issue</a> and I'll see how I feel that day.</p>
 <h2 id="why"><a href="#why">Why?</a></h2>
-<p>Because I work in a primarily Windows-oriented shop, and I seem to be &quot;the guy&quot; that everyone comes to when they need help on a Linux or related system. I don't count myself a Linux guru (<strong><em>at all</em></strong>), but I have been running it since 1996 (Slackware on a laptop with 8MB of memory!), and have worked on or run at home various ports and flavors and and versions and distros of &quot;*IX&quot; over the years, including:</p>
+<p>Because I work in a primarily Windows-oriented shop, and I seem to be &quot;the guy&quot; that everyone comes to when they need help on a Linux or related system. I don't count myself a Linux guru (<strong><em>at all</em></strong>), but I have been running it since 1996 (Slackware on a laptop with 8MB of memory!), and have worked on or run at home various ports and flavors and and versions and distros of &quot;UNIX&quot; over the years, including:</p>
 <ul>
 <li><p><strong>AIX</strong></p></li>
 <li><p><strong>FreeBSD</strong></p></li>
@@ -216,7 +216,7 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <li><p><strong>In the beginning</strong> - early 1970s, Nixon drags on, Watergate, Bell Labs, <a href="https://en.wikipedia.org/wiki/Ken_Thompson">Thompson</a> &amp; <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie">Ritchie</a>, <a href="https://en.wikipedia.org/wiki/History_of_Unix">UNIX</a>, blah blah blah...</p></li>
 <li><p><strong>More Trouble From Berkeley</strong> - late 1970s, Carter, disco, Iran hostages, UC Berkely releases the <a href="https://en.wikipedia.org/wiki/Berkeley_Software_Distribution">Berkeley Software Distribution</a> (BSD), a port based on the Bell Labs UNIX. Let the forking begin!</p></li>
 <li><p><strong>Goes commercial</strong> - 1980s, Reagan, Iran Contra, <em>E.T.</em>, AT&amp;T releases <a href="https://en.wikipedia.org/wiki/UNIX_System_V">System V</a> as first commercial UNIX. From the same background as Bell Labs UNIX, but evolved with subtle and not so subtle differences in approaches to command syntax, networking and much more. It is this release and AT&amp;T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.</p></li>
-<li><p>**Explosion of *IX** -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) &quot;UNIX&quot; platforms:</p>
+<li><p><strong>Explosion of &quot;UNIX&quot;</strong> -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) &quot;UNIX&quot; platforms:</p>
 <ul>
 <li><strong>HP HP-UX</strong></li>
 <li><strong>Sun SunOS</strong> - BSD flavor.</li>
@@ -237,14 +237,14 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <li><p><a href="https://en.wikipedia.org/wiki/GNU_Project"><strong>GNU Project</strong></a> - <a href="https://en.wikipedia.org/wiki/Richard_Stallman">Richard Stallman</a> founded the <a href="https://en.wikipedia.org/wiki/Free_Software_Foundation">Free Software Foundation</a> (FSF) and GNU project in the mid-1980s, <strong><em>long</em></strong> before Linux (GNU = &quot;GNU's Not Unix&quot;). The GNU project delivers <a href="https://www.gnu.org/software/software.html">a suite of programs and tools</a>, many of which are used in both Linux and BSD variants as de facto standards.</p></li>
 <li><p><strong>Various Linux Efforts</strong> - there have also been various movements over the years, some more successful than others, to &quot;standardize&quot; Linux or some part of it, such as the file system layout, the <code>init</code> system, documentation, and now even what is part of the most basic &quot;core OS&quot; for things like better containerization.</p></li>
 </ul>
-<p>For the rest of this we will use &quot;Linux&quot; or &quot;*IX&quot; to stand in for a &quot;generic&quot; UNIX-flavored OS unless a difference is specifically called out.</p>
+<p>For the rest of this we will use &quot;Linux&quot; or &quot;UNIX&quot; to stand in for a &quot;generic&quot; UNIX-flavored OS unless a difference is specifically called out.</p>
 <h2 id="why-does-this-matter"><a href="#why-does-this-matter">Why Does This Matter?</a></h2>
-<p>Because there are various &quot;flavors&quot; of commands and tools, based on whether you're dealing with a System V (Linux) or BSD (Free/Net/Open) descendant. Some of the OS versions are strong in security, or networking, or as a desktop. Certain things are &quot;built-in&quot; to the operating system but most are installed as packages, and depending on the source of the package it may or may not work correctly on another &quot;*IX&quot; system without effort.</p>
+<p>Because there are various &quot;flavors&quot; of commands and tools, based on whether you're dealing with a System V (Linux) or BSD (Free/Net/Open) descendant. Some of the OS versions are strong in security, or networking, or as a desktop. Certain things are &quot;built-in&quot; to the operating system but most are installed as packages, and depending on the source of the package it may or may not work correctly on another &quot;UNIX&quot; system without effort.</p>
 <p>It is similar to the history and relationship between <code>COMMAND.EXE</code> in DOS and <code>CMD.EXE</code> in Windows 10, where this would work in both:</p>
 <pre><code>COPY A.TXT B.TXT</code></pre>
 <p>But only the later, network-and-NTFS-aware <code>CMD.EXE</code> could handle:</p>
 <pre><code>COPY &quot;My 2015 Tax Returns.pdf&quot; \\MyServer\Finances\.</code></pre>
-<p>In *IX-land over time these differences seem to be getting better, but there are still &quot;gotchas,&quot; often involving the differences in open source licenses in the underlying code. There are fundamental differences and assumptions between the &quot;GNU&quot; and &quot;GPL&quot; licenses on the one side and &quot;MIT&quot; and &quot;BSD&quot; licenses on the other. I am not a lawyer, but I would summarize:</p>
+<p>In UNIX-land over time these differences seem to be getting better, but there are still &quot;gotchas,&quot; often involving the differences in open source licenses in the underlying code. There are fundamental differences and assumptions between the &quot;GNU&quot; and &quot;GPL&quot; licenses on the one side and &quot;MIT&quot; and &quot;BSD&quot; licenses on the other. I am not a lawyer, but I would summarize:</p>
 <ul>
 <li><p><strong>FSF/GNU/GPL</strong> - mostly concerned with keeping open source &quot;open,&quot; that is sharable and modifiable by all.</p></li>
 <li><p><strong>BSD &amp; MIT</strong> - more focused on letting anyone do anything to the code as long as the original author is acknowledged and liability released.</p></li>
@@ -281,7 +281,7 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <li><p><strong>&quot;Tar balls&quot;</strong> - source code or binaries delivered via archived and zipped directories. Common on <a href="https://en.wikipedia.org/wiki/Slackware">Slackware</a>, some others.</p></li>
 </ul>
 <h2 id="get-embed-with-me"><a href="#get-embed-with-me">Get Embed With Me</a></h2>
-<p>A lot of firmware in embedded devices is based on some sort of *IX flavor. Networking gear at both the consumer and enterprise level, storage devices and so on all tend to run something that &quot;looks like&quot; UNIX at some level. Of course, as to what's actually available, who knows? If you can get a shell (command prompt) the best thing to do is see what works.</p>
+<p>A lot of firmware in embedded devices is based on some sort of &quot;UNIX&quot; flavor. Networking gear at both the consumer and enterprise level, storage devices and so on all tend to run something that &quot;looks like&quot; UNIX at some level. Of course, as to what's actually available, who knows? If you can get a shell (command prompt) the best thing to do is see what works.</p>
 <h2 id="cygwin"><a href="#cygwin">Cygwin</a></h2>
 <p><a href="http://cygwin.com/">Cygwin</a> is an interesting beast. It is a DLL for Windows that implements most of the POSIX and related UNIX-like &quot;system API calls&quot; for programming, and then is also a series of ported open source packages, including shells, utilities and even desktop environments, all <strong><em>recompiled</em></strong> to run on Windows as long as the Cygwin DLL is accessible. Like a Linux distro it has an installer that is a &quot;package manager,&quot; and if a package isn't available, you can usually recompile the source code using Cygwin.</p>
 <p>You cannot run Linux or BSD binaries on Cygwin without recompiling them first. <strong>However</strong>, you can often run <strong><em>scripts</em></strong> from a Linux environment on Cygwin with little or no tweaking. Which means you can then take advantage of a lot of excellent open source tools simply by installing their packages in Cygwin and running scripts against them.</p>
@@ -550,7 +550,7 @@ drwxr-xr-x 26 myuser mygroup      4096 Oct 15 10:23 .config
 drwx------  3 myuser mygroup      4096 Sep  7 04:16 .dbus
 ...and so on...</code></pre>
 <h2 id="a-brief-detour-around-parameters"><a href="#a-brief-detour-around-parameters">A Brief Detour Around Parameters</a></h2>
-<p>In <code>bash</code> and many Linux commands in general, there are old, &quot;short&quot; (terse) parameter names, like <code>ls -a</code>, and newer, longer, descriptive parameter names like <code>ls --all</code> that mean the same thing. It is typically good to use the shorter version during interactive sessions and testing, but I prefer long parameter names in scripts, because when I come back and look at it in two years, I may not remember what <code>rm -rf *</code> means (in the *IX world it means you're toast if you run it in the wrong directory by mistake), thus <code>rm --recursive --force *</code> seems a bit more &quot;intuitive.&quot;</p>
+<p>In <code>bash</code> and many Linux commands in general, there are old, &quot;short&quot; (terse) parameter names, like <code>ls -a</code>, and newer, longer, descriptive parameter names like <code>ls --all</code> that mean the same thing. It is typically good to use the shorter version during interactive sessions and testing, but I prefer long parameter names in scripts, because when I come back and look at it in two years, I may not remember what <code>rm -rf *</code> means (in the &quot;UNIX&quot; world it means you're toast if you run it in the wrong directory by mistake), thus <code>rm --recursive --force *</code> seems a bit more &quot;intuitive.&quot;</p>
 <blockquote>
 <p><strong><em>The behind you save in the future by describing things well today may well be your own.</em></strong> - me</p>
 </blockquote>
@@ -1040,7 +1040,7 @@ replace foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
  extracting: foo/d/e                 
  extracting: foo/a                   </code></pre>
 <p>Not too exciting, but you get the drift. There is typically support for other compression algorithms, too, using <a href="http://linux.die.net/man/1/bzip2"><code>bzip2</code></a> and <a href="http://linux.die.net/man/1/7z"><code>7z</code></a> (7-zip) commands.</p>
-<p>However, the &quot;native&quot; way to &quot;archive&quot; a directory's contents in *IX is with <a href="http://linux.die.net/man/1/tar"><code>tar</code></a>, which is so old that <code>tar</code> stands for &quot;tape archive.&quot; Its purpose is to take virtually any directory structure and create a single output &quot;stream&quot; or file of it. That is then typically ran through a compression command and the result is called a &quot;tarball&quot;:</p>
+<p>However, the &quot;native&quot; way to &quot;archive&quot; a directory's contents in &quot;UNIX&quot; is with <a href="http://linux.die.net/man/1/tar"><code>tar</code></a>, which is so old that <code>tar</code> stands for &quot;tape archive.&quot; Its purpose is to take virtually any directory structure and create a single output &quot;stream&quot; or file of it. That is then typically ran through a compression command and the result is called a &quot;tarball&quot;:</p>
 <pre class="bash"><code>$ tar cvf foo.tar foo/*
 foo/a
 foo/b
@@ -1276,11 +1276,11 @@ SAME=ALWAYS</code></pre>
 <p>Now we can more easily see that line #1 changed (<code>1c1</code>) from <code>FOO=1</code> on the &quot;left&quot; file to <code>FOO=2</code> on the &quot;right,&quot; and that line #7 was deleted (<code>7d6</code>) from the &quot;left&quot; file to form the &quot;right.&quot; Again, not too interesting, but imagine that both files were thousands of lines long, and there were only a few changes, and you were trying to detect and recover an accidentally-deleted line. Now you can see why <code>diff</code> can be handy, as long as you keep around a prior version either in a backup file or source code control to compare against.</p>
 <p><code>diff</code> is your friend. It really comes into play with a version control system like <code>git</code>, but again, that is beyond the scope of this book.</p>
 <h1 id="step-3.-finding-meaning"><a href="#step-3.-finding-meaning">Step 3. Finding Meaning</a></h1>
-<p><strong><em>The <code>find</code> command in all its glory. Probably the single most useful command in </em>IX (I think).</strong>*</p>
+<p><strong><em>The <code>find</code> command in all its glory. Probably the single most useful command in &quot;UNIX&quot; (I think).</em></strong></p>
 <blockquote>
 <p><em>&quot;If we had bacon, we could have bacon and eggs, if we had eggs.&quot;</em> - old joke</p>
 </blockquote>
-<p>Different people will have different answers to &quot;What is the single most useful *IX command?&quot; There certainly are many to consider. But I keep coming back to <a href="http://linux.die.net/man/1/find"><code>find</code></a>. It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.</p>
+<p>Different people will have different answers to &quot;What is the single most useful &quot;UNIX&quot; command?&quot; There certainly are many to consider. But I keep coming back to <a href="http://linux.die.net/man/1/find"><code>find</code></a>. It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.</p>
 <p>The main concepts of <code>find</code> is simple:</p>
 <ol type="1">
 <li><p>Starting at location <em>X</em>...</p></li>
@@ -1415,7 +1415,7 @@ d:This sequence of characters is called a &quot;string&quot;.</code></pre>
 <p>In the <code>grep</code> example, we can see a regular expression can be as simple as &quot;is&quot;. It can also be as complicated as:</p>
 <pre><code>(?bhttp://[-A-Za-z0-9+&amp;@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&amp;@f</code></pre>
 <p>That shows at least one attempt at being <a href="http://blog.codinghorror.com/the-problem-with-urls/">a very complete parser of valid HTTP URLs</a>. Wow! What's all that? Now you see why you have two problems. Even if you get that all figured out, or if you actually sit and create something like that from scratch yourself (and it works!), imagine coming back six months later and trying to decipher it again.</p>
-<p>There are literally <a href="http://www.regular-expressions.info/">whole web sites</a> and <a href="http://shop.oreilly.com/product/9781565922570.do">books</a> on just regular expressions. With variations they are used in all *IX shells, Perl, Python, Javascript, Java, C# and more. So obviously (a) they are really useful, and (b) we're not going to cover regexes all here.</p>
+<p>There are literally <a href="http://www.regular-expressions.info/">whole web sites</a> and <a href="http://shop.oreilly.com/product/9781565922570.do">books</a> on just regular expressions. With variations they are used in all &quot;UNIX&quot; shells, Perl, Python, Javascript, Java, C# and more. So obviously (a) they are really useful, and (b) we're not going to cover regexes all here.</p>
 <p>There are so many things you can do, the only thing to it is to remember &quot;regular expressions&quot; when you think &quot;I need to find things based on a pattern&quot; and then research what it will take to define the pattern you want.</p>
 <p>In the mean time, a few <strong><em>simple</em></strong> regex examples. Consider the following file <code>invoices</code>:</p>
 <pre class="bash"><code>$ cat invoices
@@ -1505,7 +1505,7 @@ Truck   tires   400</code></pre>
 <ol type="1">
 <li><p>It is named after its three authors, <a href="https://en.wikipedia.org/wiki/AWK">Aho, Weinberger and Kernighan</a>, all three of whom are computer science greats from Bell Labs. The GNU version is called <code>gawk</code>, of course!</p></li>
 <li><p>It is a &quot;data driven scripting language.&quot; That's a fancy way of saying it was written specifically with slicing and dicing text in mind.</p></li>
-<li><p>It generally is broken out when the typical *IX commands and shell features like pipes and redirection aren't enough.</p></li>
+<li><p>It generally is broken out when the typical &quot;UNIX&quot; commands and shell features like pipes and redirection aren't enough.</p></li>
 <li><p>Usually, if I start thinking of <code>awk</code>, I start thinking of a way to program the answer in another language, or reframe the question to get an answer not requiring <code>awk</code>.</p></li>
 </ol>
 <p>That said, it is a powerful knife in the tool belt, and you should be aware it exists.</p>
@@ -1529,7 +1529,7 @@ username: uucp      uid:10
 <p><em>&quot;Ceci n'est pas une pipe.&quot;</em> - René Magritte</p>
 </blockquote>
 <p>The <a href="https://en.wikipedia.org/wiki/Unix_philosophy">&quot;UNIX philosophy&quot;</a> tends to be to have a bunch of small programs that each do one thing very well, and then to combine them together in interesting ways. The &quot;glue&quot; for combining them together is often the &quot;piping&quot; or redirection of &quot;streams&quot; of data (typically text) between programs, each doing one small change to the stream until it is finally emitted on the console or saved to a file or sent over the Internet.</p>
-<p>The first thing to note is there are three &quot;file I/O streams&quot; that are open by default in every *IX process:</p>
+<p>The first thing to note is there are three &quot;file I/O streams&quot; that are open by default in every &quot;UNIX&quot; process:</p>
 <ul>
 <li><p><strong>stdin</strong> - input, typically from the console in an interactive session. In the underlying C file system APIs, this is file descriptor 0.</p></li>
 <li><p><strong>stdout</strong> - &quot;normal&quot; output, typically to the console in an interactive session. This is file descriptor 1.</p></li>
@@ -1537,7 +1537,7 @@ username: uucp      uid:10
 </ul>
 <p><strong>Note:</strong> The file descriptors will go from being trivia to important in just a bit.</p>
 <p>When a program written in C calls <code>printf</code>, it is writing to <code>stdout</code>. When a <code>bash</code> script calls <code>echo</code>, it too is writing to <code>stdout</code>. When a command writes an error message, it is writing to <code>stderr</code>. If a command or program accepts input from the console, it is reading from <code>stdin</code>.</p>
-<p>In this example, <code>cat</code> is started with no file name, so it will read from <code>stdin</code> (a quite common *IX command convention), and echo each line to <code>stdout</code> until the &quot;end of file,&quot; which in an interactive session can be emulated with <code>Ctrl-D</code>, in the example below shown as <code>^D</code> but not seen on the console in real life:</p>
+<p>In this example, <code>cat</code> is started with no file name, so it will read from <code>stdin</code> (a quite common &quot;UNIX&quot; command convention), and echo each line to <code>stdout</code> until the &quot;end of file,&quot; which in an interactive session can be emulated with <code>Ctrl-D</code>, in the example below shown as <code>^D</code> but not seen on the console in real life:</p>
 <pre class="bash"><code>$ cat
 This shows reading from stdin
 This shows reading from stdin
@@ -1556,7 +1556,7 @@ total 1
 $ cat hw
 Hello, world</code></pre>
 <p>In this case the <code>&gt; hw</code> tells <code>bash</code> to take the output that <code>echo</code> sends to <code>stdout</code> and send it to the file <code>hw</code> instead.</p>
-<p>As mentioned above many *IX commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from <code>stdin</code>. The <code>cat</code> command does that. While it doesn't save us anything over the above example, the following is illustrative of redirecting a file to <code>stdin</code> for a command or program:</p>
+<p>As mentioned above many &quot;UNIX&quot; commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from <code>stdin</code>. The <code>cat</code> command does that. While it doesn't save us anything over the above example, the following is illustrative of redirecting a file to <code>stdin</code> for a command or program:</p>
 <pre class="bash"><code>$ cat &lt; hw
 Hello, world</code></pre>
 <p>Finally, we need to deal with <code>stderr</code>. By convention it is sent to the console just like <code>stdout</code>, and that can make output confusing:</p>
@@ -1619,7 +1619,7 @@ This is e</code></pre>
 <pre class="bash"><code>$ find . -exec cat \{\} \; &gt;&gt;/tmp/find.log</code></pre>
 <p><strong>Note:</strong> There is also a variation on input redirection using <code>&lt;&lt;</code>, but it is used mostly in scripting and is outside the scope of this book.</p>
 <h2 id="everyone-line-up"><a href="#everyone-line-up">Everyone Line Up</a></h2>
-<p>So we can see that we could pass things between programs by redirecting <code>stdout</code> to a file and then redirecting that file to <code>stdin</code> on the next program, and so on. But *IX environments take it a bit further with the concept of a command &quot;pipeline&quot; that allows directly sending <code>stdout</code> from one program into <code>stdin</code> of another.</p>
+<p>So we can see that we could pass things between programs by redirecting <code>stdout</code> to a file and then redirecting that file to <code>stdin</code> on the next program, and so on. But &quot;UNIX&quot; environments take it a bit further with the concept of a command &quot;pipeline&quot; that allows directly sending <code>stdout</code> from one program into <code>stdin</code> of another.</p>
 <pre class="bash"><code>$ cat *.txt | tr &#39;\\&#39; &#39;/&#39; | while read line ; do ./mycmd &quot;$line&quot; ; done</code></pre>
 <p>This little one-liner starts showing off the usefulness of small programs, each doing one thing. In this case:</p>
 <ol type="1">
@@ -1818,11 +1818,11 @@ This is last</code></pre>
 <p>Another handy command to check out for this kind of thing, especially for code or written text, is the <a href="http://linux.die.net/man/1/fmt"><code>fmt</code></a> command.</p>
 <h2 id="the-unseen-world"><a href="#the-unseen-world">The Unseen World</a></h2>
 <p>Any technical person knows that all the binary permutations of possible values for a byte aren't mapped to visible characters. Some are <a href="https://en.wikipedia.org/wiki/Control_character">&quot;control characters&quot;</a> that range back to the teletype days. For example, a tab character is hexadecimal 9 (<code>0x09</code>), but is often represented as <code>\t</code> in many programming languages, regular expressions and the like.</p>
-<p>Similarly, the &quot;end of line&quot; is marked by a control character. Or in the case of Windows, <strong><em>two</em></strong> control characters. And this causes no end of problems when editing files that can be opened on both *IX systems and Windows.</p>
-<p>On *IX, the line feed control character (<code>0x0a</code>, or <code>\n</code>) is all that marks the end of a line. For historical reasons (CP/M), Windows ends each line with two control characters, carriage return (<code>0x0d</code>, or <code>\r</code>) and line feed. The two together are often referred to as &quot;CRLF.&quot;</p>
+<p>Similarly, the &quot;end of line&quot; is marked by a control character. Or in the case of Windows, <strong><em>two</em></strong> control characters. And this causes no end of problems when editing files that can be opened on both &quot;UNIX&quot; systems and Windows.</p>
+<p>On &quot;UNIX,&quot; the line feed control character (<code>0x0a</code>, or <code>\n</code>) is all that marks the end of a line. For historical reasons (CP/M), Windows ends each line with two control characters, carriage return (<code>0x0d</code>, or <code>\r</code>) and line feed. The two together are often referred to as &quot;CRLF.&quot;</p>
 <p>This difference manifests in two ways:</p>
 <ol type="1">
-<li><p>If you've ever opened a file on Windows in Notepad and all the lines &quot;flow&quot; even though they're supposed to be individual lines, that means it is probably using *IX end-of-lines (<code>\n</code>) only. Use a line feed aware editor such as Notepad++ instead.</p></li>
+<li><p>If you've ever opened a file on Windows in Notepad and all the lines &quot;flow&quot; even though they're supposed to be individual lines, that means it is probably using &quot;UNIX&quot; end-of-lines (<code>\n</code>) only. Use a line feed aware editor such as Notepad++ instead.</p></li>
 <li><p>If you open a file in <code>vi</code> and it has a <code>^M</code> at the end of every line and/or at the bottom you see something like:</p>
 <pre><code>&quot;Agenda.md&quot; [dos format] 16 lines, 1692 characters</code></pre>
 <p>Either of those mean the file lines each end with &quot;CRLF&quot; (<code>\r\n</code>). To change it in <code>vi</code> you can use the following command (<code>ff</code> means &quot;file format&quot;:</p>
@@ -2226,10 +2226,10 @@ auth.log.1             daemon.log.4.gz  dmesg.3.gz  installer      mail....</cod
 <blockquote>
 <p><em>&quot;You're soaking in it.&quot;</em> - Palmolive commercial</p>
 </blockquote>
-<p>The biggest issue with bootstrapping into *IX is not the lack of documentation but almost the surplus of it, coupled with a severe &quot;RTFM&quot; attitude by most old-timers toward most newbies. Besides the typical &quot;Google&quot; and &quot;StackOverflow&quot; answers, there are actually lots of very reliable places to turn to for information:</p>
+<p>The biggest issue with bootstrapping into &quot;UNIX&quot; is not the lack of documentation but almost the surplus of it, coupled with a severe &quot;RTFM&quot; attitude by most old-timers toward most newbies. Besides the typical &quot;Google&quot; and &quot;StackOverflow&quot; answers, there are actually lots of very reliable places to turn to for information:</p>
 <h2 id="man-is-that-info-apropos"><a href="#man-is-that-info-apropos"><code>man</code>, is that <code>info</code> <code>apropos</code>?</a></h2>
-<p>There are three commands that are the basis for reading <em>IX documentation within </em>IX itself - <a href="http://linux.die.net/man/1/man"><code>man</code></a>, <a href="http://linux.die.net/man/1/info"><code>info</code></a> and <a href="http://linux.die.net/man/1/apropos"><code>apropos</code></a>.</p>
-<p><code>man</code> is short for <em>manual pages</em>, and is used to display the main help for most *IX commands. For example, <code>man ls</code> shows:</p>
+<p>There are three commands that are the basis for reading &quot;UNIX&quot; documentation within &quot;UNIX&quot; itself - <a href="http://linux.die.net/man/1/man"><code>man</code></a>, <a href="http://linux.die.net/man/1/info"><code>info</code></a> and <a href="http://linux.die.net/man/1/apropos"><code>apropos</code></a>.</p>
+<p><code>man</code> is short for <em>manual pages</em>, and is used to display the main help for most &quot;UNIX&quot; commands. For example, <code>man ls</code> shows:</p>
 <pre class="bash"><code>LS(1)                                                             User C...
 
 NAME
@@ -2325,7 +2325,7 @@ vipw (8)             - edit the password, group, shadow-password or shad...
 visudo (8)           - edit the sudoers file
 </code></pre>
 <p>Note the <code>man</code> section numbers after each command name. Also note that <code>apropos</code> is not sophisticated - it is simply searching for the exact string you give it in the very limited &quot;brief descriptions&quot; from the <code>man</code> pages. That's all. But a lot of time that's all you need to remember, &quot;Ah, yes, <code>nano</code> is the other editor I was thinking about and like better than <code>vi</code>.&quot;</p>
-<p><strong>Note:</strong> <code>man</code>, <code>info</code> and <code>apropos</code> are just normal *IX commands like all the others, so while they may default to displaying with a paginator on an interactive terminal, you can run their output through other commands, just like any other. For example, maybe we remember only that the command had something with &quot;edit&quot; and was a system administration (&quot;section 8&quot;) command:</p>
+<p><strong>Note:</strong> <code>man</code>, <code>info</code> and <code>apropos</code> are just normal &quot;UNIX&quot; commands like all the others, so while they may default to displaying with a paginator on an interactive terminal, you can run their output through other commands, just like any other. For example, maybe we remember only that the command had something with &quot;edit&quot; and was a system administration (&quot;section 8&quot;) command:</p>
 <pre class="bash"><code>$ apropos edit | grep &quot;(8)&quot;
 jfs_debugfs (8)      - shell-type JFS file system editor
 pdbedit (8)          - manage the SAM database (Database of Samba Users)
@@ -2342,13 +2342,13 @@ visudo (8)           - edit the sudoers file</code></pre>
 <p>Whaddya know. It can be any of the three.</p>
 <p>And yes, you can <code>man man</code>, <code>man info</code>, <code>info info</code> and <code>info man</code>, for that matter!</p>
 <h2 id="how-do-you-google-man"><a href="#how-do-you-google-man">How Do You Google, <code>man</code>?</a></h2>
-<p>You can often search the internet for *IX documentation, and the <code>man</code> pages have long been online. A site I like (and link to a lot here) is <a href="http://linux.die.net/man/">http://linux.die.net/man/</a>. Often, though, you can just google <a href="https://www.google.com/#q=man+ls">&quot;man ls&quot;</a> and the top hits will be what you want.</p>
+<p>You can often search the internet for &quot;UNIX&quot; documentation, and the <code>man</code> pages have long been online. A site I like (and link to a lot here) is <a href="http://linux.die.net/man/">http://linux.die.net/man/</a>. Often, though, you can just google <a href="https://www.google.com/#q=man+ls">&quot;man ls&quot;</a> and the top hits will be what you want.</p>
 <p><strong><em>However</em></strong>, there are times you need to be careful. Googling for either <code>man touch</code> or <code>man tail</code>, for example, will probably not give you the results you seek and may set off filters at work, so be careful out there and remember to bookmark a couple of actual <code>man</code> page sites so that you can go there directly and look up a command.</p>
 <h2 id="books-and-stuff"><a href="#books-and-stuff">Books and Stuff</a></h2>
 <p>There are several consistently high-quality free sources of information on various parts of Linux and related systems on the internet.</p>
 <ul>
 <li><p><a href="http://www.tldp.org/guides.html"><strong>The Linux Documentation Project (LDP)</strong></a> - has fallen a bit behind over the years, but still has two of the best <code>bash</code> scripting books out there, <a href="http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html"><em>Bash Guide for Beginners</em></a> and <a href="http://www.tldp.org/LDP/abs/html/index.html"><em>Advanced Bash-Scripting Guide</em></a>. I continue to use the latter all the time.</p></li>
-<li><p><a href="https://wiki.archlinux.org/"><strong>Arch Linux Wiki</strong></a> - you may not think this would be useful if you are running Debian or Fedora or something else, but remember most *IX systems are all very similar, and often the best documentation on a package or setting something up in Linux is in the Arch wiki.</p></li>
+<li><p><a href="https://wiki.archlinux.org/"><strong>Arch Linux Wiki</strong></a> - you may not think this would be useful if you are running Debian or Fedora or something else, but remember most &quot;UNIX&quot; systems are all very similar, and often the best documentation on a package or setting something up in Linux is in the Arch wiki.</p></li>
 <li><p><a href="https://www.debian.org/doc/"><strong>Debian documentation</strong></a> - again, even if you are not running a Debian-based distro, this can be handy because it describes how to administer Linux in a way that often transcends distro specifics (and at least explains how Debian approaches the differences). The best books in the series are <a href="https://www.debian.org/doc/manuals/debian-handbook/"><em>The Debian Administrator's Handbook</em></a> and the <a href="https://www.debian.org/doc/manuals/debian-reference/"><em>Debian Reference</em></a>, which is a lot more formal attempt at the same type of territory this guide covers.</p></li>
 </ul>
 <p>Ubuntu, Mint and some other distros have quite active message fora, and of course StackOverflow and its family are also very useful.</p>

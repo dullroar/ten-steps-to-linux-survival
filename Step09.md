@@ -7,7 +7,7 @@ guides, StackOverflow and the dangers of searching for “`man find`” or
 
 > *"You're soaking in it."* - Palmolive commercial
 
-The biggest issue with bootstrapping into *IX is not the lack of
+The biggest issue with bootstrapping into "UNIX" is not the lack of
 documentation but almost the surplus of it, coupled with a severe "RTFM"
 attitude by most old-timers toward most newbies. Besides the typical
 "Google" and "StackOverflow" answers, there are actually lots of very
@@ -15,13 +15,13 @@ reliable places to turn to for information:
 
 ## `man`, is that `info` `apropos`?
 
-There are three commands that are the basis for reading *IX documentation
-within *IX itself - [`man`](http://linux.die.net/man/1/man),
+There are three commands that are the basis for reading "UNIX" documentation
+within "UNIX" itself - [`man`](http://linux.die.net/man/1/man),
 [`info`](http://linux.die.net/man/1/info) and
 [`apropos`](http://linux.die.net/man/1/apropos).
 
 `man` is short for *manual pages*, and is used to display the main help for
-most *IX commands. For example, `man ls` shows:
+most "UNIX" commands. For example, `man ls` shows:
 
 ```bash
 LS(1)                                                             User C...
@@ -162,7 +162,7 @@ pages. That's all. But a lot of time that's all you need to remember, "Ah,
 yes, `nano` is the other editor I was thinking about and like better than
 `vi`."
 
-**Note:** `man`, `info` and `apropos` are just normal *IX commands like all
+**Note:** `man`, `info` and `apropos` are just normal "UNIX" commands like all
 the others, so while they may default to displaying with a paginator on an
 interactive terminal, you can run their output through other commands, just
 like any other. For example, maybe we remember only that the command had
@@ -197,7 +197,7 @@ that matter!
 
 ## How Do You Google, `man`?
 
-You can often search the internet for *IX documentation, and the `man`
+You can often search the internet for "UNIX" documentation, and the `man`
 pages have long been online. A site I like (and link to a lot here) is
 [http://linux.die.net/man/](http://linux.die.net/man/). Often, though,
 you can just google ["man ls"](https://www.google.com/#q=man+ls) and the
@@ -224,7 +224,7 @@ I continue to use the latter all the time.
 
 * [**Arch Linux Wiki**](https://wiki.archlinux.org/) - you may not think
 this would be useful if you are running Debian or Fedora or something else,
-but remember most *IX systems are all very similar, and often the best
+but remember most "UNIX" systems are all very similar, and often the best
 documentation on a package or setting something up in Linux is in the Arch
 wiki.
 

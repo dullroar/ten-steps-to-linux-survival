@@ -33,7 +33,7 @@ you, gentlemen. I've tried to pay it forward. This book is part of that.
 
 This is my little "Linux and Bash in 10 steps" guide. It's based around
 what I consider the essentials for ~~floundering around~~
-acting like I know what I'm doing in Linux, BSD and *IX-flavored
+acting like I know what I'm doing in Linux, BSD and "UNIX-flavored"
 systems and looking impressive among people who have only worked on
 Windows in the GUI. Your "10 steps" may be different than mine and that's
 fine, but this list is mine.
@@ -58,7 +58,7 @@ command history, tab expansion, environment variables and "A path! A path!"
 favorite, `touch`.
     
 3. [**Finding Meaning**](#step-3.-finding-meaning) – the `find` command in
-all its glory. Probably the single most useful command in *IX (I think).
+all its glory. Probably the single most useful command in "UNIX" (I think).
 
 4. [**Grokking `grep`**](#step-4.-grokking-grep) – and probably gawking at
 `awk` while we are at it, which means regular expressions, too. Now we have
@@ -95,7 +95,7 @@ together.
 
 It should be obvious that there is ***plenty*** that is not covered:
 
-* **System initialization** - besides, the whole *IX world is in flux
+* **System initialization** - besides, the whole "UNIX" world is in flux
 right now over system initialization architecture and the shift from
 ["init"](https://en.wikipedia.org/wiki/Init) scripts to
 [`systemd`](https://en.wikipedia.org/wiki/Systemd).
@@ -104,7 +104,7 @@ right now over system initialization architecture and the shift from
 `while`/`done`, and the like).
 
 * **Desktops** - X Windows and the plethora of desktop environments like
-GNOME, KDE, Cinnamon, Mate, Unity and on and on. This is where *IX systems
+GNOME, KDE, Cinnamon, Mate, Unity and on and on. This is where "UNIX" systems
 get the farthest apart in terms of interoperability, settings and
 customization.
 
@@ -137,7 +137,7 @@ guy" that everyone comes to when they need help on a Linux or related
 system. I don't count myself a Linux guru (***at all***), but I have been
 running it since 1996 (Slackware on a laptop with 8MB of memory!), and have
 worked on or run at home various ports and flavors and and versions and
-distros of "*IX" over the years, including:
+distros of "UNIX" over the years, including:
 
 * **AIX**
 

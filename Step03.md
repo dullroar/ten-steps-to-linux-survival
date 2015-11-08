@@ -2,13 +2,13 @@
 # Step 3. Finding Meaning
 
 ***The `find` command in all its glory. Probably the single most useful
-command in *IX (I think).***
+command in "UNIX" (I think).***
 
 > *"If we had bacon, we could have bacon and eggs, if we had eggs."* - old
 > joke
 
 Different people will have different answers to "What is the single most
-useful *IX command?" There certainly are many to consider. But I keep
+useful "UNIX" command?" There certainly are many to consider. But I keep
 coming back to [`find`](http://linux.die.net/man/1/find). It can be
 intimidating to figure out from the documentation, especially at first,
 but once you start mastering it, you end up using it over and over again.

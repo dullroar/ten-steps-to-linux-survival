@@ -123,7 +123,7 @@ parameter names like `ls --all` that mean the same thing. It is typically
 good to use the shorter version during interactive sessions and testing,
 but I prefer long parameter names in scripts, because when I come back
 and look at it in two years, I may not remember what `rm -rf *` means
-(in the *IX world it means you're toast if you run it in the wrong
+(in the "UNIX" world it means you're toast if you run it in the wrong
 directory by mistake), thus `rm --recursive --force *` seems a bit more
 "intuitive."
 
@@ -949,7 +949,7 @@ other compression algorithms, too, using
 [`bzip2`](http://linux.die.net/man/1/bzip2) and
 [`7z`](http://linux.die.net/man/1/7z) (7-zip) commands.
 
-However, the "native" way to "archive" a directory's contents in *IX is
+However, the "native" way to "archive" a directory's contents in "UNIX" is
 with [`tar`](http://linux.die.net/man/1/tar), which is so old that `tar`
 stands for "tape archive." Its purpose is to take virtually any directory
 structure and create a single output "stream" or file of it. That is

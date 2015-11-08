@@ -64,7 +64,7 @@ later and trying to decipher it again.
 
 There are literally [whole web sites](http://www.regular-expressions.info/)
 and [books ](http://shop.oreilly.com/product/9781565922570.do)
-on just regular expressions. With variations they are used in all *IX
+on just regular expressions. With variations they are used in all "UNIX"
 shells, Perl, Python, Javascript, Java, C# and more. So obviously (a) they
 are really useful, and (b) we're not going to cover regexes all here.
 
@@ -235,7 +235,7 @@ is called `gawk`, of course!
 2. It is a "data driven scripting language." That's a fancy way of saying
 it was written specifically with slicing and dicing text in mind.
 
-3. It generally is broken out when the typical *IX commands and shell
+3. It generally is broken out when the typical "UNIX" commands and shell
 features like pipes and redirection aren't enough.
 
 4. Usually, if I start thinking of `awk`, I start thinking of a way to
