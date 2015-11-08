@@ -393,6 +393,65 @@ That and thus,
 That and that and that.
 ```
 
+## "X" Marks the Spot
+
+You can "mark" lines in `vi` for use in "ranges" like the "substitute"
+(change) command above. Let's say you have a file like the following:
+
+```
+This is a line
+This is also a line
+This, too
+This is next
+This is last
+```
+
+Maybe we want to change the "This" on the first three lines to "That," but
+not the last two (imagine this is a much more complex example). We could do
+it by hand, but that's tedious and error prone. Instead, we can "mark" a
+range.
+
+1. Place the cursor on the first line and use the `m` command followed by
+a one-character "label" like `x` (I typically use `m` so I don't have to
+move my fingers).
+
+2. Place the cursor on the third line and again use the `m` command, but
+***with a different label character*** (I usually use `n` so my fingers
+don't travel far).
+
+3. Now you can use the `'` character followed by a label to denote the
+beginning and end of the range in all kinds of `vi` commands. In our case
+we want to change "This" on the first three lines, so:
+
+```
+:'m,'ns/This/That/
+```
+
+Try doing that in Notepad!
+
+## Executing External Commands
+
+Sometimes in `vi` it would be great to run the contents of the file through
+an external command (`sort` is a favorite) without saving and exiting the
+file, sorting it, and then re-editing it. We can do that with `!`, which
+works a lot like the "substitute" (change) command.
+
+To sort the whole file in place:
+
+```
+:1,$!sort
+```
+
+To sort a marked range:
+
+```
+:'m,'n!sort
+```
+
+Another handy command to check out for this kind of thing, especially for
+code or written text, is the [`fmt`](http://linux.die.net/man/1/fmt)
+command.
+
 ## The Unseen World
 
 Any technical person knows that all the binary permutations of possible

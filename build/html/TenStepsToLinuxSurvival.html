@@ -79,6 +79,8 @@
 <li><a href="#insert-tab-a-into-slot-b">Insert Tab A Into Slot B</a></li>
 <li><a href="#ctrl-x-ctrl-c-ctrl-v">Ctrl-X, Ctrl-C, Ctrl-V</a></li>
 <li><a href="#change-machine">Change Machine</a></li>
+<li><a href="#x-marks-the-spot">&quot;X&quot; Marks the Spot</a></li>
+<li><a href="#executing-external-commands">Executing External Commands</a></li>
 <li><a href="#the-unseen-world">The Unseen World</a></li>
 <li><a href="#lets-get-small">Let's Get Small</a></li>
 </ul></li>
@@ -128,7 +130,9 @@
 <li><a href="#simple-scripts">Simple Scripts</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#colophon">Colophon</a></li>
+<li><a href="#colophon">Colophon</a><ul>
+<li><a href="#about-the-author">About the Author</a></li>
+</ul></li>
 </ul>
 </nav>
 <figure>
@@ -1790,6 +1794,28 @@ That is a word,
 and so is that.
 That and thus,
 That and that and that.</code></pre>
+<h2 id="x-marks-the-spot"><a href="#x-marks-the-spot">&quot;X&quot; Marks the Spot</a></h2>
+<p>You can &quot;mark&quot; lines in <code>vi</code> for use in &quot;ranges&quot; like the &quot;substitute&quot; (change) command above. Let's say you have a file like the following:</p>
+<pre><code>This is a line
+This is also a line
+This, too
+This is next
+This is last</code></pre>
+<p>Maybe we want to change the &quot;This&quot; on the first three lines to &quot;That,&quot; but not the last two (imagine this is a much more complex example). We could do it by hand, but that's tedious and error prone. Instead, we can &quot;mark&quot; a range.</p>
+<ol type="1">
+<li><p>Place the cursor on the first line and use the <code>m</code> command followed by a one-character &quot;label&quot; like <code>x</code> (I typically use <code>m</code> so I don't have to move my fingers).</p></li>
+<li><p>Place the cursor on the third line and again use the <code>m</code> command, but <strong><em>with a different label character</em></strong> (I usually use <code>n</code> so my fingers don't travel far).</p></li>
+<li><p>Now you can use the <code>'</code> character followed by a label to denote the beginning and end of the range in all kinds of <code>vi</code> commands. In our case we want to change &quot;This&quot; on the first three lines, so:</p></li>
+</ol>
+<pre><code>:&#39;m,&#39;ns/This/That/</code></pre>
+<p>Try doing that in Notepad!</p>
+<h2 id="executing-external-commands"><a href="#executing-external-commands">Executing External Commands</a></h2>
+<p>Sometimes in <code>vi</code> it would be great to run the contents of the file through an external command (<code>sort</code> is a favorite) without saving and exiting the file, sorting it, and then re-editing it. We can do that with <code>!</code>, which works a lot like the &quot;substitute&quot; (change) command.</p>
+<p>To sort the whole file in place:</p>
+<pre><code>:1,$!sort</code></pre>
+<p>To sort a marked range:</p>
+<pre><code>:&#39;m,&#39;n!sort</code></pre>
+<p>Another handy command to check out for this kind of thing, especially for code or written text, is the <a href="http://linux.die.net/man/1/fmt"><code>fmt</code></a> command.</p>
 <h2 id="the-unseen-world"><a href="#the-unseen-world">The Unseen World</a></h2>
 <p>Any technical person knows that all the binary permutations of possible values for a byte aren't mapped to visible characters. Some are <a href="https://en.wikipedia.org/wiki/Control_character">&quot;control characters&quot;</a> that range back to the teletype days. For example, a tab character is hexadecimal 9 (<code>0x09</code>), but is often represented as <code>\t</code> in many programming languages, regular expressions and the like.</p>
 <p>Similarly, the &quot;end of line&quot; is marked by a control character. Or in the case of Windows, <strong><em>two</em></strong> control characters. And this causes no end of problems when editing files that can be opened on both *IX systems and Windows.</p>
@@ -2770,5 +2796,7 @@ xfreerdp --version</code></pre>
 <p>Output produced using <a href="http://pandoc.org/"><code>pandoc</code></a>, <a href="http://www.tug.org/texlive/">TeX Live</a> and <a href="http://linux.die.net/man/1/pdflatex"><code>pdflatex</code></a>, <a href="http://linux.die.net/man/1/make"><code>make</code></a>, originally based on the <span class="citation" data-cites="evangoer">[@evangoer's work]</span>(https://github.com/evangoer/pandoc-ebook-template).</p>
 <p>Source code control is provided by <a href="http://linux.die.net/man/1/git"><code>git</code></a>. You can view <a href="https://github.com/dullroar/ten-steps-to-linux-survival">the files used to create this book</a> on GitHub.</p>
 <p>The cover photo is of our dog, Merv, who is reminding you, &quot;Don't panic!&quot;</p>
+<h2 id="about-the-author"><a href="#about-the-author">About the Author</a></h2>
+<p>Jim is son to Barb and Lou; husband to Leslie; father to Meghann (and Jeremy), Morgann, Erin, Gloria and Jon; grandfather to Ryan, Lindsay, Logan and Hannah; and alpha wolf to Merv. He has been &quot;in computers&quot; since 1980. His hobbies include reading, running, hiking and climbing, and apparently writing books.</p>
 </body>
 </html>

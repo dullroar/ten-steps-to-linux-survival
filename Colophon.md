@@ -1,3 +1,4 @@
+  
 # Colophon
 
 > *"I can't come back, I don't know how it works! Good-bye, folks!"* -
@@ -37,3 +38,12 @@ You can view
 on GitHub.
 
 The cover photo is of our dog, Merv, who is reminding you, "Don't panic!"
+
+## About the Author
+
+Jim is son to Barb and Lou; husband to Leslie; father to Meghann
+(and Jeremy), Morgann, Erin, Gloria and Jon; grandfather to Ryan, Lindsay,
+Logan and Hannah; and alpha wolf to Merv. He has been "in computers" since
+1980. His hobbies include reading, running, hiking and climbing, and
+apparently writing books.
+  

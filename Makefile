@@ -3,12 +3,13 @@ BOOKNAME = TenStepsToLinuxSurvival
 TITLE = title.txt
 METADATA = metadata.xml
 CHAPTERS = metadata.yaml Step-1.md Step00.md Step01.md Step02.md Step03.md Step04.md Step05.md Step06.md Step07.md Step08.md Step09.md Step10.md Appendices.md Colophon.md
+SLIDES = Slides-1.md Slides00.md Slides01.md Slides02.md Slides03.md Slides04.md Slides05.md Slides06.md Slides07.md Slides08.md Slides09.md Slides10.md
 TOC = --toc --toc-depth=3
 COVER_IMAGE = images/Merv.jpg
 LATEX_CLASS = book
 SYNTAX = --no-highlight
 
-all: book markdown
+all: book markdown slides
 
 book: epub html pdf
 
@@ -22,6 +23,12 @@ epub: $(BUILD)/epub/$(BOOKNAME).epub
 html: $(BUILD)/html/$(BOOKNAME).html
 
 pdf: $(BUILD)/pdf/$(BOOKNAME).pdf
+
+slides: revealjs dzslides
+
+revealjs: $(BUILD)/slides/revealjs/$(BOOKNAME).html
+
+dzslides: $(BUILD)/slides/dzslides/$(BOOKNAME).html
 
 markdown: $(BUILD)/markdown/$(BOOKNAME).md
 
@@ -45,5 +52,15 @@ $(BUILD)/markdown/$(BOOKNAME).md: $(CHAPTERS)
 	cp images/* $(BUILD)/markdown/images/.
 	pandoc $(TOC) $(SYNTAX) --to=markdown_github -o $@ $^
 	cp $(BUILD)/markdown/$(BOOKNAME).md README.md
+
+$(BUILD)/slides/revealjs/$(BOOKNAME).html: $(SLIDES)
+	mkdir -p $(BUILD)/slides
+	mkdir -p $(BUILD)/slides/revealjs
+	pandoc $(SYNTAX) --to=revealjs --standalone --self-contained -o $@ $^
+
+$(BUILD)/slides/dzslides/$(BOOKNAME).html: $(SLIDES)
+	mkdir -p $(BUILD)/slides
+	mkdir -p $(BUILD)/slides/dzslides
+	pandoc $(SYNTAX) --to=dzslides --standalone --self-contained -o $@ $^
 
 .PHONY: all book clean epub html pdf
