@@ -23,6 +23,7 @@
 <li><a href="#please-give-generously">Please, Give Generously</a></li>
 <li><a href="#why">Why?</a></li>
 <li><a href="#caveat-administrator">Caveat Administrator</a></li>
+<li><a href="#conventions">Conventions</a></li>
 </ul></li>
 <li><a href="#step-0.-some-history">Step 0. Some History</a><ul>
 <li><a href="#why-does-this-matter">Why Does This Matter?</a></li>
@@ -139,7 +140,7 @@
 <img src="./images/Merv.jpg" title="Merv sez, &#39;Don&#39;t panic.&#39;" alt="Merv sez, &quot;Don&#39;t panic.&quot;" /><figcaption>Merv sez, &quot;Don't panic.&quot;</figcaption>
 </figure>
 <p><strong>By Jim Lehmer</strong></p>
-<p>v0.2</p>
+<p>v0.3</p>
 <p><a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
 alt="Creative Commons License" style="border-width:0"
@@ -205,6 +206,24 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <h2 id="caveat-administrator"><a href="#caveat-administrator">Caveat Administrator</a></h2>
 <p>Even so, anything like this is incomplete. Anyone knowledgable of Linux will probably splutter their coffee into their neckbeard at least once a chapter because I don't mention a parameter on a command or an entire subject at all! And that's right - because this &quot;survival guide&quot; is already long enough.</p>
 <p>This book is not meant to be an authoritative source, but instead a <a href="https://en.wikipedia.org/wiki/Fake_book">&quot;fake book&quot;</a> for getting up and running <strong><em>quickly</em></strong> with the sheer basics, plus knowing where to go for help. It is not a replacement for reading the real documentation and doing research and testing, especially in production! But hopefully it will help get you through that &quot;Can you get in and poke around and see if you can figure it out?&quot; scenario, above. And if Linux should start becoming more of your job, maybe this will help as a gentle push toward &quot;RTFM&quot; along with thinking in &quot;The UNIX Way.&quot;</p>
+<p><strong>WARNING:</strong> <strong><em>Many of the commands in this book can alter your system and possibly damage it.</em></strong> Obvious candidates include the file system commands like <code>rm</code>, the <code>vi</code> editor (obviously), and some of the &quot;system admin&quot; commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production. <strong><em>You have been warned!</em></strong></p>
+<h2 id="conventions"><a href="#conventions">Conventions</a></h2>
+<p>If a command, file name or other &quot;computer code&quot; is shown in-line in a sentence, it will appear in a fixed-width font, e.g., <code>ls --recursive *.txt</code>.</p>
+<p>If a command and its output, script code or something else is shown in a block, it will appear like this:</p>
+<pre class="bash"><code>$ ps -AH
+  PID TTY          TIME CMD
+    2 ?        00:00:00 kthreadd
+    3 ?        00:00:00   ksoftirqd/0
+    5 ?        00:00:00   kworker/0:0H
+    7 ?        00:00:19   rcu_sched
+    8 ?        00:00:04   rcuos/0
+    9 ?        00:00:09   rcuos/1
+   10 ?        00:00:07   rcuos/2
+...and so on...</code></pre>
+<p>Or it may appear in a screenshot like this:</p>
+<figure>
+<img src="./images/ps-AH.png" title="Sample command" alt="Sample command" /><figcaption>Sample command</figcaption>
+</figure>
 <h1 id="step-0.-some-history"><a href="#step-0.-some-history">Step 0. Some History</a></h1>
 <p><strong><em>UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,” Cygwin, and why any of this matters now. “Why does this script off the internet work on this system and not on that one?”</em></strong></p>
 <blockquote>
@@ -225,19 +244,20 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <li><strong>SGI IRIX</strong></li>
 <li><strong>...and many, many more!</strong> - although mostly all that's left now is HP-UX, AIX and Solaris.</li>
 </ul></li>
-<li><p><strong>Linux</strong> - 1991+, Clinton I, grunge, <em>Titanic</em>, <a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a> releases a project called <a href="https://en.wikipedia.org/wiki/Linux">Linux</a> based on <a href="https://en.wikipedia.org/wiki/MINIX">MINIX</a> (and hence why Linus says Linux is pronounced like &quot;MINIX&quot; and not like &quot;Linus&quot;). <strong>Note:</strong> By 1996 I was running an early Linux version (<a href="https://en.wikipedia.org/wiki/Slackware">Slackware</a> <a href="https://en.wikipedia.org/wiki/Linux_distribution">distro</a>) on a laptop with 8MB of memory!</p></li>
+<li><p><strong>Linux</strong> - 1991+, Clinton I, grunge, <em>Titanic</em>, <a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a> releases a project called <a href="https://en.wikipedia.org/wiki/Linux">Linux</a> based on <a href="https://en.wikipedia.org/wiki/MINIX">MINIX</a> (and hence why Linus says Linux is pronounced like &quot;MINIX&quot; and not like &quot;Linus&quot;).</p></li>
 <li><p><strong>Proliferation of the BSDs</strong> - mid-to-late 1990s, still Clinton I, Monicagate, Kosovo, various ports of BSD including <a href="https://en.wikipedia.org/wiki/NetBSD">NetBSD</a>, <a href="https://en.wikipedia.org/wiki/FreeBSD">FreeBSD</a> and <a href="https://en.wikipedia.org/wiki/OpenBSD">OpenBSD</a>, all happen in the same time frame as Linux. Like Linux distros, each has its own focus and prejudices, some of which are distinctly &quot;anti-Linux.&quot; The &quot;big three&quot; are all still in heavy use today, especially among ISPs. The perception is still out there among a generation of sysadmins that Linux is for the desktop and BSDs for servers, but that reality shifted a long time ago.</p></li>
 <li><p><strong>Ports of call</strong> - 2000+, Bush II &amp; Obama, Afghanistan &amp; Gulf War 2, lots of cross-porting of everything open source. However, <a href="https://en.wikipedia.org/wiki/Open-source_license">licenses matter</a>, and <a href="https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses">there sure are a lot of them</a>. While it has settled down some with the dismissal of the SCO lawsuit, intellectual property remains a problem area in open source, even as its use has exploded.</p></li>
 </ul>
 <p><strong>Q:</strong> So, what's Linux? Or BSD? Or even UNIX?</p>
 <p><strong>A:</strong> Depends on who you're asking and in what context!</p>
+<p>Hence, for the rest of this text I will tend to talk somewhat interchangeably about &quot;Linux&quot; and &quot;UNIX&quot; and the like. When it matters, I will mention which OS I am discussing by name, but often I will use &quot;UNIX&quot; (in quotes) to mean anything in the &quot;family tree&quot; of the original Bell Labs offspring, or that &quot;acts like,&quot; well, UNIX.</p>
 <p>To further muddy the waters, there have been multiple attempts to &quot;standardize&quot; whatever it is this thing is called:</p>
 <ul>
-<li><p><a href="https://en.wikipedia.org/wiki/POSIX"><strong>POSIX</strong></a> - a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the US government started wanting systems to be &quot;POSIX-compliant.&quot; <strong>Note:</strong> No system runs POSIX, they all are &quot;similar but different.&quot; Even Windows can claim to be POSIX in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/POSIX"><strong>POSIX</strong></a> - a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the US government started wanting systems to be &quot;POSIX-compliant.&quot;</p>
+<p><strong>Note:</strong> No system runs POSIX, they all are &quot;similar but different.&quot; Even Windows can claim to be POSIX in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.</p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/GNU_Project"><strong>GNU Project</strong></a> - <a href="https://en.wikipedia.org/wiki/Richard_Stallman">Richard Stallman</a> founded the <a href="https://en.wikipedia.org/wiki/Free_Software_Foundation">Free Software Foundation</a> (FSF) and GNU project in the mid-1980s, <strong><em>long</em></strong> before Linux (GNU = &quot;GNU's Not Unix&quot;). The GNU project delivers <a href="https://www.gnu.org/software/software.html">a suite of programs and tools</a>, many of which are used in both Linux and BSD variants as de facto standards.</p></li>
 <li><p><strong>Various Linux Efforts</strong> - there have also been various movements over the years, some more successful than others, to &quot;standardize&quot; Linux or some part of it, such as the file system layout, the <code>init</code> system, documentation, and now even what is part of the most basic &quot;core OS&quot; for things like better containerization.</p></li>
 </ul>
-<p>For the rest of this we will use &quot;Linux&quot; or &quot;UNIX&quot; to stand in for a &quot;generic&quot; UNIX-flavored OS unless a difference is specifically called out.</p>
 <h2 id="why-does-this-matter"><a href="#why-does-this-matter">Why Does This Matter?</a></h2>
 <p>Because there are various &quot;flavors&quot; of commands and tools, based on whether you're dealing with a System V (Linux) or BSD (Free/Net/Open) descendant. Some of the OS versions are strong in security, or networking, or as a desktop. Certain things are &quot;built-in&quot; to the operating system but most are installed as packages, and depending on the source of the package it may or may not work correctly on another &quot;UNIX&quot; system without effort.</p>
 <p>It is similar to the history and relationship between <code>COMMAND.EXE</code> in DOS and <code>CMD.EXE</code> in Windows 10, where this would work in both:</p>

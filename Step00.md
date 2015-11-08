@@ -49,10 +49,7 @@ Gulf War I, proliferation of proprietary (and different) "UNIX" platforms:
 a project called [Linux](https://en.wikipedia.org/wiki/Linux) based on
 [MINIX](https://en.wikipedia.org/wiki/MINIX)
 (and hence why Linus says Linux is pronounced like "MINIX" and not like
-"Linus"). **Note:** By 1996 I was running an early Linux version
-([Slackware](https://en.wikipedia.org/wiki/Slackware)
-[distro](https://en.wikipedia.org/wiki/Linux_distribution)) on a laptop
-with 8MB of memory!
+"Linus").
 
 * **Proliferation of the BSDs** - mid-to-late 1990s, still Clinton I,
 Monicagate, Kosovo, various ports of BSD including
@@ -77,6 +74,12 @@ in open source, even as its use has exploded.
 
 **A:** Depends on who you're asking and in what context!
 
+Hence, for the rest of this text I will tend to talk somewhat
+interchangeably about "Linux" and "UNIX" and the like. When it matters,
+I will mention which OS I am discussing by name, but often I will use
+"UNIX" (in quotes) to mean anything in the "family tree" of the original
+Bell Labs offspring, or that "acts like," well, UNIX.
+
 To further muddy the waters, there have been multiple attempts to
 "standardize" whatever it is this thing is called:
 
@@ -84,7 +87,9 @@ To further muddy the waters, there have been multiple attempts to
 standards created in the 1980s and 1990s to try to bring order to the chaos
 that was commercial UNIX-flavored operating systems of the time. It worked.
 Sorta. Especially once the US government started wanting systems to be
-"POSIX-compliant." **Note:** No system runs POSIX, they all are "similar
+"POSIX-compliant."
+
+    **Note:** No system runs POSIX, they all are "similar
 but different." Even Windows can claim to be POSIX in some respects (and
 has an installable POSIX subsystem), but that doesn't mean POSIX-compliant
 code will run there unchanged.
@@ -103,9 +108,6 @@ the years, some more successful than others, to "standardize" Linux or some
 part of it, such as the file system layout, the `init` system,
 documentation, and now even what is part of the most basic "core OS" for
 things like better containerization.
-
-For the rest of this we will use "Linux" or "UNIX" to stand in for a
-"generic" UNIX-flavored OS unless a difference is specifically called out.
 
 ## Why Does This Matter?
 

@@ -3,7 +3,7 @@
 
 **By Jim Lehmer**
 
-v0.2
+v0.3
 
 <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
@@ -215,4 +215,41 @@ get you through that "Can you get in and poke around and see if you can
 figure it out?" scenario, above. And if Linux should start becoming more of
 your job, maybe this will help as a gentle push toward "RTFM" along with
 thinking in "The UNIX Way."
+
+**WARNING:** ***Many of the commands in this book can alter your system and
+possibly damage it.*** Obvious candidates include the file system commands
+like `rm`, the `vi` editor (obviously), and some of the "system admin"
+commands mentioned later, including system and service restarts. Use your
+common sense plus the various resources for documentation mentioned in this
+book to make sure you aren't doing anything destructive to your system,
+especially in production. ***You have been warned!***
+
+## Conventions
+
+If a command, file name or other "computer code" is shown in-line in a
+sentence, it will appear in a fixed-width font, e.g.,
+`ls --recursive *.txt`.
+
+If a command and its output, script code or something else is shown in a
+block, it will appear like this:
+
+
+```bash
+$ ps -AH
+  PID TTY          TIME CMD
+    2 ?        00:00:00 kthreadd
+    3 ?        00:00:00   ksoftirqd/0
+    5 ?        00:00:00   kworker/0:0H
+    7 ?        00:00:19   rcu_sched
+    8 ?        00:00:04   rcuos/0
+    9 ?        00:00:09   rcuos/1
+   10 ?        00:00:07   rcuos/2
+...and so on...
+```
+
+Or it may appear in a screenshot like this:
+
+![Sample command](./images/ps-AH.png "Sample command")
+
+
   

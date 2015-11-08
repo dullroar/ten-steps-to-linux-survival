@@ -4,7 +4,7 @@ TITLE = title.txt
 METADATA = metadata.xml
 CHAPTERS = metadata.yaml Step-1.md Step00.md Step01.md Step02.md Step03.md Step04.md Step05.md Step06.md Step07.md Step08.md Step09.md Step10.md Appendices.md Colophon.md
 SLIDES = Slides-1.md Slides00.md Slides01.md Slides02.md Slides03.md Slides04.md Slides05.md Slides06.md Slides07.md Slides08.md Slides09.md Slides10.md
-TOC = --toc --toc-depth=3
+TOC = --toc --toc-depth=3 -V lof
 COVER_IMAGE = images/Merv.jpg
 LATEX_CLASS = book
 SYNTAX = --no-highlight

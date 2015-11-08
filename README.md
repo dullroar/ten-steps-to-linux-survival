@@ -2,7 +2,7 @@
 
 **By Jim Lehmer**
 
-v0.2
+v0.3
 
 <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
@@ -111,6 +111,32 @@ Even so, anything like this is incomplete. Anyone knowledgable of Linux will pro
 
 This book is not meant to be an authoritative source, but instead a ["fake book"](https://en.wikipedia.org/wiki/Fake_book) for getting up and running ***quickly*** with the sheer basics, plus knowing where to go for help. It is not a replacement for reading the real documentation and doing research and testing, especially in production! But hopefully it will help get you through that "Can you get in and poke around and see if you can figure it out?" scenario, above. And if Linux should start becoming more of your job, maybe this will help as a gentle push toward "RTFM" along with thinking in "The UNIX Way."
 
+**WARNING:** ***Many of the commands in this book can alter your system and possibly damage it.*** Obvious candidates include the file system commands like `rm`, the `vi` editor (obviously), and some of the "system admin" commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production. ***You have been warned!***
+
+Conventions
+-----------
+
+If a command, file name or other "computer code" is shown in-line in a sentence, it will appear in a fixed-width font, e.g., `ls --recursive *.txt`.
+
+If a command and its output, script code or something else is shown in a block, it will appear like this:
+
+~~~~ {.bash}
+$ ps -AH
+  PID TTY          TIME CMD
+    2 ?        00:00:00 kthreadd
+    3 ?        00:00:00   ksoftirqd/0
+    5 ?        00:00:00   kworker/0:0H
+    7 ?        00:00:19   rcu_sched
+    8 ?        00:00:04   rcuos/0
+    9 ?        00:00:09   rcuos/1
+   10 ?        00:00:07   rcuos/2
+...and so on...
+~~~~
+
+Or it may appear in a screenshot like this:
+
+![Sample command](./images/ps-AH.png "Sample command")
+
 Step 0. Some History
 ====================
 
@@ -136,7 +162,7 @@ UNIX and its successors such as Linux have a long history reaching into the dept
     -   **IBM AIX**
     -   **SGI IRIX**
     -   **...and many, many more!** - although mostly all that's left now is HP-UX, AIX and Solaris.
--   **Linux** - 1991+, Clinton I, grunge, *Titanic*, [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) releases a project called [Linux](https://en.wikipedia.org/wiki/Linux) based on [MINIX](https://en.wikipedia.org/wiki/MINIX) (and hence why Linus says Linux is pronounced like "MINIX" and not like "Linus"). **Note:** By 1996 I was running an early Linux version ([Slackware](https://en.wikipedia.org/wiki/Slackware) [distro](https://en.wikipedia.org/wiki/Linux_distribution)) on a laptop with 8MB of memory!
+-   **Linux** - 1991+, Clinton I, grunge, *Titanic*, [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) releases a project called [Linux](https://en.wikipedia.org/wiki/Linux) based on [MINIX](https://en.wikipedia.org/wiki/MINIX) (and hence why Linus says Linux is pronounced like "MINIX" and not like "Linus").
 
 -   **Proliferation of the BSDs** - mid-to-late 1990s, still Clinton I, Monicagate, Kosovo, various ports of BSD including [NetBSD](https://en.wikipedia.org/wiki/NetBSD), [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD) and [OpenBSD](https://en.wikipedia.org/wiki/OpenBSD), all happen in the same time frame as Linux. Like Linux distros, each has its own focus and prejudices, some of which are distinctly "anti-Linux." The "big three" are all still in heavy use today, especially among ISPs. The perception is still out there among a generation of sysadmins that Linux is for the desktop and BSDs for servers, but that reality shifted a long time ago.
 
@@ -146,15 +172,17 @@ UNIX and its successors such as Linux have a long history reaching into the dept
 
 **A:** Depends on who you're asking and in what context!
 
+Hence, for the rest of this text I will tend to talk somewhat interchangeably about "Linux" and "UNIX" and the like. When it matters, I will mention which OS I am discussing by name, but often I will use "UNIX" (in quotes) to mean anything in the "family tree" of the original Bell Labs offspring, or that "acts like," well, UNIX.
+
 To further muddy the waters, there have been multiple attempts to "standardize" whatever it is this thing is called:
 
--   [**POSIX**](https://en.wikipedia.org/wiki/POSIX) - a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the US government started wanting systems to be "POSIX-compliant." **Note:** No system runs POSIX, they all are "similar but different." Even Windows can claim to be POSIX in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.
+-   [**POSIX**](https://en.wikipedia.org/wiki/POSIX) - a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the US government started wanting systems to be "POSIX-compliant."
+
+    **Note:** No system runs POSIX, they all are "similar but different." Even Windows can claim to be POSIX in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.
 
 -   [**GNU Project**](https://en.wikipedia.org/wiki/GNU_Project) - [Richard Stallman](https://en.wikipedia.org/wiki/Richard_Stallman) founded the [Free Software Foundation](https://en.wikipedia.org/wiki/Free_Software_Foundation) (FSF) and GNU project in the mid-1980s, ***long*** before Linux (GNU = "GNU's Not Unix"). The GNU project delivers [a suite of programs and tools](https://www.gnu.org/software/software.html), many of which are used in both Linux and BSD variants as de facto standards.
 
 -   **Various Linux Efforts** - there have also been various movements over the years, some more successful than others, to "standardize" Linux or some part of it, such as the file system layout, the `init` system, documentation, and now even what is part of the most basic "core OS" for things like better containerization.
-
-For the rest of this we will use "Linux" or "UNIX" to stand in for a "generic" UNIX-flavored OS unless a difference is specifically called out.
 
 Why Does This Matter?
 ---------------------
