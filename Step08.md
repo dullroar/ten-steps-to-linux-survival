@@ -1,5 +1,5 @@
   
-# Step 8. The Man Behind the Curtain
+# The Man Behind the Curtain
 
 ***`/proc`, `/dev`, `ps`, `/var/log`, `/tmp` and other things under the
 covers.***
@@ -18,7 +18,7 @@ or may require `sudo` access.
 To see what *processes* you are running, use
 [`ps`](http://linux.die.net/man/1/ps):
 
-```bash
+```
 # ps
   PID TTY          TIME CMD
 14691 pts/0    00:00:00 bash
@@ -28,7 +28,7 @@ To see what *processes* you are running, use
 To show processes from *all* users in a process *hierarchy* (child
 processes indented under parents), use `ps -AH`:
 
-```bash
+```
 ps -AH
 # ps -AH
   PID TTY          TIME CMD
@@ -51,7 +51,7 @@ You can *kill* a process using the
 and optionally a "signal". Here is an example looking for any running
 instance of `vi` and sending it a `kill` command:
 
-```bash
+```
 ps -A | grep vi | kill `cut -f2 -d" "`
 ```
 
@@ -79,7 +79,7 @@ To monitor the ongoing CPU, memory and other resource utilization of the
 command, which unlike most in this book updates dynamically every second
 by default:
 
-```bash
+```
 top - 14:11:26 up 106 days,  5:24,  2 users,  load average: 0.11, 0.05, ...
 Tasks:  95 total,   1 running,  94 sleeping,   0 stopped,   0 zombie
 %Cpu(s):  0.2 us,  0.8 sy,  0.0 ni, 99.0 id,  0.0 wa,  0.0 hi,  0.0 si, ...
@@ -117,7 +117,7 @@ One of the places this has become really handy is in the `/proc` "file
 system." On modern Linux systems, there is typically a `/proc` directory
 that looks like directories and files:
 
-```bash
+```
 # ls /proc
 1     1776  2     2244   2308   2415   2599   2693   5     9171       cm...
 10    178   20    2269   2311   2416   26     3      5030  9174       co...
@@ -133,7 +133,7 @@ that looks like directories and files:
 
 What is all that? Well if we look a little closer:
 
-```bash
+```
 # ls -l /proc
 total 0
 dr-xr-xr-x  8 root       root                     0 Sep 18 11:17 1
@@ -153,7 +153,7 @@ dr-xr-xr-x  8 statd      nogroup                  0 Oct 23 13:55 1776
 ...we can see that the entries with numeric names are directories. Let's
 look in one of those directories:
 
-```bash
+```
 # ls -l /proc/1
 total 0
 dr-xr-xr-x 2 root root 0 Oct 23 14:23 attr
@@ -179,7 +179,7 @@ statistics.
 
 In addition, there are system-wide statistics, such as `/proc/cpuinfo`:
 
-```bash
+```
 # cat /proc/cpuinfo
 processor       : 0
 vendor_id       : GenuineIntel
@@ -201,7 +201,7 @@ cpuid level     : 11
 Many Linux components and subsystems log to `/var/log`. Here is a pretty
 standard directory listing for it on a Debian system:
 
-```bash
+```
 # ls /var/log
 alternatives.log       auth.log.2.gz    debug       dmesg.4.gz     kern....
 alternatives.log.1     auth.log.3.gz    debug.1     dpkg.log       kern....
@@ -227,7 +227,7 @@ holds more general "system" messages.
 
 Let's look for kernel errors when booting: 
 
-```bash
+```
 # cat dmesg | grep -i error
 [    2.310161] Error: Driver 'pcspkr' is already registered, aborting...
 [    2.754699] EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro

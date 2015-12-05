@@ -1,5 +1,5 @@
   
-# Step 5. “Just a Series of Pipes”
+# “Just a Series of Pipes”
 
 ***`stdin`/`stdout`/`stderr`, redirects and piping between commands.***
 
@@ -40,7 +40,7 @@ In this example, `cat` is started with no file name, so it will read from
 emulated with `Ctrl-D`, in the example below shown as `^D` but not seen on
 the console in real life:
 
-```bash
+```
 $ cat
 This shows reading from stdin
 This shows reading from stdin
@@ -59,7 +59,7 @@ Let's create a file with a single line of text in it. One way would be to
 `vi newfilename`, edit the file, save it, and exit `vi`. A quicker way is
 to simply use file redirection:
 
-```bash
+```
 $ echo Hello, world > hw
 
 $ ls -l
@@ -79,7 +79,7 @@ read from `stdin`. The `cat` command does that. While it doesn't save us
 anything over the above example, the following is illustrative of
 redirecting a file to `stdin` for a command or program:
 
-```bash
+```
 $ cat < hw
 Hello, world
 ```
@@ -87,7 +87,7 @@ Hello, world
 Finally, we need to deal with `stderr`. By convention it is sent to the
 console just like `stdout`, and that can make output confusing:
 
-```bash
+```
 $ echo This is a > a
 
 $ echo This is b > b
@@ -112,7 +112,7 @@ files, we see two error messages from `cat` complaining that `.` and `d`
 are directories. These are being emitted on `stderr`. One way to get rid of
 them would be to change find to filter for only files:
 
-```bash
+```
 $ find . -type f -exec cat \{\} \;
 This is a
 This is b
@@ -128,7 +128,7 @@ the discussion about file handles above? That's where those esoteric
 numbers come in handy! Consider the original problem of `stderr` being
 intermingled with `stdout`:
 
-```bash
+```
 $ find . -exec cat \{\} \;
 cat: .: Is a directory
 This is a
@@ -141,7 +141,7 @@ This is e
 To redirect `stderr` we recall it is ***always*** file descriptor 2, and
 then we can use:
 
-```bash
+```
 $ find . -exec cat \{\} \; 2>/tmp/finderrors.log
 This is a
 This is b
@@ -159,7 +159,7 @@ descriptor 2 (`stderr`) to the log file `/tmp/finderrors.log`.
 A very common paradigm is to capture both `stdout` and `stderr` to the same
 file. Here is how that is done, again using file descriptors:
 
-```bash
+```
 $ find . -exec cat \{\} \; >/tmp/find.log 2>&1
 
 $ cat /tmp/find.log
@@ -180,14 +180,14 @@ appending to it using redirection. The following creates a new
 `/tmp/find.log` file every time it runs (there is no need to `rm` it
 first):
 
-```bash
+```
 $ find . -exec cat \{\} \; >/tmp/find.log
 ```
 
 However, the next sample creates a new `/tmp/find.log` file if it doesn't
 exist, but otherwise appends to it:
 
-```bash
+```
 $ find . -exec cat \{\} \; >>/tmp/find.log
 ```
 
@@ -202,7 +202,7 @@ program, and so on. But "UNIX" environments take it a bit further with the
 concept of a command "pipeline" that allows directly sending `stdout` from
 one program into `stdin` of another.
 
-```bash
+```
 $ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
 ```
 
@@ -244,7 +244,7 @@ Finally, if you want to capture something to a file ***and*** see it on the
 console at the same time, that is where the
 [`tee`](http://linux.die.net/man/1/tee) command comes in:
 
-```bash
+```
 find . -name error.log | tee > errorlogs.txt
 ```
 

@@ -1,5 +1,5 @@
   
-# Step 2. File Under "Directories"
+# File Under "Directories"
 
 ***`ls`, `mv`, `cp`, `rm` (`-rf *`), `cat`, `chmod`/`chgrp`/`chown` and
 everyone's favorite, `touch`.***
@@ -29,8 +29,8 @@ is that the Linux environments tend not to have a concept of "drive
 letters." Instead everything is "mounted" under a single hierarchy that
 starts at the "root directory" or `/`.
 
-```bash
-$ ls /
+```
+~ $ ls /
 bin   etc         lib         media  proc  sbin     sys  var
 boot  home        lib64       mnt    root  selinux  tmp  vmlinuz
 dev   initrd.img  lost+found  opt    run   srv      usr
@@ -49,8 +49,8 @@ mounted automatically under either a `/mnt` or `/media` directory.
 The command to *list* the contents of a directory is the
 [`ls`](http://linux.die.net/man/1/ls) command:
 
-```bash
-$ ls
+```
+~ $ ls
 Desktop    Downloads  FreeRDP     Music     Public  Temp       Videos
 Documents  Dropbox    installrdp  Pictures  rdp     Templates
 ```
@@ -60,8 +60,8 @@ Remember, UNIX environments think of files that start with a `.` as
 ["dotfiles"](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments),
 you can use `ls -a`:
 
-```bash
-$ ls -a
+```
+~ $ ls -a
 .              Desktop        .gksu.lock       .mozilla   .themes
 ..             .dmrc          .gnome2          Music      .thumbnails
 .adobe         Documents      .gnome2_private  Pictures   .thunderbird
@@ -79,8 +79,8 @@ Wow! That's a lot of dotfiles!
 
 If you want to see some details of each file, use `ls -l`:
 
-```bash
-$ ls -l
+```
+~ $ ls -l
 total 92
 drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Desktop
 drwxr-xr-x  2 myuser mygroup      4096 Oct 13 10:02 Documents
@@ -98,8 +98,8 @@ drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Public
 
 And of course parameters can be combined, as with the two above:
 
-```bash
-$ ls -al
+```
+~ $ ls -al
 total 344
 drwxr-xr-x 40 myuser mygroup      4096 Oct 17 07:14 .
 drwxr-xr-x  3 root   root         4096 Sep  7 04:09 ..
@@ -133,22 +133,22 @@ directory by mistake), thus `rm --recursive --force *` seems a bit more
 The older style parameters are typically preceded by a single hyphen
 "switch" character:
 
-```bash
-ls -r
+```
+~ $ ls -r
 ```
 
 Or even no "switch" character at all, as with `xvf` (e***X***tract,
 ***V***erbose, input ***F***ile name) in the following:
 
-```bash
-tar xvf backup.tar
+```
+~ $ tar xvf backup.tar
 ```
 
 The newer "GNU-style" parameters are preceded by two hyphens and usually
 are quite "verbose":
 
-```bash
-ls --recursive --almost-all --ignore-backups
+```
+~ $ ls --recursive --almost-all --ignore-backups
 ```
 
 Again, it is ***highly recommended*** that you take the time to use the
@@ -159,8 +159,8 @@ GNU-style parameters in scripts as self-documenting code.
 If we suspect the file is a text file, we can echo it to the console
 with the [`cat`](http://linux.die.net/man/1/cat) (*concatenate*) command:
 
-```bash
-$ cat installrdp 
+```
+~ $ cat installrdp 
 #!/bin/bash
 sudo apt-get -y install git
 cd ~
@@ -210,7 +210,7 @@ interesting when looking at log files and troubleshooting a current
 problem) with the [`tail`](http://linux.die.net/man/1/tail) command. To
 show the last 10 lines of the kernel `dmesg` log:
 
-```bash
+```
 # tail dmesg
 [    2.774931] loop: module loaded
 [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
@@ -226,7 +226,7 @@ show the last 10 lines of the kernel `dmesg` log:
 
 To show the last 20 lines:
 
-```bash
+```
 # tail -n 20 dmesg
 [    2.317838] [drm] Fifo max 0x00040000 min 0x00001000 cap 0x0000077f
 [    2.318843] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
@@ -254,7 +254,7 @@ You can also use `tail` to *follow* an open file and continuously display
 any new output at the end, which is useful for monitoring log files in real
 time:
 
-```bash
+```
 # tail -f dmesg
 [    2.774931] loop: module loaded
 [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
@@ -272,8 +272,8 @@ time:
 If we know nothing about a *file*, we can use the
 [`file`](http://linux.die.net/man/1/file) command to help us guess:
 
-```bash
-$ file installrdp 
+```
+~ $ file installrdp 
 installrdp: Bourne-Again shell script, ASCII text executable
 ```
 
@@ -295,27 +295,27 @@ just *sort* files, but also to merge them and remove duplicates.
 
 Let's say we have three files:
 
-```bash
-$ ls
+```
+~ $ ls
 ElevatorTrucks  FarmCombines  FarmTractors
 ```
 
 Here are the contents of each:
 
-```bash
-$ cat ElevatorTrucks
+```
+~ $ cat ElevatorTrucks
 Truck   brakes  200
 Truck   tires   400
 Truck   tires   400
 Truck   tires   400
 Truck   winch   100
 
-$ cat FarmCombines
+~ $ cat FarmCombines
 Combine motor   1500
 Combine brakes  400
 Combine tires   2500
 
-$ cat FarmTractors
+~ $ cat FarmTractors
 Tractor motor   1000
 Tractor brakes  300
 Tractor tires   2000
@@ -327,8 +327,8 @@ because the file names will be sorted by the shell and the lines will be
 processed in file name order, not the ultimate sorted order of all the file
 contents:
 
-```bash
-$ cat *
+```
+~ $ cat *
 Truck   brakes  200
 Truck   tires   400
 Truck   tires   400
@@ -344,8 +344,8 @@ Tractor tires   2000
 
 The `sort` command to the rescue!
 
-```bash
-$ sort *
+```
+~ $ sort *
 Combine brakes  400
 Combine motor   1500
 Combine tires   2500
@@ -362,8 +362,8 @@ Truck   winch   100
 What if we want to sort by the parts column? Well, it is the second "key"
 field delimited by whitespace, so:
 
-```bash
-$ sort -k 2 *
+```
+~ $ sort -k 2 *
 Truck   brakes  200
 Tractor brakes  300
 Combine brakes  400
@@ -379,8 +379,8 @@ Truck   winch   100
 
 What about by the third column, the amount?
 
-```bash
-$ sort -k 3 *
+```
+~ $ sort -k 3 *
 Truck   winch   100
 Tractor motor   1000
 Combine motor   1500
@@ -397,8 +397,8 @@ Truck   tires   400
 That's not what we expected because it is sorting numbers alphabetically.
 Let's fix that by telling it to sort numerically:
 
-```bash
-$ sort -k 3 -n *
+```
+~ $ sort -k 3 -n *
 Truck   winch   100
 Truck   brakes  200
 Tractor brakes  300
@@ -415,8 +415,8 @@ Combine tires   2500
 Maybe we care about the top three most expensive items. We haven't talked
 about pipes yet, but check this out:
 
-```bash
-$ sort -k 3 -n * | tail -n 3
+```
+~ $ sort -k 3 -n * | tail -n 3
 Combine motor   1500
 Tractor tires   2000
 Combine tires   2500
@@ -424,8 +424,8 @@ Combine tires   2500
 
 Finally, what if we want only unique rows?
 
-```bash
-$ sort -k 3 -n -u *
+```
+~ $ sort -k 3 -n -u *
 Truck   winch   100
 Truck   brakes  200
 Tractor brakes  300
@@ -438,8 +438,8 @@ Combine tires   2500
 
 Just to reinforce long parameters, the last example is equivalent to:
 
-```bash
-$ sort --key 3 --numeric-sort --unique *
+```
+~ $ sort --key 3 --numeric-sort --unique *
 Truck   winch   100
 Truck   brakes  200
 Tractor brakes  300
@@ -456,27 +456,27 @@ We can copy, move or rename (same thing) and delete files and
 directories. To *copy*, simply use the
 [`cp`](http://linux.die.net/man/1/cp) command:
 
-```bash
-$ cp diary.txt diary.bak
+```
+~ $ cp diary.txt diary.bak
 ```
 
 You can copy entire directories recursively:
 
-```bash
-$ cp -r thisdir thatdir
+```
+~ $ cp -r thisdir thatdir
 ```
 
 Or, if we want to be self-documenting in a script, we can use those long
 parameter names:
 
-```bash
-$ cp --recursive thisdir thatdir
+```
+~ $ cp --recursive thisdir thatdir
 ```
 
 To *move* use [`mv`](http://linux.die.net/man/1/mv):
 
 ```
-$ mv thismonth.log lastmonth.log
+~ $ mv thismonth.log lastmonth.log
 ```
 
 **Note:** There is no semantic difference between "move" and "rename."
@@ -488,8 +488,8 @@ beyond `mv`, like renaming all file extensions from `.htm` to `.html`.
 
 To delete or *remove* a file you use [`rm`](http://linux.die.net/man/1/rm):
 
-```bash
-$ rm desktop.ini
+```
+~ $ rm desktop.ini
 ```
 
 **Pro Tip:** There is no "Are you sure?" prompt when removing a single file
@@ -500,16 +500,16 @@ be careful!
 This kind of scenario can happen ***way*** too often, even to experienced
 system administrators (note the space between `*` and `.bak`):
 
-```bash
-$ cd MyDissertation
+```
+~ $ cd MyDissertation
 
-$ ls
+~ $ ls
 Citations.bak  Citations.doc  Dissertation.bak  Dissertation.doc  Notes.doc
 
-$ rm * .bak
+~ $ rm * .bak
 rm: cannot remove ‘.bak’: No such file or directory
 
-$ ls
+~ $ ls
 
 ```
 
@@ -532,8 +532,8 @@ So be careful out there! This is an example where tab completion can be an
 extra error check. Or a lot of times I use command history in these cases
 by changing the `ls` to look for just the files I want to delete:
 
-```bash
-$ ls *.bak
+```
+~ $ ls *.bak
 Citations.bak  Dissertation.bak
 ```
 
@@ -545,10 +545,10 @@ Then using the "up arrow" to bring back up the `ls` command and changing
 We just learned how to make a file disappear. We can also make a file
 magically appear, just by [`touch`](http://linux.die.net/man/1/touch):
 
-```bash
-$ touch NewEmptyDissertation.doc
+```
+~ $ touch NewEmptyDissertation.doc
 
-$ ls -l
+~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:12 NewEmptyDissertation.doc
 
@@ -560,10 +560,10 @@ Interestingly enough, we can also use touch just to update the "last
 modified date" of an existing file, as you can see in time change in the
 following listing after running `touch` on the same file again:
 
-```bash
-$ touch NewEmptyDissertation.doc
+```
+~ $ touch NewEmptyDissertation.doc
 
-$ ls -l
+~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:14 NewEmptyDissertation.doc
 ```
@@ -573,40 +573,40 @@ sometimes set the last modified date of a file to a specific date and time,
 which `touch` also allows you to do, in this case to the night before
 Christmas:
 
-```bash
-$ touch -t 201412242300 NewEmptyDissertation.doc
+```
+~ $ touch -t 201412242300 NewEmptyDissertation.doc
 
-$ ls -l
+~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Dec 24  2014 NewEmptyDissertation.doc
 ```
 
 To *make a directory* you use [`mkdir`](http://linux.die.net/man/1/mkdir):
 
-```bash
-$ mkdir Bar
+```
+~ $ mkdir Bar
 
-$ ls
+~ $ ls
 Bar
 ```
 
 Typically you need to create all intervening directories before creating a
 "child" directory:
 
-```bash
-$ mkdir Xyzzy/Something
+```
+~ $ mkdir Xyzzy/Something
 mkdir: cannot create directory ‘Xyzzy/Something’: No such file or directory
 ```
 
 But of course you can override that behavior:
 
-```bash
-$ mkdir --parents Xyzzy/Something
+```
+~ $ mkdir --parents Xyzzy/Something
 
-$ ls
+~ $ ls
 Bar  Xyzzy
 
-$ ls Xyzzy
+~ $ ls Xyzzy
 Something
 ```
 
@@ -621,10 +621,10 @@ absense of drive letter and the direction of the slashes.
 To *change directories*, simply use [`cd`](http://linux.die.net/man/1/cd)
 much like in Windows:
 
-```bash
-$ cd /etc
+```
+~ $ cd /etc
 
-$ pwd
+~ $ pwd
 /etc
 ```
 
@@ -635,30 +635,30 @@ In Linux, users can have "home" directories (similar to Windows profiles),
 typically located under `/home/username` for normal users and `/root` for
 the "root" id. To change to a user's "home" directory, simply use `cd`:
 
-```bash
-$ cd
+```
+~ $ cd
 
-$ pwd
+~ $ pwd
 /home/myuser
 ```
 
 The tilde (`~`) character is an alias for the current user's home
 directory. The following example is equivalent to above:
 
-```bash
-$ cd ~
+```
+~ $ cd ~
 
-$ pwd
+~ $ pwd
 /home/myuser
 ```
 
 More useful is that the tilde can be combined with a user name to specify
 the home directory of ***another*** user:
 
-```bash
-$ cd ~git
+```
+~ $ cd ~git
 
-$ pwd
+~ $ pwd
 /home/git
 ```
 
@@ -680,32 +680,32 @@ for the parent directory directly from UNIX. Consider the following
 examples that combine all of the above about relative paths and see if it
 all makes sense:
 
-```bash
-$ mkdir Bar Baz
+```
+~ $ mkdir Bar Baz
 
-$ ls
+~ $ ls
 Bar  Baz
 
-$ cd Bar
+~ $ cd Bar
 
-$ touch a b c
+~ $ touch a b c
 
-$ ls
+~ $ ls
 a  b  c
 
-$ cd ../Baz
+~ $ cd ../Baz
 
-$ ls
+~ $ ls
 
-$ touch d e f
+~ $ touch d e f
 
-$ ls
+~ $ ls
 d  e  f
 
-$ ls ..
+~ $ ls ..
 Bar  Baz
 
-$ ls ../Bar
+~ $ ls ../Bar
 a  b  c
 ```
 
@@ -737,7 +737,7 @@ The combination of "who has what?" is usually shown in detailed directory
 listings by a set of ten characters, with the first one determining
 whether an entry is a directory or a file:
 
-```bash
+```
 # ls -l /etc
 total 844
 drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
@@ -769,7 +769,7 @@ the group `root` and all other ids (`r-xr-x`).
 If we look in `/etc/init.d` where many services store their startup scripts
 we see:
 
-```bash
+```
 # ls -l /etc/init.d
 total 332
 -rwxr-xr-x 1 root root  2227 Apr 15  2013 acpid
@@ -795,7 +795,7 @@ To *change* the *owning* user of a file or directory (assuming you have
 permissions to do so), use the [`chown`](http://linux.die.net/man/1/chown)
 command:
 
-```bash
+```
 # ls -l
 total 4
 -rwxr--r-- 1 root root 17 Oct 20 10:07 foo
@@ -810,7 +810,7 @@ total 4
 To *change* the primary *group*, use the
 [`chgrp`](http://linux.die.net/man/1/chgrp) command:
 
-```bash
+```
 # chgrp git foo
 
 # ls -l
@@ -825,7 +825,7 @@ mnemonics of "rwx" for read, write and execute, and `+` to add
 a permission and `-` to remove it. For example, to add execute permission
 for the group and remove read permission for "other":
 
-```bash
+```
 # chmod g+x,o-r foo
 
 # ls -l
@@ -856,7 +856,7 @@ a file. For example, if we want the `foo` file to be readable, writable
 and executable by both its owning user and group, and not accessible at all
 by anyone else, we could use:
 
-```bash
+```
 # chmod u+rwx,g+rwx,o- foo
 
 # ls -l
@@ -867,7 +867,7 @@ total 4
 
 Or we could simply convert those permissions into octal in our head and:
 
-```bash
+```
 # chmod 770 foo
 
 # ls -l
@@ -883,7 +883,7 @@ question you asked in school!
 ***must*** be marked as executable for one of the user, group or other
 entries. The following should be insightful:
 
-```bash
+```
 # echo "echo Hello world" > foo
 
 # ls -l
@@ -911,20 +911,20 @@ although they don't tend to be the most common, using the
 [`zip`](http://linux.die.net/man/1/zip) and
 [`unzip`](http://linux.die.net/man/1/unzip) commands:
 
-```bash
-$ mkdir foo
+```
+~ $ mkdir foo
 
-$ cd foo
+~ $ cd foo
 
-$ touch a b c
+~ $ touch a b c
 
-$ mkdir d
+~ $ mkdir d
 
-$ touch d/e
+~ $ touch d/e
 
-$ cd ..
+~ $ cd ..
 
-$ zip -r foo foo
+~ $ zip -r foo foo
 updating: foo/ (stored 0%)
   adding: foo/c (stored 0%)
   adding: foo/b (stored 0%)
@@ -932,10 +932,10 @@ updating: foo/ (stored 0%)
   adding: foo/d/e (stored 0%)
   adding: foo/a (stored 0%)
 
-$ ls -l foo.zip
+~ $ ls -l foo.zip
 -rw-r--r-- 1 myuser mygroup 854 Oct 24 15:56 foo.zip
 
-$ unzip foo
+~ $ unzip foo
 Archive:  foo.zip
 replace foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
  extracting: foo/c                   
@@ -956,20 +956,20 @@ structure and create a single output "stream" or file of it. That is
 then typically ran through a compression command and the result is called
 a "tarball":
 
-```bash
-$ tar cvf foo.tar foo/*
+```
+~ $ tar cvf foo.tar foo/*
 foo/a
 foo/b
 foo/c
 foo/d/
 foo/d/e
 
-$ ls -l foo.tar
+~ $ ls -l foo.tar
 -rw-r--r-- 1 myuser mygroup 10240 Oct 24 16:14 foo.tar
 
-$ gzip foo.tar
+~ $ gzip foo.tar
 
-$ ls -l foo.tar.gz 
+~ $ ls -l foo.tar.gz 
 -rw-r--r-- 1 myuser mygroup 187 Oct 24 16:14 foo.tar.gz
 ```
 
@@ -982,17 +982,17 @@ new `.tar` file.
 in these examples. So both of the following are also equivalent to the
 above:
 
-```bash
-$ tar -c -v -f foo.tar foo/*
+```
+~ $ tar -c -v -f foo.tar foo/*
 
-$ tar --create --verbose --file=foo.tar foo/*
+~ $ tar --create --verbose --file=foo.tar foo/*
 ```
 
 The use of compression commands along with `tar` is so prevalent that
 they've been built into `tar` itself now as optional parameters:
 
-```bash
-$ tar cvzf foo.tgz foo
+```
+~ $ tar cvzf foo.tgz foo
 foo/
 foo/c
 foo/b
@@ -1000,7 +1000,7 @@ foo/d/
 foo/d/e
 foo/a
 
-$ ls -l foo.tgz
+~ $ ls -l foo.tgz
 -rw-r--r-- 1 myuser mygroup 191 Oct 24 16:19 foo.tgz
 ```
 
@@ -1012,8 +1012,8 @@ to `.tar.gz` in the first example.
 like the above, you can change the create (`c`) parameter to extract
 (`x`), like this:
 
-````bash
-$ tar xvf foo.tgz
+```
+~ $ tar xvf foo.tgz
 foo/
 foo/c
 foo/b
@@ -1034,26 +1034,26 @@ surprising, given that Microsoft got the ideas from UNIX). A "soft link" is
 equivalent to a Windows shortcut, and can point to a file or a directory,
 and can point to anything on any mounted file system:
 
-```bash
-$ ls -l
+```
+~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 b
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
 drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:00 d
 
-$ cd d
+~ $ cd d
 
-$ pwd
+~ $ pwd
 /tmp/foo/d
 
-$ cd ..
+~ $ cd ..
 
-$ ln -s a MyThesis.doc
+~ $ ln -s a MyThesis.doc
 
-$ ln -s d Dee
+~ $ ln -s d Dee
 
-$ ls -l
+~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 b
@@ -1062,9 +1062,9 @@ drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:00 d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
 
-$ cd Dee
+~ $ cd Dee
 
-$ pwd
+~ $ pwd
 /tmp/foo/Dee
 ```
 
@@ -1085,24 +1085,24 @@ to the same ["inode"](https://en.wikipedia.org/wiki/Inode) on disk. From
 within a single directory it is impossible to tell if there are other
 directories with pointers to the same files (inodes) on disk.
 
-```bash
-$ ls
+```
+~ $ ls
 a  b  c  d  Dee  MyThesis.doc
 
-$ ln b B
+~ $ ln b B
 
-$ cd d
+~ $ cd d
 
-$ ln ../b .
+~ $ ln ../b .
 
-$ ls -l
+~ $ ls -l
 total 0
 -rw-r--r-- 3 myuser mygroup 0 Oct 24 15:53 b
 -rw-r--r-- 1 myuser mygroup 0 Oct 24 15:54 e
 
-$ cd ..
+~ $ cd ..
 
-$ ls -l
+~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
 -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 b
@@ -1122,8 +1122,8 @@ file.
 So what can possibly go wrong with links? With soft links the answer is
 easy - the "remote" location being pointed to goes away or is renamed:
 
-```bash
-$ ls -l
+```
+~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
 -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 b
@@ -1133,9 +1133,9 @@ drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
 
-$ rm a
+~ $ rm a
 
-$ ls -l
+~ $ ls -l
 total 4
 -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 b
 -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 B
@@ -1144,7 +1144,7 @@ drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
 
-$ cat MyThesis.doc 
+~ $ cat MyThesis.doc 
 cat: MyThesis.doc: No such file or directory
 ```
 
@@ -1159,16 +1159,16 @@ an inode, deleting one simply deletes that directory entry. As long as the
 file has other hard links pointing to it, it "exists." Only when the last
 remaining hard link is removed has it been "deleted." Let's play:
 
-```bash
-$ echo "This is b." > b
+```
+~ $ echo "This is b." > b
 
-$ cat b
+~ $ cat b
 This is b.
 
-$ cat B
+~ $ cat B
 This is b.
 
-$ cat d/b
+~ $ cat d/b
 This is b.
 ```
 
@@ -1180,26 +1180,26 @@ because it is pointing to the same inode.
 Can you guess how many `rm` commands it will take to delete the file
 containing "This is b."?
 
-```bash
-$ rm b
+```
+~ $ rm b
 
-$ cat b
+~ $ cat b
 cat: b: No such file or directory
 
-$ cat B
+~ $ cat B
 This is b.
 
-$ cat d/b
+~ $ cat d/b
 This is b.
 
-$ rm B
+~ $ rm B
 
-$ cat d/b
+~ $ cat d/b
 This is b.
 
-$ rm d/b
+~ $ rm d/b
 
-$ ls
+~ $ ls
 c  d  Dee  MyThesis.doc
 ```
 
@@ -1218,8 +1218,8 @@ are on the same file system?
 There are multiple ways to tell, actually. The easiest is with the
 [`df`](http://linux.die.net/man/1/df) command:
 
-```bash
-$ df
+```
+~ $ df
 Filesystem                1K-blocks     Used Available Use% Mounted on
 /dev/mapper/mint--vg-root 118647068 28847464  83749608  26% /
 none                              4        0         4   0% /sys/fs/cgroup
@@ -1257,26 +1257,26 @@ legal with soft links, but may not give the results you expect - think
 about current working directory shown by `pwd` in the following, and what
 the effects of the relative paths shown are as the sample progresses:
 
-```bash
-$ pwd
+```
+~ $ pwd
 /tmp/foo
 
-$ rm -rf *
+~ $ rm -rf *
 
-$ touch a b c
+~ $ touch a b c
 
-$ mkdir d
+~ $ mkdir d
 
-$ touch d/e
+~ $ touch d/e
 
-$ ln -s . d/f
+~ $ ln -s . d/f
 
-$ ls d/f
+~ $ ls d/f
 e  f
 
-$ ln -s .. d/g
+~ $ ln -s .. d/g
 
-$ ls d/g
+~ $ ls d/g
 a  b  c  d
 ```
 
@@ -1292,8 +1292,8 @@ of `diff` is to show differences between files. For example, I backed up
 this document (which is a text file) before starting this chapter, then
 typed this introduction to `diff`. This is what `diff` shows:
 
-```bash
-$ diff Agenda.bak Agenda.md
+```
+~ $ diff Agenda.bak Agenda.md
 1285a1286,1291
 > Most people think of [`diff`](http://linux.die.net/man/1/diff) as a tool
 > only programmers find useful, but that is short-sighted. The whole purpose
@@ -1310,8 +1310,8 @@ is the "new" file), showing five lines were inserted, starting at line
 Let's look at something else, say a configuration file for an application.
 We have an original file, `orig.conf`:
 
-```bash
-$ cat orig.conf
+```
+~ $ cat orig.conf
 FOO=1
 
 SOME=THINGS
@@ -1323,8 +1323,8 @@ BAR=Xyzzy
 
 Then we have a new file, `new.conf`:
 
-```bash
-$ cat new.conf
+```
+~ $ cat new.conf
 FOO=2
 
 SOME=THINGS
@@ -1334,8 +1334,8 @@ SAME=ALWAYS
 
 Now if we `diff` them:
 
-```bash
-$ diff orig.conf new.conf
+```
+~ $ diff orig.conf new.conf
 1c1
 < FOO=1
 ---
@@ -1355,4 +1355,5 @@ control to compare against.
 
 `diff` is your friend. It really comes into play with a version control
 system like `git`, but again, that is beyond the scope of this book.
+  
   

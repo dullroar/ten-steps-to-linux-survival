@@ -1,5 +1,5 @@
   
-# Step 1. Come Out of Your Shell
+# Come Out of Your Shell
 
 ***`sh` vs. `ash` vs. `bash` vs. everything else, "REPL”, interactive vs.
 scripts, command history, tab expansion, environment variables and "A path!
@@ -58,33 +58,16 @@ of the shell and not as an external command or program, and `bash` has its
 share, as shown by running the [`help`](http://linux.die.net/man/1/help)
 command in a `bash` terminal:
 
-```bash
-$ help
-GNU bash, version 4.3.42(4)-release (x86_64-unknown-cygwin)
-These shell commands are defined internally.  Type `help' to see this list.
-Type `help name' to find out more about the function `name'.
-Use `info bash' to find out more about the shell in general.
-Use `man -k' or `info' to find out more about commands not in this list.
+\ifxetex
+\begin{figure}[!htbp]
+\includegraphics{./images/help.png}%
+\caption{Built-in commands}%
+\end{figure}
+\else
 
-A star (*) next to a name means that the command is disabled.
+![Built-in commands](./images/help.png "Built-in commands")
 
- job_spec [&]                            history [-c] [-d offset] [n] or...
- (( expression ))                        if COMMANDS; then COMMANDS; [ e...
- . filename [arguments]                  jobs [-lnprs] [jobspec ...] or ...
- :                                       kill [-s sigspec | -n signum |
- [ arg... ]                              let arg [arg ...]
- [[ expression ]]                        local [option] name[=value] ...
- alias [-p] [name[=value] ... ]          logout [n]
- bg [job_spec ...]                       mapfile [-n count] [-O origin] ...
- bind [-lpsvPSVX] [-m keymap] [-f file>  popd [-n] [+N | -N]
- break [n]                               printf [-v var] format [arguments]
- builtin [shell-builtin [arg ...]]       pushd [-n] [+N | -N | dir]
- caller [expr]                           pwd [-LP]
-...and so on...
-```
-
-The above was run in `bash` under Cygwin, but identical output is shown
-when running `help` under `bash` on Linux, too.
+\fi
 
 Why does this matter? Because if you are in an environment and something
 as fundamental as `echo` isn't working, you may not be working in a shell
@@ -97,7 +80,7 @@ Pay attention to the first line in script files, which will typically
 have a ["shebang"](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) line
 that looks like this:
 
-```bash
+```
 #!/bin/bash
 ```
 
@@ -105,7 +88,7 @@ In this case we know the script is expecting to be executed by `bash`,
 and in fact should throw an error if `/bin/bash` doesn't exist. Note
 that on some systems:
 
-```bash
+```
 #!/bin/sh
 ```
 
@@ -127,24 +110,16 @@ environment variables that have been set:
 
 ***bash***
 
-[Under Cygwin]
+\ifxetex
+\begin{figure}[!htbp]
+\includegraphics{./images/set.png}%
+\caption{set command in bash}%
+\end{figure}
+\else
 
-```bash
-$ set
-ALLUSERSPROFILE='C:\ProgramData'
-APPDATA='C:\Users\myuser\AppData\Roaming'
-BASH=/bin/bash
-BASHOPTS=cmdhist:complete_fullquote:expand_aliases:extglob:extquote:for...
-BASH_ALIASES=()
-BASH_ARGC=()
-BASH_ARGV=()
-BASH_CMDS=()
-BASH_COMPLETION=/etc/bash_completion
-BASH_COMPLETION_COMPAT_DIR=/etc/bash_completion.d
-BASH_COMPLETION_DIR=/etc/bash_completion.d
-BASH_LINENO=()
-...and so on...
-```
+![set command in bash](./images/set.png "set command in bash")
+
+\fi
 
 ***CMD.EXE***
 
@@ -171,9 +146,9 @@ things):
 
 ***bash***
 
-```bash
-$ echo $HOMEDRIVE
-C:
+```
+~ $ echo $HOME
+/home/myuser
 ```
 
 ***CMD.EXE***
@@ -190,8 +165,8 @@ out their contents using the "same" command, note that:
 1. The syntax for accessing an environment variable is `$variable` in
 `bash` and `%variable%` in `CMD.EXE`.
 
-2. `bash` is case-sensitive and so `echo $HOMEDRIVE` works but `echo
-$homedrive` does not. `CMD.EXE` is ***not*** case-sensitive, so either
+2. `bash` is case-sensitive and so `echo $HOME` works but `echo
+$home` does not. `CMD.EXE` is ***not*** case-sensitive, so either
 `echo %homedrive%` or `echo %HOMEDRIVE%` (or `EcHo %hOmEdRiVe%`)
 would work.
 
@@ -202,8 +177,8 @@ execution in Linux than in Windows. In fact, it is quite common to
 override a given environment variable for the single execution of a
 program, to the point that `bash` has built-in "one-line" support for it:
 
-```bash
-FOO=myval /home/myuser/myscript
+```
+~ $ FOO=myval /home/myuser/myscript
 ```
 
 This sets the environment variable `FOO` to "myval" but only for the
@@ -216,8 +191,8 @@ without exception Linux and company are case-sensitive and Windows is not.
 You can set or override multiple variables for a single command or script
 execution simply by separating them with spaces:
 
-```bash
-FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript
+```
+~ $ FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript
 ```
 
 Note that passing in values in this way does not safeguard sensitive
@@ -227,10 +202,10 @@ least while the script is running using the `ps -x` command.
 You can also set the value of environment variables to the output of a
 command using \`:
 
-```bash
-$ filetype=`file --print --mime-type --no-pad --print0 otschecker.csv`
+```
+~ $ filetype=`file --print --mime-type --no-pad --print0 otschecker.csv`
 
-$ echo $filetype
+~ $ echo $filetype
 otschecker.csv: text/plain
 ```
 
@@ -240,16 +215,16 @@ When writing scripts that can be run by any user, it may be helpful to
 know their user name at run-time. There are at least two different ways to
 determine that. The first is via environment variables:
 
-```bash
-$ echo $USER
+```
+~ $ echo $USER
 myuser
 ```
 
 The second is with a command with one of the best names, ever -
 [`whoami`](http://linux.die.net/man/1/whoami):
 
-```bash
-$ whoami
+```
+~ $ whoami
 myuser
 ```
 
@@ -285,16 +260,9 @@ C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools;
 
 [Formatted for readability]
 
-```bash
-$ echo $PATH
-/usr/local/bin:/usr/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows...
-/cygdrive/c/Windows/System32/Wbem:/cygdrive/c/Windows/System32/WindowsPo...
-/cygdrive/c/Program Files/SourceGear/Common/DiffMerge:
-/cygdrive/c/Program Files/TortoiseHg:
-/cygdrive/c/Program Files (x86)/Microsoft SQL Server/100/Tools/Binn:
-/cygdrive/c/Program Files/Microsoft SQL Server/100/Tools/Binn:
-/cygdrive/c/Program Files/Microsoft SQL Server/100/DTS/Binn:
-...and so on...
+```
+~ $ echo $PATH
+/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 ```
 
 Note the differences and similarities. Both the paths are evaluated
@@ -334,7 +302,7 @@ the shell.
 Tab expansion is "auto-complete" for the command prompt. Let's say you
 have the following files in a directory:
 
-```bash
+```
 $ ls -l
 total 764
 -rwxrwx---+ 1 myuser mygroup  18554 Oct  9 15:01 Agenda.md
@@ -351,13 +319,13 @@ drwxrwx---+ 1 myuser mygroup      0 Sep 15 15:59 FLOCK
 
 Without tab expansion, typing out something like:
 
-```bash
-mv Disabled\ Active\ Directory\ Accounts.xlsx
+```
+~ $ mv Disabled\ Active\ Directory\ Accounts.xlsx
 ```
 
 ...is painful. But with tab expansion, we can simply:
 
-```bash
+```
 mv D^t
 ```
 
@@ -365,8 +333,8 @@ mv D^t
 one file that starts with a "D" tab expansion will fill in the rest of
 the file name:
 
-```bash
-mv Disabled\ Active\ Directory\ Accounts.xlsx
+```
+~ $ mv Disabled\ Active\ Directory\ Accounts.xlsx
 ```
 
 ...and we can go about our business of finishing our command.
@@ -398,8 +366,8 @@ history. Again, both `CMD.EXE` and `bash` give you command history, but
 one of your hidden "profile" or "dot" files in your home directory called
 `.bash_history`:
 
-```bash
-$ ls -a
+```
+~ $ ls -a
 .              .bash_profile  .gitignore  .minttyrc  Dropbox      Sandbox
 ..             .bashrc        .inputrc    .profile   fast-export  Shared
 .bash_history  .gitconfig     .lesshst    .ssh       myuser      Temp

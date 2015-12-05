@@ -1,5 +1,5 @@
   
-# Step 9. How Do You Know What You Don’t Know, `man`?
+# How Do You Know What You Don’t Know, `man`?
 
 ***`man`, `info`, `apropos`, Linux Documentation Project, Debian and Arch
 guides, StackOverflow and the dangers of searching for “`man find`” or
@@ -23,7 +23,7 @@ within "UNIX" itself - [`man`](http://linux.die.net/man/1/man),
 `man` is short for *manual pages*, and is used to display the main help for
 most "UNIX" commands. For example, `man ls` shows:
 
-```bash
+```
 LS(1)                                                             User C...
 
 NAME
@@ -64,7 +64,7 @@ from the lowest numbered section with a match, in this case section 1,
 usually referred to as `passwd(1)` to disambiguate which thing we're
 talking about:
 
-```bash
+```
 PASSWD(1)                                                         User C...
 
 NAME
@@ -89,7 +89,7 @@ DESCRIPTION
 To see the `man` page for the `passwd` file format, we have to explicitly
 specify the section, in this case by using `man 5 passwd`:
 
-```bash
+```
 PASSWD(5)                                                  File Formats ...
 
 NAME
@@ -121,7 +121,7 @@ password" in the `man passwd` output above. The `apropos` command can
 simply search those titles and descriptions for a word or phrase and show
 you all the results:
 
-```bash
+```
 # apropos edit
 dpatch-edit-patch (1) - maintain dpatch patches for a Debian source package
 edit (1)             - execute programs via entries in the mailcap file
@@ -169,7 +169,7 @@ like any other. For example, maybe we remember only that the command had
 something with "edit" and was a system administration ("section 8")
 command:
 
-```bash
+```
 $ apropos edit | grep "(8)"
 jfs_debugfs (8)      - shell-type JFS file system editor
 pdbedit (8)          - manage the SAM database (Database of Samba Users)
@@ -183,7 +183,7 @@ visudo (8)           - edit the sudoers file
 Or maybe you can't remember whether it's `-r`, `-R` or `--recursive` to
 copy subdirectories recursively with `cp`:
 
-```bash
+```
 $ man cp | grep -i "recurs"
               copy contents of special files when recursive
        -R, -r, --recursive

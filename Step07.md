@@ -1,5 +1,5 @@
   
-# Step 7. The Whole Wide World
+# The Whole Wide World
 
 ***`curl`, `wget`, `ifconfig`, `ping`, `ssh`, `telnet`, `/etc/hosts` and
 email before Outlook.***
@@ -12,7 +12,7 @@ command line and scripts.
 
 For example, our friend [`ping`](http://linux.die.net/man/8/ping) is there:
 
-```bash
+```
 # ping www.yahoo.com
 PING fd-fp3.wg1.b.yahoo.com (98.138.253.109) 56(84) bytes of data.
 64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=1 ttl=...
@@ -40,7 +40,7 @@ aware that on Cygwin `ping` is still the system (Windows) `ping`.
 [`traceroute`](http://linux.die.net/man/8/traceroute) works, too (although
 for once its name is longer than the `CMD.EXE` counterpart).
 
-```bash
+```
 # traceroute www.yahoo.com
 traceroute to www.yahoo.com (98.138.252.30), 30 hops max, 60 byte packets
  1  10.208.3.254 (10.208.3.254)  0.720 ms  0.706 ms  0.693 ms
@@ -59,7 +59,7 @@ traceroute to www.yahoo.com (98.138.252.30), 30 hops max, 60 byte packets
 
 You can do some digging in DNS with `dig`:
 
-```bash
+```
 # dig yahoo.com
 
 ; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> yahoo.com
@@ -84,7 +84,7 @@ yahoo.com.              1705    IN      A       98.138.253.109
 
 And `whois`:
 
-```bash
+```
 # whois yahoo.com
 
 Whois Server Version 2.0
@@ -124,7 +124,7 @@ for a password each time).
 
 Here is a really common example on Debian-based systems:
 
-```bash
+```
 $ apt-get update
 E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permissi...
 E: Unable to lock directory /var/lib/apt/lists/
@@ -135,7 +135,7 @@ E: Unable to lock the administration directory (/var/lib/dpkg/), are you...
 The error message, especially the last line, is pretty clear. Let's try it
 again with `sudo`:
 
-```bash
+```
 $ sudo apt-get update
 [sudo] password for myuser: 
 Ign http://extra.linuxmint.com rafaela InRelease
@@ -184,13 +184,13 @@ but `curl` supports even more protocols and options, while `curl` tends
 to be the simplest to just "grab a file and go." You see both used often in
 install scripts that then download more bits from the internet:
 
-```bash
+```
 wget -O - http://foocorp.com/installs/install.sh | bash
 ```
 
 Or:
 
-```bash
+```
 curl http://foocorp.com/installs/install.sh | bash
 ```
 
@@ -210,7 +210,7 @@ Sending email is more interesting, especially from shell scripts. There are
 multiple ways, but [`email`](http://linux.die.net/man/1/email) is
 straightforward enough:
 
-```bash
+```
 email --blank-mail --subject "Possibly corrupted files found..." \
   --smtp-server smtp --attach badfiles.csv --from-name NoReply \
   --from-addr noreply@mycorp.com alert@mycorp.com
@@ -229,7 +229,7 @@ connection on port 80 to Google, I simply entered the HTTP protocol
 sequence `GET / HTTP/1.1` followed by a blank line to get Google to return
 its home page:
 
-```bash
+```
 # telnet google.com 80
 Trying 216.58.216.110...
 Connected to google.com.
@@ -260,7 +260,7 @@ To get a modern, secure shell to a remote machine, use
 [`ssh`](http://linux.die.net/man/1/ssh), passing in the userid and server
 like this:
 
-```bash
+```
 ssh myuser@remoteserver
 ```
 
@@ -271,7 +271,7 @@ You can also use the `SSH` protocol to securely transfer files between
 systems with the [`scp`](linux.die.net/man/1/scp) command. It works like
 this for a recursive directory copy:
 
-```bash
+```
 scp -r myfiles/* myuser@remoteserver:/home/myuser/myfiles/.
 ```
 
@@ -309,7 +309,7 @@ things you should know about right away. The first is the
 `ifconfig` to alter your networking settings, it is most commonly used
 to get a quick display of them:
 
-```bash
+```
 # ifconfig
 eth0      Link encap:Ethernet  HWaddr 00:00:56:a3:35:fe
           inet addr:10.0.2.3  Bcast:10.0.2.255  Mask:255.255.252.0
@@ -332,7 +332,7 @@ lo        Link encap:Local Loopback
 
 To see what DNS servers the system is using:
 
-```bash
+```
 # cat /etc/resolv.conf
 domain mydomain.com
 search mydomain.com
@@ -342,7 +342,7 @@ nameserver 10.0.2.2
 
 And to see any local overrides of network names or aliases:
 
-```bash
+```
 # cat /etc/hosts
 127.0.0.1       localhost
 ```

@@ -1,10 +1,18 @@
+\begin{figure}[!htbp]
+\includegraphics{./images/Merv.jpg}%
+\caption*{Merv sez, "Don't panic."}%
+\end{figure}
+By James Lehmer v0.3
+\begin{figure}[!htbp]
+\centering
+\includegraphics{./images/cc-by-sa.png}%
+\caption*{Creative Commons Attribution-ShareAlike 4.0 International License}%
+\end{figure}
+*Jim's Ten Steps to Linux Survival* by James Lehmer is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+
 ![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don't panic.'")
 
-**By Jim Lehmer**
-
-v0.3
-
-<a rel="license"
+<b>By James Lehmer</b> <br /> <br /> v0.3 <br /> <br /> <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
 alt="Creative Commons License" style="border-width:0"
 src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a> <br /> <br /> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><i>Jim's Ten Steps to Linux Survival</i></span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">James Lehmer</span> is licensed under a <a rel="license"
@@ -12,8 +20,8 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 
 **Dedicated to my first three technical mentors** - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think (and once called me an "inveterate toolmaker" in a review). And Kim Manchak, who let me be more than he hired me to be (and continues to be a great chess opponent). Thank you, gentlemen. I've tried to pay it forward. This book is part of that.
 
-Step -1. Introduction
-=====================
+Introduction
+============
 
 > *"And you may ask yourself, 'Well, how did I get here?'"* - Talking Heads (*Once in a Lifetime*)
 
@@ -120,25 +128,30 @@ If a command, file name or other "computer code" is shown in-line in a sentence,
 
 If a command and its output, script code or something else is shown in a block, it will appear like this:
 
-~~~~ {.bash}
-$ ps -AH
-  PID TTY          TIME CMD
-    2 ?        00:00:00 kthreadd
-    3 ?        00:00:00   ksoftirqd/0
-    5 ?        00:00:00   kworker/0:0H
-    7 ?        00:00:19   rcu_sched
-    8 ?        00:00:04   rcuos/0
-    9 ?        00:00:09   rcuos/1
-   10 ?        00:00:07   rcuos/2
-...and so on...
-~~~~
+    ~ $ ps -AH
+      PID TTY          TIME CMD
+        2 ?        00:00:00 kthreadd
+        3 ?        00:00:00   ksoftirqd/0
+        5 ?        00:00:00   kworker/0:0H
+        7 ?        00:00:19   rcu_sched
+        8 ?        00:00:04   rcuos/0
+        9 ?        00:00:09   rcuos/1
+       10 ?        00:00:07   rcuos/2
+    ...and so on...
 
 Or it may appear in a screenshot like this:
 
+\begin{figure}[!htbp]
+\includegraphics{./images/ps-AH.png}%
+\caption{Sample command}%
+\end{figure}
+
 ![Sample command](./images/ps-AH.png "Sample command")
 
-Step 0. Some History
-====================
+**Note:** The examples in this book typically show something like `~ $` or `#` before the command (the latter especially when logged in as `root` or running under `csh`). These "command prompts" are set in `bash` via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto) and are not meant to be typed in as part of the command.
+
+Some History
+============
 
 ***UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,” Cygwin, and why any of this matters now. “Why does this script off the internet work on this system and not on that one?”***
 
@@ -207,30 +220,26 @@ The best thing is to be vaguely aware of this history and licenses and if someth
 
 For example, note the differences in command line parameters and output between showing all processes with the [`ps`](http://linux.die.net/man/1/ps) (*process*) command on a Linux system, in this case Linux Mint:
 
-~~~~ {.bash}
-$ ps -AH
-  PID TTY          TIME CMD
-    2 ?        00:00:00 kthreadd
-    3 ?        00:00:00   ksoftirqd/0
-    5 ?        00:00:00   kworker/0:0H
-    7 ?        00:00:19   rcu_sched
-    8 ?        00:00:04   rcuos/0
-    9 ?        00:00:09   rcuos/1
-   10 ?        00:00:07   rcuos/2
-...and so on...
-~~~~
+    $ ps -AH
+      PID TTY          TIME CMD
+        2 ?        00:00:00 kthreadd
+        3 ?        00:00:00   ksoftirqd/0
+        5 ?        00:00:00   kworker/0:0H
+        7 ?        00:00:19   rcu_sched
+        8 ?        00:00:04   rcuos/0
+        9 ?        00:00:09   rcuos/1
+       10 ?        00:00:07   rcuos/2
+    ...and so on...
 
 ...versus on a FreeBSD system at my ISP, where `csh` is the default shell:
 
-~~~~ {.bash}
-%ps -ax
-  PID  TT  STAT      TIME COMMAND
-73591  ??  S      0:00.03 sshd: myuser@ttyp1 (sshd)
-79503  ??  S      0:00.07 dovecot/imap
-80065  ??  S      0:00.05 dovecot/imap
-73593  p1  Ss     0:00.02 -csh (csh)
-90737  p1  RN+    0:00.00 ps -ax
-~~~~
+    %ps -ax
+      PID  TT  STAT      TIME COMMAND
+    73591  ??  S      0:00.03 sshd: myuser@ttyp1 (sshd)
+    79503  ??  S      0:00.07 dovecot/imap
+    80065  ??  S      0:00.05 dovecot/imap
+    73593  p1  Ss     0:00.02 -csh (csh)
+    90737  p1  RN+    0:00.00 ps -ax
 
 To make things even more confusing, the Linux version of `ps` has been written to understand the BSD-style syntax and flags, too!
 
@@ -265,8 +274,8 @@ You cannot run Linux or BSD binaries on Cygwin without recompiling them first. *
 
 Ultimately, though, Cygwin is of limited use, basically for getting to some open source tools on Windows without having to set up a Linux box. You can do a lot of amazing things with Cygwin with enough effort (including running X and a desktop environment like GNOME!), but at some point why not expend that effort in standing up a "real" Linux (virtual) machine anyway?
 
-Step 1. Come Out of Your Shell
-==============================
+Come Out of Your Shell
+======================
 
 ***`sh` vs. `ash` vs. `bash` vs. everything else, "REPL”, interactive vs. scripts, command history, tab expansion, environment variables and "A path! A path!"***
 
@@ -304,46 +313,22 @@ Most Linux distros use `bash`, but the BSDs are all over the place. We're going 
 
 Every shell has some "built-in" commands that are implemented as part of the shell and not as an external command or program, and `bash` has its share, as shown by running the [`help`](http://linux.die.net/man/1/help) command in a `bash` terminal:
 
-~~~~ {.bash}
-$ help
-GNU bash, version 4.3.42(4)-release (x86_64-unknown-cygwin)
-These shell commands are defined internally.  Type `help' to see this list.
-Type `help name' to find out more about the function `name'.
-Use `info bash' to find out more about the shell in general.
-Use `man -k' or `info' to find out more about commands not in this list.
+\begin{figure}[!htbp]
+\includegraphics{./images/help.png}%
+\caption{Built-in commands}%
+\end{figure}
 
-A star (*) next to a name means that the command is disabled.
-
- job_spec [&]                            history [-c] [-d offset] [n] or...
- (( expression ))                        if COMMANDS; then COMMANDS; [ e...
- . filename [arguments]                  jobs [-lnprs] [jobspec ...] or ...
- :                                       kill [-s sigspec | -n signum |
- [ arg... ]                              let arg [arg ...]
- [[ expression ]]                        local [option] name[=value] ...
- alias [-p] [name[=value] ... ]          logout [n]
- bg [job_spec ...]                       mapfile [-n count] [-O origin] ...
- bind [-lpsvPSVX] [-m keymap] [-f file>  popd [-n] [+N | -N]
- break [n]                               printf [-v var] format [arguments]
- builtin [shell-builtin [arg ...]]       pushd [-n] [+N | -N | dir]
- caller [expr]                           pwd [-LP]
-...and so on...
-~~~~
-
-The above was run in `bash` under Cygwin, but identical output is shown when running `help` under `bash` on Linux, too.
+![Built-in commands](./images/help.png "Built-in commands")
 
 Why does this matter? Because if you are in an environment and something as fundamental as `echo` isn't working, you may not be working in a shell that is going to act like a "`sh`" shell. ***In general***, `sh`, `ash`, `bash`, `dash` and `ksh` all act similarly enough that you don't care, but sometimes you may have to care. Knowing if you are on a `csh` variant or even something more esoteric can be key.
 
 Pay attention to the first line in script files, which will typically have a ["shebang"](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) line that looks like this:
 
-~~~~ {.bash}
-#!/bin/bash
-~~~~
+    #!/bin/bash
 
 In this case we know the script is expecting to be executed by `bash`, and in fact should throw an error if `/bin/bash` doesn't exist. Note that on some systems:
 
-~~~~ {.bash}
-#!/bin/sh
-~~~~
+    #!/bin/sh
 
 ...is pointing to an alias of `bash`, and on some it is a different implementation of the original `sh` command, such as `ash` or `dash`. Now you know what to google if you hit problems as simple as an expected built-in command not being found.
 
@@ -356,24 +341,12 @@ But even so, there are some similarities. In both `bash` and `CMD.EXE`, the [`se
 
 ***bash***
 
-[Under Cygwin]
+\begin{figure}[!htbp]
+\includegraphics{./images/set.png}%
+\caption{set command in bash}%
+\end{figure}
 
-~~~~ {.bash}
-$ set
-ALLUSERSPROFILE='C:\ProgramData'
-APPDATA='C:\Users\myuser\AppData\Roaming'
-BASH=/bin/bash
-BASHOPTS=cmdhist:complete_fullquote:expand_aliases:extglob:extquote:for...
-BASH_ALIASES=()
-BASH_ARGC=()
-BASH_ARGV=()
-BASH_CMDS=()
-BASH_COMPLETION=/etc/bash_completion
-BASH_COMPLETION_COMPAT_DIR=/etc/bash_completion.d
-BASH_COMPLETION_DIR=/etc/bash_completion.d
-BASH_LINENO=()
-...and so on...
-~~~~
+![set command in bash](./images/set.png "set command in bash")
 
 ***CMD.EXE***
 
@@ -396,10 +369,8 @@ Similarly, the [`echo`](http://linux.die.net/man/1/echo) command can be used to 
 
 ***bash***
 
-~~~~ {.bash}
-$ echo $HOMEDRIVE
-C:
-~~~~
+    ~ $ echo $HOME
+    /home/myuser
 
 ***CMD.EXE***
 
@@ -410,16 +381,14 @@ This example shows some valuable differences between shells, though. Even though
 
 1.  The syntax for accessing an environment variable is `$variable` in `bash` and `%variable%` in `CMD.EXE`.
 
-2.  `bash` is case-sensitive and so `echo $HOMEDRIVE` works but `echo $homedrive` does not. `CMD.EXE` is ***not*** case-sensitive, so either `echo %homedrive%` or `echo %HOMEDRIVE%` (or `EcHo %hOmEdRiVe%`) would work.
+2.  `bash` is case-sensitive and so `echo $HOME` works but `echo $home` does not. `CMD.EXE` is ***not*** case-sensitive, so either `echo %homedrive%` or `echo %HOMEDRIVE%` (or `EcHo %hOmEdRiVe%`) would work.
 
 You're a Product of Your Environment (Variables)
 ------------------------------------------------
 
 It is much more common to set up environment variables to control execution in Linux than in Windows. In fact, it is quite common to override a given environment variable for the single execution of a program, to the point that `bash` has built-in "one-line" support for it:
 
-~~~~ {.bash}
-FOO=myval /home/myuser/myscript
-~~~~
+    ~ $ FOO=myval /home/myuser/myscript
 
 This sets the environment variable `FOO` to "myval" but only for the duration and scope of running `myscript`.
 
@@ -427,36 +396,28 @@ By convention, environment variables are named all uppercase, whereas all script
 
 You can set or override multiple variables for a single command or script execution simply by separating them with spaces:
 
-~~~~ {.bash}
-FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript
-~~~~
+    ~ $ FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript
 
 Note that passing in values in this way does not safeguard sensitive information from other users on the system who can see the values at least while the script is running using the `ps -x` command.
 
 You can also set the value of environment variables to the output of a command using \`:
 
-~~~~ {.bash}
-$ filetype=`file --print --mime-type --no-pad --print0 otschecker.csv`
+    ~ $ filetype=`file --print --mime-type --no-pad --print0 otschecker.csv`
 
-$ echo $filetype
-otschecker.csv: text/plain
-~~~~
+    ~ $ echo $filetype
+    otschecker.csv: text/plain
 
 ### Who Am I?
 
 When writing scripts that can be run by any user, it may be helpful to know their user name at run-time. There are at least two different ways to determine that. The first is via environment variables:
 
-~~~~ {.bash}
-$ echo $USER
-myuser
-~~~~
+    ~ $ echo $USER
+    myuser
 
 The second is with a command with one of the best names, ever - [`whoami`](http://linux.die.net/man/1/whoami):
 
-~~~~ {.bash}
-$ whoami
-myuser
-~~~~
+    ~ $ whoami
+    myuser
 
 Some environments set the `$USER` environment variable, some set a `$USERNAME` variable, and some like Mint set both. I think it is better to use `whoami`, which tends to be on almost all systems.
 
@@ -483,17 +444,8 @@ The concept of a "path" for finding executables is almost identical, and Windows
 
 [Formatted for readability]
 
-~~~~ {.bash}
-$ echo $PATH
-/usr/local/bin:/usr/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows...
-/cygdrive/c/Windows/System32/Wbem:/cygdrive/c/Windows/System32/WindowsPo...
-/cygdrive/c/Program Files/SourceGear/Common/DiffMerge:
-/cygdrive/c/Program Files/TortoiseHg:
-/cygdrive/c/Program Files (x86)/Microsoft SQL Server/100/Tools/Binn:
-/cygdrive/c/Program Files/Microsoft SQL Server/100/Tools/Binn:
-/cygdrive/c/Program Files/Microsoft SQL Server/100/DTS/Binn:
-...and so on...
-~~~~
+    ~ $ echo $PATH
+    /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 
 Note the differences and similarities. Both the paths are evaluated left to right. Both use separators between path components, a `;` for DOS and Windows, a `:` for Linux. Both delimit their directory names with slashes, with `\` for DOS and Windows and `/` for Linux. But Linux has no concept of a "drive letter" like `C:`, and instead everything is rooted in a single namespace hierarchy starting at the root `/`. We'll be talking more about directories in the next chapter.
 
@@ -515,38 +467,30 @@ Most modern interactive shells like `bash` and `CMD.EXE` allow for tab expansion
 
 Tab expansion is "auto-complete" for the command prompt. Let's say you have the following files in a directory:
 
-~~~~ {.bash}
-$ ls -l
-total 764
--rwxrwx---+ 1 myuser mygroup  18554 Oct  9 15:01 Agenda.md
-drwxrwx---+ 1 myuser mygroup      0 Oct  9 08:50 Bad and Corrupted Test
-Files
-drwxrwx---+ 1 myuser mygroup      0 Sep 22 15:35 CheckMD5sLog
--rw-rwxr--+ 1 myuser mygroup   1431 Oct  9 14:58 CygwinPath.txt
--rwxrwx---+ 1 myuser mygroup  22461 Oct  7 14:19 Disabled Active Directory Accounts.xlsx
--rwxrwx---+ 1 myuser mygroup  55647 Sep 18 08:31 filtered.txt
-drwxrwx---+ 1 myuser mygroup      0 Sep 15 15:59 FLOCK
--rwxrwx---+ 1 myuser mygroup  11185 Feb 24  2015 GitLab Upgrade Info.txt
-...and so on...
-~~~~
+    $ ls -l
+    total 764
+    -rwxrwx---+ 1 myuser mygroup  18554 Oct  9 15:01 Agenda.md
+    drwxrwx---+ 1 myuser mygroup      0 Oct  9 08:50 Bad and Corrupted Test
+    Files
+    drwxrwx---+ 1 myuser mygroup      0 Sep 22 15:35 CheckMD5sLog
+    -rw-rwxr--+ 1 myuser mygroup   1431 Oct  9 14:58 CygwinPath.txt
+    -rwxrwx---+ 1 myuser mygroup  22461 Oct  7 14:19 Disabled Active Directory Accounts.xlsx
+    -rwxrwx---+ 1 myuser mygroup  55647 Sep 18 08:31 filtered.txt
+    drwxrwx---+ 1 myuser mygroup      0 Sep 15 15:59 FLOCK
+    -rwxrwx---+ 1 myuser mygroup  11185 Feb 24  2015 GitLab Upgrade Info.txt
+    ...and so on...
 
 Without tab expansion, typing out something like:
 
-~~~~ {.bash}
-mv Disabled\ Active\ Directory\ Accounts.xlsx
-~~~~
+    ~ $ mv Disabled\ Active\ Directory\ Accounts.xlsx
 
 ...is painful. But with tab expansion, we can simply:
 
-~~~~ {.bash}
-mv D^t
-~~~~
+    mv D^t
 
 ...where `^t` represents hitting the `Tab` key, and since there is only one file that starts with a "D" tab expansion will fill in the rest of the file name:
 
-~~~~ {.bash}
-mv Disabled\ Active\ Directory\ Accounts.xlsx
-~~~~
+    ~ $ mv Disabled\ Active\ Directory\ Accounts.xlsx
 
 ...and we can go about our business of finishing our command.
 
@@ -562,12 +506,10 @@ One place the tab completion in `bash` is different than `CMD.EXE` is that in `b
 
 The other thing to remember about the interactive shell is command history. Again, both `CMD.EXE` and `bash` give you command history, but `CMD.EXE` only remembers it for the session, while `bash` stores it in one of your hidden "profile" or "dot" files in your home directory called `.bash_history`:
 
-~~~~ {.bash}
-$ ls -a
-.              .bash_profile  .gitignore  .minttyrc  Dropbox      Sandbox
-..             .bashrc        .inputrc    .profile   fast-export  Shared
-.bash_history  .gitconfig     .lesshst    .ssh       myuser      Temp
-~~~~
+    ~ $ ls -a
+    .              .bash_profile  .gitignore  .minttyrc  Dropbox      Sandbox
+    ..             .bashrc        .inputrc    .profile   fast-export  Shared
+    .bash_history  .gitconfig     .lesshst    .ssh       myuser      Temp
 
 Inside, `.bash_history` is just a text file, with the most recent commands at the bottom.
 
@@ -575,8 +517,8 @@ The `bash` shell supports a rich interactive environment for searching for, edit
 
 **Note:** If you start multiple sessions under the same account, the saved history will be of the last login to successfully write back out `.bash_history`.
 
-Step 2. File Under "Directories"
-================================
+File Under "Directories"
+========================
 
 ***`ls`, `mv`, `cp`, `rm` (`-rf *`), `cat`, `chmod`/`chgrp`/`chown` and everyone's favorite, `touch`.***
 
@@ -598,12 +540,10 @@ Each has its strengths and weaknesses. While Linux tends to treat the ext\* file
 
 As mentioned above, the biggest differences between Linux and Windows is that the Linux environments tend not to have a concept of "drive letters." Instead everything is "mounted" under a single hierarchy that starts at the "root directory" or `/`.
 
-~~~~ {.bash}
-$ ls /
-bin   etc         lib         media  proc  sbin     sys  var
-boot  home        lib64       mnt    root  selinux  tmp  vmlinuz
-dev   initrd.img  lost+found  opt    run   srv      usr
-~~~~
+    ~ $ ls /
+    bin   etc         lib         media  proc  sbin     sys  var
+    boot  home        lib64       mnt    root  selinux  tmp  vmlinuz
+    dev   initrd.img  lost+found  opt    run   srv      usr
 
 The root file system may be backed by a disk device, LUN, memory or even the network. It will have one or more directories under it. Multiple physical drives and network locations can be "mounted" virtually anywhere, under any directory or subdirectory in the hierarchy.
 
@@ -614,68 +554,60 @@ Looking at Files
 
 The command to *list* the contents of a directory is the [`ls`](http://linux.die.net/man/1/ls) command:
 
-~~~~ {.bash}
-$ ls
-Desktop    Downloads  FreeRDP     Music     Public  Temp       Videos
-Documents  Dropbox    installrdp  Pictures  rdp     Templates
-~~~~
+    ~ $ ls
+    Desktop    Downloads  FreeRDP     Music     Public  Temp       Videos
+    Documents  Dropbox    installrdp  Pictures  rdp     Templates
 
 Remember, UNIX environments think of files that start with a `.` as "hidden." If you want to see all these ["dotfiles"](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments), you can use `ls -a`:
 
-~~~~ {.bash}
-$ ls -a
-.              Desktop        .gksu.lock       .mozilla   .themes
-..             .dmrc          .gnome2          Music      .thumbnails
-.adobe         Documents      .gnome2_private  Pictures   .thunderbird
-.atom          Downloads      .hugin           .pki       Videos
-.bash_history  .dropbox       .ICEauthority    .profile   .wine
-.bash_logout   Dropbox        .icons           .ptbt1     .Xauthority
-.cache         .dropbox-dist  installrdp       Public     .xinputrc
-.cinnamon      .face          .lastpass        rdp        .xsession-errors
-.cmake         FreeRDP        .linuxmint       .sbd
-.config        .gconf         .local           Temp
-.dbus          .gimp-2.8      .macromedia      Templates
-~~~~
+    ~ $ ls -a
+    .              Desktop        .gksu.lock       .mozilla   .themes
+    ..             .dmrc          .gnome2          Music      .thumbnails
+    .adobe         Documents      .gnome2_private  Pictures   .thunderbird
+    .atom          Downloads      .hugin           .pki       Videos
+    .bash_history  .dropbox       .ICEauthority    .profile   .wine
+    .bash_logout   Dropbox        .icons           .ptbt1     .Xauthority
+    .cache         .dropbox-dist  installrdp       Public     .xinputrc
+    .cinnamon      .face          .lastpass        rdp        .xsession-errors
+    .cmake         FreeRDP        .linuxmint       .sbd
+    .config        .gconf         .local           Temp
+    .dbus          .gimp-2.8      .macromedia      Templates
 
 Wow! That's a lot of dotfiles!
 
 If you want to see some details of each file, use `ls -l`:
 
-~~~~ {.bash}
-$ ls -l
-total 92
-drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Desktop
-drwxr-xr-x  2 myuser mygroup      4096 Oct 13 10:02 Documents
-drwxr-xr-x  2 myuser mygroup      4096 Oct 14 09:45 Downloads
-drwx------  8 myuser mygroup      4096 Oct 16 19:58 Dropbox
-drwxr-xr-x 19 myuser mygroup      4096 Oct 12 09:48 FreeRDP
--rwxr-x---  1 myuser sambashare    883 Oct 12 11:34 installrdp
-drwxr-xr-x  5 myuser mygroup      4096 Oct 16 10:47 LightTable
-drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Music
-drwxr-xr-x  3 myuser mygroup     36864 Oct 12 17:29 Pictures
-drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Public
--rwxr-xr-x  1 myuser mygroup       816 Oct 15 18:00 rdp
-...and so on...
-~~~~
+    ~ $ ls -l
+    total 92
+    drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Desktop
+    drwxr-xr-x  2 myuser mygroup      4096 Oct 13 10:02 Documents
+    drwxr-xr-x  2 myuser mygroup      4096 Oct 14 09:45 Downloads
+    drwx------  8 myuser mygroup      4096 Oct 16 19:58 Dropbox
+    drwxr-xr-x 19 myuser mygroup      4096 Oct 12 09:48 FreeRDP
+    -rwxr-x---  1 myuser sambashare    883 Oct 12 11:34 installrdp
+    drwxr-xr-x  5 myuser mygroup      4096 Oct 16 10:47 LightTable
+    drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Music
+    drwxr-xr-x  3 myuser mygroup     36864 Oct 12 17:29 Pictures
+    drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Public
+    -rwxr-xr-x  1 myuser mygroup       816 Oct 15 18:00 rdp
+    ...and so on...
 
 And of course parameters can be combined, as with the two above:
 
-~~~~ {.bash}
-$ ls -al
-total 344
-drwxr-xr-x 40 myuser mygroup      4096 Oct 17 07:14 .
-drwxr-xr-x  3 root   root         4096 Sep  7 04:09 ..
-drwx------  3 myuser mygroup      4096 Sep  7 09:33 .adobe
-drwxr-xr-x  5 myuser mygroup      4096 Oct 12 15:48 .atom
--rw-------  1 myuser mygroup      6428 Oct 17 06:11 .bash_history
--rw-r--r--  1 myuser mygroup       220 Sep  7 04:09 .bash_logout
-drwx------ 18 myuser mygroup      4096 Oct 13 07:31 .cache
-drwxr-xr-x  5 myuser mygroup      4096 Oct 16 19:57 .cinnamon
-drwxr-xr-x  3 myuser mygroup      4096 Oct 12 09:45 .cmake
-drwxr-xr-x 26 myuser mygroup      4096 Oct 15 10:23 .config
-drwx------  3 myuser mygroup      4096 Sep  7 04:16 .dbus
-...and so on...
-~~~~
+    ~ $ ls -al
+    total 344
+    drwxr-xr-x 40 myuser mygroup      4096 Oct 17 07:14 .
+    drwxr-xr-x  3 root   root         4096 Sep  7 04:09 ..
+    drwx------  3 myuser mygroup      4096 Sep  7 09:33 .adobe
+    drwxr-xr-x  5 myuser mygroup      4096 Oct 12 15:48 .atom
+    -rw-------  1 myuser mygroup      6428 Oct 17 06:11 .bash_history
+    -rw-r--r--  1 myuser mygroup       220 Sep  7 04:09 .bash_logout
+    drwx------ 18 myuser mygroup      4096 Oct 13 07:31 .cache
+    drwxr-xr-x  5 myuser mygroup      4096 Oct 16 19:57 .cinnamon
+    drwxr-xr-x  3 myuser mygroup      4096 Oct 12 09:45 .cmake
+    drwxr-xr-x 26 myuser mygroup      4096 Oct 15 10:23 .config
+    drwx------  3 myuser mygroup      4096 Sep  7 04:16 .dbus
+    ...and so on...
 
 A Brief Detour Around Parameters
 --------------------------------
@@ -686,21 +618,15 @@ In `bash` and many Linux commands in general, there are old, "short" (terse) par
 
 The older style parameters are typically preceded by a single hyphen "switch" character:
 
-~~~~ {.bash}
-ls -r
-~~~~
+    ~ $ ls -r
 
 Or even no "switch" character at all, as with `xvf` (e***X***tract, ***V***erbose, input ***F***ile name) in the following:
 
-~~~~ {.bash}
-tar xvf backup.tar
-~~~~
+    ~ $ tar xvf backup.tar
 
 The newer "GNU-style" parameters are preceded by two hyphens and usually are quite "verbose":
 
-~~~~ {.bash}
-ls --recursive --almost-all --ignore-backups
-~~~~
+    ~ $ ls --recursive --almost-all --ignore-backups
 
 Again, it is ***highly recommended*** that you take the time to use the GNU-style parameters in scripts as self-documenting code.
 
@@ -709,30 +635,28 @@ More Poking at Files
 
 If we suspect the file is a text file, we can echo it to the console with the [`cat`](http://linux.die.net/man/1/cat) (*concatenate*) command:
 
-~~~~ {.bash}
-$ cat installrdp 
-#!/bin/bash
-sudo apt-get -y install git
-cd ~
-git clone git://github.com/FreeRDP/FreeRDP.git
-cd FreeRDP
-sudo apt-get -y install build-essential git-core cmake libssl-dev \
-  libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \
-  libxv-dev libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \
-  libxml2-dev libxrandr-dev libgstreamer0.10-dev \
-  libgstreamer-plugins-base0.10-dev libxi-dev \
-  libgstreamer-plugins-base1.0-dev libavutil-dev libavcodec-dev \
-  libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
-cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
-make
-sudo make install
-sudo echo "/usr/local/lib/freerdp" > /etc/ld.so.conf.d/freerdp.conf
-sudo echo "/usr/local/lib64/freerdp" >> /etc/ld.so.conf.d/freerdp.conf
-sudo echo "/usr/local/lib" >> /etc/ld.so.conf.d/freerdp.conf
-sudo ldconfig
-which xfreerdp
-xfreerdp --version
-~~~~
+    ~ $ cat installrdp 
+    #!/bin/bash
+    sudo apt-get -y install git
+    cd ~
+    git clone git://github.com/FreeRDP/FreeRDP.git
+    cd FreeRDP
+    sudo apt-get -y install build-essential git-core cmake libssl-dev \
+      libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \
+      libxv-dev libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \
+      libxml2-dev libxrandr-dev libgstreamer0.10-dev \
+      libgstreamer-plugins-base0.10-dev libxi-dev \
+      libgstreamer-plugins-base1.0-dev libavutil-dev libavcodec-dev \
+      libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
+    cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
+    make
+    sudo make install
+    sudo echo "/usr/local/lib/freerdp" > /etc/ld.so.conf.d/freerdp.conf
+    sudo echo "/usr/local/lib64/freerdp" >> /etc/ld.so.conf.d/freerdp.conf
+    sudo echo "/usr/local/lib" >> /etc/ld.so.conf.d/freerdp.conf
+    sudo ldconfig
+    which xfreerdp
+    xfreerdp --version
 
 We can determine from the above that `installrdp` is a `bash` shell script that looks to install and configure [FreeRDP](https://github.com/FreeRDP/FreeRDP) on a Debian-style system:
 
@@ -748,69 +672,61 @@ A better way to display a longer file is to use the [`less`](http://linux.die.ne
 
 We can also look at just the end or *tail* of a file (often the most interesting when looking at log files and troubleshooting a current problem) with the [`tail`](http://linux.die.net/man/1/tail) command. To show the last 10 lines of the kernel `dmesg` log:
 
-~~~~ {.bash}
-# tail dmesg
-[    2.774931] loop: module loaded
-[    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-[    3.351331] eth0: NIC Link is Up 10000 Mbps
-[    3.422647] RPC: Registered named UNIX socket transport module.
-[    3.422649] RPC: Registered udp transport module.
-[    3.422650] RPC: Registered tcp transport module.
-[    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[    3.432437] FS-Cache: Loaded
-[    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-[    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
-~~~~
+    # tail dmesg
+    [    2.774931] loop: module loaded
+    [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
+    [    3.351331] eth0: NIC Link is Up 10000 Mbps
+    [    3.422647] RPC: Registered named UNIX socket transport module.
+    [    3.422649] RPC: Registered udp transport module.
+    [    3.422650] RPC: Registered tcp transport module.
+    [    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
+    [    3.432437] FS-Cache: Loaded
+    [    3.443980] FS-Cache: Netfs 'nfs' registered for caching
+    [    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
 
 To show the last 20 lines:
 
-~~~~ {.bash}
-# tail -n 20 dmesg
-[    2.317838] [drm] Fifo max 0x00040000 min 0x00001000 cap 0x0000077f
-[    2.318843] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
-[    2.318845] [drm] No driver support for vblank timestamp query.
-[    2.318914] [drm] Screen objects system initialized
-[    2.318917] [drm] Detected no device 3D availability.
-[    2.323011] [drm] Initialized vmwgfx 2.4.0 20120209 for 0000:00:0f.0 ...
-[    2.486733] input: ImPS/2 Generic Wheel Mouse as /devices/platform/i8...
-[    2.655694] Adding 4191228k swap on /dev/sda5.  Priority:-1 extents:1...
-[    2.666714] EXT4-fs (sda1): re-mounted. Opts: (null)
-[    2.754699] EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro
-[    2.774931] loop: module loaded
-[    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-[    3.351331] eth0: NIC Link is Up 10000 Mbps
-[    3.422647] RPC: Registered named UNIX socket transport module.
-[    3.422649] RPC: Registered udp transport module.
-[    3.422650] RPC: Registered tcp transport module.
-[    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[    3.432437] FS-Cache: Loaded
-[    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-[    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
-~~~~
+    # tail -n 20 dmesg
+    [    2.317838] [drm] Fifo max 0x00040000 min 0x00001000 cap 0x0000077f
+    [    2.318843] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
+    [    2.318845] [drm] No driver support for vblank timestamp query.
+    [    2.318914] [drm] Screen objects system initialized
+    [    2.318917] [drm] Detected no device 3D availability.
+    [    2.323011] [drm] Initialized vmwgfx 2.4.0 20120209 for 0000:00:0f.0 ...
+    [    2.486733] input: ImPS/2 Generic Wheel Mouse as /devices/platform/i8...
+    [    2.655694] Adding 4191228k swap on /dev/sda5.  Priority:-1 extents:1...
+    [    2.666714] EXT4-fs (sda1): re-mounted. Opts: (null)
+    [    2.754699] EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro
+    [    2.774931] loop: module loaded
+    [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
+    [    3.351331] eth0: NIC Link is Up 10000 Mbps
+    [    3.422647] RPC: Registered named UNIX socket transport module.
+    [    3.422649] RPC: Registered udp transport module.
+    [    3.422650] RPC: Registered tcp transport module.
+    [    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
+    [    3.432437] FS-Cache: Loaded
+    [    3.443980] FS-Cache: Netfs 'nfs' registered for caching
+    [    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
 
 You can also use `tail` to *follow* an open file and continuously display any new output at the end, which is useful for monitoring log files in real time:
 
-~~~~ {.bash}
-# tail -f dmesg
-[    2.774931] loop: module loaded
-[    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-[    3.351331] eth0: NIC Link is Up 10000 Mbps
-[    3.422647] RPC: Registered named UNIX socket transport module.
-[    3.422649] RPC: Registered udp transport module.
-[    3.422650] RPC: Registered tcp transport module.
-[    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[    3.432437] FS-Cache: Loaded
-[    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-[    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
-...new lines will appear here over time...
-~~~~
+    # tail -f dmesg
+    [    2.774931] loop: module loaded
+    [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
+    [    3.351331] eth0: NIC Link is Up 10000 Mbps
+    [    3.422647] RPC: Registered named UNIX socket transport module.
+    [    3.422649] RPC: Registered udp transport module.
+    [    3.422650] RPC: Registered tcp transport module.
+    [    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
+    [    3.432437] FS-Cache: Loaded
+    [    3.443980] FS-Cache: Netfs 'nfs' registered for caching
+    [    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
+    ...new lines will appear here over time...
 
 If we know nothing about a *file*, we can use the [`file`](http://linux.die.net/man/1/file) command to help us guess:
 
-~~~~ {.bash}
-$ file installrdp 
-installrdp: Bourne-Again shell script, ASCII text executable
-~~~~
+    ~ $ file installrdp 
+    installrdp: Bourne-Again shell script, ASCII text executable
 
 That's straightforward enough! The `file` command isn't always 100% accurate, but it is pretty good and uses an interesting set of heuristics and a text file "database" of ["magic" number definitions](http://linux.die.net/man/5/magic) to define how it figures out what type of file it is examining.
 
@@ -823,178 +739,152 @@ The [`sort`](http://linux.die.net/man/1/sort) command can be used to not just *s
 
 Let's say we have three files:
 
-~~~~ {.bash}
-$ ls
-ElevatorTrucks  FarmCombines  FarmTractors
-~~~~
+    ~ $ ls
+    ElevatorTrucks  FarmCombines  FarmTractors
 
 Here are the contents of each:
 
-~~~~ {.bash}
-$ cat ElevatorTrucks
-Truck   brakes  200
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
+    ~ $ cat ElevatorTrucks
+    Truck   brakes  200
+    Truck   tires   400
+    Truck   tires   400
+    Truck   tires   400
+    Truck   winch   100
 
-$ cat FarmCombines
-Combine motor   1500
-Combine brakes  400
-Combine tires   2500
+    ~ $ cat FarmCombines
+    Combine motor   1500
+    Combine brakes  400
+    Combine tires   2500
 
-$ cat FarmTractors
-Tractor motor   1000
-Tractor brakes  300
-Tractor tires   2000
-~~~~
+    ~ $ cat FarmTractors
+    Tractor motor   1000
+    Tractor brakes  300
+    Tractor tires   2000
 
 But what if we wanted to process all the lines in all the files in a single alphabetical order? Just redirecting the files into a program won't do it, because the file names will be sorted by the shell and the lines will be processed in file name order, not the ultimate sorted order of all the file contents:
 
-~~~~ {.bash}
-$ cat *
-Truck   brakes  200
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-Combine motor   1500
-Combine brakes  400
-Combine tires   2500
-Tractor motor   1000
-Tractor brakes  300
-Tractor tires   2000
-~~~~
+    ~ $ cat *
+    Truck   brakes  200
+    Truck   tires   400
+    Truck   tires   400
+    Truck   tires   400
+    Truck   winch   100
+    Combine motor   1500
+    Combine brakes  400
+    Combine tires   2500
+    Tractor motor   1000
+    Tractor brakes  300
+    Tractor tires   2000
 
 The `sort` command to the rescue!
 
-~~~~ {.bash}
-$ sort *
-Combine brakes  400
-Combine motor   1500
-Combine tires   2500
-Tractor brakes  300
-Tractor motor   1000
-Tractor tires   2000
-Truck   brakes  200
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-~~~~
+    ~ $ sort *
+    Combine brakes  400
+    Combine motor   1500
+    Combine tires   2500
+    Tractor brakes  300
+    Tractor motor   1000
+    Tractor tires   2000
+    Truck   brakes  200
+    Truck   tires   400
+    Truck   tires   400
+    Truck   tires   400
+    Truck   winch   100
 
 What if we want to sort by the parts column? Well, it is the second "key" field delimited by whitespace, so:
 
-~~~~ {.bash}
-$ sort -k 2 *
-Truck   brakes  200
-Tractor brakes  300
-Combine brakes  400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-~~~~
+    ~ $ sort -k 2 *
+    Truck   brakes  200
+    Tractor brakes  300
+    Combine brakes  400
+    Tractor motor   1000
+    Combine motor   1500
+    Tractor tires   2000
+    Combine tires   2500
+    Truck   tires   400
+    Truck   tires   400
+    Truck   tires   400
+    Truck   winch   100
 
 What about by the third column, the amount?
 
-~~~~ {.bash}
-$ sort -k 3 *
-Truck   winch   100
-Tractor motor   1000
-Combine motor   1500
-Truck   brakes  200
-Tractor tires   2000
-Combine tires   2500
-Tractor brakes  300
-Combine brakes  400
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-~~~~
+    ~ $ sort -k 3 *
+    Truck   winch   100
+    Tractor motor   1000
+    Combine motor   1500
+    Truck   brakes  200
+    Tractor tires   2000
+    Combine tires   2500
+    Tractor brakes  300
+    Combine brakes  400
+    Truck   tires   400
+    Truck   tires   400
+    Truck   tires   400
 
 That's not what we expected because it is sorting numbers alphabetically. Let's fix that by telling it to sort numerically:
 
-~~~~ {.bash}
-$ sort -k 3 -n *
-Truck   winch   100
-Truck   brakes  200
-Tractor brakes  300
-Combine brakes  400
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-~~~~
+    ~ $ sort -k 3 -n *
+    Truck   winch   100
+    Truck   brakes  200
+    Tractor brakes  300
+    Combine brakes  400
+    Truck   tires   400
+    Truck   tires   400
+    Truck   tires   400
+    Tractor motor   1000
+    Combine motor   1500
+    Tractor tires   2000
+    Combine tires   2500
 
 Maybe we care about the top three most expensive items. We haven't talked about pipes yet, but check this out:
 
-~~~~ {.bash}
-$ sort -k 3 -n * | tail -n 3
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-~~~~
+    ~ $ sort -k 3 -n * | tail -n 3
+    Combine motor   1500
+    Tractor tires   2000
+    Combine tires   2500
 
 Finally, what if we want only unique rows?
 
-~~~~ {.bash}
-$ sort -k 3 -n -u *
-Truck   winch   100
-Truck   brakes  200
-Tractor brakes  300
-Truck   tires   400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-~~~~
+    ~ $ sort -k 3 -n -u *
+    Truck   winch   100
+    Truck   brakes  200
+    Tractor brakes  300
+    Truck   tires   400
+    Tractor motor   1000
+    Combine motor   1500
+    Tractor tires   2000
+    Combine tires   2500
 
 Just to reinforce long parameters, the last example is equivalent to:
 
-~~~~ {.bash}
-$ sort --key 3 --numeric-sort --unique *
-Truck   winch   100
-Truck   brakes  200
-Tractor brakes  300
-Truck   tires   400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-~~~~
+    ~ $ sort --key 3 --numeric-sort --unique *
+    Truck   winch   100
+    Truck   brakes  200
+    Tractor brakes  300
+    Truck   tires   400
+    Tractor motor   1000
+    Combine motor   1500
+    Tractor tires   2000
+    Combine tires   2500
 
 Rearranging Deck Chairs
 -----------------------
 
 We can copy, move or rename (same thing) and delete files and directories. To *copy*, simply use the [`cp`](http://linux.die.net/man/1/cp) command:
 
-~~~~ {.bash}
-$ cp diary.txt diary.bak
-~~~~
+    ~ $ cp diary.txt diary.bak
 
 You can copy entire directories recursively:
 
-~~~~ {.bash}
-$ cp -r thisdir thatdir
-~~~~
+    ~ $ cp -r thisdir thatdir
 
 Or, if we want to be self-documenting in a script, we can use those long parameter names:
 
-~~~~ {.bash}
-$ cp --recursive thisdir thatdir
-~~~~
+    ~ $ cp --recursive thisdir thatdir
 
 To *move* use [`mv`](http://linux.die.net/man/1/mv):
 
-    $ mv thismonth.log lastmonth.log
+    ~ $ mv thismonth.log lastmonth.log
 
 **Note:** There is no semantic difference between "move" and "rename." However, there are some really cool renaming scenarios that the [`rename`](http://linux.die.net/man/1/rename) command can take care of beyond `mv`, like renaming all file extensions from `.htm` to `.html`.
 
@@ -1003,25 +893,21 @@ Making Files Disappear
 
 To delete or *remove* a file you use [`rm`](http://linux.die.net/man/1/rm):
 
-~~~~ {.bash}
-$ rm desktop.ini
-~~~~
+    ~ $ rm desktop.ini
 
 **Pro Tip:** There is no "Are you sure?" prompt when removing a single file specified with no wildcards, or even all files with a wildcard, and there is no "Recycle Bin" or "Trash Can" when working from the command prompt, so be careful!
 
 This kind of scenario can happen ***way*** too often, even to experienced system administrators (note the space between `*` and `.bak`):
 
-~~~~ {.bash}
-$ cd MyDissertation
+    ~ $ cd MyDissertation
 
-$ ls
-Citations.bak  Citations.doc  Dissertation.bak  Dissertation.doc  Notes.doc
+    ~ $ ls
+    Citations.bak  Citations.doc  Dissertation.bak  Dissertation.doc  Notes.doc
 
-$ rm * .bak
-rm: cannot remove ‘.bak’: No such file or directory
+    ~ $ rm * .bak
+    rm: cannot remove ‘.bak’: No such file or directory
 
-$ ls
-~~~~
+    ~ $ ls
 
 So, in order, our hapless user:
 
@@ -1035,10 +921,8 @@ So, in order, our hapless user:
 
 So be careful out there! This is an example where tab completion can be an extra error check. Or a lot of times I use command history in these cases by changing the `ls` to look for just the files I want to delete:
 
-~~~~ {.bash}
-$ ls *.bak
-Citations.bak  Dissertation.bak
-~~~~
+    ~ $ ls *.bak
+    Citations.bak  Dissertation.bak
 
 Then using the "up arrow" to bring back up the `ls` command and changing `ls` to `rm` and re-executing it. Safer that way.
 
@@ -1047,63 +931,51 @@ Touch Me
 
 We just learned how to make a file disappear. We can also make a file magically appear, just by [`touch`](http://linux.die.net/man/1/touch):
 
-~~~~ {.bash}
-$ touch NewEmptyDissertation.doc
+    ~ $ touch NewEmptyDissertation.doc
 
-$ ls -l
-total 0
--rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:12 NewEmptyDissertation.doc
-~~~~
+    ~ $ ls -l
+    total 0
+    -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:12 NewEmptyDissertation.doc
 
 Notice the newly created file is zero bytes long.
 
 Interestingly enough, we can also use touch just to update the "last modified date" of an existing file, as you can see in time change in the following listing after running `touch` on the same file again:
 
-~~~~ {.bash}
-$ touch NewEmptyDissertation.doc
+    ~ $ touch NewEmptyDissertation.doc
 
-$ ls -l
-total 0
--rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:14 NewEmptyDissertation.doc
-~~~~
+    ~ $ ls -l
+    total 0
+    -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:14 NewEmptyDissertation.doc
 
 It can be useful (but also distressing from a forensics point of view) to sometimes set the last modified date of a file to a specific date and time, which `touch` also allows you to do, in this case to the night before Christmas:
 
-~~~~ {.bash}
-$ touch -t 201412242300 NewEmptyDissertation.doc
+    ~ $ touch -t 201412242300 NewEmptyDissertation.doc
 
-$ ls -l
-total 0
--rw-rwxr--+ 1 myuser mygroup 0 Dec 24  2014 NewEmptyDissertation.doc
-~~~~
+    ~ $ ls -l
+    total 0
+    -rw-rwxr--+ 1 myuser mygroup 0 Dec 24  2014 NewEmptyDissertation.doc
 
 To *make a directory* you use [`mkdir`](http://linux.die.net/man/1/mkdir):
 
-~~~~ {.bash}
-$ mkdir Bar
+    ~ $ mkdir Bar
 
-$ ls
-Bar
-~~~~
+    ~ $ ls
+    Bar
 
 Typically you need to create all intervening directories before creating a "child" directory:
 
-~~~~ {.bash}
-$ mkdir Xyzzy/Something
-mkdir: cannot create directory ‘Xyzzy/Something’: No such file or directory
-~~~~
+    ~ $ mkdir Xyzzy/Something
+    mkdir: cannot create directory ‘Xyzzy/Something’: No such file or directory
 
 But of course you can override that behavior:
 
-~~~~ {.bash}
-$ mkdir --parents Xyzzy/Something
+    ~ $ mkdir --parents Xyzzy/Something
 
-$ ls
-Bar  Xyzzy
+    ~ $ ls
+    Bar  Xyzzy
 
-$ ls Xyzzy
-Something
-~~~~
+    ~ $ ls Xyzzy
+    Something
 
 Navigating Through Life
 -----------------------
@@ -1114,41 +986,33 @@ Given that the UNIX-style file systems are hierarchical in nature they are simil
 
 To *change directories*, simply use [`cd`](http://linux.die.net/man/1/cd) much like in Windows:
 
-~~~~ {.bash}
-$ cd /etc
+    ~ $ cd /etc
 
-$ pwd
-/etc
-~~~~
+    ~ $ pwd
+    /etc
 
 [`pwd`](http://linux.die.net/man/1/pwd) simply *prints the working (current) directory*.
 
 In Linux, users can have "home" directories (similar to Windows profiles), typically located under `/home/username` for normal users and `/root` for the "root" id. To change to a user's "home" directory, simply use `cd`:
 
-~~~~ {.bash}
-$ cd
+    ~ $ cd
 
-$ pwd
-/home/myuser
-~~~~
+    ~ $ pwd
+    /home/myuser
 
 The tilde (`~`) character is an alias for the current user's home directory. The following example is equivalent to above:
 
-~~~~ {.bash}
-$ cd ~
+    ~ $ cd ~
 
-$ pwd
-/home/myuser
-~~~~
+    ~ $ pwd
+    /home/myuser
 
 More useful is that the tilde can be combined with a user name to specify the home directory of ***another*** user:
 
-~~~~ {.bash}
-$ cd ~git
+    ~ $ cd ~git
 
-$ pwd
-/home/git
-~~~~
+    ~ $ pwd
+    /home/git
 
 **Note:** The above assumes you have permissions to `cd` into `/home/git`. See the section on file permissions for more info.
 
@@ -1160,34 +1024,32 @@ In addition, you need to know the difference between "absolute" and "relative" p
 
 Windows inherited the concept of `.` for the current directory and `..` for the parent directory directly from UNIX. Consider the following examples that combine all of the above about relative paths and see if it all makes sense:
 
-~~~~ {.bash}
-$ mkdir Bar Baz
+    ~ $ mkdir Bar Baz
 
-$ ls
-Bar  Baz
+    ~ $ ls
+    Bar  Baz
 
-$ cd Bar
+    ~ $ cd Bar
 
-$ touch a b c
+    ~ $ touch a b c
 
-$ ls
-a  b  c
+    ~ $ ls
+    a  b  c
 
-$ cd ../Baz
+    ~ $ cd ../Baz
 
-$ ls
+    ~ $ ls
 
-$ touch d e f
+    ~ $ touch d e f
 
-$ ls
-d  e  f
+    ~ $ ls
+    d  e  f
 
-$ ls ..
-Bar  Baz
+    ~ $ ls ..
+    Bar  Baz
 
-$ ls ../Bar
-a  b  c
-~~~~
+    ~ $ ls ../Bar
+    a  b  c
 
 Did you notice how both `mkdir` and `touch` allow for specifying multiple directory and file names in the same command?
 
@@ -1212,24 +1074,22 @@ The "what" is:
 
 The combination of "who has what?" is usually shown in detailed directory listings by a set of ten characters, with the first one determining whether an entry is a directory or a file:
 
-~~~~ {.bash}
-# ls -l /etc
-total 844
-drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
--rw-r--r-- 1 root root    2981 Apr 23  2014 adduser.conf
--rw-r--r-- 1 root root      45 Jul  9 08:46 adjtime
--rw-r--r-- 2 root root     621 May 22  2014 aliases
--rw-r--r-- 1 root root   12288 May 22  2014 aliases.db
-drwxr-xr-x 2 root root   20480 Feb 25  2015 alternatives
--rw-r--r-- 1 root root    4185 Dec 28  2011 analog.cfg
-drwxr-xr-x 7 root root    4096 Feb 25  2015 apache2
-drwxr-xr-x 6 root root    4096 Feb 25  2015 apt
--rw-r----- 1 root daemon   144 Jun  9  2012 at.deny
--rw-r--r-- 1 root root    1895 Dec 29  2012 bash.bashrc
--rw-r--r-- 1 root root      45 Jun 17  2012 bash_completion
-drwxr-xr-x 2 root root    4096 Feb 25  2015 bash_completion.d
-...and so on...
-~~~~
+    # ls -l /etc
+    total 844
+    drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
+    -rw-r--r-- 1 root root    2981 Apr 23  2014 adduser.conf
+    -rw-r--r-- 1 root root      45 Jul  9 08:46 adjtime
+    -rw-r--r-- 2 root root     621 May 22  2014 aliases
+    -rw-r--r-- 1 root root   12288 May 22  2014 aliases.db
+    drwxr-xr-x 2 root root   20480 Feb 25  2015 alternatives
+    -rw-r--r-- 1 root root    4185 Dec 28  2011 analog.cfg
+    drwxr-xr-x 7 root root    4096 Feb 25  2015 apache2
+    drwxr-xr-x 6 root root    4096 Feb 25  2015 apt
+    -rw-r----- 1 root daemon   144 Jun  9  2012 at.deny
+    -rw-r--r-- 1 root root    1895 Dec 29  2012 bash.bashrc
+    -rw-r--r-- 1 root root      45 Jun 17  2012 bash_completion
+    drwxr-xr-x 2 root root    4096 Feb 25  2015 bash_completion.d
+    ...and so on...
 
 In the above, for example, we can see that the user `root` owns the file `at.deny` while the `daemon` group is the primary group for it. `root` can both read and write the file (`rw-`) while any user in the `daemon` group can only reade it (`r--`). No other id will have any access to the file at all (`---`).
 
@@ -1237,59 +1097,51 @@ Similarly we see that `acpi` is a directory (`d`) that can be read, written (new
 
 If we look in `/etc/init.d` where many services store their startup scripts we see:
 
-~~~~ {.bash}
-# ls -l /etc/init.d
-total 332
--rwxr-xr-x 1 root root  2227 Apr 15  2013 acpid
--rwxr-xr-x 1 root root  7820 Jan 31  2014 apache2
--rwxr-xr-x 1 root root  1071 Jun 25  2011 atd
--rwxr-xr-x 1 root root  1276 Oct 15  2012 bootlogs
--rwxr-xr-x 1 root root  1281 Jul 14  2013 bootmisc.sh
--rwxr-xr-x 1 root root  3816 Jul 14  2013 checkfs.sh
--rwxr-xr-x 1 root root  1099 Jul 14  2013 checkroot-bootclean.sh
--rwxr-xr-x 1 root root  9673 Jul 14  2013 checkroot.sh
--rwxr-xr-x 1 root root  1379 Dec  8  2011 console-setup
--rwxr-xr-x 1 root root  3033 Jul  3  2012 cron
--rwxr-xr-x 1 root root  2813 Feb  5  2015 dbus
--rwxr-xr-x 1 root root  6435 Jan  2  2013 exim4
-...and so on...
-~~~~
+    # ls -l /etc/init.d
+    total 332
+    -rwxr-xr-x 1 root root  2227 Apr 15  2013 acpid
+    -rwxr-xr-x 1 root root  7820 Jan 31  2014 apache2
+    -rwxr-xr-x 1 root root  1071 Jun 25  2011 atd
+    -rwxr-xr-x 1 root root  1276 Oct 15  2012 bootlogs
+    -rwxr-xr-x 1 root root  1281 Jul 14  2013 bootmisc.sh
+    -rwxr-xr-x 1 root root  3816 Jul 14  2013 checkfs.sh
+    -rwxr-xr-x 1 root root  1099 Jul 14  2013 checkroot-bootclean.sh
+    -rwxr-xr-x 1 root root  9673 Jul 14  2013 checkroot.sh
+    -rwxr-xr-x 1 root root  1379 Dec  8  2011 console-setup
+    -rwxr-xr-x 1 root root  3033 Jul  3  2012 cron
+    -rwxr-xr-x 1 root root  2813 Feb  5  2015 dbus
+    -rwxr-xr-x 1 root root  6435 Jan  2  2013 exim4
+    ...and so on...
 
 In this case all the scripts are readable, writable and executable (`rwx`) by the `root` user, and readable and executable by the `root` group and all other users (`r-xr-x`).
 
 To *change* the *owning* user of a file or directory (assuming you have permissions to do so), use the [`chown`](http://linux.die.net/man/1/chown) command:
 
-~~~~ {.bash}
-# ls -l
-total 4
--rwxr--r-- 1 root root 17 Oct 20 10:07 foo
+    # ls -l
+    total 4
+    -rwxr--r-- 1 root root 17 Oct 20 10:07 foo
 
-# chown git foo
+    # chown git foo
 
-# ls -l
-total 4
--rwxr--r-- 1 git root 17 Oct 20 10:07 foo
-~~~~
+    # ls -l
+    total 4
+    -rwxr--r-- 1 git root 17 Oct 20 10:07 foo
 
 To *change* the primary *group*, use the [`chgrp`](http://linux.die.net/man/1/chgrp) command:
 
-~~~~ {.bash}
-# chgrp git foo
+    # chgrp git foo
 
-# ls -l
-total 4
--rwxr--r-- 1 git git 17 Oct 20 10:07 foo
-~~~~
+    # ls -l
+    total 4
+    -rwxr--r-- 1 git git 17 Oct 20 10:07 foo
 
 To *change* the various permissions or *mode* bits, you use the [`chmod`](http://linux.die.net/man/1/chmod) command. It uses mnemonics of "ugo" for (owning) user, group and "other," respectively. It also uses mnemonics of "rwx" for read, write and execute, and `+` to add a permission and `-` to remove it. For example, to add execute permission for the group and remove read permission for "other":
 
-~~~~ {.bash}
-# chmod g+x,o-r foo
+    # chmod g+x,o-r foo
 
-# ls -l
-total 4
--rwxr-x--- 1 git git 17 Oct 20 10:07 foo
-~~~~
+    # ls -l
+    total 4
+    -rwxr-x--- 1 git git 17 Oct 20 10:07 foo
 
 **Pro Tip:** To look like an old hand UNIX hacker, you can also convert any set of "rwx" permissions into an octal number from 0 (no permissions) to 7 (all permissions). It helps to think of the three permissions as "binary places":
 
@@ -1308,137 +1160,129 @@ Some examples:
 
 Now to use octal with `chmod`, we think of the overall result we want for a file. For example, if we want the `foo` file to be readable, writable and executable by both its owning user and group, and not accessible at all by anyone else, we could use:
 
-~~~~ {.bash}
-# chmod u+rwx,g+rwx,o- foo
+    # chmod u+rwx,g+rwx,o- foo
 
-# ls -l
-total 4
--rwxrwx--- 1 git git 17 Oct 20 10:07 foo
-~~~~
+    # ls -l
+    total 4
+    -rwxrwx--- 1 git git 17 Oct 20 10:07 foo
 
 Or we could simply convert those permissions into octal in our head and:
 
-~~~~ {.bash}
-# chmod 770 foo
+    # chmod 770 foo
 
-# ls -l
-total 4
--rwxrwx--- 1 git git 17 Oct 20 10:07 foo
-~~~~
+    # ls -l
+    total 4
+    -rwxrwx--- 1 git git 17 Oct 20 10:07 foo
 
 Now you know the answer to that "How will we ever use octal in real life?" question you asked in school!
 
 **Note:** For a script or executable file to be allowed to run, it ***must*** be marked as executable for one of the user, group or other entries. The following should be insightful:
 
-~~~~ {.bash}
-# echo "echo Hello world" > foo
+    # echo "echo Hello world" > foo
 
-# ls -l
-total 4
--rw-r--r-- 1 root root 17 Oct 20 10:07 foo
+    # ls -l
+    total 4
+    -rw-r--r-- 1 root root 17 Oct 20 10:07 foo
 
-# ./foo
--bash: ./foo: Permission denied
+    # ./foo
+    -bash: ./foo: Permission denied
 
-# chmod u+x foo
+    # chmod u+x foo
 
-# ls -l
-total 4
--rwxr--r-- 1 root root 17 Oct 20 10:07 foo
+    # ls -l
+    total 4
+    -rwxr--r-- 1 root root 17 Oct 20 10:07 foo
 
-# ./foo
-Hello world
-~~~~
+    # ./foo
+    Hello world
 
 "I'll Send You a Tar Ball"
 --------------------------
 
 In the Windows world, we are used to compressing and sending directories around as `.zip` files. In Linux you can also deal with `.zip` files, although they don't tend to be the most common, using the [`zip`](http://linux.die.net/man/1/zip) and [`unzip`](http://linux.die.net/man/1/unzip) commands:
 
-~~~~ {.bash}
-$ mkdir foo
+    ~ $ mkdir foo
 
-$ cd foo
+    ~ $ cd foo
 
-$ touch a b c
+    ~ $ touch a b c
 
-$ mkdir d
+    ~ $ mkdir d
 
-$ touch d/e
+    ~ $ touch d/e
 
-$ cd ..
+    ~ $ cd ..
 
-$ zip -r foo foo
-updating: foo/ (stored 0%)
-  adding: foo/c (stored 0%)
-  adding: foo/b (stored 0%)
-  adding: foo/d/ (stored 0%)
-  adding: foo/d/e (stored 0%)
-  adding: foo/a (stored 0%)
+    ~ $ zip -r foo foo
+    updating: foo/ (stored 0%)
+      adding: foo/c (stored 0%)
+      adding: foo/b (stored 0%)
+      adding: foo/d/ (stored 0%)
+      adding: foo/d/e (stored 0%)
+      adding: foo/a (stored 0%)
 
-$ ls -l foo.zip
--rw-r--r-- 1 myuser mygroup 854 Oct 24 15:56 foo.zip
+    ~ $ ls -l foo.zip
+    -rw-r--r-- 1 myuser mygroup 854 Oct 24 15:56 foo.zip
 
-$ unzip foo
-Archive:  foo.zip
-replace foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
- extracting: foo/c                   
- extracting: foo/b                   
- extracting: foo/d/e                 
- extracting: foo/a                   
-~~~~
+    ~ $ unzip foo
+    Archive:  foo.zip
+    replace foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
+     extracting: foo/c                   
+     extracting: foo/b                   
+     extracting: foo/d/e                 
+     extracting: foo/a                   
 
 Not too exciting, but you get the drift. There is typically support for other compression algorithms, too, using [`bzip2`](http://linux.die.net/man/1/bzip2) and [`7z`](http://linux.die.net/man/1/7z) (7-zip) commands.
 
 However, the "native" way to "archive" a directory's contents in "UNIX" is with [`tar`](http://linux.die.net/man/1/tar), which is so old that `tar` stands for "tape archive." Its purpose is to take virtually any directory structure and create a single output "stream" or file of it. That is then typically ran through a compression command and the result is called a "tarball":
 
-~~~~ {.bash}
-$ tar cvf foo.tar foo/*
-foo/a
-foo/b
-foo/c
-foo/d/
-foo/d/e
+    ~ $ tar cvf foo.tar foo/*
+    foo/a
+    foo/b
+    foo/c
+    foo/d/
+    foo/d/e
 
-$ ls -l foo.tar
--rw-r--r-- 1 myuser mygroup 10240 Oct 24 16:14 foo.tar
+    ~ $ ls -l foo.tar
+    -rw-r--r-- 1 myuser mygroup 10240 Oct 24 16:14 foo.tar
 
-$ gzip foo.tar
+    ~ $ gzip foo.tar
 
-$ ls -l foo.tar.gz 
--rw-r--r-- 1 myuser mygroup 187 Oct 24 16:14 foo.tar.gz
-~~~~
+    ~ $ ls -l foo.tar.gz 
+    -rw-r--r-- 1 myuser mygroup 187 Oct 24 16:14 foo.tar.gz
 
 In the `tar` command above, the parameters are `c` (create a new archive), `v` (turn on "verbose" output) and `f` followed by the file name of the new `.tar` file.
 
 **Note:** `tar` supports POSIX-style parameters (`-c`), GNU-style (`--create`), and the old BSD-style (`c` with no hyphens at all), as shown in these examples. So both of the following are also equivalent to the above:
 
-~~~~ {.bash}
-$ tar -c -v -f foo.tar foo/*
+    ~ $ tar -c -v -f foo.tar foo/*
 
-$ tar --create --verbose --file=foo.tar foo/*
-~~~~
+    ~ $ tar --create --verbose --file=foo.tar foo/*
 
 The use of compression commands along with `tar` is so prevalent that they've been built into `tar` itself now as optional parameters:
 
-~~~~ {.bash}
-$ tar cvzf foo.tgz foo
-foo/
-foo/c
-foo/b
-foo/d/
-foo/d/e
-foo/a
+    ~ $ tar cvzf foo.tgz foo
+    foo/
+    foo/c
+    foo/b
+    foo/d/
+    foo/d/e
+    foo/a
 
-$ ls -l foo.tgz
--rw-r--r-- 1 myuser mygroup 191 Oct 24 16:19 foo.tgz
-~~~~
+    ~ $ ls -l foo.tgz
+    -rw-r--r-- 1 myuser mygroup 191 Oct 24 16:19 foo.tgz
 
 In this case the `z` parameter says to use `gzip` compression, and the `.tgz` file suffix means basically "tarred and gzipped", or the equivalent to `.tar.gz` in the first example.
 
 `tar` is used to both create and read `.tar` files. So to extract something like the above, you can change the create (`c`) parameter to extract (`x`), like this:
 
-\``bash $ tar xvf foo.tgz foo/ foo/c foo/b foo/d/ foo/d/e foo/a`
+    ~ $ tar xvf foo.tgz
+    foo/
+    foo/c
+    foo/b
+    foo/d/
+    foo/d/e
+    foo/a
 
 Let's Link Up!
 --------------
@@ -1447,39 +1291,37 @@ In Windows there are "shortcuts," which are simply special files that the OS kno
 
 UNIX file systems also have both these types of links (which isn't surprising, given that Microsoft got the ideas from UNIX). A "soft link" is equivalent to a Windows shortcut, and can point to a file or a directory, and can point to anything on any mounted file system:
 
-~~~~ {.bash}
-$ ls -l
-total 4
--rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
--rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 b
--rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
-drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:00 d
+    ~ $ ls -l
+    total 4
+    -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
+    -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 b
+    -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
+    drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:00 d
 
-$ cd d
+    ~ $ cd d
 
-$ pwd
-/tmp/foo/d
+    ~ $ pwd
+    /tmp/foo/d
 
-$ cd ..
+    ~ $ cd ..
 
-$ ln -s a MyThesis.doc
+    ~ $ ln -s a MyThesis.doc
 
-$ ln -s d Dee
+    ~ $ ln -s d Dee
 
-$ ls -l
-total 4
--rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
--rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 b
--rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
-drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:00 d
-lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
-lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
+    ~ $ ls -l
+    total 4
+    -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
+    -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 b
+    -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
+    drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:00 d
+    lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
+    lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
 
-$ cd Dee
+    ~ $ cd Dee
 
-$ pwd
-/tmp/foo/Dee
-~~~~
+    ~ $ pwd
+    /tmp/foo/Dee
 
 The things to notice about this example:
 
@@ -1489,33 +1331,31 @@ The things to notice about this example:
 
 A "hard link" is a bit different. It can only be made between files and the two files must be on the same file system. That is because hard links are actually directory entries (as opposed to files in directories) that point to the same ["inode"](https://en.wikipedia.org/wiki/Inode) on disk. From within a single directory it is impossible to tell if there are other directories with pointers to the same files (inodes) on disk.
 
-~~~~ {.bash}
-$ ls
-a  b  c  d  Dee  MyThesis.doc
+    ~ $ ls
+    a  b  c  d  Dee  MyThesis.doc
 
-$ ln b B
+    ~ $ ln b B
 
-$ cd d
+    ~ $ cd d
 
-$ ln ../b .
+    ~ $ ln ../b .
 
-$ ls -l
-total 0
--rw-r--r-- 3 myuser mygroup 0 Oct 24 15:53 b
--rw-r--r-- 1 myuser mygroup 0 Oct 24 15:54 e
+    ~ $ ls -l
+    total 0
+    -rw-r--r-- 3 myuser mygroup 0 Oct 24 15:53 b
+    -rw-r--r-- 1 myuser mygroup 0 Oct 24 15:54 e
 
-$ cd ..
+    ~ $ cd ..
 
-$ ls -l
-total 4
--rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
--rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 b
--rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 B
--rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
-drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
-lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
-lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
-~~~~
+    ~ $ ls -l
+    total 4
+    -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
+    -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 b
+    -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 B
+    -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
+    drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
+    lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
+    lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
 
 The "net net" of all the above is that now `b`, `B` and `d/b` all point to exactly the same inode, or disk location, i.e., the exact same physical file.
 
@@ -1523,75 +1363,69 @@ The "net net" of all the above is that now `b`, `B` and `d/b` all point to exact
 
 So what can possibly go wrong with links? With soft links the answer is easy - the "remote" location being pointed to goes away or is renamed:
 
-~~~~ {.bash}
-$ ls -l
-total 4
--rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
--rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 b
--rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 B
--rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
-drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
-lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
-lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
+    ~ $ ls -l
+    total 4
+    -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
+    -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 b
+    -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 B
+    -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
+    drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
+    lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
+    lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
 
-$ rm a
+    ~ $ rm a
 
-$ ls -l
-total 4
--rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 b
--rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 B
--rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
-drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
-lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
-lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
+    ~ $ ls -l
+    total 4
+    -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 b
+    -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 B
+    -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
+    drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
+    lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
+    lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
 
-$ cat MyThesis.doc 
-cat: MyThesis.doc: No such file or directory
-~~~~
+    ~ $ cat MyThesis.doc 
+    cat: MyThesis.doc: No such file or directory
 
 So even though the soft link `MyThesis.doc` was still in the directory, the actual underlying file `a` is now gone, and trying to access it via the soft link leads to the somewhat confusing "No such file or directory" error message ("I can see it! It's right there!")
 
 With hard links, it isn't so much a problem as just the nature of the beast. Because each hard link is a directory (metadata) entry pointing to an inode, deleting one simply deletes that directory entry. As long as the file has other hard links pointing to it, it "exists." Only when the last remaining hard link is removed has it been "deleted." Let's play:
 
-~~~~ {.bash}
-$ echo "This is b." > b
+    ~ $ echo "This is b." > b
 
-$ cat b
-This is b.
+    ~ $ cat b
+    This is b.
 
-$ cat B
-This is b.
+    ~ $ cat B
+    This is b.
 
-$ cat d/b
-This is b.
-~~~~
+    ~ $ cat d/b
+    This is b.
 
 So, that makes sense. Above we had an original file `b` and created to hard links to it, `B` and `d/b`. When we edit `b` by placing "This is b." in it, we see that it has the same contents no matter how we access it, because it is pointing to the same inode.
 
 Can you guess how many `rm` commands it will take to delete the file containing "This is b."?
 
-~~~~ {.bash}
-$ rm b
+    ~ $ rm b
 
-$ cat b
-cat: b: No such file or directory
+    ~ $ cat b
+    cat: b: No such file or directory
 
-$ cat B
-This is b.
+    ~ $ cat B
+    This is b.
 
-$ cat d/b
-This is b.
+    ~ $ cat d/b
+    This is b.
 
-$ rm B
+    ~ $ rm B
 
-$ cat d/b
-This is b.
+    ~ $ cat d/b
+    This is b.
 
-$ rm d/b
+    ~ $ rm d/b
 
-$ ls
-c  d  Dee  MyThesis.doc
-~~~~
+    ~ $ ls
+    c  d  Dee  MyThesis.doc
 
 So, ultimately, it takes a `rm` for every hard link to permanently delete a file.
 
@@ -1601,18 +1435,16 @@ With all this talk that a hard link can only be on the same file system, how do 
 
 There are multiple ways to tell, actually. The easiest is with the [`df`](http://linux.die.net/man/1/df) command:
 
-~~~~ {.bash}
-$ df
-Filesystem                1K-blocks     Used Available Use% Mounted on
-/dev/mapper/mint--vg-root 118647068 28847464  83749608  26% /
-none                              4        0         4   0% /sys/fs/cgroup
-udev                        1965068        4   1965064   1% /dev
-tmpfs                        396216     1568    394648   1% /run
-none                           5120        0      5120   0% /run/lock
-none                        1981068      840   1980228   1% /run/shm
-none                         102400       24    102376   1% /run/user
-/dev/sda1                    240972    50153    178378  22% /boot
-~~~~
+    ~ $ df
+    Filesystem                1K-blocks     Used Available Use% Mounted on
+    /dev/mapper/mint--vg-root 118647068 28847464  83749608  26% /
+    none                              4        0         4   0% /sys/fs/cgroup
+    udev                        1965068        4   1965064   1% /dev
+    tmpfs                        396216     1568    394648   1% /run
+    none                           5120        0      5120   0% /run/lock
+    none                        1981068      840   1980228   1% /run/shm
+    none                         102400       24    102376   1% /run/user
+    /dev/sda1                    240972    50153    178378  22% /boot
 
 The ones of interested are the `/dev` entries, and we see that everything mounted under `/` is on one file system, except for whatever happens to be on the file system mounted under `/boot`. So outside of `/boot`, on this system we could hard link away to our heart's content.
 
@@ -1624,28 +1456,26 @@ So, both hard and soft links can have some interesting side effects if you think
 
 But even with soft links if everything just blindly followed them you could also get duplicates where you didn't want them, or even circular references. Also, the pointers in the soft link files are not evaluated until the a command references them. Note that the following is perfectly legal with soft links, but may not give the results you expect - think about current working directory shown by `pwd` in the following, and what the effects of the relative paths shown are as the sample progresses:
 
-~~~~ {.bash}
-$ pwd
-/tmp/foo
+    ~ $ pwd
+    /tmp/foo
 
-$ rm -rf *
+    ~ $ rm -rf *
 
-$ touch a b c
+    ~ $ touch a b c
 
-$ mkdir d
+    ~ $ mkdir d
 
-$ touch d/e
+    ~ $ touch d/e
 
-$ ln -s . d/f
+    ~ $ ln -s . d/f
 
-$ ls d/f
-e  f
+    ~ $ ls d/f
+    e  f
 
-$ ln -s .. d/g
+    ~ $ ln -s .. d/g
 
-$ ls d/g
-a  b  c  d
-~~~~
+    ~ $ ls d/g
+    a  b  c  d
 
 Many commands that deal with files and file systems, like `find`, have parameters specifically telling the command whether to follow soft links or not (by default, `find` does not).
 
@@ -1654,60 +1484,52 @@ What's the `diff`?
 
 Most people think of [`diff`](http://linux.die.net/man/1/diff) as a tool only programmers find useful, but that is short-sighted. The whole purpose of `diff` is to show differences between files. For example, I backed up this document (which is a text file) before starting this chapter, then typed this introduction to `diff`. This is what `diff` shows:
 
-~~~~ {.bash}
-$ diff Agenda.bak Agenda.md
-1285a1286,1291
-> Most people think of [`diff`](http://linux.die.net/man/1/diff) as a tool
-> only programmers find useful, but that is short-sighted. The whole purpose
-> of `diff` is to show differences between files. For example, I backed up
-> this document (which is a text file) before starting this chapter, then
-> typed this introduction to `diff`. This is what `diff` shows:
-~~~~
+    ~ $ diff Agenda.bak Agenda.md
+    1285a1286,1291
+    > Most people think of [`diff`](http://linux.die.net/man/1/diff) as a tool
+    > only programmers find useful, but that is short-sighted. The whole purpose
+    > of `diff` is to show differences between files. For example, I backed up
+    > this document (which is a text file) before starting this chapter, then
+    > typed this introduction to `diff`. This is what `diff` shows:
 
 In other words, the "arrows" are pointing to the "new" file (by convention the file specified on the left is the "old" file and the file on the right is the "new" file), showing five lines were inserted, starting at line 1285. Pretty meta, but not real exciting.
 
 Let's look at something else, say a configuration file for an application. We have an original file, `orig.conf`:
 
-~~~~ {.bash}
-$ cat orig.conf
-FOO=1
+    ~ $ cat orig.conf
+    FOO=1
 
-SOME=THINGS
-STAY=THE
-SAME=ALWAYS
+    SOME=THINGS
+    STAY=THE
+    SAME=ALWAYS
 
-BAR=Xyzzy
-~~~~
+    BAR=Xyzzy
 
 Then we have a new file, `new.conf`:
 
-~~~~ {.bash}
-$ cat new.conf
-FOO=2
+    ~ $ cat new.conf
+    FOO=2
 
-SOME=THINGS
-STAY=THE
-SAME=ALWAYS
-~~~~
+    SOME=THINGS
+    STAY=THE
+    SAME=ALWAYS
 
 Now if we `diff` them:
 
-~~~~ {.bash}
-$ diff orig.conf new.conf
-1c1
-< FOO=1
----
-> FOO=2
-7d6
-< BAR=Xyzzy
-~~~~
+    ~ $ diff orig.conf new.conf
+    1c1
+    < FOO=1
+    ---
+    > FOO=2
+    7d6
+    < BAR=Xyzzy
 
 Now we can more easily see that line \#1 changed (`1c1`) from `FOO=1` on the "left" file to `FOO=2` on the "right," and that line \#7 was deleted (`7d6`) from the "left" file to form the "right." Again, not too interesting, but imagine that both files were thousands of lines long, and there were only a few changes, and you were trying to detect and recover an accidentally-deleted line. Now you can see why `diff` can be handy, as long as you keep around a prior version either in a backup file or source code control to compare against.
 
 `diff` is your friend. It really comes into play with a version control system like `git`, but again, that is beyond the scope of this book.
 
-Step 3. Finding Meaning
-=======================
+Finding Meaning
+===============
 
 ***The `find` command in all its glory. Probably the single most useful command in "UNIX" (I think).***
 
@@ -1725,35 +1547,31 @@ The main concepts of `find` is simple:
 
 The simplest example is "starting in the current directory, recursively list all files you find":
 
-~~~~ {.bash}
-$ find
-.
-./Agenda.md
-./Bad and Corrupted Test Files
-./Bad and Corrupted Test Files/.DS_Store
-./Bad and Corrupted Test Files/2008 Letter of Understanding.TIF
-./Bad and Corrupted Test Files/3948175.dat
-./Bad and Corrupted Test Files/3948176.dat
-./Bad and Corrupted Test Files/3948178.dat
-./Bad and Corrupted Test Files/3948180.dat
-./Bad and Corrupted Test Files/3948182.dat
-./Bad and Corrupted Test Files/3948186.dat
-./Bad and Corrupted Test Files/3948190.dat
-./Bad and Corrupted Test Files/3948193.dat
-./Bad and Corrupted Test Files/3948195.dat
-./Bad and Corrupted Test Files/3948197.dat
-./Bad and Corrupted Test Files/3948259.dat
-...and so on...
-~~~~
+    $ find
+    .
+    ./Agenda.md
+    ./Bad and Corrupted Test Files
+    ./Bad and Corrupted Test Files/.DS_Store
+    ./Bad and Corrupted Test Files/2008 Letter of Understanding.TIF
+    ./Bad and Corrupted Test Files/3948175.dat
+    ./Bad and Corrupted Test Files/3948176.dat
+    ./Bad and Corrupted Test Files/3948178.dat
+    ./Bad and Corrupted Test Files/3948180.dat
+    ./Bad and Corrupted Test Files/3948182.dat
+    ./Bad and Corrupted Test Files/3948186.dat
+    ./Bad and Corrupted Test Files/3948190.dat
+    ./Bad and Corrupted Test Files/3948193.dat
+    ./Bad and Corrupted Test Files/3948195.dat
+    ./Bad and Corrupted Test Files/3948197.dat
+    ./Bad and Corrupted Test Files/3948259.dat
+    ...and so on...
 
 In this case `find` is just shorthand for `find . -true -print`.
 
 That's not really that interesting. Let's poke around and "find" (pun intended) some better examples of using `find`. It is better to show than tell in this case. Let's dive into a semi-complicated one and pick it apart:
 
-~~~~ {.bash}
-find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
-    -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
-~~~~
+    find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
+        -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 
 How does this all work? Remembering the three steps at the beginning:
 
@@ -1772,10 +1590,8 @@ What's With the Backslashes?
 
 Reconsider this example:
 
-~~~~ {.bash}
-find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
-    -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
-~~~~
+    find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
+        -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 
 There are five (5) backslash (`\`) characters in the above. In each case, the backslash is preventing [shell expansion](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html):
 
@@ -1823,32 +1639,28 @@ Similarly, you are going to keep coming back to just a handful of `find` actions
 
 The `-printf` action allows you to do some interesting things when producing output. For example, consider these three files:
 
-~~~~ {.bash}
-$ touch a b c
+    $ touch a b c
 
-$ ls -l
-total 0
--rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 a
--rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 b
--rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 c
-~~~~
+    $ ls -l
+    total 0
+    -rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 a
+    -rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 b
+    -rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 c
 
 If for some reason we wanted a report where for each of those files we wanted three lines with the name, owner and created date and time in ISO 8601 format, all followed by a blank line, we could use the following `find` command:
 
-~~~~ {.bash}
-$ find . -type f -printf "%p\n%u\n%TY-%Tm-%TdT%TT\n\n"
-./a
-myuser
-2015-10-21T11:02:51.7014527000
+    $ find . -type f -printf "%p\n%u\n%TY-%Tm-%TdT%TT\n\n"
+    ./a
+    myuser
+    2015-10-21T11:02:51.7014527000
 
-./b
-myuser
-2015-10-21T11:02:51.7035423000
+    ./b
+    myuser
+    2015-10-21T11:02:51.7035423000
 
-./c
-myuser
-2015-10-21T11:02:51.7048997000
-~~~~
+    ./c
+    myuser
+    2015-10-21T11:02:51.7048997000
 
 The `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`breaks down as:
 
@@ -1867,8 +1679,8 @@ The `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`breaks down as:
 -   **`\n\n`** - two new lines.
 -   **`"`** - prevent shell expansion on the format string.
 
-Step 4. Grokking `grep`
-=======================
+Grokking `grep`
+===============
 
 ***And probably gawking at `awk` while we are at it, which means regular expressions, too. Now we have two problems.***
 
@@ -1878,20 +1690,18 @@ If the `file` command is useful for finding file system entries based on their a
 
 First, an example of `grep`, showing all files in a directory with the pattern "is" in them:
 
-~~~~ {.bash}
-$ touch a b c
+    $ touch a b c
 
-$ echo This sequence of characters is called a \"string\". > d
+    $ echo This sequence of characters is called a \"string\". > d
 
-$ cat d
-This sequence of characters is called a "string".
+    $ cat d
+    This sequence of characters is called a "string".
 
-$ ls
-a  b  c  d
+    $ ls
+    a  b  c  d
 
-$ grep is *
-d:This sequence of characters is called a "string".
-~~~~
+    $ grep is *
+    d:This sequence of characters is called a "string".
 
 Expressing Yourself Regularly
 -----------------------------
@@ -1914,76 +1724,62 @@ There are so many things you can do, the only thing to it is to remember "regula
 
 In the mean time, a few ***simple*** regex examples. Consider the following file `invoices`:
 
-~~~~ {.bash}
-$ cat invoices
-Combine brakes  400
-Combine motor   1500
-Combine tires   2500
-Tractor brakes  300
-Tractor motor   1000
-Tractor tires   2000
-Truck   brakes  200
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-~~~~
+    $ cat invoices
+    Combine brakes  400
+    Combine motor   1500
+    Combine tires   2500
+    Tractor brakes  300
+    Tractor motor   1000
+    Tractor tires   2000
+    Truck   brakes  200
+    Truck   tires   400
+    Truck   tires   400
+    Truck   tires   400
+    Truck   winch   100
 
 Let's find all lines with "tractor":
 
-~~~~ {.bash}
-$ grep tractor invoices
-~~~~
+    $ grep tractor invoices
 
 Huh, nothing was found. But this is UNIX-land, so we know it is sensitive - about case anyway:
 
-~~~~ {.bash}
-$ grep Tractor invoices
-Tractor brakes  300
-Tractor motor   1000
-Tractor tires   2000
-~~~~
+    $ grep Tractor invoices
+    Tractor brakes  300
+    Tractor motor   1000
+    Tractor tires   2000
 
 Or we could just tell `grep` we are insensitive (to case, anyway):
 
-~~~~ {.bash}
-$ grep -i tractor invoices
-Tractor brakes  300
-Tractor motor   1000
-Tractor tires   2000
-~~~~
+    $ grep -i tractor invoices
+    Tractor brakes  300
+    Tractor motor   1000
+    Tractor tires   2000
 
 And just to remind you about long-style parameters:
 
-~~~~ {.bash}
-$ grep --ignore-case tractor invoices
-Tractor brakes  300
-Tractor motor   1000
-Tractor tires   2000
-~~~~
+    $ grep --ignore-case tractor invoices
+    Tractor brakes  300
+    Tractor motor   1000
+    Tractor tires   2000
 
 But what ***lines*** are those on?
 
-~~~~ {.bash}
-$ grep -i -n tractor invoices
-1:Tractor       motor   1000
-2:Tractor       brakes  300
-3:Tractor       tires   2000
-~~~~
+    $ grep -i -n tractor invoices
+    1:Tractor       motor   1000
+    2:Tractor       brakes  300
+    3:Tractor       tires   2000
 
 To get more complicated, we can pass the `-E` parameter (for *extended* regular expressions) and start doing some really fun stuff. Let's look for lines with either "Tractor" or "Truck":
 
-~~~~ {.bash}
-$ grep -E "Tractor|Truck" invoices
-Tractor brakes  300
-Tractor motor   1000
-Tractor tires   2000
-Truck   brakes  200
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-~~~~
+    $ grep -E "Tractor|Truck" invoices
+    Tractor brakes  300
+    Tractor motor   1000
+    Tractor tires   2000
+    Truck   brakes  200
+    Truck   tires   400
+    Truck   tires   400
+    Truck   tires   400
+    Truck   winch   100
 
 For me, the following keep coming up when using regular expressions:
 
@@ -1998,37 +1794,31 @@ For me, the following keep coming up when using regular expressions:
 
 For example, to find the lines that end in `400`:
 
-~~~~ {.bash}
-$ grep  -E "^*400$" invoices
-Combine brakes  400
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-~~~~
+    $ grep  -E "^*400$" invoices
+    Combine brakes  400
+    Truck   tires   400
+    Truck   tires   400
+    Truck   tires   400
 
 Groveling With `grep`
 ---------------------
 
 To recursively find all files that contain the string "pdfinfo":
 
-~~~~ {.bash}
-$ grep -R -i pdfinfo *
-./FileCheckers/otschecker:# pdfinfo, too. If pdfinfo thinks it's junk, ...
-./FileCheckers/otschecker:        pdfinfo=`pdfinfo -opw foo "$1" 2>&1 1...
-./FileCheckers/otschecker:        if [ $rc != 0 -a "$pdfinfo" != "Comma...
-./FileCheckers/pdfchecker:        # pdfinfo, too. If pdfinfo thinks it'...
-./FileCheckers/pdfchecker:                pdfinfo=`pdfinfo "$1" > /dev/...
-./FileCheckers/pdfpwdchecker:# pdfinfo, too. If pdfinfo thinks it's jun...
-./FileCheckers/pdfpwdchecker:        pdfinfo=`pdfinfo -opw foo "$1" 2>&...
-./FileCheckers/pdfpwdchecker:        if [ $rc != 0 -a "$pdfinfo" = "Com...
-./FileCheckers/README.md:* ***[pdfinfo(1)](http://linux.die.net/man/1/p...
-~~~~
+    $ grep -R -i pdfinfo *
+    ./FileCheckers/otschecker:# pdfinfo, too. If pdfinfo thinks it's junk, ...
+    ./FileCheckers/otschecker:        pdfinfo=`pdfinfo -opw foo "$1" 2>&1 1...
+    ./FileCheckers/otschecker:        if [ $rc != 0 -a "$pdfinfo" != "Comma...
+    ./FileCheckers/pdfchecker:        # pdfinfo, too. If pdfinfo thinks it'...
+    ./FileCheckers/pdfchecker:                pdfinfo=`pdfinfo "$1" > /dev/...
+    ./FileCheckers/pdfpwdchecker:# pdfinfo, too. If pdfinfo thinks it's jun...
+    ./FileCheckers/pdfpwdchecker:        pdfinfo=`pdfinfo -opw foo "$1" 2>&...
+    ./FileCheckers/pdfpwdchecker:        if [ $rc != 0 -a "$pdfinfo" = "Com...
+    ./FileCheckers/README.md:* ***[pdfinfo(1)](http://linux.die.net/man/1/p...
 
 The above is functionally equivalent but ***much*** quicker than:
 
-~~~~ {.bash}
-$ find . -type f -exec grep -H -i pdfinfo \{\} \; 
-~~~~
+    $ find . -type f -exec grep -H -i pdfinfo \{\} \; 
 
 **Note:** In general, if a command has its own "recursive" option (such as `-R` with `grep`), it is quicker to use that rather than to invoke the command repeatedly using `find` instead.
 
@@ -2036,10 +1826,8 @@ However, sometimes you can use `find` to filter down files to be checked before 
 
 For example, if you only wanted to check files that contain "pdfinfo" that have been created or modified since the last time you checked, it could be quicker to run something like:
 
-~~~~ {.bash}
-$ find . ! -name pdfinfo.log -newer pdfinfo.log -type f -exec grep -H \
--i pdfinfo \{\} \; > pdfinfo.log
-~~~~
+    $ find . ! -name pdfinfo.log -newer pdfinfo.log -type f -exec grep -H \
+    -i pdfinfo \{\} \; > pdfinfo.log
 
 This says to ignore files named "pdfinfo.log" (`! -name pdfinfo.log`) and otherwise look for files (`-type f`) containing "pdfinfo" (`-exec grep ...`) that haven't been checked since the last time "pdfinfo.log" was modified (`-newer pdfinfo.log`). In my tests the first run (which initially creates the "pdfinfo.log" file) ran in 30 seconds but subsequents runs took just a few seconds. This was because the number of files to be searched through all directories was big enough it paid to pre-filter the results before handing them to `grep`.
 
@@ -2060,24 +1848,22 @@ That said, it is a powerful knife in the tool belt, and you should be aware it e
 
 To whet your taste, here is the type of "one-liner" for which `awk` is famous, in this case [formatting and printing a report on user ids](http://www.ibm.com/developerworks/library/l-awk1/) from `/etc/passwd`:
 
-~~~~ {.bash}
-$ awk -F":" '{ print "username: " $1 "\t\tuid:" $3 }' /etc/passwd
-username: root      uid:0
-username: daemon        uid:1
-username: bin       uid:2
-username: sys       uid:3
-username: sync      uid:4
-username: games     uid:5
-username: man       uid:6
-username: lp        uid:7
-username: mail      uid:8
-username: news      uid:9
-username: uucp      uid:10
-...and so on...
-~~~~
+    $ awk -F":" '{ print "username: " $1 "\t\tuid:" $3 }' /etc/passwd
+    username: root      uid:0
+    username: daemon        uid:1
+    username: bin       uid:2
+    username: sys       uid:3
+    username: sync      uid:4
+    username: games     uid:5
+    username: man       uid:6
+    username: lp        uid:7
+    username: mail      uid:8
+    username: news      uid:9
+    username: uucp      uid:10
+    ...and so on...
 
-Step 5. “Just a Series of Pipes”
-================================
+“Just a Series of Pipes”
+========================
 
 ***`stdin`/`stdout`/`stderr`, redirects and piping between commands.***
 
@@ -2099,14 +1885,12 @@ When a program written in C calls `printf`, it is writing to `stdout`. When a `b
 
 In this example, `cat` is started with no file name, so it will read from `stdin` (a quite common "UNIX" command convention), and echo each line to `stdout` until the "end of file," which in an interactive session can be emulated with `Ctrl-D`, in the example below shown as `^D` but not seen on the console in real life:
 
-~~~~ {.bash}
-$ cat
-This shows reading from stdin
-This shows reading from stdin
-and writing to stdout.
-and writing to stdout.
-^D
-~~~~
+    $ cat
+    This shows reading from stdin
+    This shows reading from stdin
+    and writing to stdout.
+    and writing to stdout.
+    ^D
 
 All Magic is Redirection
 ------------------------
@@ -2115,113 +1899,95 @@ So one way to string things together in "the UNIX way" is with file redirection.
 
 Let's create a file with a single line of text in it. One way would be to `vi newfilename`, edit the file, save it, and exit `vi`. A quicker way is to simply use file redirection:
 
-~~~~ {.bash}
-$ echo Hello, world > hw
+    $ echo Hello, world > hw
 
-$ ls -l
-total 1
--rw-rwxr--+ 1 myuser mygroup 13 Oct 22 10:40 hw
+    $ ls -l
+    total 1
+    -rw-rwxr--+ 1 myuser mygroup 13 Oct 22 10:40 hw
 
-$ cat hw
-Hello, world
-~~~~
+    $ cat hw
+    Hello, world
 
 In this case the `> hw` tells `bash` to take the output that `echo` sends to `stdout` and send it to the file `hw` instead.
 
 As mentioned above many "UNIX" commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from `stdin`. The `cat` command does that. While it doesn't save us anything over the above example, the following is illustrative of redirecting a file to `stdin` for a command or program:
 
-~~~~ {.bash}
-$ cat < hw
-Hello, world
-~~~~
+    $ cat < hw
+    Hello, world
 
 Finally, we need to deal with `stderr`. By convention it is sent to the console just like `stdout`, and that can make output confusing:
 
-~~~~ {.bash}
-$ echo This is a > a
+    $ echo This is a > a
 
-$ echo This is b > b
+    $ echo This is b > b
 
-$ echo This is c > c
+    $ echo This is c > c
 
-$ mkdir d
+    $ mkdir d
 
-$ echo This is e > d/e
+    $ echo This is e > d/e
 
-$ find . -exec cat \{\} \;
-cat: .: Is a directory
-This is a
-This is b
-This is c
-cat: ./d: Is a directory
-This is e
-~~~~
+    $ find . -exec cat \{\} \;
+    cat: .: Is a directory
+    This is a
+    This is b
+    This is c
+    cat: ./d: Is a directory
+    This is e
 
 In the above, between echoing the contents of the `a`, `b`, `c` and `e` files, we see two error messages from `cat` complaining that `.` and `d` are directories. These are being emitted on `stderr`. One way to get rid of them would be to change find to filter for only files:
 
-~~~~ {.bash}
-$ find . -type f -exec cat \{\} \;
-This is a
-This is b
-This is c
-This is e
-~~~~
+    $ find . -type f -exec cat \{\} \;
+    This is a
+    This is b
+    This is c
+    This is e
 
 But let's say the example is not so trivial, and we want to capture and log the error messages separately for later analysis. While we've seen `<` used to represent redirecting `stdin` and `>` used for redirecting `stdout`, how do we tell the shell we want to redirect `stderr`? Remember the discussion about file handles above? That's where those esoteric numbers come in handy! Consider the original problem of `stderr` being intermingled with `stdout`:
 
-~~~~ {.bash}
-$ find . -exec cat \{\} \;
-cat: .: Is a directory
-This is a
-This is b
-This is c
-cat: ./d: Is a directory
-This is e
-~~~~
+    $ find . -exec cat \{\} \;
+    cat: .: Is a directory
+    This is a
+    This is b
+    This is c
+    cat: ./d: Is a directory
+    This is e
 
 To redirect `stderr` we recall it is ***always*** file descriptor 2, and then we can use:
 
-~~~~ {.bash}
-$ find . -exec cat \{\} \; 2>/tmp/finderrors.log
-This is a
-This is b
-This is c
-This is e
+    $ find . -exec cat \{\} \; 2>/tmp/finderrors.log
+    This is a
+    This is b
+    This is c
+    This is e
 
-$ cat /tmp/finderrors.log
-cat: .: Is a directory
-cat: ./d: Is a directory
-~~~~
+    $ cat /tmp/finderrors.log
+    cat: .: Is a directory
+    cat: ./d: Is a directory
 
 The `2>/tmp/finderrors.log` is the magic that is redirecting file descriptor 2 (`stderr`) to the log file `/tmp/finderrors.log`.
 
 A very common paradigm is to capture both `stdout` and `stderr` to the same file. Here is how that is done, again using file descriptors:
 
-~~~~ {.bash}
-$ find . -exec cat \{\} \; >/tmp/find.log 2>&1
+    $ find . -exec cat \{\} \; >/tmp/find.log 2>&1
 
-$ cat /tmp/find.log
-cat: .: Is a directory
-This is a
-This is b
-This is c
-cat: ./d: Is a directory
-This is e
-~~~~
+    $ cat /tmp/find.log
+    cat: .: Is a directory
+    This is a
+    This is b
+    This is c
+    cat: ./d: Is a directory
+    This is e
 
 Now we see `stdout` being redirected to `/tmp/find.log` with `>/tmp/find.log`, and `stderr` (file descriptor 2) being sent to the same place as `stdout` (file descriptor 1) with `2>&1`.
 
 One final note is the difference between creating or re-writing a file and appending to it using redirection. The following creates a new `/tmp/find.log` file every time it runs (there is no need to `rm` it first):
 
-~~~~ {.bash}
-$ find . -exec cat \{\} \; >/tmp/find.log
-~~~~
+    $ find . -exec cat \{\} \; >/tmp/find.log
 
 However, the next sample creates a new `/tmp/find.log` file if it doesn't exist, but otherwise appends to it:
 
-~~~~ {.bash}
-$ find . -exec cat \{\} \; >>/tmp/find.log
-~~~~
+    $ find . -exec cat \{\} \; >>/tmp/find.log
 
 **Note:** There is also a variation on input redirection using `<<`, but it is used mostly in scripting and is outside the scope of this book.
 
@@ -2230,9 +1996,7 @@ Everyone Line Up
 
 So we can see that we could pass things between programs by redirecting `stdout` to a file and then redirecting that file to `stdin` on the next program, and so on. But "UNIX" environments take it a bit further with the concept of a command "pipeline" that allows directly sending `stdout` from one program into `stdin` of another.
 
-~~~~ {.bash}
-$ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
-~~~~
+    $ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
 
 This little one-liner starts showing off the usefulness of small programs, each doing one thing. In this case:
 
@@ -2252,14 +2016,12 @@ There are some nice performance benefits for this approach, too. In general Linu
 
 Finally, if you want to capture something to a file ***and*** see it on the console at the same time, that is where the [`tee`](http://linux.die.net/man/1/tee) command comes in:
 
-~~~~ {.bash}
-find . -name error.log | tee > errorlogs.txt
-~~~~
+    find . -name error.log | tee > errorlogs.txt
 
 This would write the results of finding all files names `error.log` to the console and also to `errorlogs.txt`. This is useful when you are manually running things and want to see the results immediately, but also want a log of what you did.
 
-Step 6. `vi`
-============
+`vi`
+====
 
 ***How to stay sane for 10 minutes in `vi`. Navigation, basic editing, find, change/change-all, cut and paste, undo, saving and canceling. Plus easier alternatives like `nano`, and why `vi` still matters.***
 
@@ -2631,8 +2393,8 @@ So why not always use `nano`? Why does this book harp on and on `vi`? Why do I i
 
 And if you have the opportunity to use `emacs`...don't.
 
-Step 7. The Whole Wide World
-============================
+The Whole Wide World
+====================
 
 ***`curl`, `wget`, `ifconfig`, `ping`, `ssh`, `telnet`, `/etc/hosts` and email before Outlook.***
 
@@ -2642,90 +2404,82 @@ If Sun's motto, "The network is the computer" is correct, then of course Linux a
 
 For example, our friend [`ping`](http://linux.die.net/man/8/ping) is there:
 
-~~~~ {.bash}
-# ping www.yahoo.com
-PING fd-fp3.wg1.b.yahoo.com (98.138.253.109) 56(84) bytes of data.
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=1 ttl=...
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=2 ttl=...
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=3 ttl=...
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=4 ttl=...
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=5 ttl=...
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=6 ttl=...
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=7 ttl=...
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=8 ttl=...
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=9 ttl=...
-64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=10 ttl...
-^C
---- fd-fp3.wg1.b.yahoo.com ping statistics ---
-10 packets transmitted, 10 received, 0% packet loss, time 9004ms
-rtt min/avg/max/mdev = 59.933/62.581/70.935/3.191 ms
-~~~~
+    # ping www.yahoo.com
+    PING fd-fp3.wg1.b.yahoo.com (98.138.253.109) 56(84) bytes of data.
+    64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=1 ttl=...
+    64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=2 ttl=...
+    64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=3 ttl=...
+    64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=4 ttl=...
+    64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=5 ttl=...
+    64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=6 ttl=...
+    64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=7 ttl=...
+    64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=8 ttl=...
+    64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=9 ttl=...
+    64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=10 ttl...
+    ^C
+    --- fd-fp3.wg1.b.yahoo.com ping statistics ---
+    10 packets transmitted, 10 received, 0% packet loss, time 9004ms
+    rtt min/avg/max/mdev = 59.933/62.581/70.935/3.191 ms
 
 One difference with `ping` is that by default in Linux `ping` doesn't stop until the user presses `Ctrl-C` (which sends the [`SIGINT` interrupt](https://en.wikipedia.org/wiki/Unix_signal) to the program). In this way it acts more like `ping -t` in `CMD.EXE`. Also, be aware that on Cygwin `ping` is still the system (Windows) `ping`.
 
 [`traceroute`](http://linux.die.net/man/8/traceroute) works, too (although for once its name is longer than the `CMD.EXE` counterpart).
 
-~~~~ {.bash}
-# traceroute www.yahoo.com
-traceroute to www.yahoo.com (98.138.252.30), 30 hops max, 60 byte packets
- 1  10.208.3.254 (10.208.3.254)  0.720 ms  0.706 ms  0.693 ms
- 2  10.208.6.53 (10.208.6.53)  0.808 ms  0.896 ms  0.943 ms
- 3  10.208.6.46 (10.208.6.46)  2.632 ms  2.636 ms  2.634 ms
- 4  kcm-priv-20.inet.qwest.net (63.159.159.185)  30.786 ms  30.852 ms  3...
- 5  * * *
- 6  67.134.114.230 (67.134.114.230)  30.441 ms  29.811 ms  30.372 ms
- 7  67.130.10.174 (67.130.10.174)  32.267 ms  32.700 ms  32.789 ms
- 8  67.130.10.103 (67.130.10.103)  32.416 ms  32.421 ms  32.420 ms
- 9  min-edge-13.inet.qwest.net (67.130.30.21)  33.878 ms  31.719 ms  34....
-10  chp-brdr-03.inet.qwest.net (67.14.8.194)  45.668 ms  55.177 ms  45.6...
-11  63.146.27.18 (63.146.27.18)  46.371 ms  46.333 ms  47.234 ms
-...and so on...
-~~~~
+    # traceroute www.yahoo.com
+    traceroute to www.yahoo.com (98.138.252.30), 30 hops max, 60 byte packets
+     1  10.208.3.254 (10.208.3.254)  0.720 ms  0.706 ms  0.693 ms
+     2  10.208.6.53 (10.208.6.53)  0.808 ms  0.896 ms  0.943 ms
+     3  10.208.6.46 (10.208.6.46)  2.632 ms  2.636 ms  2.634 ms
+     4  kcm-priv-20.inet.qwest.net (63.159.159.185)  30.786 ms  30.852 ms  3...
+     5  * * *
+     6  67.134.114.230 (67.134.114.230)  30.441 ms  29.811 ms  30.372 ms
+     7  67.130.10.174 (67.130.10.174)  32.267 ms  32.700 ms  32.789 ms
+     8  67.130.10.103 (67.130.10.103)  32.416 ms  32.421 ms  32.420 ms
+     9  min-edge-13.inet.qwest.net (67.130.30.21)  33.878 ms  31.719 ms  34....
+    10  chp-brdr-03.inet.qwest.net (67.14.8.194)  45.668 ms  55.177 ms  45.6...
+    11  63.146.27.18 (63.146.27.18)  46.371 ms  46.333 ms  47.234 ms
+    ...and so on...
 
 You can do some digging in DNS with `dig`:
 
-~~~~ {.bash}
-# dig yahoo.com
+    # dig yahoo.com
 
-; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> yahoo.com
-;; global options: +cmd
-;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18148
-;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 0
+    ; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> yahoo.com
+    ;; global options: +cmd
+    ;; Got answer:
+    ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18148
+    ;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 0
 
-;; QUESTION SECTION:
-;yahoo.com.                     IN      A
+    ;; QUESTION SECTION:
+    ;yahoo.com.                     IN      A
 
-;; ANSWER SECTION:
-yahoo.com.              1705    IN      A       206.190.36.45
-yahoo.com.              1705    IN      A       98.139.183.24
-yahoo.com.              1705    IN      A       98.138.253.109
+    ;; ANSWER SECTION:
+    yahoo.com.              1705    IN      A       206.190.36.45
+    yahoo.com.              1705    IN      A       98.139.183.24
+    yahoo.com.              1705    IN      A       98.138.253.109
 
-;; Query time: 17 msec
-;; SERVER: 10.208.2.4#53(10.208.2.4)
-;; WHEN: Fri Oct 23 13:16:51 2015
-;; MSG SIZE  rcvd: 75
-~~~~
+    ;; Query time: 17 msec
+    ;; SERVER: 10.208.2.4#53(10.208.2.4)
+    ;; WHEN: Fri Oct 23 13:16:51 2015
+    ;; MSG SIZE  rcvd: 75
 
 And `whois`:
 
-~~~~ {.bash}
-# whois yahoo.com
+    # whois yahoo.com
 
-Whois Server Version 2.0
+    Whois Server Version 2.0
 
-Domain names in the .com and .net domains can now be registered
-with many different competing registrars. Go to http://www.internic.net
-for detailed information.
+    Domain names in the .com and .net domains can now be registered
+    with many different competing registrars. Go to http://www.internic.net
+    for detailed information.
 
-   Server Name: YAHOO.COM.ACCUTAXSERVICES.COM
-   IP Address: 98.136.43.32
-   IP Address: 66.196.84.168
-   Registrar: WILD WEST DOMAINS, LLC
-   Whois Server: whois.wildwestdomains.com
-   Referral URL: http://www.wildwestdomains.com
-...and so on...
-~~~~
+       Server Name: YAHOO.COM.ACCUTAXSERVICES.COM
+       IP Address: 98.136.43.32
+       IP Address: 66.196.84.168
+       Registrar: WILD WEST DOMAINS, LLC
+       Whois Server: whois.wildwestdomains.com
+       Referral URL: http://www.wildwestdomains.com
+    ...and so on...
 
 `sudo` Make Me a Sandwich
 -------------------------
@@ -2738,31 +2492,27 @@ In a sense, `sudo` is similar to Windows User Access Control (UAC, or "Are you s
 
 Here is a really common example on Debian-based systems:
 
-~~~~ {.bash}
-$ apt-get update
-E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permissi...
-E: Unable to lock directory /var/lib/apt/lists/
-E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission de...
-E: Unable to lock the administration directory (/var/lib/dpkg/), are you...
-~~~~
+    $ apt-get update
+    E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permissi...
+    E: Unable to lock directory /var/lib/apt/lists/
+    E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission de...
+    E: Unable to lock the administration directory (/var/lib/dpkg/), are you...
 
 The error message, especially the last line, is pretty clear. Let's try it again with `sudo`:
 
-~~~~ {.bash}
-$ sudo apt-get update
-[sudo] password for myuser: 
-Ign http://extra.linuxmint.com rafaela InRelease
-Ign http://packages.linuxmint.com rafaela InRelease                            
-Hit http://security.ubuntu.com trusty-security InRelease                       
-Hit http://extra.linuxmint.com rafaela Release.gpg                             
-Hit http://packages.linuxmint.com rafaela Release.gpg                          
-Hit http://security.ubuntu.com trusty-security/main amd64 Packages             
-Ign http://archive.ubuntu.com trusty InRelease                                 
-Ign http://archive.canonical.com trusty InRelease                              
-Hit http://security.ubuntu.com trusty-security/restricted amd64 Packages       
-Hit http://extra.linuxmint.com rafaela Release                
-...and so on...
-~~~~
+    $ sudo apt-get update
+    [sudo] password for myuser: 
+    Ign http://extra.linuxmint.com rafaela InRelease
+    Ign http://packages.linuxmint.com rafaela InRelease                            
+    Hit http://security.ubuntu.com trusty-security InRelease                       
+    Hit http://extra.linuxmint.com rafaela Release.gpg                             
+    Hit http://packages.linuxmint.com rafaela Release.gpg                          
+    Hit http://security.ubuntu.com trusty-security/main amd64 Packages             
+    Ign http://archive.ubuntu.com trusty InRelease                                 
+    Ign http://archive.canonical.com trusty InRelease                              
+    Hit http://security.ubuntu.com trusty-security/restricted amd64 Packages       
+    Hit http://extra.linuxmint.com rafaela Release                
+    ...and so on...
 
 Now you should get the punchline to [this comic](https://xkcd.com/149/), and hence the title of this section.
 
@@ -2786,15 +2536,11 @@ You can browse the web from the command prompt using something like [`lynx`](htt
 
 There are two other commands that are used to pull down web resources and save them locally - [`curl`](http://linux.die.net/man/1/curl) and [`wget`](http://linux.die.net/man/1/wget). Both support HTTP(S) and FTP, but `curl` supports even more protocols and options, while `curl` tends to be the simplest to just "grab a file and go." You see both used often in install scripts that then download more bits from the internet:
 
-~~~~ {.bash}
-wget -O - http://foocorp.com/installs/install.sh | bash
-~~~~
+    wget -O - http://foocorp.com/installs/install.sh | bash
 
 Or:
 
-~~~~ {.bash}
-curl http://foocorp.com/installs/install.sh | bash
-~~~~
+    curl http://foocorp.com/installs/install.sh | bash
 
 **Note:** As always, you should be cautious when downloading and executing arbitrary bits, and this technique doesn't lessen your responsibility there.
 
@@ -2805,57 +2551,49 @@ You can send and receive email from the command prompt. Reading email will be ra
 
 Sending email is more interesting, especially from shell scripts. There are multiple ways, but [`email`](http://linux.die.net/man/1/email) is straightforward enough:
 
-~~~~ {.bash}
-email --blank-mail --subject "Possibly corrupted files found..." \
-  --smtp-server smtp --attach badfiles.csv --from-name NoReply \
-  --from-addr noreply@mycorp.com alert@mycorp.com
-~~~~
+    email --blank-mail --subject "Possibly corrupted files found..." \
+      --smtp-server smtp --attach badfiles.csv --from-name NoReply \
+      --from-addr noreply@mycorp.com alert@mycorp.com
 
 Let's Connect
 -------------
 
 There are two primary ways to get an interactive "shell" session on a remote machine. The first is the venerable [`telnet`](http://linux.die.net/man/1/telnet) command. It isn't used very often for actual interactive sessions any more (for one, because it sends credentials in plain text on the wire). However, because you can specify the port number, it is still handy for testing and debugging text-based protocols such as SMTP or HTTP. In the following, after opening a `telnet` connection on port 80 to Google, I simply entered the HTTP protocol sequence `GET / HTTP/1.1` followed by a blank line to get Google to return its home page:
 
-~~~~ {.bash}
-# telnet google.com 80
-Trying 216.58.216.110...
-Connected to google.com.
-Escape character is '^]'.
-GET / HTTP/1.1
+    # telnet google.com 80
+    Trying 216.58.216.110...
+    Connected to google.com.
+    Escape character is '^]'.
+    GET / HTTP/1.1
 
-HTTP/1.1 200 OK
-Date: Fri, 23 Oct 2015 18:26:04 GMT
-Expires: -1
-Cache-Control: private, max-age=0
-Content-Type: text/html; charset=ISO-8859-1
-P3P: CP="This is not a P3P policy! See http://www.google.com/support/acc...
-Server: gws
-X-XSS-Protection: 1; mode=block
-X-Frame-Options: SAMEORIGIN
-Set-Cookie: PREF=ID=1111111111111111:FF=0:TM=1445624764:LM=1445624764:V=...
-Set-Cookie: NID=72=HLgGubMnO1ThhvhOAmvehue96EKTh9D6F19zidZQU-E9AibEg2Op6...
-Accept-Ranges: none
-Vary: Accept-Encoding
-Transfer-Encoding: chunked
+    HTTP/1.1 200 OK
+    Date: Fri, 23 Oct 2015 18:26:04 GMT
+    Expires: -1
+    Cache-Control: private, max-age=0
+    Content-Type: text/html; charset=ISO-8859-1
+    P3P: CP="This is not a P3P policy! See http://www.google.com/support/acc...
+    Server: gws
+    X-XSS-Protection: 1; mode=block
+    X-Frame-Options: SAMEORIGIN
+    Set-Cookie: PREF=ID=1111111111111111:FF=0:TM=1445624764:LM=1445624764:V=...
+    Set-Cookie: NID=72=HLgGubMnO1ThhvhOAmvehue96EKTh9D6F19zidZQU-E9AibEg2Op6...
+    Accept-Ranges: none
+    Vary: Accept-Encoding
+    Transfer-Encoding: chunked
 
-8000
-<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage"...
-...and so on...
-~~~~
+    8000
+    <!doctype html><html itemscope="" itemtype="http://schema.org/WebPage"...
+    ...and so on...
 
 To get a modern, secure shell to a remote machine, use [`ssh`](http://linux.die.net/man/1/ssh), passing in the userid and server like this:
 
-~~~~ {.bash}
-ssh myuser@remoteserver
-~~~~
+    ssh myuser@remoteserver
 
 You will be prompted for credentials (or you can use certificates, but that is ***way*** beyond this text's goals).
 
 You can also use the `SSH` protocol to securely transfer files between systems with the [`scp`](linux.die.net/man/1/scp) command. It works like this for a recursive directory copy:
 
-~~~~ {.bash}
-scp -r myfiles/* myuser@remoteserver:/home/myuser/myfiles/.
-~~~~
+    scp -r myfiles/* myuser@remoteserver:/home/myuser/myfiles/.
 
 In this case we are copying the files in `myfiles` and its subdirectories to `/home/myuser/myfiles/` on `remoteserver` logged in as `myuser`.
 
@@ -2883,48 +2621,42 @@ Network Configuration
 
 We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig). While you can use `ifconfig` to alter your networking settings, it is most commonly used to get a quick display of them:
 
-~~~~ {.bash}
-# ifconfig
-eth0      Link encap:Ethernet  HWaddr 00:00:56:a3:35:fe
-          inet addr:10.0.2.3  Bcast:10.0.2.255  Mask:255.255.252.0
-          inet6 addr: fe80::255:56ff:fea3:35fe/64 Scope:Link
-          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-          RX packets:364565022 errors:0 dropped:386406 overruns:0 frame:0
-          TX packets:35097654 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:1000
-          RX bytes:34727642861 (32.3 GiB)  TX bytes:195032017498 (181.6 GiB)
+    # ifconfig
+    eth0      Link encap:Ethernet  HWaddr 00:00:56:a3:35:fe
+              inet addr:10.0.2.3  Bcast:10.0.2.255  Mask:255.255.252.0
+              inet6 addr: fe80::255:56ff:fea3:35fe/64 Scope:Link
+              UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+              RX packets:364565022 errors:0 dropped:386406 overruns:0 frame:0
+              TX packets:35097654 errors:0 dropped:0 overruns:0 carrier:0
+              collisions:0 txqueuelen:1000
+              RX bytes:34727642861 (32.3 GiB)  TX bytes:195032017498 (181.6 GiB)
 
-lo        Link encap:Local Loopback
-          inet addr:127.0.0.1  Mask:255.0.0.0
-          inet6 addr: ::1/128 Scope:Host
-          UP LOOPBACK RUNNING  MTU:16436  Metric:1
-          RX packets:111207 errors:0 dropped:0 overruns:0 frame:0
-          TX packets:111207 errors:0 dropped:0 overruns:0 carrier:0
-          collisions:0 txqueuelen:0
-          RX bytes:6839306 (6.5 MiB)  TX bytes:6839306 (6.5 MiB)
-~~~~
+    lo        Link encap:Local Loopback
+              inet addr:127.0.0.1  Mask:255.0.0.0
+              inet6 addr: ::1/128 Scope:Host
+              UP LOOPBACK RUNNING  MTU:16436  Metric:1
+              RX packets:111207 errors:0 dropped:0 overruns:0 frame:0
+              TX packets:111207 errors:0 dropped:0 overruns:0 carrier:0
+              collisions:0 txqueuelen:0
+              RX bytes:6839306 (6.5 MiB)  TX bytes:6839306 (6.5 MiB)
 
 To see what DNS servers the system is using:
 
-~~~~ {.bash}
-# cat /etc/resolv.conf
-domain mydomain.com
-search mydomain.com
-nameserver 10.0.2.1
-nameserver 10.0.2.2
-~~~~
+    # cat /etc/resolv.conf
+    domain mydomain.com
+    search mydomain.com
+    nameserver 10.0.2.1
+    nameserver 10.0.2.2
 
 And to see any local overrides of network names or aliases:
 
-~~~~ {.bash}
-# cat /etc/hosts
-127.0.0.1       localhost
-~~~~
+    # cat /etc/hosts
+    127.0.0.1       localhost
 
 **Note:** The UNIX `hosts` file is the basis for the Windows version (`C:\Windows\System32\drivers\etc\hosts`) and has similar syntax.
 
-Step 8. The Man Behind the Curtain
-==================================
+The Man Behind the Curtain
+==========================
 
 ***`/proc`, `/dev`, `ps`, `/var/log`, `/tmp` and other things under the covers.***
 
@@ -2937,38 +2669,32 @@ All Part of the Process
 
 To see what *processes* you are running, use [`ps`](http://linux.die.net/man/1/ps):
 
-~~~~ {.bash}
-# ps
-  PID TTY          TIME CMD
-14691 pts/0    00:00:00 bash
-25530 pts/0    00:00:00 ps
-~~~~
+    # ps
+      PID TTY          TIME CMD
+    14691 pts/0    00:00:00 bash
+    25530 pts/0    00:00:00 ps
 
 To show processes from *all* users in a process *hierarchy* (child processes indented under parents), use `ps -AH`:
 
-~~~~ {.bash}
-ps -AH
-# ps -AH
-  PID TTY          TIME CMD
-    2 ?        00:00:00 kthreadd
-    3 ?        00:05:00   ksoftirqd/0
-    5 ?        00:00:00   kworker/u:0
-    6 ?        00:02:38   migration/0
-    7 ?        00:01:06   watchdog/0
-    8 ?        00:02:37   migration/1
-   10 ?        00:05:02   ksoftirqd/1
-   12 ?        00:00:59   watchdog/1
-   13 ?        00:00:00   cpuset
-   14 ?        00:00:00   khelper
-   15 ?        00:00:00   kdevtmpfs
-...and so on...
-~~~~
+    ps -AH
+    # ps -AH
+      PID TTY          TIME CMD
+        2 ?        00:00:00 kthreadd
+        3 ?        00:05:00   ksoftirqd/0
+        5 ?        00:00:00   kworker/u:0
+        6 ?        00:02:38   migration/0
+        7 ?        00:01:06   watchdog/0
+        8 ?        00:02:37   migration/1
+       10 ?        00:05:02   ksoftirqd/1
+       12 ?        00:00:59   watchdog/1
+       13 ?        00:00:00   cpuset
+       14 ?        00:00:00   khelper
+       15 ?        00:00:00   kdevtmpfs
+    ...and so on...
 
 You can *kill* a process using the [`kill`](http://linux.die.net/man/1/kill) command, which takes a process id and optionally a "signal". Here is an example looking for any running instance of `vi` and sending it a `kill` command:
 
-~~~~ {.bash}
-ps -A | grep vi | kill `cut -f2 -d" "`
-~~~~
+    ps -A | grep vi | kill `cut -f2 -d" "`
 
 That's:
 
@@ -2986,29 +2712,27 @@ That's:
 
 To monitor the ongoing CPU, memory and other resource utilization of the *top* processes, you use the [`top`](http://linux.die.net/man/1/top) command, which unlike most in this book updates dynamically every second by default:
 
-~~~~ {.bash}
-top - 14:11:26 up 106 days,  5:24,  2 users,  load average: 0.11, 0.05, ...
-Tasks:  95 total,   1 running,  94 sleeping,   0 stopped,   0 zombie
-%Cpu(s):  0.2 us,  0.8 sy,  0.0 ni, 99.0 id,  0.0 wa,  0.0 hi,  0.0 si, ...
-KiB Mem:   2061136 total,  1909468 used,   151668 free,   151632 buffers
-KiB Swap:  4191228 total,   287620 used,  3903608 free,   654900 cached
+    top - 14:11:26 up 106 days,  5:24,  2 users,  load average: 0.11, 0.05, ...
+    Tasks:  95 total,   1 running,  94 sleeping,   0 stopped,   0 zombie
+    %Cpu(s):  0.2 us,  0.8 sy,  0.0 ni, 99.0 id,  0.0 wa,  0.0 hi,  0.0 si, ...
+    KiB Mem:   2061136 total,  1909468 used,   151668 free,   151632 buffers
+    KiB Swap:  4191228 total,   287620 used,  3903608 free,   654900 cached
 
-  PID USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
- 9715 git       20   0  525m 230m 4376 S   0.7 11.4  10:11.44 ruby
- 9171 git       20   0  520m 229m 4672 S   0.3 11.4  10:27.97 ruby
-22899 root      20   0     0    0    0 S   0.3  0.0   0:30.16 kworker/1:0
-    1 root      20   0 10648  584  560 S   0.0  0.0   1:02.60 init
-    2 root      20   0     0    0    0 S   0.0  0.0   0:00.00 kthreadd
-    3 root      20   0     0    0    0 S   0.0  0.0   0:38.05 ksoftirqd/0
-    5 root      20   0     0    0    0 S   0.0  0.0   0:00.00 kworker/u:0
-    6 root      rt   0     0    0    0 S   0.0  0.0   0:12.23 migration/0
-    7 root      rt   0     0    0    0 S   0.0  0.0   0:24.83 watchdog/0
-    8 root      rt   0     0    0    0 S   0.0  0.0   0:13.01 migration/1
-   10 root      20   0     0    0    0 S   0.0  0.0   0:34.55 ksoftirqd/1
-   12 root      rt   0     0    0    0 S   0.0  0.0   0:21.38 watchdog/1
-   13 root       0 -20     0    0    0 S   0.0  0.0   0:00.00 cpuset
-...and so on...
-~~~~
+      PID USER      PR  NI  VIRT  RES  SHR S  %CPU %MEM    TIME+  COMMAND
+     9715 git       20   0  525m 230m 4376 S   0.7 11.4  10:11.44 ruby
+     9171 git       20   0  520m 229m 4672 S   0.3 11.4  10:27.97 ruby
+    22899 root      20   0     0    0    0 S   0.3  0.0   0:30.16 kworker/1:0
+        1 root      20   0 10648  584  560 S   0.0  0.0   1:02.60 init
+        2 root      20   0     0    0    0 S   0.0  0.0   0:00.00 kthreadd
+        3 root      20   0     0    0    0 S   0.0  0.0   0:38.05 ksoftirqd/0
+        5 root      20   0     0    0    0 S   0.0  0.0   0:00.00 kworker/u:0
+        6 root      rt   0     0    0    0 S   0.0  0.0   0:12.23 migration/0
+        7 root      rt   0     0    0    0 S   0.0  0.0   0:24.83 watchdog/0
+        8 root      rt   0     0    0    0 S   0.0  0.0   0:13.01 migration/1
+       10 root      20   0     0    0    0 S   0.0  0.0   0:34.55 ksoftirqd/1
+       12 root      rt   0     0    0    0 S   0.0  0.0   0:21.38 watchdog/1
+       13 root       0 -20     0    0    0 S   0.0  0.0   0:00.00 cpuset
+    ...and so on...
 
 **Note:** Use `Q` or `Ctrl-C` to exit `top`.
 
@@ -3019,98 +2743,88 @@ Remember that one of the primary UNIX philosophies is that everything is a file 
 
 One of the places this has become really handy is in the `/proc` "file system." On modern Linux systems, there is typically a `/proc` directory that looks like directories and files:
 
-~~~~ {.bash}
-# ls /proc
-1     1776  2     2244   2308   2415   2599   2693   5     9171       cm...
-10    178   20    2269   2311   2416   26     3      5030  9174       co...
-12    1781  2052  2287   2333   2417   2611   3120   5032  9715       cp...
-13    1783  21    22899  2338   2418   2612   31651  560   9718       cr...
-130   1790  211   2297   2367   2422   2613   3197   570   99         de...
-14    18    212   23     23835  2432   2614   32502  5991  acpi       di...
-15    180   2165  2304   23841  24426  2615   355    6     asound     dma
-16    181   2191  2305   2395   25     2616   4691   7     buddyinfo  dri
-17    182   22    2306   24     2550   26735  479    8     bus        dr...
-1713  19    2225  2307   2414   2556   26736  480    88    cgroups    ex...
-~~~~
+    # ls /proc
+    1     1776  2     2244   2308   2415   2599   2693   5     9171       cm...
+    10    178   20    2269   2311   2416   26     3      5030  9174       co...
+    12    1781  2052  2287   2333   2417   2611   3120   5032  9715       cp...
+    13    1783  21    22899  2338   2418   2612   31651  560   9718       cr...
+    130   1790  211   2297   2367   2422   2613   3197   570   99         de...
+    14    18    212   23     23835  2432   2614   32502  5991  acpi       di...
+    15    180   2165  2304   23841  24426  2615   355    6     asound     dma
+    16    181   2191  2305   2395   25     2616   4691   7     buddyinfo  dri
+    17    182   22    2306   24     2550   26735  479    8     bus        dr...
+    1713  19    2225  2307   2414   2556   26736  480    88    cgroups    ex...
 
 What is all that? Well if we look a little closer:
 
-~~~~ {.bash}
-# ls -l /proc
-total 0
-dr-xr-xr-x  8 root       root                     0 Sep 18 11:17 1
-dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 10
-dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 12
-dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 13
-dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 130
-dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 14
-dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 15
-dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 16
-dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 17
-dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 1713
-dr-xr-xr-x  8 statd      nogroup                  0 Oct 23 13:55 1776
-...and so on...
-~~~~
+    # ls -l /proc
+    total 0
+    dr-xr-xr-x  8 root       root                     0 Sep 18 11:17 1
+    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 10
+    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 12
+    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 13
+    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 130
+    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 14
+    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 15
+    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 16
+    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 17
+    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 1713
+    dr-xr-xr-x  8 statd      nogroup                  0 Oct 23 13:55 1776
+    ...and so on...
 
 ...we can see that the entries with numeric names are directories. Let's look in one of those directories:
 
-~~~~ {.bash}
-# ls -l /proc/1
-total 0
-dr-xr-xr-x 2 root root 0 Oct 23 14:23 attr
--rw-r--r-- 1 root root 0 Oct 23 14:23 autogroup
--r-------- 1 root root 0 Oct 23 14:23 auxv
--r--r--r-- 1 root root 0 Oct 23 14:23 cgroup
---w------- 1 root root 0 Oct 23 14:23 clear_refs
--r--r--r-- 1 root root 0 Oct 23 14:23 cmdline
--rw-r--r-- 1 root root 0 Oct 23 14:23 comm
--rw-r--r-- 1 root root 0 Oct 23 14:23 coredump_filter
--r--r--r-- 1 root root 0 Oct 23 14:23 cpuset
-lrwxrwxrwx 1 root root 0 Oct 23 14:23 cwd -> /
--r-------- 1 root root 0 Oct 23 14:23 environ
-lrwxrwxrwx 1 root root 0 Oct 23 14:23 exe -> /sbin/init
-...and so on...
-~~~~
+    # ls -l /proc/1
+    total 0
+    dr-xr-xr-x 2 root root 0 Oct 23 14:23 attr
+    -rw-r--r-- 1 root root 0 Oct 23 14:23 autogroup
+    -r-------- 1 root root 0 Oct 23 14:23 auxv
+    -r--r--r-- 1 root root 0 Oct 23 14:23 cgroup
+    --w------- 1 root root 0 Oct 23 14:23 clear_refs
+    -r--r--r-- 1 root root 0 Oct 23 14:23 cmdline
+    -rw-r--r-- 1 root root 0 Oct 23 14:23 comm
+    -rw-r--r-- 1 root root 0 Oct 23 14:23 coredump_filter
+    -r--r--r-- 1 root root 0 Oct 23 14:23 cpuset
+    lrwxrwxrwx 1 root root 0 Oct 23 14:23 cwd -> /
+    -r-------- 1 root root 0 Oct 23 14:23 environ
+    lrwxrwxrwx 1 root root 0 Oct 23 14:23 exe -> /sbin/init
+    ...and so on...
 
 This contains a lot of information on the process with process id (PID) \#1. If the directory listing shows the entry as a file, it can be examined and holds ***current*** statistics for whatever the file name implies. If it is a directory it will hold other entries (files or directories) with yet more statistics.
 
 In addition, there are system-wide statistics, such as `/proc/cpuinfo`:
 
-~~~~ {.bash}
-# cat /proc/cpuinfo
-processor       : 0
-vendor_id       : GenuineIntel
-cpu family      : 6
-model           : 37
-model name      : Intel(R) Xeon(R) CPU           X5690  @ 3.47GHz
-stepping        : 1
-microcode       : 0x15
-cpu MHz         : 3458.000
-cache size      : 12288 KB
-fpu             : yes
-fpu_exception   : yes
-cpuid level     : 11
-...and so on...
-~~~~
+    # cat /proc/cpuinfo
+    processor       : 0
+    vendor_id       : GenuineIntel
+    cpu family      : 6
+    model           : 37
+    model name      : Intel(R) Xeon(R) CPU           X5690  @ 3.47GHz
+    stepping        : 1
+    microcode       : 0x15
+    cpu MHz         : 3458.000
+    cache size      : 12288 KB
+    fpu             : yes
+    fpu_exception   : yes
+    cpuid level     : 11
+    ...and so on...
 
 Sawing Logs
 -----------
 
 Many Linux components and subsystems log to `/var/log`. Here is a pretty standard directory listing for it on a Debian system:
 
-~~~~ {.bash}
-# ls /var/log
-alternatives.log       auth.log.2.gz    debug       dmesg.4.gz     kern....
-alternatives.log.1     auth.log.3.gz    debug.1     dpkg.log       kern....
-alternatives.log.2.gz  auth.log.4.gz    debug.2.gz  dpkg.log.1     kern....
-alternatives.log.3.gz  btmp             debug.3.gz  dpkg.log.2.gz  kern....
-apache2                btmp.1           debug.4.gz  dpkg.log.3.gz  kern....
-apt                    daemon.log       dmesg       dpkg.log.4.gz  lastlog
-aptitude               daemon.log.1     dmesg.0     exim4          lpr.log
-aptitude.1.gz          daemon.log.2.gz  dmesg.1.gz  faillog        mail.err
-auth.log               daemon.log.3.gz  dmesg.2.gz  fsck           mail....
-auth.log.1             daemon.log.4.gz  dmesg.3.gz  installer      mail....
-~~~~
+    # ls /var/log
+    alternatives.log       auth.log.2.gz    debug       dmesg.4.gz     kern....
+    alternatives.log.1     auth.log.3.gz    debug.1     dpkg.log       kern....
+    alternatives.log.2.gz  auth.log.4.gz    debug.2.gz  dpkg.log.1     kern....
+    alternatives.log.3.gz  btmp             debug.3.gz  dpkg.log.2.gz  kern....
+    apache2                btmp.1           debug.4.gz  dpkg.log.3.gz  kern....
+    apt                    daemon.log       dmesg       dpkg.log.4.gz  lastlog
+    aptitude               daemon.log.1     dmesg.0     exim4          lpr.log
+    aptitude.1.gz          daemon.log.2.gz  dmesg.1.gz  faillog        mail.err
+    auth.log               daemon.log.3.gz  dmesg.2.gz  fsck           mail....
+    auth.log.1             daemon.log.4.gz  dmesg.3.gz  installer      mail....
 
 Some, like `samba` are their own subdirectories with log files under that. Others are log files that get "rotated" from the most current (no suffix) through ever older ones (increasing suffix number, e.g., `mail.log.2`).
 
@@ -3118,19 +2832,17 @@ If you are pursuing a problem with a specific subsystem (like `samba`), it is go
 
 Let's look for kernel errors when booting:
 
-~~~~ {.bash}
-# cat dmesg | grep -i error
-[    2.310161] Error: Driver 'pcspkr' is already registered, aborting...
-[    2.754699] EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro
-~~~~
+    # cat dmesg | grep -i error
+    [    2.310161] Error: Driver 'pcspkr' is already registered, aborting...
+    [    2.754699] EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro
 
 It's All Temporary
 ------------------
 
 By convention, temporary files are written to `/tmp`. You can place your own temporary or "work" files there, too. It's a great place to unzip install bits, for example. Just note that the temporariness is enforced in that when the system reboots, `/tmp` is reset to empty.
 
-Step 9. How Do You Know What You Don’t Know, `man`?
-===================================================
+How Do You Know What You Don’t Know, `man`?
+===========================================
 
 ***`man`, `info`, `apropos`, Linux Documentation Project, Debian and Arch guides, StackOverflow and the dangers of searching for “`man find`” or “`man touch`” on the internet.***
 
@@ -3145,29 +2857,27 @@ There are three commands that are the basis for reading "UNIX" documentation wit
 
 `man` is short for *manual pages*, and is used to display the main help for most "UNIX" commands. For example, `man ls` shows:
 
-~~~~ {.bash}
-LS(1)                                                             User C...
+    LS(1)                                                             User C...
 
-NAME
-       ls - list directory contents
+    NAME
+           ls - list directory contents
 
-SYNOPSIS
-       ls [OPTION]... [FILE]...
+    SYNOPSIS
+           ls [OPTION]... [FILE]...
 
-DESCRIPTION
-       List information about the FILEs (the current directory by
-       default).  Sort entries alphabetically if none of -cftuvSUX nor
-       --sort is specified.
+    DESCRIPTION
+           List information about the FILEs (the current directory by
+           default).  Sort entries alphabetically if none of -cftuvSUX nor
+           --sort is specified.
 
-       Mandatory arguments to long options are mandatory for short optio...
+           Mandatory arguments to long options are mandatory for short optio...
 
-       -a, --all
-              do not ignore entries starting with .
+           -a, --all
+                  do not ignore entries starting with .
 
-       -A, --almost-all
-              do not list implied . and ..
-...and so on...
-~~~~
+           -A, --almost-all
+                  do not list implied . and ..
+    ...and so on...
 
 **Note:** `man` uses `less` as a paginator, with all that means, including the same navigation and search keys, and most important to remember - `Q` to quit. How do I know this? Because of course you can `man man`!
 
@@ -3175,110 +2885,100 @@ Notice the `LS(1)` part. The UNIX manual was originally divided into multiple se
 
 But sometimes there are duplicate names in the different sections. For example, there is both a `passwd` command and a `passwd` file format (for `/etc/passwd`). By default, `man passwd` will show you the documentation from the lowest numbered section with a match, in this case section 1, usually referred to as `passwd(1)` to disambiguate which thing we're talking about:
 
-~~~~ {.bash}
-PASSWD(1)                                                         User C...
+    PASSWD(1)                                                         User C...
 
-NAME
-       passwd - change user password
+    NAME
+           passwd - change user password
 
-SYNOPSIS
-       passwd [options] [LOGIN]
+    SYNOPSIS
+           passwd [options] [LOGIN]
 
-DESCRIPTION
-       The passwd command changes passwords for user accounts. A normal user
-       may only change the password for his/her own account, while the
-       superuser may change the password for any account.  passwd also
-       changes the account or associated password validity period.
+    DESCRIPTION
+           The passwd command changes passwords for user accounts. A normal user
+           may only change the password for his/her own account, while the
+           superuser may change the password for any account.  passwd also
+           changes the account or associated password validity period.
 
-   Password Changes
-       The user is first prompted for his/her old password, if one is
-       present. This password is then encrypted and compared against the
-       stored
-...and so on...
-~~~~
+       Password Changes
+           The user is first prompted for his/her old password, if one is
+           present. This password is then encrypted and compared against the
+           stored
+    ...and so on...
 
 To see the `man` page for the `passwd` file format, we have to explicitly specify the section, in this case by using `man 5 passwd`:
 
-~~~~ {.bash}
-PASSWD(5)                                                  File Formats ...
+    PASSWD(5)                                                  File Formats ...
 
-NAME
-       passwd - the password file
+    NAME
+           passwd - the password file
 
-DESCRIPTION
-       /etc/passwd contains one line for each user account, with seven
-       fields delimited by colons (“:”). These fields are:
+    DESCRIPTION
+           /etc/passwd contains one line for each user account, with seven
+           fields delimited by colons (“:”). These fields are:
 
-       ·   login name
+           ·   login name
 
-       ·   optional encrypted password
+           ·   optional encrypted password
 
-       ·   numerical user ID
+           ·   numerical user ID
 
-       ·   numerical group ID
-...and so on...
-~~~~
+           ·   numerical group ID
+    ...and so on...
 
 Besides `man`, many GNU tools come with help in `info` format, which is from `emacs`. While `info` is much better at enabling complex help files with navigation I am not a fan because I tend not to hold all the keystrokes in my head. The biggest thing to remember if you do something like `info vi` is that `q` quits the `info` command.
 
 Finally, what if you don't know the name of the command? Well, each "man page" has a title and brief description, e.g., "passwd - change user password" in the `man passwd` output above. The `apropos` command can simply search those titles and descriptions for a word or phrase and show you all the results:
 
-~~~~ {.bash}
-# apropos edit
-dpatch-edit-patch (1) - maintain dpatch patches for a Debian source package
-edit (1)             - execute programs via entries in the mailcap file
-rediff (1)           - fix offsets and counts of a hand-edited diff
-editor (1)           - Nano's ANOther editor, an enhanced free Pico clone
-elfedit (1)          - Update the ELF header of ELF files.
-ex (1)               - Vi IMproved, a programmers text editor
-grub-editenv (1)     - edit GRUB environment block
-msgfilter (1)        - edit translations of message catalog
-nano (1)             - Nano's ANOther editor, an enhanced free Pico clone
-pdbedit (8)          - manage the SAM database (Database of Samba Users)
-pico (1)             - Nano's ANOther editor, an enhanced free Pico clone
-psed (1)             - a stream editor
-readline (3readline) - get a line from a user with editing
-rnano (1)            - Restricted mode for Nano's ANOther editor, an enh...
-rview (1)            - Vi IMproved, a programmers text editor
-rvim (1)             - Vi IMproved, a programmers text editor
-s2p (1)              - a stream editor
-sed (1)              - stream editor for filtering and transforming text
-sensible-browser (1) - sensible editing, paging, and web browsing
-sensible-editor (1)  - sensible editing, paging, and web browsing
-sensible-pager (1)   - sensible editing, paging, and web browsing
-sudoedit (8)         - execute a command as another user
-vi (1)               - Vi IMproved, a programmers text editor
-view (1)             - Vi IMproved, a programmers text editor
-vigr (8)             - edit the password, group, shadow-password or shad...
-vim (1)              - Vi IMproved, a programmers text editor
-vimdiff (1)          - edit two, three or four versions of a file with V...
-vipw (8)             - edit the password, group, shadow-password or shad...
-visudo (8)           - edit the sudoers file
-~~~~
+    # apropos edit
+    dpatch-edit-patch (1) - maintain dpatch patches for a Debian source package
+    edit (1)             - execute programs via entries in the mailcap file
+    rediff (1)           - fix offsets and counts of a hand-edited diff
+    editor (1)           - Nano's ANOther editor, an enhanced free Pico clone
+    elfedit (1)          - Update the ELF header of ELF files.
+    ex (1)               - Vi IMproved, a programmers text editor
+    grub-editenv (1)     - edit GRUB environment block
+    msgfilter (1)        - edit translations of message catalog
+    nano (1)             - Nano's ANOther editor, an enhanced free Pico clone
+    pdbedit (8)          - manage the SAM database (Database of Samba Users)
+    pico (1)             - Nano's ANOther editor, an enhanced free Pico clone
+    psed (1)             - a stream editor
+    readline (3readline) - get a line from a user with editing
+    rnano (1)            - Restricted mode for Nano's ANOther editor, an enh...
+    rview (1)            - Vi IMproved, a programmers text editor
+    rvim (1)             - Vi IMproved, a programmers text editor
+    s2p (1)              - a stream editor
+    sed (1)              - stream editor for filtering and transforming text
+    sensible-browser (1) - sensible editing, paging, and web browsing
+    sensible-editor (1)  - sensible editing, paging, and web browsing
+    sensible-pager (1)   - sensible editing, paging, and web browsing
+    sudoedit (8)         - execute a command as another user
+    vi (1)               - Vi IMproved, a programmers text editor
+    view (1)             - Vi IMproved, a programmers text editor
+    vigr (8)             - edit the password, group, shadow-password or shad...
+    vim (1)              - Vi IMproved, a programmers text editor
+    vimdiff (1)          - edit two, three or four versions of a file with V...
+    vipw (8)             - edit the password, group, shadow-password or shad...
+    visudo (8)           - edit the sudoers file
 
 Note the `man` section numbers after each command name. Also note that `apropos` is not sophisticated - it is simply searching for the exact string you give it in the very limited "brief descriptions" from the `man` pages. That's all. But a lot of time that's all you need to remember, "Ah, yes, `nano` is the other editor I was thinking about and like better than `vi`."
 
 **Note:** `man`, `info` and `apropos` are just normal "UNIX" commands like all the others, so while they may default to displaying with a paginator on an interactive terminal, you can run their output through other commands, just like any other. For example, maybe we remember only that the command had something with "edit" and was a system administration ("section 8") command:
 
-~~~~ {.bash}
-$ apropos edit | grep "(8)"
-jfs_debugfs (8)      - shell-type JFS file system editor
-pdbedit (8)          - manage the SAM database (Database of Samba Users)
-samba-regedit (8)    - ncurses based tool to manage the Samba registry
-sudoedit (8)         - execute a command as another user
-vigr (8)             - edit the password, group, shadow-password or shad...
-vipw (8)             - edit the password, group, shadow-password or shad...
-visudo (8)           - edit the sudoers file
-~~~~
+    $ apropos edit | grep "(8)"
+    jfs_debugfs (8)      - shell-type JFS file system editor
+    pdbedit (8)          - manage the SAM database (Database of Samba Users)
+    samba-regedit (8)    - ncurses based tool to manage the Samba registry
+    sudoedit (8)         - execute a command as another user
+    vigr (8)             - edit the password, group, shadow-password or shad...
+    vipw (8)             - edit the password, group, shadow-password or shad...
+    visudo (8)           - edit the sudoers file
 
 Or maybe you can't remember whether it's `-r`, `-R` or `--recursive` to copy subdirectories recursively with `cp`:
 
-~~~~ {.bash}
-$ man cp | grep -i "recurs"
-              copy contents of special files when recursive
-       -R, -r, --recursive
-              copy directories recursively
-~~~~
+    $ man cp | grep -i "recurs"
+                  copy contents of special files when recursive
+           -R, -r, --recursive
+                  copy directories recursively
 
 Whaddya know. It can be any of the three.
 
@@ -3306,8 +3006,8 @@ Ubuntu, Mint and some other distros have quite active message fora, and of cours
 
 Besides the above, if you are dealing with a package that is not part of the "core" OS, such as [Samba](https://www.samba.org/samba/) for setting up CIFS shares on Linux, you should always look at [the package site's documentation](https://www.samba.org/samba/docs/) as well as any specific info you can find about the distro you are running.
 
-Step 10. And So On
-==================
+And So On
+=========
 
 ***`/etc`, starting and stopping services, `apt-get`/`rpm`/`yum`, and more.***
 
@@ -3322,22 +3022,20 @@ In UNIX-like systems, most (not all) system configuration is stored in directori
 
 **Note:** In Linux almost universally `/etc` is pronounced "slash-et-see," ***not*** "forward slash et cetera."
 
-~~~~ {.bash}
-# ls -l /etc
-total 844
-drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
--rw-r--r-- 1 root root    2981 Apr 23  2014 adduser.conf
--rw-r--r-- 1 root root      45 Jul  9 08:46 adjtime
--rw-r--r-- 2 root root     621 May 22  2014 aliases
--rw-r--r-- 1 root root   12288 May 22  2014 aliases.db
-drwxr-xr-x 2 root root   20480 Feb 25  2015 alternatives
--rw-r--r-- 1 root root    4185 Dec 28  2011 analog.cfg
-drwxr-xr-x 7 root root    4096 Feb 25  2015 apache2
-drwxr-xr-x 6 root root    4096 Feb 25  2015 apt
--rw-r----- 1 root daemon   144 Jun  9  2012 at.deny
--rw-r--r-- 1 root root    1895 Dec 29  2012 bash.bashrc
-...and so on...
-~~~~
+    # ls -l /etc
+    total 844
+    drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
+    -rw-r--r-- 1 root root    2981 Apr 23  2014 adduser.conf
+    -rw-r--r-- 1 root root      45 Jul  9 08:46 adjtime
+    -rw-r--r-- 2 root root     621 May 22  2014 aliases
+    -rw-r--r-- 1 root root   12288 May 22  2014 aliases.db
+    drwxr-xr-x 2 root root   20480 Feb 25  2015 alternatives
+    -rw-r--r-- 1 root root    4185 Dec 28  2011 analog.cfg
+    drwxr-xr-x 7 root root    4096 Feb 25  2015 apache2
+    drwxr-xr-x 6 root root    4096 Feb 25  2015 apt
+    -rw-r----- 1 root daemon   144 Jun  9  2012 at.deny
+    -rw-r--r-- 1 root root    1895 Dec 29  2012 bash.bashrc
+    ...and so on...
 
 Depending on what you are trying to configure, you may be in one or many files in `/etc`. This is a ***very short*** list of files and directories you may need to examine there:
 
@@ -3364,31 +3062,27 @@ Service Station
 
 We are going to ignore system initialization and "stages," and assume most of the time you are running on a well-functioning system. Even so sometimes you want to restart a specific system service without rebooting the whole system, often to force re-reading changed configuration files. If the service has a script in `/etc/init.d`:
 
-~~~~ {.bash}
-# ls /etc/init.d
-acpid                   console-setup  kbd                    mountkernf...
-apache2                 cron           keyboard-setup         mountnfs-b...
-atd                     dbus           killprocs              mountnfs.s...
-bootlogs                exim4          kmod                   mpt-status...
-bootmisc.sh             gitlab         motd                   mtab.sh
-checkfs.sh              halt           mountall-bootclean.sh  networking
-checkroot-bootclean.sh  hostname.sh    mountall.sh            nfs-common
-checkroot.sh            hwclock.sh     mountdevsubfs.sh       nfs-kernel...
-~~~~
+    # ls /etc/init.d
+    acpid                   console-setup  kbd                    mountkernf...
+    apache2                 cron           keyboard-setup         mountnfs-b...
+    atd                     dbus           killprocs              mountnfs.s...
+    bootlogs                exim4          kmod                   mpt-status...
+    bootmisc.sh             gitlab         motd                   mtab.sh
+    checkfs.sh              halt           mountall-bootclean.sh  networking
+    checkroot-bootclean.sh  hostname.sh    mountall.sh            nfs-common
+    checkroot.sh            hwclock.sh     mountdevsubfs.sh       nfs-kernel...
 
 ...then chances are it will respond to a fairly standard set of commands, such as the following samples with `samba`:
 
-~~~~ {.bash}
-# /etc/init.d/samba stop
-[ ok ] Stopping Samba daemons: nmbd smbd.
+    # /etc/init.d/samba stop
+    [ ok ] Stopping Samba daemons: nmbd smbd.
 
-# /etc/init.d/samba start
-[ ok ] Starting Samba daemons: nmbd smbd.
+    # /etc/init.d/samba start
+    [ ok ] Starting Samba daemons: nmbd smbd.
 
-# /etc/init.d/samba restart
-[ ok ] Stopping Samba daemons: nmbd smbd.
-[ ok ] Starting Samba daemons: nmbd smbd.
-~~~~
+    # /etc/init.d/samba restart
+    [ ok ] Stopping Samba daemons: nmbd smbd.
+    [ ok ] Starting Samba daemons: nmbd smbd.
 
 **Note:** The above examples were run as `root`, otherwise they would probably have required execution using `sudo`.
 
@@ -3405,55 +3099,49 @@ In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get) is usually th
 
 There are three common `apt-get` commands that get used over and over. The first downloads and *updates* the local metadata cache for the repositories:
 
-~~~~ {.bash}
-$ sudo apt-get update
-[sudo] password for myuser: 
-Ign http://packages.linuxmint.com rafaela InRelease
-Hit http://packages.linuxmint.com rafaela Release.gpg                          
-Ign http://extra.linuxmint.com rafaela InRelease                               
-Ign http://archive.ubuntu.com trusty InRelease                                 
-Hit http://security.ubuntu.com trusty-security InRelease                       
-Hit http://packages.linuxmint.com rafaela Release                              
-Hit http://extra.linuxmint.com rafaela Release.gpg                             
-Hit http://archive.ubuntu.com trusty-updates InRelease                         
-Hit http://extra.linuxmint.com rafaela Release                
-...and so on...
-~~~~
+    $ sudo apt-get update
+    [sudo] password for myuser: 
+    Ign http://packages.linuxmint.com rafaela InRelease
+    Hit http://packages.linuxmint.com rafaela Release.gpg                          
+    Ign http://extra.linuxmint.com rafaela InRelease                               
+    Ign http://archive.ubuntu.com trusty InRelease                                 
+    Hit http://security.ubuntu.com trusty-security InRelease                       
+    Hit http://packages.linuxmint.com rafaela Release                              
+    Hit http://extra.linuxmint.com rafaela Release.gpg                             
+    Hit http://archive.ubuntu.com trusty-updates InRelease                         
+    Hit http://extra.linuxmint.com rafaela Release                
+    ...and so on...
 
 **Note:** `apt-get` is an administrative command and usually requires `sudo`.
 
 The second common command *upgrades* all the packages in the system to the latest release in the repository (which may not be the latest and greatest release of the package):
 
-~~~~ {.bash}
-$ sudo apt-get dist-upgrade
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-Calculating upgrade... Done
-0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-~~~~
+    $ sudo apt-get dist-upgrade
+    Reading package lists... Done
+    Building dependency tree       
+    Reading state information... Done
+    Calculating upgrade... Done
+    0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
 
 In this case there was nothing to upgrade. And the final common command is obviously to install a package:
 
-~~~~ {.bash}
-$ sudo apt-get install curl
-Reading package lists... Done
-Building dependency tree       
-Reading state information... Done
-The following NEW packages will be installed:
-  curl
-0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
-Need to get 123 kB of archives.
-After this operation, 314 kB of additional disk space will be used.
-Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl amd64 7.35.0-1ubuntu2.5 [123 kB]
-Fetched 123 kB in 0s (312 kB/s)
-Selecting previously unselected package curl.
-(Reading database ... 182823 files and directories currently installed.)
-Preparing to unpack .../curl_7.35.0-1ubuntu2.5_amd64.deb ...
-Unpacking curl (7.35.0-1ubuntu2.5) ...
-Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
-Setting up curl (7.35.0-1ubuntu2.5) ...
-~~~~
+    $ sudo apt-get install curl
+    Reading package lists... Done
+    Building dependency tree       
+    Reading state information... Done
+    The following NEW packages will be installed:
+      curl
+    0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+    Need to get 123 kB of archives.
+    After this operation, 314 kB of additional disk space will be used.
+    Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl amd64 7.35.0-1ubuntu2.5 [123 kB]
+    Fetched 123 kB in 0s (312 kB/s)
+    Selecting previously unselected package curl.
+    (Reading database ... 182823 files and directories currently installed.)
+    Preparing to unpack .../curl_7.35.0-1ubuntu2.5_amd64.deb ...
+    Unpacking curl (7.35.0-1ubuntu2.5) ...
+    Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
+    Setting up curl (7.35.0-1ubuntu2.5) ...
 
 You can also `remove` packages.
 
@@ -3466,9 +3154,7 @@ Besides the distribution's repositories, you can install packages and other soft
 
 If you want the latest and greatest version of a package you often have to go to its "official" site or GitHub repository. There, you may find a `.deb` file, in which case you could install it with `dpkg`:
 
-~~~~ {.bash}
-sudo dpkg -i somesoftware.deb
-~~~~
+    sudo dpkg -i somesoftware.deb
 
 There is, however, a problem. You now have to remember that you installed that package by hand and keep it up to date by hand (or not). `apt-get upgrade` isn't going to help you here. This is true no matter what way you get the alternative package - `.deb` file, tarball, source code, or whatever.
 
@@ -3483,60 +3169,50 @@ Now that we've seen that we can have multiple versions of the same command or ex
 
 Luckily we have the [`which`](http://linux.die.net/man/1/which) command for just that!
 
-~~~~ {.bash}
-$ which curl
-/usr/bin/curl
-~~~~
+    $ which curl
+    /usr/bin/curl
 
 How can you tell if you have multiple versions of something installed? One way is with the [`locate`](http://linux.die.net/man/1/locate) command:
 
-~~~~ {.bash}
-locate md5
-/boot/grub/i386-pc/gcry_md5.mod
-/lib/modules/3.16.0-38-generic/kernel/drivers/usb/gadget/amd5536udc.ko
-/usr/bin/md5pass
-/usr/bin/md5sum
-/usr/bin/md5sum.textutils
-/usr/include/libavutil/md5.h
-/usr/include/openssl/md5.h
-/usr/lib/casper/casper-md5check
-/usr/lib/grub/i386-pc/gcry_md5.mod
-/usr/lib/i386-linux-gnu/sasl2/libcrammd5.so
-...and so on...
-~~~~
+    locate md5
+    /boot/grub/i386-pc/gcry_md5.mod
+    /lib/modules/3.16.0-38-generic/kernel/drivers/usb/gadget/amd5536udc.ko
+    /usr/bin/md5pass
+    /usr/bin/md5sum
+    /usr/bin/md5sum.textutils
+    /usr/include/libavutil/md5.h
+    /usr/include/openssl/md5.h
+    /usr/lib/casper/casper-md5check
+    /usr/lib/grub/i386-pc/gcry_md5.mod
+    /usr/lib/i386-linux-gnu/sasl2/libcrammd5.so
+    ...and so on...
 
 The `locate` command, if installed, is basically a database of all of the file names on the system (collected periodically - not real time). You are simply searching the database for a pattern.
 
 One final note on which thing gets executed. Unlike in Windows, UNIX environments do not consider the local directory (the current directory you are sitting at the command prompt, i.e., what [`pwd`](http://linux.die.net/man/1/pwd) shows) as part of the path unless `.` is explicitly listed in `$PATH`. This is for security purposes. So it can be a bit unnerving to try and execute `foo` in the current directory and get:
 
-~~~~ {.bash}
-$ ls -l foo
--rwxrwx--- 1 myuser mygroup 16 Oct 23 19:03 foo
+    $ ls -l foo
+    -rwxrwx--- 1 myuser mygroup 16 Oct 23 19:03 foo
 
-$ foo
-No command 'foo' found, did you mean:
- Command 'fgo' from package 'fgo' (universe)
- Command 'fop' from package 'fop' (main)
- Command 'fog' from package 'ruby-fog' (universe)
- Command 'fox' from package 'objcryst-fox' (universe)
- Command 'fio' from package 'fio' (universe)
- Command 'zoo' from package 'zoo' (universe)
- Command 'xoo' from package 'xoo' (universe)
- Command 'goo' from package 'goo' (universe)
-foo: command not found
-~~~~
+    $ foo
+    No command 'foo' found, did you mean:
+     Command 'fgo' from package 'fgo' (universe)
+     Command 'fop' from package 'fop' (main)
+     Command 'fog' from package 'ruby-fog' (universe)
+     Command 'fox' from package 'objcryst-fox' (universe)
+     Command 'fio' from package 'fio' (universe)
+     Command 'zoo' from package 'zoo' (universe)
+     Command 'xoo' from package 'xoo' (universe)
+     Command 'goo' from package 'goo' (universe)
+    foo: command not found
 
 Instead, to invoke `foo`, you can either fully qualify the path as shown by `pwd`:
 
-~~~~ {.bash}
-$ /home/myuser/foo
-~~~~
+    $ /home/myuser/foo
 
 Or you can prepend the `./` relative path to it, to indicate "the `foo` in the current directory (`.`)":
 
-~~~~ {.bash}
-$ ./foo
-~~~~
+    $ ./foo
 
 Over and Over and Over
 ----------------------
@@ -3570,9 +3246,7 @@ The sample given in the comments of the `crontab` when initially opened using `c
 
 If you have `sudo` privileges you can edit the `crontab` file for another user with:
 
-~~~~ {.bash}
-$ sudo crontab -e -u otheruser
-~~~~
+    $ sudo crontab -e -u otheruser
 
 This can be useful to do things like run backup jobs as the user that is running the web server, say, so it has access rights to all the necessary files to back up the web server installation by definition.
 
@@ -3583,15 +3257,11 @@ Start Me Up
 
 If you need to reboot the system the quickest way is with the [`reboot`](http://linux.die.net/man/8/reboot) command:
 
-~~~~ {.bash}
-$ sudo reboot
-~~~~
+    $ sudo reboot
 
 You can also use the [`shutdown`](http://linux.die.net/man/8/shutdown) command with the `-r` option, but why? The handy use for `shutdown` is to tell a system to halt and power off after shutting down:
 
-~~~~ {.bash}
-$ sudo shutdown -h now
-~~~~
+    $ sudo shutdown -h now
 
 Turn on Your Signals
 --------------------
@@ -3600,23 +3270,17 @@ One of the basic concepts in UNIX program is that of ["signals"](https://en.wiki
 
 However, most signals can be "caught" by a program and coded around. There is one "uninterruptable" signal, however, which is `SIGKILL`. We can send `SIGKILL` to a process and cause it to terminate immediately with:
 
-~~~~ {.bash}
-kill -s 9 14302
-~~~~
+    kill -s 9 14302
 
 The `-s 9` is for signal \#9, which is the `SIGKILL` signal (it is the tenth signal in the signal list, which is 0-relative, hence \#9).
 
 You can also use the following "shorthand" for `SIGKILL`:
 
-~~~~ {.bash}
-kill -9 14302
-~~~~
+    kill -9 14302
 
 Or if you want to get all verbose:
 
-~~~~ {.bash}
-kill -s SIGKILL 14302
-~~~~
+    kill -s SIGKILL 14302
 
 **Note:** `SIGKILL` should be used as a last resort, because a program is not allowed to catch it or be notified of it and hence can perform no closing logic or cleanup and may lead to data corruption. It is for getting rid of "hung" processes when nothing else will work. Always try to stop a program with a more "normal" method, which can include sending `SIGINT` to it first.
 
@@ -3625,19 +3289,17 @@ Exit, Smiling
 
 Sometimes a command runs and there isn't a good way to tell if it worked or not. UNIX programs are supposed to set an "exit status" when they end that by convention is `0` if the program exited successfully and a non-zero, typically positive number if there was an error. The exit status for the last executed command or program can be shown at the command line using the `$?` environment variable. Consider if the file `foo` exists and `bar` does not:
 
-~~~~ {.bash}
-$ ls foo
-foo
+    $ ls foo
+    foo
 
-$ echo $?
-0
+    $ echo $?
+    0
 
-$ ls bar
-ls: cannot access bar: No such file or directory
+    $ ls bar
+    ls: cannot access bar: No such file or directory
 
-$ echo $?
-2
-~~~~
+    $ echo $?
+    2
 
 **Note:** In many cases the exit codes come from the ANSI Standard C library's [`errno.h` file](http://mazack.org/unix/errno.php). All of this is much handier when handling errors in scripts, but we're not going to go into script logic here.
 
@@ -3649,45 +3311,37 @@ However, sometimes even at the command line we want to be able to conditionally 
 
 Our example of file `foo` (which exists) and file `bar` (which does not) and the effect on the exit code of `ls` can be illustrative here, too:
 
-~~~~ {.bash}
-$ ls foo && ls bar
-foo
-ls: cannot access bar: No such file or directory
+    $ ls foo && ls bar
+    foo
+    ls: cannot access bar: No such file or directory
 
-$ echo $?
-2
-~~~~
+    $ echo $?
+    2
 
 Both `ls` commands execute because the first successfully found `foo`, but the second emits its error and sets the exit code to `2` (failure).
 
-~~~~ {.bash}
-$ ls foo || ls bar
-foo
+    $ ls foo || ls bar
+    foo
 
-$ echo $?
-0
-~~~~
+    $ echo $?
+    0
 
 Note in this case the second `ls` didn't execute because the logical "or" condition was already satisfied by the successful execution of the first `ls`. The exit code is obviously `0` (success).
 
-~~~~ {.bash}
-$ ls bar && ls foo
-ls: cannot access bar: No such file or directory
+    $ ls bar && ls foo
+    ls: cannot access bar: No such file or directory
 
-$ echo $?
-2
-~~~~
+    $ echo $?
+    2
 
 Obviously if the first command fails, the "and" condition as a whole fails and the expression exits with a code of `2`.
 
-~~~~ {.bash}
-$ ls bar || ls foo
-ls: cannot access bar: No such file or directory
-foo
+    $ ls bar || ls foo
+    ls: cannot access bar: No such file or directory
+    foo
 
-$ echo $?
-0
-~~~~
+    $ echo $?
+    0
 
 And finally, while the first command failed the second still can execute because of the "or", and the whole expression returns `0`.
 
@@ -3695,17 +3349,15 @@ And finally, while the first command failed the second still can execute because
 
 And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false) command to "do nothing, unsuccessfully!"
 
-~~~~ {.bash}
-$ true
+    $ true
 
-$ echo $?
-0
+    $ echo $?
+    0
 
-$ false
+    $ false
 
-$ echo $?
-1
-~~~~
+    $ echo $?
+    1
 
 The End
 -------
@@ -3858,13 +3510,11 @@ Now you could spend a long time with regular expressions trying to figure out ho
 
 Or you could do something as simple as this, which shows the source files now, after I've cleaned them all up (the only remnants are now in examples):
 
-~~~~ {.bash}
-$ grep '\[' *.md | grep -v ']'
-Step01.md: (( expression ))           if COMMANDS; then COMMANDS; [ elif C>
-Step01.md: :                          kill [-s sigspec | -n signum | -sigs>
-Step04.md:./FileCheckers/otschecker:  [ $rc != 0 -a "$pdfinfo" != "Comma...
-Step04.md:./FileCheckers/pdfpwdchecker: if [ $rc != 0 -a "$pdfinfo" = "C...
-~~~~
+    $ grep '\[' *.md | grep -v ']'
+    Step01.md: (( expression ))           if COMMANDS; then COMMANDS; [ elif C>
+    Step01.md: :                          kill [-s sigspec | -n signum | -sigs>
+    Step04.md:./FileCheckers/otschecker:  [ $rc != 0 -a "$pdfinfo" != "Comma...
+    Step04.md:./FileCheckers/pdfpwdchecker: if [ $rc != 0 -a "$pdfinfo" = "C...
 
 What makes this simple? Finding `[` with the first `grep` and then simply piping it to a second `grep` and inverting the match logic (`-v`) on `]`.
 
@@ -3874,57 +3524,51 @@ What makes this simple? Finding `[` with the first `grep` and then simply piping
 
 Remembering that `&&` only executes the next command if the prior one is successful, we can do things like set up a sample directory and (empty) files for playing around with files and directories in one fell swoop:
 
-~~~~ {.bash}
-$ mkdir -p /tmp/foo/d && cd /tmp/foo && touch a b c d/e
+    $ mkdir -p /tmp/foo/d && cd /tmp/foo && touch a b c d/e
 
-$ ls
-a  b  c  d
-~~~~
+    $ ls
+    a  b  c  d
 
 That is roughly equivalent to:
 
-~~~~ {.bash}
-$ cd /tmp
+    $ cd /tmp
 
-$ mkdir -p foo
+    $ mkdir -p foo
 
-$ cd foo
+    $ cd foo
 
-$ mkdir -p d
+    $ mkdir -p d
 
-$ touch a b c d/e
+    $ touch a b c d/e
 
-$ ls
-a  b  c  d
-~~~~
+    $ ls
+    a  b  c  d
 
 ### Simple Scripts
 
 I said I wasn't going to cover scripting, especially logical constructs like `if`/`fi`. But simple scripts that just "do things" in a certain order are within scope, and the following, which installs [`freerdp`](https://github.com/freerdp/freerdp), is a good example of simply taking the guesswork out of doing something repetitive across multiple machines. I keep this `installrdp` script in Dropbox so I can run it on any new machine I set up quickly and easily (once I get Dropbox set up on the machine!)
 
-~~~~ {.bash}
-#!/bin/bash
-sudo apt-get -y install git
-cd ~
-git clone git://github.com/FreeRDP/FreeRDP.git
-cd FreeRDP
-sudo apt-get -y install build-essential git-core cmake libssl-dev \
-  libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \
-  libxv-dev libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \
-  libxml2-dev libxrandr-dev libgstreamer0.10-dev \
-  libgstreamer-plugins-base0.10-dev libxi-dev \
-  libgstreamer-plugins-base1.0-dev libavutil-dev libavcodec-dev \
-  libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
-cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
-make
-sudo make install
-sudo echo "/usr/local/lib/freerdp" > /etc/ld.so.conf.d/freerdp.conf
-sudo echo "/usr/local/lib64/freerdp" >> /etc/ld.so.conf.d/freerdp.conf
-sudo echo "/usr/local/lib" >> /etc/ld.so.conf.d/freerdp.conf
-sudo ldconfig
-which xfreerdp
-xfreerdp --version
-~~~~
+    #!/bin/bash
+    sudo apt-get -y install git
+    cd ~
+    git clone git://github.com/FreeRDP/FreeRDP.git
+    cd FreeRDP
+    sudo apt-get -y install build-essential git-core cmake libssl-dev \
+      libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \
+      libxv-dev libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \
+      libxml2-dev libxrandr-dev libgstreamer0.10-dev \
+      libgstreamer-plugins-base0.10-dev libxi-dev \
+      libgstreamer-plugins-base1.0-dev libavutil-dev libavcodec-dev \
+      libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
+    cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
+    make
+    sudo make install
+    sudo echo "/usr/local/lib/freerdp" > /etc/ld.so.conf.d/freerdp.conf
+    sudo echo "/usr/local/lib64/freerdp" >> /etc/ld.so.conf.d/freerdp.conf
+    sudo echo "/usr/local/lib" >> /etc/ld.so.conf.d/freerdp.conf
+    sudo ldconfig
+    which xfreerdp
+    xfreerdp --version
 
 You should be able to understand all of the above now, or know where to look to figure it out. The only nuance we may not have covered is that at the shell prompt and in scripts both you can put a `\` at the end of a line and it will "escape" the newline (`\r`) so you can continue the same command on the next line. This is useful because some interactive terminals don't "wrap" well, and it makes more readable script files, too.
 
@@ -3947,7 +3591,7 @@ This document was produced in the environments it discusses, including (with the
 
 I could have done something with my Raspberry Pi, too, but that would just be showing off.
 
-Written in [`pandoc`-flavored Markdown](http://pandoc.org/README.html#pandocs-markdown) using [`vi`](http://linux.die.net/man/1/vi) and [ReText](https://github.com/retext-project/retext), among others.
+Written in [`pandoc`-flavored Markdown](http://pandoc.org/README.html#pandocs-markdown) using [`vi`](http://linux.die.net/man/1/vi) and [Visual Studio Code](https://github.com/Microsoft/vscode), among others.
 
 Output produced using [`pandoc`](http://pandoc.org/), [TeX Live](http://www.tug.org/texlive/) and [`pdflatex`](http://linux.die.net/man/1/pdflatex), [`make`](http://linux.die.net/man/1/make), originally based on the [@evangoer's work](https://github.com/evangoer/pandoc-ebook-template).
 

@@ -1,4 +1,6 @@
   
+\renewcommand{\chaptername}{}
+\renewcommand{\thechapter}{}
 # Colophon
 
 > *"I can't come back, I don't know how it works! Good-bye, folks!"* -
@@ -24,7 +26,8 @@ be showing off.
 Written in
 [`pandoc`-flavored Markdown](http://pandoc.org/README.html#pandocs-markdown)
 using [`vi`](http://linux.die.net/man/1/vi) and
-[ReText](https://github.com/retext-project/retext), among others.
+[Visual Studio Code](https://github.com/Microsoft/vscode),
+among others.
 
 Output produced using [`pandoc`](http://pandoc.org/),
 [TeX Live](http://www.tug.org/texlive/) and

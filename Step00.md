@@ -1,5 +1,5 @@
   
-# Step 0. Some History
+# Some History
 
 ***UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,”
 Cygwin, and why any of this matters now. “Why does this script off the
@@ -152,7 +152,7 @@ between showing all processes with the
 [`ps`](http://linux.die.net/man/1/ps) (*process*) command on a Linux
 system, in this case Linux Mint:
 
-```bash
+```
 $ ps -AH
   PID TTY          TIME CMD
     2 ?        00:00:00 kthreadd
@@ -166,7 +166,7 @@ $ ps -AH
 ```
 ...versus on a FreeBSD system at my ISP, where `csh` is the default shell:
 
-```bash
+```
 %ps -ax
   PID  TT  STAT      TIME COMMAND
 73591  ??  S      0:00.03 sshd: myuser@ttyp1 (sshd)

@@ -24,11 +24,9 @@ html: $(BUILD)/html/$(BOOKNAME).html
 
 pdf: $(BUILD)/pdf/$(BOOKNAME).pdf
 
-slides: revealjs dzslides
+slides: revealjs
 
 revealjs: $(BUILD)/slides/revealjs/$(BOOKNAME).html
-
-dzslides: $(BUILD)/slides/dzslides/$(BOOKNAME).html
 
 markdown: $(BUILD)/markdown/$(BOOKNAME).md
 
@@ -44,7 +42,7 @@ $(BUILD)/html/$(BOOKNAME).html: $(CHAPTERS)
 
 $(BUILD)/pdf/$(BOOKNAME).pdf: $(TITLE) $(CHAPTERS)
 	mkdir -p $(BUILD)/pdf
-	pandoc $(TOC) $(SYNTAX) --latex-engine=xelatex --template template.tex -V documentclass=$(LATEX_CLASS) -V fontsize=10pt -V geometry:"margin=1in, paperwidth=7in, paperheight=9in" -V monofont:"Ubuntu Mono" -o $@ $^
+	pandoc $(TOC) $(SYNTAX) --latex-engine=xelatex --template template.tex -V documentclass=$(LATEX_CLASS) -V fontsize=10pt -V geometry:"margin=1in, paperwidth=7in, paperheight=9in" -V mainfont:"DejaVu Serif" -V sansfont:"DejaVu Sans" -V monofont:"DejaVu Sans Mono" -o $@ $^
 
 $(BUILD)/markdown/$(BOOKNAME).md: $(CHAPTERS)
 	mkdir -p $(BUILD)/markdown
@@ -57,10 +55,5 @@ $(BUILD)/slides/revealjs/$(BOOKNAME).html: $(SLIDES)
 	mkdir -p $(BUILD)/slides
 	mkdir -p $(BUILD)/slides/revealjs
 	pandoc $(SYNTAX) --to=revealjs --standalone --self-contained -o $@ $^
-
-$(BUILD)/slides/dzslides/$(BOOKNAME).html: $(SLIDES)
-	mkdir -p $(BUILD)/slides
-	mkdir -p $(BUILD)/slides/dzslides
-	pandoc $(SYNTAX) --to=dzslides --standalone --self-contained -o $@ $^
 
 .PHONY: all book clean epub html pdf

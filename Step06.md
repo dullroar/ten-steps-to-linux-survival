@@ -1,5 +1,5 @@
   
-# Step 6. `vi`
+# `vi`
 
 ***How to stay sane for 10 minutes in `vi`. Navigation, basic editing, find,
 change/change-all, cut and paste, undo, saving and canceling. Plus easier

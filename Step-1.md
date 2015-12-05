@@ -1,10 +1,38 @@
   
+\ifxetex
+\section*{}
+\pagestyle{empty}
+\begin{figure}[!htbp]
+\includegraphics{./images/Merv.jpg}%
+\caption*{Merv sez, "Don't panic."}%
+\end{figure}
+\cleardoublepage
+By James Lehmer
+\newline
+\newline
+v0.3
+\newline
+\newline
+\begin{figure}[!htbp]
+\centering
+\includegraphics{./images/cc-by-sa.png}%
+\caption*{Creative Commons Attribution-ShareAlike 4.0 International License}%
+\end{figure}
+  
+  
+*Jim's Ten Steps to Linux Survival* by James Lehmer is licensed under a
+[Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
+\pagestyle{headings}
+\else
+
 ![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don&apos;t panic.'")
 
-**By Jim Lehmer**
-
+<b>By James Lehmer</b>
+<br />
+<br />
 v0.3
-
+<br />
+<br />
 <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
 alt="Creative Commons License" style="border-width:0"
@@ -19,6 +47,8 @@ Lehmer</span> is licensed under a <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
 Attribution-ShareAlike 4.0 International License</a>.
 
+\fi
+
 **Dedicated to my first three technical mentors** - Jim Proffer, who taught
 me digging deeper was fun and let me do so (often in production). Jerry
 Wood, who taught me to stop and think (and once called me an "inveterate
@@ -26,7 +56,11 @@ toolmaker" in a review). And Kim Manchak, who let me be more
 than he hired me to be (and continues to be a great chess opponent). Thank
 you, gentlemen. I've tried to pay it forward. This book is part of that.
 
-# Step -1. Introduction
+\ifxetex
+\setcounter{chapter}{-2}
+\fi
+
+# Introduction
 
 > *"And you may ask yourself, 'Well, how did I get here?'"* -
 > Talking Heads (*Once in a Lifetime*)
@@ -233,9 +267,8 @@ sentence, it will appear in a fixed-width font, e.g.,
 If a command and its output, script code or something else is shown in a
 block, it will appear like this:
 
-
-```bash
-$ ps -AH
+```
+~ $ ps -AH
   PID TTY          TIME CMD
     2 ?        00:00:00 kthreadd
     3 ?        00:00:00   ksoftirqd/0
@@ -249,7 +282,21 @@ $ ps -AH
 
 Or it may appear in a screenshot like this:
 
+\ifxetex
+\begin{figure}[!htbp]
+\includegraphics{./images/ps-AH.png}%
+\caption{Sample command}%
+\end{figure}
+\else
+
 ![Sample command](./images/ps-AH.png "Sample command")
 
+\fi
+
+**Note:** The examples in this book typically show something like `~ $`
+or `#` before the command (the latter especially when logged in as `root`
+or running under `csh`). These "command prompts" are set in `bash`
+via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)
+and are not meant to be typed in as part of the command. 
 
   

@@ -1,4 +1,6 @@
   
+\renewcommand{\chaptername}{}
+\renewcommand{\thechapter}{}
 # Appendices
 
 > *"That rug really tied the room together, did it not?"* - Walter Sobchak
@@ -218,7 +220,7 @@ Or you could do something as simple as this, which shows the source files
 now, after I've cleaned them all up (the only remnants are now in
 examples):
 
-```bash
+```
 $ grep '\[' *.md | grep -v ']'
 Step01.md: (( expression ))           if COMMANDS; then COMMANDS; [ elif C>
 Step01.md: :                          kill [-s sigspec | -n signum | -sigs>
@@ -240,7 +242,7 @@ Remembering that `&&` only executes the next command if the prior one is
 successful, we can do things like set up a sample directory and (empty)
 files for playing around with files and directories in one fell swoop:
 
-```bash
+```
 $ mkdir -p /tmp/foo/d && cd /tmp/foo && touch a b c d/e
 
 $ ls
@@ -249,7 +251,7 @@ a  b  c  d
 
 That is roughly equivalent to:
 
-```bash
+```
 $ cd /tmp
 
 $ mkdir -p foo
@@ -275,7 +277,7 @@ multiple machines. I keep this `installrdp` script in Dropbox so I can run
 it on any new machine I set up quickly and easily (once I get Dropbox set
 up on the machine!)
 
-```bash
+```
 #!/bin/bash
 sudo apt-get -y install git
 cd ~

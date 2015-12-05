@@ -1,5 +1,5 @@
   
-# Step 10. And So On
+# And So On
 
 ***`/etc`, starting and stopping services, `apt-get`/`rpm`/`yum`, and
 more.***
@@ -18,7 +18,7 @@ directories and text files under `/etc`.
 **Note:** In Linux almost universally `/etc` is pronounced "slash-et-see,"
 ***not*** "forward slash et cetera."
 
-```bash
+```
 # ls -l /etc
 total 844
 drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
@@ -70,7 +70,7 @@ you want to restart a specific system service without rebooting the whole
 system, often to force re-reading changed configuration files. If the
 service has a script in `/etc/init.d`:
 
-```bash
+```
 # ls /etc/init.d
 acpid                   console-setup  kbd                    mountkernf...
 apache2                 cron           keyboard-setup         mountnfs-b...
@@ -85,7 +85,7 @@ checkroot.sh            hwclock.sh     mountdevsubfs.sh       nfs-kernel...
 ...then chances are it will respond to a fairly standard set of commands,
 such as the following samples with `samba`:
 
-```bash
+```
 # /etc/init.d/samba stop
 [ ok ] Stopping Samba daemons: nmbd smbd.
 
@@ -129,7 +129,7 @@ There are three common `apt-get` commands that get used over and over. The
 first downloads and *updates* the local metadata cache for the
 repositories:
 
-```bash
+```
 $ sudo apt-get update
 [sudo] password for myuser: 
 Ign http://packages.linuxmint.com rafaela InRelease
@@ -151,7 +151,7 @@ The second common command *upgrades* all the packages in the system to
 the latest release in the repository (which may not be the latest and
 greatest release of the package):
 
-```bash
+```
 $ sudo apt-get dist-upgrade
 Reading package lists... Done
 Building dependency tree       
@@ -163,7 +163,7 @@ Calculating upgrade... Done
 In this case there was nothing to upgrade. And the final common command
 is obviously to install a package:
 
-```bash
+```
 $ sudo apt-get install curl
 Reading package lists... Done
 Building dependency tree       
@@ -202,7 +202,7 @@ If you want the latest and greatest version of a package you often have to
 go to its "official" site or GitHub repository. There, you may find a
 `.deb` file, in which case you could install it with `dpkg`:
 
-```bash
+```
 sudo dpkg -i somesoftware.deb
 ```
 
@@ -238,7 +238,7 @@ in which directory is going to be called?
 Luckily we have the [`which`](http://linux.die.net/man/1/which) command
 for just that!
 
-```bash
+```
 $ which curl
 /usr/bin/curl
 ```
@@ -246,7 +246,7 @@ $ which curl
 How can you tell if you have multiple versions of something installed?
 One way is with the [`locate`](http://linux.die.net/man/1/locate) command:
 
-```bash
+```
 locate md5
 /boot/grub/i386-pc/gcry_md5.mod
 /lib/modules/3.16.0-38-generic/kernel/drivers/usb/gadget/amd5536udc.ko
@@ -273,7 +273,7 @@ you are sitting at the command prompt, i.e., what
 can be a bit unnerving to try and execute `foo` in the current directory
 and get:
 
-```bash
+```
 $ ls -l foo
 -rwxrwx--- 1 myuser mygroup 16 Oct 23 19:03 foo
 
@@ -293,14 +293,14 @@ foo: command not found
 Instead, to invoke `foo`, you can either fully qualify the path as shown
 by `pwd`:
 
-```bash
+```
 $ /home/myuser/foo
 ```
 
 Or you can prepend the `./` relative path to it, to indicate "the `foo` in
 the current directory (`.`)":
 
-```bash
+```
 $ ./foo
 ```
 
@@ -346,7 +346,7 @@ file:
 If you have `sudo` privileges you can edit the `crontab` file for another
 user with:
 
-```bash
+```
 $ sudo crontab -e -u otheruser
 ```
 
@@ -368,7 +368,7 @@ consider "system" libraries! The `which` command comes in handy here.
 If you need to reboot the system the quickest way is with the
 [`reboot`](http://linux.die.net/man/8/reboot) command:
 
-```bash
+```
 $ sudo reboot
 ```
 
@@ -376,7 +376,7 @@ You can also use the [`shutdown`](http://linux.die.net/man/8/shutdown)
 command with the `-r` option, but why? The handy use for `shutdown` is to
 tell a system to halt and power off after shutting down:
 
-```bash
+```
 $ sudo shutdown -h now
 ```
 
@@ -392,7 +392,7 @@ However, most signals can be "caught" by a program and coded around. There
 is one "uninterruptable" signal, however, which is `SIGKILL`. We can send
 `SIGKILL` to a process and cause it to terminate immediately with:
 
-```bash
+```
 kill -s 9 14302
 ```
 
@@ -401,13 +401,13 @@ is the tenth signal in the signal list, which is 0-relative, hence #9).
 
 You can also use the following "shorthand" for `SIGKILL`:
 
-```bash
+```
 kill -9 14302
 ```
 
 Or if you want to get all verbose:
 
-```bash
+```
 kill -s SIGKILL 14302
 ```
 
@@ -428,7 +428,7 @@ status for the last executed command or program can be shown at the
 command line using the `$?` environment variable. Consider if the file
 `foo` exists and `bar` does not:
 
-```bash
+```
 $ ls foo
 foo
 
@@ -461,7 +461,7 @@ is successful.
 Our example of file `foo` (which exists) and file `bar` (which does not)
 and the effect on the exit code of `ls` can be illustrative here, too:
 
-```bash
+```
 $ ls foo && ls bar
 foo
 ls: cannot access bar: No such file or directory
@@ -473,7 +473,7 @@ $ echo $?
 Both `ls` commands execute because the first successfully found `foo`,
 but the second emits its error and sets the exit code to `2` (failure).
 
-```bash
+```
 $ ls foo || ls bar
 foo
 
@@ -485,7 +485,7 @@ Note in this case the second `ls` didn't execute because the logical "or"
 condition was already satisfied by the successful execution of the first
 `ls`. The exit code is obviously `0` (success).
 
-```bash
+```
 $ ls bar && ls foo
 ls: cannot access bar: No such file or directory
 
@@ -496,7 +496,7 @@ $ echo $?
 Obviously if the first command fails, the "and" condition as a whole
 fails and the expression exits with a code of `2`.
 
-```bash
+```
 $ ls bar || ls foo
 ls: cannot access bar: No such file or directory
 foo
@@ -517,7 +517,7 @@ And yes, of course, that means there is also a
 [`false`](http://linux.die.net/man/1/false) command to "do nothing,
 unsuccessfully!"
 
-```bash
+```
 $ true
 
 $ echo $?

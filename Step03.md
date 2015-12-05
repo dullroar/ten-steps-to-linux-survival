@@ -1,5 +1,5 @@
   
-# Step 3. Finding Meaning
+# Finding Meaning
 
 ***The `find` command in all its glory. Probably the single most useful
 command in "UNIX" (I think).***
@@ -25,7 +25,7 @@ be more precise) that successfully match one or more tests...
 The simplest example is "starting in the current directory, recursively
 list all files you find":
 
-```bash
+```
 $ find
 .
 ./Agenda.md
@@ -53,7 +53,7 @@ intended) some better examples of using `find`. It is better to show than
 tell in this case. Let's dive into a semi-complicated one and pick it
 apart:
 
-```bash
+```
 find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 ```
@@ -86,7 +86,7 @@ currently found (matching) file.
 
 Reconsider this example:
 
-```bash
+```
 find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 ```
@@ -169,7 +169,7 @@ is the default action.
 The `-printf` action allows you to do some interesting things when
 producing output. For example, consider these three files:
 
-```bash
+```
 $ touch a b c
 
 $ ls -l
@@ -184,7 +184,7 @@ wanted three lines with the name, owner and created date and time in ISO
 8601 format, all followed by a blank line, we could use the following
 `find` command:
 
-```bash
+```
 $ find . -type f -printf "%p\n%u\n%TY-%Tm-%TdT%TT\n\n"
 ./a
 myuser

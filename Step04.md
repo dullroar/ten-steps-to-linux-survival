@@ -1,5 +1,5 @@
   
-# Step 4. Grokking `grep`
+# Grokking `grep`
 
 ***And probably gawking at `awk` while we are at it, which means regular
 expressions, too. Now we have two problems.***
@@ -19,7 +19,7 @@ or "regexes," in a moment.
 First, an example of `grep`, showing all files in a directory with the
 pattern "is" in them:
 
-```bash
+```
 $ touch a b c
 
 $ echo This sequence of characters is called a \"string\". > d
@@ -76,7 +76,7 @@ you want.
 In the mean time, a few ***simple*** regex examples. Consider the following
 file `invoices`:
 
-```bash
+```
 $ cat invoices
 Combine brakes  400
 Combine motor   1500
@@ -93,7 +93,7 @@ Truck   winch   100
 
 Let's find all lines with "tractor":
 
-```bash
+```
 $ grep tractor invoices
 
 ```
@@ -101,7 +101,7 @@ $ grep tractor invoices
 Huh, nothing was found. But this is UNIX-land, so we know it is sensitive -
 about case anyway:
 
-```bash
+```
 $ grep Tractor invoices
 Tractor brakes  300
 Tractor motor   1000
@@ -110,7 +110,7 @@ Tractor tires   2000
 
 Or we could just tell `grep` we are insensitive (to case, anyway):
 
-```bash
+```
 $ grep -i tractor invoices
 Tractor brakes  300
 Tractor motor   1000
@@ -119,7 +119,7 @@ Tractor tires   2000
 
 And just to remind you about long-style parameters:
 
-```bash
+```
 $ grep --ignore-case tractor invoices
 Tractor brakes  300
 Tractor motor   1000
@@ -128,7 +128,7 @@ Tractor tires   2000
 
 But what ***lines*** are those on?
 
-```bash
+```
 $ grep -i -n tractor invoices
 1:Tractor       motor   1000
 2:Tractor       brakes  300
@@ -139,7 +139,7 @@ To get more complicated, we can pass the `-E` parameter (for *extended*
 regular expressions) and start doing some really fun stuff. Let's look for
 lines with either "Tractor" or "Truck":
 
-```bash
+```
 $ grep -E "Tractor|Truck" invoices
 Tractor brakes  300
 Tractor motor   1000
@@ -165,7 +165,7 @@ uppercase Latin alphabetic character).
 
 For example, to find the lines that end in `400`:
 
-```bash
+```
 $ grep  -E "^*400$" invoices
 Combine brakes  400
 Truck   tires   400
@@ -177,7 +177,7 @@ Truck   tires   400
 
 To recursively find all files that contain the string "pdfinfo":
 
-```bash
+```
 $ grep -R -i pdfinfo *
 ./FileCheckers/otschecker:# pdfinfo, too. If pdfinfo thinks it's junk, ...
 ./FileCheckers/otschecker:        pdfinfo=`pdfinfo -opw foo "$1" 2>&1 1...
@@ -192,7 +192,7 @@ $ grep -R -i pdfinfo *
 
 The above is functionally equivalent but ***much*** quicker than:
 
-```bash
+```
 $ find . -type f -exec grep -H -i pdfinfo \{\} \; 
 ```
 
@@ -208,7 +208,7 @@ For example, if you only wanted to check files that contain "pdfinfo" that
 have been created or modified since the last time you checked, it could be
 quicker to run something like:
 
-```bash
+```
 $ find . ! -name pdfinfo.log -newer pdfinfo.log -type f -exec grep -H \
 -i pdfinfo \{\} \; > pdfinfo.log
 ```
@@ -250,7 +250,7 @@ famous, in this case
 [formatting and printing a report on user ids](http://www.ibm.com/developerworks/library/l-awk1/)
 from `/etc/passwd`:
 
-```bash
+```
 $ awk -F":" '{ print "username: " $1 "\t\tuid:" $3 }' /etc/passwd
 username: root		uid:0
 username: daemon		uid:1
