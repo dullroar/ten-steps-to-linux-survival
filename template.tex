@@ -1,9 +1,16 @@
 \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+
+% Packages I added.
 \usepackage{placeins}
 \usepackage{caption}
 \usepackage{float}
 \floatplacement{figure}{H}
 \restylefloat{figure}
+\usepackage{makeidx}
+\usepackage[nottoc]{tocbibind}
+\makeindex
+% End of packaged I added.
+
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
@@ -147,8 +154,11 @@ $endif$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 \date{$date$}
 
+% Overriding commands.
 \renewcommand{\chaptername}{Step}
 \renewcommand{\contentsname}{Steps}
+\numberwithin{figure}{chapter}
+% End of overriding commands.
 
 \begin{document}
 $if(title)$
@@ -166,11 +176,15 @@ $if(toc)$
 \tableofcontents
 }
 $endif$
+
+% Add list of figures.
 $if(lof)$
 {
 \listoffigures
 }
 $endif$
+% End of list of figures.
+
 $body$
 
 $if(natbib)$
@@ -190,8 +204,16 @@ $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
 
 $endif$
+
 $for(include-after)$
 $include-after$
 
 $endfor$
+
+% Add index.
+\cleardoublepage
+\phantomsection
+\printindex
+% End of index.
+
 \end{document}

@@ -12,7 +12,7 @@ By James Lehmer v0.3
 
 ![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don't panic.'")
 
-<b>By James Lehmer</b> <br /> <br /> v0.3 <br /> <br /> <a rel="license"
+<b>By James Lehmer</b> <br /> <br /> v0.4 <br /> <br /> <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
 alt="Creative Commons License" style="border-width:0"
 src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a> <br /> <br /> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><i>Jim's Ten Steps to Linux Survival</i></span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">James Lehmer</span> is licensed under a <a rel="license"
@@ -139,7 +139,9 @@ If a command and its output, script code or something else is shown in a block, 
        10 ?        00:00:07   rcuos/2
     ...and so on...
 
-Or it may appear in a screenshot like this:
+**Note:** The examples in this book typically show something like `~ $` or `#` before the command (the latter especially when logged in as `root` or running under `csh`). These "command prompts" are set in `bash` via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto) and are not meant to be typed in as part of the command.
+
+Samples may also appear in a screenshot like this:
 
 \begin{figure}[!htbp]
 \includegraphics{./images/ps-AH.png}%
@@ -147,8 +149,6 @@ Or it may appear in a screenshot like this:
 \end{figure}
 
 ![Sample command](./images/ps-AH.png "Sample command")
-
-**Note:** The examples in this book typically show something like `~ $` or `#` before the command (the latter especially when logged in as `root` or running under `csh`). These "command prompts" are set in `bash` via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto) and are not meant to be typed in as part of the command.
 
 Some History
 ============
@@ -191,7 +191,7 @@ To further muddy the waters, there have been multiple attempts to "standardize" 
 
 -   [**POSIX**](https://en.wikipedia.org/wiki/POSIX) - a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the US government started wanting systems to be "POSIX-compliant."
 
-    **Note:** No system runs POSIX, they all are "similar but different." Even Windows can claim to be POSIX in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.
+**Note:** No system runs POSIX, they all are "similar but different." Even Windows can claim to be POSIX in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.
 
 -   [**GNU Project**](https://en.wikipedia.org/wiki/GNU_Project) - [Richard Stallman](https://en.wikipedia.org/wiki/Richard_Stallman) founded the [Free Software Foundation](https://en.wikipedia.org/wiki/Free_Software_Foundation) (FSF) and GNU project in the mid-1980s, ***long*** before Linux (GNU = "GNU's Not Unix"). The GNU project delivers [a suite of programs and tools](https://www.gnu.org/software/software.html), many of which are used in both Linux and BSD variants as de facto standards.
 
@@ -3597,7 +3597,7 @@ Output produced using [`pandoc`](http://pandoc.org/), [TeX Live](http://www.tug.
 
 Source code control is provided by [`git`](http://linux.die.net/man/1/git). You can view [the files used to create this book](https://github.com/dullroar/ten-steps-to-linux-survival) on GitHub.
 
-The cover photo is of our dog, Merv, who is reminding you, "Don't panic!"
+The cover photo is of our dog, Merv, who is reminding you, "Don't panic!" Photo by Gloria Anderson, used with permission.
 
 About the Author
 ----------------

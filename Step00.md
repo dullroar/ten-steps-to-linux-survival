@@ -18,15 +18,20 @@ depths of time:
 [Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) &
 [Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie),
 [UNIX](https://en.wikipedia.org/wiki/History_of_Unix),
+\index{UNIX}
 blah blah blah...
 
 * **More Trouble From Berkeley** - late 1970s, Carter, disco, Iran
 hostages, UC Berkely releases the
 [Berkeley Software Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution)
-(BSD), a port based on the Bell Labs UNIX. Let the forking begin!
+(BSD),
+\index{BSD}
+a port based on the Bell Labs UNIX. Let the forking begin!
 
 * **Goes commercial** - 1980s, Reagan, Iran Contra, *E.T.*, AT&T releases
-[System V](https://en.wikipedia.org/wiki/UNIX_System_V) as first commercial
+[System V](https://en.wikipedia.org/wiki/UNIX_System_V)
+\index{System V}
+as first commercial
 UNIX. From the same background as Bell Labs UNIX, but evolved with subtle
 and not so subtle differences in approaches to command syntax, networking
 and much more. It is this release and AT&T's copyrights that are the basis
@@ -46,7 +51,9 @@ Gulf War I, proliferation of proprietary (and different) "UNIX" platforms:
 
 * **Linux** - 1991+, Clinton I, grunge, *Titanic*,
 [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) releases
-a project called [Linux](https://en.wikipedia.org/wiki/Linux) based on
+a project called [Linux](https://en.wikipedia.org/wiki/Linux)
+\index{Linux}
+based on
 [MINIX](https://en.wikipedia.org/wiki/MINIX)
 (and hence why Linus says Linux is pronounced like "MINIX" and not like
 "Linus").
@@ -54,8 +61,13 @@ a project called [Linux](https://en.wikipedia.org/wiki/Linux) based on
 * **Proliferation of the BSDs** - mid-to-late 1990s, still Clinton I,
 Monicagate, Kosovo, various ports of BSD including
 [NetBSD](https://en.wikipedia.org/wiki/NetBSD),
-[FreeBSD](https://en.wikipedia.org/wiki/FreeBSD) and
-[OpenBSD](https://en.wikipedia.org/wiki/OpenBSD), all happen in the same
+\index{NetBSD}
+[FreeBSD](https://en.wikipedia.org/wiki/FreeBSD)
+\index{FreeBSD}
+and
+[OpenBSD](https://en.wikipedia.org/wiki/OpenBSD),
+\index{OpenBSD}
+all happen in the same
 time frame as Linux. Like Linux distros, each has its own focus and
 prejudices, some of which are distinctly "anti-Linux." The "big three" are
 all still in heavy use today, especially among ISPs. The perception is
@@ -83,13 +95,15 @@ Bell Labs offspring, or that "acts like," well, UNIX.
 To further muddy the waters, there have been multiple attempts to
 "standardize" whatever it is this thing is called:
 
-* [**POSIX**](https://en.wikipedia.org/wiki/POSIX) - a de jure set of
+* [**POSIX**](https://en.wikipedia.org/wiki/POSIX) -
+\index{POSIX}
+a de jure set of
 standards created in the 1980s and 1990s to try to bring order to the chaos
 that was commercial UNIX-flavored operating systems of the time. It worked.
 Sorta. Especially once the US government started wanting systems to be
 "POSIX-compliant."
 
-    **Note:** No system runs POSIX, they all are "similar
+**Note:** No system runs POSIX, they all are "similar
 but different." Even Windows can claim to be POSIX in some respects (and
 has an installable POSIX subsystem), but that doesn't mean POSIX-compliant
 code will run there unchanged.
@@ -97,7 +111,9 @@ code will run there unchanged.
 * [**GNU Project**](https://en.wikipedia.org/wiki/GNU_Project) - [Richard
 Stallman](https://en.wikipedia.org/wiki/Richard_Stallman) founded the
 [Free Software Foundation](https://en.wikipedia.org/wiki/Free_Software_Foundation) (FSF)
-and GNU project in the mid-1980s, ***long*** before Linux (GNU = "GNU's Not
+and GNU project
+\index{GNU}
+in the mid-1980s, ***long*** before Linux (GNU = "GNU's Not
 Unix"). The GNU project delivers
 [a suite of programs and tools](https://www.gnu.org/software/software.html),
 many of which are used in both Linux and BSD variants as de facto
@@ -190,22 +206,28 @@ installing, updating and removal of those packages.
 
 In the BSD world each major port has its own approach. In the Linux world
 the job of deciding all this and putting it all together falls to
-distributions or "distros." These have evolved over time into a series of
+distributions or "distros." \index{Linux distros}
+These have evolved over time into a series of
 ["families"](https://en.wikipedia.org/wiki/Linux_distribution#Popular_distributions)
 based in large part around the
 [package management tool](https://en.wikipedia.org/wiki/Package_manager)
 predominantly used:
 
-* **`apt-get`, `dpkg` and `.deb` files** -
+* **`apt-get`, `dpkg` and `.deb` files** - \index{apt-get}
+\index{dpkg}
 [Debian](https://en.wikipedia.org/wiki/Debian) flavors, such as
 [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29) and
 [Mint](https://en.wikipedia.org/wiki/Linux_Mint) (Mint is currently my
 desktop Linux of choice, Debian my preferred server OS, but both solely
 based on familiarity).
 
-* **`pacman`** - [Arch](https://en.wikipedia.org/wiki/Arch_Linux) flavors.
+* **`pacman`** -
+\index{pacman}
+[Arch](https://en.wikipedia.org/wiki/Arch_Linux) flavors.
 
-* **`rpm` and `yum`** - Red Hat flavors, such as
+* **`rpm` and `yum`** - \index{rpm}
+\index{yum}
+Red Hat flavors, such as
 [Fedora](https://en.wikipedia.org/wiki/Fedora_%28operating_system%29), [Red
 Hat Enterprise](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux) and
 [CentOS](https://en.wikipedia.org/wiki/CentOS).
@@ -228,7 +250,9 @@ a shell (command prompt) the best thing to do is see what works.
 
 ## Cygwin
 
-[Cygwin](http://cygwin.com/) is an interesting beast. It is a DLL for
+[Cygwin](http://cygwin.com/)
+\index{Cygwin}
+is an interesting beast. It is a DLL for
 Windows that implements most of the POSIX and related UNIX-like "system API
 calls" for programming, and then is also a series of ported open source
 packages, including shells, utilities and even desktop environments, all
@@ -249,4 +273,5 @@ box. You can do a lot of amazing things with Cygwin with enough effort
 (including running X and a desktop environment like GNOME!), but at some
 point why not expend that effort in standing up a "real" Linux (virtual)
 machine anyway?
+
   

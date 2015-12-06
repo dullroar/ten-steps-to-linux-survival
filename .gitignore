@@ -3,3 +3,11 @@ desktop.ini
 .vscode
 .vscode/settings.json
 .vscode/tasks.json
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.out
+*.aux

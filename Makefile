@@ -24,6 +24,8 @@ html: $(BUILD)/html/$(BOOKNAME).html
 
 pdf: $(BUILD)/pdf/$(BOOKNAME).pdf
 
+#pdf2: $(BUILD)/pdf2/$(BOOKNAME).pdf
+
 slides: revealjs
 
 revealjs: $(BUILD)/slides/revealjs/$(BOOKNAME).html
@@ -40,9 +42,16 @@ $(BUILD)/html/$(BOOKNAME).html: $(CHAPTERS)
 	cp images/* $(BUILD)/html/images/.
 	pandoc $(TOC) $(SYNTAX) --standalone --to=html5 -o $@ $^
 
+#$(BUILD)/pdf/$(BOOKNAME).pdf: $(TITLE) $(CHAPTERS)
+#	mkdir -p $(BUILD)/pdf
+#	pandoc $(TOC) $(SYNTAX) --latex-engine=xelatex --template template.tex -V documentclass=$(LATEX_CLASS) -V fontsize=10pt -V geometry:"margin=1in, paperwidth=7in, paperheight=9in" -V mainfont:"DejaVu Serif" -V sansfont:"DejaVu Sans" -V monofont:"DejaVu Sans Mono" -o $@ $^
+
 $(BUILD)/pdf/$(BOOKNAME).pdf: $(TITLE) $(CHAPTERS)
 	mkdir -p $(BUILD)/pdf
-	pandoc $(TOC) $(SYNTAX) --latex-engine=xelatex --template template.tex -V documentclass=$(LATEX_CLASS) -V fontsize=10pt -V geometry:"margin=1in, paperwidth=7in, paperheight=9in" -V mainfont:"DejaVu Serif" -V sansfont:"DejaVu Sans" -V monofont:"DejaVu Sans Mono" -o $@ $^
+	pandoc $(TOC) $(SYNTAX) --latex-engine=xelatex --template template.tex -V documentclass=$(LATEX_CLASS) -V fontsize=10pt -V geometry:"margin=1in, paperwidth=7in, paperheight=9in" -V mainfont:"DejaVu Serif" -V sansfont:"DejaVu Sans" -V monofont:"DejaVu Sans Mono" --to=latex -o $(BUILD)/pdf/$(BOOKNAME).tex $^
+	xelatex -output-directory=$(BUILD)/pdf $(BUILD)/pdf/$(BOOKNAME).tex
+	makeindex $(BUILD)/pdf/$(BOOKNAME)
+	xelatex -output-directory=$(BUILD)/pdf $(BUILD)/pdf/$(BOOKNAME)
 
 $(BUILD)/markdown/$(BOOKNAME).md: $(CHAPTERS)
 	mkdir -p $(BUILD)/markdown

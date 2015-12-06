@@ -1,0 +1,100 @@
+\contentsline {chapter}{List of Figures}{9}{chapter*.2}
+\contentsline {chapter}{\numberline {-1}Introduction}{13}{chapter.-1}
+\contentsline {section}{Batteries Not Included}{14}{section*.4}
+\contentsline {section}{Please, Give Generously}{15}{section*.5}
+\contentsline {section}{Why?}{15}{section*.6}
+\contentsline {section}{Caveat Administrator}{16}{section*.7}
+\contentsline {section}{Conventions}{17}{section*.8}
+\contentsline {chapter}{\numberline {0}Some History}{19}{chapter.0}
+\contentsline {section}{Why Does This Matter?}{21}{section*.9}
+\contentsline {section}{Panic at the Distro}{22}{section*.10}
+\contentsline {section}{Get Embed With Me}{23}{section*.11}
+\contentsline {section}{Cygwin}{23}{section*.12}
+\contentsline {chapter}{\numberline {1}Come Out of Your Shell}{25}{chapter.1}
+\contentsline {section}{\texttt {bash} Built-Ins}{26}{section*.13}
+\contentsline {section}{Everything You Know is (Almost) Wrong}{27}{section*.14}
+\contentsline {section}{You're a Product of Your Environment (Variables)}{29}{section*.15}
+\contentsline {subsection}{Who Am I?}{30}{section*.16}
+\contentsline {section}{Paths (a Part of Any Balanced Shrubbery)}{30}{section*.17}
+\contentsline {section}{Open Your Shell and Interact}{31}{section*.18}
+\contentsline {section}{Getting Lazy}{31}{section*.19}
+\contentsline {chapter}{\numberline {2}File Under ``Directories''}{35}{chapter.2}
+\contentsline {section}{Looking at Files}{36}{section*.20}
+\contentsline {section}{A Brief Detour Around Parameters}{37}{section*.21}
+\contentsline {section}{More Poking at Files}{38}{section*.22}
+\contentsline {section}{Sorting Things Out}{41}{section*.23}
+\contentsline {section}{Rearranging Deck Chairs}{44}{section*.24}
+\contentsline {section}{Making Files Disappear}{45}{section*.25}
+\contentsline {section}{Touch Me}{46}{section*.26}
+\contentsline {section}{Navigating Through Life}{47}{section*.27}
+\contentsline {section}{May I?}{50}{section*.28}
+\contentsline {section}{``I'll Send You a Tar Ball''}{53}{section*.29}
+\contentsline {section}{Let's Link Up!}{56}{section*.30}
+\contentsline {subsection}{I Said ``Go Away!'', Dammit!}{58}{section*.31}
+\contentsline {subsection}{Mount It? I Don't Even Know It's Name!}{60}{section*.32}
+\contentsline {subsection}{I'm Seeing Double}{61}{section*.33}
+\contentsline {section}{What's the \texttt {diff}?}{62}{section*.34}
+\contentsline {chapter}{\numberline {3}Finding Meaning}{65}{chapter.3}
+\contentsline {section}{What's With the Backslashes?}{67}{section*.35}
+\contentsline {section}{Useful \texttt {find} Options}{67}{section*.36}
+\contentsline {section}{Useful \texttt {find} Actions}{68}{section*.37}
+\contentsline {chapter}{\numberline {4}Grokking \texttt {grep}}{71}{chapter.4}
+\contentsline {section}{Expressing Yourself Regularly}{72}{section*.38}
+\contentsline {section}{Groveling With \texttt {grep}}{74}{section*.39}
+\contentsline {section}{Gawking at \texttt {awk}}{75}{section*.40}
+\contentsline {chapter}{\numberline {5}``Just a Series of Pipes''}{77}{chapter.5}
+\contentsline {section}{All Magic is Redirection}{78}{section*.41}
+\contentsline {section}{Everyone Line Up}{81}{section*.42}
+\contentsline {chapter}{\numberline {6}\texttt {vi}}{83}{chapter.6}
+\contentsline {section}{Command Me}{84}{section*.43}
+\contentsline {section}{Undo Me}{85}{section*.44}
+\contentsline {section}{Circumnavigating \texttt {vi}}{85}{section*.45}
+\contentsline {section}{Insert Tab A Into Slot B}{86}{section*.46}
+\contentsline {section}{Ctrl-X, Ctrl-C, Ctrl-V}{87}{section*.47}
+\contentsline {section}{Change Machine}{87}{section*.48}
+\contentsline {section}{``X'' Marks the Spot}{91}{section*.49}
+\contentsline {section}{Executing External Commands}{91}{section*.50}
+\contentsline {section}{The Unseen World}{92}{section*.51}
+\contentsline {section}{Let's Get Small}{93}{section*.52}
+\contentsline {chapter}{\numberline {7}The Whole Wide World}{95}{chapter.7}
+\contentsline {section}{\texttt {sudo} Make Me a Sandwich}{97}{section*.53}
+\contentsline {section}{Surfin' the Command Prompt}{98}{section*.54}
+\contentsline {section}{You've Got Mail}{99}{section*.55}
+\contentsline {section}{Let's Connect}{99}{section*.56}
+\contentsline {section}{Network Configuration}{101}{section*.57}
+\contentsline {chapter}{\numberline {8}The Man Behind the Curtain}{103}{chapter.8}
+\contentsline {section}{All Part of the Process}{103}{section*.58}
+\contentsline {section}{When All You Have is a Hammer}{105}{section*.59}
+\contentsline {section}{Sawing Logs}{107}{section*.60}
+\contentsline {section}{It's All Temporary}{108}{section*.61}
+\contentsline {chapter}{\numberline {9}How Do You Know What You Don't Know, \texttt {man}?}{109}{chapter.9}
+\contentsline {section}{\texttt {man}, is that \texttt {info} \texttt {apropos}?}{109}{section*.62}
+\contentsline {section}{How Do You Google, \texttt {man}?}{113}{section*.63}
+\contentsline {section}{Books and Stuff}{113}{section*.64}
+\contentsline {chapter}{\numberline {10}And So On}{115}{chapter.10}
+\contentsline {section}{One-Stop Shopping}{115}{section*.65}
+\contentsline {section}{Service Station}{116}{section*.66}
+\contentsline {section}{Package Management}{117}{section*.67}
+\contentsline {section}{Other Sources}{119}{section*.68}
+\contentsline {section}{Which \texttt {which} is Which?}{120}{section*.69}
+\contentsline {section}{Over and Over and Over}{121}{section*.70}
+\contentsline {section}{Start Me Up}{122}{section*.71}
+\contentsline {section}{Turn on Your Signals}{123}{section*.72}
+\contentsline {section}{Exit, Smiling}{123}{section*.73}
+\contentsline {section}{The End}{126}{section*.74}
+\contentsline {chapter}{\numberline {}Appendices}{127}{chapter.11}
+\contentsline {section}{Cheat Sheet}{127}{section*.75}
+\contentsline {subsection}{Environment Variables}{127}{section*.76}
+\contentsline {subsection}{Conditional Execution}{127}{section*.77}
+\contentsline {subsection}{Redirection}{127}{section*.78}
+\contentsline {subsection}{Special Files and Directories}{128}{section*.79}
+\contentsline {subsection}{System Directories}{128}{section*.80}
+\contentsline {subsection}{Commands}{128}{section*.81}
+\contentsline {subsection}{System Commands}{130}{section*.82}
+\contentsline {section}{Examples}{130}{section*.83}
+\contentsline {subsection}{Keep It Simple, Stupid}{131}{section*.84}
+\contentsline {subsection}{Chain Gangs}{131}{section*.85}
+\contentsline {subsection}{Simple Scripts}{132}{section*.86}
+\contentsline {chapter}{\numberline {}Colophon}{135}{chapter.12}
+\contentsline {section}{About the Author}{136}{section*.87}
+\contentsline {chapter}{Index}{137}{section*.88}

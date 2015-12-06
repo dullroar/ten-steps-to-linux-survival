@@ -30,7 +30,7 @@ v0.3
 <b>By James Lehmer</b>
 <br />
 <br />
-v0.3
+v0.4
 <br />
 <br />
 <a rel="license"
@@ -280,7 +280,13 @@ block, it will appear like this:
 ...and so on...
 ```
 
-Or it may appear in a screenshot like this:
+**Note:** The examples in this book typically show something like `~ $`
+or `#` before the command (the latter especially when logged in as `root`
+or running under `csh`). These "command prompts" are set in `bash`
+via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)
+and are not meant to be typed in as part of the command. 
+
+Samples may also appear in a screenshot like this:
 
 \ifxetex
 \begin{figure}[!htbp]
@@ -292,11 +298,5 @@ Or it may appear in a screenshot like this:
 ![Sample command](./images/ps-AH.png "Sample command")
 
 \fi
-
-**Note:** The examples in this book typically show something like `~ $`
-or `#` before the command (the latter especially when logged in as `root`
-or running under `csh`). These "command prompts" are set in `bash`
-via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)
-and are not meant to be typed in as part of the command. 
 
   

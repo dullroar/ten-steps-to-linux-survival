@@ -41,6 +41,7 @@ You can view
 on GitHub.
 
 The cover photo is of our dog, Merv, who is reminding you, "Don't panic!"
+Photo by Gloria Anderson, used with permission.
 
 ## About the Author
 
