@@ -24,8 +24,6 @@ html: $(BUILD)/html/$(BOOKNAME).html
 
 pdf: $(BUILD)/pdf/$(BOOKNAME).pdf
 
-#pdf2: $(BUILD)/pdf2/$(BOOKNAME).pdf
-
 slides: revealjs
 
 revealjs: $(BUILD)/slides/revealjs/$(BOOKNAME).html
@@ -35,16 +33,13 @@ markdown: $(BUILD)/markdown/$(BOOKNAME).md
 $(BUILD)/epub/$(BOOKNAME).epub: $(TITLE) $(CHAPTERS)
 	mkdir -p $(BUILD)/epub
 	pandoc $(TOC) $(SYNTAX) -V toc-title="Table of Contents" -S --epub-metadata=$(METADATA) --epub-cover-image=$(COVER_IMAGE) -o $@ $^
+	~/KindleGen/kindlegen $(BUILD)/epub/$(BOOKNAME).epub
 
 $(BUILD)/html/$(BOOKNAME).html: $(CHAPTERS)
 	mkdir -p $(BUILD)/html
 	mkdir -p $(BUILD)/html/images
 	cp images/* $(BUILD)/html/images/.
 	pandoc $(TOC) $(SYNTAX) --standalone --to=html5 -o $@ $^
-
-#$(BUILD)/pdf/$(BOOKNAME).pdf: $(TITLE) $(CHAPTERS)
-#	mkdir -p $(BUILD)/pdf
-#	pandoc $(TOC) $(SYNTAX) --latex-engine=xelatex --template template.tex -V documentclass=$(LATEX_CLASS) -V fontsize=10pt -V geometry:"margin=1in, paperwidth=7in, paperheight=9in" -V mainfont:"DejaVu Serif" -V sansfont:"DejaVu Sans" -V monofont:"DejaVu Sans Mono" -o $@ $^
 
 $(BUILD)/pdf/$(BOOKNAME).pdf: $(TITLE) $(CHAPTERS)
 	mkdir -p $(BUILD)/pdf
