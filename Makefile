@@ -33,7 +33,7 @@ markdown: $(BUILD)/markdown/$(BOOKNAME).md
 $(BUILD)/epub/$(BOOKNAME).epub: $(TITLE) $(CHAPTERS)
 	mkdir -p $(BUILD)/epub
 	pandoc $(TOC) $(SYNTAX) -V toc-title="Table of Contents" -S --epub-metadata=$(METADATA) --epub-cover-image=$(COVER_IMAGE) -o $@ $^
-	~/KindleGen/kindlegen $(BUILD)/epub/$(BOOKNAME).epub
+	-~/KindleGen/kindlegen $(BUILD)/epub/$(BOOKNAME).epub
 
 $(BUILD)/html/$(BOOKNAME).html: $(CHAPTERS)
 	mkdir -p $(BUILD)/html

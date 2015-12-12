@@ -2,43 +2,40 @@
 # Some History
 
 ***UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,”
-Cygwin, and why any of this matters now. “Why does this script off the
-internet work on this system and not on that one?”***
+Cygwin, and why any of this matters now. “Why does this script off
+the internet work on this system and not on that one?”***
 
 > *"That men do not learn very much from the lessons of history is the
 > most important of all the lessons of history."* - Aldous Huxley
 
-UNIX and its successors such as Linux have a long history reaching into the
-depths of time:
+UNIX and its successors such as Linux have a long history reaching into
+the depths of time:
 
 * **Prehistory** - late 1960s, Nixon, Vietnam, Woodstock, Moon landing,
 [Multics](https://en.wikipedia.org/wiki/Multics) at MIT, GE and Bell Labs.
 
-* **In the beginning** - early 1970s, Nixon drags on, Watergate, Bell Labs,
-[Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) &
-[Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie),
-[UNIX](https://en.wikipedia.org/wiki/History_of_Unix),
-\index{UNIX}
+* **In the beginning** - early 1970s, Nixon drags on, Watergate,
+Bell Labs, [Thompson](https://en.wikipedia.org/wiki/Ken_Thompson)
+& [Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie),
+[UNIX](https://en.wikipedia.org/wiki/History_of_Unix), \index{UNIX}
 blah blah blah...
 
-* **More Trouble From Berkeley** - late 1970s, Carter, disco, Iran
-hostages, UC Berkely releases the
-[Berkeley Software Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution)
-(BSD),
-\index{BSD}
-a port based on the Bell Labs UNIX. Let the forking begin!
+* **More Trouble From Berkeley** - late 1970s, Carter,
+disco, Iran hostages, UC Berkely releases the [Berkeley Software
+Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution)
+(BSD), \index{BSD} a port based on the Bell Labs UNIX. Let the forking
+begin!
 
 * **Goes commercial** - 1980s, Reagan, Iran Contra, *E.T.*, AT&T releases
-[System V](https://en.wikipedia.org/wiki/UNIX_System_V)
-\index{System V}
-as first commercial
-UNIX. From the same background as Bell Labs UNIX, but evolved with subtle
-and not so subtle differences in approaches to command syntax, networking
-and much more. It is this release and AT&T's copyrights that are the basis
-of all the SCO-vs-Linux lawsuits 2-3 decades later.
+[System V](https://en.wikipedia.org/wiki/UNIX_System_V) \index{System V}
+as first commercial UNIX. From the same background as Bell Labs UNIX, but
+evolved with subtle and not so subtle differences in approaches to command
+syntax, networking and much more. It is this release and AT&T's copyrights
+that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.
 
-* **Explosion of "UNIX"** -late 1980s/early 1990s, Bush I, Berlin Wall falls,
-Gulf War I, proliferation of proprietary (and different) "UNIX" platforms:
+* **Explosion of "UNIX"** -late 1980s/early 1990s, Bush I, Berlin
+Wall falls, Gulf War I, proliferation of proprietary (and different)
+"UNIX" platforms:
 
     * **HP HP-UX**
     * **Sun SunOS** - BSD flavor.
@@ -163,34 +160,23 @@ The best thing is to be vaguely aware of this history and licenses and if
 something isn't available on a certain platform or if a command isn't
 taking a specific parameter to search for variants.
 
-For example, note the differences in command line parameters and output
-between showing all processes with the
+For example, note the difference in output
+between the first figure \fref{ps-on-linux-in-bash}
+showing all processes with the
 [`ps`](http://linux.die.net/man/1/ps) (*process*) command on a Linux
-system, in this case Linux Mint:
+system (in this case Linux Mint under `bash`), versus the second
+example \fref{ps-on-freebsd-in-csh} on a FreeBSD system at my ISP,
+where `csh` is the default shell.
 
-```
-$ ps -AH
-  PID TTY          TIME CMD
-    2 ?        00:00:00 kthreadd
-    3 ?        00:00:00   ksoftirqd/0
-    5 ?        00:00:00   kworker/0:0H
-    7 ?        00:00:19   rcu_sched
-    8 ?        00:00:04   rcuos/0
-    9 ?        00:00:09   rcuos/1
-   10 ?        00:00:07   rcuos/2
-...and so on...
-```
-...versus on a FreeBSD system at my ISP, where `csh` is the default shell:
+\ifxetex\fimg{./images/ps-a-bash.png}{ps on Linux in bash}{ps-on-linux-in-bash}
+\else
+![ps on Linux in bash](./images/ps-a-bash.png "ps on Linux in bash")
+\fi
 
-```
-%ps -ax
-  PID  TT  STAT      TIME COMMAND
-73591  ??  S      0:00.03 sshd: myuser@ttyp1 (sshd)
-79503  ??  S      0:00.07 dovecot/imap
-80065  ??  S      0:00.05 dovecot/imap
-73593  p1  Ss     0:00.02 -csh (csh)
-90737  p1  RN+    0:00.00 ps -ax
-```
+\ifxetex\fimg{./images/ps-a-csh.png}{ps on FreeBSD in csh}{ps-on-freebsd-in-csh}
+\else
+![ps on FreeBSD in csh](./images/ps-a-csh.png "ps on FreeBSD in csh")
+\fi
 
 To make things even more confusing, the Linux version of `ps` has been
 written to understand the BSD-style syntax and flags, too!
@@ -213,8 +199,7 @@ based in large part around the
 [package management tool](https://en.wikipedia.org/wiki/Package_manager)
 predominantly used:
 
-* **`apt-get`, `dpkg` and `.deb` files** - \index{apt-get}
-\index{dpkg}
+* **`apt-get`, `dpkg` and `.deb` files** - \index{apt-get} \index{dpkg}
 [Debian](https://en.wikipedia.org/wiki/Debian) flavors, such as
 [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29) and
 [Mint](https://en.wikipedia.org/wiki/Linux_Mint) (Mint is currently my
@@ -225,8 +210,7 @@ based on familiarity).
 \index{pacman}
 [Arch](https://en.wikipedia.org/wiki/Arch_Linux) flavors.
 
-* **`rpm` and `yum`** - \index{rpm}
-\index{yum}
+* **`rpm` and `yum`** - \index{rpm} \index{yum}
 Red Hat flavors, such as
 [Fedora](https://en.wikipedia.org/wiki/Fedora_%28operating_system%29), [Red
 Hat Enterprise](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux) and

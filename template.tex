@@ -4,12 +4,10 @@
 \usepackage{placeins}
 \usepackage{caption}
 \usepackage{float}
-\floatplacement{figure}{H}
-\restylefloat{figure}
+\usepackage{flafter}
 \usepackage{makeidx}
 \usepackage[nottoc]{tocbibind}
-\makeindex
-% End of packaged I added.
+% End of packages I added.
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -82,6 +80,10 @@ $if(graphics)$
 % Images get their normal width if they fit onto the page, but
 % are scaled down if they would overflow the margins.
 \makeatletter
+% Fix TOC overflow.
+\renewcommand{\@pnumwidth}{3em} 
+\renewcommand{\@tocrmarg}{4em}
+% End fix TOC overflow.
 \def\ScaleIfNeeded{%
   \ifdim\Gin@nat@width>\linewidth
     \linewidth
@@ -155,9 +157,43 @@ $endif$
 \date{$date$}
 
 % Overriding commands.
+\makeindex
+\restylefloat{figure}
+\floatplacement{figure}{H}
+% Originals from http://www-rohan.sdsu.edu/~aty/bibliog/latex/floats.html
+% See p.105 of "TeX Unbound" for suggested values.
+% See pp. 199-200 of Lamport's "LaTeX" book for details.
+% General parameters, for ALL pages:
+\renewcommand{\topfraction}{0.7}	  % max fraction of floats at top
+\renewcommand{\bottomfraction}{0.7}	% max fraction of floats at bottom
+\renewcommand{\textfraction}{0.3}	  % allow minimal text w. figs
+% Parameters for TEXT pages (not float pages):
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{2}         % 2 may work better
+% Parameters for FLOAT pages (not text pages):
+% N.B.: floatpagefraction MUST be less than topfraction !!
+\renewcommand{\floatpagefraction}{0.65}	% require fuller float pages
+% Parameters for double-column pages:
+\renewcommand{\dbltopfraction}{0.9}	% fit big float above 2-col. text
+\renewcommand{\dblfloatpagefraction}{0.7}	% require fuller float pages
+\setcounter{dbltopnumber}{2}        % for 2-column pages
+% remember to use [htp] or [htpb] for placement
+\overfullrule=2cm   % Black bars to show overfull boxes
 \renewcommand{\chaptername}{Step}
 \renewcommand{\contentsname}{Steps}
 \numberwithin{figure}{chapter}
+\DeclareRobustCommand{\icmd}[1]{\index{Commands!#1}}
+\DeclareRobustCommand{\ishell}[1]{\index{Shells!#1}}
+\DeclareRobustCommand{\fimg}[3]{
+\ifxetex
+\begin{figure}[H]
+\includegraphics{#1}
+\caption{#2}
+\label{fig:#3}
+\end{figure}
+\fi}
+\DeclareRobustCommand{\fref}[1]{\ifxetex{(Figure \ref{fig:#1})}\fi}
 % End of overriding commands.
 
 \begin{document}

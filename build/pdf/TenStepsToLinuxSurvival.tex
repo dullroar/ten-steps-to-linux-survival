@@ -4,12 +4,10 @@
 \usepackage{placeins}
 \usepackage{caption}
 \usepackage{float}
-\floatplacement{figure}{H}
-\restylefloat{figure}
+\usepackage{flafter}
 \usepackage{makeidx}
 \usepackage[nottoc]{tocbibind}
-\makeindex
-% End of packaged I added.
+% End of packages I added.
 
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -42,6 +40,10 @@
 % Images get their normal width if they fit onto the page, but
 % are scaled down if they would overflow the margins.
 \makeatletter
+% Fix TOC overflow.
+\renewcommand{\@pnumwidth}{3em} 
+\renewcommand{\@tocrmarg}{4em}
+% End fix TOC overflow.
 \def\ScaleIfNeeded{%
   \ifdim\Gin@nat@width>\linewidth
     \linewidth
@@ -85,9 +87,43 @@
 \date{}
 
 % Overriding commands.
+\makeindex
+\restylefloat{figure}
+\floatplacement{figure}{H}
+% Originals from http://www-rohan.sdsu.edu/~aty/bibliog/latex/floats.html
+% See p.105 of "TeX Unbound" for suggested values.
+% See pp. 199-200 of Lamport's "LaTeX" book for details.
+% General parameters, for ALL pages:
+\renewcommand{\topfraction}{0.7}	  % max fraction of floats at top
+\renewcommand{\bottomfraction}{0.7}	% max fraction of floats at bottom
+\renewcommand{\textfraction}{0.3}	  % allow minimal text w. figs
+% Parameters for TEXT pages (not float pages):
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{2}         % 2 may work better
+% Parameters for FLOAT pages (not text pages):
+% N.B.: floatpagefraction MUST be less than topfraction !!
+\renewcommand{\floatpagefraction}{0.65}	% require fuller float pages
+% Parameters for double-column pages:
+\renewcommand{\dbltopfraction}{0.9}	% fit big float above 2-col. text
+\renewcommand{\dblfloatpagefraction}{0.7}	% require fuller float pages
+\setcounter{dbltopnumber}{2}        % for 2-column pages
+% remember to use [htp] or [htpb] for placement
+\overfullrule=2cm   % Black bars to show overfull boxes
 \renewcommand{\chaptername}{Step}
 \renewcommand{\contentsname}{Steps}
 \numberwithin{figure}{chapter}
+\DeclareRobustCommand{\icmd}[1]{\index{Commands!#1}}
+\DeclareRobustCommand{\ishell}[1]{\index{Shells!#1}}
+\DeclareRobustCommand{\fimg}[3]{
+\ifxetex
+\begin{figure}[H]
+\includegraphics{#1}
+\caption{#2}
+\label{fig:#3}
+\end{figure}
+\fi}
+\DeclareRobustCommand{\fref}[1]{\ifxetex{(Figure \ref{fig:#1})}\fi}
 % End of overriding commands.
 
 \begin{document}
@@ -109,20 +145,18 @@
 \section*{} \pagestyle{empty}
 
 \begin{figure}[!htbp]
-\includegraphics{./images/Merv.jpg}%
-\caption*{Merv sez, "Don't panic."}%
+\includegraphics{./images/Merv.jpg}
+\caption*{Merv sez, "Don't panic."}
 \end{figure}
 
 \cleardoublepage
-By James Lehmer \newline
-\newline
-v0.3 \newline
-\newline
+By James Lehmer \par
+v0.5 \par
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics{./images/cc-by-sa.png}%
-\caption*{Creative Commons Attribution-ShareAlike 4.0 International License}%
+\includegraphics{./images/cc-by-sa.png}
+\caption*{Creative Commons Attribution-ShareAlike 4.0 International License}
 \end{figure}
 
 \emph{Jim's Ten Steps to Linux Survival} by James Lehmer is licensed
@@ -136,7 +170,7 @@ Commons Attribution-ShareAlike 4.0 International License}.
 \caption{Merv sez, ``Don't panic.''}
 \end{figure}
 
-By James Lehmer v0.4 {Jim's Ten Steps to Linux Survival} by {James
+By James Lehmer v0.5 {Jim's Ten Steps to Linux Survival} by {James
 Lehmer} is licensed under a Creative Commons Attribution-ShareAlike 4.0
 International License.
 
@@ -150,10 +184,9 @@ let me be more than he hired me to be (and continues to be a great chess
 opponent). Thank you, gentlemen. I've tried to pay it forward. This book
 is part of that.
 
-\ifxetex
-\setcounter{chapter}{-2} \fi
+\ifxetex\setcounter{chapter}{-2}\fi
 
-\chapter{Introduction}\label{introduction}
+\hyperdef{}{introduction}{\chapter{Introduction}\label{introduction}}
 
 \begin{quote}
 \emph{``And you may ask yourself, `Well, how did I get here?'\,''} -
@@ -177,58 +210,58 @@ Here is what we'll cover in the rest of this book:
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{-1}
 \item
-  \hyperref[step-0.-some-history]{\textbf{Some History}} -- UNIX
-  vs.~BSD, System V vs. BSD, Linux vs.~BSD, POSIX, ``UNIX-like,''
-  Cygwin, and why any of this matters now, ``Why does this script off
-  the internet work on this system and not on that one?''
+  \hyperref[some-history]{\textbf{Some History}} -- UNIX vs.~BSD, System
+  V vs.~BSD, Linux vs.~BSD, POSIX, ``UNIX-like,'' Cygwin, and why any of
+  this matters now, ``Why does this script off the internet work on this
+  system and not on that one?''
 \item
-  \hyperref[step-1.-come-out-of-your-shell]{\textbf{Come Out of Your
-  Shell}} -- \texttt{sh} vs. \texttt{ash} vs. \texttt{bash}
-  vs.~everything else, ``REPL'', interactive vs.~scripts, command
-  history, tab expansion, environment variables and ``A path! A path!''
+  \hyperref[come-out-of-your-shell]{\textbf{Come Out of Your Shell}} --
+  \texttt{sh} vs. \texttt{ash} vs. \texttt{bash} vs.~everything else,
+  ``REPL'', interactive vs.~scripts, command history, tab expansion,
+  environment variables and ``A path! A path!''
 \item
-  \hyperref[step-2.-file-under-directories]{\textbf{File Under
-  ``Directories''}} -- \texttt{ls}, \texttt{mv}, \texttt{cp},
-  \texttt{rm} (\texttt{-rf *}), \texttt{cat},
+  \hyperref[file-under-directories]{\textbf{File Under ``Directories''}}
+  -- \texttt{ls}, \texttt{mv}, \texttt{cp}, \texttt{rm}
+  (\texttt{-rf *}), \texttt{cat},
   \texttt{chmod}/\texttt{chgrp}/\texttt{chown} and everyone's favorite,
   \texttt{touch}.
 \item
-  \hyperref[step-3.-finding-meaning]{\textbf{Finding Meaning}} -- the
+  \hyperref[finding-meaning]{\textbf{Finding Meaning}} -- the
   \texttt{find} command in all its glory. Probably the single most
   useful command in ``UNIX'' (I think).
 \item
-  \hyperref[step-4.-grokking-grep]{\textbf{Grokking \texttt{grep}}} --
-  and probably gawking at \texttt{awk} while we are at it, which means
+  \hyperref[grokking-grep]{\textbf{Grokking \texttt{grep}}} -- and
+  probably gawking at \texttt{awk} while we are at it, which means
   regular expressions, too. Now we have two problems.
 \item
-  \hyperref[step-5.-just-a-series-of-pipes]{\textbf{``Just a Series of
-  Pipes''}} -- \texttt{stdin}/\texttt{stdout}/\texttt{stderr},
-  redirects, piping between commands.
+  \hyperref[just-a-series-of-pipes]{\textbf{``Just a Series of Pipes''}}
+  -- \texttt{stdin}/\texttt{stdout}/\texttt{stderr}, redirects, piping
+  between commands.
 \item
-  \hyperref[step-6.-vi]{\textbf{\texttt{vi}}} (had to be \#6, if you
-  think about it) -- how to stay sane for 10 minutes in \texttt{vi}.
-  Navigation, basic editing, find, change/change-all, cut and paste,
-  undo, saving and canceling. Plus easier alternatives like
-  \texttt{nano}, and why \texttt{vi} still matters.
+  \hyperref[vi]{\textbf{\texttt{vi}}} (had to be \#6, if you think about
+  it) -- how to stay sane for 10 minutes in \texttt{vi}. Navigation,
+  basic editing, find, change/change-all, cut and paste, undo, saving
+  and canceling. Plus easier alternatives like \texttt{nano}, and why
+  \texttt{vi} still matters.
 \item
-  \hyperref[step-7.-the-whole-wide-world]{\textbf{The Whole Wide World}}
-  -- \texttt{curl}, \texttt{wget}, \texttt{ifconfig}, \texttt{ping},
+  \hyperref[the-whole-wide-world]{\textbf{The Whole Wide World}} --
+  \texttt{curl}, \texttt{wget}, \texttt{ifconfig}, \texttt{ping},
   \texttt{ssh}, \texttt{telnet}, \texttt{/etc/hosts} and email before
   Outlook.
 \item
-  \hyperref[step-8.-the-man-behind-the-curtain]{\textbf{The Man Behind
-  the Curtain}} - \texttt{/proc}, \texttt{/dev}, \texttt{ps},
+  \hyperref[the-man-behind-the-curtain]{\textbf{The Man Behind the
+  Curtain}} - \texttt{/proc}, \texttt{/dev}, \texttt{ps},
   \texttt{/var/log}, \texttt{/tmp} and other things under the covers.
 \item
-  \hyperref[step-9.-how-do-you-know-what-you-dont-know-man]{\textbf{How
-  Do You Know What You Don't Know, \texttt{man}?}} -- \texttt{man},
+  \hyperref[how-do-you-know-what-you-dont-know-man]{\textbf{How Do You
+  Know What You Don't Know, \texttt{man}?}} -- \texttt{man},
   \texttt{info}, \texttt{apropos}, Linux Documentation Project, Debian
   and Arch guides, StackOverflow and the dangers of searching for
   ``\texttt{man find}'' or ``\texttt{man touch}'' on the internet.
 \item
-  \hyperref[step-10.-and-so-on]{\textbf{And So On}} - \texttt{/etc},
-  starting and stopping services,
-  \texttt{apt-get}/\texttt{rpm}/\texttt{yum}, and more.
+  \hyperref[and-so-on]{\textbf{And So On}} - \texttt{/etc}, starting and
+  stopping services, \texttt{apt-get}/\texttt{rpm}/\texttt{yum}, and
+  more.
 \end{enumerate}
 
 Plus \hyperref[appendices]{some stuff} at the end to tie the whole room
@@ -332,11 +365,12 @@ This is my attempt to help my co-workers by saying:
 Galaxy})
 \end{quote}
 
-It started out as a proposal I made a few weeks ago to develop a ``lunch
-and learn'' session of about 60-90 minutes of what I considered to be
-``a Linux survival guide.'' The list in the \emph{Introduction} above is
-based on my original email proposal. The audience would be entirely
-technical, primarily ``IT'' (Windows/Cisco/VMWare/Exchange/SAN admins).
+It started out as a proposal I made a while ago to develop a ``lunch and
+learn'' session of about 60-90 minutes of what I considered to be ``a
+Linux survival guide.'' The list in the
+\hyperref[introduction]{\emph{Introduction}} above is based on my
+original email proposal. The audience would be entirely technical,
+primarily ``IT'' (Windows/Cisco/VMWare/Exchange/SAN admins).
 
 My goal is not to get into scripting or system setup and hardening or
 the thousand different ways to slice a file. Instead, the scenario I see
@@ -346,10 +380,11 @@ better able to survive if dropped into the jungle with:
 
 \begin{quote}
 \emph{``The main www site is down, and all the people who know about it
-are out. It's running on some sort of Linux, I think, and the
-credentials and IP address are scrawled on this sticky note. Can you get
-in and poke around and see if you can figure it out?''} - your boss
-(next Tuesday morning)
+are \textgreater{} out. It's running on some sort of Linux, I think, and
+the credentials and \textgreater{} IP address are scrawled on this
+sticky note. Can you get in and poke \textgreater{} around and see if
+you can figure it out?''} - your boss (next Tuesday \textgreater{}
+morning)
 \end{quote}
 
 Well, as I started to type out my notes of what I considered to be
@@ -369,13 +404,20 @@ already long enough.
 This book is not meant to be an authoritative source, but instead a
 \href{https://en.wikipedia.org/wiki/Fake_book}{``fake book''} for
 getting up and running \textbf{\emph{quickly}} with the sheer basics,
-plus knowing where to go for help. It is not a replacement for reading
-the real documentation and doing research and testing, especially in
-production! But hopefully it will help get you through that ``Can you
-get in and poke around and see if you can figure it out?'' scenario,
-above. And if Linux should start becoming more of your job, maybe this
-will help as a gentle push toward ``RTFM'' along with thinking in ``The
-UNIX Way.''
+plus knowing where to go for help. I modeled it explicitly after ``short
+and opinionated'' tech books such as Douglas Crockford's
+\href{http://shop.oreilly.com/product/9780596517748.do}{\emph{Javascript:
+The Good Parts}} or Zed Shaw's
+\href{http://learnpythonthehardway.org/}{\emph{Learn Python the Hard
+Way}}. If you like those big, thick tech books that are measured by the
+kilogram, this is not the book for you.
+
+It is also not a replacement for reading the real documentation and
+doing research and testing, especially in production! But hopefully it
+will help get you through that ``Can you get in and poke around and see
+if you can figure it out?'' scenario, above. And if Linux should start
+becoming more of your job, maybe this will help as a gentle push toward
+``RTFM'' along with thinking in ``The UNIX Way.''
 
 \textbf{WARNING:} \textbf{\emph{Many of the commands in this book can
 alter your system and possibly damage it.}} Obvious candidates include
@@ -417,26 +459,12 @@ the
 environment variable} and are not meant to be typed in as part of the
 command.
 
-Samples may also appear in a screenshot like this:
+Examples \fref{ps-AH} may also appear in a screenshot.
 
-\ifxetex
+\ifxetex\fimg{./images/ps-AH.png}{Sample command}{ps-AH} \else
+\includegraphics{./images/ps-AH.png} \fi
 
-\begin{figure}[!htbp]
-\includegraphics{./images/ps-AH.png}%
-\caption{Sample command}%
-\end{figure}
-
-\else
-
-\begin{figure}[htbp]
-\centering
-\includegraphics{./images/ps-AH.png}
-\caption{Sample command}
-\end{figure}
-
-\fi
-
-\chapter{Some History}\label{some-history}
+\hyperdef{}{some-history}{\chapter{Some History}\label{some-history}}
 
 \textbf{\emph{UNIX vs.~BSD, System V vs.~BSD, Linux vs.~BSD, POSIX,
 ``UNIX-like,'' Cygwin, and why any of this matters now. ``Why does this
@@ -623,36 +651,20 @@ The best thing is to be vaguely aware of this history and licenses and
 if something isn't available on a certain platform or if a command isn't
 taking a specific parameter to search for variants.
 
-For example, note the differences in command line parameters and output
-between showing all processes with the
+For example, note the difference in output between the first figure
+\fref{ps-on-linux-in-bash} showing all processes with the
 \href{http://linux.die.net/man/1/ps}{\texttt{ps}} (\emph{process})
-command on a Linux system, in this case Linux Mint:
+command on a Linux system (in this case Linux Mint under \texttt{bash}),
+versus the second example \fref{ps-on-freebsd-in-csh} on a FreeBSD
+system at my ISP, where \texttt{csh} is the default shell.
 
-\begin{verbatim}
-$ ps -AH
-  PID TTY          TIME CMD
-    2 ?        00:00:00 kthreadd
-    3 ?        00:00:00   ksoftirqd/0
-    5 ?        00:00:00   kworker/0:0H
-    7 ?        00:00:19   rcu_sched
-    8 ?        00:00:04   rcuos/0
-    9 ?        00:00:09   rcuos/1
-   10 ?        00:00:07   rcuos/2
-...and so on...
-\end{verbatim}
+\ifxetex\fimg{./images/ps-a-bash.png}{ps on Linux in bash}{ps-on-linux-in-bash}
+\else
+\includegraphics{./images/ps-a-bash.png} \fi
 
-\ldots{}versus on a FreeBSD system at my ISP, where \texttt{csh} is the
-default shell:
-
-\begin{verbatim}
-%ps -ax
-  PID  TT  STAT      TIME COMMAND
-73591  ??  S      0:00.03 sshd: myuser@ttyp1 (sshd)
-79503  ??  S      0:00.07 dovecot/imap
-80065  ??  S      0:00.05 dovecot/imap
-73593  p1  Ss     0:00.02 -csh (csh)
-90737  p1  RN+    0:00.00 ps -ax
-\end{verbatim}
+\ifxetex\fimg{./images/ps-a-csh.png}{ps on FreeBSD in csh}{ps-on-freebsd-in-csh}
+\else
+\includegraphics{./images/ps-a-csh.png} \fi
 
 To make things even more confusing, the Linux version of \texttt{ps} has
 been written to understand the BSD-style syntax and flags, too!
@@ -740,7 +752,8 @@ You can do a lot of amazing things with Cygwin with enough effort
 point why not expend that effort in standing up a ``real'' Linux
 (virtual) machine anyway?
 
-\chapter{Come Out of Your Shell}\label{come-out-of-your-shell}
+\hyperdef{}{come-out-of-your-shell}{\chapter{Come Out of Your
+Shell}\label{come-out-of-your-shell}}
 
 \textbf{\emph{\texttt{sh} vs. \texttt{ash} vs. \texttt{bash}
 vs.~everything else, ``REPL'', interactive vs.~scripts, command history,
@@ -875,48 +888,19 @@ excreted through three decades of backwards compatibility via that devil
 spawn we call DOS. It has gotten even muddier over the years as
 Microsoft has added more commands, PowerShell, POSIX subsystems, etc.
 
-But even so, there are some similarities. In both \texttt{bash} and
-\texttt{CMD.EXE}, the
-\href{http://linux.die.net/man/1/set}{\texttt{set}} command shows you
-all environment variables that have been set:
+But even so, there are some similarities. In both \texttt{bash}
+\fref{set-command-in-bash} and \texttt{CMD.EXE}
+\fref{set-command-in-cmd} the
+\href{http://linux.die.net/man/1/set}{\texttt{set}} \icmd{set} command
+shows you all environment variables that have been set.
 
-\textbf{\emph{bash}}
-
-\ifxetex
-
-\begin{figure}[!htbp]
-\includegraphics{./images/set.png}%
-\caption{set command in bash}%
-\end{figure}
-
+\ifxetex\fimg{./images/set.png}{set command in bash}{set-command-in-bash}
 \else
+\includegraphics{./images/set.png} \fi
 
-\begin{figure}[htbp]
-\centering
-\includegraphics{./images/set.png}
-\caption{set command in bash}
-\end{figure}
-
-\fi
-
-\textbf{\emph{CMD.EXE}}
-
-\begin{verbatim}
-C:\> set
-ALLUSERSPROFILE=C:\ProgramData
-APPDATA=C:\Users\myuser\AppData\Roaming
-CLIENTNAME=MYMACHINE
-CommandPromptType=Native
-CommonProgramFiles=C:\Program Files\Common Files
-CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
-CommonProgramW6432=C:\Program Files\Common Files
-COMPUTERNAME=JCAPPDEV
-ComSpec=C:\Windows\system32\cmd.exe
-ExtensionSdkDir=C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0\Exten...
-FP_NO_HOST_CHECK=NO
-Framework35Version=v3.5
-...and so on...
-\end{verbatim}
+\ifxetex\fimg{./images/set-cmd.png}{SET command in CMD.EXE}{set-command-in-cmd}
+\else
+\includegraphics{./images/set-cmd.png} \fi
 
 Similarly, the \href{http://linux.die.net/man/1/echo}{\texttt{echo}}
 command can be used to show you the contents of an environment variable
@@ -954,6 +938,30 @@ out their contents using the ``same'' command, note that:
   work.
 \end{enumerate}
 
+One final note of caution. You can set up command aliases in
+\texttt{bash} and other shells that allow you to define a
+\texttt{CMD.EXE}-style \texttt{dir} as a substitute the \texttt{ls}
+command in \texttt{bash}, or \texttt{copy} for \texttt{cp}, \texttt{del}
+for \texttt{rm}, and so on. I recommend you don't do this for at least
+two reasons:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  It is difficult to get these right in terms of being able to map all
+  the various parameters from the \texttt{bash} command to the
+  appropriate parameters for a \texttt{CMD.EXE}-style command. Most
+  people don't go that far, which means you then end up with a ``toy''
+  substitute for the \texttt{CMD.EXE} command, and have to fall back to
+  the native commands anyway.
+\item
+  It simply delays you actually learning about the ``UNIX'' environment.
+  You end up relying on a crutch that then must be replicated on every
+  system you touch. In my opinion it is better to just learn the native
+  commands, because then you are instantly productive at any shell
+  window.
+\end{enumerate}
+
 \section{You're a Product of Your Environment
 (Variables)}\label{youre-a-product-of-your-environment-variables}
 
@@ -987,11 +995,11 @@ information from other users on the system who can see the values at
 least while the script is running using the \texttt{ps -x} command.
 
 You can also set the value of environment variables to the output of a
-command using `:
+command by surrounding it with paired ` (``back ticks'', or ``grave
+accent''):
 
 \begin{verbatim}
 ~ $ filetype=`file --print --mime-type --no-pad --print0 otschecker.csv`
-
 ~ $ echo $filetype
 otschecker.csv: text/plain
 \end{verbatim}
@@ -1025,35 +1033,20 @@ Shrubbery)}\label{paths-a-part-of-any-balanced-shrubbery}
 
 The concept of a ``path'' for finding executables is almost identical,
 and Windows lifted it from UNIX (or CP/M, which lifted it from UNIX).
-You can tell how similar they are by looking at the output of the
-\texttt{PATH} environment variable under \texttt{CMD.EXE} and
-\texttt{bash} running under Cygwin for the same user on the same
-machine:
-
-\textbf{\emph{CMD.EXE}}
-
-{[}Formatted for readability{]}
-
-\begin{verbatim}
-C:\> echo %path%
-C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\CommonEx...
-C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\BIN\amd64;
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319;
-C:\Windows\Microsoft.NET\Framework64\v3.5;
-C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\VCPackages;
-C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE;
-C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools;
-...and so on...
-\end{verbatim}
-
-\textbf{\emph{bash}}
-
-{[}Formatted for readability{]}
+Look at the output of the \texttt{PATH} environment variable under
+\texttt{bash}:
 
 \begin{verbatim}
 ~ $ echo $PATH
 /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 \end{verbatim}
+
+Echoing the \texttt{PATH} environment variable under \texttt{CMD.EXE}
+\fref{echo-path-in-cmd} works, too.
+
+\ifxetex\fimg{./images/echo-path-cmd.png}{Echo path in CMD.EXE}{echo-path-in-cmd}
+\else
+\includegraphics{./images/echo-path-cmd.png} \fi
 
 Note the differences and similarities. Both the paths are evaluated left
 to right. Both use separators between path components, a \texttt{;} for
@@ -1063,6 +1056,15 @@ and \texttt{/} for Linux. But Linux has no concept of a ``drive letter''
 like \texttt{C:}, and instead everything is rooted in a single namespace
 hierarchy starting at the root \texttt{/}. We'll be talking more about
 directories in the next chapter.
+
+And just to muddy the waters further, notice how Cygwin under Windows
+shows the \texttt{PATH} environment variable, with \texttt{bash} syntax
+but a combination of both Cygwin and Windows
+directories~\fref{echo-path-cygwin}.
+
+\ifxetex\fimg{./images/echo-path-cygwin.png}{Echo path in Cygwin}{echo-path-cygwin}
+\else
+\includegraphics{./images/echo-path-cygwin.png} \fi
 
 \section{Open Your Shell and
 Interact}\label{open-your-shell-and-interact}
@@ -1084,8 +1086,8 @@ one-liner typed from memory with lots of obscure commands piped together
 and invoked with cryptic options.
 
 I am not a real shell wizard. See
-\hyperref[HowDoYouKnowWhatYouDontKnow]{chapter 9} for how you can fake
-it like I do.
+\hyperref[how-do-you-know-what-you-dont-know-man]{chapter 9} for how you
+can fake it like I do.
 
 \section{Getting Lazy}\label{getting-lazy}
 
@@ -1094,27 +1096,22 @@ allow for tab expansion and command history, at least for the current
 session of the shell.
 
 Tab expansion is ``auto-complete'' for the command prompt. Let's say you
-have the following files in a directory:
+have some files in a directory as shown in \fref{ls-for-tab-completion}.
 
-\begin{verbatim}
-$ ls -l
-total 764
--rwxrwx---+ 1 myuser mygroup  18554 Oct  9 15:01 Agenda.md
-drwxrwx---+ 1 myuser mygroup      0 Oct  9 08:50 Bad and Corrupted Test
-Files
-drwxrwx---+ 1 myuser mygroup      0 Sep 22 15:35 CheckMD5sLog
--rw-rwxr--+ 1 myuser mygroup   1431 Oct  9 14:58 CygwinPath.txt
--rwxrwx---+ 1 myuser mygroup  22461 Oct  7 14:19 Disabled Active Directory Accounts.xlsx
--rwxrwx---+ 1 myuser mygroup  55647 Sep 18 08:31 filtered.txt
-drwxrwx---+ 1 myuser mygroup      0 Sep 15 15:59 FLOCK
--rwxrwx---+ 1 myuser mygroup  11185 Feb 24  2015 GitLab Upgrade Info.txt
-...and so on...
-\end{verbatim}
+\ifxetex\fimg{./images/ls-for-tab-completion.png}{Typical ls command}{ls-for-tab-completion}
+\else
+\includegraphics{./images/ls-for-tab-completion.png} \fi
 
 Without tab expansion, typing out something like:
 
 \begin{verbatim}
-~ $ mv Disabled\ Active\ Directory\ Accounts.xlsx
+~ $ mv Disabled\ User\ Accounts.csv elsewhere/.
+\end{verbatim}
+
+or
+
+\begin{verbatim}
+~ $ mv 'Disabled User Accounts.csv' elsewhere/.
 \end{verbatim}
 
 \ldots{}is painful. But with tab expansion, we can simply:
@@ -1128,10 +1125,10 @@ and since there is only one file that starts with a ``D'' tab expansion
 will fill in the rest of the file name:
 
 \begin{verbatim}
-~ $ mv Disabled\ Active\ Directory\ Accounts.xlsx
+~ $ mv Disabled\ User\ Accounts.csv
 \end{verbatim}
 
-\ldots{}and we can go about our business of finishing our command.
+\ldots{}and then we can go about our business of finishing our command.
 
 One place the tab completion in \texttt{bash} is different than
 \texttt{CMD.EXE} is that in \texttt{bash} if you hit \texttt{Tab} and
@@ -1164,14 +1161,12 @@ The other thing to remember about the interactive shell is command
 history. Again, both \texttt{CMD.EXE} and \texttt{bash} give you command
 history, but \texttt{CMD.EXE} only remembers it for the session, while
 \texttt{bash} stores it in one of your hidden ``profile'' or ``dot''
-files in your home directory called \texttt{.bash\_history}:
+files in your home directory called \texttt{.bash\_history}, which you
+can display with \texttt{ls -a} \fref{ls-a} shows.
 
-\begin{verbatim}
-~ $ ls -a
-.              .bash_profile  .gitignore  .minttyrc  Dropbox      Sandbox
-..             .bashrc        .inputrc    .profile   fast-export  Shared
-.bash_history  .gitconfig     .lesshst    .ssh       myuser      Temp
-\end{verbatim}
+\ifxetex\fimg{./images/ls-a.png}{ls command showing hidden files}{ls-a}
+\else
+\includegraphics{./images/ls-a.png} \fi
 
 Inside, \texttt{.bash\_history} is just a text file, with the most
 recent commands at the bottom.
@@ -1186,7 +1181,8 @@ you can update them and re-execute them.
 the saved history will be of the last login to successfully write back
 out \texttt{.bash\_history}.
 
-\chapter{File Under ``Directories''}\label{file-under-directories}
+\hyperdef{}{file-under-directories}{\chapter{File Under
+``Directories''}\label{file-under-directories}}
 
 \textbf{\emph{\texttt{ls}, \texttt{mv}, \texttt{cp}, \texttt{rm}
 (\texttt{-rf *}), \texttt{cat},
@@ -1222,14 +1218,11 @@ and can read even more.
 As mentioned above, the biggest differences between Linux and Windows is
 that the Linux environments tend not to have a concept of ``drive
 letters.'' Instead everything is ``mounted'' under a single hierarchy
-that starts at the ``root directory'' or \texttt{/}.
+that starts at the ``root directory'' or \texttt{/}~\fref{ls-root}.
 
-\begin{verbatim}
-~ $ ls /
-bin   etc         lib         media  proc  sbin     sys  var
-boot  home        lib64       mnt    root  selinux  tmp  vmlinuz
-dev   initrd.img  lost+found  opt    run   srv      usr
-\end{verbatim}
+\ifxetex\fimg{./images/ls-root.png}{Listing of the root directory}{ls-root}
+\else
+\includegraphics{./images/ls-root.png} \fi
 
 The root file system may be backed by a disk device, LUN, memory or even
 the network. It will have one or more directories under it. Multiple
@@ -1243,73 +1236,37 @@ often mounted automatically under either a \texttt{/mnt} or
 \section{Looking at Files}\label{looking-at-files}
 
 The command to \emph{list} the contents of a directory is the
-\href{http://linux.die.net/man/1/ls}{\texttt{ls}} command:
+\href{http://linux.die.net/man/1/ls}{\texttt{ls}}
+command~\fref{ls-home}.
 
-\begin{verbatim}
-~ $ ls
-Desktop    Downloads  FreeRDP     Music     Public  Temp       Videos
-Documents  Dropbox    installrdp  Pictures  rdp     Templates
-\end{verbatim}
+\ifxetex\fimg{./images/ls-home.png}{Listing of a home directory}{ls-home}
+\else
+\includegraphics{./images/ls-home.png} \fi
 
 Remember, UNIX environments think of files that start with a \texttt{.}
 as ``hidden.'' If you want to see all these
 \href{https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory\#Unix_and_Unix-like_environments}{``dotfiles''},
-you can use \texttt{ls -a}:
+you can use \texttt{ls -a}~\fref{ls-a-home}.
 
-\begin{verbatim}
-~ $ ls -a
-.              Desktop        .gksu.lock       .mozilla   .themes
-..             .dmrc          .gnome2          Music      .thumbnails
-.adobe         Documents      .gnome2_private  Pictures   .thunderbird
-.atom          Downloads      .hugin           .pki       Videos
-.bash_history  .dropbox       .ICEauthority    .profile   .wine
-.bash_logout   Dropbox        .icons           .ptbt1     .Xauthority
-.cache         .dropbox-dist  installrdp       Public     .xinputrc
-.cinnamon      .face          .lastpass        rdp        .xsession-errors
-.cmake         FreeRDP        .linuxmint       .sbd
-.config        .gconf         .local           Temp
-.dbus          .gimp-2.8      .macromedia      Templates
-\end{verbatim}
+\ifxetex\fimg{./images/ls-a-home.png}{Listing of hidden files in home directory}{ls-a-home}
+\else
+\includegraphics{./images/ls-a-home.png} \fi
 
 Wow! That's a lot of dotfiles!
 
-If you want to see some details of each file, use \texttt{ls -l}:
+If you want to see some details of each file, use
+\texttt{ls -l}~\fref{ls-l-home}:
 
-\begin{verbatim}
-~ $ ls -l
-total 92
-drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Desktop
-drwxr-xr-x  2 myuser mygroup      4096 Oct 13 10:02 Documents
-drwxr-xr-x  2 myuser mygroup      4096 Oct 14 09:45 Downloads
-drwx------  8 myuser mygroup      4096 Oct 16 19:58 Dropbox
-drwxr-xr-x 19 myuser mygroup      4096 Oct 12 09:48 FreeRDP
--rwxr-x---  1 myuser sambashare    883 Oct 12 11:34 installrdp
-drwxr-xr-x  5 myuser mygroup      4096 Oct 16 10:47 LightTable
-drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Music
-drwxr-xr-x  3 myuser mygroup     36864 Oct 12 17:29 Pictures
-drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Public
--rwxr-xr-x  1 myuser mygroup       816 Oct 15 18:00 rdp
-...and so on...
-\end{verbatim}
+\ifxetex\fimg{./images/ls-l-home.png}{Detailed listing of home directory}{ls-l-home}
+\else
+\includegraphics{./images/ls-l-home.png} \fi
 
-And of course parameters can be combined, as with the two above:
+And of course parameters can be combined, as with the two
+above~\fref{ls-al-home}.
 
-\begin{verbatim}
-~ $ ls -al
-total 344
-drwxr-xr-x 40 myuser mygroup      4096 Oct 17 07:14 .
-drwxr-xr-x  3 root   root         4096 Sep  7 04:09 ..
-drwx------  3 myuser mygroup      4096 Sep  7 09:33 .adobe
-drwxr-xr-x  5 myuser mygroup      4096 Oct 12 15:48 .atom
--rw-------  1 myuser mygroup      6428 Oct 17 06:11 .bash_history
--rw-r--r--  1 myuser mygroup       220 Sep  7 04:09 .bash_logout
-drwx------ 18 myuser mygroup      4096 Oct 13 07:31 .cache
-drwxr-xr-x  5 myuser mygroup      4096 Oct 16 19:57 .cinnamon
-drwxr-xr-x  3 myuser mygroup      4096 Oct 12 09:45 .cmake
-drwxr-xr-x 26 myuser mygroup      4096 Oct 15 10:23 .config
-drwx------  3 myuser mygroup      4096 Sep  7 04:16 .dbus
-...and so on...
-\end{verbatim}
+\ifxetex\fimg{./images/ls-al-home.png}{Detailed listing of hidden files}{ls-al-home}
+\else
+\includegraphics{./images/ls-al-home.png} \fi
 
 \section{A Brief Detour Around
 Parameters}\label{a-brief-detour-around-parameters}
@@ -1358,34 +1315,12 @@ to use the GNU-style parameters in scripts as self-documenting code.
 
 If we suspect the file is a text file, we can echo it to the console
 with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}
-(\emph{concatenate}) command:
+(\emph{concatenate}) command ~\fref{cat}
 
-\begin{verbatim}
-~ $ cat installrdp 
-#!/bin/bash
-sudo apt-get -y install git
-cd ~
-git clone git://github.com/FreeRDP/FreeRDP.git
-cd FreeRDP
-sudo apt-get -y install build-essential git-core cmake libssl-dev \
-  libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \
-  libxv-dev libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \
-  libxml2-dev libxrandr-dev libgstreamer0.10-dev \
-  libgstreamer-plugins-base0.10-dev libxi-dev \
-  libgstreamer-plugins-base1.0-dev libavutil-dev libavcodec-dev \
-  libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
-cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
-make
-sudo make install
-sudo echo "/usr/local/lib/freerdp" > /etc/ld.so.conf.d/freerdp.conf
-sudo echo "/usr/local/lib64/freerdp" >> /etc/ld.so.conf.d/freerdp.conf
-sudo echo "/usr/local/lib" >> /etc/ld.so.conf.d/freerdp.conf
-sudo ldconfig
-which xfreerdp
-xfreerdp --version
-\end{verbatim}
+\ifxetex\fimg{./images/cat.png}{cat command}{cat} \else
+\includegraphics{./images/cat.png} \fi
 
-We can determine from the above that \texttt{installrdp} is a
+In that example when we \texttt{cat installrdp} we can determine it is a
 \texttt{bash} shell script that looks to install and configure
 \href{https://github.com/FreeRDP/FreeRDP}{FreeRDP} on a Debian-style
 system:
@@ -1418,66 +1353,25 @@ lightweight way to motor around in a text file without editing it.
 We can also look at just the end or \emph{tail} of a file (often the
 most interesting when looking at log files and troubleshooting a current
 problem) with the \href{http://linux.die.net/man/1/tail}{\texttt{tail}}
-command. To show the last 10 lines of the kernel \texttt{dmesg} log:
+command. The next example \fref{tail-dmesg} shows the last 10 lines of
+the kernel \texttt{dmesg} log.
 
-\begin{verbatim}
-# tail dmesg
-[    2.774931] loop: module loaded
-[    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-[    3.351331] eth0: NIC Link is Up 10000 Mbps
-[    3.422647] RPC: Registered named UNIX socket transport module.
-[    3.422649] RPC: Registered udp transport module.
-[    3.422650] RPC: Registered tcp transport module.
-[    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[    3.432437] FS-Cache: Loaded
-[    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-[    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
-\end{verbatim}
+\ifxetex\fimg{./images/tail-dmesg.png}{tail command}{tail-dmesg} \else
+\includegraphics{./images/tail-dmesg.png} \fi
 
-To show the last 20 lines:
+To show a specific number of lines \fref{tail-n-dmesg} use the
+\texttt{-n} parameter.
 
-\begin{verbatim}
-# tail -n 20 dmesg
-[    2.317838] [drm] Fifo max 0x00040000 min 0x00001000 cap 0x0000077f
-[    2.318843] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
-[    2.318845] [drm] No driver support for vblank timestamp query.
-[    2.318914] [drm] Screen objects system initialized
-[    2.318917] [drm] Detected no device 3D availability.
-[    2.323011] [drm] Initialized vmwgfx 2.4.0 20120209 for 0000:00:0f.0 ...
-[    2.486733] input: ImPS/2 Generic Wheel Mouse as /devices/platform/i8...
-[    2.655694] Adding 4191228k swap on /dev/sda5.  Priority:-1 extents:1...
-[    2.666714] EXT4-fs (sda1): re-mounted. Opts: (null)
-[    2.754699] EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro
-[    2.774931] loop: module loaded
-[    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-[    3.351331] eth0: NIC Link is Up 10000 Mbps
-[    3.422647] RPC: Registered named UNIX socket transport module.
-[    3.422649] RPC: Registered udp transport module.
-[    3.422650] RPC: Registered tcp transport module.
-[    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[    3.432437] FS-Cache: Loaded
-[    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-[    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
-\end{verbatim}
+\ifxetex\fimg{./images/tail-n-dmesg.png}{tail -n command}{tail-n-dmesg}
+\else
+\includegraphics{./images/tail-n-dmesg.png} \fi
 
 You can also use \texttt{tail} to \emph{follow} an open file and
 continuously display any new output at the end, which is useful for
-monitoring log files in real time:
+monitoring log files in real time~\fref{tail-f}.
 
-\begin{verbatim}
-# tail -f dmesg
-[    2.774931] loop: module loaded
-[    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-[    3.351331] eth0: NIC Link is Up 10000 Mbps
-[    3.422647] RPC: Registered named UNIX socket transport module.
-[    3.422649] RPC: Registered udp transport module.
-[    3.422650] RPC: Registered tcp transport module.
-[    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[    3.432437] FS-Cache: Loaded
-[    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-[    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
-...new lines will appear here over time...
-\end{verbatim}
+\ifxetex\fimg{./images/tail-f.png}{tail -f command}{tail-f} \else
+\includegraphics{./images/tail-f.png} \fi
 
 If we know nothing about a \emph{file}, we can use the
 \href{http://linux.die.net/man/1/file}{\texttt{file}} command to help us
@@ -1512,117 +1406,47 @@ Let's say we have three files:
 ElevatorTrucks  FarmCombines  FarmTractors
 \end{verbatim}
 
-Here are the contents of each:
+We can use \texttt{cat} to display the contents of
+each~\fref{invoice-files}
 
-\begin{verbatim}
-~ $ cat ElevatorTrucks
-Truck   brakes  200
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-
-~ $ cat FarmCombines
-Combine motor   1500
-Combine brakes  400
-Combine tires   2500
-
-~ $ cat FarmTractors
-Tractor motor   1000
-Tractor brakes  300
-Tractor tires   2000
-\end{verbatim}
+\ifxetex\fimg{./images/invoice-files.png}{Some invoice files}{invoice-files}
+\else
+\includegraphics{./images/invoice-files.png} \fi
 
 But what if we wanted to process all the lines in all the files in a
 single alphabetical order? Just redirecting the files into a program
 won't do it, because the file names will be sorted by the shell and the
-lines will be processed in file name order, not the ultimate sorted
-order of all the file contents:
+lines will be processed in file name order~\fref{all-invoices}, not the
+ultimate sorted order of all the file contents.
 
-\begin{verbatim}
-~ $ cat *
-Truck   brakes  200
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-Combine motor   1500
-Combine brakes  400
-Combine tires   2500
-Tractor motor   1000
-Tractor brakes  300
-Tractor tires   2000
-\end{verbatim}
+\ifxetex\fimg{./images/all-invoices.png}{Show all the invoices}{all-invoices}
+\else
+\includegraphics{./images/all-invoices.png} \fi
 
-The \texttt{sort} command to the rescue!
+The \texttt{sort} command \fref{sort} to the rescue!
 
-\begin{verbatim}
-~ $ sort *
-Combine brakes  400
-Combine motor   1500
-Combine tires   2500
-Tractor brakes  300
-Tractor motor   1000
-Tractor tires   2000
-Truck   brakes  200
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-\end{verbatim}
+\ifxetex\fimg{./images/sort.png}{sort command}{sort} \else
+\includegraphics{./images/sort.png} \fi
 
 What if we want to sort by the parts column? Well, it is the second
-``key'' field delimited by whitespace, so:
+``key'' field delimited by whitespace~\fref{sort-k2}, so:
 
-\begin{verbatim}
-~ $ sort -k 2 *
-Truck   brakes  200
-Tractor brakes  300
-Combine brakes  400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-\end{verbatim}
+\ifxetex\fimg{./images/sort-k2.png}{Sort by second column}{sort-k2}
+\else
+\includegraphics{./images/sort-k2.png} \fi
 
-What about by the third column, the amount?
+What about by the third column, the amount? \fref{sort-k3}
 
-\begin{verbatim}
-~ $ sort -k 3 *
-Truck   winch   100
-Tractor motor   1000
-Combine motor   1500
-Truck   brakes  200
-Tractor tires   2000
-Combine tires   2500
-Tractor brakes  300
-Combine brakes  400
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-\end{verbatim}
+\ifxetex\fimg{./images/sort-k3.png}{Sort by third column}{sort-k3} \else
+\includegraphics{./images/sort-k3.png} \fi
 
 That's not what we expected because it is sorting numbers
-alphabetically. Let's fix that by telling it to sort numerically:
+alphabetically. Let's fix that \fref{sort-k3-n} by telling it to sort
+numerically.
 
-\begin{verbatim}
-~ $ sort -k 3 -n *
-Truck   winch   100
-Truck   brakes  200
-Tractor brakes  300
-Combine brakes  400
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-\end{verbatim}
+\ifxetex\fimg{./images/sort-k3-n.png}{Sort by third column, numerically}{sort-k3-n}
+\else
+\includegraphics{./images/sort-k3-n.png} \fi
 
 Maybe we care about the top three most expensive items. We haven't
 talked about pipes yet, but check this out:
@@ -1634,33 +1458,18 @@ Tractor tires   2000
 Combine tires   2500
 \end{verbatim}
 
-Finally, what if we want only unique rows?
+Finally, what if we want only unique rows?~\fref{sort-k3-n-u}
 
-\begin{verbatim}
-~ $ sort -k 3 -n -u *
-Truck   winch   100
-Truck   brakes  200
-Tractor brakes  300
-Truck   tires   400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-\end{verbatim}
+\ifxetex\fimg{./images/sort-k3-n-u.png}{Sort by third column, numerically, unique}{sort-k3-n-u}
+\else
+\includegraphics{./images/sort-k3-n-u.png} \fi
 
-Just to reinforce long parameters, the last example is equivalent to:
+Just to reinforce long parameters, the last example is equivalent to
+\texttt{sort -{}-key 3 -{}-numeric-sort -{}-unique *}~\fref{sort-k3-n-u-long}
 
-\begin{verbatim}
-~ $ sort --key 3 --numeric-sort --unique *
-Truck   winch   100
-Truck   brakes  200
-Tractor brakes  300
-Truck   tires   400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-\end{verbatim}
+\ifxetex\fimg{./images/sort-k3-n-u-long.png}{Sort with long parameter names}{sort-k3-n-u-long}
+\else
+\includegraphics{./images/sort-k3-n-u-long.png} \fi
 
 \section{Rearranging Deck Chairs}\label{rearranging-deck-chairs}
 
@@ -1712,20 +1521,11 @@ wildcard, and there is no ``Recycle Bin'' or ``Trash Can'' when working
 from the command prompt, so be careful!
 
 This kind of scenario can happen \textbf{\emph{way}} too often, even to
-experienced system administrators (note the space between \texttt{*} and
-\texttt{.bak}):
+experienced system administrators. Note the space between \texttt{*} and
+\texttt{.bak}~\fref{bad-rm}.
 
-\begin{verbatim}
-~ $ cd MyDissertation
-
-~ $ ls
-Citations.bak  Citations.doc  Dissertation.bak  Dissertation.doc  Notes.doc
-
-~ $ rm * .bak
-rm: cannot remove ‘.bak’: No such file or directory
-
-~ $ ls
-\end{verbatim}
+\ifxetex\fimg{./images/bad-rm.png}{Oops!}{bad-rm} \else
+\includegraphics{./images/bad-rm.png} \fi
 
 So, in order, our hapless user:
 
@@ -1742,8 +1542,8 @@ So, in order, our hapless user:
   \texttt{.bak}. Note ominous warning message.
 \item
   Presto! \texttt{ls} shows \textbf{\emph{everything}} is gone, not just
-  the backup files! Yay! The user's day's priorities just got rearranged
-  as they go hunting for another backup of their dissertation.
+  the backup files! Yay! The user's priorities just got rearranged as
+  they go hunting for another backup of their dissertation.
 \end{enumerate}
 
 So be careful out there! This is an example where tab completion can be
@@ -1908,34 +1708,9 @@ and \texttt{..} for the parent directory directly from UNIX. Consider
 the following examples that combine all of the above about relative
 paths and see if it all makes sense:
 
-\begin{verbatim}
-~ $ mkdir Bar Baz
-
-~ $ ls
-Bar  Baz
-
-~ $ cd Bar
-
-~ $ touch a b c
-
-~ $ ls
-a  b  c
-
-~ $ cd ../Baz
-
-~ $ ls
-
-~ $ touch d e f
-
-~ $ ls
-d  e  f
-
-~ $ ls ..
-Bar  Baz
-
-~ $ ls ../Bar
-a  b  c
-\end{verbatim}
+\ifxetex\fimg{./images/relative-paths.png}{Relative paths}{relative-paths}
+\else
+\includegraphics{./images/relative-paths.png} \fi
 
 Did you notice how both \texttt{mkdir} and \texttt{touch} allow for
 specifying multiple directory and file names in the same command?
@@ -2626,7 +2401,8 @@ compare against.
 control system like \texttt{git}, but again, that is beyond the scope of
 this book.
 
-\chapter{Finding Meaning}\label{finding-meaning}
+\hyperdef{}{finding-meaning}{\chapter{Finding
+Meaning}\label{finding-meaning}}
 
 \textbf{\emph{The \texttt{find} command in all its glory. Probably the
 single most useful command in ``UNIX'' (I think).}}
@@ -2911,7 +2687,8 @@ down as:
   \textbf{\texttt{"}} - prevent shell expansion on the format string.
 \end{itemize}
 
-\chapter{Grokking \texttt{grep}}\label{grokking-grep}
+\hyperdef{}{grokking-grep}{\chapter{Grokking
+\texttt{grep}}\label{grokking-grep}}
 
 \textbf{\emph{And probably gawking at \texttt{awk} while we are at it,
 which means regular expressions, too. Now we have two problems.}}
@@ -3208,7 +2985,8 @@ username: uucp      uid:10
 ...and so on...
 \end{verbatim}
 
-\chapter{``Just a Series of Pipes''}\label{just-a-series-of-pipes}
+\hyperdef{}{just-a-series-of-pipes}{\chapter{``Just a Series of
+Pipes''}\label{just-a-series-of-pipes}}
 
 \textbf{\emph{\texttt{stdin}/\texttt{stdout}/\texttt{stderr}, redirects
 and piping between commands.}}
@@ -3488,7 +3266,7 @@ This would write the results of finding all files names
 This is useful when you are manually running things and want to see the
 results immediately, but also want a log of what you did.
 
-\chapter{\texttt{vi}}\label{vi}
+\hyperdef{}{vi}{\chapter{\texttt{vi}}\label{vi}}
 
 \textbf{\emph{How to stay sane for 10 minutes in \texttt{vi}.
 Navigation, basic editing, find, change/change-all, cut and paste, undo,
@@ -4130,7 +3908,8 @@ But if you don't, grit your teeth, remember ``insert mode'' vs.
 
 And if you have the opportunity to use \texttt{emacs}\ldots{}don't.
 
-\chapter{The Whole Wide World}\label{the-whole-wide-world}
+\hyperdef{}{the-whole-wide-world}{\chapter{The Whole Wide
+World}\label{the-whole-wide-world}}
 
 \textbf{\emph{\texttt{curl}, \texttt{wget}, \texttt{ifconfig},
 \texttt{ping}, \texttt{ssh}, \texttt{telnet}, \texttt{/etc/hosts} and
@@ -4311,7 +4090,6 @@ testing network access from a command prompt). For example,
 
    _______________________________________________________
    Google Search  I'm Feeling Lucky                          Advanced search
-                                                                                                             Language tools
 
    Advertising Programs     Business Solutions     +Google     About Google
 
@@ -4418,12 +4196,12 @@ between systems with the \href{linux.die.net/man/1/scp}{\texttt{scp}}
 command. It works like this for a recursive directory copy:
 
 \begin{verbatim}
-scp -r myfiles/* myuser@remoteserver:/home/myuser/myfiles/.
+scp -r myfiles/* myuser@remoteserver:/home/myuser/.
 \end{verbatim}
 
 In this case we are copying the files in \texttt{myfiles} and its
-subdirectories to \texttt{/home/myuser/myfiles/} on
-\texttt{remoteserver} logged in as \texttt{myuser}.
+subdirectories to \texttt{/home/myuser/} on \texttt{remoteserver} logged
+in as \texttt{myuser}.
 
 \textbf{Note:} The first time you log into a remote server with
 \texttt{ssh} or \texttt{scp} you will be asked to accept the remote
@@ -4434,7 +4212,8 @@ server's ``fingerprint.'' You can usually just say ``yes'':
 The authenticity of host '[remotehost] ([10.0.2.3]:22)' can't be established.
 ECDSA key fingerprint is 98:70:17:38:db:d0:16:ee:b2:93:08:3e:30:25:14:70.
 Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '[remotehost],[10.0.2.3]:22' (ECDSA) to the list of known hosts.
+Warning: Permanently added '[remotehost],[10.0.2.3]:22' (ECDSA) to the list
+of known hosts.
 myuser@remotehost's password:
 Linux remotehost 3.2.0-4-amd64 #1 SMP Debian 3.2.65-1+deb7u2 x86_64
 
@@ -4495,11 +4274,12 @@ And to see any local overrides of network names or aliases:
 \end{verbatim}
 
 \textbf{Note:} The UNIX \texttt{hosts} file is the basis for the Windows
-version
+version \linebreak
 (\texttt{C:\textbackslash{}Windows\textbackslash{}System32\textbackslash{}drivers\textbackslash{}etc\textbackslash{}hosts})
 and has similar syntax.
 
-\chapter{The Man Behind the Curtain}\label{the-man-behind-the-curtain}
+\hyperdef{}{the-man-behind-the-curtain}{\chapter{The Man Behind the
+Curtain}\label{the-man-behind-the-curtain}}
 
 \textbf{\emph{\texttt{/proc}, \texttt{/dev}, \texttt{ps},
 \texttt{/var/log}, \texttt{/tmp} and other things under the covers.}}
@@ -4756,8 +4536,9 @@ place to unzip install bits, for example. Just note that the
 temporariness is enforced in that when the system reboots, \texttt{/tmp}
 is reset to empty.
 
-\chapter{How Do You Know What You Don't Know,
-\texttt{man}?}\label{how-do-you-know-what-you-dont-know-man}
+\hyperdef{}{how-do-you-know-what-you-dont-know-man}{\chapter{How Do You
+Know What You Don't Know,
+\texttt{man}?}\label{how-do-you-know-what-you-dont-know-man}}
 
 \textbf{\emph{\texttt{man}, \texttt{info}, \texttt{apropos}, Linux
 Documentation Project, Debian and Arch guides, StackOverflow and the
@@ -5020,7 +4801,7 @@ setting up CIFS shares on Linux, you should always look at
 documentation} as well as any specific info you can find about the
 distro you are running.
 
-\chapter{And So On}\label{and-so-on}
+\hyperdef{}{and-so-on}{\chapter{And So On}\label{and-so-on}}
 
 \textbf{\emph{\texttt{/etc}, starting and stopping services,
 \texttt{apt-get}/\texttt{rpm}/\texttt{yum}, and more.}}
@@ -5204,7 +4985,8 @@ The following NEW packages will be installed:
 0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
 Need to get 123 kB of archives.
 After this operation, 314 kB of additional disk space will be used.
-Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl amd64 7.35.0-1ubuntu2.5 [123 kB]
+Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl
+amd64 7.35.0-1ubuntu2.5 [123 kB]
 Fetched 123 kB in 0s (312 kB/s)
 Selecting previously unselected package curl.
 (Reading database ... 182823 files and directories currently installed.)
@@ -5608,7 +5390,6 @@ outlined in the book to find more information on them.
 \subsection{Environment Variables}\label{environment-variables}
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
   \href{http://linux.die.net/abs-guide/exit-status.html}{\textbf{\texttt{\$?}}}
   - the exit code for the last command or program executed.
@@ -5623,7 +5404,6 @@ See \href{http://linux.die.net/abs-guide/ops.html}{``logical
 operators.''}
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
   \textbf{\texttt{\&\&}} - execute the second command only if the first
   command succeeds.
@@ -5638,7 +5418,6 @@ See \href{http://linux.die.net/abs-guide/io-redirection.html}{``I/O
 Redirection.''}
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
   \textbf{\texttt{stderr}} - file descriptor 2, always open for writing
   from a process, defaults to the screen on a terminal session.
@@ -5664,7 +5443,6 @@ Redirection.''}
 Directories}\label{special-files-and-directories}
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
   \href{http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html}{\textbf{\texttt{\textasciitilde{}}}}
   - shortcut for current user's home directory.
@@ -5679,7 +5457,6 @@ See \href{http://linux.die.net/abs-guide/systemdirs.html}{Important
 System Directories.}
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
   \textbf{\texttt{/etc}} - configuration files location.
 \item
@@ -5702,9 +5479,8 @@ typically don't require any special privileges beyond permissions to
 access files and the like.
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
-  {[}\textbf{\texttt{7z}}{]}*http://linux.die.net/man/1/7z) - compress
+  \href{http://linux.die.net/man/1/7z}{\textbf{\texttt{7z}}} - compress
   and uncompress files and directories using the 7-zip algorithm.
 \item
   \href{http://linux.die.net/man/1/apropos}{\textbf{\texttt{apropos}}} -
@@ -5719,25 +5495,25 @@ access files and the like.
   \href{http://linux.die.net/man/1/bzip2}{\textbf{\texttt{bzip2}}} -
   compress and uncompress files using the \texttt{bzip2} algorithm.
 \item
-  \href{linux.die.net/man/1/cat}{\textbf{\texttt{cat}}} - concatenate
-  the input files to \texttt{stdout}.
+  \href{http://linux.die.net/man/1/cat}{\textbf{\texttt{cat}}} -
+  concatenate the input files to \texttt{stdout}.
 \item
-  \href{linux.die.net/man/1/cd}{\textbf{\texttt{cd}}} - change the
-  current directory.
+  \href{http://linux.die.net/man/1/cd}{\textbf{\texttt{cd}}} - change
+  the current directory.
 \item
-  \href{linux.die.net/man/1/chgrp}{\textbf{\texttt{chgrp}}} - change the
-  primary group of a file or directory.
+  \href{http://linux.die.net/man/1/chgrp}{\textbf{\texttt{chgrp}}} -
+  change the primary group of a file or directory.
 \item
-  \href{linux.die.net/man/1/chmod}{\textbf{\texttt{chmod}}} - change the
-  permissions (mode bits) of a file or directory.
+  \href{http://linux.die.net/man/1/chmod}{\textbf{\texttt{chmod}}} -
+  change the permissions (mode bits) of a file or directory.
 \item
-  \href{linux.die.net/man/1/chown}{\textbf{\texttt{chown}}} - change the
-  owner of a file or directory.
+  \href{http://linux.die.net/man/1/chown}{\textbf{\texttt{chown}}} -
+  change the owner of a file or directory.
 \item
-  \href{linux.die.net/man/1/cp}{\textbf{\texttt{cp}}} - copy files or
-  directories.
+  \href{http://linux.die.net/man/1/cp}{\textbf{\texttt{cp}}} - copy
+  files or directories.
 \item
-  \href{linux.die.net/man/1/crontab}{\textbf{\texttt{crontab}}} -
+  \href{http://linux.die.net/man/1/crontab}{\textbf{\texttt{crontab}}} -
   display or edit tasks to be run by \texttt{cron}.
 \item
   \href{http://linux.die.net/man/1/curl}{\textbf{\texttt{curl}}} -
@@ -5746,8 +5522,8 @@ access files and the like.
   \href{http://linux.die.net/man/1/df}{\textbf{\texttt{df}}} - show
   space utilization by file system.
 \item
-  \href{linux.die.net/man/1/diff}{\textbf{\texttt{diff}}} - show the
-  differences between files.
+  \href{http://linux.die.net/man/1/diff}{\textbf{\texttt{diff}}} - show
+  the differences between files.
 \item
   \href{http://linux.die.net/man/1/dig}{\textbf{\texttt{dig}}} - look up
   DNS info on an address.
@@ -5755,72 +5531,72 @@ access files and the like.
   \href{http://linux.die.net/man/1/dpkg}{\textbf{\texttt{dpkg}}} -
   package manager for Debian flavors.
 \item
-  \href{linux.die.net/man/1/echo}{\textbf{\texttt{echo}}} - display
-  passed parameters to \texttt{stdout}.
+  \href{http://linux.die.net/man/1/echo}{\textbf{\texttt{echo}}} -
+  display passed parameters to \texttt{stdout}.
 \item
   \href{http://linux.die.net/man/1/email}{\textbf{\texttt{email}}} -
   send email.
 \item
-  \href{linux.die.net/man/1/false}{\textbf{\texttt{false}}} - do
+  \href{http://linux.die.net/man/1/false}{\textbf{\texttt{false}}} - do
   nothing, unsuccessfully.
 \item
-  \href{linux.die.net/man/1/file}{\textbf{\texttt{file}}} - give best
-  guess as to type of file.
+  \href{http://linux.die.net/man/1/file}{\textbf{\texttt{file}}} - give
+  best guess as to type of file.
 \item
   \href{http://linux.die.net/man/1/find}{\textbf{\texttt{find}}} - find
   files based on various conditions and execute actions against the
   results.
 \item
-  \href{linux.die.net/man/1/grep}{\textbf{\texttt{grep}}} - search for a
-  pattern (regular expression) in files.
+  \href{http://linux.die.net/man/1/grep}{\textbf{\texttt{grep}}} -
+  search for a pattern (regular expression) in files.
 \item
-  \href{linux.die.net/man/1/help}{\textbf{\texttt{help}}} - help for
-  built-in commands in \texttt{bash}.
+  \href{http://linux.die.net/man/1/help}{\textbf{\texttt{help}}} - help
+  for built-in commands in \texttt{bash}.
 \item
   \href{http://linux.die.net/man/1/info}{\textbf{\texttt{info}}} - an
   alternative for \texttt{man}, especially for GNU programs. Remember
   \texttt{q} quits.
 \item
-  \href{linux.die.net/man/1/less}{\textbf{\texttt{less}}} - display the
-  file one page at a time on \texttt{stdout}.
+  \href{http://linux.die.net/man/1/less}{\textbf{\texttt{less}}} -
+  display the file one page at a time on \texttt{stdout}.
 \item
-  \href{linux.die.net/man/1/ln}{\textbf{\texttt{ln}}} - create hard or
-  soft (shortcut) links.
+  \href{http://linux.die.net/man/1/ln}{\textbf{\texttt{ln}}} - create
+  hard or soft (shortcut) links.
 \item
-  \href{linux.die.net/man/1/ls}{\textbf{\texttt{ls}}} - list directory
-  contents.
+  \href{http://linux.die.net/man/1/ls}{\textbf{\texttt{ls}}} - list
+  directory contents.
 \item
-  \href{linux.die.net/man/1/man}{\textbf{\texttt{man}}} - display manual
-  pages. Remember \texttt{q} quits.
+  \href{http://linux.die.net/man/1/man}{\textbf{\texttt{man}}} - display
+  manual pages. Remember \texttt{q} quits.
 \item
-  \href{linux.die.net/man/1/mkdir}{\textbf{\texttt{mkdir}}} - make a new
-  directory.
+  \href{http://linux.die.net/man/1/mkdir}{\textbf{\texttt{mkdir}}} -
+  make a new directory.
 \item
-  \href{linux.die.net/man/1/mutt}{\textbf{\texttt{mutt}}} - email
+  \href{http://linux.die.net/man/1/mutt}{\textbf{\texttt{mutt}}} - email
   client.
 \item
-  \href{linux.die.net/man/1/mv}{\textbf{\texttt{mv}}} - move files or
-  directories.
-\item
-  \href{linux.die.net/man/1/pine}{\textbf{\texttt{pine}}} - email
-  client.
-\item
-  \href{linux.die.net/man/1/ps}{\textbf{\texttt{ps}}} - list running
-  processes.
-\item
-  \href{linux.die.net/man/1/pwd}{\textbf{\texttt{pwd}}} - print the
-  current (working) directory name.
-\item
-  \href{linux.die.net/man/1/rename}{\textbf{\texttt{rename}}} - rename
-  files in more complex ways than \texttt{mv} can.
-\item
-  \href{linux.die.net/man/1/rm}{\textbf{\texttt{rm}}} - delete (remove)
+  \href{http://linux.die.net/man/1/mv}{\textbf{\texttt{mv}}} - move
   files or directories.
 \item
-  \href{linux.die.net/man/1/set}{\textbf{\texttt{set}}} - set an
+  \href{http://linux.die.net/man/1/pine}{\textbf{\texttt{pine}}} - email
+  client.
+\item
+  \href{http://linux.die.net/man/1/ps}{\textbf{\texttt{ps}}} - list
+  running processes.
+\item
+  \href{http://linux.die.net/man/1/pwd}{\textbf{\texttt{pwd}}} - print
+  the current (working) directory name.
+\item
+  \href{http://linux.die.net/man/1/rename}{\textbf{\texttt{rename}}} -
+  rename files in more complex ways than \texttt{mv} can.
+\item
+  \href{http://linux.die.net/man/1/rm}{\textbf{\texttt{rm}}} - delete
+  (remove) files or directories.
+\item
+  \href{http://linux.die.net/man/1/set}{\textbf{\texttt{set}}} - set an
   environment variable, or display all environment variables.
 \item
-  \href{linux.die.net/man/1/sort}{\textbf{\texttt{sort}}} - sort
+  \href{http://linux.die.net/man/1/sort}{\textbf{\texttt{sort}}} - sort
   \texttt{stdin} or a file to \texttt{stdout}.
 \item
   \href{http://linux.die.net/man/1/ssh}{\textbf{\texttt{ssh}}} - secure
@@ -5874,7 +5650,6 @@ special privileges such as \texttt{sudo} to run, depending on the
 system. Yes, some systems restrict the use of \texttt{ping}!
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
   \href{http://linux.die.net/man/8/apt-get}{\textbf{\texttt{apt-get}}} -
   package manager for Debian flavors.

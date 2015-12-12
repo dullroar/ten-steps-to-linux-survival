@@ -173,7 +173,8 @@ The following NEW packages will be installed:
 0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
 Need to get 123 kB of archives.
 After this operation, 314 kB of additional disk space will be used.
-Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl amd64 7.35.0-1ubuntu2.5 [123 kB]
+Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl
+amd64 7.35.0-1ubuntu2.5 [123 kB]
 Fetched 123 kB in 0s (312 kB/s)
 Selecting previously unselected package curl.
 (Reading database ... 182823 files and directories currently installed.)

@@ -104,41 +104,20 @@ through three decades of backwards compatibility via that devil spawn
 we call DOS. It has gotten even muddier over the years as Microsoft has
 added more commands, PowerShell, POSIX subsystems, etc.
 
-But even so, there are some similarities. In both `bash` and `CMD.EXE`,
-the [`set`](http://linux.die.net/man/1/set) command shows you all
-environment variables that have been set:
+But even so, there are some similarities. In both `bash` \fref{set-command-in-bash}
+and `CMD.EXE` \fref{set-command-in-cmd}
+the [`set`](http://linux.die.net/man/1/set) \icmd{set} command shows you all
+environment variables that have been set.
 
-***bash***
-
-\ifxetex
-\begin{figure}[!htbp]
-\includegraphics{./images/set.png}%
-\caption{set command in bash}%
-\end{figure}
+\ifxetex\fimg{./images/set.png}{set command in bash}{set-command-in-bash}
 \else
-
 ![set command in bash](./images/set.png "set command in bash")
-
 \fi
 
-***CMD.EXE***
-
-```
-C:\> set
-ALLUSERSPROFILE=C:\ProgramData
-APPDATA=C:\Users\myuser\AppData\Roaming
-CLIENTNAME=MYMACHINE
-CommandPromptType=Native
-CommonProgramFiles=C:\Program Files\Common Files
-CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
-CommonProgramW6432=C:\Program Files\Common Files
-COMPUTERNAME=JCAPPDEV
-ComSpec=C:\Windows\system32\cmd.exe
-ExtensionSdkDir=C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0\Exten...
-FP_NO_HOST_CHECK=NO
-Framework35Version=v3.5
-...and so on...
-```
+\ifxetex\fimg{./images/set-cmd.png}{SET command in CMD.EXE}{set-command-in-cmd}
+\else
+![SET command in CMD.EXE](./images/set-cmd.png "SET command in CMD.EXE")
+\fi
 
 Similarly, the [`echo`](http://linux.die.net/man/1/echo) command can be
 used to show you the contents of an environment variable (among other
@@ -170,6 +149,25 @@ $home` does not. `CMD.EXE` is ***not*** case-sensitive, so either
 `echo %homedrive%` or `echo %HOMEDRIVE%` (or `EcHo %hOmEdRiVe%`)
 would work.
 
+One final note of caution. You can set up command aliases in `bash`
+and other shells that allow you to define a `CMD.EXE`-style `dir`
+as a substitute the `ls` command in `bash`, or `copy` for `cp`,
+`del` for `rm`, and so on. I recommend you don't do this for at
+least two reasons:
+
+1. It is difficult to get these right in terms of being able to map
+all the various parameters from the `bash` command to the appropriate
+parameters for a `CMD.EXE`-style command. Most people don't go that
+far, which means you then end up with a "toy" substitute for the
+`CMD.EXE` command, and have to fall back to the native commands
+anyway.
+
+2. It simply delays you actually learning about the "UNIX" environment.
+You end up relying on a crutch that then must be replicated on every
+system you touch. In my opinion it is better to just learn the native
+commands, because then you are instantly productive at any shell
+window.
+
 ## You're a Product of Your Environment (Variables)
 
 It is much more common to set up environment variables to control
@@ -200,11 +198,10 @@ information from other users on the system who can see the values at
 least while the script is running using the `ps -x` command.
 
 You can also set the value of environment variables to the output of a
-command using \`:
+command by surrounding it with paired \` ("back ticks", or "grave accent"):
 
 ```
 ~ $ filetype=`file --print --mime-type --no-pad --print0 otschecker.csv`
-
 ~ $ echo $filetype
 otschecker.csv: text/plain
 ```
@@ -235,35 +232,21 @@ to use `whoami`, which tends to be on almost all systems.
 ## Paths (a Part of Any Balanced Shrubbery)
 
 The concept of a "path" for finding executables is almost identical, and
-Windows lifted it from UNIX (or CP/M, which lifted it from UNIX). You
-can tell how similar they are by looking at the output of the `PATH`
-environment variable under `CMD.EXE` and `bash` running under Cygwin
-for the same user on the same machine:
-
-***CMD.EXE***
-
-[Formatted for readability]
-
-```
-C:\> echo %path%
-C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\CommonEx...
-C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\BIN\amd64;
-C:\Windows\Microsoft.NET\Framework64\v4.0.30319;
-C:\Windows\Microsoft.NET\Framework64\v3.5;
-C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\VCPackages;
-C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE;
-C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools;
-...and so on...
-```
-
-***bash***
-
-[Formatted for readability]
+Windows lifted it from UNIX (or CP/M, which lifted it from UNIX). Look at
+the output of the `PATH` environment variable under `bash`:
 
 ```
 ~ $ echo $PATH
 /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 ```
+
+Echoing the `PATH` environment variable under `CMD.EXE` \fref{echo-path-in-cmd}
+works, too. 
+
+\ifxetex\fimg{./images/echo-path-cmd.png}{Echo path in CMD.EXE}{echo-path-in-cmd}
+\else
+![Echo path in CMD.EXE](./images/echo-path-cmd.png "Echo path in CMD.EXE")
+\fi
 
 Note the differences and similarities. Both the paths are evaluated
 left to right. Both use separators between path components, a `;` for
@@ -272,6 +255,15 @@ with slashes, with `\` for DOS and Windows and `/` for Linux. But Linux
 has no concept of a "drive letter" like `C:`, and instead everything is
 rooted in a single namespace hierarchy starting at the root `/`. We'll be
 talking more about directories in the next chapter.
+
+And just to muddy the waters further, notice how Cygwin under Windows shows
+the `PATH` environment variable, with `bash` syntax but a combination of both
+Cygwin and Windows directories\ \fref{echo-path-cygwin}.
+
+\ifxetex\fimg{./images/echo-path-cygwin.png}{Echo path in Cygwin}{echo-path-cygwin}
+\else
+![Echo path in Cygwin](./images/echo-path-cygwin.png "Echo path in Cygwin")
+\fi
 
 ## Open Your Shell and Interact
 
@@ -290,7 +282,7 @@ Real shell wizards can often show off their magic in an incredible
 one-liner typed from memory with lots of obscure commands piped together
 and invoked with cryptic options.
 
-I am not a real shell wizard. See [chapter 9](#HowDoYouKnowWhatYouDontKnow)
+I am not a real shell wizard. See [chapter 9](#how-do-you-know-what-you-dont-know-man)
 for how you can fake it like I do.
 
 ## Getting Lazy
@@ -300,27 +292,23 @@ tab expansion and command history, at least for the current session of
 the shell.
 
 Tab expansion is "auto-complete" for the command prompt. Let's say you
-have the following files in a directory:
+have some files in a directory as shown in \fref{ls-for-tab-completion}.
 
-```
-$ ls -l
-total 764
--rwxrwx---+ 1 myuser mygroup  18554 Oct  9 15:01 Agenda.md
-drwxrwx---+ 1 myuser mygroup      0 Oct  9 08:50 Bad and Corrupted Test
-Files
-drwxrwx---+ 1 myuser mygroup      0 Sep 22 15:35 CheckMD5sLog
--rw-rwxr--+ 1 myuser mygroup   1431 Oct  9 14:58 CygwinPath.txt
--rwxrwx---+ 1 myuser mygroup  22461 Oct  7 14:19 Disabled Active Directory Accounts.xlsx
--rwxrwx---+ 1 myuser mygroup  55647 Sep 18 08:31 filtered.txt
-drwxrwx---+ 1 myuser mygroup      0 Sep 15 15:59 FLOCK
--rwxrwx---+ 1 myuser mygroup  11185 Feb 24  2015 GitLab Upgrade Info.txt
-...and so on...
-```
+\ifxetex\fimg{./images/ls-for-tab-completion.png}{Typical ls command}{ls-for-tab-completion}
+\else
+![Typical ls command](./images/ls-for-tab-completion.png "Typical ls command")
+\fi
 
 Without tab expansion, typing out something like:
 
 ```
-~ $ mv Disabled\ Active\ Directory\ Accounts.xlsx
+~ $ mv Disabled\ User\ Accounts.csv elsewhere/.
+```
+
+or 
+
+```
+~ $ mv 'Disabled User Accounts.csv' elsewhere/.
 ```
 
 ...is painful. But with tab expansion, we can simply:
@@ -334,10 +322,10 @@ one file that starts with a "D" tab expansion will fill in the rest of
 the file name:
 
 ```
-~ $ mv Disabled\ Active\ Directory\ Accounts.xlsx
+~ $ mv Disabled\ User\ Accounts.csv
 ```
 
-...and we can go about our business of finishing our command.
+...and then we can go about our business of finishing our command.
 
 One place the tab completion in `bash` is different than `CMD.EXE`
 is that in `bash` if you hit `Tab` and there are multiple candidates,
@@ -364,15 +352,12 @@ The other thing to remember about the interactive shell is command
 history. Again, both `CMD.EXE` and `bash` give you command history, but
 `CMD.EXE` only remembers it for the session, while `bash` stores it in
 one of your hidden "profile" or "dot" files in your home directory called
-`.bash_history`:
+`.bash_history`, which you can display with `ls -a` \fref{ls-a} shows.
 
-```
-~ $ ls -a
-.              .bash_profile  .gitignore  .minttyrc  Dropbox      Sandbox
-..             .bashrc        .inputrc    .profile   fast-export  Shared
-.bash_history  .gitconfig     .lesshst    .ssh       myuser      Temp
-
-```
+\ifxetex\fimg{./images/ls-a.png}{ls command showing hidden files}{ls-a}
+\else
+![ls command showing hidden files](./images/ls-a.png "ls command showing hidden files")
+\fi
 
 Inside, `.bash_history` is just a text file, with the most recent commands
 at the bottom.

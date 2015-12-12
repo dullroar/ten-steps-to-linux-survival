@@ -169,7 +169,6 @@ from a command prompt). For example, `lynx http://google.com` yields:
 
    _______________________________________________________
    Google Search  I'm Feeling Lucky                          Advanced search
-                                                                                                             Language tools
 
    Advertising Programs     Business Solutions     +Google     About Google
 
@@ -272,11 +271,11 @@ systems with the [`scp`](linux.die.net/man/1/scp) command. It works like
 this for a recursive directory copy:
 
 ```
-scp -r myfiles/* myuser@remoteserver:/home/myuser/myfiles/.
+scp -r myfiles/* myuser@remoteserver:/home/myuser/.
 ```
 
 In this case we are copying the files in `myfiles` and its subdirectories
-to `/home/myuser/myfiles/` on `remoteserver` logged in as `myuser`.
+to `/home/myuser/` on `remoteserver` logged in as `myuser`.
 
 **Note:** The first time you log into a remote server with `ssh` or `scp`
 you will be asked to accept the remote server's "fingerprint." You can
@@ -287,7 +286,8 @@ usually just say "yes":
 The authenticity of host '[remotehost] ([10.0.2.3]:22)' can't be established.
 ECDSA key fingerprint is 98:70:17:38:db:d0:16:ee:b2:93:08:3e:30:25:14:70.
 Are you sure you want to continue connecting (yes/no)? yes
-Warning: Permanently added '[remotehost],[10.0.2.3]:22' (ECDSA) to the list of known hosts.
+Warning: Permanently added '[remotehost],[10.0.2.3]:22' (ECDSA) to the list
+of known hosts.
 myuser@remotehost's password:
 Linux remotehost 3.2.0-4-amd64 #1 SMP Debian 3.2.65-1+deb7u2 x86_64
 
@@ -347,6 +347,6 @@ And to see any local overrides of network names or aliases:
 127.0.0.1       localhost
 ```
 
-**Note:** The UNIX `hosts` file is the basis for the Windows version
+**Note:** The UNIX `hosts` file is the basis for the Windows version \linebreak
 (`C:\Windows\System32\drivers\etc\hosts`) and has similar syntax.
   

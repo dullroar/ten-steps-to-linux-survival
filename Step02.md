@@ -27,14 +27,12 @@ can read even more.
 As mentioned above, the biggest differences between Linux and Windows
 is that the Linux environments tend not to have a concept of "drive
 letters." Instead everything is "mounted" under a single hierarchy that
-starts at the "root directory" or `/`.
+starts at the "root directory" or `/`\ \fref{ls-root}.
 
-```
-~ $ ls /
-bin   etc         lib         media  proc  sbin     sys  var
-boot  home        lib64       mnt    root  selinux  tmp  vmlinuz
-dev   initrd.img  lost+found  opt    run   srv      usr
-```
+\ifxetex\fimg{./images/ls-root.png}{Listing of the root directory}{ls-root}
+\else
+![Listing of the root directory](./images/ls-root.png "Listing of the root directory")
+\fi
 
 The root file system may be backed by a disk device, LUN, memory or even
 the network. It will have one or more directories under it. Multiple
@@ -47,73 +45,38 @@ mounted automatically under either a `/mnt` or `/media` directory.
 ## Looking at Files
 
 The command to *list* the contents of a directory is the
-[`ls`](http://linux.die.net/man/1/ls) command:
+[`ls`](http://linux.die.net/man/1/ls) command\ \fref{ls-home}.
 
-```
-~ $ ls
-Desktop    Downloads  FreeRDP     Music     Public  Temp       Videos
-Documents  Dropbox    installrdp  Pictures  rdp     Templates
-```
+\ifxetex\fimg{./images/ls-home.png}{Listing of a home directory}{ls-home}
+\else
+![Listing of a home directory](./images/ls-home.png "Listing of a home directory")
+\fi
 
 Remember, UNIX environments think of files that start with a `.` as
 "hidden." If you want to see all these
 ["dotfiles"](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments),
-you can use `ls -a`:
+you can use `ls -a`\ \fref{ls-a-home}.
 
-```
-~ $ ls -a
-.              Desktop        .gksu.lock       .mozilla   .themes
-..             .dmrc          .gnome2          Music      .thumbnails
-.adobe         Documents      .gnome2_private  Pictures   .thunderbird
-.atom          Downloads      .hugin           .pki       Videos
-.bash_history  .dropbox       .ICEauthority    .profile   .wine
-.bash_logout   Dropbox        .icons           .ptbt1     .Xauthority
-.cache         .dropbox-dist  installrdp       Public     .xinputrc
-.cinnamon      .face          .lastpass        rdp        .xsession-errors
-.cmake         FreeRDP        .linuxmint       .sbd
-.config        .gconf         .local           Temp
-.dbus          .gimp-2.8      .macromedia      Templates
-```
+\ifxetex\fimg{./images/ls-a-home.png}{Listing of hidden files in home directory}{ls-a-home}
+\else
+![Listing of hidden files in home directory](./images/ls-a-home.png "Listing of hidden files in home directory")
+\fi
 
 Wow! That's a lot of dotfiles!
 
-If you want to see some details of each file, use `ls -l`:
+If you want to see some details of each file, use `ls -l`\ \fref{ls-l-home}:
 
-```
-~ $ ls -l
-total 92
-drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Desktop
-drwxr-xr-x  2 myuser mygroup      4096 Oct 13 10:02 Documents
-drwxr-xr-x  2 myuser mygroup      4096 Oct 14 09:45 Downloads
-drwx------  8 myuser mygroup      4096 Oct 16 19:58 Dropbox
-drwxr-xr-x 19 myuser mygroup      4096 Oct 12 09:48 FreeRDP
--rwxr-x---  1 myuser sambashare    883 Oct 12 11:34 installrdp
-drwxr-xr-x  5 myuser mygroup      4096 Oct 16 10:47 LightTable
-drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Music
-drwxr-xr-x  3 myuser mygroup     36864 Oct 12 17:29 Pictures
-drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Public
--rwxr-xr-x  1 myuser mygroup       816 Oct 15 18:00 rdp
-...and so on...
-```
+\ifxetex\fimg{./images/ls-l-home.png}{Detailed listing of home directory}{ls-l-home}
+\else
+![Detailed listing of home directory](./images/ls-l-home.png "Detailed listing of home directory")
+\fi
 
-And of course parameters can be combined, as with the two above:
+And of course parameters can be combined, as with the two above\ \fref{ls-al-home}.
 
-```
-~ $ ls -al
-total 344
-drwxr-xr-x 40 myuser mygroup      4096 Oct 17 07:14 .
-drwxr-xr-x  3 root   root         4096 Sep  7 04:09 ..
-drwx------  3 myuser mygroup      4096 Sep  7 09:33 .adobe
-drwxr-xr-x  5 myuser mygroup      4096 Oct 12 15:48 .atom
--rw-------  1 myuser mygroup      6428 Oct 17 06:11 .bash_history
--rw-r--r--  1 myuser mygroup       220 Sep  7 04:09 .bash_logout
-drwx------ 18 myuser mygroup      4096 Oct 13 07:31 .cache
-drwxr-xr-x  5 myuser mygroup      4096 Oct 16 19:57 .cinnamon
-drwxr-xr-x  3 myuser mygroup      4096 Oct 12 09:45 .cmake
-drwxr-xr-x 26 myuser mygroup      4096 Oct 15 10:23 .config
-drwx------  3 myuser mygroup      4096 Sep  7 04:16 .dbus
-...and so on...
-```
+\ifxetex\fimg{./images/ls-al-home.png}{Detailed listing of hidden files}{ls-al-home}
+\else
+![Detailed listing of hidden files](./images/ls-al-home.png "Detailed listing of hidden files")
+\fi
 
 ## A Brief Detour Around Parameters
 
@@ -157,35 +120,16 @@ GNU-style parameters in scripts as self-documenting code.
 ## More Poking at Files
 
 If we suspect the file is a text file, we can echo it to the console
-with the [`cat`](http://linux.die.net/man/1/cat) (*concatenate*) command:
+with the [`cat`](http://linux.die.net/man/1/cat) (*concatenate*) command
+\ \fref{cat}
 
-```
-~ $ cat installrdp 
-#!/bin/bash
-sudo apt-get -y install git
-cd ~
-git clone git://github.com/FreeRDP/FreeRDP.git
-cd FreeRDP
-sudo apt-get -y install build-essential git-core cmake libssl-dev \
-  libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \
-  libxv-dev libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \
-  libxml2-dev libxrandr-dev libgstreamer0.10-dev \
-  libgstreamer-plugins-base0.10-dev libxi-dev \
-  libgstreamer-plugins-base1.0-dev libavutil-dev libavcodec-dev \
-  libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
-cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
-make
-sudo make install
-sudo echo "/usr/local/lib/freerdp" > /etc/ld.so.conf.d/freerdp.conf
-sudo echo "/usr/local/lib64/freerdp" >> /etc/ld.so.conf.d/freerdp.conf
-sudo echo "/usr/local/lib" >> /etc/ld.so.conf.d/freerdp.conf
-sudo ldconfig
-which xfreerdp
-xfreerdp --version
-```
+\ifxetex\fimg{./images/cat.png}{cat command}{cat}
+\else
+![cat command](./images/cat.png "cat command")
+\fi
 
-We can determine from the above that `installrdp` is a `bash` shell script
-that looks to install and configure
+In that example when we `cat installrdp` we can determine it is a `bash`
+shell script that looks to install and configure
 [FreeRDP](https://github.com/FreeRDP/FreeRDP) on a Debian-style system:
 
 1. **`apt-get`** - Debian-style package manager.
@@ -207,67 +151,30 @@ to motor around in a text file without editing it.
 
 We can also look at just the end or *tail* of a file (often the most
 interesting when looking at log files and troubleshooting a current
-problem) with the [`tail`](http://linux.die.net/man/1/tail) command. To
-show the last 10 lines of the kernel `dmesg` log:
+problem) with the [`tail`](http://linux.die.net/man/1/tail) command. The
+next example \fref{tail-dmesg} shows the last 10 lines of the kernel `dmesg`
+log.
 
-```
-# tail dmesg
-[    2.774931] loop: module loaded
-[    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-[    3.351331] eth0: NIC Link is Up 10000 Mbps
-[    3.422647] RPC: Registered named UNIX socket transport module.
-[    3.422649] RPC: Registered udp transport module.
-[    3.422650] RPC: Registered tcp transport module.
-[    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[    3.432437] FS-Cache: Loaded
-[    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-[    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
-```
+\ifxetex\fimg{./images/tail-dmesg.png}{tail command}{tail-dmesg}
+\else
+![tail command](./images/tail-dmesg.png "tail command")
+\fi
 
-To show the last 20 lines:
+To show a specific number of lines \fref{tail-n-dmesg} use the `-n` parameter.
 
-```
-# tail -n 20 dmesg
-[    2.317838] [drm] Fifo max 0x00040000 min 0x00001000 cap 0x0000077f
-[    2.318843] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
-[    2.318845] [drm] No driver support for vblank timestamp query.
-[    2.318914] [drm] Screen objects system initialized
-[    2.318917] [drm] Detected no device 3D availability.
-[    2.323011] [drm] Initialized vmwgfx 2.4.0 20120209 for 0000:00:0f.0 ...
-[    2.486733] input: ImPS/2 Generic Wheel Mouse as /devices/platform/i8...
-[    2.655694] Adding 4191228k swap on /dev/sda5.  Priority:-1 extents:1...
-[    2.666714] EXT4-fs (sda1): re-mounted. Opts: (null)
-[    2.754699] EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro
-[    2.774931] loop: module loaded
-[    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-[    3.351331] eth0: NIC Link is Up 10000 Mbps
-[    3.422647] RPC: Registered named UNIX socket transport module.
-[    3.422649] RPC: Registered udp transport module.
-[    3.422650] RPC: Registered tcp transport module.
-[    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[    3.432437] FS-Cache: Loaded
-[    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-[    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
-```
+\ifxetex\fimg{./images/tail-n-dmesg.png}{tail -n command}{tail-n-dmesg}
+\else
+![tail -n command](./images/tail-n-dmesg.png "tail -n command")
+\fi
 
 You can also use `tail` to *follow* an open file and continuously display
 any new output at the end, which is useful for monitoring log files in real
-time:
+time\ \fref{tail-f}.
 
-```
-# tail -f dmesg
-[    2.774931] loop: module loaded
-[    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-[    3.351331] eth0: NIC Link is Up 10000 Mbps
-[    3.422647] RPC: Registered named UNIX socket transport module.
-[    3.422649] RPC: Registered udp transport module.
-[    3.422650] RPC: Registered tcp transport module.
-[    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-[    3.432437] FS-Cache: Loaded
-[    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-[    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
-...new lines will appear here over time...
-```
+\ifxetex\fimg{./images/tail-f.png}{tail -f command}{tail-f}
+\else
+![tail -f command](./images/tail-f.png "tail -f command")
+\fi
 
 If we know nothing about a *file*, we can use the
 [`file`](http://linux.die.net/man/1/file) command to help us guess:
@@ -300,117 +207,53 @@ Let's say we have three files:
 ElevatorTrucks  FarmCombines  FarmTractors
 ```
 
-Here are the contents of each:
+We can use `cat` to display the contents of each\ \fref{invoice-files}
 
-```
-~ $ cat ElevatorTrucks
-Truck   brakes  200
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-
-~ $ cat FarmCombines
-Combine motor   1500
-Combine brakes  400
-Combine tires   2500
-
-~ $ cat FarmTractors
-Tractor motor   1000
-Tractor brakes  300
-Tractor tires   2000
-```
+\ifxetex\fimg{./images/invoice-files.png}{Some invoice files}{invoice-files}
+\else
+![Some invoice files](./images/invoice-files.png "Some invoice files")
+\fi
 
 But what if we wanted to process all the lines in all the files in a single
 alphabetical order? Just redirecting the files into a program won't do it,
 because the file names will be sorted by the shell and the lines will be
-processed in file name order, not the ultimate sorted order of all the file
-contents:
+processed in file name order\ \fref{all-invoices}, not the ultimate sorted
+order of all the file contents.
 
-```
-~ $ cat *
-Truck   brakes  200
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-Combine motor   1500
-Combine brakes  400
-Combine tires   2500
-Tractor motor   1000
-Tractor brakes  300
-Tractor tires   2000
-```
+\ifxetex\fimg{./images/all-invoices.png}{Show all the invoices}{all-invoices}
+\else
+![Show all the invoices](./images/all-invoices.png "Show all the invoices")
+\fi
 
-The `sort` command to the rescue!
+The `sort` command \fref{sort} to the rescue!
 
-```
-~ $ sort *
-Combine brakes  400
-Combine motor   1500
-Combine tires   2500
-Tractor brakes  300
-Tractor motor   1000
-Tractor tires   2000
-Truck   brakes  200
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-```
+\ifxetex\fimg{./images/sort.png}{sort command}{sort}
+\else
+![sort command](./images/sort.png "sort command")
+\fi
 
 What if we want to sort by the parts column? Well, it is the second "key"
-field delimited by whitespace, so:
+field delimited by whitespace\ \fref{sort-k2}, so:
 
-```
-~ $ sort -k 2 *
-Truck   brakes  200
-Tractor brakes  300
-Combine brakes  400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Truck   winch   100
-```
+\ifxetex\fimg{./images/sort-k2.png}{Sort by second column}{sort-k2}
+\else
+![Sort by second column](./images/sort-k2.png "Sort by second column")
+\fi
 
-What about by the third column, the amount?
+What about by the third column, the amount? \fref{sort-k3}
 
-```
-~ $ sort -k 3 *
-Truck   winch   100
-Tractor motor   1000
-Combine motor   1500
-Truck   brakes  200
-Tractor tires   2000
-Combine tires   2500
-Tractor brakes  300
-Combine brakes  400
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-```
+\ifxetex\fimg{./images/sort-k3.png}{Sort by third column}{sort-k3}
+\else
+![Sort by third column](./images/sort-k3.png "Sort by third column")
+\fi
 
 That's not what we expected because it is sorting numbers alphabetically.
-Let's fix that by telling it to sort numerically:
+Let's fix that \fref{sort-k3-n} by telling it to sort numerically.
 
-```
-~ $ sort -k 3 -n *
-Truck   winch   100
-Truck   brakes  200
-Tractor brakes  300
-Combine brakes  400
-Truck   tires   400
-Truck   tires   400
-Truck   tires   400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-```
+\ifxetex\fimg{./images/sort-k3-n.png}{Sort by third column, numerically}{sort-k3-n}
+\else
+![Sort by third column, numerically](./images/sort-k3-n.png "Sort by third column, numerically")
+\fi
 
 Maybe we care about the top three most expensive items. We haven't talked
 about pipes yet, but check this out:
@@ -422,33 +265,20 @@ Tractor tires   2000
 Combine tires   2500
 ```
 
-Finally, what if we want only unique rows?
+Finally, what if we want only unique rows?\ \fref{sort-k3-n-u}
 
-```
-~ $ sort -k 3 -n -u *
-Truck   winch   100
-Truck   brakes  200
-Tractor brakes  300
-Truck   tires   400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-```
+\ifxetex\fimg{./images/sort-k3-n-u.png}{Sort by third column, numerically, unique}{sort-k3-n-u}
+\else
+![Sort by third column, numerically, unique](./images/sort-k3-n-u.png "Sort by third column, numerically, unique")
+\fi
 
-Just to reinforce long parameters, the last example is equivalent to:
+Just to reinforce long parameters, the last example is equivalent to
+`sort --key 3 --numeric-sort --unique *`\ \fref{sort-k3-n-u-long}
 
-```
-~ $ sort --key 3 --numeric-sort --unique *
-Truck   winch   100
-Truck   brakes  200
-Tractor brakes  300
-Truck   tires   400
-Tractor motor   1000
-Combine motor   1500
-Tractor tires   2000
-Combine tires   2500
-```
+\ifxetex\fimg{./images/sort-k3-n-u-long.png}{Sort with long parameter names}{sort-k3-n-u-long}
+\else
+![Sort with long parameter names](./images/sort-k3-n-u-long.png "Sort with long parameter names")
+\fi
 
 ## Rearranging Deck Chairs
 
@@ -498,20 +328,12 @@ is no "Recycle Bin" or "Trash Can" when working from the command prompt, so
 be careful!
 
 This kind of scenario can happen ***way*** too often, even to experienced
-system administrators (note the space between `*` and `.bak`):
+system administrators. Note the space between `*` and `.bak`\ \fref{bad-rm}.
 
-```
-~ $ cd MyDissertation
-
-~ $ ls
-Citations.bak  Citations.doc  Dissertation.bak  Dissertation.doc  Notes.doc
-
-~ $ rm * .bak
-rm: cannot remove ‘.bak’: No such file or directory
-
-~ $ ls
-
-```
+\ifxetex\fimg{./images/bad-rm.png}{Oops!}{bad-rm}
+\else
+![Oops!](./images/bad-rm.png "bad-rm")
+\fi
 
 So, in order, our hapless user:
 
@@ -525,7 +347,7 @@ a space between the wildcard `*` and the `.bak`. Note ominous warning
 message.
 
 4. Presto! `ls` shows ***everything*** is gone, not just the backup
-files! Yay! The user's day's priorities just got rearranged as they go
+files! Yay! The user's priorities just got rearranged as they go
 hunting for another backup of their dissertation.
 
 So be careful out there! This is an example where tab completion can be an
@@ -680,34 +502,10 @@ for the parent directory directly from UNIX. Consider the following
 examples that combine all of the above about relative paths and see if it
 all makes sense:
 
-```
-~ $ mkdir Bar Baz
-
-~ $ ls
-Bar  Baz
-
-~ $ cd Bar
-
-~ $ touch a b c
-
-~ $ ls
-a  b  c
-
-~ $ cd ../Baz
-
-~ $ ls
-
-~ $ touch d e f
-
-~ $ ls
-d  e  f
-
-~ $ ls ..
-Bar  Baz
-
-~ $ ls ../Bar
-a  b  c
-```
+\ifxetex\fimg{./images/relative-paths.png}{Relative paths}{relative-paths}
+\else
+![Relative paths](./images/relative-paths.png "Relative paths")
+\fi
 
 Did you notice how both `mkdir` and `touch` allow for specifying multiple
 directory and file names in the same command?

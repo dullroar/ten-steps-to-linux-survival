@@ -1,18 +1,18 @@
 \begin{figure}[!htbp]
-\includegraphics{./images/Merv.jpg}%
-\caption*{Merv sez, "Don't panic."}%
+\includegraphics{./images/Merv.jpg}
+\caption*{Merv sez, "Don't panic."}
 \end{figure}
-By James Lehmer v0.3
+By James Lehmer v0.5
 \begin{figure}[!htbp]
 \centering
-\includegraphics{./images/cc-by-sa.png}%
-\caption*{Creative Commons Attribution-ShareAlike 4.0 International License}%
+\includegraphics{./images/cc-by-sa.png}
+\caption*{Creative Commons Attribution-ShareAlike 4.0 International License}
 \end{figure}
 *Jim's Ten Steps to Linux Survival* by James Lehmer is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
 
 ![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don't panic.'")
 
-<b>By James Lehmer</b> <br /> <br /> v0.4 <br /> <br /> <a rel="license"
+<b>By James Lehmer</b> <br /> <br /> v0.5 <br /> <br /> <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
 alt="Creative Commons License" style="border-width:0"
 src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a> <br /> <br /> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><i>Jim's Ten Steps to Linux Survival</i></span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">James Lehmer</span> is licensed under a <a rel="license"
@@ -31,27 +31,27 @@ I said ten things, but I lied, because history is really important, so we will s
 
 Here is what we'll cover in the rest of this book:
 
-1.  [**Some History**](#step-0.-some-history) – UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,” Cygwin, and why any of this matters now, “Why does this script off the internet work on this system and not on that one?”
+1.  [**Some History**](#some-history) – UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,” Cygwin, and why any of this matters now, “Why does this script off the internet work on this system and not on that one?”
 
-2.  [**Come Out of Your Shell**](#step-1.-come-out-of-your-shell) – `sh` vs. `ash` vs. `bash` vs. everything else, "REPL”, interactive vs. scripts, command history, tab expansion, environment variables and "A path! A path!"
+2.  [**Come Out of Your Shell**](#come-out-of-your-shell) – `sh` vs. `ash` vs. `bash` vs. everything else, "REPL”, interactive vs. scripts, command history, tab expansion, environment variables and "A path! A path!"
 
-3.  [**File Under "Directories"**](#step-2.-file-under-directories) – `ls`, `mv`, `cp`, `rm` (`-rf *`), `cat`, `chmod`/`chgrp`/`chown` and everyone's favorite, `touch`.
+3.  [**File Under "Directories"**](#file-under-directories) – `ls`, `mv`, `cp`, `rm` (`-rf *`), `cat`, `chmod`/`chgrp`/`chown` and everyone's favorite, `touch`.
 
-4.  [**Finding Meaning**](#step-3.-finding-meaning) – the `find` command in all its glory. Probably the single most useful command in "UNIX" (I think).
+4.  [**Finding Meaning**](#finding-meaning) – the `find` command in all its glory. Probably the single most useful command in "UNIX" (I think).
 
-5.  [**Grokking `grep`**](#step-4.-grokking-grep) – and probably gawking at `awk` while we are at it, which means regular expressions, too. Now we have two problems.
+5.  [**Grokking `grep`**](#grokking-grep) – and probably gawking at `awk` while we are at it, which means regular expressions, too. Now we have two problems.
 
-6.  [**“Just a Series of Pipes”**](#step-5.-just-a-series-of-pipes) – `stdin`/`stdout`/`stderr`, redirects, piping between commands.
+6.  [**“Just a Series of Pipes”**](#just-a-series-of-pipes) – `stdin`/`stdout`/`stderr`, redirects, piping between commands.
 
-7.  [**`vi`**](#step-6.-vi) (had to be \#6, if you think about it) – how to stay sane for 10 minutes in `vi`. Navigation, basic editing, find, change/change-all, cut and paste, undo, saving and canceling. Plus easier alternatives like `nano`, and why `vi` still matters.
+7.  [**`vi`**](#vi) (had to be \#6, if you think about it) – how to stay sane for 10 minutes in `vi`. Navigation, basic editing, find, change/change-all, cut and paste, undo, saving and canceling. Plus easier alternatives like `nano`, and why `vi` still matters.
 
-8.  [**The Whole Wide World**](#step-7.-the-whole-wide-world) – `curl`, `wget`, `ifconfig`, `ping`, `ssh`, `telnet`, `/etc/hosts` and email before Outlook.
+8.  [**The Whole Wide World**](#the-whole-wide-world) – `curl`, `wget`, `ifconfig`, `ping`, `ssh`, `telnet`, `/etc/hosts` and email before Outlook.
 
-9.  [**The Man Behind the Curtain**](#step-8.-the-man-behind-the-curtain) - `/proc`, `/dev`, `ps`, `/var/log`, `/tmp` and other things under the covers.
+9.  [**The Man Behind the Curtain**](#the-man-behind-the-curtain) - `/proc`, `/dev`, `ps`, `/var/log`, `/tmp` and other things under the covers.
 
-10. [**How Do You Know What You Don’t Know, `man`?**](#step-9.-how-do-you-know-what-you-dont-know-man) – `man`, `info`, `apropos`, Linux Documentation Project, Debian and Arch guides, StackOverflow and the dangers of searching for “`man find`” or “`man touch`” on the internet.
+10. [**How Do You Know What You Don’t Know, `man`?**](#how-do-you-know-what-you-dont-know-man) – `man`, `info`, `apropos`, Linux Documentation Project, Debian and Arch guides, StackOverflow and the dangers of searching for “`man find`” or “`man touch`” on the internet.
 
-11. [**And So On**](#step-10.-and-so-on) - `/etc`, starting and stopping services, `apt-get`/`rpm`/`yum`, and more.
+11. [**And So On**](#and-so-on) - `/etc`, starting and stopping services, `apt-get`/`rpm`/`yum`, and more.
 
 Plus [some stuff](#appendices) at the end to tie the whole room together.
 
@@ -104,11 +104,11 @@ This is my attempt to help my co-workers by saying:
 
 > *"Don't panic."* - Douglas Adams (*Hitchhiker's Guide to the Galaxy*)
 
-It started out as a proposal I made a few weeks ago to develop a "lunch and learn" session of about 60-90 minutes of what I considered to be "a Linux survival guide." The list in the *Introduction* above is based on my original email proposal. The audience would be entirely technical, primarily "IT" (Windows/Cisco/VMWare/Exchange/SAN admins).
+It started out as a proposal I made a while ago to develop a "lunch and learn" session of about 60-90 minutes of what I considered to be "a Linux survival guide." The list in the [*Introduction*](#introduction) above is based on my original email proposal. The audience would be entirely technical, primarily "IT" (Windows/Cisco/VMWare/Exchange/SAN admins).
 
 My goal is not to get into scripting or system setup and hardening or the thousand different ways to slice a file. Instead, the scenario I see in my head is for one of the participants in that "lunch and learn," armed with that discussion and having glanced through this book, to be better able to survive if dropped into the jungle with:
 
-> *"The main www site is down, and all the people who know about it are out. It's running on some sort of Linux, I think, and the credentials and IP address are scrawled on this sticky note. Can you get in and poke around and see if you can figure it out?"* - your boss (next Tuesday morning)
+> *"The main www site is down, and all the people who know about it are \> out. It's running on some sort of Linux, I think, and the credentials and \> IP address are scrawled on this sticky note. Can you get in and poke \> around and see if you can figure it out?"* - your boss (next Tuesday \> morning)
 
 Well, as I started to type out my notes of what I considered to be "essential," they just kept growing and growing. And now, some nights, weekends and lunch hours gone, this is what you see as the result. I figure the slides will be easier to prepare for that "lunch and learn," now that I have the "notes"!
 
@@ -117,7 +117,9 @@ Caveat Administrator
 
 Even so, anything like this is incomplete. Anyone knowledgable of Linux will probably splutter their coffee into their neckbeard at least once a chapter because I don't mention a parameter on a command or an entire subject at all! And that's right - because this "survival guide" is already long enough.
 
-This book is not meant to be an authoritative source, but instead a ["fake book"](https://en.wikipedia.org/wiki/Fake_book) for getting up and running ***quickly*** with the sheer basics, plus knowing where to go for help. It is not a replacement for reading the real documentation and doing research and testing, especially in production! But hopefully it will help get you through that "Can you get in and poke around and see if you can figure it out?" scenario, above. And if Linux should start becoming more of your job, maybe this will help as a gentle push toward "RTFM" along with thinking in "The UNIX Way."
+This book is not meant to be an authoritative source, but instead a ["fake book"](https://en.wikipedia.org/wiki/Fake_book) for getting up and running ***quickly*** with the sheer basics, plus knowing where to go for help. I modeled it explicitly after "short and opinionated" tech books such as Douglas Crockford's [*Javascript: The Good Parts*](http://shop.oreilly.com/product/9780596517748.do) or Zed Shaw's [*Learn Python the Hard Way*](http://learnpythonthehardway.org/). If you like those big, thick tech books that are measured by the kilogram, this is not the book for you.
+
+It is also not a replacement for reading the real documentation and doing research and testing, especially in production! But hopefully it will help get you through that "Can you get in and poke around and see if you can figure it out?" scenario, above. And if Linux should start becoming more of your job, maybe this will help as a gentle push toward "RTFM" along with thinking in "The UNIX Way."
 
 **WARNING:** ***Many of the commands in this book can alter your system and possibly damage it.*** Obvious candidates include the file system commands like `rm`, the `vi` editor (obviously), and some of the "system admin" commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production. ***You have been warned!***
 
@@ -141,14 +143,9 @@ If a command and its output, script code or something else is shown in a block, 
 
 **Note:** The examples in this book typically show something like `~ $` or `#` before the command (the latter especially when logged in as `root` or running under `csh`). These "command prompts" are set in `bash` via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto) and are not meant to be typed in as part of the command.
 
-Samples may also appear in a screenshot like this:
+Examples may also appear in a screenshot.
 
-\begin{figure}[!htbp]
-\includegraphics{./images/ps-AH.png}%
-\caption{Sample command}%
-\end{figure}
-
-![Sample command](./images/ps-AH.png "Sample command")
+ ![Sample command](./images/ps-AH.png "Sample command")
 
 Some History
 ============
@@ -218,28 +215,11 @@ In UNIX-land over time these differences seem to be getting better, but there ar
 
 The best thing is to be vaguely aware of this history and licenses and if something isn't available on a certain platform or if a command isn't taking a specific parameter to search for variants.
 
-For example, note the differences in command line parameters and output between showing all processes with the [`ps`](http://linux.die.net/man/1/ps) (*process*) command on a Linux system, in this case Linux Mint:
+For example, note the difference in output between the first figure showing all processes with the [`ps`](http://linux.die.net/man/1/ps) (*process*) command on a Linux system (in this case Linux Mint under `bash`), versus the second example on a FreeBSD system at my ISP, where `csh` is the default shell.
 
-    $ ps -AH
-      PID TTY          TIME CMD
-        2 ?        00:00:00 kthreadd
-        3 ?        00:00:00   ksoftirqd/0
-        5 ?        00:00:00   kworker/0:0H
-        7 ?        00:00:19   rcu_sched
-        8 ?        00:00:04   rcuos/0
-        9 ?        00:00:09   rcuos/1
-       10 ?        00:00:07   rcuos/2
-    ...and so on...
+ ![ps on Linux in bash](./images/ps-a-bash.png "ps on Linux in bash")
 
-...versus on a FreeBSD system at my ISP, where `csh` is the default shell:
-
-    %ps -ax
-      PID  TT  STAT      TIME COMMAND
-    73591  ??  S      0:00.03 sshd: myuser@ttyp1 (sshd)
-    79503  ??  S      0:00.07 dovecot/imap
-    80065  ??  S      0:00.05 dovecot/imap
-    73593  p1  Ss     0:00.02 -csh (csh)
-    90737  p1  RN+    0:00.00 ps -ax
+ ![ps on FreeBSD in csh](./images/ps-a-csh.png "ps on FreeBSD in csh")
 
 To make things even more confusing, the Linux version of `ps` has been written to understand the BSD-style syntax and flags, too!
 
@@ -337,33 +317,11 @@ Everything You Know is (Almost) Wrong
 
 `CMD.EXE` has a lineage that is a mish-mash of CP/M and UNIX excreted through three decades of backwards compatibility via that devil spawn we call DOS. It has gotten even muddier over the years as Microsoft has added more commands, PowerShell, POSIX subsystems, etc.
 
-But even so, there are some similarities. In both `bash` and `CMD.EXE`, the [`set`](http://linux.die.net/man/1/set) command shows you all environment variables that have been set:
+But even so, there are some similarities. In both `bash` and `CMD.EXE` the [`set`](http://linux.die.net/man/1/set) command shows you all environment variables that have been set.
 
-***bash***
+ ![set command in bash](./images/set.png "set command in bash")
 
-\begin{figure}[!htbp]
-\includegraphics{./images/set.png}%
-\caption{set command in bash}%
-\end{figure}
-
-![set command in bash](./images/set.png "set command in bash")
-
-***CMD.EXE***
-
-    C:\> set
-    ALLUSERSPROFILE=C:\ProgramData
-    APPDATA=C:\Users\myuser\AppData\Roaming
-    CLIENTNAME=MYMACHINE
-    CommandPromptType=Native
-    CommonProgramFiles=C:\Program Files\Common Files
-    CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
-    CommonProgramW6432=C:\Program Files\Common Files
-    COMPUTERNAME=JCAPPDEV
-    ComSpec=C:\Windows\system32\cmd.exe
-    ExtensionSdkDir=C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0\Exten...
-    FP_NO_HOST_CHECK=NO
-    Framework35Version=v3.5
-    ...and so on...
+ ![SET command in CMD.EXE](./images/set-cmd.png "SET command in CMD.EXE")
 
 Similarly, the [`echo`](http://linux.die.net/man/1/echo) command can be used to show you the contents of an environment variable (among other things):
 
@@ -383,6 +341,12 @@ This example shows some valuable differences between shells, though. Even though
 
 2.  `bash` is case-sensitive and so `echo $HOME` works but `echo $home` does not. `CMD.EXE` is ***not*** case-sensitive, so either `echo %homedrive%` or `echo %HOMEDRIVE%` (or `EcHo %hOmEdRiVe%`) would work.
 
+One final note of caution. You can set up command aliases in `bash` and other shells that allow you to define a `CMD.EXE`-style `dir` as a substitute the `ls` command in `bash`, or `copy` for `cp`, `del` for `rm`, and so on. I recommend you don't do this for at least two reasons:
+
+1.  It is difficult to get these right in terms of being able to map all the various parameters from the `bash` command to the appropriate parameters for a `CMD.EXE`-style command. Most people don't go that far, which means you then end up with a "toy" substitute for the `CMD.EXE` command, and have to fall back to the native commands anyway.
+
+2.  It simply delays you actually learning about the "UNIX" environment. You end up relying on a crutch that then must be replicated on every system you touch. In my opinion it is better to just learn the native commands, because then you are instantly productive at any shell window.
+
 You're a Product of Your Environment (Variables)
 ------------------------------------------------
 
@@ -400,10 +364,9 @@ You can set or override multiple variables for a single command or script execut
 
 Note that passing in values in this way does not safeguard sensitive information from other users on the system who can see the values at least while the script is running using the `ps -x` command.
 
-You can also set the value of environment variables to the output of a command using \`:
+You can also set the value of environment variables to the output of a command by surrounding it with paired \` ("back ticks", or "grave accent"):
 
     ~ $ filetype=`file --print --mime-type --no-pad --print0 otschecker.csv`
-
     ~ $ echo $filetype
     otschecker.csv: text/plain
 
@@ -424,30 +387,20 @@ Some environments set the `$USER` environment variable, some set a `$USERNAME` v
 Paths (a Part of Any Balanced Shrubbery)
 ----------------------------------------
 
-The concept of a "path" for finding executables is almost identical, and Windows lifted it from UNIX (or CP/M, which lifted it from UNIX). You can tell how similar they are by looking at the output of the `PATH` environment variable under `CMD.EXE` and `bash` running under Cygwin for the same user on the same machine:
-
-***CMD.EXE***
-
-[Formatted for readability]
-
-    C:\> echo %path%
-    C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\CommonEx...
-    C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\BIN\amd64;
-    C:\Windows\Microsoft.NET\Framework64\v4.0.30319;
-    C:\Windows\Microsoft.NET\Framework64\v3.5;
-    C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\VCPackages;
-    C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE;
-    C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\Tools;
-    ...and so on...
-
-***bash***
-
-[Formatted for readability]
+The concept of a "path" for finding executables is almost identical, and Windows lifted it from UNIX (or CP/M, which lifted it from UNIX). Look at the output of the `PATH` environment variable under `bash`:
 
     ~ $ echo $PATH
     /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 
+Echoing the `PATH` environment variable under `CMD.EXE` works, too.
+
+ ![Echo path in CMD.EXE](./images/echo-path-cmd.png "Echo path in CMD.EXE")
+
 Note the differences and similarities. Both the paths are evaluated left to right. Both use separators between path components, a `;` for DOS and Windows, a `:` for Linux. Both delimit their directory names with slashes, with `\` for DOS and Windows and `/` for Linux. But Linux has no concept of a "drive letter" like `C:`, and instead everything is rooted in a single namespace hierarchy starting at the root `/`. We'll be talking more about directories in the next chapter.
+
+And just to muddy the waters further, notice how Cygwin under Windows shows the `PATH` environment variable, with `bash` syntax but a combination of both Cygwin and Windows directories .
+
+ ![Echo path in Cygwin](./images/echo-path-cygwin.png "Echo path in Cygwin")
 
 Open Your Shell and Interact
 ----------------------------
@@ -458,31 +411,24 @@ Command prompts allow you to work in a so-called "REPL" environment (Read, Evalu
 
 Real shell wizards can often show off their magic in an incredible one-liner typed from memory with lots of obscure commands piped together and invoked with cryptic options.
 
-I am not a real shell wizard. See [chapter 9](#HowDoYouKnowWhatYouDontKnow) for how you can fake it like I do.
+I am not a real shell wizard. See [chapter 9](#how-do-you-know-what-you-dont-know-man) for how you can fake it like I do.
 
 Getting Lazy
 ------------
 
 Most modern interactive shells like `bash` and `CMD.EXE` allow for tab expansion and command history, at least for the current session of the shell.
 
-Tab expansion is "auto-complete" for the command prompt. Let's say you have the following files in a directory:
+Tab expansion is "auto-complete" for the command prompt. Let's say you have some files in a directory as shown in .
 
-    $ ls -l
-    total 764
-    -rwxrwx---+ 1 myuser mygroup  18554 Oct  9 15:01 Agenda.md
-    drwxrwx---+ 1 myuser mygroup      0 Oct  9 08:50 Bad and Corrupted Test
-    Files
-    drwxrwx---+ 1 myuser mygroup      0 Sep 22 15:35 CheckMD5sLog
-    -rw-rwxr--+ 1 myuser mygroup   1431 Oct  9 14:58 CygwinPath.txt
-    -rwxrwx---+ 1 myuser mygroup  22461 Oct  7 14:19 Disabled Active Directory Accounts.xlsx
-    -rwxrwx---+ 1 myuser mygroup  55647 Sep 18 08:31 filtered.txt
-    drwxrwx---+ 1 myuser mygroup      0 Sep 15 15:59 FLOCK
-    -rwxrwx---+ 1 myuser mygroup  11185 Feb 24  2015 GitLab Upgrade Info.txt
-    ...and so on...
+ ![Typical ls command](./images/ls-for-tab-completion.png "Typical ls command")
 
 Without tab expansion, typing out something like:
 
-    ~ $ mv Disabled\ Active\ Directory\ Accounts.xlsx
+    ~ $ mv Disabled\ User\ Accounts.csv elsewhere/.
+
+or
+
+    ~ $ mv 'Disabled User Accounts.csv' elsewhere/.
 
 ...is painful. But with tab expansion, we can simply:
 
@@ -490,9 +436,9 @@ Without tab expansion, typing out something like:
 
 ...where `^t` represents hitting the `Tab` key, and since there is only one file that starts with a "D" tab expansion will fill in the rest of the file name:
 
-    ~ $ mv Disabled\ Active\ Directory\ Accounts.xlsx
+    ~ $ mv Disabled\ User\ Accounts.csv
 
-...and we can go about our business of finishing our command.
+...and then we can go about our business of finishing our command.
 
 One place the tab completion in `bash` is different than `CMD.EXE` is that in `bash` if you hit `Tab` and there are multiple candidates, it will expand as far as it can and then show you a list of files that match up to that point and allow you to type in more characters and hit `Tab` again to complete it. Whereas in `CMD.EXE` it will "cycle" between the multiple candidates, showing you each one as the completion option in turn. Both are useful, but each is subtly different and can give you fits when moving between one environment and another.
 
@@ -504,12 +450,9 @@ One place the tab completion in `bash` is different than `CMD.EXE` is that in `b
 
 3.  Acts as an error checker, because if the tab doesn't expand, chances are you are specifying something else (the beginning path of the file) wrong.
 
-The other thing to remember about the interactive shell is command history. Again, both `CMD.EXE` and `bash` give you command history, but `CMD.EXE` only remembers it for the session, while `bash` stores it in one of your hidden "profile" or "dot" files in your home directory called `.bash_history`:
+The other thing to remember about the interactive shell is command history. Again, both `CMD.EXE` and `bash` give you command history, but `CMD.EXE` only remembers it for the session, while `bash` stores it in one of your hidden "profile" or "dot" files in your home directory called `.bash_history`, which you can display with `ls -a` shows.
 
-    ~ $ ls -a
-    .              .bash_profile  .gitignore  .minttyrc  Dropbox      Sandbox
-    ..             .bashrc        .inputrc    .profile   fast-export  Shared
-    .bash_history  .gitconfig     .lesshst    .ssh       myuser      Temp
+ ![ls command showing hidden files](./images/ls-a.png "ls command showing hidden files")
 
 Inside, `.bash_history` is just a text file, with the most recent commands at the bottom.
 
@@ -538,12 +481,9 @@ Typically in Linux we are scripting and otherwise moving around files. The file 
 
 Each has its strengths and weaknesses. While Linux tends to treat the ext\* file systems as preferred, it can write to a lot of file systems and can read even more.
 
-As mentioned above, the biggest differences between Linux and Windows is that the Linux environments tend not to have a concept of "drive letters." Instead everything is "mounted" under a single hierarchy that starts at the "root directory" or `/`.
+As mentioned above, the biggest differences between Linux and Windows is that the Linux environments tend not to have a concept of "drive letters." Instead everything is "mounted" under a single hierarchy that starts at the "root directory" or `/` .
 
-    ~ $ ls /
-    bin   etc         lib         media  proc  sbin     sys  var
-    boot  home        lib64       mnt    root  selinux  tmp  vmlinuz
-    dev   initrd.img  lost+found  opt    run   srv      usr
+ ![Listing of the root directory](./images/ls-root.png "Listing of the root directory")
 
 The root file system may be backed by a disk device, LUN, memory or even the network. It will have one or more directories under it. Multiple physical drives and network locations can be "mounted" virtually anywhere, under any directory or subdirectory in the hierarchy.
 
@@ -552,62 +492,23 @@ The root file system may be backed by a disk device, LUN, memory or even the net
 Looking at Files
 ----------------
 
-The command to *list* the contents of a directory is the [`ls`](http://linux.die.net/man/1/ls) command:
+The command to *list* the contents of a directory is the [`ls`](http://linux.die.net/man/1/ls) command .
 
-    ~ $ ls
-    Desktop    Downloads  FreeRDP     Music     Public  Temp       Videos
-    Documents  Dropbox    installrdp  Pictures  rdp     Templates
+ ![Listing of a home directory](./images/ls-home.png "Listing of a home directory")
 
-Remember, UNIX environments think of files that start with a `.` as "hidden." If you want to see all these ["dotfiles"](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments), you can use `ls -a`:
+Remember, UNIX environments think of files that start with a `.` as "hidden." If you want to see all these ["dotfiles"](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments), you can use `ls -a` .
 
-    ~ $ ls -a
-    .              Desktop        .gksu.lock       .mozilla   .themes
-    ..             .dmrc          .gnome2          Music      .thumbnails
-    .adobe         Documents      .gnome2_private  Pictures   .thunderbird
-    .atom          Downloads      .hugin           .pki       Videos
-    .bash_history  .dropbox       .ICEauthority    .profile   .wine
-    .bash_logout   Dropbox        .icons           .ptbt1     .Xauthority
-    .cache         .dropbox-dist  installrdp       Public     .xinputrc
-    .cinnamon      .face          .lastpass        rdp        .xsession-errors
-    .cmake         FreeRDP        .linuxmint       .sbd
-    .config        .gconf         .local           Temp
-    .dbus          .gimp-2.8      .macromedia      Templates
+ ![Listing of hidden files in home directory](./images/ls-a-home.png "Listing of hidden files in home directory")
 
 Wow! That's a lot of dotfiles!
 
-If you want to see some details of each file, use `ls -l`:
+If you want to see some details of each file, use `ls -l` :
 
-    ~ $ ls -l
-    total 92
-    drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Desktop
-    drwxr-xr-x  2 myuser mygroup      4096 Oct 13 10:02 Documents
-    drwxr-xr-x  2 myuser mygroup      4096 Oct 14 09:45 Downloads
-    drwx------  8 myuser mygroup      4096 Oct 16 19:58 Dropbox
-    drwxr-xr-x 19 myuser mygroup      4096 Oct 12 09:48 FreeRDP
-    -rwxr-x---  1 myuser sambashare    883 Oct 12 11:34 installrdp
-    drwxr-xr-x  5 myuser mygroup      4096 Oct 16 10:47 LightTable
-    drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Music
-    drwxr-xr-x  3 myuser mygroup     36864 Oct 12 17:29 Pictures
-    drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Public
-    -rwxr-xr-x  1 myuser mygroup       816 Oct 15 18:00 rdp
-    ...and so on...
+ ![Detailed listing of home directory](./images/ls-l-home.png "Detailed listing of home directory")
 
-And of course parameters can be combined, as with the two above:
+And of course parameters can be combined, as with the two above .
 
-    ~ $ ls -al
-    total 344
-    drwxr-xr-x 40 myuser mygroup      4096 Oct 17 07:14 .
-    drwxr-xr-x  3 root   root         4096 Sep  7 04:09 ..
-    drwx------  3 myuser mygroup      4096 Sep  7 09:33 .adobe
-    drwxr-xr-x  5 myuser mygroup      4096 Oct 12 15:48 .atom
-    -rw-------  1 myuser mygroup      6428 Oct 17 06:11 .bash_history
-    -rw-r--r--  1 myuser mygroup       220 Sep  7 04:09 .bash_logout
-    drwx------ 18 myuser mygroup      4096 Oct 13 07:31 .cache
-    drwxr-xr-x  5 myuser mygroup      4096 Oct 16 19:57 .cinnamon
-    drwxr-xr-x  3 myuser mygroup      4096 Oct 12 09:45 .cmake
-    drwxr-xr-x 26 myuser mygroup      4096 Oct 15 10:23 .config
-    drwx------  3 myuser mygroup      4096 Sep  7 04:16 .dbus
-    ...and so on...
+ ![Detailed listing of hidden files](./images/ls-al-home.png "Detailed listing of hidden files")
 
 A Brief Detour Around Parameters
 --------------------------------
@@ -633,32 +534,11 @@ Again, it is ***highly recommended*** that you take the time to use the GNU-styl
 More Poking at Files
 --------------------
 
-If we suspect the file is a text file, we can echo it to the console with the [`cat`](http://linux.die.net/man/1/cat) (*concatenate*) command:
+If we suspect the file is a text file, we can echo it to the console with the [`cat`](http://linux.die.net/man/1/cat) (*concatenate*) command  
 
-    ~ $ cat installrdp 
-    #!/bin/bash
-    sudo apt-get -y install git
-    cd ~
-    git clone git://github.com/FreeRDP/FreeRDP.git
-    cd FreeRDP
-    sudo apt-get -y install build-essential git-core cmake libssl-dev \
-      libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \
-      libxv-dev libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \
-      libxml2-dev libxrandr-dev libgstreamer0.10-dev \
-      libgstreamer-plugins-base0.10-dev libxi-dev \
-      libgstreamer-plugins-base1.0-dev libavutil-dev libavcodec-dev \
-      libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
-    cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
-    make
-    sudo make install
-    sudo echo "/usr/local/lib/freerdp" > /etc/ld.so.conf.d/freerdp.conf
-    sudo echo "/usr/local/lib64/freerdp" >> /etc/ld.so.conf.d/freerdp.conf
-    sudo echo "/usr/local/lib" >> /etc/ld.so.conf.d/freerdp.conf
-    sudo ldconfig
-    which xfreerdp
-    xfreerdp --version
+ ![cat command](./images/cat.png "cat command")
 
-We can determine from the above that `installrdp` is a `bash` shell script that looks to install and configure [FreeRDP](https://github.com/FreeRDP/FreeRDP) on a Debian-style system:
+In that example when we `cat installrdp` we can determine it is a `bash` shell script that looks to install and configure [FreeRDP](https://github.com/FreeRDP/FreeRDP) on a Debian-style system:
 
 1.  **`apt-get`** - Debian-style package manager.
 
@@ -670,58 +550,17 @@ A better way to display a longer file is to use the [`less`](http://linux.die.ne
 
 **Note:** The `vi` search (`/`, `?`, `n` and `p`) and navigation (`G`, `0`) keys work within `less`, too. In general `less` is a great lightweight way to motor around in a text file without editing it.
 
-We can also look at just the end or *tail* of a file (often the most interesting when looking at log files and troubleshooting a current problem) with the [`tail`](http://linux.die.net/man/1/tail) command. To show the last 10 lines of the kernel `dmesg` log:
+We can also look at just the end or *tail* of a file (often the most interesting when looking at log files and troubleshooting a current problem) with the [`tail`](http://linux.die.net/man/1/tail) command. The next example shows the last 10 lines of the kernel `dmesg` log.
 
-    # tail dmesg
-    [    2.774931] loop: module loaded
-    [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-    [    3.351331] eth0: NIC Link is Up 10000 Mbps
-    [    3.422647] RPC: Registered named UNIX socket transport module.
-    [    3.422649] RPC: Registered udp transport module.
-    [    3.422650] RPC: Registered tcp transport module.
-    [    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-    [    3.432437] FS-Cache: Loaded
-    [    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-    [    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
+ ![tail command](./images/tail-dmesg.png "tail command")
 
-To show the last 20 lines:
+To show a specific number of lines use the `-n` parameter.
 
-    # tail -n 20 dmesg
-    [    2.317838] [drm] Fifo max 0x00040000 min 0x00001000 cap 0x0000077f
-    [    2.318843] [drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
-    [    2.318845] [drm] No driver support for vblank timestamp query.
-    [    2.318914] [drm] Screen objects system initialized
-    [    2.318917] [drm] Detected no device 3D availability.
-    [    2.323011] [drm] Initialized vmwgfx 2.4.0 20120209 for 0000:00:0f.0 ...
-    [    2.486733] input: ImPS/2 Generic Wheel Mouse as /devices/platform/i8...
-    [    2.655694] Adding 4191228k swap on /dev/sda5.  Priority:-1 extents:1...
-    [    2.666714] EXT4-fs (sda1): re-mounted. Opts: (null)
-    [    2.754699] EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro
-    [    2.774931] loop: module loaded
-    [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-    [    3.351331] eth0: NIC Link is Up 10000 Mbps
-    [    3.422647] RPC: Registered named UNIX socket transport module.
-    [    3.422649] RPC: Registered udp transport module.
-    [    3.422650] RPC: Registered tcp transport module.
-    [    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-    [    3.432437] FS-Cache: Loaded
-    [    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-    [    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
+ ![tail -n command](./images/tail-n-dmesg.png "tail -n command")
 
-You can also use `tail` to *follow* an open file and continuously display any new output at the end, which is useful for monitoring log files in real time:
+You can also use `tail` to *follow* an open file and continuously display any new output at the end, which is useful for monitoring log files in real time .
 
-    # tail -f dmesg
-    [    2.774931] loop: module loaded
-    [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
-    [    3.351331] eth0: NIC Link is Up 10000 Mbps
-    [    3.422647] RPC: Registered named UNIX socket transport module.
-    [    3.422649] RPC: Registered udp transport module.
-    [    3.422650] RPC: Registered tcp transport module.
-    [    3.422651] RPC: Registered tcp NFSv4.1 backchannel transport module.
-    [    3.432437] FS-Cache: Loaded
-    [    3.443980] FS-Cache: Netfs 'nfs' registered for caching
-    [    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).
-    ...new lines will appear here over time...
+ ![tail -f command](./images/tail-f.png "tail -f command")
 
 If we know nothing about a *file*, we can use the [`file`](http://linux.die.net/man/1/file) command to help us guess:
 
@@ -742,99 +581,29 @@ Let's say we have three files:
     ~ $ ls
     ElevatorTrucks  FarmCombines  FarmTractors
 
-Here are the contents of each:
+We can use `cat` to display the contents of each 
 
-    ~ $ cat ElevatorTrucks
-    Truck   brakes  200
-    Truck   tires   400
-    Truck   tires   400
-    Truck   tires   400
-    Truck   winch   100
+ ![Some invoice files](./images/invoice-files.png "Some invoice files")
 
-    ~ $ cat FarmCombines
-    Combine motor   1500
-    Combine brakes  400
-    Combine tires   2500
+But what if we wanted to process all the lines in all the files in a single alphabetical order? Just redirecting the files into a program won't do it, because the file names will be sorted by the shell and the lines will be processed in file name order , not the ultimate sorted order of all the file contents.
 
-    ~ $ cat FarmTractors
-    Tractor motor   1000
-    Tractor brakes  300
-    Tractor tires   2000
-
-But what if we wanted to process all the lines in all the files in a single alphabetical order? Just redirecting the files into a program won't do it, because the file names will be sorted by the shell and the lines will be processed in file name order, not the ultimate sorted order of all the file contents:
-
-    ~ $ cat *
-    Truck   brakes  200
-    Truck   tires   400
-    Truck   tires   400
-    Truck   tires   400
-    Truck   winch   100
-    Combine motor   1500
-    Combine brakes  400
-    Combine tires   2500
-    Tractor motor   1000
-    Tractor brakes  300
-    Tractor tires   2000
+ ![Show all the invoices](./images/all-invoices.png "Show all the invoices")
 
 The `sort` command to the rescue!
 
-    ~ $ sort *
-    Combine brakes  400
-    Combine motor   1500
-    Combine tires   2500
-    Tractor brakes  300
-    Tractor motor   1000
-    Tractor tires   2000
-    Truck   brakes  200
-    Truck   tires   400
-    Truck   tires   400
-    Truck   tires   400
-    Truck   winch   100
+ ![sort command](./images/sort.png "sort command")
 
-What if we want to sort by the parts column? Well, it is the second "key" field delimited by whitespace, so:
+What if we want to sort by the parts column? Well, it is the second "key" field delimited by whitespace , so:
 
-    ~ $ sort -k 2 *
-    Truck   brakes  200
-    Tractor brakes  300
-    Combine brakes  400
-    Tractor motor   1000
-    Combine motor   1500
-    Tractor tires   2000
-    Combine tires   2500
-    Truck   tires   400
-    Truck   tires   400
-    Truck   tires   400
-    Truck   winch   100
+ ![Sort by second column](./images/sort-k2.png "Sort by second column")
 
 What about by the third column, the amount?
 
-    ~ $ sort -k 3 *
-    Truck   winch   100
-    Tractor motor   1000
-    Combine motor   1500
-    Truck   brakes  200
-    Tractor tires   2000
-    Combine tires   2500
-    Tractor brakes  300
-    Combine brakes  400
-    Truck   tires   400
-    Truck   tires   400
-    Truck   tires   400
+ ![Sort by third column](./images/sort-k3.png "Sort by third column")
 
-That's not what we expected because it is sorting numbers alphabetically. Let's fix that by telling it to sort numerically:
+That's not what we expected because it is sorting numbers alphabetically. Let's fix that by telling it to sort numerically.
 
-    ~ $ sort -k 3 -n *
-    Truck   winch   100
-    Truck   brakes  200
-    Tractor brakes  300
-    Combine brakes  400
-    Truck   tires   400
-    Truck   tires   400
-    Truck   tires   400
-    Tractor motor   1000
-    Combine motor   1500
-    Tractor tires   2000
-    Combine tires   2500
+ ![Sort by third column, numerically](./images/sort-k3-n.png "Sort by third column, numerically")
 
 Maybe we care about the top three most expensive items. We haven't talked about pipes yet, but check this out:
 
@@ -843,29 +612,13 @@ Maybe we care about the top three most expensive items. We haven't talked about 
     Tractor tires   2000
     Combine tires   2500
 
-Finally, what if we want only unique rows?
+Finally, what if we want only unique rows? 
 
-    ~ $ sort -k 3 -n -u *
-    Truck   winch   100
-    Truck   brakes  200
-    Tractor brakes  300
-    Truck   tires   400
-    Tractor motor   1000
-    Combine motor   1500
-    Tractor tires   2000
-    Combine tires   2500
+ ![Sort by third column, numerically, unique](./images/sort-k3-n-u.png "Sort by third column, numerically, unique")
 
-Just to reinforce long parameters, the last example is equivalent to:
+Just to reinforce long parameters, the last example is equivalent to `sort --key 3 --numeric-sort --unique *` 
 
-    ~ $ sort --key 3 --numeric-sort --unique *
-    Truck   winch   100
-    Truck   brakes  200
-    Tractor brakes  300
-    Truck   tires   400
-    Tractor motor   1000
-    Combine motor   1500
-    Tractor tires   2000
-    Combine tires   2500
+ ![Sort with long parameter names](./images/sort-k3-n-u-long.png "Sort with long parameter names")
 
 Rearranging Deck Chairs
 -----------------------
@@ -897,17 +650,9 @@ To delete or *remove* a file you use [`rm`](http://linux.die.net/man/1/rm):
 
 **Pro Tip:** There is no "Are you sure?" prompt when removing a single file specified with no wildcards, or even all files with a wildcard, and there is no "Recycle Bin" or "Trash Can" when working from the command prompt, so be careful!
 
-This kind of scenario can happen ***way*** too often, even to experienced system administrators (note the space between `*` and `.bak`):
+This kind of scenario can happen ***way*** too often, even to experienced system administrators. Note the space between `*` and `.bak` .
 
-    ~ $ cd MyDissertation
-
-    ~ $ ls
-    Citations.bak  Citations.doc  Dissertation.bak  Dissertation.doc  Notes.doc
-
-    ~ $ rm * .bak
-    rm: cannot remove ‘.bak’: No such file or directory
-
-    ~ $ ls
+ ![Oops!](./images/bad-rm.png "bad-rm")
 
 So, in order, our hapless user:
 
@@ -917,7 +662,7 @@ So, in order, our hapless user:
 
 3.  Decided to delete the `.bak` files with `rm`, but accidentally typed in a space between the wildcard `*` and the `.bak`. Note ominous warning message.
 
-4.  Presto! `ls` shows ***everything*** is gone, not just the backup files! Yay! The user's day's priorities just got rearranged as they go hunting for another backup of their dissertation.
+4.  Presto! `ls` shows ***everything*** is gone, not just the backup files! Yay! The user's priorities just got rearranged as they go hunting for another backup of their dissertation.
 
 So be careful out there! This is an example where tab completion can be an extra error check. Or a lot of times I use command history in these cases by changing the `ls` to look for just the files I want to delete:
 
@@ -1024,32 +769,7 @@ In addition, you need to know the difference between "absolute" and "relative" p
 
 Windows inherited the concept of `.` for the current directory and `..` for the parent directory directly from UNIX. Consider the following examples that combine all of the above about relative paths and see if it all makes sense:
 
-    ~ $ mkdir Bar Baz
-
-    ~ $ ls
-    Bar  Baz
-
-    ~ $ cd Bar
-
-    ~ $ touch a b c
-
-    ~ $ ls
-    a  b  c
-
-    ~ $ cd ../Baz
-
-    ~ $ ls
-
-    ~ $ touch d e f
-
-    ~ $ ls
-    d  e  f
-
-    ~ $ ls ..
-    Bar  Baz
-
-    ~ $ ls ../Bar
-    a  b  c
+ ![Relative paths](./images/relative-paths.png "Relative paths")
 
 Did you notice how both `mkdir` and `touch` allow for specifying multiple directory and file names in the same command?
 
@@ -2528,7 +2248,6 @@ You can browse the web from the command prompt using something like [`lynx`](htt
 
        _______________________________________________________
        Google Search  I'm Feeling Lucky                          Advanced search
-                                                                                                                 Language tools
 
        Advertising Programs     Business Solutions     +Google     About Google
 
@@ -2593,9 +2312,9 @@ You will be prompted for credentials (or you can use certificates, but that is *
 
 You can also use the `SSH` protocol to securely transfer files between systems with the [`scp`](linux.die.net/man/1/scp) command. It works like this for a recursive directory copy:
 
-    scp -r myfiles/* myuser@remoteserver:/home/myuser/myfiles/.
+    scp -r myfiles/* myuser@remoteserver:/home/myuser/.
 
-In this case we are copying the files in `myfiles` and its subdirectories to `/home/myuser/myfiles/` on `remoteserver` logged in as `myuser`.
+In this case we are copying the files in `myfiles` and its subdirectories to `/home/myuser/` on `remoteserver` logged in as `myuser`.
 
 **Note:** The first time you log into a remote server with `ssh` or `scp` you will be asked to accept the remote server's "fingerprint." You can usually just say "yes":
 
@@ -2603,7 +2322,8 @@ In this case we are copying the files in `myfiles` and its subdirectories to `/h
     The authenticity of host '[remotehost] ([10.0.2.3]:22)' can't be established.
     ECDSA key fingerprint is 98:70:17:38:db:d0:16:ee:b2:93:08:3e:30:25:14:70.
     Are you sure you want to continue connecting (yes/no)? yes
-    Warning: Permanently added '[remotehost],[10.0.2.3]:22' (ECDSA) to the list of known hosts.
+    Warning: Permanently added '[remotehost],[10.0.2.3]:22' (ECDSA) to the list
+    of known hosts.
     myuser@remotehost's password:
     Linux remotehost 3.2.0-4-amd64 #1 SMP Debian 3.2.65-1+deb7u2 x86_64
 
@@ -3134,7 +2854,8 @@ In this case there was nothing to upgrade. And the final common command is obvio
     0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
     Need to get 123 kB of archives.
     After this operation, 314 kB of additional disk space will be used.
-    Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl amd64 7.35.0-1ubuntu2.5 [123 kB]
+    Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl
+    amd64 7.35.0-1ubuntu2.5 [123 kB]
     Fetched 123 kB in 0s (312 kB/s)
     Selecting previously unselected package curl.
     (Reading database ... 182823 files and directories currently installed.)
@@ -3379,6 +3100,7 @@ This list outlines all the commands, files and other UNIX items of interest brou
 ### Environment Variables
 
 -   [**`$?`**](http://linux.die.net/abs-guide/exit-status.html) - the exit code for the last command or program executed.
+
 -   [**`$PATH`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html) - the execution search path.
 
 ### Conditional Execution
@@ -3386,6 +3108,7 @@ This list outlines all the commands, files and other UNIX items of interest brou
 See ["logical operators."](http://linux.die.net/abs-guide/ops.html)
 
 -   **`&&`** - execute the second command only if the first command succeeds.
+
 -   **`||`** - execute the secon command even if the first command fails.
 
 ### Redirection
@@ -3393,16 +3116,23 @@ See ["logical operators."](http://linux.die.net/abs-guide/ops.html)
 See ["I/O Redirection."](http://linux.die.net/abs-guide/io-redirection.html)
 
 -   **`stderr`** - file descriptor 2, always open for writing from a process, defaults to the screen on a terminal session.
+
 -   **`stdin`** - file descriptor 0, always open for reading in a process, defaults to the keyboard input on a terminal session.
+
 -   **`stdout`** - file descriptor 1, always open for writing from a process, defaults to the screen on a terminal session.
+
 -   **`<`** - redirect a file to `stdin`.
+
 -   **`>`** - redirect `stdout` to a file.
+
 -   **`2>`** - redirect `stderr` to a file.
+
 -   **`|`** - pipe `stdout` from one process into `stdin` in another process.
 
 ### Special Files and Directories
 
 -   [**`~`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html) - shortcut for current user's home directory.
+
 -   **`.bash_history`** - history of commands entered at the command prompt (also a nice example of a hidden "dotfile").
 
 ### System Directories
@@ -3410,68 +3140,125 @@ See ["I/O Redirection."](http://linux.die.net/abs-guide/io-redirection.html)
 See [Important System Directories.](http://linux.die.net/abs-guide/systemdirs.html)
 
 -   **`/etc`** - configuration files location.
+
 -   **`/home`** - "home" or user profile directories.
+
 -   **`/proc`** - system run-time information.
+
 -   **`/root`** - "home" directory for "root" user (system admin).
+
 -   **`/tmp`** - temporary files location.
+
 -   **`/var/log`** - log files location.
 
 ### Commands
 
 These are "section 1" commands, i.e., normal user commands that typically don't require any special privileges beyond permissions to access files and the like.
 
--   [**`7z`**]\*http://linux.die.net/man/1/7z) - compress and uncompress files and directories using the 7-zip algorithm.
+-   [**`7z`**](http://linux.die.net/man/1/7z) - compress and uncompress files and directories using the 7-zip algorithm.
+
 -   [**`apropos`**](http://linux.die.net/man/1/apropos) - search for help on commands by pattern.
+
 -   [**`awk`**](http://linux.die.net/man/1/awk) - language for processing streams of data.
+
 -   [**`bash`**](http://linux.die.net/man/1/bash) - the Bourne-again shell.
+
 -   [**`bzip2`**](http://linux.die.net/man/1/bzip2) - compress and uncompress files using the `bzip2` algorithm.
--   [**`cat`**](linux.die.net/man/1/cat) - concatenate the input files to `stdout`.
--   [**`cd`**](linux.die.net/man/1/cd) - change the current directory.
--   [**`chgrp`**](linux.die.net/man/1/chgrp) - change the primary group of a file or directory.
--   [**`chmod`**](linux.die.net/man/1/chmod) - change the permissions (mode bits) of a file or directory.
--   [**`chown`**](linux.die.net/man/1/chown) - change the owner of a file or directory.
--   [**`cp`**](linux.die.net/man/1/cp) - copy files or directories.
--   [**`crontab`**](linux.die.net/man/1/crontab) - display or edit tasks to be run by `cron`.
+
+-   [**`cat`**](http://linux.die.net/man/1/cat) - concatenate the input files to `stdout`.
+
+-   [**`cd`**](http://linux.die.net/man/1/cd) - change the current directory.
+
+-   [**`chgrp`**](http://linux.die.net/man/1/chgrp) - change the primary group of a file or directory.
+
+-   [**`chmod`**](http://linux.die.net/man/1/chmod) - change the permissions (mode bits) of a file or directory.
+
+-   [**`chown`**](http://linux.die.net/man/1/chown) - change the owner of a file or directory.
+
+-   [**`cp`**](http://linux.die.net/man/1/cp) - copy files or directories.
+
+-   [**`crontab`**](http://linux.die.net/man/1/crontab) - display or edit tasks to be run by `cron`.
+
 -   [**`curl`**](http://linux.die.net/man/1/curl) - download files from the internet.
+
 -   [**`df`**](http://linux.die.net/man/1/df) - show space utilization by file system.
--   [**`diff`**](linux.die.net/man/1/diff) - show the differences between files.
+
+-   [**`diff`**](http://linux.die.net/man/1/diff) - show the differences between files.
+
 -   [**`dig`**](http://linux.die.net/man/1/dig) - look up DNS info on an address.
+
 -   [**`dpkg`**](http://linux.die.net/man/1/dpkg) - package manager for Debian flavors.
--   [**`echo`**](linux.die.net/man/1/echo) - display passed parameters to `stdout`.
+
+-   [**`echo`**](http://linux.die.net/man/1/echo) - display passed parameters to `stdout`.
+
 -   [**`email`**](http://linux.die.net/man/1/email) - send email.
--   [**`false`**](linux.die.net/man/1/false) - do nothing, unsuccessfully.
--   [**`file`**](linux.die.net/man/1/file) - give best guess as to type of file.
+
+-   [**`false`**](http://linux.die.net/man/1/false) - do nothing, unsuccessfully.
+
+-   [**`file`**](http://linux.die.net/man/1/file) - give best guess as to type of file.
+
 -   [**`find`**](http://linux.die.net/man/1/find) - find files based on various conditions and execute actions against the results.
--   [**`grep`**](linux.die.net/man/1/grep) - search for a pattern (regular expression) in files.
--   [**`help`**](linux.die.net/man/1/help) - help for built-in commands in `bash`.
+
+-   [**`grep`**](http://linux.die.net/man/1/grep) - search for a pattern (regular expression) in files.
+
+-   [**`help`**](http://linux.die.net/man/1/help) - help for built-in commands in `bash`.
+
 -   [**`info`**](http://linux.die.net/man/1/info) - an alternative for `man`, especially for GNU programs. Remember `q` quits.
--   [**`less`**](linux.die.net/man/1/less) - display the file one page at a time on `stdout`.
--   [**`ln`**](linux.die.net/man/1/ln) - create hard or soft (shortcut) links.
--   [**`ls`**](linux.die.net/man/1/ls) - list directory contents.
--   [**`man`**](linux.die.net/man/1/man) - display manual pages. Remember `q` quits.
--   [**`mkdir`**](linux.die.net/man/1/mkdir) - make a new directory.
--   [**`mutt`**](linux.die.net/man/1/mutt) - email client.
--   [**`mv`**](linux.die.net/man/1/mv) - move files or directories.
--   [**`pine`**](linux.die.net/man/1/pine) - email client.
--   [**`ps`**](linux.die.net/man/1/ps) - list running processes.
--   [**`pwd`**](linux.die.net/man/1/pwd) - print the current (working) directory name.
--   [**`rename`**](linux.die.net/man/1/rename) - rename files in more complex ways than `mv` can.
--   [**`rm`**](linux.die.net/man/1/rm) - delete (remove) files or directories.
--   [**`set`**](linux.die.net/man/1/set) - set an environment variable, or display all environment variables.
--   [**`sort`**](linux.die.net/man/1/sort) - sort `stdin` or a file to `stdout`.
+
+-   [**`less`**](http://linux.die.net/man/1/less) - display the file one page at a time on `stdout`.
+
+-   [**`ln`**](http://linux.die.net/man/1/ln) - create hard or soft (shortcut) links.
+
+-   [**`ls`**](http://linux.die.net/man/1/ls) - list directory contents.
+
+-   [**`man`**](http://linux.die.net/man/1/man) - display manual pages. Remember `q` quits.
+
+-   [**`mkdir`**](http://linux.die.net/man/1/mkdir) - make a new directory.
+
+-   [**`mutt`**](http://linux.die.net/man/1/mutt) - email client.
+
+-   [**`mv`**](http://linux.die.net/man/1/mv) - move files or directories.
+
+-   [**`pine`**](http://linux.die.net/man/1/pine) - email client.
+
+-   [**`ps`**](http://linux.die.net/man/1/ps) - list running processes.
+
+-   [**`pwd`**](http://linux.die.net/man/1/pwd) - print the current (working) directory name.
+
+-   [**`rename`**](http://linux.die.net/man/1/rename) - rename files in more complex ways than `mv` can.
+
+-   [**`rm`**](http://linux.die.net/man/1/rm) - delete (remove) files or directories.
+
+-   [**`set`**](http://linux.die.net/man/1/set) - set an environment variable, or display all environment variables.
+
+-   [**`sort`**](http://linux.die.net/man/1/sort) - sort `stdin` or a file to `stdout`.
+
 -   [**`ssh`**](http://linux.die.net/man/1/ssh) - secure shell termina progam and protocol.
+
 -   [**`tail`**](http://linux.die.net/man/1/tail) - display the last lines of a file.
+
 -   [**`tar`**](http://linux.die.net/man/1/tar) - "tape archive", a way to combine directories into a single flat file.
+
 -   [**`tee`**](http://linux.die.net/man/1/tee) - write to a file and `stdout` at the same time.
+
 -   [**`telnet`**](http://linux.die.net/man/1/telnet) - ancient terminal program and protocol.
+
 -   [**`touch`**](http://linux.die.net/man/1/touch) - create an empty file or change the last-modified time of an existing file.
+
 -   [**`true`**](http://linux.die.net/man/1/true) - do nothing, successfully.
+
 -   [**`uname`**](http://linux.die.net/man/1/uname) - print system info.
+
 -   [**`unzip`**](http://linux.die.net/man/1/unzip) - uncompress `.zip` files.
+
 -   [**`vi`**](http://linux.die.net/man/1/vi) - "visual" editor, a file editor.
+
 -   [**`wget`**](http://linux.die.net/man/1/wget) - download files from the internet.
+
 -   [**`whoami`**](http://linux.die.net/man/1/whoami) - the answer to life's most existential question.
+
 -   [**`whois`**](http://linux.die.net/man/1/whois) - look up DNS ownership info on an address.
+
 -   [**`zip`**](http://linux.die.net/man/1/zip) - compress files and directories using the PKZip algorithm.
 
 ### System Commands
@@ -3479,15 +3266,25 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 These are "section 8" commands, and ***may*** require special privileges such as `sudo` to run, depending on the system. Yes, some systems restrict the use of `ping`!
 
 -   [**`apt-get`**](http://linux.die.net/man/8/apt-get) - package manager for Debian flavors.
+
 -   [**`cron`**](http://linux.die.net/man/8/cron) - system for running "scheduled tasks."
+
 -   [**`dmesg`**](http://linux.die.net/man/8/dmesg) - display kernel log messages.
+
 -   [**`ifconfig`**](http://linux.die.net/man/8/ifconfig) - display network (interface) configuration.
+
 -   [**`mount`**](http://linux.die.net/man/8/mount) - mount a file system to a specific location.
+
 -   [**`ping`**](http://linux.die.net/man/8/ping) - test for network connectivity to an IP address.
+
 -   [**`reboot`**](http://linux.die.net/man/8/reboot) - restart the system.
+
 -   [**`rpm`**](http://linux.die.net/man/8/rpm) - package manager for Fedora flavors.
+
 -   [**`shutdown`**](http://linux.die.net/man/8/shutdown) - shutdown or restart the system.
+
 -   [**`sudo`**](http://linux.die.net/man/8/sudo) - execute a command with elevated privileges.
+
 -   [**`traceroute`**](http://linux.die.net/man/8/traceroute) - trace the route to an IP address.
 
 Examples
