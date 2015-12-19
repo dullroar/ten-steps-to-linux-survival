@@ -2,16 +2,16 @@
 \ifxetex
 \section*{}
 \pagestyle{empty}
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \includegraphics{./images/Merv.jpg}
 \caption*{Merv sez, "Don't panic."}
 \end{figure}
 \cleardoublepage
 By James Lehmer
 \par
-v0.5
+v0.6
 \par
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \centering
 \includegraphics{./images/cc-by-sa.png}
 \caption*{Creative Commons Attribution-ShareAlike 4.0 International License}
@@ -28,13 +28,13 @@ v0.5
 <b>By James Lehmer</b>
 <br />
 <br />
-v0.5
+v0.6
 <br />
 <br />
 <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
 alt="Creative Commons License" style="border-width:0"
-src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a>
+src="./images/cc-by-sa.png"/></a>
 <br />
 <br />
 <span xmlns:dct="http://purl.org/dc/terms/"
@@ -46,7 +46,6 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
 Attribution-ShareAlike 4.0 International License</a>.
 
 \fi
-
 **Dedicated to my first three technical mentors** - Jim Proffer,
 who taught me digging deeper was fun and let me do so (often in
 production). Jerry Wood, who taught me to stop and think (and once
@@ -274,6 +273,7 @@ sentence, it will appear in a fixed-width font, e.g., `ls --recursive
 If a command and its output, script code or something else is shown in
 a block, it will appear like this:
 
+\drcap{Code snippet}
 ```
 ~ $ ps -AH
   PID TTY          TIME CMD
@@ -288,17 +288,17 @@ a block, it will appear like this:
 ```
 
 **Note:** The examples in this book typically show something
-like `~ $` or `#` before the command (the latter especially
-when logged in as `root` or running under `csh`). These
-"command prompts" are set in `bash` via the [`PS1` environment
-variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)
+like `~ $` before the command, or `#` (when logged in as root) or
+`%` (when running under `csh`). These "command prompts" are set in `bash`
+via the [`PS1` environment
+variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)\drenv{PS1}
 and are not meant to be typed in as part of the command.
 
-Examples \fref{ps-AH} may also appear in a screenshot.
+Examples may also appear in a screen shot:
 
-\ifxetex\fimg{./images/ps-AH.png}{Sample command}{ps-AH}
-\else
+\drcap{Example screen shot}
 ![Sample command](./images/ps-AH.png "Sample command")
-\fi
 
-  
+## Acknowledgments
+
+Thanks to Ken Astl for reading an early draft of this book.

@@ -267,8 +267,8 @@ You will be prompted for credentials (or you can use certificates, but that
 is ***way*** beyond this text's goals).
 
 You can also use the `SSH` protocol to securely transfer files between
-systems with the [`scp`](linux.die.net/man/1/scp) command. It works like
-this for a recursive directory copy:
+systems with the [`scp`](http://linux.die.net/man/1/scp) command. It works
+like this for a recursive directory copy:
 
 ```
 scp -r myfiles/* myuser@remoteserver:/home/myuser/.
@@ -347,6 +347,7 @@ And to see any local overrides of network names or aliases:
 127.0.0.1       localhost
 ```
 
-**Note:** The UNIX `hosts` file is the basis for the Windows version \linebreak
-(`C:\Windows\System32\drivers\etc\hosts`) and has similar syntax.
+**Note:** The UNIX `/etc/hosts` file is the basis for the Windows version
+located at `C:\Windows\System32\drivers\etc\hosts`, and has similar syntax.
+
   

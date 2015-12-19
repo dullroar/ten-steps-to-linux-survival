@@ -9,4 +9,19 @@ mkdir --parents Foo/d
 cd Foo
 touch a b c d/e
 ls -l --recursive
+cd
+mkdir Invoices
+cd Invoices
+echo 'Truck   brakes  200'  >  ElevatorTrucks
+echo 'Truck   tires   400'  >> ElevatorTrucks
+echo 'Truck   tires   400'  >> ElevatorTrucks
+echo 'Truck   tires   400'  >> ElevatorTrucks
+echo 'Truck   winch   100'  >> ElevatorTrucks
+echo 'Combine motor   1500' >  FarmCombines
+echo 'Combine brakes  400'  >> FarmCombines
+echo 'Combine tires   2500' >> FarmCombines
+echo 'Tractor motor   1000' >  FarmTractors
+echo 'Tractor brakes  300'  >> FarmTractors
+echo 'Tractor tires   2000' >> FarmTractors
+cd
 echo Done!

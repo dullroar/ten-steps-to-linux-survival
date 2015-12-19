@@ -161,8 +161,6 @@ $endif$
 \restylefloat{figure}
 \floatplacement{figure}{H}
 % Originals from http://www-rohan.sdsu.edu/~aty/bibliog/latex/floats.html
-% See p.105 of "TeX Unbound" for suggested values.
-% See pp. 199-200 of Lamport's "LaTeX" book for details.
 % General parameters, for ALL pages:
 \renewcommand{\topfraction}{0.7}	  % max fraction of floats at top
 \renewcommand{\bottomfraction}{0.7}	% max fraction of floats at bottom
@@ -183,17 +181,13 @@ $endif$
 \renewcommand{\chaptername}{Step}
 \renewcommand{\contentsname}{Steps}
 \numberwithin{figure}{chapter}
-\DeclareRobustCommand{\icmd}[1]{\index{Commands!#1}}
-\DeclareRobustCommand{\ishell}[1]{\index{Shells!#1}}
-\DeclareRobustCommand{\fimg}[3]{
-\ifxetex
-\begin{figure}[H]
-\includegraphics{#1}
-\caption{#2}
-\label{fig:#3}
-\end{figure}
-\fi}
+\DeclareRobustCommand{\fimg}[3]{\ifxetex\begin{figure}[H]\caption{#2}\label{fig:#3}\includegraphics{#1}\end{figure}\fi}
 \DeclareRobustCommand{\fref}[1]{\ifxetex{(Figure \ref{fig:#1})}\fi}
+\DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
+\DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1}}
+\DeclareRobustCommand{\drenv}[1]{\index{Environment Variables!#1}}
+\DeclareRobustCommand{\drios}[1]{\index{OS and OS-Like Substances!#1}}
+\DeclareRobustCommand{\drshl}[1]{\index{Shells!#1}}
 % End of overriding commands.
 
 \begin{document}
@@ -216,7 +210,7 @@ $endif$
 % Add list of figures.
 $if(lof)$
 {
-\listoffigures
+\listoffigures\vfill
 }
 $endif$
 % End of list of figures.

@@ -29,7 +29,7 @@
   \newcommand{\euro}{€}
     \setmainfont{DejaVu Serif}
     \setsansfont{DejaVu Sans}
-    \setmonofont[Mapping=tex-ansi]{DejaVu Sans Mono}
+    \setmonofont[Mapping=tex-ansi]{Ubuntu Mono}
 \fi
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
@@ -84,15 +84,13 @@
 
 \title{Jim's Ten Steps to Linux Survival}
 \author{Jim Lehmer}
-\date{}
+\date{2015}
 
 % Overriding commands.
 \makeindex
 \restylefloat{figure}
 \floatplacement{figure}{H}
 % Originals from http://www-rohan.sdsu.edu/~aty/bibliog/latex/floats.html
-% See p.105 of "TeX Unbound" for suggested values.
-% See pp. 199-200 of Lamport's "LaTeX" book for details.
 % General parameters, for ALL pages:
 \renewcommand{\topfraction}{0.7}	  % max fraction of floats at top
 \renewcommand{\bottomfraction}{0.7}	% max fraction of floats at bottom
@@ -113,17 +111,13 @@
 \renewcommand{\chaptername}{Step}
 \renewcommand{\contentsname}{Steps}
 \numberwithin{figure}{chapter}
-\DeclareRobustCommand{\icmd}[1]{\index{Commands!#1}}
-\DeclareRobustCommand{\ishell}[1]{\index{Shells!#1}}
-\DeclareRobustCommand{\fimg}[3]{
-\ifxetex
-\begin{figure}[H]
-\includegraphics{#1}
-\caption{#2}
-\label{fig:#3}
-\end{figure}
-\fi}
+\DeclareRobustCommand{\fimg}[3]{\ifxetex\begin{figure}[H]\caption{#2}\label{fig:#3}\includegraphics{#1}\end{figure}\fi}
 \DeclareRobustCommand{\fref}[1]{\ifxetex{(Figure \ref{fig:#1})}\fi}
+\DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
+\DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1}}
+\DeclareRobustCommand{\drenv}[1]{\index{Environment Variables!#1}}
+\DeclareRobustCommand{\drios}[1]{\index{OS and OS-Like Substances!#1}}
+\DeclareRobustCommand{\drshl}[1]{\index{Shells!#1}}
 % End of overriding commands.
 
 \begin{document}
@@ -137,23 +131,23 @@
 
 % Add list of figures.
 {
-\listoffigures
+\listoffigures\vfill
 }
 % End of list of figures.
 
 \ifxetex
 \section*{} \pagestyle{empty}
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \includegraphics{./images/Merv.jpg}
 \caption*{Merv sez, "Don't panic."}
 \end{figure}
 
 \cleardoublepage
 By James Lehmer \par
-v0.5 \par
+v0.6 \par
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \centering
 \includegraphics{./images/cc-by-sa.png}
 \caption*{Creative Commons Attribution-ShareAlike 4.0 International License}
@@ -170,17 +164,16 @@ Commons Attribution-ShareAlike 4.0 International License}.
 \caption{Merv sez, ``Don't panic.''}
 \end{figure}
 
-By James Lehmer v0.5 {Jim's Ten Steps to Linux Survival} by {James
+By James Lehmer v0.6 {Jim's Ten Steps to Linux Survival} by {James
 Lehmer} is licensed under a Creative Commons Attribution-ShareAlike 4.0
 International License.
 
 \fi
-
-\textbf{Dedicated to my first three technical mentors} - Jim Proffer,
-who taught me digging deeper was fun and let me do so (often in
-production). Jerry Wood, who taught me to stop and think (and once
-called me an ``inveterate toolmaker'' in a review). And Kim Manchak, who
-let me be more than he hired me to be (and continues to be a great chess
+**Dedicated to my first three technical mentors** - Jim Proffer, who
+taught me digging deeper was fun and let me do so (often in production).
+Jerry Wood, who taught me to stop and think (and once called me an
+``inveterate toolmaker'' in a review). And Kim Manchak, who let me be
+more than he hired me to be (and continues to be a great chess
 opponent). Thank you, gentlemen. I've tried to pay it forward. This book
 is part of that.
 
@@ -437,6 +430,8 @@ sentence, it will appear in a fixed-width font, e.g.,
 If a command and its output, script code or something else is shown in a
 block, it will appear like this:
 
+\drcap{Code snippet}
+
 \begin{verbatim}
 ~ $ ps -AH
   PID TTY          TIME CMD
@@ -451,18 +446,20 @@ block, it will appear like this:
 \end{verbatim}
 
 \textbf{Note:} The examples in this book typically show something like
-\texttt{\textasciitilde{} \$} or \texttt{\#} before the command (the
-latter especially when logged in as \texttt{root} or running under
-\texttt{csh}). These ``command prompts'' are set in \texttt{bash} via
-the
+\texttt{\textasciitilde{} \$} before the command, or \texttt{\#} (when
+logged in as root) or \texttt{\%} (when running under \texttt{csh}).
+These ``command prompts'' are set in \texttt{bash} via the
 \href{https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto}{\texttt{PS1}
-environment variable} and are not meant to be typed in as part of the
-command.
+environment variable}\drenv{PS1} and are not meant to be typed in as
+part of the command.
 
-Examples \fref{ps-AH} may also appear in a screenshot.
+Examples may also appear in a screen shot:
 
-\ifxetex\fimg{./images/ps-AH.png}{Sample command}{ps-AH} \else
-\includegraphics{./images/ps-AH.png} \fi
+\drcap{Example screen shot} \includegraphics{./images/ps-AH.png}
+
+\section{Acknowledgments}\label{acknowledgments}
+
+Thanks to Ken Astl for reading an early draft of this book.
 
 \hyperdef{}{some-history}{\chapter{Some History}\label{some-history}}
 
@@ -487,23 +484,23 @@ the depths of time:
   \textbf{In the beginning} - early 1970s, Nixon drags on, Watergate,
   Bell Labs, \href{https://en.wikipedia.org/wiki/Ken_Thompson}{Thompson}
   \& \href{https://en.wikipedia.org/wiki/Dennis_Ritchie}{Ritchie},
-  \href{https://en.wikipedia.org/wiki/History_of_Unix}{UNIX},
-  \index{UNIX} blah blah blah\ldots{}
+  \href{https://en.wikipedia.org/wiki/History_of_Unix}{UNIX}\drios{UNIX},
+  blah blah blah\ldots{}
 \item
   \textbf{More Trouble From Berkeley} - late 1970s, Carter, disco, Iran
   hostages, UC Berkely releases the
   \href{https://en.wikipedia.org/wiki/Berkeley_Software_Distribution}{Berkeley
-  Software Distribution} (BSD), \index{BSD} a port based on the Bell
-  Labs UNIX. Let the forking begin!
+  Software Distribution} (BSD)\drios{BSD}, a port based on the Bell Labs
+  UNIX. Let the forking begin!
 \item
   \textbf{Goes commercial} - 1980s, Reagan, Iran Contra, \emph{E.T.},
   AT\&T releases
-  \href{https://en.wikipedia.org/wiki/UNIX_System_V}{System V}
-  \index{System V} as first commercial UNIX. From the same background as
-  Bell Labs UNIX, but evolved with subtle and not so subtle differences
-  in approaches to command syntax, networking and much more. It is this
-  release and AT\&T's copyrights that are the basis of all the
-  SCO-vs-Linux lawsuits 2-3 decades later.
+  \href{https://en.wikipedia.org/wiki/UNIX_System_V}{System
+  V}\drios{System V} as first commercial UNIX. From the same background
+  as Bell Labs UNIX, but evolved with subtle and not so subtle
+  differences in approaches to command syntax, networking and much more.
+  It is this release and AT\&T's copyrights that are the basis of all
+  the SCO-vs-Linux lawsuits 2-3 decades later.
 \item
   \textbf{Explosion of ``UNIX''} -late 1980s/early 1990s, Bush I, Berlin
   Wall falls, Gulf War I, proliferation of proprietary (and different)
@@ -529,21 +526,23 @@ the depths of time:
   \textbf{Linux} - 1991+, Clinton I, grunge, \emph{Titanic},
   \href{https://en.wikipedia.org/wiki/Linus_Torvalds}{Linus Torvalds}
   releases a project called
-  \href{https://en.wikipedia.org/wiki/Linux}{Linux} \index{Linux} based
-  on \href{https://en.wikipedia.org/wiki/MINIX}{MINIX} (and hence why
-  Linus says Linux is pronounced like ``MINIX'' and not like ``Linus'').
+  \href{https://en.wikipedia.org/wiki/Linux}{Linux}\drios{Linux} based
+  on \href{https://en.wikipedia.org/wiki/MINIX}{MINIX}\drios{MINIX} (and
+  hence why Linus says Linux is pronounced like ``MINIX'' and not like
+  ``Linus'').
 \item
   \textbf{Proliferation of the BSDs} - mid-to-late 1990s, still Clinton
   I, Monicagate, Kosovo, various ports of BSD including
-  \href{https://en.wikipedia.org/wiki/NetBSD}{NetBSD}, \index{NetBSD}
-  \href{https://en.wikipedia.org/wiki/FreeBSD}{FreeBSD} \index{FreeBSD}
-  and \href{https://en.wikipedia.org/wiki/OpenBSD}{OpenBSD},
-  \index{OpenBSD} all happen in the same time frame as Linux. Like Linux
-  distros, each has its own focus and prejudices, some of which are
-  distinctly ``anti-Linux.'' The ``big three'' are all still in heavy
-  use today, especially among ISPs. The perception is still out there
-  among a generation of sysadmins that Linux is for the desktop and BSDs
-  for servers, but that reality shifted a long time ago.
+  \href{https://en.wikipedia.org/wiki/NetBSD}{NetBSD}\drios{NetBSD},
+  \href{https://en.wikipedia.org/wiki/FreeBSD}{FreeBSD}\drios{FreeBSD}
+  and
+  \href{https://en.wikipedia.org/wiki/OpenBSD}{OpenBSD}\drios{OpenBSD},
+  all happen in the same time frame as Linux. Like Linux distros, each
+  has its own focus and prejudices, some of which are distinctly
+  ``anti-Linux.'' The ``big three'' are all still in heavy use today,
+  especially among ISPs. The perception is still out there among a
+  generation of sysadmins that Linux is for the desktop and BSDs for
+  servers, but that reality shifted a long time ago.
 \item
   \textbf{Ports of call} - 2000+, Bush II \& Obama, Afghanistan \& Gulf
   War 2, lots of cross-porting of everything open source. However,
@@ -571,12 +570,11 @@ To further muddy the waters, there have been multiple attempts to
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  \href{https://en.wikipedia.org/wiki/POSIX}{\textbf{POSIX}} -
-  \index{POSIX} a de jure set of standards created in the 1980s and
-  1990s to try to bring order to the chaos that was commercial
-  UNIX-flavored operating systems of the time. It worked. Sorta.
-  Especially once the US government started wanting systems to be
-  ``POSIX-compliant.''
+  \href{https://en.wikipedia.org/wiki/POSIX}{\textbf{POSIX}}\drios{POSIX}
+  - a de jure set of standards created in the 1980s and 1990s to try to
+  bring order to the chaos that was commercial UNIX-flavored operating
+  systems of the time. It worked. Sorta. Especially once the US
+  government started wanting systems to be ``POSIX-compliant.''
 \end{itemize}
 
 \textbf{Note:} No system runs POSIX, they all are ``similar but
@@ -586,16 +584,16 @@ POSIX-compliant code will run there unchanged.
 
 \begin{itemize}
 \item
-  \href{https://en.wikipedia.org/wiki/GNU_Project}{\textbf{GNU Project}}
-  - \href{https://en.wikipedia.org/wiki/Richard_Stallman}{Richard
+  \href{https://en.wikipedia.org/wiki/GNU_Project}{\textbf{GNU
+  Project}}\drios{GNU} -
+  \href{https://en.wikipedia.org/wiki/Richard_Stallman}{Richard
   Stallman} founded the
   \href{https://en.wikipedia.org/wiki/Free_Software_Foundation}{Free
-  Software Foundation} (FSF) and GNU project \index{GNU} in the
-  mid-1980s, \textbf{\emph{long}} before Linux (GNU = ``GNU's Not
-  Unix''). The GNU project delivers
-  \href{https://www.gnu.org/software/software.html}{a suite of programs
-  and tools}, many of which are used in both Linux and BSD variants as
-  de facto standards.
+  Software Foundation} (FSF) and GNU project in the mid-1980s,
+  \textbf{\emph{long}} before Linux (GNU = ``GNU's Not Unix''). The GNU
+  project delivers \href{https://www.gnu.org/software/software.html}{a
+  suite of programs and tools}, many of which are used in both Linux and
+  BSD variants as de facto standards.
 \item
   \textbf{Various Linux Efforts} - there have also been various
   movements over the years, some more successful than others, to
@@ -616,8 +614,9 @@ the source of the package it may or may not work correctly on another
 ``UNIX'' system without effort.
 
 It is similar to the history and relationship between
-\texttt{COMMAND.EXE} in DOS and \texttt{CMD.EXE} in Windows 10, where
-this would work in both:
+\texttt{COMMAND.EXE}\drshl{COMMAND.EXE} in DOS and
+\texttt{CMD.EXE}\drshl{CMD.EXE} in Windows 10, where this would work in
+both:
 
 \begin{verbatim}
 COPY A.TXT B.TXT
@@ -651,20 +650,32 @@ The best thing is to be vaguely aware of this history and licenses and
 if something isn't available on a certain platform or if a command isn't
 taking a specific parameter to search for variants.
 
-For example, note the difference in output between the first figure
-\fref{ps-on-linux-in-bash} showing all processes with the
-\href{http://linux.die.net/man/1/ps}{\texttt{ps}} (\emph{process})
-command on a Linux system (in this case Linux Mint under \texttt{bash}),
-versus the second example \fref{ps-on-freebsd-in-csh} on a FreeBSD
-system at my ISP, where \texttt{csh} is the default shell.
+For example, note the difference in output between showing all processes
+with the \href{http://linux.die.net/man/1/ps}{\texttt{ps}}\drcmd{ps}
+(\emph{process}) command on a Linux system, in this case Linux Mint
+under \texttt{bash}\drshl{bash}:
 
-\ifxetex\fimg{./images/ps-a-bash.png}{ps on Linux in bash}{ps-on-linux-in-bash}
-\else
-\includegraphics{./images/ps-a-bash.png} \fi
+\drcap{ps on Linux in bash}
 
-\ifxetex\fimg{./images/ps-a-csh.png}{ps on FreeBSD in csh}{ps-on-freebsd-in-csh}
-\else
-\includegraphics{./images/ps-a-csh.png} \fi
+\begin{verbatim}
+~ $ ps -a
+  PID TTY          TIME CMD
+ 4508 pts/3    00:00:00 su
+ 4516 pts/3    00:00:00 bash
+ 4594 pts/3    00:00:00 ps
+\end{verbatim}
+
+\ldots{}versus on a FreeBSD\drios{FreeBSD} system at my ISP, where
+\texttt{csh}\drshl{csh} is the default shell:
+
+\drcap{ps on FreeBSD in csh}
+
+\begin{verbatim}
+%ps -a
+  PID  TT  STAT      TIME COMMAND
+ 5073  p0  Ss     0:00.02 -csh (csh)
+ 5115  p0  RN+    0:00.00 ps -a
+\end{verbatim}
 
 To make things even more confusing, the Linux version of \texttt{ps} has
 been written to understand the BSD-style syntax and flags, too!
@@ -681,7 +692,7 @@ packages.
 
 In the BSD world each major port has its own approach. In the Linux
 world the job of deciding all this and putting it all together falls to
-distributions or ``distros.'' \index{Linux distros} These have evolved
+distributions or ``distros.''\drios{Linux distros} These have evolved
 over time into a series of
 \href{https://en.wikipedia.org/wiki/Linux_distribution\#Popular_distributions}{``families''}
 based in large part around the
@@ -690,32 +701,35 @@ tool} predominantly used:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{apt-get}, \texttt{dpkg} and \texttt{.deb} files} -
-  \index{apt-get} \index{dpkg}
-  \href{https://en.wikipedia.org/wiki/Debian}{Debian} flavors, such as
-  \href{https://en.wikipedia.org/wiki/Ubuntu_\%28operating_system\%29}{Ubuntu}
-  and \href{https://en.wikipedia.org/wiki/Linux_Mint}{Mint} (Mint is
-  currently my desktop Linux of choice, Debian my preferred server OS,
-  but both solely based on familiarity).
+  \textbf{\texttt{apt-get}\drcmd{apt-get}, \texttt{dpkg}\drcmd{dpkg} and
+  \texttt{.deb} files} -
+  \href{https://en.wikipedia.org/wiki/Debian}{Debian}\drios{Debian}
+  flavors, such as
+  \href{https://en.wikipedia.org/wiki/Ubuntu_\%28operating_system\%29}{Ubuntu}\drios{Ubuntu}
+  and \href{https://en.wikipedia.org/wiki/Linux_Mint}{Mint}\drios{Mint}
+  (Mint is currently my desktop Linux of choice, Debian my preferred
+  server OS, but both solely based on familiarity).
 \item
-  \textbf{\texttt{pacman}} - \index{pacman}
-  \href{https://en.wikipedia.org/wiki/Arch_Linux}{Arch} flavors.
+  \textbf{\texttt{pacman}}\drcmd{pacman} -
+  \href{https://en.wikipedia.org/wiki/Arch_Linux}{Arch}\drios{Arch}
+  flavors.
 \item
-  \textbf{\texttt{rpm} and \texttt{yum}} - \index{rpm} \index{yum} Red
-  Hat flavors, such as
-  \href{https://en.wikipedia.org/wiki/Fedora_\%28operating_system\%29}{Fedora},
+  \textbf{\texttt{rpm}\drcmd{rpm} and \texttt{yum}\drcmd{yum}} - Red
+  Hat\drios{Red Hat} flavors, such as
+  \href{https://en.wikipedia.org/wiki/Fedora_\%28operating_system\%29}{Fedora}\drios{Fedora},
   \href{https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux}{Red Hat
-  Enterprise} and \href{https://en.wikipedia.org/wiki/CentOS}{CentOS}.
+  Enterprise}\drios{RHEL} and
+  \href{https://en.wikipedia.org/wiki/CentOS}{CentOS}\drios{CentOS}.
 \item
   \textbf{Source code} -
-  \href{https://en.wikipedia.org/wiki/Gentoo_Linux}{Gentoo} tends to be
-  a ``compile from scratch'' environment, much like
-  \href{https://en.wikipedia.org/wiki/FreeBSD_Ports}{FreeBSD}.
+  \href{https://en.wikipedia.org/wiki/Gentoo_Linux}{Gentoo}\drios{Gentoo}
+  tends to be a ``compile from scratch'' environment, much like
+  \href{https://en.wikipedia.org/wiki/FreeBSD_Ports}{FreeBSD}\drios{FreeBSD}.
 \item
   \textbf{``Tar balls''} - source code or binaries delivered via
   archived and zipped directories. Common on
-  \href{https://en.wikipedia.org/wiki/Slackware}{Slackware}, some
-  others.
+  \href{https://en.wikipedia.org/wiki/Slackware}{Slackware}\drios{Slackware},
+  some others.
 \end{itemize}
 
 \section{Get Embed With Me}\label{get-embed-with-me}
@@ -723,16 +737,18 @@ tool} predominantly used:
 A lot of firmware in embedded devices is based on some sort of ``UNIX''
 flavor. Networking gear at both the consumer and enterprise level,
 storage devices and so on all tend to run something that ``looks like''
-UNIX at some level. Of course, as to what's actually available, who
-knows? If you can get a shell (command prompt) the best thing to do is
-see what works.
+UNIX at some level.
+\href{https://en.wikipedia.org/wiki/BusyBox}{BusyBox}\drios{BusyBox}\drshl{BusyBox}
+is a good example of a ``UNIX-like'' shell (command prompt) used by many
+embedded systems. Of course, as to what's actually available, who knows?
+If you can get shell open, the best thing to do is see what works.
 
 \section{Cygwin}\label{cygwin}
 
-\href{http://cygwin.com/}{Cygwin} \index{Cygwin} is an interesting
-beast. It is a DLL for Windows that implements most of the POSIX and
-related UNIX-like ``system API calls'' for programming, and then is also
-a series of ported open source packages, including shells, utilities and
+\href{http://cygwin.com/}{Cygwin}\drios{Cygwin} is an interesting beast.
+It is a DLL for Windows that implements most of the POSIX and related
+UNIX-like ``system API calls'' for programming, and then is also a
+series of ported open source packages, including shells, utilities and
 even desktop environments, all \textbf{\emph{recompiled}} to run on
 Windows as long as the Cygwin DLL is accessible. Like a Linux distro it
 has an installer that is a ``package manager,'' and if a package isn't
@@ -773,10 +789,10 @@ Examples of shells:
 
 \begin{itemize}
 \item
-  \href{https://technet.microsoft.com/en-us/library/cc754340.aspx}{\textbf{\texttt{CMD.EXE}}}
+  \href{https://technet.microsoft.com/en-us/library/cc754340.aspx}{\textbf{\texttt{CMD.EXE}}}\drshl{CMD.EXE}
   - yes, Windows has a shell.
 \item
-  \href{https://technet.microsoft.com/en-us/library/ms714469\%28v=VS.85\%29.aspx}{\textbf{\texttt{PowerShell.exe}}}
+  \href{https://technet.microsoft.com/en-us/library/ms714469\%28v=VS.85\%29.aspx}{\textbf{\texttt{PowerShell.exe}}}\drshl{Powershell}
   - in fact, it has at least two!
 \end{itemize}
 
@@ -784,12 +800,12 @@ In UNIX-land:
 
 \begin{itemize}
 \item
-  \href{https://en.wikipedia.org/wiki/Bourne_shell}{\textbf{\texttt{sh}}}
+  \href{https://en.wikipedia.org/wiki/Bourne_shell}{\textbf{\texttt{sh}}}\drshl{sh}
   - the ``original'' Bourne shell in UNIX, which spawned:
 
   \begin{itemize}
   \item
-    \href{https://en.wikipedia.org/wiki/Almquist_shell}{\textbf{\texttt{ash}}}
+    \href{https://en.wikipedia.org/wiki/Almquist_shell}{\textbf{\texttt{ash}}}\drshl{ash}
     - Almquist shell.
 
     \begin{itemize}
@@ -799,19 +815,20 @@ In UNIX-land:
       \texttt{ash} in Debian)
     \end{itemize}
   \item
-    \href{https://en.wikipedia.org/wiki/Bash_\%28Unix_shell\%29}{\textbf{\texttt{bash}}}
-    - Bourne-again shell (get it?), the ``standard'' Linux shell.
+    \href{https://en.wikipedia.org/wiki/Bash_\%28Unix_shell\%29}{\textbf{\texttt{bash}}}\drshl{bash}
+    - Bourne-again shell (get it?), the ``standard'' Linux shell (as
+    much as anything is standard across Linux distros).
   \item
-    \href{https://en.wikipedia.org/wiki/Korn_shell}{\textbf{\texttt{ksh}}}
+    \href{https://en.wikipedia.org/wiki/Korn_shell}{\textbf{\texttt{ksh}}}\drshl{ksh}
     - Korn shell.
   \item
-    \href{https://en.wikipedia.org/wiki/Z_shell}{\textbf{\texttt{zsh}}}
+    \href{https://en.wikipedia.org/wiki/Z_shell}{\textbf{\texttt{zsh}}}\drshl{zsh}
     - Z shell.
   \end{itemize}
 \item
-  \href{https://en.wikipedia.org/wiki/C_shell}{\textbf{\texttt{csh}}} -
-  C shell, historically it is the default shell on BSD systems (although
-  there are arguments on why you should
+  \href{https://en.wikipedia.org/wiki/C_shell}{\textbf{\texttt{csh}}}\drshl{csh}
+  - C shell, historically it is the default shell on BSD systems
+  (although there are arguments on why you should
   \href{http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/}{\textbf{\emph{never
   use it}}}).
 \item
@@ -829,39 +846,54 @@ above can usually run in the other members of the same tree.
 
 Every shell has some ``built-in'' commands that are implemented as part
 of the shell and not as an external command or program, and
-\texttt{bash} has its share, as shown by running the
-\href{http://linux.die.net/man/1/help}{\texttt{help}} command in a
-\texttt{bash} terminal:
+\texttt{bash}\drshl{bash} has its share, as shown by running the
+\href{http://linux.die.net/man/1/help}{\texttt{help}}\drcmd{help}
+command in a \texttt{bash} terminal:
 
-\ifxetex
+\drcap{Built-in commands in bash}
 
-\begin{figure}[!htbp]
-\includegraphics{./images/help.png}%
-\caption{Built-in commands}%
-\end{figure}
+\begin{verbatim}
+~ $ help
+GNU bash, version 4.3.11(1)-release (x86_64-pc-linux-gnu)
+These shell commands are defined internally.  Type `help' to see this list.
+Type `help name' to find out more about the function `name'.
+Use `info bash' to find out more about the shell in general.
+Use `man -k' or `info' to find out more about commands not in this list.
 
-\else
+A star (*) next to a name means that the command is disabled.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics{./images/help.png}
-\caption{Built-in commands}
-\end{figure}
-
-\fi
+ job_spec [&]                            history [-c] [-d offset] [n] or hist>
+ (( expression ))                        if COMMANDS; then COMMANDS; [ elif C>
+ . filename [arguments]                  jobs [-lnprs] [jobspec ...] or jobs >
+ :                                       kill [-s sigspec | -n signum | -sigs>
+ [ arg... ]                              let arg [arg ...]
+ [[ expression ]]                        local [option] name[=value] ...
+ alias [-p] [name[=value] ... ]          logout [n]
+ bg [job_spec ...]                       mapfile [-n count] [-O origin] [-s c>
+ bind [-lpsvPSVX] [-m keymap] [-f file>  popd [-n] [+N | -N]
+ break [n]                               printf [-v var] format [arguments]
+ builtin [shell-builtin [arg ...]]       pushd [-n] [+N | -N | dir]
+ caller [expr]                           pwd [-LP]
+ case WORD in [PATTERN [| PATTERN]...)>  read [-ers] [-a array] [-d delim] [->
+ cd [-L|[-P [-e]] [-@]] [dir]            readarray [-n count] [-O origin] [-s>
+ command [-pVv] command [arg ...]        readonly [-aAf] [name[=value] ...] o>
+\end{verbatim}
 
 Why does this matter? Because if you are in an environment and something
-as fundamental as \texttt{echo} isn't working, you may not be working in
-a shell that is going to act like a ``\texttt{sh}'' shell.
+as fundamental as \texttt{echo}\drcmd{echo} isn't working, you may not
+be working in a shell that is going to act like a ``\texttt{sh}'' shell.
 \textbf{\emph{In general}}, \texttt{sh}, \texttt{ash}, \texttt{bash},
 \texttt{dash} and \texttt{ksh} all act similarly enough that you don't
 care, but sometimes you may have to care. Knowing if you are on a
-\texttt{csh} variant or even something more esoteric can be key.
+\texttt{csh}\drshl{csh} variant or even something more esoteric can be
+key.
 
 Pay attention to the first line in script files, which will typically
 have a
-\href{https://en.wikipedia.org/wiki/Shebang_\%28Unix\%29}{``shebang''}
+\href{https://en.wikipedia.org/wiki/Shebang_\%28Unix\%29}{``shebang''}\index{Shebang}
 line that looks like this:
+
+\drcap{bash shebang}
 
 \begin{verbatim}
 #!/bin/bash
@@ -869,55 +901,134 @@ line that looks like this:
 
 In this case we know the script is expecting to be executed by
 \texttt{bash}, and in fact should throw an error if \texttt{/bin/bash}
-doesn't exist. Note that on some systems:
+doesn't exist. For example, on the FreeBSD system I have access to,
+\texttt{dash} is not installed. So consider the following
+\texttt{hello.sh} script:
+
+\drcap{Script with dash shebang}
 
 \begin{verbatim}
-#!/bin/sh
+#!/bin/dash
+echo Hello, World!
 \end{verbatim}
 
-\ldots{}is pointing to an alias of \texttt{bash}, and on some it is a
-different implementation of the original \texttt{sh} command, such as
-\texttt{ash} or \texttt{dash}. Now you know what to google if you hit
-problems as simple as an expected built-in command not being found.
+When I try to run it on FreeBSD, I get:
+
+\drcap{Shebang error}
+
+\begin{verbatim}
+%./hello.sh
+./hello.sh: Command not found.
+\end{verbatim}
+
+This is confusing, because it seems to be saying that \texttt{hello.sh}
+is not found! But in reality it is complaining about \texttt{dash}. If I
+change the script to point to \texttt{bash} (which is installed on that
+FreeBSD system), it works as expected:
+
+\drcap{Hello, World!}
+
+\begin{verbatim}
+%./hello.sh 
+Hello, World!
+\end{verbatim}
+
+Note that on some systems \texttt{\#!/bin/sh}is pointing to an alias of
+\texttt{bash}, and on some it is a different implementation of the
+original \texttt{sh} command, such as \texttt{ash} or \texttt{dash}. Now
+you know what to google if you hit problems as simple as an expected
+built-in command not being found.
 
 \section{Everything You Know is (Almost)
 Wrong}\label{everything-you-know-is-almost-wrong}
 
-\texttt{CMD.EXE} has a lineage that is a mish-mash of CP/M and UNIX
-excreted through three decades of backwards compatibility via that devil
-spawn we call DOS. It has gotten even muddier over the years as
-Microsoft has added more commands, PowerShell, POSIX subsystems, etc.
+\texttt{CMD.EXE}\drshl{CMD.EXE} has a lineage that is a mish-mash of
+CP/M and UNIX excreted through three decades of backwards compatibility
+via that devil spawn we call DOS. It has gotten even muddier over the
+years as Microsoft has added more commands, PowerShell, POSIX
+subsystems, etc.
 
-But even so, there are some similarities. In both \texttt{bash}
-\fref{set-command-in-bash} and \texttt{CMD.EXE}
-\fref{set-command-in-cmd} the
-\href{http://linux.die.net/man/1/set}{\texttt{set}} \icmd{set} command
-shows you all environment variables that have been set.
+But even so, there are some similarities. In both
+\texttt{bash}\drshl{bash} and \texttt{CMD.EXE}\drshl{CMD.EXE} the
+\href{http://linux.die.net/man/1/set}{\texttt{set}}\drcmd{set} command
+shows you all environment variables that have been set:
 
-\ifxetex\fimg{./images/set.png}{set command in bash}{set-command-in-bash}
-\else
-\includegraphics{./images/set.png} \fi
+\drcap{set command in bash}
 
-\ifxetex\fimg{./images/set-cmd.png}{SET command in CMD.EXE}{set-command-in-cmd}
-\else
-\includegraphics{./images/set-cmd.png} \fi
+\begin{verbatim}
+~ $ set
+BASH=/bin/bash
+BASHOPTS=checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote
+:force_fignore:histappend:interactive_comments:login_shell:progcomp:promptvars:s
+ourcepath
+BASH_ALIASES=()
+BASH_ARGC=()
+BASH_ARGV=()
+BASH_CMDS=()
+BASH_COMPLETION_COMPAT_DIR=/etc/bash_completion.d
+BASH_LINENO=()
+BASH_SOURCE=()
+BASH_VERSINFO=([0]="4" [1]="3" [2]="11" [3]="1" [4]="release" [5]="x86_64-pc-lin
+ux-gnu")
+BASH_VERSION='4.3.11(1)-release'
+COLORTERM=gnome-terminal
+COLUMNS=80
+DIRSTACK=()
+DISPLAY=:0
+EUID=1003
+GROUPS=()
+HISTCONTROL=ignoreboth
+HISTFILE=/home/myuser/.bash_history
+HISTFILESIZE=2000
+\end{verbatim}
 
-Similarly, the \href{http://linux.die.net/man/1/echo}{\texttt{echo}}
+\drcap{set command in CMD.EXE}
+
+\begin{verbatim}
+C:\Users\myuser>set
+ALLUSERSPROFILE=C:\ProgramData
+APPDATA=C:\Users\myuser\AppData\Roaming
+CommonProgramFiles=C:\Program Files\Common Files
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+CommonProgramW6432=C:\Program Files\Common Files
+COMPUTERNAME=JLEHMER650
+ComSpec=C:\Windows\system32\cmd.exe
+FP_NO_HOST_CHECK=NO
+HOMEDRIVE=C:
+HOMEPATH=\Users\myuser
+LOCALAPPDATA=C:\Users\myuser\AppData\Local
+LOGONSERVER=\\JLEHMER650
+NUMBER_OF_PROCESSORS=4
+OS=Windows_NT
+Path=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\system32
+\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program F
+iles (x86)\nodejs\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program
+ Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL
+ Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\P
+rogram Files (x86)\Microsoft SDKs\Azure\CLI\wbin;C:\Windows\System32\WindowsPowe
+rShell\v1.0\
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+PROCESSOR_ARCHITECTURE=AMD64
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
+\end{verbatim}
+
+Similarly, the
+\href{http://linux.die.net/man/1/echo}{\texttt{echo}}\drcmd{echo}
 command can be used to show you the contents of an environment variable
-(among other things):
+like \texttt{HOME}\drenv{HOME} (among other things):
 
-\textbf{\emph{bash}}
+\drcap{echo HOME environment variable in bash}
 
 \begin{verbatim}
 ~ $ echo $HOME
 /home/myuser
 \end{verbatim}
 
-\textbf{\emph{CMD.EXE}}
+\drcap{echo HOMEPATH environment variable in CMD.EXE}
 
 \begin{verbatim}
-C:\> echo %homedrive%
-C:
+C:\> echo %homepath%
+\Users\myuser
 \end{verbatim}
 
 This example shows some valuable differences between shells, though.
@@ -971,6 +1082,8 @@ override a given environment variable for the single execution of a
 program, to the point that \texttt{bash} has built-in ``one-line''
 support for it:
 
+\drcap{Set FOO before executing myscript}
+
 \begin{verbatim}
 ~ $ FOO=myval /home/myuser/myscript
 \end{verbatim}
@@ -980,11 +1093,12 @@ for the duration and scope of running \texttt{myscript}.
 
 By convention, environment variables are named all uppercase, whereas
 all scripts and programs tend to be named all lowercase. Remember,
-almost without exception Linux and company are case-sensitive and
-Windows is not.
+almost without exception ``UNIX'' is case-sensitive and Windows is not.
 
 You can set or override multiple variables for a single command or
 script execution simply by separating them with spaces:
+
+\drcap{Set multiple environment variables at once}
 
 \begin{verbatim}
 ~ $ FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript
@@ -998,9 +1112,11 @@ You can also set the value of environment variables to the output of a
 command by surrounding it with paired ` (``back ticks'', or ``grave
 accent''):
 
+\drcap{Set environment variable to output from command}
+
 \begin{verbatim}
-~ $ filetype=`file --print --mime-type --no-pad --print0 otschecker.csv`
-~ $ echo $filetype
+~ $ FILETYPE=`file --print --mime-type --no-pad --print0 otschecker.csv`
+~ $ echo $FILETYPE
 otschecker.csv: text/plain
 \end{verbatim}
 
@@ -1008,7 +1124,10 @@ otschecker.csv: text/plain
 
 When writing scripts that can be run by any user, it may be helpful to
 know their user name at run-time. There are at least two different ways
-to determine that. The first is via environment variables:
+to determine that. The first is via the \texttt{USER}\drenv{USER}
+environment variable:
+
+\drcap{USER environment variable}
 
 \begin{verbatim}
 ~ $ echo $USER
@@ -1016,7 +1135,9 @@ myuser
 \end{verbatim}
 
 The second is with a command with one of the best names, ever -
-\href{http://linux.die.net/man/1/whoami}{\texttt{whoami}}:
+\href{http://linux.die.net/man/1/whoami}{\texttt{whoami}}\drcmd{whoami}:
+
+\drcap{whoami command}
 
 \begin{verbatim}
 ~ $ whoami
@@ -1024,17 +1145,19 @@ myuser
 \end{verbatim}
 
 Some environments set the \texttt{\$USER} environment variable, some set
-a \texttt{\$USERNAME} variable, and some like Mint set both. I think it
-is better to use \texttt{whoami}, which tends to be on almost all
-systems.
+a \texttt{\$USERNAME}\drenv{USERNAME} variable, and some like Mint set
+both. I think it is better to use \texttt{whoami}, which tends to be on
+almost all systems.
 
 \section{Paths (a Part of Any Balanced
 Shrubbery)}\label{paths-a-part-of-any-balanced-shrubbery}
 
 The concept of a ``path'' for finding executables is almost identical,
 and Windows lifted it from UNIX (or CP/M, which lifted it from UNIX).
-Look at the output of the \texttt{PATH} environment variable under
-\texttt{bash}:
+Look at the output of the \texttt{PATH}\drenv{PATH} environment variable
+under \texttt{bash}:
+
+\drcap{PATH environment variable in bash}
 
 \begin{verbatim}
 ~ $ echo $PATH
@@ -1042,11 +1165,20 @@ Look at the output of the \texttt{PATH} environment variable under
 \end{verbatim}
 
 Echoing the \texttt{PATH} environment variable under \texttt{CMD.EXE}
-\fref{echo-path-in-cmd} works, too.
+works, too:
 
-\ifxetex\fimg{./images/echo-path-cmd.png}{Echo path in CMD.EXE}{echo-path-in-cmd}
-\else
-\includegraphics{./images/echo-path-cmd.png} \fi
+\drcap{PATH environment variable in CMD.EXE}
+
+\begin{verbatim}
+C:\Users\myuser>echo %PATH%
+C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\system32\conf
+ig\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files
+(x86)\nodejs\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program File
+s\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Serv
+er\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Progra
+m Files (x86)\Microsoft SDKs\Azure\CLI\wbin;C:\Windows\System32\WindowsPowerShel
+l\v1.0\
+\end{verbatim}
 
 Note the differences and similarities. Both the paths are evaluated left
 to right. Both use separators between path components, a \texttt{;} for
@@ -1057,14 +1189,25 @@ like \texttt{C:}, and instead everything is rooted in a single namespace
 hierarchy starting at the root \texttt{/}. We'll be talking more about
 directories in the next chapter.
 
-And just to muddy the waters further, notice how Cygwin under Windows
-shows the \texttt{PATH} environment variable, with \texttt{bash} syntax
-but a combination of both Cygwin and Windows
-directories~\fref{echo-path-cygwin}.
+And just to muddy the waters further, notice how Cygwin\drshl{Cygwin}
+under Windows shows the \texttt{PATH} environment variable, with
+\texttt{bash} syntax but a combination of both Cygwin and Windows
+directories, and Windows drive letters like \texttt{C:} mapped to
+\texttt{/cygdrive/c}:
 
-\ifxetex\fimg{./images/echo-path-cygwin.png}{Echo path in Cygwin}{echo-path-cygwin}
-\else
-\includegraphics{./images/echo-path-cygwin.png} \fi
+\drcap{PATH environment variable in Cygwin}
+
+\begin{verbatim}
+$ echo $PATH
+/usr/local/bin:/usr/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/cygdri
+ve/c/Windows/System32/Wbem:/cygdrive/c/Windows/system32/config/systemprofile/.dn
+x/bin:/cygdrive/c/Program Files/Microsoft DNX/Dnvm:/cygdrive/c/Program Files (x8
+6)/nodejs:/cygdrive/c/Program Files/Microsoft/Web Platform Installer:/cygdrive/c
+/Program Files/Microsoft SQL Server/130/Tools/Binn:/cygdrive/c/Program Files (x8
+6)/Microsoft SQL Server/130/DTS/Binn:/cygdrive/c/Program Files/Microsoft SQL Ser
+ver/120/Tools/Binn:/cygdrive/c/Program Files (x86)/Microsoft SDKs/Azure/CLI/wbin
+:/cygdrive/c/Windows/System32/WindowsPowerShell/v1.0
+\end{verbatim}
 
 \section{Open Your Shell and
 Interact}\label{open-your-shell-and-interact}
@@ -1072,7 +1215,7 @@ Interact}\label{open-your-shell-and-interact}
 The actual ``command prompt'' is when you bring up a shell in an
 ``interactive session'' in a terminal window. This might be from logging
 into the console of a Linux VM, or starting a terminal window in a X
-window manager like GNOME or KDE, or \texttt{ssh}'ing into an
+window manager like GNOME or KDE, or \texttt{ssh}'ing\drcmd{ssh} into an
 interactive session of a remote machine, or even running a Cygwin
 command prompt under Windows.
 
@@ -1096,39 +1239,35 @@ allow for tab expansion and command history, at least for the current
 session of the shell.
 
 Tab expansion is ``auto-complete'' for the command prompt. Let's say you
-have some files in a directory as shown in \fref{ls-for-tab-completion}.
+have some files in a directory:
 
-\ifxetex\fimg{./images/ls-for-tab-completion.png}{Typical ls command}{ls-for-tab-completion}
-\else
-\includegraphics{./images/ls-for-tab-completion.png} \fi
-
-Without tab expansion, typing out something like:
+\drcap{Some files}
 
 \begin{verbatim}
-~ $ mv Disabled\ User\ Accounts.csv elsewhere/.
+~/Documents $ ls
+Disabled User Accounts.csv  elsewhere  LOLcatz.jpg  MyResume.md
 \end{verbatim}
 
-or
+Without tab expansion, typing out something like this is painful:
+
+\drcap{Lots of typing and escape characters}
 
 \begin{verbatim}
-~ $ mv 'Disabled User Accounts.csv' elsewhere/.
+~/Documents $ mv Disabled\ User\ Accounts.csv elsewhere/.
 \end{verbatim}
 
-\ldots{}is painful. But with tab expansion, we can simply:
+But with tab expansion, we can simply type \texttt{mv D\^{}t} where
+\texttt{\^{}t} represents hitting the \texttt{Tab} key, and since there
+is only one file that starts with a ``D'' tab expansion will fill in the
+rest of the file name:
+
+\drcap{Tab expansion magic}
 
 \begin{verbatim}
-mv D^t
+~/Documents $ mv Disabled\ User\ Accounts.csv
 \end{verbatim}
 
-\ldots{}where \texttt{\^{}t} represents hitting the \texttt{Tab} key,
-and since there is only one file that starts with a ``D'' tab expansion
-will fill in the rest of the file name:
-
-\begin{verbatim}
-~ $ mv Disabled\ User\ Accounts.csv
-\end{verbatim}
-
-\ldots{}and then we can go about our business of finishing our command.
+Then we can go about our business of finishing our command.
 
 One place the tab completion in \texttt{bash} is different than
 \texttt{CMD.EXE} is that in \texttt{bash} if you hit \texttt{Tab} and
@@ -1162,11 +1301,19 @@ history. Again, both \texttt{CMD.EXE} and \texttt{bash} give you command
 history, but \texttt{CMD.EXE} only remembers it for the session, while
 \texttt{bash} stores it in one of your hidden ``profile'' or ``dot''
 files in your home directory called \texttt{.bash\_history}, which you
-can display with \texttt{ls -a} \fref{ls-a} shows.
+can display with \texttt{ls -a}:
 
-\ifxetex\fimg{./images/ls-a.png}{ls command showing hidden files}{ls-a}
-\else
-\includegraphics{./images/ls-a.png} \fi
+\drcap{ls command showing hidden files}
+
+\begin{verbatim}
+~ $ ls -a
+.              .config    .gconf           .mozilla  Templates
+..             .dbus      .gnome2          Music     Videos
+.bash_history  Desktop    .gnome2_private  Pictures  .xsession-errors
+.bash_logout   .dmrc      .ICEauthority    .profile
+.cache         Documents  .linuxmint       Public
+.cinnamon      Downloads  .local           .ssh
+\end{verbatim}
 
 Inside, \texttt{.bash\_history} is just a text file, with the most
 recent commands at the bottom.
@@ -1216,13 +1363,18 @@ ext* file systems as preferred, it can write to a lot of file systems
 and can read even more.
 
 As mentioned above, the biggest differences between Linux and Windows is
-that the Linux environments tend not to have a concept of ``drive
-letters.'' Instead everything is ``mounted'' under a single hierarchy
-that starts at the ``root directory'' or \texttt{/}~\fref{ls-root}.
+that the Linux environments do not have a concept of ``drive letters.''
+Instead everything is ``mounted'' under a single hierarchy that starts
+at the ``root directory'' or \texttt{/}:
 
-\ifxetex\fimg{./images/ls-root.png}{Listing of the root directory}{ls-root}
-\else
-\includegraphics{./images/ls-root.png} \fi
+\drcap{Listing of the root directory}
+
+\begin{verbatim}
+~ $ ls /
+bin    dev   home        lib64       mnt    Other  run   sys  var
+boot   Docs  initrd.img  lost+found  Music  proc   sbin  tmp  vmlinuz
+cdrom  etc   lib         media       opt    root   srv   usr
+\end{verbatim}
 
 The root file system may be backed by a disk device, LUN, memory or even
 the network. It will have one or more directories under it. Multiple
@@ -1235,38 +1387,83 @@ often mounted automatically under either a \texttt{/mnt} or
 
 \section{Looking at Files}\label{looking-at-files}
 
-The command to \emph{list} the contents of a directory is the
-\href{http://linux.die.net/man/1/ls}{\texttt{ls}}
-command~\fref{ls-home}.
+As we've already seen, the command to \emph{list} the contents of a
+directory is
+\href{http://linux.die.net/man/1/ls}{\texttt{ls}}\drcmd{ls}:
 
-\ifxetex\fimg{./images/ls-home.png}{Listing of a home directory}{ls-home}
-\else
-\includegraphics{./images/ls-home.png} \fi
+\drcap{Listing of home directory}
 
-Remember, UNIX environments think of files that start with a \texttt{.}
-as ``hidden.'' If you want to see all these
-\href{https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory\#Unix_and_Unix-like_environments}{``dotfiles''},
-you can use \texttt{ls -a}~\fref{ls-a-home}.
+\begin{verbatim}
+~ $ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
+\end{verbatim}
 
-\ifxetex\fimg{./images/ls-a-home.png}{Listing of hidden files in home directory}{ls-a-home}
-\else
-\includegraphics{./images/ls-a-home.png} \fi
+Remember, ``UNIX'' environments think of files that start with a
+\texttt{.} as ``hidden.'' If you want to see all these
+\href{https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory\#Unix_and_Unix-like_environments}{``dotfiles''}\index{dotfiles},
+you can use \texttt{ls -a}:
+
+\drcap{Listing of home directory showing hidden files}
+
+\begin{verbatim}
+~ $ ls -a
+.              .config    .gconf           .mozilla  Templates
+..             .dbus      .gnome2          Music     Videos
+.bash_history  Desktop    .gnome2_private  Pictures  .xsession-errors
+.bash_logout   .dmrc      .ICEauthority    .profile
+.cache         Documents  .linuxmint       Public
+.cinnamon      Downloads  .local           .ssh
+\end{verbatim}
 
 Wow! That's a lot of dotfiles!
 
-If you want to see some details of each file, use
-\texttt{ls -l}~\fref{ls-l-home}:
+If you want to see some details of each file, use \texttt{ls -l}:
 
-\ifxetex\fimg{./images/ls-l-home.png}{Detailed listing of home directory}{ls-l-home}
-\else
-\includegraphics{./images/ls-l-home.png} \fi
+\drcap{Detailed listing of home directory}
 
-And of course parameters can be combined, as with the two
-above~\fref{ls-al-home}.
+\begin{verbatim}
+~ $ ls -l
+total 32
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Desktop
+drwxr-xr-x 3 myuser mygroup 4096 Dec 13 18:22 Documents
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Downloads
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Music
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Pictures
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Public
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Templates
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Videos
+\end{verbatim}
 
-\ifxetex\fimg{./images/ls-al-home.png}{Detailed listing of hidden files}{ls-al-home}
-\else
-\includegraphics{./images/ls-al-home.png} \fi
+And of course parameters can be combined, as with the two above:
+
+\drcap{Detailed listing of all files}
+
+\begin{verbatim}
+~ $ ls -al
+total 112
+drwxr-xr-x 21 myuser mygroup 4096 Dec 13 18:19 .
+drwxr-xr-x  6 root   root    4096 Dec 13 14:24 ..
+-rw-------  1 myuser mygroup  287 Dec 13 18:19 .bash_history
+-rw-r--r--  1 myuser mygroup  220 Dec 13 14:24 .bash_logout
+drwx------  5 myuser mygroup 4096 Dec 13 18:18 .cache
+drwxr-xr-x  3 myuser mygroup 4096 Dec 13 18:18 .cinnamon
+drwxr-xr-x 12 myuser mygroup 4096 Dec 13 18:18 .config
+drwx------  3 myuser mygroup 4096 Dec 13 18:18 .dbus
+drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Desktop
+-rw-------  1 myuser mygroup   29 Dec 13 18:18 .dmrc
+drwxr-xr-x  3 myuser mygroup 4096 Dec 13 18:22 Documents
+drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Downloads
+drwx------  3 myuser mygroup 4096 Dec 13 18:18 .gconf
+drwx------  3 myuser mygroup 4096 Dec 13 18:18 .gnome2
+drwx------  2 myuser mygroup 4096 Dec 13 18:18 .gnome2_private
+-rw-------  1 myuser mygroup  668 Dec 13 18:18 .ICEauthority
+drwxr-xr-x  3 myuser mygroup 4096 Dec 13 18:18 .linuxmint
+drwxr-xr-x  3 myuser mygroup 4096 Dec 13 18:18 .local
+drwxr-xr-x  4 myuser mygroup 4096 Dec 13 18:18 .mozilla
+drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Music
+drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Pictures
+-rw-r--r--  1 myuser mygroup  716 Dec 13 14:30 .profile
+\end{verbatim}
 
 \section{A Brief Detour Around
 Parameters}\label{a-brief-detour-around-parameters}
@@ -1277,8 +1474,8 @@ longer, descriptive parameter names like \texttt{ls -{}-all} that mean
 the same thing. It is typically good to use the shorter version during
 interactive sessions and testing, but I prefer long parameter names in
 scripts, because when I come back and look at it in two years, I may not
-remember what \texttt{rm -rf *} means (in the ``UNIX'' world it means
-you're toast if you run it in the wrong directory by mistake), thus
+remember what \texttt{rm -rf *}\drcmd{rm} means (in the ``UNIX'' world
+it means you're toast if you run it by mistake), thus
 \texttt{rm -{}-recursive -{}-force *} seems a bit more ``intuitive.''
 
 \begin{quote}
@@ -1289,13 +1486,17 @@ well today may well be your own.}} - me
 The older style parameters are typically preceded by a single hyphen
 ``switch'' character:
 
+\drcap{Short parameter}
+
 \begin{verbatim}
 ~ $ ls -r
 \end{verbatim}
 
-Or even no ``switch'' character at all, as with \texttt{xvf}
-(e\textbf{\emph{X}}tract, \textbf{\emph{V}}erbose, input
-\textbf{\emph{F}}ile name) in the following:
+Some command support parameters with no ``switch'' character at all, as
+with \texttt{xvf} (e\textbf{\emph{X}}tract, \textbf{\emph{V}}erbose,
+input \textbf{\emph{F}}ile name) in the following:
+
+\drcap{Alternate short parameter syntax}
 
 \begin{verbatim}
 ~ $ tar xvf backup.tar
@@ -1303,6 +1504,8 @@ Or even no ``switch'' character at all, as with \texttt{xvf}
 
 The newer ``GNU-style'' parameters are preceded by two hyphens and
 usually are quite ``verbose'':
+
+\drcap{Long parameters}
 
 \begin{verbatim}
 ~ $ ls --recursive --almost-all --ignore-backups
@@ -1314,68 +1517,149 @@ to use the GNU-style parameters in scripts as self-documenting code.
 \section{More Poking at Files}\label{more-poking-at-files}
 
 If we suspect the file is a text file, we can echo it to the console
-with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}
-(\emph{concatenate}) command ~\fref{cat}
+with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}\drcmd{cat}
+(\emph{concatenate}) command:
 
-\ifxetex\fimg{./images/cat.png}{cat command}{cat} \else
-\includegraphics{./images/cat.png} \fi
+\drcap{cat command}
 
-In that example when we \texttt{cat installrdp} we can determine it is a
+\begin{verbatim}
+~ $ cat installrdp
+#!/bin/bash
+sudo apt-get -y install git
+cd ~
+git clone git://github.com/FreeRDP/FreeRDP.git
+cd FreeRDP
+sudo apt-get -y install build-essential git-core cmake libssl-dev libx11-dev lib
+xext-dev libxinerama-dev \
+  libxcursor-dev libxdamage-dev libxv-dev libxkbfile-dev libasound2-dev libcups2
+  -dev libxml2 libxml2-dev \
+  libxrandr-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libxi-dev
+   libgstreamer-plugins-base1.0-dev
+sudo apt-get -y install libavutil-dev libavcodec-dev
+sudo apt-get -y install libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
+cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
+make
+sudo make install
+sudo echo "/usr/local/lib/freerdp" > /etc/ld.so.conf.d/freerdp.conf
+sudo echo "/usr/local/lib64/freerdp" >> /etc/ld.so.conf.d/freerdp.conf
+sudo echo "/usr/local/lib" >> /etc/ld.so.conf.d/freerdp.conf
+sudo ldconfig
+which xfreerdp
+xfreerdp --version
+\end{verbatim}
+
+In this example when we \texttt{cat installrdp} we can determine it is a
 \texttt{bash} shell script that looks to install and configure
-\href{https://github.com/FreeRDP/FreeRDP}{FreeRDP} on a Debian-style
-system:
+\href{https://github.com/FreeRDP/FreeRDP}{FreeRDP}\drcmd{xfreerdp} on a
+Debian-style system:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{\texttt{apt-get}} - Debian-style package manager.
+  \textbf{\texttt{apt-get}}\drcmd{apt-get} - Debian-style package
+  manager.
 \item
-  \textbf{\texttt{git clone}} - cloning package from
+  \textbf{\texttt{git clone}}\drcmd{git} - cloning package from
   \href{http://github.com}{GitHub}.
 \item
-  \textbf{\texttt{cmake}} and \textbf{\texttt{make}} - configuring and
-  building software from source.
+  \textbf{\texttt{cmake}}\drcmd{cmake} and
+  \textbf{\texttt{make}}\drcmd{make} - configuring and building software
+  from source.
 \end{enumerate}
 
 A better way to display a longer file is to use the
-\href{http://linux.die.net/man/1/less}{\texttt{less}} command (which is
-a derivative of the original
-\href{http://linux.die.net/man/1/more}{\texttt{more}}, hence the name).
-\texttt{less} is a paginator, where the \texttt{Space},
+\href{http://linux.die.net/man/1/less}{\texttt{less}}\drcmd{less}
+command (which is a derivative of the original
+\href{http://linux.die.net/man/1/more}{\texttt{more}}\drcmd{more}, hence
+the name). \texttt{less} is a paginator, where the \texttt{Space},
 \texttt{Page Down} or down arrow keys scroll down and the
 \texttt{Page Up} or up arrow keys scrolls up. \texttt{Q} quits.
 
-\textbf{Note:} The \texttt{vi} search (\texttt{/}, \texttt{?},
+\textbf{Note:} The \texttt{vi}\drcmd{vi} search (\texttt{/}, \texttt{?},
 \texttt{n} and \texttt{p}) and navigation (\texttt{G}, \texttt{0}) keys
 work within \texttt{less}, too. In general \texttt{less} is a great
 lightweight way to motor around in a text file without editing it.
 
 We can also look at just the end or \emph{tail} of a file (often the
 most interesting when looking at log files and troubleshooting a current
-problem) with the \href{http://linux.die.net/man/1/tail}{\texttt{tail}}
-command. The next example \fref{tail-dmesg} shows the last 10 lines of
-the kernel \texttt{dmesg} log.
+problem) with the
+\href{http://linux.die.net/man/1/tail}{\texttt{tail}}\drcmd{tail}
+command. The next example shows the last 10 lines of the kernel
+\texttt{dmesg} log:
 
-\ifxetex\fimg{./images/tail-dmesg.png}{tail command}{tail-dmesg} \else
-\includegraphics{./images/tail-dmesg.png} \fi
+\drcap{tail command}
 
-To show a specific number of lines \fref{tail-n-dmesg} use the
-\texttt{-n} parameter.
+\begin{verbatim}
+/var/log $ tail dmesg
+[    3.913318] Bluetooth: BNEP socket layer initialized
+[    3.914888] Bluetooth: RFCOMM TTY layer initialized
+[    3.914895] Bluetooth: RFCOMM socket layer initialized
+[    3.914900] Bluetooth: RFCOMM ver 1.11
+[    3.935772] init: failsafe main process (732) killed by TERM signal
+[    4.046700] init: cups main process (896) killed by HUP signal
+[    4.046710] init: cups main process ended, respawning
+[    4.186239] init: samba-ad-dc main process (919) terminated with status 1
+[    4.328999] r8169 0000:02:00.0 eth0: link down
+[    4.329037] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+\end{verbatim}
 
-\ifxetex\fimg{./images/tail-n-dmesg.png}{tail -n command}{tail-n-dmesg}
-\else
-\includegraphics{./images/tail-n-dmesg.png} \fi
+To show a specific number of lines use the \texttt{-n} parameter:
+
+\drcap{tail -n command}
+
+\begin{verbatim}
+/var/log $ tail -n 15 dmesg
+[    3.899169] Bluetooth: HCI socket layer initialized
+[    3.899170] Bluetooth: L2CAP socket layer initialized
+[    3.899179] Bluetooth: SCO socket layer initialized
+[    3.913306] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[    3.913309] Bluetooth: BNEP filters: protocol multicast
+[    3.913318] Bluetooth: BNEP socket layer initialized
+[    3.914888] Bluetooth: RFCOMM TTY layer initialized
+[    3.914895] Bluetooth: RFCOMM socket layer initialized
+[    3.914900] Bluetooth: RFCOMM ver 1.11
+[    3.935772] init: failsafe main process (732) killed by TERM signal
+[    4.046700] init: cups main process (896) killed by HUP signal
+[    4.046710] init: cups main process ended, respawning
+[    4.186239] init: samba-ad-dc main process (919) terminated with status 1
+[    4.328999] r8169 0000:02:00.0 eth0: link down
+[    4.329037] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+\end{verbatim}
 
 You can also use \texttt{tail} to \emph{follow} an open file and
 continuously display any new output at the end, which is useful for
-monitoring log files in real time~\fref{tail-f}.
+monitoring log files in real time:
 
-\ifxetex\fimg{./images/tail-f.png}{tail -f command}{tail-f} \else
-\includegraphics{./images/tail-f.png} \fi
+\drcap{tail -f command}
+
+\begin{verbatim}
+/var/log $ tail -f syslog
+Dec 13 19:23:40 MtLindsey dhclient: DHCPACK of 192.168.0.8 from 192.168.0.1
+Dec 13 19:23:40 MtLindsey dhclient: bound to 192.168.0.8 -- renewal in 1423 seco
+nds.
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: <info> (eth0): DHCPv4 state chang
+ed renew -> renew
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: <info>   address 192.168.0.8
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: <info>   prefix 24 (255.255.255.0
+)
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: <info>   gateway 192.168.0.1
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: <info>   nameserver '97.64.168.12
+'
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: <info>   nameserver '192.119.194.
+131'
+Dec 13 19:23:40 MtLindsey dbus[689]: [system] Activating service name='org.freed
+esktop.nm_dispatcher' (using servicehelper)
+Dec 13 19:23:40 MtLindsey dbus[689]: [system] Successfully activated service 'or
+g.freedesktop.nm_dispatcher'
+\end{verbatim}
+
+Use \texttt{Ctrl-C} to cancel following the file changes.
 
 If we know nothing about a \emph{file}, we can use the
-\href{http://linux.die.net/man/1/file}{\texttt{file}} command to help us
-guess:
+\href{http://linux.die.net/man/1/file}{\texttt{file}}\drcmd{file}
+command to help us guess:
+
+\drcap{file command}
 
 \begin{verbatim}
 ~ $ file installrdp 
@@ -1395,61 +1679,131 @@ valid. Hence the utility of the \texttt{file} command.
 
 \section{Sorting Things Out}\label{sorting-things-out}
 
-The \href{http://linux.die.net/man/1/sort}{\texttt{sort}} command can be
-used to not just \emph{sort} files, but also to merge them and remove
-duplicates.
+Let's say we have three files, and want to display the contents of one
+of them with \texttt{cat}:
 
-Let's say we have three files:
+\drcap{Show contents of a file}
 
 \begin{verbatim}
-~ $ ls
+~ $ cd Invoices/
+~/Invoices $ ls
 ElevatorTrucks  FarmCombines  FarmTractors
+~/Invoices $ cat ElevatorTrucks 
+Truck   brakes  200
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400
+Truck   winch   100
 \end{verbatim}
-
-We can use \texttt{cat} to display the contents of
-each~\fref{invoice-files}
-
-\ifxetex\fimg{./images/invoice-files.png}{Some invoice files}{invoice-files}
-\else
-\includegraphics{./images/invoice-files.png} \fi
 
 But what if we wanted to process all the lines in all the files in a
 single alphabetical order? Just redirecting the files into a program
 won't do it, because the file names will be sorted by the shell and the
-lines will be processed in file name order~\fref{all-invoices}, not the
-ultimate sorted order of all the file contents.
+lines will be processed in file name order, not the ultimate sorted
+order of all the file contents.
 
-\ifxetex\fimg{./images/all-invoices.png}{Show all the invoices}{all-invoices}
-\else
-\includegraphics{./images/all-invoices.png} \fi
+\drcap{Show contents of all files}
 
-The \texttt{sort} command \fref{sort} to the rescue!
+\begin{verbatim}
+~/Invoices $ cat *
+Truck   brakes  200
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400
+Truck   winch   100
+Combine motor   1500
+Combine brakes  400
+Combine tires   2500
+Tractor motor   1000
+Tractor brakes  300
+Tractor tires   2000
+\end{verbatim}
 
-\ifxetex\fimg{./images/sort.png}{sort command}{sort} \else
-\includegraphics{./images/sort.png} \fi
+The \href{http://linux.die.net/man/1/sort}{\texttt{sort}}\drcmd{sort}
+command to the rescue! We will see that the \texttt{sort} command can be
+used to not just \emph{sort} files, but also to merge them and remove
+duplicates.
+
+\drcap{sort command}
+
+\begin{verbatim}
+~/Invoices $ sort *
+Combine brakes  400
+Combine motor   1500
+Combine tires   2500
+Tractor brakes  300
+Tractor motor   1000
+Tractor tires   2000
+Truck   brakes  200
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400
+Truck   winch   100
+\end{verbatim}
 
 What if we want to sort by the parts column? Well, it is the second
-``key'' field delimited by whitespace~\fref{sort-k2}, so:
+``key'' field delimited by whitespace, so:
 
-\ifxetex\fimg{./images/sort-k2.png}{Sort by second column}{sort-k2}
-\else
-\includegraphics{./images/sort-k2.png} \fi
+\drcap{Sort by the second column}
 
-What about by the third column, the amount? \fref{sort-k3}
+\begin{verbatim}
+~/Invoices $ sort -k 2 *
+Truck   brakes  200
+Tractor brakes  300
+Combine brakes  400
+Tractor motor   1000
+Combine motor   1500
+Tractor tires   2000
+Combine tires   2500
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400
+Truck   winch   100
+\end{verbatim}
 
-\ifxetex\fimg{./images/sort-k3.png}{Sort by third column}{sort-k3} \else
-\includegraphics{./images/sort-k3.png} \fi
+What about by the third column, the amount?
+
+\drcap{Sort by third column}
+
+\begin{verbatim}
+~/Invoices $ sort -k 3 *
+Truck   winch   100
+Tractor motor   1000
+Combine motor   1500
+Truck   brakes  200
+Tractor tires   2000
+Combine tires   2500
+Tractor brakes  300
+Combine brakes  400
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400
+\end{verbatim}
 
 That's not what we expected because it is sorting numbers
-alphabetically. Let's fix that \fref{sort-k3-n} by telling it to sort
-numerically.
+alphabetically. Let's fix that by telling it to sort numerically:
 
-\ifxetex\fimg{./images/sort-k3-n.png}{Sort by third column, numerically}{sort-k3-n}
-\else
-\includegraphics{./images/sort-k3-n.png} \fi
+\drcap{Sort by third column, numerically}
+
+\begin{verbatim}
+~/Invoices $ sort -k 3 -n *
+Truck   winch   100
+Truck   brakes  200
+Tractor brakes  300
+Combine brakes  400
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400
+Tractor motor   1000
+Combine motor   1500
+Tractor tires   2000
+Combine tires   2500
+\end{verbatim}
 
 Maybe we care about the top three most expensive items. We haven't
-talked about pipes yet, but check this out:
+talked about \texttt{pipes}\index{pipes} yet, but check this out:
+
+\drcap{Top three most expensive items}
 
 \begin{verbatim}
 ~ $ sort -k 3 -n * | tail -n 3
@@ -1458,30 +1812,56 @@ Tractor tires   2000
 Combine tires   2500
 \end{verbatim}
 
-Finally, what if we want only unique rows?~\fref{sort-k3-n-u}
+Finally, what if we want only unique rows?
 
-\ifxetex\fimg{./images/sort-k3-n-u.png}{Sort by third column, numerically, unique}{sort-k3-n-u}
-\else
-\includegraphics{./images/sort-k3-n-u.png} \fi
+\drcap{Sort and show only unique rows}
 
-Just to reinforce long parameters, the last example is equivalent to
-\texttt{sort -{}-key 3 -{}-numeric-sort -{}-unique *}~\fref{sort-k3-n-u-long}
+\begin{verbatim}
+~/Invoices $ sort -k 3 -n -u *
+Truck   winch   100
+Truck   brakes  200
+Tractor brakes  300
+Truck   tires   400
+Tractor motor   1000
+Combine motor   1500
+Tractor tires   2000
+Combine tires   2500
+\end{verbatim}
 
-\ifxetex\fimg{./images/sort-k3-n-u-long.png}{Sort with long parameter names}{sort-k3-n-u-long}
-\else
-\includegraphics{./images/sort-k3-n-u-long.png} \fi
+Just to reinforce long parameters, the last example is equivalent to:
+
+\drcap{Unique sort with long parameter names}
+
+\begin{verbatim}
+~/Invoices $ sort --key 3 --numeric-sort --unique *
+Truck   winch   100
+Truck   brakes  200
+Tractor brakes  300
+Truck   tires   400
+Tractor motor   1000
+Combine motor   1500
+Tractor tires   2000
+Combine tires   2500
+\end{verbatim}
+
+If you read that command in a script file, there would be little
+confusion as to what it was doing.
 
 \section{Rearranging Deck Chairs}\label{rearranging-deck-chairs}
 
-We can copy, move or rename (same thing) and delete files and
+We can copy, move (or rename - same thing) and delete files and
 directories. To \emph{copy}, simply use the
-\href{http://linux.die.net/man/1/cp}{\texttt{cp}} command:
+\href{http://linux.die.net/man/1/cp}{\texttt{cp}}\drcmd{cp} command:
+
+\drcap{cp command}
 
 \begin{verbatim}
 ~ $ cp diary.txt diary.bak
 \end{verbatim}
 
 You can copy entire directories recursively:
+
+\drcap{Copying directories recursively}
 
 \begin{verbatim}
 ~ $ cp -r thisdir thatdir
@@ -1490,11 +1870,16 @@ You can copy entire directories recursively:
 Or, if we want to be self-documenting in a script, we can use those long
 parameter names:
 
+\drcap{cp command with long parameter names}
+
 \begin{verbatim}
 ~ $ cp --recursive thisdir thatdir
 \end{verbatim}
 
-To \emph{move} use \href{http://linux.die.net/man/1/mv}{\texttt{mv}}:
+To \emph{move} use
+\href{http://linux.die.net/man/1/mv}{\texttt{mv}}\drcmd{mv}:
+
+\drcap{mv command}
 
 \begin{verbatim}
 ~ $ mv thismonth.log lastmonth.log
@@ -1502,14 +1887,17 @@ To \emph{move} use \href{http://linux.die.net/man/1/mv}{\texttt{mv}}:
 
 \textbf{Note:} There is no semantic difference between ``move'' and
 ``rename.'' However, there are some really cool renaming scenarios that
-the \href{http://linux.die.net/man/1/rename}{\texttt{rename}} command
-can take care of beyond \texttt{mv}, like renaming all file extensions
-from \texttt{.htm} to \texttt{.html}.
+the
+\href{http://linux.die.net/man/1/rename}{\texttt{rename}}\drcmd{rename}
+command can take care of beyond \texttt{mv}, like renaming all file
+extensions from \texttt{.htm} to \texttt{.html}.
 
 \section{Making Files Disappear}\label{making-files-disappear}
 
 To delete or \emph{remove} a file you use
-\href{http://linux.die.net/man/1/rm}{\texttt{rm}}:
+\href{http://linux.die.net/man/1/rm}{\texttt{rm}}\drcmd{rm}:
+
+\drcap{rm command}
 
 \begin{verbatim}
 ~ $ rm desktop.ini
@@ -1518,14 +1906,23 @@ To delete or \emph{remove} a file you use
 \textbf{Pro Tip:} There is no ``Are you sure?'' prompt when removing a
 single file specified with no wildcards, or even all files with a
 wildcard, and there is no ``Recycle Bin'' or ``Trash Can'' when working
-from the command prompt, so be careful!
+from the command prompt, so \textbf{\emph{BE CAREFUL!}}
 
 This kind of scenario can happen \textbf{\emph{way}} too often, even to
 experienced system administrators. Note the space between \texttt{*} and
-\texttt{.bak}~\fref{bad-rm}.
+\texttt{.bak}:
 
-\ifxetex\fimg{./images/bad-rm.png}{Oops!}{bad-rm} \else
-\includegraphics{./images/bad-rm.png} \fi
+\drcap{Oops!}
+
+\begin{verbatim}
+~ $ cd MyDissertation/
+~/MyDissertation $ ls
+Bibliography.bak  Bibliography.doc  Dissertation.bak  Dissertation.doc
+~/MyDissertation $ rm * .bak
+rm: cannot remove ‘.bak’: No such file or directory
+~/MyDissertation $ ls
+~/MyDissertation $ 
+\end{verbatim}
 
 So, in order, our hapless user:
 
@@ -1551,6 +1948,8 @@ an extra error check. Or a lot of times I use command history in these
 cases by changing the \texttt{ls} to look for just the files I want to
 delete:
 
+\drcap{Make sure we are dealing with the right files}
+
 \begin{verbatim}
 ~ $ ls *.bak
 Citations.bak  Dissertation.bak
@@ -1563,11 +1962,12 @@ changing \texttt{ls} to \texttt{rm} and re-executing it. Safer that way.
 
 We just learned how to make a file disappear. We can also make a file
 magically appear, just by
-\href{http://linux.die.net/man/1/touch}{\texttt{touch}}:
+\href{http://linux.die.net/man/1/touch}{\texttt{touch}}\drcmd{touch}:
+
+\drcap{touch command}
 
 \begin{verbatim}
 ~ $ touch NewEmptyDissertation.doc
-
 ~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:12 NewEmptyDissertation.doc
@@ -1580,9 +1980,10 @@ modified date'' of an existing file, as you can see in time change in
 the following listing after running \texttt{touch} on the same file
 again:
 
+\drcap{A second touch}
+
 \begin{verbatim}
 ~ $ touch NewEmptyDissertation.doc
-
 ~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:14 NewEmptyDissertation.doc
@@ -1593,26 +1994,42 @@ to sometimes set the last modified date of a file to a specific date and
 time, which \texttt{touch} also allows you to do, in this case to the
 night before Christmas:
 
+\drcap{Set file modified date to a specific date and time}
+
 \begin{verbatim}
 ~ $ touch -t 201412242300 NewEmptyDissertation.doc
-
 ~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Dec 24  2014 NewEmptyDissertation.doc
 \end{verbatim}
 
 To \emph{make a directory} you use
-\href{http://linux.die.net/man/1/mkdir}{\texttt{mkdir}}:
+\href{http://linux.die.net/man/1/mkdir}{\texttt{mkdir}}\drcmd{mkdir}:
+
+\drcap{mkdir command}
 
 \begin{verbatim}
-~ $ mkdir Bar
-
-~ $ ls
-Bar
+~ $ cd Foo
+~/Foo $ ls -l
+total 4
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 a
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 b
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 c
+drwxr-xr-x 2 myuser mygroup 4096 Dec 14 05:49 d
+~/Foo $ mkdir Bar
+~/Foo $ ls -l
+total 8
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 a
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 b
+drwxr-xr-x 2 myuser mygroup 4096 Dec 14 14:49 Bar
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 c
+drwxr-xr-x 2 myuser mygroup 4096 Dec 14 05:49 d
 \end{verbatim}
 
 Typically you need to create all intervening directories before creating
 a ``child'' directory:
+
+\drcap{mkdir error}
 
 \begin{verbatim}
 ~ $ mkdir Xyzzy/Something
@@ -1621,13 +2038,13 @@ mkdir: cannot create directory ‘Xyzzy/Something’: No such file or directory
 
 But of course you can override that behavior:
 
+\drcap{Make multiple directories at once}
+
 \begin{verbatim}
-~ $ mkdir --parents Xyzzy/Something
-
-~ $ ls
-Bar  Xyzzy
-
-~ $ ls Xyzzy
+~/Foo $ mkdir --parents Xyzzy/Something
+~/Foo $ ls 
+a  b  Bar  c  d  Xyzzy
+~/Foo $ ls Xyzzy
 Something
 \end{verbatim}
 
@@ -1636,30 +2053,35 @@ Something
 Ever notice that ``life'' is an anagram for ``file''? Spooky, eh?
 
 Given that the UNIX-style file systems are hierarchical in nature they
-are similar to navigate as with \texttt{CMD.EXE}. The biggest difference
-is the absense of drive letter and the direction of the slashes.
+are similar to navigate as with \texttt{CMD.EXE}\drshl{CMD.EXE}. The
+biggest difference is the absense of drive letter and the direction of
+the slashes.
 
 To \emph{change directories}, simply use
-\href{http://linux.die.net/man/1/cd}{\texttt{cd}} much like in Windows:
+\href{http://linux.die.net/man/1/cd}{\texttt{cd}}\drcmd{cd} much like in
+Windows:
+
+\drcap{cd command}
 
 \begin{verbatim}
 ~ $ cd /etc
-
 ~ $ pwd
 /etc
 \end{verbatim}
 
-\href{http://linux.die.net/man/1/pwd}{\texttt{pwd}} simply \emph{prints
-the working (current) directory}.
+\href{http://linux.die.net/man/1/pwd}{\texttt{pwd}}\drcmd{pwd} simply
+\emph{prints the working (current) directory}.
 
 In Linux, users can have ``home'' directories (similar to Windows
-profiles), typically located under \texttt{/home/username} for normal
-users and \texttt{/root} for the ``root'' id. To change to a user's
-``home'' directory, simply use \texttt{cd}:
+profiles), typically located under
+\texttt{/home/\textless{}username\textgreater{}} for normal users and
+\texttt{/root} for the ``root'' (admin) id. To change to a user's
+``home'' directory, simply use \texttt{cd} with no parameters:
+
+\drcap{Change to home directory}
 
 \begin{verbatim}
-~ $ cd
-
+/etc $ cd
 ~ $ pwd
 /home/myuser
 \end{verbatim}
@@ -1668,9 +2090,10 @@ The tilde (\texttt{\textasciitilde{}}) character is an alias for the
 current user's home directory. The following example is equivalent to
 above:
 
-\begin{verbatim}
-~ $ cd ~
+\drcap{Alternative way to change to home directory}
 
+\begin{verbatim}
+/etc $ cd ~
 ~ $ pwd
 /home/myuser
 \end{verbatim}
@@ -1678,15 +2101,16 @@ above:
 More useful is that the tilde can be combined with a user name to
 specify the home directory of \textbf{\emph{another}} user:
 
-\begin{verbatim}
-~ $ cd ~git
+\drcap{Change to the home directory of another user}
 
-~ $ pwd
-/home/git
+\begin{verbatim}
+~ # cd ~myuser
+myuser # pwd
+/home/myuser
 \end{verbatim}
 
 \textbf{Note:} The above assumes you have permissions to \texttt{cd}
-into \texttt{/home/git}. See the section on file permissions for more
+into \texttt{/home/myuser}. See the section on file permissions for more
 info.
 
 In addition, you need to know the difference between ``absolute'' and
@@ -1708,18 +2132,36 @@ and \texttt{..} for the parent directory directly from UNIX. Consider
 the following examples that combine all of the above about relative
 paths and see if it all makes sense:
 
-\ifxetex\fimg{./images/relative-paths.png}{Relative paths}{relative-paths}
-\else
-\includegraphics{./images/relative-paths.png} \fi
+\drcap{Relative paths exercise}
 
-Did you notice how both \texttt{mkdir} and \texttt{touch} allow for
-specifying multiple directory and file names in the same command?
+\begin{verbatim}
+~/Foo $ ls
+~/Foo $ mkdir Bar Baz
+~/Foo $ ls
+Bar  Baz
+~/Foo $ cd Bar
+~/Foo/Bar $ touch a b c
+~/Foo/Bar $ ls
+a  b  c
+~/Foo/Bar $ cd ../Baz
+~/Foo/Baz $ touch d e f
+~/Foo/Baz $ ls
+d  e  f
+~/Foo/Baz $ ls ..
+Bar  Baz
+~/Foo/Baz $ ls ../Bar
+a  b  c
+\end{verbatim}
+
+Did you notice how both \texttt{mkdir}\drcmd{mkdir} and
+\texttt{touch}\drcmd{touch} allow for specifying multiple directory and
+file names in the same command?
 
 \section{May I?}\label{may-i}
 
-Most UNIX-style file systems come with a set of nine permissions that
-can be thought of as a ``grid'' of 3x3 showing ``who has what?'' The
-``who'' is ``UGO'':
+Most ``UNIX'' file systems come with a set of nine permissions that can
+be thought of as a ``grid'' of 3x3 showing ``who has what?'' The ``who''
+is ``UGO'':
 
 \begin{itemize}
 \item
@@ -1746,108 +2188,136 @@ The ``what'' is:
 
 The combination of ``who has what?'' is usually shown in detailed
 directory listings by a set of ten characters, with the first one
-determining whether an entry is a directory or a file:
+determining whether an entry is a directory (\texttt{d}) or a file
+(\texttt{-}):
+
+\drcap{Another ls -l example, this time on FreeBSD}
 
 \begin{verbatim}
-# ls -l /etc
-total 844
-drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
--rw-r--r-- 1 root root    2981 Apr 23  2014 adduser.conf
--rw-r--r-- 1 root root      45 Jul  9 08:46 adjtime
--rw-r--r-- 2 root root     621 May 22  2014 aliases
--rw-r--r-- 1 root root   12288 May 22  2014 aliases.db
-drwxr-xr-x 2 root root   20480 Feb 25  2015 alternatives
--rw-r--r-- 1 root root    4185 Dec 28  2011 analog.cfg
-drwxr-xr-x 7 root root    4096 Feb 25  2015 apache2
-drwxr-xr-x 6 root root    4096 Feb 25  2015 apt
--rw-r----- 1 root daemon   144 Jun  9  2012 at.deny
--rw-r--r-- 1 root root    1895 Dec 29  2012 bash.bashrc
--rw-r--r-- 1 root root      45 Jun 17  2012 bash_completion
-drwxr-xr-x 2 root root    4096 Feb 25  2015 bash_completion.d
-...and so on...
+%ls -l /etc
+total 1876
+drwxr-xr-x   2 root  wheel        512 Jan 15  2009 X11
+-rw-r--r--   1 root  wheel          0 Sep  3  2013 aliases
+-rw-r--r--   1 root  wheel      16384 Sep  3  2013 aliases.db
+-rw-r--r--   1 root  wheel        210 May  6  2009 amd.map
+-r--r--r--   1 root  wheel        233 Feb 15  2007 amd.map.snap
+-rw-r--r--   1 root  wheel       1234 May  6  2009 apmd.conf
+-rw-r--r--   1 root  wheel        231 May  6  2009 auth.conf
+drwxr-xr-x   2 root  wheel        512 May  6  2009 bluetooth
+-rw-r--r--   1 root  wheel        737 Mar 19  2015 crontab
+-rw-r--r--   1 root  wheel        108 May  6  2009 csh.cshrc
+-rw-r--r--   1 root  wheel        617 Apr 15  2009 csh.login
+-rw-r--r--   1 root  wheel        110 May  6  2009 csh.logout
+-rw-r--r--   1 root  wheel        565 May  6  2009 ddb.conf
+drwxr-xr-x   2 root  wheel        512 May  6  2009 defaults
+-rw-r--r--   1 root  wheel       9779 May  6  2009 devd.conf
+-rw-r--r--   1 root  wheel       2071 May  6  2009 devfs.conf
+-rw-r--r--   1 root  wheel        267 May  6  2009 dhclient.conf
+-rw-r--r--   1 root  wheel       5704 May  6  2009 disktab
+-rw-rw-r--   1 root  operator       0 Nov  3  2005 dumpdates
+drwxr-xr-x   6 root  staff        512 Nov 12  2014 fail2ban
+-rw-r--r--   1 root  wheel        142 May  6  2009 fbtab
+-rw-r--r--   1 root  wheel       2552 May  6  2009 freebsd-update.conf
 \end{verbatim}
 
 In the above, for example, we can see that the user \texttt{root} owns
-the file \texttt{at.deny} while the \texttt{daemon} group is the primary
+the file \texttt{aliases} while the \texttt{wheel} group is the primary
 group for it. \texttt{root} can both read and write the file
-(\texttt{rw-}) while any user in the \texttt{daemon} group can only
-reade it (\texttt{r-{}-}). No other id will have any access to the file
-at all (\texttt{-{}-{}-}).
+(\texttt{rw-}) while any user in the \texttt{wheel} group can only read
+it (\texttt{r-{}-}). Any other id will also have read access
+(\texttt{r-{}-}).
 
-Similarly we see that \texttt{acpi} is a directory (\texttt{d}) that can
-be read, written (new files created) and listed by \texttt{root}
-(\texttt{rwx}), and read and listed by the group \texttt{root} and all
+Similarly we see that \texttt{defaults} is a directory (\texttt{d}) that
+can be read, written (new files created) and listed by \texttt{root}
+(\texttt{rwx}), and read and listed by the group \texttt{wheel} and all
 other ids (\texttt{r-xr-x}).
 
-If we look in \texttt{/etc/init.d} where many services store their
-startup scripts we see:
+Back on Linux, if we look in \texttt{/etc/init.d} where many services
+store their startup scripts we see:
+
+\drcap{Listing the /etc/init.d directory}
 
 \begin{verbatim}
-# ls -l /etc/init.d
-total 332
--rwxr-xr-x 1 root root  2227 Apr 15  2013 acpid
--rwxr-xr-x 1 root root  7820 Jan 31  2014 apache2
--rwxr-xr-x 1 root root  1071 Jun 25  2011 atd
--rwxr-xr-x 1 root root  1276 Oct 15  2012 bootlogs
--rwxr-xr-x 1 root root  1281 Jul 14  2013 bootmisc.sh
--rwxr-xr-x 1 root root  3816 Jul 14  2013 checkfs.sh
--rwxr-xr-x 1 root root  1099 Jul 14  2013 checkroot-bootclean.sh
--rwxr-xr-x 1 root root  9673 Jul 14  2013 checkroot.sh
--rwxr-xr-x 1 root root  1379 Dec  8  2011 console-setup
--rwxr-xr-x 1 root root  3033 Jul  3  2012 cron
--rwxr-xr-x 1 root root  2813 Feb  5  2015 dbus
--rwxr-xr-x 1 root root  6435 Jan  2  2013 exim4
-...and so on...
+~ $ ls -l /etc/init.d
+total 276
+-rwxr-xr-x 1 root root 2243 Apr  3  2014 acpid
+-rwxr-xr-x 1 root root 2014 Feb 19  2014 anacron
+-rwxr-xr-x 1 root root 4596 Apr 24  2015 apparmor
+-rwxr-xr-x 1 root root 2401 Dec 30  2013 avahi-daemon
+-rwxr-xr-x 1 root root 1322 Mar 30  2014 binfmt-support
+-rwxr-xr-x 1 root root 4474 Sep  4  2014 bluetooth
+-rwxr-xr-x 1 root root 2125 Mar 13  2014 brltty
+-rwxr-xr-x 1 root root 4651 Apr  9  2014 casper
+-rwxr-xr-x 1 root root  425 Jun 26 09:11 cinnamon
+-rwxr-xr-x 1 root root 1919 Jan 18  2011 console-setup
+-rwxr-xr-x 1 root root 2489 May  6  2012 cpufrequtils
+lrwxrwxrwx 1 root root   21 Sep  7 04:00 cron -> /lib/init/upstart-job
+-rwxr-xr-x 1 root root  938 Nov  1  2013 cryptdisks
+-rwxr-xr-x 1 root root  896 Nov  1  2013 cryptdisks-early
+-rwxr-xr-x 1 root root 3184 Apr  3  2014 cups
+-rwxr-xr-x 1 root root 1961 Apr  7  2014 cups-browsed
+-rwxr-xr-x 1 root root 2813 Nov 25  2014 dbus
+-rwxr-xr-x 1 root root 1217 Mar  7  2013 dns-clean
+lrwxrwxrwx 1 root root   21 Sep  7 04:00 friendly-recovery -> /lib/init/upstart-
+job
+-rwxr-xr-x 1 root root 1105 May 13  2015 grub-common
+-rwxr-xr-x 1 root root 1329 Mar 12  2014 halt
 \end{verbatim}
 
 In this case all the scripts are readable, writable and executable
 (\texttt{rwx}) by the \texttt{root} user, and readable and executable by
-the \texttt{root} group and all other users (\texttt{r-xr-x}).
+the \texttt{root} group and all other users (\texttt{r-xr-x}). Later on
+I will explain linked files (those that start with an \texttt{l} instead
+of a \texttt{-} in the detailed listing above).
 
 To \emph{change} the \emph{owning} user of a file or directory (assuming
 you have permissions to do so), use the
-\href{http://linux.die.net/man/1/chown}{\texttt{chown}} command:
+\href{http://linux.die.net/man/1/chown}{\texttt{chown}}\drcmd{chown}
+command:
+
+\drcap{Change file ownership}
 
 \begin{verbatim}
 # ls -l
 total 4
 -rwxr--r-- 1 root root 17 Oct 20 10:07 foo
-
 # chown git foo
-
 # ls -l
 total 4
 -rwxr--r-- 1 git root 17 Oct 20 10:07 foo
 \end{verbatim}
 
 To \emph{change} the primary \emph{group}, use the
-\href{http://linux.die.net/man/1/chgrp}{\texttt{chgrp}} command:
+\href{http://linux.die.net/man/1/chgrp}{\texttt{chgrp}}\drcmd{chgrp}
+command:
+
+\drcap{chgrp command}
 
 \begin{verbatim}
 # chgrp git foo
-
 # ls -l
 total 4
 -rwxr--r-- 1 git git 17 Oct 20 10:07 foo
 \end{verbatim}
 
 To \emph{change} the various permissions or \emph{mode} bits, you use
-the \href{http://linux.die.net/man/1/chmod}{\texttt{chmod}} command. It
-uses mnemonics of ``ugo'' for (owning) user, group and ``other,''
-respectively. It also uses mnemonics of ``rwx'' for read, write and
-execute, and \texttt{+} to add a permission and \texttt{-} to remove it.
-For example, to add execute permission for the group and remove read
-permission for ``other'':
+the \href{http://linux.die.net/man/1/chmod}{\texttt{chmod}}\drcmd{chmod}
+command. It uses mnemonics of ``ugo'' for (owning) user, group and
+``other,'' respectively. It also uses mnemonics of ``rwx'' for read,
+write and execute, and \texttt{+} to add a permission and \texttt{-} to
+remove it. For example, to add the execute permission for the group and
+remove read permission for ``other'':
+
+\drcap{chmod command}
 
 \begin{verbatim}
 # chmod g+x,o-r foo
-
 # ls -l
 total 4
 -rwxr-x--- 1 git git 17 Oct 20 10:07 foo
 \end{verbatim}
 
-\textbf{Pro Tip:} To look like an old hand UNIX hacker, you can also
+\textbf{Pro Tip:} To look like an old-hand UNIX hacker, you can also
 convert any set of ``rwx'' permissions into an octal number from 0 (no
 permissions) to 7 (all permissions). It helps to think of the three
 permissions as ``binary places'':
@@ -1885,9 +2355,10 @@ want for a file. For example, if we want the \texttt{foo} file to be
 readable, writable and executable by both its owning user and group, and
 not accessible at all by anyone else, we could use:
 
+\drcap{chmod with lots of typing}
+
 \begin{verbatim}
 # chmod u+rwx,g+rwx,o- foo
-
 # ls -l
 total 4
 -rwxrwx--- 1 git git 17 Oct 20 10:07 foo
@@ -1895,9 +2366,10 @@ total 4
 
 Or we could simply convert those permissions into octal in our head and:
 
+\drcap{chmod with octal like a boss}
+
 \begin{verbatim}
 # chmod 770 foo
-
 # ls -l
 total 4
 -rwxrwx--- 1 git git 17 Oct 20 10:07 foo
@@ -1910,22 +2382,19 @@ life?'' question you asked in school!
 \textbf{\emph{must}} be marked as executable for one of the user, group
 or other entries. The following should be insightful:
 
+\drcap{Marking a file as executable}
+
 \begin{verbatim}
 # echo "echo Hello world" > foo
-
 # ls -l
 total 4
 -rw-r--r-- 1 root root 17 Oct 20 10:07 foo
-
 # ./foo
 -bash: ./foo: Permission denied
-
 # chmod u+x foo
-
 # ls -l
 total 4
 -rwxr--r-- 1 root root 17 Oct 20 10:07 foo
-
 # ./foo
 Hello world
 \end{verbatim}
@@ -1935,69 +2404,70 @@ Hello world
 In the Windows world, we are used to compressing and sending directories
 around as \texttt{.zip} files. In Linux you can also deal with
 \texttt{.zip} files, although they don't tend to be the most common,
-using the \href{http://linux.die.net/man/1/zip}{\texttt{zip}} and
-\href{http://linux.die.net/man/1/unzip}{\texttt{unzip}} commands:
+using the \href{http://linux.die.net/man/1/zip}{\texttt{zip}}\drcmd{zip}
+and \href{http://linux.die.net/man/1/unzip}{\texttt{unzip}}\drcmd{unzip}
+commands:
+
+\drcap{zip command}
 
 \begin{verbatim}
-~ $ mkdir foo
+~ $ cd Foo
+~/Foo $ touch a b c
+~/Foo $ mkdir d
+~/Foo $ touch d/e
+~/Foo $ cd ..
+~ $ zip -r Foo Foo
+  adding: Foo/ (stored 0%)
+  adding: Foo/c (stored 0%)
+  adding: Foo/b (stored 0%)
+  adding: Foo/d/ (stored 0%)
+  adding: Foo/d/e (stored 0%)
+  adding: Foo/a (stored 0%)
+~ $ ls -l Foo.zip
+-rw-r--r-- 1 myuser mygroup 854 Dec 14 15:31 Foo.zip
+\end{verbatim}
 
-~ $ cd foo
+\drcap{unzip command}
 
-~ $ touch a b c
-
-~ $ mkdir d
-
-~ $ touch d/e
-
-~ $ cd ..
-
-~ $ zip -r foo foo
-updating: foo/ (stored 0%)
-  adding: foo/c (stored 0%)
-  adding: foo/b (stored 0%)
-  adding: foo/d/ (stored 0%)
-  adding: foo/d/e (stored 0%)
-  adding: foo/a (stored 0%)
-
-~ $ ls -l foo.zip
--rw-r--r-- 1 myuser mygroup 854 Oct 24 15:56 foo.zip
-
-~ $ unzip foo
-Archive:  foo.zip
-replace foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
- extracting: foo/c                   
- extracting: foo/b                   
- extracting: foo/d/e                 
- extracting: foo/a                   
+\begin{verbatim}
+~ $ unzip Foo
+Archive:  Foo.zip
+replace Foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
+ extracting: Foo/c
+ extracting: Foo/b                   
+ extracting: Foo/d/e                 
+ extracting: Foo/a
 \end{verbatim}
 
 Not too exciting, but you get the drift. There is typically support for
-other compression algorithms, too, using
-\href{http://linux.die.net/man/1/bzip2}{\texttt{bzip2}} and
-\href{http://linux.die.net/man/1/7z}{\texttt{7z}} (7-zip) commands.
+other compression algorithms, such as the
+\href{http://linux.die.net/man/1/gzip}{\texttt{gzip}}\drcmd{gzip},
+\href{http://linux.die.net/man/1/bzip2}{\texttt{bzip2}}\drcmd{bzip2} and
+\href{http://linux.die.net/man/1/7z}{\texttt{7z}}\drcmd{7z} (7-zip)
+commands.
 
 However, the ``native'' way to ``archive'' a directory's contents in
-``UNIX'' is with \href{http://linux.die.net/man/1/tar}{\texttt{tar}},
-which is so old that \texttt{tar} stands for ``tape archive.'' Its
-purpose is to take virtually any directory structure and create a single
-output ``stream'' or file of it. That is then typically ran through a
+``UNIX'' is with
+\href{http://linux.die.net/man/1/tar}{\texttt{tar}}\drcmd{tar}, which is
+so old that \texttt{tar} stands for ``tape archive.'' Its purpose is to
+take virtually any directory structure and create a single output
+``stream'' or file of it. That is then typically ran through a
 compression command and the result is called a ``tarball'':
 
+\drcap{Creating a tarball}
+
 \begin{verbatim}
-~ $ tar cvf foo.tar foo/*
-foo/a
-foo/b
-foo/c
-foo/d/
-foo/d/e
-
-~ $ ls -l foo.tar
--rw-r--r-- 1 myuser mygroup 10240 Oct 24 16:14 foo.tar
-
-~ $ gzip foo.tar
-
-~ $ ls -l foo.tar.gz 
--rw-r--r-- 1 myuser mygroup 187 Oct 24 16:14 foo.tar.gz
+~ $ tar cvf Foo.tar Foo/*
+Foo/a
+Foo/b
+Foo/c
+Foo/d/
+Foo/d/e
+~ $ ls -l Foo.tar 
+-rw-r--r-- 1 myuser mygroup 10240 Dec 19 07:52 Foo.tar
+~ $ gzip Foo.tar 
+~ $ ls -l Foo.tar.gz 
+-rw-r--r-- 1 myuser mygroup 193 Dec 19 07:52 Foo.tar.gz
 \end{verbatim}
 
 In the \texttt{tar} command above, the parameters are \texttt{c} (create
@@ -2005,31 +2475,33 @@ a new archive), \texttt{v} (turn on ``verbose'' output) and \texttt{f}
 followed by the file name of the new \texttt{.tar} file.
 
 \textbf{Note:} \texttt{tar} supports POSIX-style parameters
-(\texttt{-c}), GNU-style (\texttt{-{}-create}), and the old BSD-style
-(\texttt{c} with no hyphens at all), as shown in these examples. So both
-of the following are also equivalent to the above:
+(\texttt{-c}), GNU-style (\texttt{-{}-create}), as well as the older
+style (\texttt{c} with no hyphens at all), as shown in these examples.
+So both of the following are also equivalent to the above:
+
+\drcap{tar parameter styles}
 
 \begin{verbatim}
-~ $ tar -c -v -f foo.tar foo/*
-
-~ $ tar --create --verbose --file=foo.tar foo/*
+~ $ tar -c -v -f Foo.tar Foo/*
+~ $ tar --create --verbose --file=Foo.tar Foo/*
 \end{verbatim}
 
 The use of compression commands along with \texttt{tar} is so prevalent
 that they've been built into \texttt{tar} itself now as optional
 parameters:
 
-\begin{verbatim}
-~ $ tar cvzf foo.tgz foo
-foo/
-foo/c
-foo/b
-foo/d/
-foo/d/e
-foo/a
+\drcap{One-step tarball}
 
-~ $ ls -l foo.tgz
--rw-r--r-- 1 myuser mygroup 191 Oct 24 16:19 foo.tgz
+\begin{verbatim}
+~ $ tar cvzf Foo.tgz Foo
+Foo/
+Foo/c
+Foo/b
+Foo/d/
+Foo/d/e
+Foo/a
+~ $ ls -l Foo.tgz 
+-rw-r--r-- 1 myuser mygroup 197 Dec 19 07:54 Foo.tgz
 \end{verbatim}
 
 In this case the \texttt{z} parameter says to use \texttt{gzip}
@@ -2041,27 +2513,34 @@ example.
 extract something like the above, you can change the create (\texttt{c})
 parameter to extract (\texttt{x}), like this:
 
+\drcap{Extracting a tarball}
+
 \begin{verbatim}
-~ $ tar xvf foo.tgz
-foo/
-foo/c
-foo/b
-foo/d/
-foo/d/e
-foo/a
+~ $ tar xvf Foo.tgz 
+Foo/
+Foo/c
+Foo/b
+Foo/d/
+Foo/d/e
+Foo/a
 \end{verbatim}
 
 \section{Let's Link Up!}\label{lets-link-up}
 
 In Windows there are ``shortcuts,'' which are simply special files that
 the OS knows to interpret as ``go open this other file over there.''
-There are also ``hard links'' that allow to different directory entries
+There are also ``hard links'' that allow for different directory entries
 \emph{in the same file system} to point to the same physical file.
 
 UNIX file systems also have both these types of links (which isn't
-surprising, given that Microsoft got the ideas from UNIX). A ``soft
-link'' is equivalent to a Windows shortcut, and can point to a file or a
-directory, and can point to anything on any mounted file system:
+surprising, given that Microsoft got the ideas from UNIX). Both are
+created with the
+\href{http://linux.die.net/man/1/ln}{\texttt{ln}}\drcmd{ln} command. A
+``soft link''\index{soft link} is equivalent to a Windows shortcut, and
+can point to a file or a directory, and can point to anything on any
+mounted file system:
+
+\drcap{Soft links example}
 
 \begin{verbatim}
 ~ $ ls -l
@@ -2070,18 +2549,12 @@ total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 b
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
 drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:00 d
-
 ~ $ cd d
-
 ~ $ pwd
 /tmp/foo/d
-
 ~ $ cd ..
-
 ~ $ ln -s a MyThesis.doc
-
 ~ $ ln -s d Dee
-
 ~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
@@ -2090,9 +2563,7 @@ total 4
 drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:00 d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
-
 ~ $ cd Dee
-
 ~ $ pwd
 /tmp/foo/Dee
 \end{verbatim}
@@ -2107,36 +2578,32 @@ The things to notice about this example:
   Instead of a \texttt{-} or \texttt{d}, a soft link is shown in a
   \texttt{ls} listing as \texttt{l} regardless of whether the target is
   a file or directory. This is because a soft link doesn't ``know''
-  \textbf{\emph{what}} the target is - it is just a file with a name in
-  a directory pointing to another location. \textbf{\emph{What}} that
-  location is will be determine after the link is traversed.
+  \textbf{\emph{what}} the target is - it is just a file in a directory
+  pointing to another location. \textbf{\emph{What}} that location is
+  will be determined after the link is traversed.
 \end{enumerate}
 
-A ``hard link'' is a bit different. It can only be made between files
-and the two files must be on the same file system. That is because hard
-links are actually directory entries (as opposed to files in
-directories) that point to the same
-\href{https://en.wikipedia.org/wiki/Inode}{``inode''} on disk. From
-within a single directory it is impossible to tell if there are other
-directories with pointers to the same files (inodes) on disk.
+A ``hard link''\index{hard link} is a bit different. It can only be made
+between \emph{files} and the two files \textbf{\emph{must be on the same
+file system}}. That is because hard links are actually directory entries
+(as opposed to files in directories) that point to the same
+\href{https://en.wikipedia.org/wiki/Inode}{``inode''}\index{inode} on
+disk. From within a single directory it is impossible to tell if there
+are other directories with pointers to the same files (inodes) on disk.
+
+\drcap{Hard links example}
 
 \begin{verbatim}
 ~ $ ls
 a  b  c  d  Dee  MyThesis.doc
-
 ~ $ ln b B
-
 ~ $ cd d
-
 ~ $ ln ../b .
-
 ~ $ ls -l
 total 0
 -rw-r--r-- 3 myuser mygroup 0 Oct 24 15:53 b
 -rw-r--r-- 1 myuser mygroup 0 Oct 24 15:54 e
-
 ~ $ cd ..
-
 ~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
@@ -2157,6 +2624,8 @@ i.e., the exact same physical file.
 So what can possibly go wrong with links? With soft links the answer is
 easy - the ``remote'' location being pointed to goes away or is renamed:
 
+\drcap{Broken soft links example}
+
 \begin{verbatim}
 ~ $ ls -l
 total 4
@@ -2167,9 +2636,7 @@ total 4
 drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
-
 ~ $ rm a
-
 ~ $ ls -l
 total 4
 -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 b
@@ -2178,66 +2645,57 @@ total 4
 drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -> d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -> a
-
 ~ $ cat MyThesis.doc 
 cat: MyThesis.doc: No such file or directory
 \end{verbatim}
 
-So even though the soft link \texttt{MyThesis.doc} was still in the
+So even though the soft link \texttt{MyThesis.doc} is still in the
 directory, the actual underlying file \texttt{a} is now gone, and trying
 to access it via the soft link leads to the somewhat confusing ``No such
-file or directory'' error message (``I can see it! It's right there!'')
+file or directory'' error message (\emph{splutter} ``I can see it!
+\textbf{\emph{It's right there!}}'')
 
-With hard links, it isn't so much a problem as just the nature of the
-beast. Because each hard link is a directory (metadata) entry pointing
-to an inode, deleting one simply deletes that directory entry. As long
-as the file has other hard links pointing to it, it ``exists.'' Only
-when the last remaining hard link is removed has it been ``deleted.''
-Let's play:
+With hard links, it isn't so much a problem because of the nature of the
+beast. Since each hard link is a directory (metadata) entry pointing to
+an inode, deleting one simply deletes that directory entry. As long as
+the file has other hard links pointing to it, it ``exists.'' Only when
+the last remaining hard link is removed has it been ``deleted.'' Let's
+play:
+
+\drcap{Many hard linkes, one inode}
 
 \begin{verbatim}
 ~ $ echo "This is b." > b
-
 ~ $ cat b
 This is b.
-
 ~ $ cat B
 This is b.
-
 ~ $ cat d/b
 This is b.
 \end{verbatim}
 
-So, that makes sense. Above we had an original file \texttt{b} and
-created to hard links to it, \texttt{B} and \texttt{d/b}. When we edit
-\texttt{b} by placing ``This is b.'' in it, we see that it has the same
-contents no matter how we access it, because it is pointing to the same
-inode.
+So, that makes sense. We had an original file \texttt{b} and created two
+hard links to it, \texttt{B} and \texttt{d/b}. When we edit \texttt{b}
+by placing ``This is b.'' in it, we see that it has the same contents no
+matter how we access it, because it is pointing to the same inode.
 
 Can you guess how many \texttt{rm} commands it will take to delete the
 file containing ``This is b.''?
 
+\drcap{Deleting a file with many hard links}
+
 \begin{verbatim}
 ~ $ rm b
-
 ~ $ cat b
 cat: b: No such file or directory
-
 ~ $ cat B
 This is b.
-
 ~ $ cat d/b
 This is b.
-
 ~ $ rm B
-
 ~ $ cat d/b
 This is b.
-
 ~ $ rm d/b
-
-~ $ ls
-c  d  Dee  MyThesis.doc
 \end{verbatim}
 
 So, ultimately, it takes a \texttt{rm} for every hard link to
@@ -2255,7 +2713,9 @@ hierarchy starting at \texttt{/}, how do I know that
 system?
 
 There are multiple ways to tell, actually. The easiest is with the
-\href{http://linux.die.net/man/1/df}{\texttt{df}} command:
+\href{http://linux.die.net/man/1/df}{\texttt{df}}\drcmd{df} command:
+
+\drcap{df command}
 
 \begin{verbatim}
 ~ $ df
@@ -2270,73 +2730,75 @@ none                         102400       24    102376   1% /run/user
 /dev/sda1                    240972    50153    178378  22% /boot
 \end{verbatim}
 
-The ones of interested are the \texttt{/dev} entries, and we see that
+The ones of interest are the \texttt{/dev} entries, and we see that
 everything mounted under \texttt{/} is on one file system, except for
 whatever happens to be on the file system mounted under \texttt{/boot}.
 So outside of \texttt{/boot}, on this system we could hard link away to
 our heart's content.
 
 \textbf{Note:} - It is (barely) beyond the scope of this book to cover
-the \href{http://linux.die.net/man/8/mount}{\texttt{mount}} command. I
-wanted to, really bad, but it can get so complex so fast that I decided
-not to. Maybe if you ask, real nice\ldots{}
+the \href{http://linux.die.net/man/8/mount}{\texttt{mount}}\drcmd{mount}
+command. I wanted to, really bad, but with all the different file
+systems and device types and all the options for both it can get so
+complex so fast that I decided not to. Maybe if you ask, real
+nice\ldots{}
 
 \subsection{I'm Seeing Double}\label{im-seeing-double}
 
-So, both hard and soft links can have some interesting side effects if
-you think about them, yes? For one, if you are backing things up, then
-you may get duplicates in your backup set. In fact, with hard links you
-will, by definition, unless the backup software is very smart and doing
-things like de-duplication.
+So, both hard\index{hard links} and soft links\index{soft links} can
+have some interesting side effects if you think about them. For one, if
+you are backing things up, then you may get duplicates in your backup
+set. In fact, with hard links you will, by definition, unless the backup
+software is very smart and doing things like de-duplication.
 
 But even with soft links if everything just blindly followed them you
 could also get duplicates where you didn't want them, or even circular
 references. Also, the pointers in the soft link files are not evaluated
-until the a command references them. Note that the following is
-perfectly legal with soft links, but may not give the results you expect
-- think about current working directory shown by \texttt{pwd} in the
-following, and what the effects of the relative paths shown are as the
-sample progresses:
+until a command references them. Note that the following is perfectly
+legal with soft links, but may not give the results you expect - think
+about the current working directory shown by \texttt{pwd}\drcmd{pwd} in
+the following, and what the effects of the \textbf{\emph{relative
+paths}} as the sample progresses:
+
+\drcap{Soft links and relative paths}
 
 \begin{verbatim}
-~ $ pwd
-/tmp/foo
-
-~ $ rm -rf *
-
-~ $ touch a b c
-
-~ $ mkdir d
-
-~ $ touch d/e
-
-~ $ ln -s . d/f
-
-~ $ ls d/f
+~ $ cd Foo
+~/Foo $ rm -rf *
+~/Foo $ cd ..
+~ $ cd Foo
+~/Foo $ pwd
+/home/myuser/Foo
+~/Foo $ rm -rf *
+~/Foo $ mkdir d
+~/Foo $ touch a b c d/e
+~/Foo $ ln -s . d/f
+~/Foo $ ls d/f
 e  f
-
-~ $ ln -s .. d/g
-
-~ $ ls d/g
+~/Foo $ ln -s .. d/g
+~/Foo $ ls d/g
 a  b  c  d
 \end{verbatim}
 
-Many commands that deal with files and file systems, like \texttt{find},
-have parameters specifically telling the command whether to follow soft
-links or not (by default, \texttt{find} does not).
+Many commands that deal with files and file systems, like
+\texttt{find}\drcmd{find}, have parameters specifically telling the
+command whether to follow soft links or not (by default, \texttt{find}
+does not - see the next chapter for more).
 
 \section{What's the \texttt{diff}?}\label{whats-the-diff}
 
 Most people think of
-\href{http://linux.die.net/man/1/diff}{\texttt{diff}} as a tool only
-programmers find useful, but that is short-sighted. The whole purpose of
-\texttt{diff} is to show differences between files. For example, I
-backed up this document (which is a text file) before starting this
-chapter, then typed this introduction to \texttt{diff}. This is what
-\texttt{diff} shows:
+\href{http://linux.die.net/man/1/diff}{\texttt{diff}}\drcmd{diff} as a
+tool only programmers find useful, but that is short-sighted. The whole
+purpose of \texttt{diff} is to show differences between files. For
+example, I backed up this document (which is a text file) before
+starting this section, then typed this introduction to \texttt{diff}.
+This is what \texttt{diff} showed after I added the new paragraph:
+
+\drcap{diff example}
 
 \begin{verbatim}
-~ $ diff Agenda.bak Agenda.md
+~ $ diff Step02.bak Step02.md
 1285a1286,1291
 > Most people think of [`diff`](http://linux.die.net/man/1/diff) as a tool
 > only programmers find useful, but that is short-sighted. The whole purpose
@@ -2353,6 +2815,8 @@ inserted, starting at line 1285. Pretty meta, but not real exciting.
 Let's look at something else, say a configuration file for an
 application. We have an original file, \texttt{orig.conf}:
 
+\drcap{orig.conf file}
+
 \begin{verbatim}
 ~ $ cat orig.conf
 FOO=1
@@ -2366,6 +2830,8 @@ BAR=Xyzzy
 
 Then we have a new file, \texttt{new.conf}:
 
+\drcap{new.conf file}
+
 \begin{verbatim}
 ~ $ cat new.conf
 FOO=2
@@ -2376,6 +2842,8 @@ SAME=ALWAYS
 \end{verbatim}
 
 Now if we \texttt{diff} them:
+
+\drcap{Using diff on config files}
 
 \begin{verbatim}
 ~ $ diff orig.conf new.conf
@@ -2394,12 +2862,13 @@ form the ``right.'' Again, not too interesting, but imagine that both
 files were thousands of lines long, and there were only a few changes,
 and you were trying to detect and recover an accidentally-deleted line.
 Now you can see why \texttt{diff} can be handy, as long as you keep
-around a prior version either in a backup file or source code control to
-compare against.
+around a prior version either in a backup file or version control system
+to compare against.
 
 \texttt{diff} is your friend. It really comes into play with a version
-control system like \texttt{git}, but again, that is beyond the scope of
-this book.
+control system like
+\href{http://linux.die.net/man/1/git}{\texttt{git}}\drcmd{git}, but
+again, that is beyond the scope of this book.
 
 \hyperdef{}{finding-meaning}{\chapter{Finding
 Meaning}\label{finding-meaning}}
@@ -4192,8 +4661,9 @@ You will be prompted for credentials (or you can use certificates, but
 that is \textbf{\emph{way}} beyond this text's goals).
 
 You can also use the \texttt{SSH} protocol to securely transfer files
-between systems with the \href{linux.die.net/man/1/scp}{\texttt{scp}}
-command. It works like this for a recursive directory copy:
+between systems with the
+\href{http://linux.die.net/man/1/scp}{\texttt{scp}} command. It works
+like this for a recursive directory copy:
 
 \begin{verbatim}
 scp -r myfiles/* myuser@remoteserver:/home/myuser/.
@@ -4273,9 +4743,9 @@ And to see any local overrides of network names or aliases:
 127.0.0.1       localhost
 \end{verbatim}
 
-\textbf{Note:} The UNIX \texttt{hosts} file is the basis for the Windows
-version \linebreak
-(\texttt{C:\textbackslash{}Windows\textbackslash{}System32\textbackslash{}drivers\textbackslash{}etc\textbackslash{}hosts})
+\textbf{Note:} The UNIX \texttt{/etc/hosts} file is the basis for the
+Windows version located at
+\texttt{C:\textbackslash{}Windows\textbackslash{}System32\textbackslash{}drivers\textbackslash{}etc\textbackslash{}hosts},
 and has similar syntax.
 
 \hyperdef{}{the-man-behind-the-curtain}{\chapter{The Man Behind the
@@ -5865,6 +6335,12 @@ Source code control is provided by
 \href{http://linux.die.net/man/1/git}{\texttt{git}}. You can view
 \href{https://github.com/dullroar/ten-steps-to-linux-survival}{the files
 used to create this book} on GitHub.
+
+The fonts used are
+\href{https://en.wikipedia.org/wiki/DejaVu_fonts}{DejaVu} Serif for the
+body text, DejaVu Sans for headers, and
+\href{https://en.wikipedia.org/wiki/Ubuntu_\%28typeface\%29}{Ubuntu
+Mono} for code (because it is nicely condensed).
 
 The cover photo is of our dog, Merv, who is reminding you, ``Don't
 panic!'' Photo by Gloria Anderson, used with permission.

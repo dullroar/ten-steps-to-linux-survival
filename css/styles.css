@@ -1,0 +1,32 @@
+body {
+	font-family: "DejaVu Serif","Liberation Serif","Times New Roman",Times,serif;
+}
+code, pre {
+	background-color: #F7F7F7;
+	border-radius: 3px;
+	box-sizing: border-box;
+	font-family: "Ubuntu Mono","Liberation Mono",Consolas,Menlo,Courier,monospace;
+}
+code {
+	padding-bottom: 2px;
+	padding-top: 2px;
+	word-wrap: break-word;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: "DejaVu Sans","Liberation Sans",Helvetica,Arial,sans-serif;
+}
+pre {
+	color: #333;
+	padding: 16px;
+	word-wrap: normal;
+}
+
+@media not amzn-kf8, amzn-mobi {
+	pre {
+		min-width: 750px;
+		max-width: 1000px;
+		overflow: auto;
+		overflow-x: auto;
+		overflow-y: auto;		
+	}
+}

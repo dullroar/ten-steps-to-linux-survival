@@ -3,6 +3,9 @@
 title: Jim's Ten Steps to Linux Survival
 author: Jim Lehmer
 tags: [linux, bash]
-rights: 'Creative Commons
-Attribution-ShareAlike 4.0 International License'
+date: 2015
+rights: 'Creative Commons Attribution-ShareAlike 4.0 International License'
+subject: Linux
+description: Linux for Windows people
+stylesheet: ./css/styles.css
 ...

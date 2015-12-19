@@ -5,16 +5,19 @@
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <meta name="author" content="Jim Lehmer">
+  <meta name="dcterms.date" content="2015-01-01">
   <title>Jim's Ten Steps to Linux Survival</title>
   <style type="text/css">code{white-space: pre;}</style>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
 <header>
 <h1 class="title">Jim's Ten Steps to Linux Survival</h1>
 <h2 class="author">Jim Lehmer</h2>
+<h3 class="date">2015</h3>
 </header>
 <nav id="TOC">
 <ul>
@@ -24,6 +27,7 @@
 <li><a href="#why">Why?</a></li>
 <li><a href="#caveat-administrator">Caveat Administrator</a></li>
 <li><a href="#conventions">Conventions</a></li>
+<li><a href="#acknowledgments">Acknowledgments</a></li>
 </ul></li>
 <li><a href="#some-history">Some History</a><ul>
 <li><a href="#why-does-this-matter">Why Does This Matter?</a></li>
@@ -138,19 +142,18 @@
 </nav>
  
 
-By James Lehmer v0.5 
+By James Lehmer v0.6 
 
 <p><em>Jim's Ten Steps to Linux Survival</em> by James Lehmer is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.  </p>
 <figure>
 <img src="./images/Merv.jpg" title="Merv sez, &#39;Don&#39;t panic.&#39;" alt="Merv sez, &quot;Don&#39;t panic.&quot;" /><figcaption>Merv sez, &quot;Don't panic.&quot;</figcaption>
 </figure>
-<p><b>By James Lehmer</b> <br /> <br /> v0.5 <br /> <br /> <a rel="license"
+<p><b>By James Lehmer</b> <br /> <br /> v0.6 <br /> <br /> <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/"><img
 alt="Creative Commons License" style="border-width:0"
-src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/></a> <br /> <br /> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><i>Jim's Ten Steps to Linux Survival</i></span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">James Lehmer</span> is licensed under a <a rel="license"
+src="./images/cc-by-sa.png"/></a> <br /> <br /> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><i>Jim's Ten Steps to Linux Survival</i></span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">James Lehmer</span> is licensed under a <a rel="license"
 href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
-<p></p>
-<p><strong>Dedicated to my first three technical mentors</strong> - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think (and once called me an &quot;inveterate toolmaker&quot; in a review). And Kim Manchak, who let me be more than he hired me to be (and continues to be a great chess opponent). Thank you, gentlemen. I've tried to pay it forward. This book is part of that.</p>
+<p>*Dedicated to my first three technical mentors** - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think (and once called me an &quot;inveterate toolmaker&quot; in a review). And Kim Manchak, who let me be more than he hired me to be (and continues to be a great chess opponent). Thank you, gentlemen. I've tried to pay it forward. This book is part of that.</p>
 <p></p>
 <h1 id="introduction"><a href="#introduction">Introduction</a></h1>
 <blockquote>
@@ -216,6 +219,7 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <h2 id="conventions"><a href="#conventions">Conventions</a></h2>
 <p>If a command, file name or other &quot;computer code&quot; is shown in-line in a sentence, it will appear in a fixed-width font, e.g., <code>ls --recursive *.txt</code>.</p>
 <p>If a command and its output, script code or something else is shown in a block, it will appear like this:</p>
+<p></p>
 <pre><code>~ $ ps -AH
   PID TTY          TIME CMD
     2 ?        00:00:00 kthreadd
@@ -226,9 +230,11 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
     9 ?        00:00:09   rcuos/1
    10 ?        00:00:07   rcuos/2
 ...and so on...</code></pre>
-<p><strong>Note:</strong> The examples in this book typically show something like <code>~ $</code> or <code>#</code> before the command (the latter especially when logged in as <code>root</code> or running under <code>csh</code>). These &quot;command prompts&quot; are set in <code>bash</code> via the <a href="https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto"><code>PS1</code> environment variable</a> and are not meant to be typed in as part of the command.</p>
-<p>Examples  may also appear in a screenshot.</p>
-<p> <img src="./images/ps-AH.png" title="Sample command" alt="Sample command" /> </p>
+<p><strong>Note:</strong> The examples in this book typically show something like <code>~ $</code> before the command, or <code>#</code> (when logged in as root) or <code>%</code> (when running under <code>csh</code>). These &quot;command prompts&quot; are set in <code>bash</code> via the <a href="https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto"><code>PS1</code> environment variable</a> and are not meant to be typed in as part of the command.</p>
+<p>Examples may also appear in a screen shot:</p>
+<p> <img src="./images/ps-AH.png" title="Sample command" alt="Sample command" /></p>
+<h2 id="acknowledgments"><a href="#acknowledgments">Acknowledgments</a></h2>
+<p>Thanks to Ken Astl for reading an early draft of this book.</p>
 <h1 id="some-history"><a href="#some-history">Some History</a></h1>
 <p><strong><em>UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,” Cygwin, and why any of this matters now. “Why does this script off the internet work on this system and not on that one?”</em></strong></p>
 <blockquote>
@@ -237,9 +243,9 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <p>UNIX and its successors such as Linux have a long history reaching into the depths of time:</p>
 <ul>
 <li><p><strong>Prehistory</strong> - late 1960s, Nixon, Vietnam, Woodstock, Moon landing, <a href="https://en.wikipedia.org/wiki/Multics">Multics</a> at MIT, GE and Bell Labs.</p></li>
-<li><p><strong>In the beginning</strong> - early 1970s, Nixon drags on, Watergate, Bell Labs, <a href="https://en.wikipedia.org/wiki/Ken_Thompson">Thompson</a> &amp; <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie">Ritchie</a>, <a href="https://en.wikipedia.org/wiki/History_of_Unix">UNIX</a>,  blah blah blah...</p></li>
-<li><p><strong>More Trouble From Berkeley</strong> - late 1970s, Carter, disco, Iran hostages, UC Berkely releases the <a href="https://en.wikipedia.org/wiki/Berkeley_Software_Distribution">Berkeley Software Distribution</a> (BSD),  a port based on the Bell Labs UNIX. Let the forking begin!</p></li>
-<li><p><strong>Goes commercial</strong> - 1980s, Reagan, Iran Contra, <em>E.T.</em>, AT&amp;T releases <a href="https://en.wikipedia.org/wiki/UNIX_System_V">System V</a>  as first commercial UNIX. From the same background as Bell Labs UNIX, but evolved with subtle and not so subtle differences in approaches to command syntax, networking and much more. It is this release and AT&amp;T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.</p></li>
+<li><p><strong>In the beginning</strong> - early 1970s, Nixon drags on, Watergate, Bell Labs, <a href="https://en.wikipedia.org/wiki/Ken_Thompson">Thompson</a> &amp; <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie">Ritchie</a>, <a href="https://en.wikipedia.org/wiki/History_of_Unix">UNIX</a>, blah blah blah...</p></li>
+<li><p><strong>More Trouble From Berkeley</strong> - late 1970s, Carter, disco, Iran hostages, UC Berkely releases the <a href="https://en.wikipedia.org/wiki/Berkeley_Software_Distribution">Berkeley Software Distribution</a> (BSD), a port based on the Bell Labs UNIX. Let the forking begin!</p></li>
+<li><p><strong>Goes commercial</strong> - 1980s, Reagan, Iran Contra, <em>E.T.</em>, AT&amp;T releases <a href="https://en.wikipedia.org/wiki/UNIX_System_V">System V</a> as first commercial UNIX. From the same background as Bell Labs UNIX, but evolved with subtle and not so subtle differences in approaches to command syntax, networking and much more. It is this release and AT&amp;T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.</p></li>
 <li><p><strong>Explosion of &quot;UNIX&quot;</strong> -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) &quot;UNIX&quot; platforms:</p>
 <ul>
 <li><strong>HP HP-UX</strong></li>
@@ -249,8 +255,8 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <li><strong>SGI IRIX</strong></li>
 <li><strong>...and many, many more!</strong> - although mostly all that's left now is HP-UX, AIX and Solaris.</li>
 </ul></li>
-<li><p><strong>Linux</strong> - 1991+, Clinton I, grunge, <em>Titanic</em>, <a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a> releases a project called <a href="https://en.wikipedia.org/wiki/Linux">Linux</a>  based on <a href="https://en.wikipedia.org/wiki/MINIX">MINIX</a> (and hence why Linus says Linux is pronounced like &quot;MINIX&quot; and not like &quot;Linus&quot;).</p></li>
-<li><p><strong>Proliferation of the BSDs</strong> - mid-to-late 1990s, still Clinton I, Monicagate, Kosovo, various ports of BSD including <a href="https://en.wikipedia.org/wiki/NetBSD">NetBSD</a>,  <a href="https://en.wikipedia.org/wiki/FreeBSD">FreeBSD</a>  and <a href="https://en.wikipedia.org/wiki/OpenBSD">OpenBSD</a>,  all happen in the same time frame as Linux. Like Linux distros, each has its own focus and prejudices, some of which are distinctly &quot;anti-Linux.&quot; The &quot;big three&quot; are all still in heavy use today, especially among ISPs. The perception is still out there among a generation of sysadmins that Linux is for the desktop and BSDs for servers, but that reality shifted a long time ago.</p></li>
+<li><p><strong>Linux</strong> - 1991+, Clinton I, grunge, <em>Titanic</em>, <a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a> releases a project called <a href="https://en.wikipedia.org/wiki/Linux">Linux</a> based on <a href="https://en.wikipedia.org/wiki/MINIX">MINIX</a> (and hence why Linus says Linux is pronounced like &quot;MINIX&quot; and not like &quot;Linus&quot;).</p></li>
+<li><p><strong>Proliferation of the BSDs</strong> - mid-to-late 1990s, still Clinton I, Monicagate, Kosovo, various ports of BSD including <a href="https://en.wikipedia.org/wiki/NetBSD">NetBSD</a>, <a href="https://en.wikipedia.org/wiki/FreeBSD">FreeBSD</a> and <a href="https://en.wikipedia.org/wiki/OpenBSD">OpenBSD</a>, all happen in the same time frame as Linux. Like Linux distros, each has its own focus and prejudices, some of which are distinctly &quot;anti-Linux.&quot; The &quot;big three&quot; are all still in heavy use today, especially among ISPs. The perception is still out there among a generation of sysadmins that Linux is for the desktop and BSDs for servers, but that reality shifted a long time ago.</p></li>
 <li><p><strong>Ports of call</strong> - 2000+, Bush II &amp; Obama, Afghanistan &amp; Gulf War 2, lots of cross-porting of everything open source. However, <a href="https://en.wikipedia.org/wiki/Open-source_license">licenses matter</a>, and <a href="https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses">there sure are a lot of them</a>. While it has settled down some with the dismissal of the SCO lawsuit, intellectual property remains a problem area in open source, even as its use has exploded.</p></li>
 </ul>
 <p><strong>Q:</strong> So, what's Linux? Or BSD? Or even UNIX?</p>
@@ -258,11 +264,11 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <p>Hence, for the rest of this text I will tend to talk somewhat interchangeably about &quot;Linux&quot; and &quot;UNIX&quot; and the like. When it matters, I will mention which OS I am discussing by name, but often I will use &quot;UNIX&quot; (in quotes) to mean anything in the &quot;family tree&quot; of the original Bell Labs offspring, or that &quot;acts like,&quot; well, UNIX.</p>
 <p>To further muddy the waters, there have been multiple attempts to &quot;standardize&quot; whatever it is this thing is called:</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/POSIX"><strong>POSIX</strong></a> -  a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the US government started wanting systems to be &quot;POSIX-compliant.&quot;</li>
+<li><a href="https://en.wikipedia.org/wiki/POSIX"><strong>POSIX</strong></a> - a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the US government started wanting systems to be &quot;POSIX-compliant.&quot;</li>
 </ul>
 <p><strong>Note:</strong> No system runs POSIX, they all are &quot;similar but different.&quot; Even Windows can claim to be POSIX in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.</p>
 <ul>
-<li><p><a href="https://en.wikipedia.org/wiki/GNU_Project"><strong>GNU Project</strong></a> - <a href="https://en.wikipedia.org/wiki/Richard_Stallman">Richard Stallman</a> founded the <a href="https://en.wikipedia.org/wiki/Free_Software_Foundation">Free Software Foundation</a> (FSF) and GNU project  in the mid-1980s, <strong><em>long</em></strong> before Linux (GNU = &quot;GNU's Not Unix&quot;). The GNU project delivers <a href="https://www.gnu.org/software/software.html">a suite of programs and tools</a>, many of which are used in both Linux and BSD variants as de facto standards.</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/GNU_Project"><strong>GNU Project</strong></a> - <a href="https://en.wikipedia.org/wiki/Richard_Stallman">Richard Stallman</a> founded the <a href="https://en.wikipedia.org/wiki/Free_Software_Foundation">Free Software Foundation</a> (FSF) and GNU project in the mid-1980s, <strong><em>long</em></strong> before Linux (GNU = &quot;GNU's Not Unix&quot;). The GNU project delivers <a href="https://www.gnu.org/software/software.html">a suite of programs and tools</a>, many of which are used in both Linux and BSD variants as de facto standards.</p></li>
 <li><p><strong>Various Linux Efforts</strong> - there have also been various movements over the years, some more successful than others, to &quot;standardize&quot; Linux or some part of it, such as the file system layout, the <code>init</code> system, documentation, and now even what is part of the most basic &quot;core OS&quot; for things like better containerization.</p></li>
 </ul>
 <h2 id="why-does-this-matter"><a href="#why-does-this-matter">Why Does This Matter?</a></h2>
@@ -277,24 +283,34 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <li><p><strong>BSD &amp; MIT</strong> - more focused on letting anyone do anything to the code as long as the original author is acknowledged and liability released.</p></li>
 </ul>
 <p>The best thing is to be vaguely aware of this history and licenses and if something isn't available on a certain platform or if a command isn't taking a specific parameter to search for variants.</p>
-<p>For example, note the difference in output between the first figure  showing all processes with the <a href="http://linux.die.net/man/1/ps"><code>ps</code></a> (<em>process</em>) command on a Linux system (in this case Linux Mint under <code>bash</code>), versus the second example  on a FreeBSD system at my ISP, where <code>csh</code> is the default shell.</p>
-<p> <img src="./images/ps-a-bash.png" title="ps on Linux in bash" alt="ps on Linux in bash" /> </p>
-<p> <img src="./images/ps-a-csh.png" title="ps on FreeBSD in csh" alt="ps on FreeBSD in csh" /> </p>
+<p>For example, note the difference in output between showing all processes with the <a href="http://linux.die.net/man/1/ps"><code>ps</code></a> (<em>process</em>) command on a Linux system, in this case Linux Mint under <code>bash</code>:</p>
+<p></p>
+<pre><code>~ $ ps -a
+  PID TTY          TIME CMD
+ 4508 pts/3    00:00:00 su
+ 4516 pts/3    00:00:00 bash
+ 4594 pts/3    00:00:00 ps</code></pre>
+<p>...versus on a FreeBSD system at my ISP, where <code>csh</code> is the default shell:</p>
+<p></p>
+<pre><code>%ps -a
+  PID  TT  STAT      TIME COMMAND
+ 5073  p0  Ss     0:00.02 -csh (csh)
+ 5115  p0  RN+    0:00.00 ps -a</code></pre>
 <p>To make things even more confusing, the Linux version of <code>ps</code> has been written to understand the BSD-style syntax and flags, too!</p>
 <h2 id="panic-at-the-distro"><a href="#panic-at-the-distro">Panic at the Distro</a></h2>
 <p>Remember that &quot;Linux,&quot; FreeBSD, OpenBSD and NetBSD are all really just OS kernels, boot loaders, drivers and enough functionality to get a computer up and running. Most functionality comes via other &quot;packages.&quot; From almost the beginning there have been alternative approaches to both what packages should (and should not) be included, as well as how best to manage the installing, updating and removal of those packages.</p>
-<p>In the BSD world each major port has its own approach. In the Linux world the job of deciding all this and putting it all together falls to distributions or &quot;distros.&quot;  These have evolved over time into a series of <a href="https://en.wikipedia.org/wiki/Linux_distribution#Popular_distributions">&quot;families&quot;</a> based in large part around the <a href="https://en.wikipedia.org/wiki/Package_manager">package management tool</a> predominantly used:</p>
+<p>In the BSD world each major port has its own approach. In the Linux world the job of deciding all this and putting it all together falls to distributions or &quot;distros.&quot; These have evolved over time into a series of <a href="https://en.wikipedia.org/wiki/Linux_distribution#Popular_distributions">&quot;families&quot;</a> based in large part around the <a href="https://en.wikipedia.org/wiki/Package_manager">package management tool</a> predominantly used:</p>
 <ul>
-<li><p><strong><code>apt-get</code>, <code>dpkg</code> and <code>.deb</code> files</strong> -   <a href="https://en.wikipedia.org/wiki/Debian">Debian</a> flavors, such as <a href="https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a> and <a href="https://en.wikipedia.org/wiki/Linux_Mint">Mint</a> (Mint is currently my desktop Linux of choice, Debian my preferred server OS, but both solely based on familiarity).</p></li>
-<li><p><strong><code>pacman</code></strong> -  <a href="https://en.wikipedia.org/wiki/Arch_Linux">Arch</a> flavors.</p></li>
-<li><p><strong><code>rpm</code> and <code>yum</code></strong> -   Red Hat flavors, such as <a href="https://en.wikipedia.org/wiki/Fedora_%28operating_system%29">Fedora</a>, <a href="https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">Red Hat Enterprise</a> and <a href="https://en.wikipedia.org/wiki/CentOS">CentOS</a>.</p></li>
+<li><p><strong><code>apt-get</code>, <code>dpkg</code> and <code>.deb</code> files</strong> - <a href="https://en.wikipedia.org/wiki/Debian">Debian</a> flavors, such as <a href="https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a> and <a href="https://en.wikipedia.org/wiki/Linux_Mint">Mint</a> (Mint is currently my desktop Linux of choice, Debian my preferred server OS, but both solely based on familiarity).</p></li>
+<li><p><strong><code>pacman</code></strong> - <a href="https://en.wikipedia.org/wiki/Arch_Linux">Arch</a> flavors.</p></li>
+<li><p><strong><code>rpm</code> and <code>yum</code></strong> - Red Hat flavors, such as <a href="https://en.wikipedia.org/wiki/Fedora_%28operating_system%29">Fedora</a>, <a href="https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">Red Hat Enterprise</a> and <a href="https://en.wikipedia.org/wiki/CentOS">CentOS</a>.</p></li>
 <li><p><strong>Source code</strong> - <a href="https://en.wikipedia.org/wiki/Gentoo_Linux">Gentoo</a> tends to be a &quot;compile from scratch&quot; environment, much like <a href="https://en.wikipedia.org/wiki/FreeBSD_Ports">FreeBSD</a>.</p></li>
 <li><p><strong>&quot;Tar balls&quot;</strong> - source code or binaries delivered via archived and zipped directories. Common on <a href="https://en.wikipedia.org/wiki/Slackware">Slackware</a>, some others.</p></li>
 </ul>
 <h2 id="get-embed-with-me"><a href="#get-embed-with-me">Get Embed With Me</a></h2>
-<p>A lot of firmware in embedded devices is based on some sort of &quot;UNIX&quot; flavor. Networking gear at both the consumer and enterprise level, storage devices and so on all tend to run something that &quot;looks like&quot; UNIX at some level. Of course, as to what's actually available, who knows? If you can get a shell (command prompt) the best thing to do is see what works.</p>
+<p>A lot of firmware in embedded devices is based on some sort of &quot;UNIX&quot; flavor. Networking gear at both the consumer and enterprise level, storage devices and so on all tend to run something that &quot;looks like&quot; UNIX at some level. <a href="https://en.wikipedia.org/wiki/BusyBox">BusyBox</a> is a good example of a &quot;UNIX-like&quot; shell (command prompt) used by many embedded systems. Of course, as to what's actually available, who knows? If you can get shell open, the best thing to do is see what works.</p>
 <h2 id="cygwin"><a href="#cygwin">Cygwin</a></h2>
-<p><a href="http://cygwin.com/">Cygwin</a>  is an interesting beast. It is a DLL for Windows that implements most of the POSIX and related UNIX-like &quot;system API calls&quot; for programming, and then is also a series of ported open source packages, including shells, utilities and even desktop environments, all <strong><em>recompiled</em></strong> to run on Windows as long as the Cygwin DLL is accessible. Like a Linux distro it has an installer that is a &quot;package manager,&quot; and if a package isn't available, you can usually recompile the source code using Cygwin.</p>
+<p><a href="http://cygwin.com/">Cygwin</a> is an interesting beast. It is a DLL for Windows that implements most of the POSIX and related UNIX-like &quot;system API calls&quot; for programming, and then is also a series of ported open source packages, including shells, utilities and even desktop environments, all <strong><em>recompiled</em></strong> to run on Windows as long as the Cygwin DLL is accessible. Like a Linux distro it has an installer that is a &quot;package manager,&quot; and if a package isn't available, you can usually recompile the source code using Cygwin.</p>
 <p>You cannot run Linux or BSD binaries on Cygwin without recompiling them first. <strong>However</strong>, you can often run <strong><em>scripts</em></strong> from a Linux environment on Cygwin with little or no tweaking. Which means you can then take advantage of a lot of excellent open source tools simply by installing their packages in Cygwin and running scripts against them.</p>
 <p>Ultimately, though, Cygwin is of limited use, basically for getting to some open source tools on Windows without having to set up a Linux box. You can do a lot of amazing things with Cygwin with enough effort (including running X and a desktop environment like GNOME!), but at some point why not expend that effort in standing up a &quot;real&quot; Linux (virtual) machine anyway?</p>
 <h1 id="come-out-of-your-shell"><a href="#come-out-of-your-shell">Come Out of Your Shell</a></h1>
@@ -316,7 +332,7 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <ul>
 <li><strong><code>dash</code></strong> - Debian Almquist shell (replaced <code>ash</code> in Debian)</li>
 </ul></li>
-<li><p><a href="https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29"><strong><code>bash</code></strong></a> - Bourne-again shell (get it?), the &quot;standard&quot; Linux shell.</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29"><strong><code>bash</code></strong></a> - Bourne-again shell (get it?), the &quot;standard&quot; Linux shell (as much as anything is standard across Linux distros).</p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Korn_shell"><strong><code>ksh</code></strong></a> - Korn shell.</p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Z_shell"><strong><code>zsh</code></strong></a> - Z shell.</p></li>
 </ul></li>
@@ -326,31 +342,109 @@ href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attributi
 <p>Most Linux distros use <code>bash</code>, but the BSDs are all over the place. We're going to assume <code>bash</code> for the rest of this tutorial. With few modifications, anything in the <code>sh</code> hierarchy above can usually run in the other members of the same tree.</p>
 <h2 id="bash-built-ins"><a href="#bash-built-ins"><code>bash</code> Built-Ins</a></h2>
 <p>Every shell has some &quot;built-in&quot; commands that are implemented as part of the shell and not as an external command or program, and <code>bash</code> has its share, as shown by running the <a href="http://linux.die.net/man/1/help"><code>help</code></a> command in a <code>bash</code> terminal:</p>
-
-
 <p></p>
-<figure>
-<img src="./images/help.png" title="Built-in commands" alt="Built-in commands" /><figcaption>Built-in commands</figcaption>
-</figure>
-<p></p>
+<pre><code>~ $ help
+GNU bash, version 4.3.11(1)-release (x86_64-pc-linux-gnu)
+These shell commands are defined internally.  Type `help&#39; to see this list.
+Type `help name&#39; to find out more about the function `name&#39;.
+Use `info bash&#39; to find out more about the shell in general.
+Use `man -k&#39; or `info&#39; to find out more about commands not in this list.
+
+A star (*) next to a name means that the command is disabled.
+
+ job_spec [&amp;]                            history [-c] [-d offset] [n] or hist&gt;
+ (( expression ))                        if COMMANDS; then COMMANDS; [ elif C&gt;
+ . filename [arguments]                  jobs [-lnprs] [jobspec ...] or jobs &gt;
+ :                                       kill [-s sigspec | -n signum | -sigs&gt;
+ [ arg... ]                              let arg [arg ...]
+ [[ expression ]]                        local [option] name[=value] ...
+ alias [-p] [name[=value] ... ]          logout [n]
+ bg [job_spec ...]                       mapfile [-n count] [-O origin] [-s c&gt;
+ bind [-lpsvPSVX] [-m keymap] [-f file&gt;  popd [-n] [+N | -N]
+ break [n]                               printf [-v var] format [arguments]
+ builtin [shell-builtin [arg ...]]       pushd [-n] [+N | -N | dir]
+ caller [expr]                           pwd [-LP]
+ case WORD in [PATTERN [| PATTERN]...)&gt;  read [-ers] [-a array] [-d delim] [-&gt;
+ cd [-L|[-P [-e]] [-@]] [dir]            readarray [-n count] [-O origin] [-s&gt;
+ command [-pVv] command [arg ...]        readonly [-aAf] [name[=value] ...] o&gt;</code></pre>
 <p>Why does this matter? Because if you are in an environment and something as fundamental as <code>echo</code> isn't working, you may not be working in a shell that is going to act like a &quot;<code>sh</code>&quot; shell. <strong><em>In general</em></strong>, <code>sh</code>, <code>ash</code>, <code>bash</code>, <code>dash</code> and <code>ksh</code> all act similarly enough that you don't care, but sometimes you may have to care. Knowing if you are on a <code>csh</code> variant or even something more esoteric can be key.</p>
 <p>Pay attention to the first line in script files, which will typically have a <a href="https://en.wikipedia.org/wiki/Shebang_%28Unix%29">&quot;shebang&quot;</a> line that looks like this:</p>
+<p></p>
 <pre><code>#!/bin/bash</code></pre>
-<p>In this case we know the script is expecting to be executed by <code>bash</code>, and in fact should throw an error if <code>/bin/bash</code> doesn't exist. Note that on some systems:</p>
-<pre><code>#!/bin/sh</code></pre>
-<p>...is pointing to an alias of <code>bash</code>, and on some it is a different implementation of the original <code>sh</code> command, such as <code>ash</code> or <code>dash</code>. Now you know what to google if you hit problems as simple as an expected built-in command not being found.</p>
+<p>In this case we know the script is expecting to be executed by <code>bash</code>, and in fact should throw an error if <code>/bin/bash</code> doesn't exist. For example, on the FreeBSD system I have access to, <code>dash</code> is not installed. So consider the following <code>hello.sh</code> script:</p>
+<p></p>
+<pre><code>#!/bin/dash
+echo Hello, World!</code></pre>
+<p>When I try to run it on FreeBSD, I get:</p>
+<p></p>
+<pre><code>%./hello.sh
+./hello.sh: Command not found.</code></pre>
+<p>This is confusing, because it seems to be saying that <code>hello.sh</code> is not found! But in reality it is complaining about <code>dash</code>. If I change the script to point to <code>bash</code> (which is installed on that FreeBSD system), it works as expected:</p>
+<p></p>
+<pre><code>%./hello.sh 
+Hello, World!</code></pre>
+<p>Note that on some systems <code>#!/bin/sh</code>is pointing to an alias of <code>bash</code>, and on some it is a different implementation of the original <code>sh</code> command, such as <code>ash</code> or <code>dash</code>. Now you know what to google if you hit problems as simple as an expected built-in command not being found.</p>
 <h2 id="everything-you-know-is-almost-wrong"><a href="#everything-you-know-is-almost-wrong">Everything You Know is (Almost) Wrong</a></h2>
 <p><code>CMD.EXE</code> has a lineage that is a mish-mash of CP/M and UNIX excreted through three decades of backwards compatibility via that devil spawn we call DOS. It has gotten even muddier over the years as Microsoft has added more commands, PowerShell, POSIX subsystems, etc.</p>
-<p>But even so, there are some similarities. In both <code>bash</code>  and <code>CMD.EXE</code>  the <a href="http://linux.die.net/man/1/set"><code>set</code></a>  command shows you all environment variables that have been set.</p>
-<p> <img src="./images/set.png" title="set command in bash" alt="set command in bash" /> </p>
-<p> <img src="./images/set-cmd.png" title="SET command in CMD.EXE" alt="SET command in CMD.EXE" /> </p>
-<p>Similarly, the <a href="http://linux.die.net/man/1/echo"><code>echo</code></a> command can be used to show you the contents of an environment variable (among other things):</p>
-<p><strong><em>bash</em></strong></p>
+<p>But even so, there are some similarities. In both <code>bash</code> and <code>CMD.EXE</code> the <a href="http://linux.die.net/man/1/set"><code>set</code></a> command shows you all environment variables that have been set:</p>
+<p></p>
+<pre><code>~ $ set
+BASH=/bin/bash
+BASHOPTS=checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote
+:force_fignore:histappend:interactive_comments:login_shell:progcomp:promptvars:s
+ourcepath
+BASH_ALIASES=()
+BASH_ARGC=()
+BASH_ARGV=()
+BASH_CMDS=()
+BASH_COMPLETION_COMPAT_DIR=/etc/bash_completion.d
+BASH_LINENO=()
+BASH_SOURCE=()
+BASH_VERSINFO=([0]=&quot;4&quot; [1]=&quot;3&quot; [2]=&quot;11&quot; [3]=&quot;1&quot; [4]=&quot;release&quot; [5]=&quot;x86_64-pc-lin
+ux-gnu&quot;)
+BASH_VERSION=&#39;4.3.11(1)-release&#39;
+COLORTERM=gnome-terminal
+COLUMNS=80
+DIRSTACK=()
+DISPLAY=:0
+EUID=1003
+GROUPS=()
+HISTCONTROL=ignoreboth
+HISTFILE=/home/myuser/.bash_history
+HISTFILESIZE=2000</code></pre>
+<p></p>
+<pre><code>C:\Users\myuser&gt;set
+ALLUSERSPROFILE=C:\ProgramData
+APPDATA=C:\Users\myuser\AppData\Roaming
+CommonProgramFiles=C:\Program Files\Common Files
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+CommonProgramW6432=C:\Program Files\Common Files
+COMPUTERNAME=JLEHMER650
+ComSpec=C:\Windows\system32\cmd.exe
+FP_NO_HOST_CHECK=NO
+HOMEDRIVE=C:
+HOMEPATH=\Users\myuser
+LOCALAPPDATA=C:\Users\myuser\AppData\Local
+LOGONSERVER=\\JLEHMER650
+NUMBER_OF_PROCESSORS=4
+OS=Windows_NT
+Path=C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\system32
+\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program F
+iles (x86)\nodejs\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program
+ Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL
+ Server\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\P
+rogram Files (x86)\Microsoft SDKs\Azure\CLI\wbin;C:\Windows\System32\WindowsPowe
+rShell\v1.0\
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
+PROCESSOR_ARCHITECTURE=AMD64
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel</code></pre>
+<p>Similarly, the <a href="http://linux.die.net/man/1/echo"><code>echo</code></a> command can be used to show you the contents of an environment variable like <code>HOME</code> (among other things):</p>
+<p></p>
 <pre><code>~ $ echo $HOME
 /home/myuser</code></pre>
-<p><strong><em>CMD.EXE</em></strong></p>
-<pre><code>C:\&gt; echo %homedrive%
-C:</code></pre>
+<p></p>
+<pre><code>C:\&gt; echo %homepath%
+\Users\myuser</code></pre>
 <p>This example shows some valuable differences between shells, though. Even though both have the concept of environment variables and echoing out their contents using the &quot;same&quot; command, note that:</p>
 <ol type="1">
 <li><p>The syntax for accessing an environment variable is <code>$variable</code> in <code>bash</code> and <code>%variable%</code> in <code>CMD.EXE</code>.</p></li>
@@ -363,33 +457,56 @@ C:</code></pre>
 </ol>
 <h2 id="youre-a-product-of-your-environment-variables"><a href="#youre-a-product-of-your-environment-variables">You're a Product of Your Environment (Variables)</a></h2>
 <p>It is much more common to set up environment variables to control execution in Linux than in Windows. In fact, it is quite common to override a given environment variable for the single execution of a program, to the point that <code>bash</code> has built-in &quot;one-line&quot; support for it:</p>
+<p></p>
 <pre><code>~ $ FOO=myval /home/myuser/myscript</code></pre>
 <p>This sets the environment variable <code>FOO</code> to &quot;myval&quot; but only for the duration and scope of running <code>myscript</code>.</p>
-<p>By convention, environment variables are named all uppercase, whereas all scripts and programs tend to be named all lowercase. Remember, almost without exception Linux and company are case-sensitive and Windows is not.</p>
+<p>By convention, environment variables are named all uppercase, whereas all scripts and programs tend to be named all lowercase. Remember, almost without exception &quot;UNIX&quot; is case-sensitive and Windows is not.</p>
 <p>You can set or override multiple variables for a single command or script execution simply by separating them with spaces:</p>
+<p></p>
 <pre><code>~ $ FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript</code></pre>
 <p>Note that passing in values in this way does not safeguard sensitive information from other users on the system who can see the values at least while the script is running using the <code>ps -x</code> command.</p>
 <p>You can also set the value of environment variables to the output of a command by surrounding it with paired ` (&quot;back ticks&quot;, or &quot;grave accent&quot;):</p>
-<pre><code>~ $ filetype=`file --print --mime-type --no-pad --print0 otschecker.csv`
-~ $ echo $filetype
+<p></p>
+<pre><code>~ $ FILETYPE=`file --print --mime-type --no-pad --print0 otschecker.csv`
+~ $ echo $FILETYPE
 otschecker.csv: text/plain</code></pre>
 <h3 id="who-am-i"><a href="#who-am-i">Who Am I?</a></h3>
-<p>When writing scripts that can be run by any user, it may be helpful to know their user name at run-time. There are at least two different ways to determine that. The first is via environment variables:</p>
+<p>When writing scripts that can be run by any user, it may be helpful to know their user name at run-time. There are at least two different ways to determine that. The first is via the <code>USER</code> environment variable:</p>
+<p></p>
 <pre><code>~ $ echo $USER
 myuser</code></pre>
 <p>The second is with a command with one of the best names, ever - <a href="http://linux.die.net/man/1/whoami"><code>whoami</code></a>:</p>
+<p></p>
 <pre><code>~ $ whoami
 myuser</code></pre>
 <p>Some environments set the <code>$USER</code> environment variable, some set a <code>$USERNAME</code> variable, and some like Mint set both. I think it is better to use <code>whoami</code>, which tends to be on almost all systems.</p>
 <h2 id="paths-a-part-of-any-balanced-shrubbery"><a href="#paths-a-part-of-any-balanced-shrubbery">Paths (a Part of Any Balanced Shrubbery)</a></h2>
 <p>The concept of a &quot;path&quot; for finding executables is almost identical, and Windows lifted it from UNIX (or CP/M, which lifted it from UNIX). Look at the output of the <code>PATH</code> environment variable under <code>bash</code>:</p>
+<p></p>
 <pre><code>~ $ echo $PATH
 /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games</code></pre>
-<p>Echoing the <code>PATH</code> environment variable under <code>CMD.EXE</code>  works, too.</p>
-<p> <img src="./images/echo-path-cmd.png" title="Echo path in CMD.EXE" alt="Echo path in CMD.EXE" /> </p>
+<p>Echoing the <code>PATH</code> environment variable under <code>CMD.EXE</code> works, too:</p>
+<p></p>
+<pre><code>C:\Users\myuser&gt;echo %PATH%
+C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\system32\conf
+ig\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files
+(x86)\nodejs\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program File
+s\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Serv
+er\130\DTS\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Progra
+m Files (x86)\Microsoft SDKs\Azure\CLI\wbin;C:\Windows\System32\WindowsPowerShel
+l\v1.0\</code></pre>
 <p>Note the differences and similarities. Both the paths are evaluated left to right. Both use separators between path components, a <code>;</code> for DOS and Windows, a <code>:</code> for Linux. Both delimit their directory names with slashes, with <code>\</code> for DOS and Windows and <code>/</code> for Linux. But Linux has no concept of a &quot;drive letter&quot; like <code>C:</code>, and instead everything is rooted in a single namespace hierarchy starting at the root <code>/</code>. We'll be talking more about directories in the next chapter.</p>
-<p>And just to muddy the waters further, notice how Cygwin under Windows shows the <code>PATH</code> environment variable, with <code>bash</code> syntax but a combination of both Cygwin and Windows directories .</p>
-<p> <img src="./images/echo-path-cygwin.png" title="Echo path in Cygwin" alt="Echo path in Cygwin" /> </p>
+<p>And just to muddy the waters further, notice how Cygwin under Windows shows the <code>PATH</code> environment variable, with <code>bash</code> syntax but a combination of both Cygwin and Windows directories, and Windows drive letters like <code>C:</code> mapped to <code>/cygdrive/c</code>:</p>
+<p></p>
+<pre><code>$ echo $PATH
+/usr/local/bin:/usr/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/cygdri
+ve/c/Windows/System32/Wbem:/cygdrive/c/Windows/system32/config/systemprofile/.dn
+x/bin:/cygdrive/c/Program Files/Microsoft DNX/Dnvm:/cygdrive/c/Program Files (x8
+6)/nodejs:/cygdrive/c/Program Files/Microsoft/Web Platform Installer:/cygdrive/c
+/Program Files/Microsoft SQL Server/130/Tools/Binn:/cygdrive/c/Program Files (x8
+6)/Microsoft SQL Server/130/DTS/Binn:/cygdrive/c/Program Files/Microsoft SQL Ser
+ver/120/Tools/Binn:/cygdrive/c/Program Files (x86)/Microsoft SDKs/Azure/CLI/wbin
+:/cygdrive/c/Windows/System32/WindowsPowerShell/v1.0</code></pre>
 <h2 id="open-your-shell-and-interact"><a href="#open-your-shell-and-interact">Open Your Shell and Interact</a></h2>
 <p>The actual &quot;command prompt&quot; is when you bring up a shell in an &quot;interactive session&quot; in a terminal window. This might be from logging into the console of a Linux VM, or starting a terminal window in a X window manager like GNOME or KDE, or <code>ssh</code>'ing into an interactive session of a remote machine, or even running a Cygwin command prompt under Windows.</p>
 <p>Command prompts allow you to work in a so-called &quot;REPL&quot; environment (Read, Evaluate, Print, Loop). You can run a series of commands once, or keep refining a command or commands until you get them working the way you want, then transfer their sequence to a script file to capture it.</p>
@@ -397,17 +514,17 @@ myuser</code></pre>
 <p>I am not a real shell wizard. See <a href="#how-do-you-know-what-you-dont-know-man">chapter 9</a> for how you can fake it like I do.</p>
 <h2 id="getting-lazy"><a href="#getting-lazy">Getting Lazy</a></h2>
 <p>Most modern interactive shells like <code>bash</code> and <code>CMD.EXE</code> allow for tab expansion and command history, at least for the current session of the shell.</p>
-<p>Tab expansion is &quot;auto-complete&quot; for the command prompt. Let's say you have some files in a directory as shown in .</p>
-<p> <img src="./images/ls-for-tab-completion.png" title="Typical ls command" alt="Typical ls command" /> </p>
-<p>Without tab expansion, typing out something like:</p>
-<pre><code>~ $ mv Disabled\ User\ Accounts.csv elsewhere/.</code></pre>
-<p>or</p>
-<pre><code>~ $ mv &#39;Disabled User Accounts.csv&#39; elsewhere/.</code></pre>
-<p>...is painful. But with tab expansion, we can simply:</p>
-<pre><code>mv D^t</code></pre>
-<p>...where <code>^t</code> represents hitting the <code>Tab</code> key, and since there is only one file that starts with a &quot;D&quot; tab expansion will fill in the rest of the file name:</p>
-<pre><code>~ $ mv Disabled\ User\ Accounts.csv</code></pre>
-<p>...and then we can go about our business of finishing our command.</p>
+<p>Tab expansion is &quot;auto-complete&quot; for the command prompt. Let's say you have some files in a directory:</p>
+<p></p>
+<pre><code>~/Documents $ ls
+Disabled User Accounts.csv  elsewhere  LOLcatz.jpg  MyResume.md</code></pre>
+<p>Without tab expansion, typing out something like this is painful:</p>
+<p></p>
+<pre><code>~/Documents $ mv Disabled\ User\ Accounts.csv elsewhere/.</code></pre>
+<p>But with tab expansion, we can simply type <code>mv D^t</code> where <code>^t</code> represents hitting the <code>Tab</code> key, and since there is only one file that starts with a &quot;D&quot; tab expansion will fill in the rest of the file name:</p>
+<p></p>
+<pre><code>~/Documents $ mv Disabled\ User\ Accounts.csv</code></pre>
+<p>Then we can go about our business of finishing our command.</p>
 <p>One place the tab completion in <code>bash</code> is different than <code>CMD.EXE</code> is that in <code>bash</code> if you hit <code>Tab</code> and there are multiple candidates, it will expand as far as it can and then show you a list of files that match up to that point and allow you to type in more characters and hit <code>Tab</code> again to complete it. Whereas in <code>CMD.EXE</code> it will &quot;cycle&quot; between the multiple candidates, showing you each one as the completion option in turn. Both are useful, but each is subtly different and can give you fits when moving between one environment and another.</p>
 <p><strong>Pro Tip:</strong> Remember, UNIX was built by people on slow, klunky teletypes and terminals, and they hated to type! Tab expansion is your friend and you should use it as often as possible. It gives at least three benefits:</p>
 <ol type="1">
@@ -415,8 +532,15 @@ myuser</code></pre>
 <li><p>Helps eliminate misspellings in a long file or command name.</p></li>
 <li><p>Acts as an error checker, because if the tab doesn't expand, chances are you are specifying something else (the beginning path of the file) wrong.</p></li>
 </ol>
-<p>The other thing to remember about the interactive shell is command history. Again, both <code>CMD.EXE</code> and <code>bash</code> give you command history, but <code>CMD.EXE</code> only remembers it for the session, while <code>bash</code> stores it in one of your hidden &quot;profile&quot; or &quot;dot&quot; files in your home directory called <code>.bash_history</code>, which you can display with <code>ls -a</code>  shows.</p>
-<p> <img src="./images/ls-a.png" title="ls command showing hidden files" alt="ls command showing hidden files" /> </p>
+<p>The other thing to remember about the interactive shell is command history. Again, both <code>CMD.EXE</code> and <code>bash</code> give you command history, but <code>CMD.EXE</code> only remembers it for the session, while <code>bash</code> stores it in one of your hidden &quot;profile&quot; or &quot;dot&quot; files in your home directory called <code>.bash_history</code>, which you can display with <code>ls -a</code>:</p>
+<p></p>
+<pre><code>~ $ ls -a
+.              .config    .gconf           .mozilla  Templates
+..             .dbus      .gnome2          Music     Videos
+.bash_history  Desktop    .gnome2_private  Pictures  .xsession-errors
+.bash_logout   .dmrc      .ICEauthority    .profile
+.cache         Documents  .linuxmint       Public
+.cinnamon      Downloads  .local           .ssh</code></pre>
 <p>Inside, <code>.bash_history</code> is just a text file, with the most recent commands at the bottom.</p>
 <p>The <code>bash</code> shell supports a rich interactive environment for searching for, editing and saving command history. However, the biggest thing you need to remember to fake it is simply that the up and down arrows work in the command prompt and bring back your recent commands so you can update them and re-execute them.</p>
 <p><strong>Note:</strong> If you start multiple sessions under the same account, the saved history will be of the last login to successfully write back out <code>.bash_history</code>.</p>
@@ -434,36 +558,109 @@ myuser</code></pre>
 <li><p><strong>...and so much more!</strong> - NTFS, FAT, etc.</p></li>
 </ul>
 <p>Each has its strengths and weaknesses. While Linux tends to treat the ext* file systems as preferred, it can write to a lot of file systems and can read even more.</p>
-<p>As mentioned above, the biggest differences between Linux and Windows is that the Linux environments tend not to have a concept of &quot;drive letters.&quot; Instead everything is &quot;mounted&quot; under a single hierarchy that starts at the &quot;root directory&quot; or <code>/</code> .</p>
-<p> <img src="./images/ls-root.png" title="Listing of the root directory" alt="Listing of the root directory" /> </p>
+<p>As mentioned above, the biggest differences between Linux and Windows is that the Linux environments do not have a concept of &quot;drive letters.&quot; Instead everything is &quot;mounted&quot; under a single hierarchy that starts at the &quot;root directory&quot; or <code>/</code>:</p>
+<p></p>
+<pre><code>~ $ ls /
+bin    dev   home        lib64       mnt    Other  run   sys  var
+boot   Docs  initrd.img  lost+found  Music  proc   sbin  tmp  vmlinuz
+cdrom  etc   lib         media       opt    root   srv   usr</code></pre>
 <p>The root file system may be backed by a disk device, LUN, memory or even the network. It will have one or more directories under it. Multiple physical drives and network locations can be &quot;mounted&quot; virtually anywhere, under any directory or subdirectory in the hierarchy.</p>
 <p><strong>Note:</strong> Dynamically mounted devices like USB drives and DVDs are often mounted automatically under either a <code>/mnt</code> or <code>/media</code> directory.</p>
 <h2 id="looking-at-files"><a href="#looking-at-files">Looking at Files</a></h2>
-<p>The command to <em>list</em> the contents of a directory is the <a href="http://linux.die.net/man/1/ls"><code>ls</code></a> command .</p>
-<p> <img src="./images/ls-home.png" title="Listing of a home directory" alt="Listing of a home directory" /> </p>
-<p>Remember, UNIX environments think of files that start with a <code>.</code> as &quot;hidden.&quot; If you want to see all these <a href="https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments">&quot;dotfiles&quot;</a>, you can use <code>ls -a</code> .</p>
-<p> <img src="./images/ls-a-home.png" title="Listing of hidden files in home directory" alt="Listing of hidden files in home directory" /> </p>
+<p>As we've already seen, the command to <em>list</em> the contents of a directory is <a href="http://linux.die.net/man/1/ls"><code>ls</code></a>:</p>
+<p></p>
+<pre><code>~ $ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos</code></pre>
+<p>Remember, &quot;UNIX&quot; environments think of files that start with a <code>.</code> as &quot;hidden.&quot; If you want to see all these <a href="https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments">&quot;dotfiles&quot;</a>, you can use <code>ls -a</code>:</p>
+<p></p>
+<pre><code>~ $ ls -a
+.              .config    .gconf           .mozilla  Templates
+..             .dbus      .gnome2          Music     Videos
+.bash_history  Desktop    .gnome2_private  Pictures  .xsession-errors
+.bash_logout   .dmrc      .ICEauthority    .profile
+.cache         Documents  .linuxmint       Public
+.cinnamon      Downloads  .local           .ssh</code></pre>
 <p>Wow! That's a lot of dotfiles!</p>
-<p>If you want to see some details of each file, use <code>ls -l</code> :</p>
-<p> <img src="./images/ls-l-home.png" title="Detailed listing of home directory" alt="Detailed listing of home directory" /> </p>
-<p>And of course parameters can be combined, as with the two above .</p>
-<p> <img src="./images/ls-al-home.png" title="Detailed listing of hidden files" alt="Detailed listing of hidden files" /> </p>
+<p>If you want to see some details of each file, use <code>ls -l</code>:</p>
+<p></p>
+<pre><code>~ $ ls -l
+total 32
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Desktop
+drwxr-xr-x 3 myuser mygroup 4096 Dec 13 18:22 Documents
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Downloads
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Music
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Pictures
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Public
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Templates
+drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Videos</code></pre>
+<p>And of course parameters can be combined, as with the two above:</p>
+<p></p>
+<pre><code>~ $ ls -al
+total 112
+drwxr-xr-x 21 myuser mygroup 4096 Dec 13 18:19 .
+drwxr-xr-x  6 root   root    4096 Dec 13 14:24 ..
+-rw-------  1 myuser mygroup  287 Dec 13 18:19 .bash_history
+-rw-r--r--  1 myuser mygroup  220 Dec 13 14:24 .bash_logout
+drwx------  5 myuser mygroup 4096 Dec 13 18:18 .cache
+drwxr-xr-x  3 myuser mygroup 4096 Dec 13 18:18 .cinnamon
+drwxr-xr-x 12 myuser mygroup 4096 Dec 13 18:18 .config
+drwx------  3 myuser mygroup 4096 Dec 13 18:18 .dbus
+drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Desktop
+-rw-------  1 myuser mygroup   29 Dec 13 18:18 .dmrc
+drwxr-xr-x  3 myuser mygroup 4096 Dec 13 18:22 Documents
+drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Downloads
+drwx------  3 myuser mygroup 4096 Dec 13 18:18 .gconf
+drwx------  3 myuser mygroup 4096 Dec 13 18:18 .gnome2
+drwx------  2 myuser mygroup 4096 Dec 13 18:18 .gnome2_private
+-rw-------  1 myuser mygroup  668 Dec 13 18:18 .ICEauthority
+drwxr-xr-x  3 myuser mygroup 4096 Dec 13 18:18 .linuxmint
+drwxr-xr-x  3 myuser mygroup 4096 Dec 13 18:18 .local
+drwxr-xr-x  4 myuser mygroup 4096 Dec 13 18:18 .mozilla
+drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Music
+drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Pictures
+-rw-r--r--  1 myuser mygroup  716 Dec 13 14:30 .profile</code></pre>
 <h2 id="a-brief-detour-around-parameters"><a href="#a-brief-detour-around-parameters">A Brief Detour Around Parameters</a></h2>
-<p>In <code>bash</code> and many Linux commands in general, there are old, &quot;short&quot; (terse) parameter names, like <code>ls -a</code>, and newer, longer, descriptive parameter names like <code>ls --all</code> that mean the same thing. It is typically good to use the shorter version during interactive sessions and testing, but I prefer long parameter names in scripts, because when I come back and look at it in two years, I may not remember what <code>rm -rf *</code> means (in the &quot;UNIX&quot; world it means you're toast if you run it in the wrong directory by mistake), thus <code>rm --recursive --force *</code> seems a bit more &quot;intuitive.&quot;</p>
+<p>In <code>bash</code> and many Linux commands in general, there are old, &quot;short&quot; (terse) parameter names, like <code>ls -a</code>, and newer, longer, descriptive parameter names like <code>ls --all</code> that mean the same thing. It is typically good to use the shorter version during interactive sessions and testing, but I prefer long parameter names in scripts, because when I come back and look at it in two years, I may not remember what <code>rm -rf *</code> means (in the &quot;UNIX&quot; world it means you're toast if you run it by mistake), thus <code>rm --recursive --force *</code> seems a bit more &quot;intuitive.&quot;</p>
 <blockquote>
 <p><strong><em>The behind you save in the future by describing things well today may well be your own.</em></strong> - me</p>
 </blockquote>
 <p>The older style parameters are typically preceded by a single hyphen &quot;switch&quot; character:</p>
+<p></p>
 <pre><code>~ $ ls -r</code></pre>
-<p>Or even no &quot;switch&quot; character at all, as with <code>xvf</code> (e<strong><em>X</em></strong>tract, <strong><em>V</em></strong>erbose, input <strong><em>F</em></strong>ile name) in the following:</p>
+<p>Some command support parameters with no &quot;switch&quot; character at all, as with <code>xvf</code> (e<strong><em>X</em></strong>tract, <strong><em>V</em></strong>erbose, input <strong><em>F</em></strong>ile name) in the following:</p>
+<p></p>
 <pre><code>~ $ tar xvf backup.tar</code></pre>
 <p>The newer &quot;GNU-style&quot; parameters are preceded by two hyphens and usually are quite &quot;verbose&quot;:</p>
+<p></p>
 <pre><code>~ $ ls --recursive --almost-all --ignore-backups</code></pre>
 <p>Again, it is <strong><em>highly recommended</em></strong> that you take the time to use the GNU-style parameters in scripts as self-documenting code.</p>
 <h2 id="more-poking-at-files"><a href="#more-poking-at-files">More Poking at Files</a></h2>
-<p>If we suspect the file is a text file, we can echo it to the console with the <a href="http://linux.die.net/man/1/cat"><code>cat</code></a> (<em>concatenate</em>) command  </p>
-<p> <img src="./images/cat.png" title="cat command" alt="cat command" /> </p>
-<p>In that example when we <code>cat installrdp</code> we can determine it is a <code>bash</code> shell script that looks to install and configure <a href="https://github.com/FreeRDP/FreeRDP">FreeRDP</a> on a Debian-style system:</p>
+<p>If we suspect the file is a text file, we can echo it to the console with the <a href="http://linux.die.net/man/1/cat"><code>cat</code></a> (<em>concatenate</em>) command:</p>
+<p></p>
+<pre><code>~ $ cat installrdp
+#!/bin/bash
+sudo apt-get -y install git
+cd ~
+git clone git://github.com/FreeRDP/FreeRDP.git
+cd FreeRDP
+sudo apt-get -y install build-essential git-core cmake libssl-dev libx11-dev lib
+xext-dev libxinerama-dev \
+  libxcursor-dev libxdamage-dev libxv-dev libxkbfile-dev libasound2-dev libcups2
+  -dev libxml2 libxml2-dev \
+  libxrandr-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libxi-dev
+   libgstreamer-plugins-base1.0-dev
+sudo apt-get -y install libavutil-dev libavcodec-dev
+sudo apt-get -y install libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev
+cmake -DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .
+make
+sudo make install
+sudo echo &quot;/usr/local/lib/freerdp&quot; &gt; /etc/ld.so.conf.d/freerdp.conf
+sudo echo &quot;/usr/local/lib64/freerdp&quot; &gt;&gt; /etc/ld.so.conf.d/freerdp.conf
+sudo echo &quot;/usr/local/lib&quot; &gt;&gt; /etc/ld.so.conf.d/freerdp.conf
+sudo ldconfig
+which xfreerdp
+xfreerdp --version</code></pre>
+<p>In this example when we <code>cat installrdp</code> we can determine it is a <code>bash</code> shell script that looks to install and configure <a href="https://github.com/FreeRDP/FreeRDP">FreeRDP</a> on a Debian-style system:</p>
 <ol type="1">
 <li><p><strong><code>apt-get</code></strong> - Debian-style package manager.</p></li>
 <li><p><strong><code>git clone</code></strong> - cloning package from <a href="http://github.com">GitHub</a>.</p></li>
@@ -471,59 +668,203 @@ myuser</code></pre>
 </ol>
 <p>A better way to display a longer file is to use the <a href="http://linux.die.net/man/1/less"><code>less</code></a> command (which is a derivative of the original <a href="http://linux.die.net/man/1/more"><code>more</code></a>, hence the name). <code>less</code> is a paginator, where the <code>Space</code>, <code>Page Down</code> or down arrow keys scroll down and the <code>Page Up</code> or up arrow keys scrolls up. <code>Q</code> quits.</p>
 <p><strong>Note:</strong> The <code>vi</code> search (<code>/</code>, <code>?</code>, <code>n</code> and <code>p</code>) and navigation (<code>G</code>, <code>0</code>) keys work within <code>less</code>, too. In general <code>less</code> is a great lightweight way to motor around in a text file without editing it.</p>
-<p>We can also look at just the end or <em>tail</em> of a file (often the most interesting when looking at log files and troubleshooting a current problem) with the <a href="http://linux.die.net/man/1/tail"><code>tail</code></a> command. The next example  shows the last 10 lines of the kernel <code>dmesg</code> log.</p>
-<p> <img src="./images/tail-dmesg.png" title="tail command" alt="tail command" /> </p>
-<p>To show a specific number of lines  use the <code>-n</code> parameter.</p>
-<p> <img src="./images/tail-n-dmesg.png" title="tail -n command" alt="tail -n command" /> </p>
-<p>You can also use <code>tail</code> to <em>follow</em> an open file and continuously display any new output at the end, which is useful for monitoring log files in real time .</p>
-<p> <img src="./images/tail-f.png" title="tail -f command" alt="tail -f command" /> </p>
+<p>We can also look at just the end or <em>tail</em> of a file (often the most interesting when looking at log files and troubleshooting a current problem) with the <a href="http://linux.die.net/man/1/tail"><code>tail</code></a> command. The next example shows the last 10 lines of the kernel <code>dmesg</code> log:</p>
+<p></p>
+<pre><code>/var/log $ tail dmesg
+[    3.913318] Bluetooth: BNEP socket layer initialized
+[    3.914888] Bluetooth: RFCOMM TTY layer initialized
+[    3.914895] Bluetooth: RFCOMM socket layer initialized
+[    3.914900] Bluetooth: RFCOMM ver 1.11
+[    3.935772] init: failsafe main process (732) killed by TERM signal
+[    4.046700] init: cups main process (896) killed by HUP signal
+[    4.046710] init: cups main process ended, respawning
+[    4.186239] init: samba-ad-dc main process (919) terminated with status 1
+[    4.328999] r8169 0000:02:00.0 eth0: link down
+[    4.329037] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready</code></pre>
+<p>To show a specific number of lines use the <code>-n</code> parameter:</p>
+<p></p>
+<pre><code>/var/log $ tail -n 15 dmesg
+[    3.899169] Bluetooth: HCI socket layer initialized
+[    3.899170] Bluetooth: L2CAP socket layer initialized
+[    3.899179] Bluetooth: SCO socket layer initialized
+[    3.913306] Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+[    3.913309] Bluetooth: BNEP filters: protocol multicast
+[    3.913318] Bluetooth: BNEP socket layer initialized
+[    3.914888] Bluetooth: RFCOMM TTY layer initialized
+[    3.914895] Bluetooth: RFCOMM socket layer initialized
+[    3.914900] Bluetooth: RFCOMM ver 1.11
+[    3.935772] init: failsafe main process (732) killed by TERM signal
+[    4.046700] init: cups main process (896) killed by HUP signal
+[    4.046710] init: cups main process ended, respawning
+[    4.186239] init: samba-ad-dc main process (919) terminated with status 1
+[    4.328999] r8169 0000:02:00.0 eth0: link down
+[    4.329037] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready</code></pre>
+<p>You can also use <code>tail</code> to <em>follow</em> an open file and continuously display any new output at the end, which is useful for monitoring log files in real time:</p>
+<p></p>
+<pre><code>/var/log $ tail -f syslog
+Dec 13 19:23:40 MtLindsey dhclient: DHCPACK of 192.168.0.8 from 192.168.0.1
+Dec 13 19:23:40 MtLindsey dhclient: bound to 192.168.0.8 -- renewal in 1423 seco
+nds.
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: &lt;info&gt; (eth0): DHCPv4 state chang
+ed renew -&gt; renew
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: &lt;info&gt;   address 192.168.0.8
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: &lt;info&gt;   prefix 24 (255.255.255.0
+)
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: &lt;info&gt;   gateway 192.168.0.1
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: &lt;info&gt;   nameserver &#39;97.64.168.12
+&#39;
+Dec 13 19:23:40 MtLindsey NetworkManager[960]: &lt;info&gt;   nameserver &#39;192.119.194.
+131&#39;
+Dec 13 19:23:40 MtLindsey dbus[689]: [system] Activating service name=&#39;org.freed
+esktop.nm_dispatcher&#39; (using servicehelper)
+Dec 13 19:23:40 MtLindsey dbus[689]: [system] Successfully activated service &#39;or
+g.freedesktop.nm_dispatcher&#39;</code></pre>
+<p>Use <code>Ctrl-C</code> to cancel following the file changes.</p>
 <p>If we know nothing about a <em>file</em>, we can use the <a href="http://linux.die.net/man/1/file"><code>file</code></a> command to help us guess:</p>
+<p></p>
 <pre><code>~ $ file installrdp 
 installrdp: Bourne-Again shell script, ASCII text executable</code></pre>
 <p>That's straightforward enough! The <code>file</code> command isn't always 100% accurate, but it is pretty good and uses an interesting set of heuristics and a text file &quot;database&quot; of <a href="http://linux.die.net/man/5/magic">&quot;magic&quot; number definitions</a> to define how it figures out what type of file it is examining.</p>
 <p><strong>Remember:</strong> File extensions have no real meaning per se in Linux (although some are used, especially for media and document formats), so a file name with no extension like <code>installrdp</code> is perfectly valid. Hence the utility of the <code>file</code> command.</p>
 <h2 id="sorting-things-out"><a href="#sorting-things-out">Sorting Things Out</a></h2>
-<p>The <a href="http://linux.die.net/man/1/sort"><code>sort</code></a> command can be used to not just <em>sort</em> files, but also to merge them and remove duplicates.</p>
-<p>Let's say we have three files:</p>
-<pre><code>~ $ ls
-ElevatorTrucks  FarmCombines  FarmTractors</code></pre>
-<p>We can use <code>cat</code> to display the contents of each </p>
-<p> <img src="./images/invoice-files.png" title="Some invoice files" alt="Some invoice files" /> </p>
-<p>But what if we wanted to process all the lines in all the files in a single alphabetical order? Just redirecting the files into a program won't do it, because the file names will be sorted by the shell and the lines will be processed in file name order , not the ultimate sorted order of all the file contents.</p>
-<p> <img src="./images/all-invoices.png" title="Show all the invoices" alt="Show all the invoices" /> </p>
-<p>The <code>sort</code> command  to the rescue!</p>
-<p> <img src="./images/sort.png" title="sort command" alt="sort command" /> </p>
-<p>What if we want to sort by the parts column? Well, it is the second &quot;key&quot; field delimited by whitespace , so:</p>
-<p> <img src="./images/sort-k2.png" title="Sort by second column" alt="Sort by second column" /> </p>
-<p>What about by the third column, the amount? </p>
-<p> <img src="./images/sort-k3.png" title="Sort by third column" alt="Sort by third column" /> </p>
-<p>That's not what we expected because it is sorting numbers alphabetically. Let's fix that  by telling it to sort numerically.</p>
-<p> <img src="./images/sort-k3-n.png" title="Sort by third column, numerically" alt="Sort by third column, numerically" /> </p>
-<p>Maybe we care about the top three most expensive items. We haven't talked about pipes yet, but check this out:</p>
+<p>Let's say we have three files, and want to display the contents of one of them with <code>cat</code>:</p>
+<p></p>
+<pre><code>~ $ cd Invoices/
+~/Invoices $ ls
+ElevatorTrucks  FarmCombines  FarmTractors
+~/Invoices $ cat ElevatorTrucks 
+Truck   brakes  200
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400
+Truck   winch   100</code></pre>
+<p>But what if we wanted to process all the lines in all the files in a single alphabetical order? Just redirecting the files into a program won't do it, because the file names will be sorted by the shell and the lines will be processed in file name order, not the ultimate sorted order of all the file contents.</p>
+<p></p>
+<pre><code>~/Invoices $ cat *
+Truck   brakes  200
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400
+Truck   winch   100
+Combine motor   1500
+Combine brakes  400
+Combine tires   2500
+Tractor motor   1000
+Tractor brakes  300
+Tractor tires   2000</code></pre>
+<p>The <a href="http://linux.die.net/man/1/sort"><code>sort</code></a> command to the rescue! We will see that the <code>sort</code> command can be used to not just <em>sort</em> files, but also to merge them and remove duplicates.</p>
+<p></p>
+<pre><code>~/Invoices $ sort *
+Combine brakes  400
+Combine motor   1500
+Combine tires   2500
+Tractor brakes  300
+Tractor motor   1000
+Tractor tires   2000
+Truck   brakes  200
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400
+Truck   winch   100</code></pre>
+<p>What if we want to sort by the parts column? Well, it is the second &quot;key&quot; field delimited by whitespace, so:</p>
+<p></p>
+<pre><code>~/Invoices $ sort -k 2 *
+Truck   brakes  200
+Tractor brakes  300
+Combine brakes  400
+Tractor motor   1000
+Combine motor   1500
+Tractor tires   2000
+Combine tires   2500
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400
+Truck   winch   100</code></pre>
+<p>What about by the third column, the amount?</p>
+<p></p>
+<pre><code>~/Invoices $ sort -k 3 *
+Truck   winch   100
+Tractor motor   1000
+Combine motor   1500
+Truck   brakes  200
+Tractor tires   2000
+Combine tires   2500
+Tractor brakes  300
+Combine brakes  400
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400</code></pre>
+<p>That's not what we expected because it is sorting numbers alphabetically. Let's fix that by telling it to sort numerically:</p>
+<p></p>
+<pre><code>~/Invoices $ sort -k 3 -n *
+Truck   winch   100
+Truck   brakes  200
+Tractor brakes  300
+Combine brakes  400
+Truck   tires   400
+Truck   tires   400
+Truck   tires   400
+Tractor motor   1000
+Combine motor   1500
+Tractor tires   2000
+Combine tires   2500</code></pre>
+<p>Maybe we care about the top three most expensive items. We haven't talked about <code>pipes</code> yet, but check this out:</p>
+<p></p>
 <pre><code>~ $ sort -k 3 -n * | tail -n 3
 Combine motor   1500
 Tractor tires   2000
 Combine tires   2500</code></pre>
-<p>Finally, what if we want only unique rows? </p>
-<p> <img src="./images/sort-k3-n-u.png" title="Sort by third column, numerically, unique" alt="Sort by third column, numerically, unique" /> </p>
-<p>Just to reinforce long parameters, the last example is equivalent to <code>sort --key 3 --numeric-sort --unique *</code> </p>
-<p> <img src="./images/sort-k3-n-u-long.png" title="Sort with long parameter names" alt="Sort with long parameter names" /> </p>
+<p>Finally, what if we want only unique rows?</p>
+<p></p>
+<pre><code>~/Invoices $ sort -k 3 -n -u *
+Truck   winch   100
+Truck   brakes  200
+Tractor brakes  300
+Truck   tires   400
+Tractor motor   1000
+Combine motor   1500
+Tractor tires   2000
+Combine tires   2500</code></pre>
+<p>Just to reinforce long parameters, the last example is equivalent to:</p>
+<p></p>
+<pre><code>~/Invoices $ sort --key 3 --numeric-sort --unique *
+Truck   winch   100
+Truck   brakes  200
+Tractor brakes  300
+Truck   tires   400
+Tractor motor   1000
+Combine motor   1500
+Tractor tires   2000
+Combine tires   2500</code></pre>
+<p>If you read that command in a script file, there would be little confusion as to what it was doing.</p>
 <h2 id="rearranging-deck-chairs"><a href="#rearranging-deck-chairs">Rearranging Deck Chairs</a></h2>
-<p>We can copy, move or rename (same thing) and delete files and directories. To <em>copy</em>, simply use the <a href="http://linux.die.net/man/1/cp"><code>cp</code></a> command:</p>
+<p>We can copy, move (or rename - same thing) and delete files and directories. To <em>copy</em>, simply use the <a href="http://linux.die.net/man/1/cp"><code>cp</code></a> command:</p>
+<p></p>
 <pre><code>~ $ cp diary.txt diary.bak</code></pre>
 <p>You can copy entire directories recursively:</p>
+<p></p>
 <pre><code>~ $ cp -r thisdir thatdir</code></pre>
 <p>Or, if we want to be self-documenting in a script, we can use those long parameter names:</p>
+<p></p>
 <pre><code>~ $ cp --recursive thisdir thatdir</code></pre>
 <p>To <em>move</em> use <a href="http://linux.die.net/man/1/mv"><code>mv</code></a>:</p>
+<p></p>
 <pre><code>~ $ mv thismonth.log lastmonth.log</code></pre>
 <p><strong>Note:</strong> There is no semantic difference between &quot;move&quot; and &quot;rename.&quot; However, there are some really cool renaming scenarios that the <a href="http://linux.die.net/man/1/rename"><code>rename</code></a> command can take care of beyond <code>mv</code>, like renaming all file extensions from <code>.htm</code> to <code>.html</code>.</p>
 <h2 id="making-files-disappear"><a href="#making-files-disappear">Making Files Disappear</a></h2>
 <p>To delete or <em>remove</em> a file you use <a href="http://linux.die.net/man/1/rm"><code>rm</code></a>:</p>
+<p></p>
 <pre><code>~ $ rm desktop.ini</code></pre>
-<p><strong>Pro Tip:</strong> There is no &quot;Are you sure?&quot; prompt when removing a single file specified with no wildcards, or even all files with a wildcard, and there is no &quot;Recycle Bin&quot; or &quot;Trash Can&quot; when working from the command prompt, so be careful!</p>
-<p>This kind of scenario can happen <strong><em>way</em></strong> too often, even to experienced system administrators. Note the space between <code>*</code> and <code>.bak</code> .</p>
-<p> <img src="./images/bad-rm.png" title="bad-rm" alt="Oops!" /> </p>
+<p><strong>Pro Tip:</strong> There is no &quot;Are you sure?&quot; prompt when removing a single file specified with no wildcards, or even all files with a wildcard, and there is no &quot;Recycle Bin&quot; or &quot;Trash Can&quot; when working from the command prompt, so <strong><em>BE CAREFUL!</em></strong></p>
+<p>This kind of scenario can happen <strong><em>way</em></strong> too often, even to experienced system administrators. Note the space between <code>*</code> and <code>.bak</code>:</p>
+<p></p>
+<pre><code>~ $ cd MyDissertation/
+~/MyDissertation $ ls
+Bibliography.bak  Bibliography.doc  Dissertation.bak  Dissertation.doc
+~/MyDissertation $ rm * .bak
+rm: cannot remove ‘.bak’: No such file or directory
+~/MyDissertation $ ls
+~/MyDissertation $ </code></pre>
 <p>So, in order, our hapless user:</p>
 <ol type="1">
 <li><p>Changed to directory <code>MyDissertation</code>.</p></li>
@@ -532,81 +873,109 @@ Combine tires   2500</code></pre>
 <li><p>Presto! <code>ls</code> shows <strong><em>everything</em></strong> is gone, not just the backup files! Yay! The user's priorities just got rearranged as they go hunting for another backup of their dissertation.</p></li>
 </ol>
 <p>So be careful out there! This is an example where tab completion can be an extra error check. Or a lot of times I use command history in these cases by changing the <code>ls</code> to look for just the files I want to delete:</p>
+<p></p>
 <pre><code>~ $ ls *.bak
 Citations.bak  Dissertation.bak</code></pre>
 <p>Then using the &quot;up arrow&quot; to bring back up the <code>ls</code> command and changing <code>ls</code> to <code>rm</code> and re-executing it. Safer that way.</p>
 <h2 id="touch-me"><a href="#touch-me">Touch Me</a></h2>
 <p>We just learned how to make a file disappear. We can also make a file magically appear, just by <a href="http://linux.die.net/man/1/touch"><code>touch</code></a>:</p>
+<p></p>
 <pre><code>~ $ touch NewEmptyDissertation.doc
-
 ~ $ ls -l
 total 0
--rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:12 NewEmptyDissertation.doc
-</code></pre>
+-rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:12 NewEmptyDissertation.doc</code></pre>
 <p>Notice the newly created file is zero bytes long.</p>
 <p>Interestingly enough, we can also use touch just to update the &quot;last modified date&quot; of an existing file, as you can see in time change in the following listing after running <code>touch</code> on the same file again:</p>
+<p></p>
 <pre><code>~ $ touch NewEmptyDissertation.doc
-
 ~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:14 NewEmptyDissertation.doc</code></pre>
 <p>It can be useful (but also distressing from a forensics point of view) to sometimes set the last modified date of a file to a specific date and time, which <code>touch</code> also allows you to do, in this case to the night before Christmas:</p>
+<p></p>
 <pre><code>~ $ touch -t 201412242300 NewEmptyDissertation.doc
-
 ~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Dec 24  2014 NewEmptyDissertation.doc</code></pre>
 <p>To <em>make a directory</em> you use <a href="http://linux.die.net/man/1/mkdir"><code>mkdir</code></a>:</p>
-<pre><code>~ $ mkdir Bar
-
-~ $ ls
-Bar</code></pre>
+<p></p>
+<pre><code>~ $ cd Foo
+~/Foo $ ls -l
+total 4
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 a
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 b
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 c
+drwxr-xr-x 2 myuser mygroup 4096 Dec 14 05:49 d
+~/Foo $ mkdir Bar
+~/Foo $ ls -l
+total 8
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 a
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 b
+drwxr-xr-x 2 myuser mygroup 4096 Dec 14 14:49 Bar
+-rw-r--r-- 1 myuser mygroup    0 Dec 14 05:49 c
+drwxr-xr-x 2 myuser mygroup 4096 Dec 14 05:49 d</code></pre>
 <p>Typically you need to create all intervening directories before creating a &quot;child&quot; directory:</p>
+<p></p>
 <pre><code>~ $ mkdir Xyzzy/Something
 mkdir: cannot create directory ‘Xyzzy/Something’: No such file or directory</code></pre>
 <p>But of course you can override that behavior:</p>
-<pre><code>~ $ mkdir --parents Xyzzy/Something
-
-~ $ ls
-Bar  Xyzzy
-
-~ $ ls Xyzzy
+<p></p>
+<pre><code>~/Foo $ mkdir --parents Xyzzy/Something
+~/Foo $ ls 
+a  b  Bar  c  d  Xyzzy
+~/Foo $ ls Xyzzy
 Something</code></pre>
 <h2 id="navigating-through-life"><a href="#navigating-through-life">Navigating Through Life</a></h2>
 <p>Ever notice that &quot;life&quot; is an anagram for &quot;file&quot;? Spooky, eh?</p>
 <p>Given that the UNIX-style file systems are hierarchical in nature they are similar to navigate as with <code>CMD.EXE</code>. The biggest difference is the absense of drive letter and the direction of the slashes.</p>
 <p>To <em>change directories</em>, simply use <a href="http://linux.die.net/man/1/cd"><code>cd</code></a> much like in Windows:</p>
+<p></p>
 <pre><code>~ $ cd /etc
-
 ~ $ pwd
 /etc</code></pre>
 <p><a href="http://linux.die.net/man/1/pwd"><code>pwd</code></a> simply <em>prints the working (current) directory</em>.</p>
-<p>In Linux, users can have &quot;home&quot; directories (similar to Windows profiles), typically located under <code>/home/username</code> for normal users and <code>/root</code> for the &quot;root&quot; id. To change to a user's &quot;home&quot; directory, simply use <code>cd</code>:</p>
-<pre><code>~ $ cd
-
+<p>In Linux, users can have &quot;home&quot; directories (similar to Windows profiles), typically located under <code>/home/&lt;username&gt;</code> for normal users and <code>/root</code> for the &quot;root&quot; (admin) id. To change to a user's &quot;home&quot; directory, simply use <code>cd</code> with no parameters:</p>
+<p></p>
+<pre><code>/etc $ cd
 ~ $ pwd
 /home/myuser</code></pre>
 <p>The tilde (<code>~</code>) character is an alias for the current user's home directory. The following example is equivalent to above:</p>
-<pre><code>~ $ cd ~
-
+<p></p>
+<pre><code>/etc $ cd ~
 ~ $ pwd
 /home/myuser</code></pre>
 <p>More useful is that the tilde can be combined with a user name to specify the home directory of <strong><em>another</em></strong> user:</p>
-<pre><code>~ $ cd ~git
-
-~ $ pwd
-/home/git</code></pre>
-<p><strong>Note:</strong> The above assumes you have permissions to <code>cd</code> into <code>/home/git</code>. See the section on file permissions for more info.</p>
+<p></p>
+<pre><code>~ # cd ~myuser
+myuser # pwd
+/home/myuser</code></pre>
+<p><strong>Note:</strong> The above assumes you have permissions to <code>cd</code> into <code>/home/myuser</code>. See the section on file permissions for more info.</p>
 <p>In addition, you need to know the difference between &quot;absolute&quot; and &quot;relative&quot; paths:</p>
 <ul>
 <li><p><strong>Absolute path</strong> - <strong><em>always</em></strong> &quot;goes through&quot; or specifies the &quot;root&quot; (<code>/</code>) directory, e.g. <code>cd /etc</code>.</p></li>
 <li><p><strong>Relative path</strong> - does <strong><em>not</em></strong> specify the root directory, expects to start the navigation at the current directory with all path components existing from there, e.g., <code>cd Dissertations</code>.</p></li>
 </ul>
 <p>Windows inherited the concept of <code>.</code> for the current directory and <code>..</code> for the parent directory directly from UNIX. Consider the following examples that combine all of the above about relative paths and see if it all makes sense:</p>
-<p> <img src="./images/relative-paths.png" title="Relative paths" alt="Relative paths" /> </p>
+<p></p>
+<pre><code>~/Foo $ ls
+~/Foo $ mkdir Bar Baz
+~/Foo $ ls
+Bar  Baz
+~/Foo $ cd Bar
+~/Foo/Bar $ touch a b c
+~/Foo/Bar $ ls
+a  b  c
+~/Foo/Bar $ cd ../Baz
+~/Foo/Baz $ touch d e f
+~/Foo/Baz $ ls
+d  e  f
+~/Foo/Baz $ ls ..
+Bar  Baz
+~/Foo/Baz $ ls ../Bar
+a  b  c</code></pre>
 <p>Did you notice how both <code>mkdir</code> and <code>touch</code> allow for specifying multiple directory and file names in the same command?</p>
 <h2 id="may-i"><a href="#may-i">May I?</a></h2>
-<p>Most UNIX-style file systems come with a set of nine permissions that can be thought of as a &quot;grid&quot; of 3x3 showing &quot;who has what?&quot; The &quot;who&quot; is &quot;UGO&quot;:</p>
+<p>Most &quot;UNIX&quot; file systems come with a set of nine permissions that can be thought of as a &quot;grid&quot; of 3x3 showing &quot;who has what?&quot; The &quot;who&quot; is &quot;UGO&quot;:</p>
 <ul>
 <li><p><strong>User</strong> - the user that is the &quot;owner&quot; of the file or directory.</p></li>
 <li><p><strong>Group</strong> - the group that is the &quot;owner&quot; of the file or directory.</p></li>
@@ -618,65 +987,83 @@ Something</code></pre>
 <li><p><strong>Write</strong></p></li>
 <li><p><strong>Execute</strong> - for files, for directories this means &quot;navigate&quot; or &quot;list contents&quot;.</p></li>
 </ul>
-<p>The combination of &quot;who has what?&quot; is usually shown in detailed directory listings by a set of ten characters, with the first one determining whether an entry is a directory or a file:</p>
-<pre><code># ls -l /etc
-total 844
-drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
--rw-r--r-- 1 root root    2981 Apr 23  2014 adduser.conf
--rw-r--r-- 1 root root      45 Jul  9 08:46 adjtime
--rw-r--r-- 2 root root     621 May 22  2014 aliases
--rw-r--r-- 1 root root   12288 May 22  2014 aliases.db
-drwxr-xr-x 2 root root   20480 Feb 25  2015 alternatives
--rw-r--r-- 1 root root    4185 Dec 28  2011 analog.cfg
-drwxr-xr-x 7 root root    4096 Feb 25  2015 apache2
-drwxr-xr-x 6 root root    4096 Feb 25  2015 apt
--rw-r----- 1 root daemon   144 Jun  9  2012 at.deny
--rw-r--r-- 1 root root    1895 Dec 29  2012 bash.bashrc
--rw-r--r-- 1 root root      45 Jun 17  2012 bash_completion
-drwxr-xr-x 2 root root    4096 Feb 25  2015 bash_completion.d
-...and so on...</code></pre>
-<p>In the above, for example, we can see that the user <code>root</code> owns the file <code>at.deny</code> while the <code>daemon</code> group is the primary group for it. <code>root</code> can both read and write the file (<code>rw-</code>) while any user in the <code>daemon</code> group can only reade it (<code>r--</code>). No other id will have any access to the file at all (<code>---</code>).</p>
-<p>Similarly we see that <code>acpi</code> is a directory (<code>d</code>) that can be read, written (new files created) and listed by <code>root</code> (<code>rwx</code>), and read and listed by the group <code>root</code> and all other ids (<code>r-xr-x</code>).</p>
-<p>If we look in <code>/etc/init.d</code> where many services store their startup scripts we see:</p>
-<pre><code># ls -l /etc/init.d
-total 332
--rwxr-xr-x 1 root root  2227 Apr 15  2013 acpid
--rwxr-xr-x 1 root root  7820 Jan 31  2014 apache2
--rwxr-xr-x 1 root root  1071 Jun 25  2011 atd
--rwxr-xr-x 1 root root  1276 Oct 15  2012 bootlogs
--rwxr-xr-x 1 root root  1281 Jul 14  2013 bootmisc.sh
--rwxr-xr-x 1 root root  3816 Jul 14  2013 checkfs.sh
--rwxr-xr-x 1 root root  1099 Jul 14  2013 checkroot-bootclean.sh
--rwxr-xr-x 1 root root  9673 Jul 14  2013 checkroot.sh
--rwxr-xr-x 1 root root  1379 Dec  8  2011 console-setup
--rwxr-xr-x 1 root root  3033 Jul  3  2012 cron
--rwxr-xr-x 1 root root  2813 Feb  5  2015 dbus
--rwxr-xr-x 1 root root  6435 Jan  2  2013 exim4
-...and so on...</code></pre>
-<p>In this case all the scripts are readable, writable and executable (<code>rwx</code>) by the <code>root</code> user, and readable and executable by the <code>root</code> group and all other users (<code>r-xr-x</code>).</p>
+<p>The combination of &quot;who has what?&quot; is usually shown in detailed directory listings by a set of ten characters, with the first one determining whether an entry is a directory (<code>d</code>) or a file (<code>-</code>):</p>
+<p></p>
+<pre><code>%ls -l /etc
+total 1876
+drwxr-xr-x   2 root  wheel        512 Jan 15  2009 X11
+-rw-r--r--   1 root  wheel          0 Sep  3  2013 aliases
+-rw-r--r--   1 root  wheel      16384 Sep  3  2013 aliases.db
+-rw-r--r--   1 root  wheel        210 May  6  2009 amd.map
+-r--r--r--   1 root  wheel        233 Feb 15  2007 amd.map.snap
+-rw-r--r--   1 root  wheel       1234 May  6  2009 apmd.conf
+-rw-r--r--   1 root  wheel        231 May  6  2009 auth.conf
+drwxr-xr-x   2 root  wheel        512 May  6  2009 bluetooth
+-rw-r--r--   1 root  wheel        737 Mar 19  2015 crontab
+-rw-r--r--   1 root  wheel        108 May  6  2009 csh.cshrc
+-rw-r--r--   1 root  wheel        617 Apr 15  2009 csh.login
+-rw-r--r--   1 root  wheel        110 May  6  2009 csh.logout
+-rw-r--r--   1 root  wheel        565 May  6  2009 ddb.conf
+drwxr-xr-x   2 root  wheel        512 May  6  2009 defaults
+-rw-r--r--   1 root  wheel       9779 May  6  2009 devd.conf
+-rw-r--r--   1 root  wheel       2071 May  6  2009 devfs.conf
+-rw-r--r--   1 root  wheel        267 May  6  2009 dhclient.conf
+-rw-r--r--   1 root  wheel       5704 May  6  2009 disktab
+-rw-rw-r--   1 root  operator       0 Nov  3  2005 dumpdates
+drwxr-xr-x   6 root  staff        512 Nov 12  2014 fail2ban
+-rw-r--r--   1 root  wheel        142 May  6  2009 fbtab
+-rw-r--r--   1 root  wheel       2552 May  6  2009 freebsd-update.conf</code></pre>
+<p>In the above, for example, we can see that the user <code>root</code> owns the file <code>aliases</code> while the <code>wheel</code> group is the primary group for it. <code>root</code> can both read and write the file (<code>rw-</code>) while any user in the <code>wheel</code> group can only read it (<code>r--</code>). Any other id will also have read access (<code>r--</code>).</p>
+<p>Similarly we see that <code>defaults</code> is a directory (<code>d</code>) that can be read, written (new files created) and listed by <code>root</code> (<code>rwx</code>), and read and listed by the group <code>wheel</code> and all other ids (<code>r-xr-x</code>).</p>
+<p>Back on Linux, if we look in <code>/etc/init.d</code> where many services store their startup scripts we see:</p>
+<p></p>
+<pre><code>~ $ ls -l /etc/init.d
+total 276
+-rwxr-xr-x 1 root root 2243 Apr  3  2014 acpid
+-rwxr-xr-x 1 root root 2014 Feb 19  2014 anacron
+-rwxr-xr-x 1 root root 4596 Apr 24  2015 apparmor
+-rwxr-xr-x 1 root root 2401 Dec 30  2013 avahi-daemon
+-rwxr-xr-x 1 root root 1322 Mar 30  2014 binfmt-support
+-rwxr-xr-x 1 root root 4474 Sep  4  2014 bluetooth
+-rwxr-xr-x 1 root root 2125 Mar 13  2014 brltty
+-rwxr-xr-x 1 root root 4651 Apr  9  2014 casper
+-rwxr-xr-x 1 root root  425 Jun 26 09:11 cinnamon
+-rwxr-xr-x 1 root root 1919 Jan 18  2011 console-setup
+-rwxr-xr-x 1 root root 2489 May  6  2012 cpufrequtils
+lrwxrwxrwx 1 root root   21 Sep  7 04:00 cron -&gt; /lib/init/upstart-job
+-rwxr-xr-x 1 root root  938 Nov  1  2013 cryptdisks
+-rwxr-xr-x 1 root root  896 Nov  1  2013 cryptdisks-early
+-rwxr-xr-x 1 root root 3184 Apr  3  2014 cups
+-rwxr-xr-x 1 root root 1961 Apr  7  2014 cups-browsed
+-rwxr-xr-x 1 root root 2813 Nov 25  2014 dbus
+-rwxr-xr-x 1 root root 1217 Mar  7  2013 dns-clean
+lrwxrwxrwx 1 root root   21 Sep  7 04:00 friendly-recovery -&gt; /lib/init/upstart-
+job
+-rwxr-xr-x 1 root root 1105 May 13  2015 grub-common
+-rwxr-xr-x 1 root root 1329 Mar 12  2014 halt</code></pre>
+<p>In this case all the scripts are readable, writable and executable (<code>rwx</code>) by the <code>root</code> user, and readable and executable by the <code>root</code> group and all other users (<code>r-xr-x</code>). Later on I will explain linked files (those that start with an <code>l</code> instead of a <code>-</code> in the detailed listing above).</p>
 <p>To <em>change</em> the <em>owning</em> user of a file or directory (assuming you have permissions to do so), use the <a href="http://linux.die.net/man/1/chown"><code>chown</code></a> command:</p>
+<p></p>
 <pre><code># ls -l
 total 4
 -rwxr--r-- 1 root root 17 Oct 20 10:07 foo
-
 # chown git foo
-
 # ls -l
 total 4
 -rwxr--r-- 1 git root 17 Oct 20 10:07 foo</code></pre>
 <p>To <em>change</em> the primary <em>group</em>, use the <a href="http://linux.die.net/man/1/chgrp"><code>chgrp</code></a> command:</p>
+<p></p>
 <pre><code># chgrp git foo
-
 # ls -l
 total 4
 -rwxr--r-- 1 git git 17 Oct 20 10:07 foo</code></pre>
-<p>To <em>change</em> the various permissions or <em>mode</em> bits, you use the <a href="http://linux.die.net/man/1/chmod"><code>chmod</code></a> command. It uses mnemonics of &quot;ugo&quot; for (owning) user, group and &quot;other,&quot; respectively. It also uses mnemonics of &quot;rwx&quot; for read, write and execute, and <code>+</code> to add a permission and <code>-</code> to remove it. For example, to add execute permission for the group and remove read permission for &quot;other&quot;:</p>
+<p>To <em>change</em> the various permissions or <em>mode</em> bits, you use the <a href="http://linux.die.net/man/1/chmod"><code>chmod</code></a> command. It uses mnemonics of &quot;ugo&quot; for (owning) user, group and &quot;other,&quot; respectively. It also uses mnemonics of &quot;rwx&quot; for read, write and execute, and <code>+</code> to add a permission and <code>-</code> to remove it. For example, to add the execute permission for the group and remove read permission for &quot;other&quot;:</p>
+<p></p>
 <pre><code># chmod g+x,o-r foo
-
 # ls -l
 total 4
 -rwxr-x--- 1 git git 17 Oct 20 10:07 foo</code></pre>
-<p><strong>Pro Tip:</strong> To look like an old hand UNIX hacker, you can also convert any set of &quot;rwx&quot; permissions into an octal number from 0 (no permissions) to 7 (all permissions). It helps to think of the three permissions as &quot;binary places&quot;:</p>
+<p><strong>Pro Tip:</strong> To look like an old-hand UNIX hacker, you can also convert any set of &quot;rwx&quot; permissions into an octal number from 0 (no permissions) to 7 (all permissions). It helps to think of the three permissions as &quot;binary places&quot;:</p>
 <ul>
 <li><strong>r</strong> - 2^2 = 4</li>
 <li><strong>w</strong> - 2^1 = 2</li>
@@ -692,132 +1079,113 @@ total 4
 <li><strong>rwx</strong> - 2^2 + 2^1 + 2^0 = 7</li>
 </ul>
 <p>Now to use octal with <code>chmod</code>, we think of the overall result we want for a file. For example, if we want the <code>foo</code> file to be readable, writable and executable by both its owning user and group, and not accessible at all by anyone else, we could use:</p>
+<p></p>
 <pre><code># chmod u+rwx,g+rwx,o- foo
-
 # ls -l
 total 4
--rwxrwx--- 1 git git 17 Oct 20 10:07 foo
-</code></pre>
+-rwxrwx--- 1 git git 17 Oct 20 10:07 foo</code></pre>
 <p>Or we could simply convert those permissions into octal in our head and:</p>
+<p></p>
 <pre><code># chmod 770 foo
-
 # ls -l
 total 4
--rwxrwx--- 1 git git 17 Oct 20 10:07 foo
-</code></pre>
+-rwxrwx--- 1 git git 17 Oct 20 10:07 foo</code></pre>
 <p>Now you know the answer to that &quot;How will we ever use octal in real life?&quot; question you asked in school!</p>
 <p><strong>Note:</strong> For a script or executable file to be allowed to run, it <strong><em>must</em></strong> be marked as executable for one of the user, group or other entries. The following should be insightful:</p>
+<p></p>
 <pre><code># echo &quot;echo Hello world&quot; &gt; foo
-
 # ls -l
 total 4
 -rw-r--r-- 1 root root 17 Oct 20 10:07 foo
-
 # ./foo
 -bash: ./foo: Permission denied
-
 # chmod u+x foo
-
 # ls -l
 total 4
 -rwxr--r-- 1 root root 17 Oct 20 10:07 foo
-
 # ./foo
 Hello world</code></pre>
 <h2 id="ill-send-you-a-tar-ball"><a href="#ill-send-you-a-tar-ball">&quot;I'll Send You a Tar Ball&quot;</a></h2>
 <p>In the Windows world, we are used to compressing and sending directories around as <code>.zip</code> files. In Linux you can also deal with <code>.zip</code> files, although they don't tend to be the most common, using the <a href="http://linux.die.net/man/1/zip"><code>zip</code></a> and <a href="http://linux.die.net/man/1/unzip"><code>unzip</code></a> commands:</p>
-<pre><code>~ $ mkdir foo
-
-~ $ cd foo
-
-~ $ touch a b c
-
-~ $ mkdir d
-
-~ $ touch d/e
-
-~ $ cd ..
-
-~ $ zip -r foo foo
-updating: foo/ (stored 0%)
-  adding: foo/c (stored 0%)
-  adding: foo/b (stored 0%)
-  adding: foo/d/ (stored 0%)
-  adding: foo/d/e (stored 0%)
-  adding: foo/a (stored 0%)
-
-~ $ ls -l foo.zip
--rw-r--r-- 1 myuser mygroup 854 Oct 24 15:56 foo.zip
-
-~ $ unzip foo
-Archive:  foo.zip
-replace foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
- extracting: foo/c                   
- extracting: foo/b                   
- extracting: foo/d/e                 
- extracting: foo/a                   </code></pre>
-<p>Not too exciting, but you get the drift. There is typically support for other compression algorithms, too, using <a href="http://linux.die.net/man/1/bzip2"><code>bzip2</code></a> and <a href="http://linux.die.net/man/1/7z"><code>7z</code></a> (7-zip) commands.</p>
+<p></p>
+<pre><code>~ $ cd Foo
+~/Foo $ touch a b c
+~/Foo $ mkdir d
+~/Foo $ touch d/e
+~/Foo $ cd ..
+~ $ zip -r Foo Foo
+  adding: Foo/ (stored 0%)
+  adding: Foo/c (stored 0%)
+  adding: Foo/b (stored 0%)
+  adding: Foo/d/ (stored 0%)
+  adding: Foo/d/e (stored 0%)
+  adding: Foo/a (stored 0%)
+~ $ ls -l Foo.zip
+-rw-r--r-- 1 myuser mygroup 854 Dec 14 15:31 Foo.zip</code></pre>
+<p></p>
+<pre><code>~ $ unzip Foo
+Archive:  Foo.zip
+replace Foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
+ extracting: Foo/c
+ extracting: Foo/b                   
+ extracting: Foo/d/e                 
+ extracting: Foo/a</code></pre>
+<p>Not too exciting, but you get the drift. There is typically support for other compression algorithms, such as the <a href="http://linux.die.net/man/1/gzip"><code>gzip</code></a>, <a href="http://linux.die.net/man/1/bzip2"><code>bzip2</code></a> and <a href="http://linux.die.net/man/1/7z"><code>7z</code></a> (7-zip) commands.</p>
 <p>However, the &quot;native&quot; way to &quot;archive&quot; a directory's contents in &quot;UNIX&quot; is with <a href="http://linux.die.net/man/1/tar"><code>tar</code></a>, which is so old that <code>tar</code> stands for &quot;tape archive.&quot; Its purpose is to take virtually any directory structure and create a single output &quot;stream&quot; or file of it. That is then typically ran through a compression command and the result is called a &quot;tarball&quot;:</p>
-<pre><code>~ $ tar cvf foo.tar foo/*
-foo/a
-foo/b
-foo/c
-foo/d/
-foo/d/e
-
-~ $ ls -l foo.tar
--rw-r--r-- 1 myuser mygroup 10240 Oct 24 16:14 foo.tar
-
-~ $ gzip foo.tar
-
-~ $ ls -l foo.tar.gz 
--rw-r--r-- 1 myuser mygroup 187 Oct 24 16:14 foo.tar.gz</code></pre>
+<p></p>
+<pre><code>~ $ tar cvf Foo.tar Foo/*
+Foo/a
+Foo/b
+Foo/c
+Foo/d/
+Foo/d/e
+~ $ ls -l Foo.tar 
+-rw-r--r-- 1 myuser mygroup 10240 Dec 19 07:52 Foo.tar
+~ $ gzip Foo.tar 
+~ $ ls -l Foo.tar.gz 
+-rw-r--r-- 1 myuser mygroup 193 Dec 19 07:52 Foo.tar.gz</code></pre>
 <p>In the <code>tar</code> command above, the parameters are <code>c</code> (create a new archive), <code>v</code> (turn on &quot;verbose&quot; output) and <code>f</code> followed by the file name of the new <code>.tar</code> file.</p>
-<p><strong>Note:</strong> <code>tar</code> supports POSIX-style parameters (<code>-c</code>), GNU-style (<code>--create</code>), and the old BSD-style (<code>c</code> with no hyphens at all), as shown in these examples. So both of the following are also equivalent to the above:</p>
-<pre><code>~ $ tar -c -v -f foo.tar foo/*
-
-~ $ tar --create --verbose --file=foo.tar foo/*</code></pre>
+<p><strong>Note:</strong> <code>tar</code> supports POSIX-style parameters (<code>-c</code>), GNU-style (<code>--create</code>), as well as the older style (<code>c</code> with no hyphens at all), as shown in these examples. So both of the following are also equivalent to the above:</p>
+<p></p>
+<pre><code>~ $ tar -c -v -f Foo.tar Foo/*
+~ $ tar --create --verbose --file=Foo.tar Foo/*</code></pre>
 <p>The use of compression commands along with <code>tar</code> is so prevalent that they've been built into <code>tar</code> itself now as optional parameters:</p>
-<pre><code>~ $ tar cvzf foo.tgz foo
-foo/
-foo/c
-foo/b
-foo/d/
-foo/d/e
-foo/a
-
-~ $ ls -l foo.tgz
--rw-r--r-- 1 myuser mygroup 191 Oct 24 16:19 foo.tgz</code></pre>
+<p></p>
+<pre><code>~ $ tar cvzf Foo.tgz Foo
+Foo/
+Foo/c
+Foo/b
+Foo/d/
+Foo/d/e
+Foo/a
+~ $ ls -l Foo.tgz 
+-rw-r--r-- 1 myuser mygroup 197 Dec 19 07:54 Foo.tgz</code></pre>
 <p>In this case the <code>z</code> parameter says to use <code>gzip</code> compression, and the <code>.tgz</code> file suffix means basically &quot;tarred and gzipped&quot;, or the equivalent to <code>.tar.gz</code> in the first example.</p>
 <p><code>tar</code> is used to both create and read <code>.tar</code> files. So to extract something like the above, you can change the create (<code>c</code>) parameter to extract (<code>x</code>), like this:</p>
-<pre><code>~ $ tar xvf foo.tgz
-foo/
-foo/c
-foo/b
-foo/d/
-foo/d/e
-foo/a</code></pre>
+<p></p>
+<pre><code>~ $ tar xvf Foo.tgz 
+Foo/
+Foo/c
+Foo/b
+Foo/d/
+Foo/d/e
+Foo/a</code></pre>
 <h2 id="lets-link-up"><a href="#lets-link-up">Let's Link Up!</a></h2>
-<p>In Windows there are &quot;shortcuts,&quot; which are simply special files that the OS knows to interpret as &quot;go open this other file over there.&quot; There are also &quot;hard links&quot; that allow to different directory entries <em>in the same file system</em> to point to the same physical file.</p>
-<p>UNIX file systems also have both these types of links (which isn't surprising, given that Microsoft got the ideas from UNIX). A &quot;soft link&quot; is equivalent to a Windows shortcut, and can point to a file or a directory, and can point to anything on any mounted file system:</p>
+<p>In Windows there are &quot;shortcuts,&quot; which are simply special files that the OS knows to interpret as &quot;go open this other file over there.&quot; There are also &quot;hard links&quot; that allow for different directory entries <em>in the same file system</em> to point to the same physical file.</p>
+<p>UNIX file systems also have both these types of links (which isn't surprising, given that Microsoft got the ideas from UNIX). Both are created with the <a href="http://linux.die.net/man/1/ln"><code>ln</code></a> command. A &quot;soft link&quot; is equivalent to a Windows shortcut, and can point to a file or a directory, and can point to anything on any mounted file system:</p>
+<p></p>
 <pre><code>~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 b
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 c
 drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:00 d
-
 ~ $ cd d
-
 ~ $ pwd
 /tmp/foo/d
-
 ~ $ cd ..
-
 ~ $ ln -s a MyThesis.doc
-
 ~ $ ln -s d Dee
-
 ~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
@@ -826,33 +1194,26 @@ total 4
 drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:00 d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -&gt; d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -&gt; a
-
 ~ $ cd Dee
-
 ~ $ pwd
 /tmp/foo/Dee</code></pre>
 <p>The things to notice about this example:</p>
 <ol type="1">
 <li><p>The <code>-s</code> parameter indicates &quot;create a <em>soft</em> link.&quot;</p></li>
-<li><p>Instead of a <code>-</code> or <code>d</code>, a soft link is shown in a <code>ls</code> listing as <code>l</code> regardless of whether the target is a file or directory. This is because a soft link doesn't &quot;know&quot; <strong><em>what</em></strong> the target is - it is just a file with a name in a directory pointing to another location. <strong><em>What</em></strong> that location is will be determine after the link is traversed.</p></li>
+<li><p>Instead of a <code>-</code> or <code>d</code>, a soft link is shown in a <code>ls</code> listing as <code>l</code> regardless of whether the target is a file or directory. This is because a soft link doesn't &quot;know&quot; <strong><em>what</em></strong> the target is - it is just a file in a directory pointing to another location. <strong><em>What</em></strong> that location is will be determined after the link is traversed.</p></li>
 </ol>
-<p>A &quot;hard link&quot; is a bit different. It can only be made between files and the two files must be on the same file system. That is because hard links are actually directory entries (as opposed to files in directories) that point to the same <a href="https://en.wikipedia.org/wiki/Inode">&quot;inode&quot;</a> on disk. From within a single directory it is impossible to tell if there are other directories with pointers to the same files (inodes) on disk.</p>
+<p>A &quot;hard link&quot; is a bit different. It can only be made between <em>files</em> and the two files <strong><em>must be on the same file system</em></strong>. That is because hard links are actually directory entries (as opposed to files in directories) that point to the same <a href="https://en.wikipedia.org/wiki/Inode">&quot;inode&quot;</a> on disk. From within a single directory it is impossible to tell if there are other directories with pointers to the same files (inodes) on disk.</p>
+<p></p>
 <pre><code>~ $ ls
 a  b  c  d  Dee  MyThesis.doc
-
 ~ $ ln b B
-
 ~ $ cd d
-
 ~ $ ln ../b .
-
 ~ $ ls -l
 total 0
 -rw-r--r-- 3 myuser mygroup 0 Oct 24 15:53 b
 -rw-r--r-- 1 myuser mygroup 0 Oct 24 15:54 e
-
 ~ $ cd ..
-
 ~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
@@ -865,6 +1226,7 @@ lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -&gt; a</code></pre>
 <p>The &quot;net net&quot; of all the above is that now <code>b</code>, <code>B</code> and <code>d/b</code> all point to exactly the same inode, or disk location, i.e., the exact same physical file.</p>
 <h3 id="i-said-go-away-dammit"><a href="#i-said-go-away-dammit">I Said &quot;Go Away!&quot;, Dammit!</a></h3>
 <p>So what can possibly go wrong with links? With soft links the answer is easy - the &quot;remote&quot; location being pointed to goes away or is renamed:</p>
+<p></p>
 <pre><code>~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
@@ -874,9 +1236,7 @@ total 4
 drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -&gt; d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -&gt; a
-
 ~ $ rm a
-
 ~ $ ls -l
 total 4
 -rw-r--r-- 3 myuser mygroup    0 Oct 24 15:53 b
@@ -885,47 +1245,37 @@ total 4
 drwxr-xr-x 2 myuser mygroup 4096 Oct 24 16:49 d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 Dee -&gt; d
 lrwxrwxrwx 1 myuser mygroup    1 Oct 24 16:40 MyThesis.doc -&gt; a
-
 ~ $ cat MyThesis.doc 
 cat: MyThesis.doc: No such file or directory</code></pre>
-<p>So even though the soft link <code>MyThesis.doc</code> was still in the directory, the actual underlying file <code>a</code> is now gone, and trying to access it via the soft link leads to the somewhat confusing &quot;No such file or directory&quot; error message (&quot;I can see it! It's right there!&quot;)</p>
-<p>With hard links, it isn't so much a problem as just the nature of the beast. Because each hard link is a directory (metadata) entry pointing to an inode, deleting one simply deletes that directory entry. As long as the file has other hard links pointing to it, it &quot;exists.&quot; Only when the last remaining hard link is removed has it been &quot;deleted.&quot; Let's play:</p>
+<p>So even though the soft link <code>MyThesis.doc</code> is still in the directory, the actual underlying file <code>a</code> is now gone, and trying to access it via the soft link leads to the somewhat confusing &quot;No such file or directory&quot; error message (<em>splutter</em> &quot;I can see it! <strong><em>It's right there!</em></strong>&quot;)</p>
+<p>With hard links, it isn't so much a problem because of the nature of the beast. Since each hard link is a directory (metadata) entry pointing to an inode, deleting one simply deletes that directory entry. As long as the file has other hard links pointing to it, it &quot;exists.&quot; Only when the last remaining hard link is removed has it been &quot;deleted.&quot; Let's play:</p>
+<p></p>
 <pre><code>~ $ echo &quot;This is b.&quot; &gt; b
-
 ~ $ cat b
 This is b.
-
 ~ $ cat B
 This is b.
-
 ~ $ cat d/b
 This is b.</code></pre>
-<p>So, that makes sense. Above we had an original file <code>b</code> and created to hard links to it, <code>B</code> and <code>d/b</code>. When we edit <code>b</code> by placing &quot;This is b.&quot; in it, we see that it has the same contents no matter how we access it, because it is pointing to the same inode.</p>
+<p>So, that makes sense. We had an original file <code>b</code> and created two hard links to it, <code>B</code> and <code>d/b</code>. When we edit <code>b</code> by placing &quot;This is b.&quot; in it, we see that it has the same contents no matter how we access it, because it is pointing to the same inode.</p>
 <p>Can you guess how many <code>rm</code> commands it will take to delete the file containing &quot;This is b.&quot;?</p>
+<p></p>
 <pre><code>~ $ rm b
-
 ~ $ cat b
 cat: b: No such file or directory
-
 ~ $ cat B
 This is b.
-
 ~ $ cat d/b
 This is b.
-
 ~ $ rm B
-
 ~ $ cat d/b
 This is b.
-
-~ $ rm d/b
-
-~ $ ls
-c  d  Dee  MyThesis.doc</code></pre>
+~ $ rm d/b</code></pre>
 <p>So, ultimately, it takes a <code>rm</code> for every hard link to permanently delete a file.</p>
 <h3 id="mount-it-i-dont-even-know-its-name"><a href="#mount-it-i-dont-even-know-its-name">Mount It? I Don't Even Know It's Name!</a></h3>
 <p>With all this talk that a hard link can only be on the same file system, how do you know whether two directories are on the same file system? In Windows it's easy - that's exactly what the drive letters are telling you. But in Linux, where everything is &quot;mounted&quot; under a single hierarchy starting at <code>/</code>, how do I know that <code>/var/something</code> and <code>var/or/other</code> are on the same file system?</p>
 <p>There are multiple ways to tell, actually. The easiest is with the <a href="http://linux.die.net/man/1/df"><code>df</code></a> command:</p>
+<p></p>
 <pre><code>~ $ df
 Filesystem                1K-blocks     Used Available Use% Mounted on
 /dev/mapper/mint--vg-root 118647068 28847464  83749608  26% /
@@ -936,35 +1286,32 @@ none                           5120        0      5120   0% /run/lock
 none                        1981068      840   1980228   1% /run/shm
 none                         102400       24    102376   1% /run/user
 /dev/sda1                    240972    50153    178378  22% /boot</code></pre>
-<p>The ones of interested are the <code>/dev</code> entries, and we see that everything mounted under <code>/</code> is on one file system, except for whatever happens to be on the file system mounted under <code>/boot</code>. So outside of <code>/boot</code>, on this system we could hard link away to our heart's content.</p>
-<p><strong>Note:</strong> - It is (barely) beyond the scope of this book to cover the <a href="http://linux.die.net/man/8/mount"><code>mount</code></a> command. I wanted to, really bad, but it can get so complex so fast that I decided not to. Maybe if you ask, real nice...</p>
+<p>The ones of interest are the <code>/dev</code> entries, and we see that everything mounted under <code>/</code> is on one file system, except for whatever happens to be on the file system mounted under <code>/boot</code>. So outside of <code>/boot</code>, on this system we could hard link away to our heart's content.</p>
+<p><strong>Note:</strong> - It is (barely) beyond the scope of this book to cover the <a href="http://linux.die.net/man/8/mount"><code>mount</code></a> command. I wanted to, really bad, but with all the different file systems and device types and all the options for both it can get so complex so fast that I decided not to. Maybe if you ask, real nice...</p>
 <h3 id="im-seeing-double"><a href="#im-seeing-double">I'm Seeing Double</a></h3>
-<p>So, both hard and soft links can have some interesting side effects if you think about them, yes? For one, if you are backing things up, then you may get duplicates in your backup set. In fact, with hard links you will, by definition, unless the backup software is very smart and doing things like de-duplication.</p>
-<p>But even with soft links if everything just blindly followed them you could also get duplicates where you didn't want them, or even circular references. Also, the pointers in the soft link files are not evaluated until the a command references them. Note that the following is perfectly legal with soft links, but may not give the results you expect - think about current working directory shown by <code>pwd</code> in the following, and what the effects of the relative paths shown are as the sample progresses:</p>
-<pre><code>~ $ pwd
-/tmp/foo
-
-~ $ rm -rf *
-
-~ $ touch a b c
-
-~ $ mkdir d
-
-~ $ touch d/e
-
-~ $ ln -s . d/f
-
-~ $ ls d/f
+<p>So, both hard and soft links can have some interesting side effects if you think about them. For one, if you are backing things up, then you may get duplicates in your backup set. In fact, with hard links you will, by definition, unless the backup software is very smart and doing things like de-duplication.</p>
+<p>But even with soft links if everything just blindly followed them you could also get duplicates where you didn't want them, or even circular references. Also, the pointers in the soft link files are not evaluated until a command references them. Note that the following is perfectly legal with soft links, but may not give the results you expect - think about the current working directory shown by <code>pwd</code> in the following, and what the effects of the <strong><em>relative paths</em></strong> as the sample progresses:</p>
+<p></p>
+<pre><code>~ $ cd Foo
+~/Foo $ rm -rf *
+~/Foo $ cd ..
+~ $ cd Foo
+~/Foo $ pwd
+/home/myuser/Foo
+~/Foo $ rm -rf *
+~/Foo $ mkdir d
+~/Foo $ touch a b c d/e
+~/Foo $ ln -s . d/f
+~/Foo $ ls d/f
 e  f
-
-~ $ ln -s .. d/g
-
-~ $ ls d/g
+~/Foo $ ln -s .. d/g
+~/Foo $ ls d/g
 a  b  c  d</code></pre>
-<p>Many commands that deal with files and file systems, like <code>find</code>, have parameters specifically telling the command whether to follow soft links or not (by default, <code>find</code> does not).</p>
+<p>Many commands that deal with files and file systems, like <code>find</code>, have parameters specifically telling the command whether to follow soft links or not (by default, <code>find</code> does not - see the next chapter for more).</p>
 <h2 id="whats-the-diff"><a href="#whats-the-diff">What's the <code>diff</code>?</a></h2>
-<p>Most people think of <a href="http://linux.die.net/man/1/diff"><code>diff</code></a> as a tool only programmers find useful, but that is short-sighted. The whole purpose of <code>diff</code> is to show differences between files. For example, I backed up this document (which is a text file) before starting this chapter, then typed this introduction to <code>diff</code>. This is what <code>diff</code> shows:</p>
-<pre><code>~ $ diff Agenda.bak Agenda.md
+<p>Most people think of <a href="http://linux.die.net/man/1/diff"><code>diff</code></a> as a tool only programmers find useful, but that is short-sighted. The whole purpose of <code>diff</code> is to show differences between files. For example, I backed up this document (which is a text file) before starting this section, then typed this introduction to <code>diff</code>. This is what <code>diff</code> showed after I added the new paragraph:</p>
+<p></p>
+<pre><code>~ $ diff Step02.bak Step02.md
 1285a1286,1291
 &gt; Most people think of [`diff`](http://linux.die.net/man/1/diff) as a tool
 &gt; only programmers find useful, but that is short-sighted. The whole purpose
@@ -973,6 +1320,7 @@ a  b  c  d</code></pre>
 &gt; typed this introduction to `diff`. This is what `diff` shows:</code></pre>
 <p>In other words, the &quot;arrows&quot; are pointing to the &quot;new&quot; file (by convention the file specified on the left is the &quot;old&quot; file and the file on the right is the &quot;new&quot; file), showing five lines were inserted, starting at line 1285. Pretty meta, but not real exciting.</p>
 <p>Let's look at something else, say a configuration file for an application. We have an original file, <code>orig.conf</code>:</p>
+<p></p>
 <pre><code>~ $ cat orig.conf
 FOO=1
 
@@ -982,6 +1330,7 @@ SAME=ALWAYS
 
 BAR=Xyzzy</code></pre>
 <p>Then we have a new file, <code>new.conf</code>:</p>
+<p></p>
 <pre><code>~ $ cat new.conf
 FOO=2
 
@@ -989,6 +1338,7 @@ SOME=THINGS
 STAY=THE
 SAME=ALWAYS</code></pre>
 <p>Now if we <code>diff</code> them:</p>
+<p></p>
 <pre><code>~ $ diff orig.conf new.conf
 1c1
 &lt; FOO=1
@@ -996,8 +1346,8 @@ SAME=ALWAYS</code></pre>
 &gt; FOO=2
 7d6
 &lt; BAR=Xyzzy</code></pre>
-<p>Now we can more easily see that line #1 changed (<code>1c1</code>) from <code>FOO=1</code> on the &quot;left&quot; file to <code>FOO=2</code> on the &quot;right,&quot; and that line #7 was deleted (<code>7d6</code>) from the &quot;left&quot; file to form the &quot;right.&quot; Again, not too interesting, but imagine that both files were thousands of lines long, and there were only a few changes, and you were trying to detect and recover an accidentally-deleted line. Now you can see why <code>diff</code> can be handy, as long as you keep around a prior version either in a backup file or source code control to compare against.</p>
-<p><code>diff</code> is your friend. It really comes into play with a version control system like <code>git</code>, but again, that is beyond the scope of this book.</p>
+<p>Now we can more easily see that line #1 changed (<code>1c1</code>) from <code>FOO=1</code> on the &quot;left&quot; file to <code>FOO=2</code> on the &quot;right,&quot; and that line #7 was deleted (<code>7d6</code>) from the &quot;left&quot; file to form the &quot;right.&quot; Again, not too interesting, but imagine that both files were thousands of lines long, and there were only a few changes, and you were trying to detect and recover an accidentally-deleted line. Now you can see why <code>diff</code> can be handy, as long as you keep around a prior version either in a backup file or version control system to compare against.</p>
+<p><code>diff</code> is your friend. It really comes into play with a version control system like <a href="http://linux.die.net/man/1/git"><code>git</code></a>, but again, that is beyond the scope of this book.</p>
 <h1 id="finding-meaning"><a href="#finding-meaning">Finding Meaning</a></h1>
 <p><strong><em>The <code>find</code> command in all its glory. Probably the single most useful command in &quot;UNIX&quot; (I think).</em></strong></p>
 <blockquote>
@@ -1749,7 +2099,7 @@ Transfer-Encoding: chunked
 <p>To get a modern, secure shell to a remote machine, use <a href="http://linux.die.net/man/1/ssh"><code>ssh</code></a>, passing in the userid and server like this:</p>
 <pre><code>ssh myuser@remoteserver</code></pre>
 <p>You will be prompted for credentials (or you can use certificates, but that is <strong><em>way</em></strong> beyond this text's goals).</p>
-<p>You can also use the <code>SSH</code> protocol to securely transfer files between systems with the <a href="linux.die.net/man/1/scp"><code>scp</code></a> command. It works like this for a recursive directory copy:</p>
+<p>You can also use the <code>SSH</code> protocol to securely transfer files between systems with the <a href="http://linux.die.net/man/1/scp"><code>scp</code></a> command. It works like this for a recursive directory copy:</p>
 <pre><code>scp -r myfiles/* myuser@remoteserver:/home/myuser/.</code></pre>
 <p>In this case we are copying the files in <code>myfiles</code> and its subdirectories to <code>/home/myuser/</code> on <code>remoteserver</code> logged in as <code>myuser</code>.</p>
 <p><strong>Note:</strong> The first time you log into a remote server with <code>ssh</code> or <code>scp</code> you will be asked to accept the remote server's &quot;fingerprint.&quot; You can usually just say &quot;yes&quot;:</p>
@@ -1799,7 +2149,7 @@ nameserver 10.0.2.2</code></pre>
 <p>And to see any local overrides of network names or aliases:</p>
 <pre><code># cat /etc/hosts
 127.0.0.1       localhost</code></pre>
-<p><strong>Note:</strong> The UNIX <code>hosts</code> file is the basis for the Windows version (<code>C:\Windows\System32\drivers\etc\hosts</code>) and has similar syntax.</p>
+<p><strong>Note:</strong> The UNIX <code>/etc/hosts</code> file is the basis for the Windows version located at <code>C:\Windows\System32\drivers\etc\hosts</code>, and has similar syntax.</p>
 <h1 id="the-man-behind-the-curtain"><a href="#the-man-behind-the-curtain">The Man Behind the Curtain</a></h1>
 <p><strong><em><code>/proc</code>, <code>/dev</code>, <code>ps</code>, <code>/var/log</code>, <code>/tmp</code> and other things under the covers.</em></strong></p>
 <blockquote>
@@ -2519,6 +2869,7 @@ xfreerdp --version</code></pre>
 <p>Written in <a href="http://pandoc.org/README.html#pandocs-markdown"><code>pandoc</code>-flavored Markdown</a> using <a href="http://linux.die.net/man/1/vi"><code>vi</code></a> and <a href="https://github.com/Microsoft/vscode">Visual Studio Code</a>, among others.</p>
 <p>Output produced using <a href="http://pandoc.org/"><code>pandoc</code></a>, <a href="http://www.tug.org/texlive/">TeX Live</a> and <a href="http://linux.die.net/man/1/pdflatex"><code>pdflatex</code></a>, <a href="http://linux.die.net/man/1/make"><code>make</code></a>, originally based on the <span class="citation" data-cites="evangoer">[@evangoer's work]</span>(https://github.com/evangoer/pandoc-ebook-template).</p>
 <p>Source code control is provided by <a href="http://linux.die.net/man/1/git"><code>git</code></a>. You can view <a href="https://github.com/dullroar/ten-steps-to-linux-survival">the files used to create this book</a> on GitHub.</p>
+<p>The fonts used are <a href="https://en.wikipedia.org/wiki/DejaVu_fonts">DejaVu</a> Serif for the body text, DejaVu Sans for headers, and <a href="https://en.wikipedia.org/wiki/Ubuntu_%28typeface%29">Ubuntu Mono</a> for code (because it is nicely condensed).</p>
 <p>The cover photo is of our dog, Merv, who is reminding you, &quot;Don't panic!&quot; Photo by Gloria Anderson, used with permission.</p>
 <h2 id="about-the-author"><a href="#about-the-author">About the Author</a></h2>
 <p>Jim is son to Barb and Lou; husband to Leslie; father to Meghann (and Jeremy), Morgann, Erin, Gloria and Jon; grandfather to Ryan, Lindsay, Logan and Hannah; and alpha wolf to Merv. He has been &quot;in computers&quot; since 1980. His hobbies include reading, running, hiking and climbing, and apparently writing books.</p>

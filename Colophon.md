@@ -40,6 +40,11 @@ You can view
 [the files used to create this book](https://github.com/dullroar/ten-steps-to-linux-survival)
 on GitHub.
 
+The fonts used are [DejaVu](https://en.wikipedia.org/wiki/DejaVu_fonts)
+Serif for the body text, DejaVu Sans for headers, and
+[Ubuntu Mono](https://en.wikipedia.org/wiki/Ubuntu_%28typeface%29) for code
+(because it is nicely condensed).
+
 The cover photo is of our dog, Merv, who is reminding you, "Don't panic!"
 Photo by Gloria Anderson, used with permission.
 
