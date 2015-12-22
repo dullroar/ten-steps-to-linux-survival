@@ -1,51 +1,21 @@
-  
-\ifxetex
-\section*{}
-\pagestyle{empty}
-\begin{figure}[H]
-\includegraphics{./images/Merv.jpg}
-\caption*{Merv sez, "Don't panic."}
-\end{figure}
 \cleardoublepage
+![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don&apos;t panic.'")\ \
+Merv sez, "Don't panic."
+\clearpage
+\ \
+\ \
 By James Lehmer
-\par
-v0.6
-\par
-\begin{figure}[H]
-\centering
-\includegraphics{./images/cc-by-sa.png}
-\caption*{Creative Commons Attribution-ShareAlike 4.0 International License}
-\end{figure}
-  
-  
+\ \
+\ \
+v0.7
+\ \
+\ \
+![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 International")\
 *Jim's Ten Steps to Linux Survival* by James Lehmer is licensed under a
-[Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
-\pagestyle{headings}
-\else
-
-![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don&apos;t panic.'")
-
-<b>By James Lehmer</b>
-<br />
-<br />
-v0.6
-<br />
-<br />
-<a rel="license"
-href="http://creativecommons.org/licenses/by-sa/4.0/"><img
-alt="Creative Commons License" style="border-width:0"
-src="./images/cc-by-sa.png"/></a>
-<br />
-<br />
-<span xmlns:dct="http://purl.org/dc/terms/"
-property="dct:title"><i>Jim's Ten Steps to Linux Survival</i></span>
-by <span xmlns:cc="http://creativecommons.org/ns#"
-property="cc:attributionName">James
-Lehmer</span> is licensed under a <a rel="license"
-href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
-Attribution-ShareAlike 4.0 International License</a>.
-
-\fi
+[Creative Commons Attribution-ShareAlike 4.0 International
+License](http://creativecommons.org/licenses/by-sa/4.0/).
+\ \
+\ \
 **Dedicated to my first three technical mentors** - Jim Proffer,
 who taught me digging deeper was fun and let me do so (often in
 production). Jerry Wood, who taught me to stop and think (and once
@@ -54,7 +24,11 @@ let me be more than he hired me to be (and continues to be a great chess
 opponent). Thank you, gentlemen. I've tried to pay it forward. This book
 is part of that.
 
-\ifxetex\setcounter{chapter}{-2}\fi
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE]{\slshape JIM'S\ TEN\ STEPS\ TO\ LINUX\ SURVIVAL}
+\fancyhead[RO]{\slshape \leftmark}
+\renewcommand{\headrulewidth}{0.4pt}
 
 # Introduction
 
@@ -122,7 +96,7 @@ StackOverflow and the dangers of searching for “`man find`” or
 
 Plus [some stuff](#appendices) at the end to tie the whole room together.
 
-## Batteries Not Included
+## Batteries Not Included{.unnumbered}
 
 It should be obvious that there is ***plenty*** that is not covered:
 
@@ -150,19 +124,19 @@ help someone whose system administration experience has been limited to
 "Next-Next-Next-Finish" installs and filling in text boxes in wizards
 on Windows.
 
-## Please, Give Generously
+## Please, Give Generously{.unnumbered}
 
 That said, if you find something amiss in here - a typo, a
 misconception or mistake, or a command or parameter you ***really,
 really, really*** think should be in here even though I said
 I am not trying to be exhaustive, feel free to [clone it from
-GitHub](https://github.com/dullroar/ten-steps-to-linux-survival.git),
+GitHub](https://github.com/dullroar/ten-steps-to-linux-survival),
 make your changes and send me a `git pull` request. Or you can try to
 [file it as an
-issue](https://github.com/dullroar/ten-steps-to-linux-survival/issues?q=is%3Aopen+is%3Aissue)
+issue](https://github.com/dullroar/ten-steps-to-linux-survival/issues)
 and I'll see how I feel that day.
 
-## Why?
+## Why?{.unnumbered}
 
 Because I work in a primarily Windows-oriented shop, and I seem to be
 "the guy" that everyone comes to when they need help on a Linux or
@@ -230,7 +204,7 @@ weekends and lunch hours gone, this is what you see as the result. I
 figure the slides will be easier to prepare for that "lunch and learn,"
 now that I have the "notes"!
 
-## Caveat Administrator
+## Caveat Administrator{.unnumbered}
 
 Even so, anything like this is incomplete. Anyone knowledgable of Linux
 will probably splutter their coffee into their neckbeard at least once
@@ -264,7 +238,7 @@ for documentation mentioned in this book to make sure you aren't doing
 anything destructive to your system, especially in production. ***You
 have been warned!***
 
-## Conventions
+## Conventions{.unnumbered}
 
 If a command, file name or other "computer code" is shown in-line in a
 sentence, it will appear in a fixed-width font, e.g., `ls --recursive
@@ -294,11 +268,6 @@ via the [`PS1` environment
 variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)\drenv{PS1}
 and are not meant to be typed in as part of the command.
 
-Examples may also appear in a screen shot:
-
-\drcap{Example screen shot}
-![Sample command](./images/ps-AH.png "Sample command")
-
-## Acknowledgments
+## Acknowledgments{.unnumbered}
 
 Thanks to Ken Astl for reading an early draft of this book.

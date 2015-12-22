@@ -7,6 +7,10 @@
 \usepackage{flafter}
 \usepackage{makeidx}
 \usepackage[nottoc]{tocbibind}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{tocloft}
 % End of packages I added.
 
 \usepackage[T1]{fontenc}
@@ -176,21 +180,21 @@ $endif$
 \renewcommand{\dbltopfraction}{0.9}	% fit big float above 2-col. text
 \renewcommand{\dblfloatpagefraction}{0.7}	% require fuller float pages
 \setcounter{dbltopnumber}{2}        % for 2-column pages
-% remember to use [htp] or [htpb] for placement
 \overfullrule=2cm   % Black bars to show overfull boxes
 \renewcommand{\chaptername}{Step}
 \renewcommand{\contentsname}{Steps}
 \numberwithin{figure}{chapter}
-\DeclareRobustCommand{\fimg}[3]{\ifxetex\begin{figure}[H]\caption{#2}\label{fig:#3}\includegraphics{#1}\end{figure}\fi}
-\DeclareRobustCommand{\fref}[1]{\ifxetex{(Figure \ref{fig:#1})}\fi}
 \DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
 \DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1}}
 \DeclareRobustCommand{\drenv}[1]{\index{Environment Variables!#1}}
 \DeclareRobustCommand{\drios}[1]{\index{OS and OS-Like Substances!#1}}
 \DeclareRobustCommand{\drshl}[1]{\index{Shells!#1}}
+\DeclareRobustCommand{\drvic}[2]{\index{vi Commands!#1 (#2)}}
 % End of overriding commands.
 
 \begin{document}
+\pagestyle{empty}
+
 $if(title)$
 \maketitle
 $endif$
@@ -210,10 +214,14 @@ $endif$
 % Add list of figures.
 $if(lof)$
 {
-\listoffigures\vfill
+\setlength{\cftfignumwidth}{4em}
+\listoffigures
+\vfill
 }
 $endif$
 % End of list of figures.
+
+\setcounter{chapter}{-2}
 
 $body$
 

@@ -1,4 +1,4 @@
-  
+
 # Finding Meaning
 
 ***The `find` command in all its glory. Probably the single most useful
@@ -9,11 +9,11 @@ command in "UNIX" (I think).***
 
 Different people will have different answers to "What is the single most
 useful "UNIX" command?" There certainly are many to consider. But I keep
-coming back to [`find`](http://linux.die.net/man/1/find). It can be
-intimidating to figure out from the documentation, especially at first,
+coming back to [`find`](http://linux.die.net/man/1/find)\drcmd{find}. It can
+be intimidating to figure out from the documentation, especially at first,
 but once you start mastering it, you end up using it over and over again.
 
-The main concepts of `find` is simple:
+The main concepts of `find` are simple:
 
 1. Starting at location *X*...
 
@@ -25,8 +25,9 @@ be more precise) that successfully match one or more tests...
 The simplest example is "starting in the current directory, recursively
 list all files you find":
 
+\drcap{Simplest find example}
 ```
-$ find
+~ $ find
 .
 ./Agenda.md
 ./Bad and Corrupted Test Files
@@ -53,16 +54,18 @@ intended) some better examples of using `find`. It is better to show than
 tell in this case. Let's dive into a semi-complicated one and pick it
 apart:
 
+\drcap{More complicated find example}
 ```
-find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
+~ $ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 ```
 
 How does this all work? Remembering the three steps at the beginning:
 
 1. **Starting at location `//myserver/myshare/logs/000[4-9]`** - in this
-case a CIFS/SMB share. Note the regular expression (which we will cover
-later), in this case stating only to look in directories 0004-0009.
+case a CIFS/SMB share (running under Cygwin - this won't work on Linux).
+Note the regular expression (which we will cover later), in this case
+stating only to look in directories 0004-0009.
 
 2. **Recursively find file system entries that match one or more tests** -
 the tests in this example are:
@@ -82,18 +85,19 @@ the tests in this example are:
 3. **For each match, execute `logchecker`** - and pass in the name of the
 currently found (matching) file.
 
-## What's With the Backslashes? 
+## What's With the Backslashes?{.unnumbered}
 
 Reconsider this example:
 
+\drcap{More complicated find example, explained}
 ```
-find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
+~ $ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 ```
           
 There are five (5) backslash (`\`) characters in the above. In each case,
-the backslash is preventing
-[shell expansion](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html):
+the backslash is preventing [shell
+expansion](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html):
 
 1. **`\*.dat`** - preserves the `*` for `find` to use as it recursively
 searches through directories, instead of the shell expanding it to all
@@ -110,12 +114,12 @@ line in the shell.
 
 That last point bears repeating. Any time you `-exec` in a `find`
 command (which will be a lot), just get used to typing `\{\} \;` (the
-space between the ending brace and the `\;` is required).
+space between the ending brace and the `\;` is ***required***).
 
-## Useful `find` Options
+## Useful `find` Options{.unnumbered}
 
 The [`find`](http://linux.die.net/man/1/find) documentation gives a
-bewildering number of options. Here are the ones you may find the most
+bewildering number of options. Here are the ones you may "find" the most
 useful:
 
 * **`-executable`** - the file is executable or the directory is searchable
@@ -143,7 +147,7 @@ various measures like 512-byte blocks (`b`) through gigabytes (`G`).
 
 * **`-user <uname>`** - file is owned by *uname*.
 
-## Useful `find` Actions
+## Useful `find` Actions{.unnumbered}
 
 Similarly, you are going to keep coming back to just a handful of `find`
 actions:
@@ -152,12 +156,13 @@ actions:
 also tests (predicates), so as the `find` documentation says, "Don't forget
 that the find command line is evaluated as an expression, so putting
 `-delete` first will make find try to delete everything below the starting
-points you specified."
+points you specified." In other words, placing `-delete` too early in the
+expression is going to yield behavior distressingly similar to `rm -r *`.
 
 * **`-exec` and `-execdir`** - executes a command or script, typically
 passing in the name of the file or directory found. You will use this
 ***all*** the time. The difference between the two is that `-execdir`
-changes the working directory to that of the file found before invoking
+changes the working directory to that of the item found before invoking
 the program or script, whereas `-exec` simply passes in the fully-qualified
 path of the found item.
 
@@ -167,25 +172,20 @@ is the default action.
 * **`-printf`** - prints a formatted string, useful for reports.
 
 The `-printf` action allows you to do some interesting things when
-producing output. For example, consider these three files:
+producing output. For example, if for some reason we wanted a report
+where for each file we wanted three lines with the name, owner and
+created date and time in ISO 8601 format, all followed by a blank
+line, we could use the following `find` command:
 
+\drcap{Using find as a simple reporting tool}
 ```
-$ touch a b c
-
-$ ls -l
+~ $ touch a b c
+~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 a
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 b
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 c
-```
-
-If for some reason we wanted a report where for each of those files we
-wanted three lines with the name, owner and created date and time in ISO
-8601 format, all followed by a blank line, we could use the following
-`find` command:
-
-```
-$ find . -type f -printf "%p\n%u\n%TY-%Tm-%TdT%TT\n\n"
+~ $ find . -type f -printf "%p\n%u\n%TY-%Tm-%TdT%TT\n\n"
 ./a
 myuser
 2015-10-21T11:02:51.7014527000
@@ -199,7 +199,8 @@ myuser
 2015-10-21T11:02:51.7048997000
 ```
 
-The `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`breaks down as:
+That `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`breaks down
+into:
 
 * **`"`** - prevent shell expansion on the format string.
 * **`%p`** - file name.
@@ -215,4 +216,3 @@ The `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`breaks down as:
 * **`%TT`** - the time expressed in ***hh:mm:ss.hhhhhh*** format.
 * **`\n\n`** - two new lines.
 * **`"`** - prevent shell expansion on the format string.
-  

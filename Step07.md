@@ -1,4 +1,4 @@
-  
+
 # The Whole Wide World
 
 ***`curl`, `wget`, `ifconfig`, `ping`, `ssh`, `telnet`, `/etc/hosts` and
@@ -6,12 +6,13 @@ email before Outlook.***
 
 > *"Gopher, Everett?"* - Delmar O'Donnell (*O Brother, Where Are Thou?*)
 
-If Sun's motto, "The network is the computer" is correct, then of course
+If Sun's motto "The network is the computer" is correct, then of course
 Linux and similar systems must be able to access the network from the
 command line and scripts.
 
-For example, our friend [`ping`](http://linux.die.net/man/8/ping) is there:
+For example, our friend [`ping`](http://linux.die.net/man/8/ping)\drcmd{ping} is there:
 
+\drcap{ping command}
 ```
 # ping www.yahoo.com
 PING fd-fp3.wg1.b.yahoo.com (98.138.253.109) 56(84) bytes of data.
@@ -33,59 +34,61 @@ rtt min/avg/max/mdev = 59.933/62.581/70.935/3.191 ms
 
 One difference with `ping` is that by default in Linux `ping` doesn't stop
 until the user presses `Ctrl-C` (which sends the
-[`SIGINT` interrupt](https://en.wikipedia.org/wiki/Unix_signal) to the
-program). In this way it acts more like `ping -t` in `CMD.EXE`. Also, be
+[`SIGINT` interrupt](https://en.wikipedia.org/wiki/Unix_signal)\index{signals} to the
+program). In this way it acts more like `ping -t` in `CMD.EXE`\drshl{CMD.EXE}. Also, be
 aware that on Cygwin `ping` is still the system (Windows) `ping`.
 
-[`traceroute`](http://linux.die.net/man/8/traceroute) works, too (although
+[`traceroute`](http://linux.die.net/man/8/traceroute)\drcmd{traceroute} works, too (although
 for once its name is longer than the `CMD.EXE` counterpart).
 
+\drcap{traceroute command}
 ```
-# traceroute www.yahoo.com
-traceroute to www.yahoo.com (98.138.252.30), 30 hops max, 60 byte packets
- 1  10.208.3.254 (10.208.3.254)  0.720 ms  0.706 ms  0.693 ms
- 2  10.208.6.53 (10.208.6.53)  0.808 ms  0.896 ms  0.943 ms
- 3  10.208.6.46 (10.208.6.46)  2.632 ms  2.636 ms  2.634 ms
- 4  kcm-priv-20.inet.qwest.net (63.159.159.185)  30.786 ms  30.852 ms  3...
+~ $ traceroute google.com
+traceroute to google.com (216.58.216.78), 30 hops max, 60 byte packets
+ 1  192.168.0.1 (192.168.0.1)  3.623 ms  3.978 ms  7.231 ms
+ 2  * * *
+ 3  * * *
+ 4  * * *
  5  * * *
- 6  67.134.114.230 (67.134.114.230)  30.441 ms  29.811 ms  30.372 ms
- 7  67.130.10.174 (67.130.10.174)  32.267 ms  32.700 ms  32.789 ms
- 8  67.130.10.103 (67.130.10.103)  32.416 ms  32.421 ms  32.420 ms
- 9  min-edge-13.inet.qwest.net (67.130.30.21)  33.878 ms  31.719 ms  34....
-10  chp-brdr-03.inet.qwest.net (67.14.8.194)  45.668 ms  55.177 ms  45.6...
-11  63.146.27.18 (63.146.27.18)  46.371 ms  46.333 ms  47.234 ms
-...and so on...
+ 6  * * *
+ 7  72.14.215.212 (72.14.215.212)  26.205 ms  27.502 ms  27.648 ms
+ 8  209.85.242.133 (209.85.242.133)  31.547 ms  31.550 ms  31.548 ms
+ 9  72.14.237.231 (72.14.237.231)  29.516 ms  29.556 ms  29.657 ms
+10  ord30s21-in-f78.1e100.net (216.58.216.78)  30.313 ms  33.138 ms  28.092 ms
 ```
 
-You can do some digging in DNS with `dig`:
+You can do some digging in DNS with `dig`\drcmd{dig}:
 
+\drcap{dig command}
 ```
-# dig yahoo.com
+~ $ dig yahoo.com
 
-; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> yahoo.com
+; <<>> DiG 9.9.5-3ubuntu0.6-Ubuntu <<>> yahoo.com
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18148
-;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 0
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 46478
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 1
 
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
 ;; QUESTION SECTION:
-;yahoo.com.                     IN      A
+;yahoo.com.			IN	A
 
 ;; ANSWER SECTION:
-yahoo.com.              1705    IN      A       206.190.36.45
-yahoo.com.              1705    IN      A       98.139.183.24
-yahoo.com.              1705    IN      A       98.138.253.109
+yahoo.com.		605	IN	A	98.138.253.109
+yahoo.com.		605	IN	A	206.190.36.45
+yahoo.com.		605	IN	A	98.139.183.24
 
-;; Query time: 17 msec
-;; SERVER: 10.208.2.4#53(10.208.2.4)
-;; WHEN: Fri Oct 23 13:16:51 2015
-;; MSG SIZE  rcvd: 75
+;; Query time: 23 msec
+;; SERVER: 127.0.1.1#53(127.0.1.1)
+;; WHEN: Tue Dec 22 09:46:26 CST 2015
+;; MSG SIZE  rcvd: 86
 ```
 
-And `whois`:
+And `whois`\drcmd{whois}:
 
 ```
-# whois yahoo.com
+~ $ whois yahoo.com
 
 Whois Server Version 2.0
 
@@ -99,10 +102,19 @@ for detailed information.
    Registrar: WILD WEST DOMAINS, LLC
    Whois Server: whois.wildwestdomains.com
    Referral URL: http://www.wildwestdomains.com
+
+   Server Name: YAHOO.COM.ANGRYPIRATES.COM
+   IP Address: 8.8.8.8
+   Registrar: NAME.COM, INC.
+   Whois Server: whois.name.com
+   Referral URL: http://www.name.com
+
+   Server Name: YAHOO.COM.AU
+   Registrar: WILD WEST DOMAINS, LLC
 ...and so on...
 ```
 
-## `sudo` Make Me a Sandwich
+## `sudo` Make Me a Sandwich{.unnumbered}
 
 It may not be the best place to discuss it, but we've finally come to a
 point where your normal user account may not have access to these tools.
@@ -111,7 +123,7 @@ commands and are restricted.
 
 One way to run restricted commands is to log in as a "elevated" or
 privileged user, such as `root`. But this is frowned on, and many distros
-today rely on the [`sudo`](http://linux.die.net/man/8/sudo) command to
+today rely on the [`sudo`](http://linux.die.net/man/8/sudo)\drcmd{sudo} command to
 act as a way for a normal user to signal they want to escalate their
 privileges temporarily (presuming they are allowed to do so, which is
 usually indicated by being a member of the `sudo` group or similar.
@@ -120,75 +132,104 @@ In a sense, `sudo` is similar to Windows User Access Control (UAC, or "Are
 you sure?") prompts. They ensure a human is in control, in the case of
 `sudo` by prompting for the user's password (if multiple commands are
 invoked by `sudo` within a short time period, you will not be reprompted
-for a password each time).
+for a password each time, unlike UAC).
 
 Here is a really common example on Debian-based systems:
 
+\drcap{Make me a sandwich}
 ```
-$ apt-get update
-E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permissi...
+~ $ apt-get update
+E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denie
+d)
 E: Unable to lock directory /var/lib/apt/lists/
-E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission de...
-E: Unable to lock the administration directory (/var/lib/dpkg/), are you...
+E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
+E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
 ```
 
 The error message, especially the last line, is pretty clear. Let's try it
 again with `sudo`:
 
+\drcap{sudo Make me a sandwich}
 ```
-$ sudo apt-get update
-[sudo] password for myuser: 
-Ign http://extra.linuxmint.com rafaela InRelease
-Ign http://packages.linuxmint.com rafaela InRelease                            
-Hit http://security.ubuntu.com trusty-security InRelease                       
+~ $ sudo apt-get update
+Ign http://packages.linuxmint.com rafaela InRelease
+Ign http://extra.linuxmint.com rafaela InRelease                               
 Hit http://extra.linuxmint.com rafaela Release.gpg                             
 Hit http://packages.linuxmint.com rafaela Release.gpg                          
-Hit http://security.ubuntu.com trusty-security/main amd64 Packages             
 Ign http://archive.ubuntu.com trusty InRelease                                 
+Hit http://security.ubuntu.com trusty-security InRelease                       
+Hit http://packages.linuxmint.com rafaela Release                              
+Hit http://extra.linuxmint.com rafaela Release                                 
+Hit http://archive.ubuntu.com trusty-updates InRelease                         
+Hit http://security.ubuntu.com trusty-security/main amd64 Packages             
+Hit http://packages.linuxmint.com rafaela/main amd64 Packages                  
+Hit http://extra.linuxmint.com rafaela/main amd64 Packages                     
 Ign http://archive.canonical.com trusty InRelease                              
+Hit http://archive.ubuntu.com trusty Release.gpg                               
 Hit http://security.ubuntu.com trusty-security/restricted amd64 Packages       
-Hit http://extra.linuxmint.com rafaela Release                
-...and so on...
+Hit http://extra.linuxmint.com rafaela/main i386 Packages                      
+Hit http://packages.linuxmint.com rafaela/upstream amd64 Packages              
+Hit http://security.ubuntu.com trusty-security/universe amd64 Packages         
+Hit http://archive.ubuntu.com trusty-updates/main amd64 Packages               
+Hit http://packages.linuxmint.com rafaela/import amd64 Packages                
+Hit http://security.ubuntu.com trusty-security/multiverse amd64 Packages       
+Hit http://archive.canonical.com trusty Release.gpg                            
+...and so on...         
 ```
 
 Now you should get the punchline to [this comic](https://xkcd.com/149/),
 and hence the title of this section.
 
-## Surfin' the Command Prompt
+## Surfin' the Command Prompt{.unnumbered}
 
 You can browse the web from the command prompt using something like
-[`lynx`](http://linux.die.net/man/1/lynx). A text-based browser isn't too
+[`lynx`](http://linux.die.net/man/1/lynx)\drcmd{lynx}. A text-based browser isn't too
 exciting, but it can have its purposes (like quickly testing network access
 from a command prompt). For example, `lynx http://google.com` yields:
 
+\drcap{Browsing like it's 1994}
 ```
+                                                                          Google
+
    Search Images Maps Play YouTube News Gmail Drive More »
    Web History | Settings | Sign in
 
    Google
 
-   _______________________________________________________
-   Google Search  I'm Feeling Lucky                          Advanced search
+     _______________________________________________________
+     Google Search  I'm Feeling Lucky                          Advanced search
+                                                               Language tools
 
-   Advertising Programs     Business Solutions     +Google     About Google
+   Advertising Programs     Business Solutions     +Google     About
+   Google
 
-   © 2015 - Privacy - Terms
+                          © 2015 - Privacy - Terms
 
+
+
+
+
+
+(NORMAL LINK) Use right-arrow or <return> to activate.
+  Arrow keys: Up and Down to move.  Right to follow a link; Left to go back.
+ H)elp O)ptions P)rint G)o M)ain screen Q)uit /=search [delete]=history list 
 ```
 
 There are two other commands that are used to pull down web resources and
-save them locally - [`curl`](http://linux.die.net/man/1/curl) and
-[`wget`](http://linux.die.net/man/1/wget). Both support HTTP(S) and FTP,
-but `curl` supports even more protocols and options, while `curl` tends
+save them locally - [`curl`](http://linux.die.net/man/1/curl)\drcmd{curl} and
+[`wget`](http://linux.die.net/man/1/wget)\drcmd{wget}. Both support HTTP(S) and FTP,
+but `curl` supports even more protocols and options and tends
 to be the simplest to just "grab a file and go." You see both used often in
 install scripts that then download more bits from the internet:
 
+\drcap{wget in an install script}
 ```
 wget -O - http://foocorp.com/installs/install.sh | bash
 ```
 
 Or:
 
+\drcap{curl in an install script}
 ```
 curl http://foocorp.com/installs/install.sh | bash
 ```
@@ -197,29 +238,30 @@ curl http://foocorp.com/installs/install.sh | bash
 arbitrary bits, and this technique doesn't lessen your responsibility
 there.
 
-## You've Got Mail
+## You've Got Mail{.unnumbered}
 
 You can send and receive email from the command prompt. Reading email will
-be rare, but if the system has [`pine`](http://linux.die.net/man/1/pine)
+be rare, but if the system has [`pine`](http://linux.die.net/man/1/pine)\drcmd{pine}
 installed, that's probably the most intuitive from a non-UNIX perspective
-(although it is still obviously a command line program). Otherwise look for
-[`mutt`](http://linux.die.net/man/1/mutt).
+(although it is still obviously a terminal program). Otherwise look for
+[`mutt`](http://linux.die.net/man/1/mutt)\drcmd{mutt}.
 
 Sending email is more interesting, especially from shell scripts. There are
-multiple ways, but [`email`](http://linux.die.net/man/1/email) is
+multiple ways, but [`email`](http://linux.die.net/man/1/email)\drcmd{email} is
 straightforward enough:
 
+\drcap{Sending email from the command line}
 ```
 email --blank-mail --subject "Possibly corrupted files found..." \
   --smtp-server smtp --attach badfiles.csv --from-name NoReply \
   --from-addr noreply@mycorp.com alert@mycorp.com
 ```
 
-## Let's Connect
+## Let's Connect{.unnumbered}
 
 There are two primary ways to get an interactive "shell" session on a
 remote machine. The first is the venerable
-[`telnet`](http://linux.die.net/man/1/telnet) command. It isn't used very
+[`telnet`](http://linux.die.net/man/1/telnet)\drcmd{telnet} command. It isn't used very
 often for actual interactive sessions any more (for one, because it sends
 credentials in plain text on the wire). However, because you can specify
 the port number, it is still handy for testing and debugging text-based
@@ -228,48 +270,52 @@ connection on port 80 to Google, I simply entered the HTTP protocol
 sequence `GET / HTTP/1.1` followed by a blank line to get Google to return
 its home page:
 
+\drcap{Using telnet to diagnose HTTP}
 ```
-# telnet google.com 80
-Trying 216.58.216.110...
+~ $ telnet google.com 80
+Trying 216.58.216.78...
 Connected to google.com.
 Escape character is '^]'.
 GET / HTTP/1.1
 
 HTTP/1.1 200 OK
-Date: Fri, 23 Oct 2015 18:26:04 GMT
+Date: Tue, 22 Dec 2015 15:58:47 GMT
 Expires: -1
 Cache-Control: private, max-age=0
 Content-Type: text/html; charset=ISO-8859-1
-P3P: CP="This is not a P3P policy! See http://www.google.com/support/acc...
+P3P: CP="This is not a P3P policy! See https://www.google.com/support/accounts/a
+nswer/151657?hl=en for more info."
 Server: gws
 X-XSS-Protection: 1; mode=block
 X-Frame-Options: SAMEORIGIN
-Set-Cookie: PREF=ID=1111111111111111:FF=0:TM=1445624764:LM=1445624764:V=...
-Set-Cookie: NID=72=HLgGubMnO1ThhvhOAmvehue96EKTh9D6F19zidZQU-E9AibEg2Op6...
+Set-Cookie: NID=74=nqD9y_pSQudbaw6obB94Ngw6lsn4t_S8Z3NbZcUJ5HB4qUXCpu988A5QG3EQD
+kwqgOdGapsUSmsi91yHAa9_LU9JeP4pKop-1p5w7LlrdMyGrGojwoaX58ML6PSH5nGLsdZV0Z5vBqNTh
+A; expires=Wed, 22-Jun-2016 15:58:47 GMT; path=/; domain=.google.com; HttpOnly
 Accept-Ranges: none
 Vary: Accept-Encoding
 Transfer-Encoding: chunked
 
-8000
-<!doctype html><html itemscope="" itemtype="http://schema.org/WebPage"...
 ...and so on...
 ```
 
 To get a modern, secure shell to a remote machine, use
-[`ssh`](http://linux.die.net/man/1/ssh), passing in the userid and server
+[`ssh`](http://linux.die.net/man/1/ssh)\drcmd{ssh}, passing in the userid and server
 like this:
 
+\drcap{ssh command}
 ```
 ssh myuser@remoteserver
 ```
 
 You will be prompted for credentials (or you can use certificates, but that
-is ***way*** beyond this text's goals).
+is ***way*** beyond this text's goals). Once logged in, you will be
+presented with a command prompt to the remote system.
 
 You can also use the `SSH` protocol to securely transfer files between
-systems with the [`scp`](http://linux.die.net/man/1/scp) command. It works
+systems with the [`scp`](http://linux.die.net/man/1/scp)\drcmd{scp} command. It works
 like this for a recursive directory copy:
 
+\drcap{scp command}
 ```
 scp -r myfiles/* myuser@remoteserver:/home/myuser/.
 ```
@@ -281,10 +327,11 @@ to `/home/myuser/` on `remoteserver` logged in as `myuser`.
 you will be asked to accept the remote server's "fingerprint." You can
 usually just say "yes":
 
+\drcap{Sample ssh session}
 ```
 ~# ssh myuser@remotehost
 The authenticity of host '[remotehost] ([10.0.2.3]:22)' can't be established.
-ECDSA key fingerprint is 98:70:17:38:db:d0:16:ee:b2:93:08:3e:30:25:14:70.
+ECDSA key fingerprint is 98:bb:17:38:ee:d0:16:ee:b2:93:08:4e:30:25:14:70.
 Are you sure you want to continue connecting (yes/no)? yes
 Warning: Permanently added '[remotehost],[10.0.2.3]:22' (ECDSA) to the list
 of known hosts.
@@ -301,14 +348,16 @@ Last login: Tue Oct 20 09:37:10 2015 from otherhost
 $
 ```
 
-## Network Configuration
+## Network Configuration{.unnumbered}
 
 We won't dive too deep into configuring a network, but there are a few
 things you should know about right away. The first is the
-[`ifconfig`](http://linux.die.net/man/8/ifconfig). While you can use
+[`ifconfig`](http://linux.die.net/man/8/ifconfig)\drcmd{ifconfig} (and in
+some ways is similar to `ipconfig` in `CMD.EXE`\drshl{CMD.EXE}. While you can use
 `ifconfig` to alter your networking settings, it is most commonly used
 to get a quick display of them:
 
+\drcap{ifconfig command}
 ```
 # ifconfig
 eth0      Link encap:Ethernet  HWaddr 00:00:56:a3:35:fe
@@ -330,8 +379,10 @@ lo        Link encap:Local Loopback
           RX bytes:6839306 (6.5 MiB)  TX bytes:6839306 (6.5 MiB)
 ```
 
-To see what DNS servers the system is using:
+To see what DNS servers the system is using, you can look in
+`/etc/resolv.conf`\index{resolv.conf}:
 
+\drcap{DNS servers in resolv.conf}
 ```
 # cat /etc/resolv.conf
 domain mydomain.com
@@ -340,8 +391,10 @@ nameserver 10.0.2.1
 nameserver 10.0.2.2
 ```
 
-And to see any local overrides of network names or aliases:
+And to see any local overrides of network names or aliases, look in
+`/etc/hosts`\index{hosts}:
 
+\drcap{hosts file}
 ```
 # cat /etc/hosts
 127.0.0.1       localhost
@@ -349,5 +402,3 @@ And to see any local overrides of network names or aliases:
 
 **Note:** The UNIX `/etc/hosts` file is the basis for the Windows version
 located at `C:\Windows\System32\drivers\etc\hosts`, and has similar syntax.
-
-  

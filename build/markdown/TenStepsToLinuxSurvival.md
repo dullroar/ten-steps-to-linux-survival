@@ -1,24 +1,14 @@
-\begin{figure}[H]
-\includegraphics{./images/Merv.jpg}
-\caption*{Merv sez, "Don't panic."}
-\end{figure}
-By James Lehmer v0.6
-\begin{figure}[H]
-\centering
-\includegraphics{./images/cc-by-sa.png}
-\caption*{Creative Commons Attribution-ShareAlike 4.0 International License}
-\end{figure}
-*Jim's Ten Steps to Linux Survival* by James Lehmer is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
-
-![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don't panic.'")
-
-<b>By James Lehmer</b> <br /> <br /> v0.6 <br /> <br /> <a rel="license"
-href="http://creativecommons.org/licenses/by-sa/4.0/"><img
-alt="Creative Commons License" style="border-width:0"
-src="./images/cc-by-sa.png"/></a> <br /> <br /> <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"><i>Jim's Ten Steps to Linux Survival</i></span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">James Lehmer</span> is licensed under a <a rel="license"
-href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
-
-\*Dedicated to my first three technical mentors\*\* - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think (and once called me an "inveterate toolmaker" in a review). And Kim Manchak, who let me be more than he hired me to be (and continues to be a great chess opponent). Thank you, gentlemen. I've tried to pay it forward. This book is part of that.
+![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don't panic.'") 
+Merv sez, "Don't panic."  
+ 
+By James Lehmer  
+ 
+v0.7  
+ 
+![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 International")
+*Jim's Ten Steps to Linux Survival* by James Lehmer is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).  
+ 
+**Dedicated to my first three technical mentors** - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think (and once called me an "inveterate toolmaker" in a review). And Kim Manchak, who let me be more than he hired me to be (and continues to be a great chess opponent). Thank you, gentlemen. I've tried to pay it forward. This book is part of that.
 
 Introduction
 ============
@@ -75,7 +65,7 @@ Plus so much more. Again, this is not meant to be exhaustive, but to help someon
 Please, Give Generously
 -----------------------
 
-That said, if you find something amiss in here - a typo, a misconception or mistake, or a command or parameter you ***really, really, really*** think should be in here even though I said I am not trying to be exhaustive, feel free to [clone it from GitHub](https://github.com/dullroar/ten-steps-to-linux-survival.git), make your changes and send me a `git pull` request. Or you can try to [file it as an issue](https://github.com/dullroar/ten-steps-to-linux-survival/issues?q=is%3Aopen+is%3Aissue) and I'll see how I feel that day.
+That said, if you find something amiss in here - a typo, a misconception or mistake, or a command or parameter you ***really, really, really*** think should be in here even though I said I am not trying to be exhaustive, feel free to [clone it from GitHub](https://github.com/dullroar/ten-steps-to-linux-survival), make your changes and send me a `git pull` request. Or you can try to [file it as an issue](https://github.com/dullroar/ten-steps-to-linux-survival/issues) and I'll see how I feel that day.
 
 Why?
 ----
@@ -142,10 +132,6 @@ If a command and its output, script code or something else is shown in a block, 
     ...and so on...
 
 **Note:** The examples in this book typically show something like `~ $` before the command, or `#` (when logged in as root) or `%` (when running under `csh`). These "command prompts" are set in `bash` via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto) and are not meant to be typed in as part of the command.
-
-Examples may also appear in a screen shot:
-
- ![Sample command](./images/ps-AH.png "Sample command")
 
 Acknowledgments
 ---------------
@@ -1521,7 +1507,7 @@ Finding Meaning
 
 Different people will have different answers to "What is the single most useful "UNIX" command?" There certainly are many to consider. But I keep coming back to [`find`](http://linux.die.net/man/1/find). It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.
 
-The main concepts of `find` is simple:
+The main concepts of `find` are simple:
 
 1.  Starting at location *X*...
 
@@ -1531,7 +1517,7 @@ The main concepts of `find` is simple:
 
 The simplest example is "starting in the current directory, recursively list all files you find":
 
-    $ find
+    ~ $ find
     .
     ./Agenda.md
     ./Bad and Corrupted Test Files
@@ -1554,12 +1540,12 @@ In this case `find` is just shorthand for `find . -true -print`.
 
 That's not really that interesting. Let's poke around and "find" (pun intended) some better examples of using `find`. It is better to show than tell in this case. Let's dive into a semi-complicated one and pick it apart:
 
-    find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
+    ~ $ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
         -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 
 How does this all work? Remembering the three steps at the beginning:
 
-1.  **Starting at location `//myserver/myshare/logs/000[4-9]`** - in this case a CIFS/SMB share. Note the regular expression (which we will cover later), in this case stating only to look in directories 0004-0009.
+1.  **Starting at location `//myserver/myshare/logs/000[4-9]`** - in this case a CIFS/SMB share (running under Cygwin - this won't work on Linux). Note the regular expression (which we will cover later), in this case stating only to look in directories 0004-0009.
 
 2.  **Recursively find file system entries that match one or more tests** - the tests in this example are:
 
@@ -1574,7 +1560,7 @@ What's With the Backslashes?
 
 Reconsider this example:
 
-    find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
+    ~ $ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
         -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 
 There are five (5) backslash (`\`) characters in the above. In each case, the backslash is preventing [shell expansion](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html):
@@ -1585,12 +1571,12 @@ There are five (5) backslash (`\`) characters in the above. In each case, the ba
 
 3.  **`\{\} \;`** - these three prevent the shell from trying to expand the braces into an environment variable or the semicolon (which is meant to tell `find` when the command being ran via `-exec` and its parameters end), otherwise `;` is normally used to separate independent commands on the same line in the shell.
 
-That last point bears repeating. Any time you `-exec` in a `find` command (which will be a lot), just get used to typing `\{\} \;` (the space between the ending brace and the `\;` is required).
+That last point bears repeating. Any time you `-exec` in a `find` command (which will be a lot), just get used to typing `\{\} \;` (the space between the ending brace and the `\;` is ***required***).
 
 Useful `find` Options
 ---------------------
 
-The [`find`](http://linux.die.net/man/1/find) documentation gives a bewildering number of options. Here are the ones you may find the most useful:
+The [`find`](http://linux.die.net/man/1/find) documentation gives a bewildering number of options. Here are the ones you may "find" the most useful:
 
 -   **`-executable`** - the file is executable or the directory is searchable (in other words, the file or directory's `x` mode bit is set true for user, group or other ("ugo"), per the file permissions discussion above), and the user executing the `find` command falls into one of the categories for which it is set.
 
@@ -1613,27 +1599,23 @@ Useful `find` Actions
 
 Similarly, you are going to keep coming back to just a handful of `find` actions:
 
--   **`-delete`** - deletes any files matched so far. Note that actions are also tests (predicates), so as the `find` documentation says, "Don't forget that the find command line is evaluated as an expression, so putting `-delete` first will make find try to delete everything below the starting points you specified."
+-   **`-delete`** - deletes any files matched so far. Note that actions are also tests (predicates), so as the `find` documentation says, "Don't forget that the find command line is evaluated as an expression, so putting `-delete` first will make find try to delete everything below the starting points you specified." In other words, placing `-delete` too early in the expression is going to yield behavior distressingly similar to `rm -r *`.
 
--   **`-exec` and `-execdir`** - executes a command or script, typically passing in the name of the file or directory found. You will use this ***all*** the time. The difference between the two is that `-execdir` changes the working directory to that of the file found before invoking the program or script, whereas `-exec` simply passes in the fully-qualified path of the found item.
+-   **`-exec` and `-execdir`** - executes a command or script, typically passing in the name of the file or directory found. You will use this ***all*** the time. The difference between the two is that `-execdir` changes the working directory to that of the item found before invoking the program or script, whereas `-exec` simply passes in the fully-qualified path of the found item.
 
 -   **`-print`** - prints the full path of the found file or directory. This is the default action.
 
 -   **`-printf`** - prints a formatted string, useful for reports.
 
-The `-printf` action allows you to do some interesting things when producing output. For example, consider these three files:
+The `-printf` action allows you to do some interesting things when producing output. For example, if for some reason we wanted a report where for each file we wanted three lines with the name, owner and created date and time in ISO 8601 format, all followed by a blank line, we could use the following `find` command:
 
-    $ touch a b c
-
-    $ ls -l
+    ~ $ touch a b c
+    ~ $ ls -l
     total 0
     -rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 a
     -rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 b
     -rw-rwxr--+ 1 myuser mygroup 0 Oct 21 11:02 c
-
-If for some reason we wanted a report where for each of those files we wanted three lines with the name, owner and created date and time in ISO 8601 format, all followed by a blank line, we could use the following `find` command:
-
-    $ find . -type f -printf "%p\n%u\n%TY-%Tm-%TdT%TT\n\n"
+    ~ $ find . -type f -printf "%p\n%u\n%TY-%Tm-%TdT%TT\n\n"
     ./a
     myuser
     2015-10-21T11:02:51.7014527000
@@ -1646,7 +1628,7 @@ If for some reason we wanted a report where for each of those files we wanted th
     myuser
     2015-10-21T11:02:51.7048997000
 
-The `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`breaks down as:
+That `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`breaks down into:
 
 -   **`"`** - prevent shell expansion on the format string.
 -   **`%p`** - file name.
@@ -1670,21 +1652,17 @@ Grokking `grep`
 
 > *"Some people, when confronted with a problem, think 'I know, I'll use regular expressions.' Now they have two problems."* - Jamie Zawinski
 
-If the `file` command is useful for finding file system entries based on their attributes, the [`grep`](http://linux.die.net/man/1/grep) command is good for finding files with contents that match a [regular expression](https://en.wikipedia.org/wiki/Regular_expression). You already know at least one regular expression, the wildcard `*` character from even the `CMD.EXE` prompt and Windows Explorer. It means "match zero or more characters." We'll cover more on regular expressions, or "regexes," in a moment.
+If the `file` command is useful for finding file system entries based on their attributes, the [`grep`](http://linux.die.net/man/1/grep) command is good for finding files whose ***contents*** match a [regular expression](https://en.wikipedia.org/wiki/Regular_expression). You already know at least one regular expression, the wildcard `*` character from the `CMD.EXE` prompt and Windows Explorer. It means "match zero or more characters." We'll cover more on regular expressions, or "regexes," in a moment.
 
 First, an example of `grep`, showing all files in a directory with the pattern "is" in them:
 
-    $ touch a b c
-
-    $ echo This sequence of characters is called a \"string\". > d
-
-    $ cat d
+    ~ $ touch a b c
+    ~ $ echo This sequence of characters is called a \"string\". > d
+    ~ $ cat d
     This sequence of characters is called a "string".
-
-    $ ls
+    ~ $ ls
     a  b  c  d
-
-    $ grep is *
+    ~ $ grep is *
     d:This sequence of characters is called a "string".
 
 Expressing Yourself Regularly
@@ -1702,13 +1680,13 @@ In the `grep` example, we can see a regular expression can be as simple as "is".
 
 That shows at least one attempt at being [a very complete parser of valid HTTP URLs](http://blog.codinghorror.com/the-problem-with-urls/). Wow! What's all that? Now you see why you have two problems. Even if you get that all figured out, or if you actually sit and create something like that from scratch yourself (and it works!), imagine coming back six months later and trying to decipher it again.
 
-There are literally [whole web sites](http://www.regular-expressions.info/) and [books](http://shop.oreilly.com/product/9781565922570.do) on just regular expressions. With variations they are used in all "UNIX" shells, Perl, Python, Javascript, Java, C\# and more. So obviously (a) they are really useful, and (b) we're not going to cover regexes all here.
+There are literally [whole web sites](http://www.regular-expressions.info/) and books on just regular expressions. With variations they are used in all "UNIX" shells, Perl, Python, Javascript, Java, C\# and more. So obviously (a) they are really useful, and (b) we're not going to cover all of regexes here.
 
-There are so many things you can do, the only thing to it is to remember "regular expressions" when you think "I need to find things based on a pattern" and then research what it will take to define the pattern you want.
+There are so many things you can do, the only thing to remember is "regular expressions" when you think "I need to find things based on a pattern" and then research what it will take to define the pattern you want.
 
-In the mean time, a few ***simple*** regex examples. Consider the following file `invoices`:
+In the mean time, following are a few ***simple*** regex examples. Consider the file `invoices`:
 
-    $ cat invoices
+    ~ $ cat invoices
     Combine brakes  400
     Combine motor   1500
     Combine tires   2500
@@ -1723,39 +1701,39 @@ In the mean time, a few ***simple*** regex examples. Consider the following file
 
 Let's find all lines with "tractor":
 
-    $ grep tractor invoices
+    ~ $ grep tractor invoices
 
 Huh, nothing was found. But this is UNIX-land, so we know it is sensitive - about case anyway:
 
-    $ grep Tractor invoices
+    ~ $ grep Tractor invoices
     Tractor brakes  300
     Tractor motor   1000
     Tractor tires   2000
 
 Or we could just tell `grep` we are insensitive (to case, anyway):
 
-    $ grep -i tractor invoices
+    ~ $ grep -i tractor invoices
     Tractor brakes  300
     Tractor motor   1000
     Tractor tires   2000
 
 And just to remind you about long-style parameters:
 
-    $ grep --ignore-case tractor invoices
+    ~ $ grep --ignore-case tractor invoices
     Tractor brakes  300
     Tractor motor   1000
     Tractor tires   2000
 
 But what ***lines*** are those on?
 
-    $ grep -i -n tractor invoices
+    ~ $ grep -i -n tractor invoices
     1:Tractor       motor   1000
     2:Tractor       brakes  300
     3:Tractor       tires   2000
 
 To get more complicated, we can pass the `-E` parameter (for *extended* regular expressions) and start doing some really fun stuff. Let's look for lines with either "Tractor" or "Truck":
 
-    $ grep -E "Tractor|Truck" invoices
+    ~ $ grep -E "Tractor|Truck" invoices
     Tractor brakes  300
     Tractor motor   1000
     Tractor tires   2000
@@ -1789,7 +1767,7 @@ Groveling With `grep`
 
 To recursively find all files that contain the string "pdfinfo":
 
-    $ grep -R -i pdfinfo *
+    ~ $ grep -R -i pdfinfo *
     ./FileCheckers/otschecker:# pdfinfo, too. If pdfinfo thinks it's junk, ...
     ./FileCheckers/otschecker:        pdfinfo=`pdfinfo -opw foo "$1" 2>&1 1...
     ./FileCheckers/otschecker:        if [ $rc != 0 -a "$pdfinfo" != "Comma...
@@ -1802,16 +1780,16 @@ To recursively find all files that contain the string "pdfinfo":
 
 The above is functionally equivalent but ***much*** quicker than:
 
-    $ find . -type f -exec grep -H -i pdfinfo \{\} \; 
+    ~ $ find . -type f -exec grep -H -i pdfinfo \{\} \; 
 
 **Note:** In general, if a command has its own "recursive" option (such as `-R` with `grep`), it is quicker to use that rather than to invoke the command repeatedly using `find` instead.
 
 However, sometimes you can use `find` to filter down files to be checked before having `grep` read through them, and have that result in much quicker results.
 
-For example, if you only wanted to check files that contain "pdfinfo" that have been created or modified since the last time you checked, it could be quicker to run something like:
+For example, if you only wanted to check files that contain "pdfinfo" that have been created or modified since the last time you checked, it ***could be*** quicker to run something like:
 
-    $ find . ! -name pdfinfo.log -newer pdfinfo.log -type f -exec grep -H \
-    -i pdfinfo \{\} \; > pdfinfo.log
+    ~ $ find . ! -name pdfinfo.log -newer pdfinfo.log -type f -exec grep -H \
+        -i pdfinfo \{\} \; > pdfinfo.log
 
 This says to ignore files named "pdfinfo.log" (`! -name pdfinfo.log`) and otherwise look for files (`-type f`) containing "pdfinfo" (`-exec grep ...`) that haven't been checked since the last time "pdfinfo.log" was modified (`-newer pdfinfo.log`). In my tests the first run (which initially creates the "pdfinfo.log" file) ran in 30 seconds but subsequents runs took just a few seconds. This was because the number of files to be searched through all directories was big enough it paid to pre-filter the results before handing them to `grep`.
 
@@ -1832,7 +1810,7 @@ That said, it is a powerful knife in the tool belt, and you should be aware it e
 
 To whet your taste, here is the type of "one-liner" for which `awk` is famous, in this case [formatting and printing a report on user ids](http://www.ibm.com/developerworks/library/l-awk1/) from `/etc/passwd`:
 
-    $ awk -F":" '{ print "username: " $1 "\t\tuid:" $3 }' /etc/passwd
+    ~ $ awk -F":" '{ print "username: " $1 "\t\tuid:" $3 }' /etc/passwd
     username: root      uid:0
     username: daemon        uid:1
     username: bin       uid:2
@@ -1867,9 +1845,9 @@ The first thing to note is there are three "file I/O streams" that are open by d
 
 When a program written in C calls `printf`, it is writing to `stdout`. When a `bash` script calls `echo`, it too is writing to `stdout`. When a command writes an error message, it is writing to `stderr`. If a command or program accepts input from the console, it is reading from `stdin`.
 
-In this example, `cat` is started with no file name, so it will read from `stdin` (a quite common "UNIX" command convention), and echo each line to `stdout` until the "end of file," which in an interactive session can be emulated with `Ctrl-D`, in the example below shown as `^D` but not seen on the console in real life:
+In this example, `cat` is started with no file name, so it will read from `stdin` (a quite common "UNIX" command convention), and echo each line to `stdout` until the "end of file," which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below but not seen on the console in real life:
 
-    $ cat
+    ~ $ cat
     This shows reading from stdin
     This shows reading from stdin
     and writing to stdout.
@@ -1883,35 +1861,28 @@ So one way to string things together in "the UNIX way" is with file redirection.
 
 Let's create a file with a single line of text in it. One way would be to `vi newfilename`, edit the file, save it, and exit `vi`. A quicker way is to simply use file redirection:
 
-    $ echo Hello, world > hw
-
-    $ ls -l
+    ~ $ echo Hello, world > hw
+    ~ $ ls -l
     total 1
     -rw-rwxr--+ 1 myuser mygroup 13 Oct 22 10:40 hw
-
-    $ cat hw
+    ~ $ cat hw
     Hello, world
 
 In this case the `> hw` tells `bash` to take the output that `echo` sends to `stdout` and send it to the file `hw` instead.
 
 As mentioned above many "UNIX" commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from `stdin`. The `cat` command does that. While it doesn't save us anything over the above example, the following is illustrative of redirecting a file to `stdin` for a command or program:
 
-    $ cat < hw
+    ~ $ cat < hw
     Hello, world
 
 Finally, we need to deal with `stderr`. By convention it is sent to the console just like `stdout`, and that can make output confusing:
 
-    $ echo This is a > a
-
-    $ echo This is b > b
-
-    $ echo This is c > c
-
-    $ mkdir d
-
-    $ echo This is e > d/e
-
-    $ find . -exec cat \{\} \;
+    ~ $ echo This is a > a
+    ~ $ echo This is b > b
+    ~ $ echo This is c > c
+    ~ $ mkdir d
+    ~ $ echo This is e > d/e
+    ~ $ find . -exec cat \{\} \;
     cat: .: Is a directory
     This is a
     This is b
@@ -1919,33 +1890,22 @@ Finally, we need to deal with `stderr`. By convention it is sent to the console 
     cat: ./d: Is a directory
     This is e
 
-In the above, between echoing the contents of the `a`, `b`, `c` and `e` files, we see two error messages from `cat` complaining that `.` and `d` are directories. These are being emitted on `stderr`. One way to get rid of them would be to change find to filter for only files:
+In the above, between echoing the contents of the `a`, `b`, `c` and `e` files, we see two error messages from `cat` complaining that `.` and `d` are directories. These are being emitted on `stderr`, but there is no good way of telling that. One way to get rid of them would be to change find to filter for only files:
 
-    $ find . -type f -exec cat \{\} \;
+    ~ $ find . -type f -exec cat \{\} \;
     This is a
     This is b
     This is c
     This is e
 
-But let's say the example is not so trivial, and we want to capture and log the error messages separately for later analysis. While we've seen `<` used to represent redirecting `stdin` and `>` used for redirecting `stdout`, how do we tell the shell we want to redirect `stderr`? Remember the discussion about file handles above? That's where those esoteric numbers come in handy! Consider the original problem of `stderr` being intermingled with `stdout`:
+But let's say the example is not so trivial, and we want to capture and log the error messages separately for later analysis. While we've seen `<` used to represent redirecting `stdin` and `>` used for redirecting `stdout`, how do we tell the shell we want to redirect `stderr`? Remember the discussion about file handles above? That's where those esoteric numbers come in handy! To redirect `stderr` we recall it is ***always*** file descriptor 2, and then we can use:
 
-    $ find . -exec cat \{\} \;
-    cat: .: Is a directory
-    This is a
-    This is b
-    This is c
-    cat: ./d: Is a directory
-    This is e
-
-To redirect `stderr` we recall it is ***always*** file descriptor 2, and then we can use:
-
-    $ find . -exec cat \{\} \; 2>/tmp/finderrors.log
+    ~ $ find . -exec cat \{\} \; 2>/tmp/finderrors.log
     This is a
     This is b
     This is c
     This is e
-
-    $ cat /tmp/finderrors.log
+    ~ $ cat /tmp/finderrors.log
     cat: .: Is a directory
     cat: ./d: Is a directory
 
@@ -1953,9 +1913,8 @@ The `2>/tmp/finderrors.log` is the magic that is redirecting file descriptor 2 (
 
 A very common paradigm is to capture both `stdout` and `stderr` to the same file. Here is how that is done, again using file descriptors:
 
-    $ find . -exec cat \{\} \; >/tmp/find.log 2>&1
-
-    $ cat /tmp/find.log
+    ~ $ find . -exec cat \{\} \; >/tmp/find.log 2>&1
+    ~ $ cat /tmp/find.log
     cat: .: Is a directory
     This is a
     This is b
@@ -1963,30 +1922,30 @@ A very common paradigm is to capture both `stdout` and `stderr` to the same file
     cat: ./d: Is a directory
     This is e
 
-Now we see `stdout` being redirected to `/tmp/find.log` with `>/tmp/find.log`, and `stderr` (file descriptor 2) being sent to the same place as `stdout` (file descriptor 1) with `2>&1`.
+Now we see `stdout` being redirected to `/tmp/find.log` with `>/tmp/find.log`, and `stderr` (file descriptor 2) being sent to the same place as `stdout` (file descriptor 1) with `2>&1`. Note that this works in `CMD.EXE`]drshl{CMD.EXE}, too!
 
 One final note is the difference between creating or re-writing a file and appending to it using redirection. The following creates a new `/tmp/find.log` file every time it runs (there is no need to `rm` it first):
 
-    $ find . -exec cat \{\} \; >/tmp/find.log
+    ~ $ find . -exec cat \{\} \; >/tmp/find.log
 
 However, the next sample creates a new `/tmp/find.log` file if it doesn't exist, but otherwise appends to it:
 
-    $ find . -exec cat \{\} \; >>/tmp/find.log
+    ~ $ find . -exec cat \{\} \; >>/tmp/find.log
 
 **Note:** There is also a variation on input redirection using `<<`, but it is used mostly in scripting and is outside the scope of this book.
 
 Everyone Line Up
 ----------------
 
-So we can see that we could pass things between programs by redirecting `stdout` to a file and then redirecting that file to `stdin` on the next program, and so on. But "UNIX" environments take it a bit further with the concept of a command "pipeline" that allows directly sending `stdout` from one program into `stdin` of another.
+So we can see that we could pass things between programs by redirecting `stdout` to a file and then redirecting that file to `stdin` on the next program, and so on. But "UNIX" environments take it a bit further with the concept of a command "pipeline" that allows directly sending `stdout` from one program into `stdin` of another:
 
-    $ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
+    ~ $ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
 
 This little one-liner starts showing off the usefulness of small programs, each doing one thing. In this case:
 
-1.  `cat` echos the contents of all `.txt` files to `stdout`, which is piped to...
+1.  `cat` echos the contents of all `.txt` files in alphabetical order by their file name to `stdout`, which is piped to...
 
-2.  [`tr`](http://linux.die.net/man/1/tr) translates any backslash characters (here "escaped" as `'\\'` because the backslash character is a special character) to forward slashes (`/`), before sending it into...
+2.  [`tr`](http://linux.die.net/man/1/tr) "translates" (replaces) any backslash characters (here "escaped" as `'\\'` because the backslash character is a special character) to forward slashes (`/`), before sending it into...
 
 3.  A `while` loop that reads each line into a variable called `$line` and then calls...
 
@@ -1994,13 +1953,13 @@ This little one-liner starts showing off the usefulness of small programs, each 
 
 Think about the power of that. `cat` didn't know there were multiple `.txt` files or not - the shell expansion of the `*.txt` wildcard did that. It read all those files and echoed them to `stdout` which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in `mycmd`, that only expects a single line or value each time it is run. It has no idea about the `.txt` files or the transformation or the pipeline!
 
-***That*** is the UNIX philosophy at work.
+***That*** is the "UNIX philosophy" at work.
 
 There are some nice performance benefits for this approach, too. In general Linux & Co. will overlap the processing by starting all the commands in the pipeline, with the ones on the right getting data from the ones further "upstream" to the left as soon as it is written, instead of using file redirection where one program would have to finish completely running and writing out to a file before the next program could start and read in that file as input.
 
 Finally, if you want to capture something to a file ***and*** see it on the console at the same time, that is where the [`tee`](http://linux.die.net/man/1/tee) command comes in:
 
-    find . -name error.log | tee > errorlogs.txt
+    ~ $ find . -name error.log | tee > errorlogs.txt
 
 This would write the results of finding all files names `error.log` to the console and also to `errorlogs.txt`. This is useful when you are manually running things and want to see the results immediately, but also want a log of what you did.
 
@@ -2011,24 +1970,24 @@ This would write the results of finding all files names `error.log` to the conso
 
 > *"You're too young to know."* - Vi (*Grease*)
 
-[`vi`](http://linux.die.net/man/1/vi) stands for *visual editor* (as well as the Roman numeral for 6, which is why it is this chapter), and once you use it you will understand what editing from the command line must've been like for `vi` to seem both "visual" and a step forward.
+[`vi`](http://linux.die.net/man/1/vi) stands for *visual editor* (as well as the Roman numeral for 6, which is why it is this chapter), and once you use it you will understand what editing fro the command line must've been like for `vi` to seem both "visual" and a step forward.
 
-Many Linux clones don't use `vi` proper, but a port called [`vim`](http://www.vim.org/) ("**vi** i**m**proved") "that can then be accessed via the alias `vi`. The differences tend to be minor, with `vim` being more customizable.
+Many Linux clones don't use `vi` proper, but a port called [`vim`](http://www.vim.org/) ("**vi** i**m**proved"), that is then accessed via the alias `vi`. The differences tend to be minor, with `vim` being more customizable.
 
 `vi` and a similar editor, [`emacs`](http://linux.die.net/man/1/emacs), both tend to trip up users from GUI operating systems such as Windows or OS X that have editors like Notepad that are always ready for user input.
 
 Instead, `vi` typically starts in "command mode," where keystrokes execute various navigation and editing commands. To actually insert text requires a keystroke such as `i` while in command mode, which then causes `vi` to go into "insert mode." Insert mode is what most Windows users expect from an editor, i.e., when you type the line changes. The `ESC` key exits insert mode.
 
-It is as hard to get used to as it sounds, and you ***will*** execute text you were meaning to insert as commands, and commands that you were meaning to execute as text you ***will*** insert as text, and sooner or later you ***will*** enter `vi` commands into Notepad. That will be the day you know you've become truly tainted.
+It is as hard to get used to as it sounds, and you ***will*** execute text you were meaning to insert as commands, and commands that you were meaning to execute you ***will*** insert as text, and sooner or later you ***will*** enter `vi` commands into Notepad. I guarantee it. That will be the day you know you've become truly tainted.
 
-This will not even begin to scratch the surface of `vi`, when there are many, many books and web sites just on wielding it to its full potential. In the hands of someone who has mastered it, `vi` can do some really remarkable feats of editing way beyond the capability of most modern GUI programming environments.
+We will not even begin to scratch the surface of `vi`, when there are many books and web sites just on wielding it to its full potential. In the hands of someone who has mastered it, `vi` can do some really remarkable feats of editing way beyond the capability of most modern GUI programming environments.
 
 Command Me
 ----------
 
-Again, when you first open `vi` it is in "command mode." That means any keystrokes you enter will "do something." The "something" to be done may be navigating around the file, inserting, deleting or changing text, manipulating lines, "undo", writing the changes to disk and the like.
+Again, when you first open `vi` it is in "command mode." That means any keystrokes you enter will "do something." The "something" to be done may be navigating around the file, inserting, deleting or changing text, manipulating lines, "undoing" or "redoing," writing the changes to disk and the like.
 
-What are commands? Well, for example `d` means "delete." We'll talk about how to specify ***what*** to delete next. `i` tells `vi` to enter "insert mode" at the point where the cursor is. `0` navigates to the start of the current line, and so on.
+What are commands? Well, for example `d` means "delete." We'll talk about how to specify ***what*** to delete next. `i` tells `vi` to enter "insert mode" at the point where the cursor is. `0` (zero) navigates to the start of the current line, and so on.
 
 Commands can have ***modifiers*** preceding and following them. Consider the "delete" command, `d`. If we follow with `w` as in `dw` while in command mode, it will delete a whitespace-delimited "word" starting at where the cursor is through (including) the next whitespace character.
 
@@ -2040,7 +1999,7 @@ Then typing `dw` will delete from the cursor position the characters `r`, `d` an
 
     This is a wo|and so is this.
 
-We can also specify a number of times we want to perform a command before the command. So now if we wanted to delete three words from the cursor position in the above, we'd use `3dw` and end up with:
+We can also specify the number of times we want to perform a command by prefixing it to the command. So now if we wanted to delete three words from the cursor position in the above, we'd use `3dw` and end up with:
 
     This is a wo|this.
 
@@ -2054,7 +2013,7 @@ There is a little bit of nuance in using command modifiers. Consider the `r` (*r
 
     This is a woxx|xs.
 
-To quit without saving enter `:q`. To write any file changes to disk use `:w`. To save and quit, type `:wq`.
+To quit without saving enter `:q`. To write any file changes to disk use `:w`. To save ***and*** quit, type `:wq`.
 
 Undo Me
 -------
@@ -2090,17 +2049,15 @@ When in command mode, there are multiple ways to jump around in the file besides
 
 -   **`b`** - jumps back a whitespace-delimited "word" on the current line.
 
--   **`G`** - jumps to end of file.
+-   **`G`** - jumps to end of the file.
 
--   **`:0`** - jumps to start of file.
+-   **`:0`** - jumps to start of the file (note the preceding `:`).
 
 -   **`/foo`** - find "foo" going forward toward the end of the file.
 
 -   **`?foo`** - find "foo" going backward toward the front of the file.
 
 -   **`n`** - find the next instance of the search text specified by the last `/` or `?`.
-
--   **`p`** - find the previous instance of the search text specified by the last `/` or `?`.
 
 Insert Tab A Into Slot B
 ------------------------
@@ -2149,7 +2106,7 @@ Here are some more examples:
 Change Machine
 --------------
 
-The hardest thing to get down in `vi` is the *substitute* (change) command. Its syntax is esoteric, but once you've memorized it, it becomes intuitive.
+The hardest thing to get down in `vi` is the *substitute* (change) command, `:s`. Its syntax is esoteric, but once you've memorized it, it becomes intuitive.
 
 The most common scenario is the "change all" command. Given the following file:
 
@@ -2161,7 +2118,7 @@ The most common scenario is the "change all" command. Given the following file:
 
 Let's change all "this" to "that" by using:
 
-    :1,$s/this/that/
+    :0,$s/this/that/
 
 We'll get into the details in a bit, but the results are interesting, and not what we'd expect:
 
@@ -2179,7 +2136,7 @@ It only changed the "that" at the end of the third line, and the middle "that" o
 
 So let's hit `u` to reset (undo) the file, and try again with this:
 
-    :1,$s/this/that/i
+    :0,$s/this/that/i
 
 Results in:
 
@@ -2191,7 +2148,7 @@ Results in:
 
 That's better. There is at least one "that" on every line that had a "this," so passing the `i` ("insensitive") switch at the end of the `s` (substitute) command helped with that. But we still didn't get all the "this" words changed, as the last line shows. Hit `u` and try one more time with this:
 
-    :1,$s/this/that/gi
+    :0,$s/this/that/gi
 
 Results in:
 
@@ -2201,15 +2158,17 @@ Results in:
     that and thus
     that and that and that
 
-That's what we wanted! In general, if you are looking for a Windows Notepad-like, case insensitive "change all," the magic string to remember is:
+That's what we wanted! Well, sort of. If we wanted to keep the capitalization we'd have more work to do. See below.
 
-    :1,$s/from/to/gi
+In general, if you are looking for a Windows Notepad-like, case insensitive "change all," the magic string to remember is:
+
+    :0,$s/from/to/gi
 
 Picking that apart, we have:
 
 -   **`:`** - tells `vi` a special command is coming.
 
--   **`1,$`** - specifies a line range, in this case from the first (`1`) to last (`$`) lines in the file. You can of course use other lines numbers to restrict the range, and there are other ways to create ranges as well.
+-   **`0,$`** - specifies a line range, in this case from the first (`0` - zero-relative) line to last (`$`) line in the file. You can of course use other lines numbers to restrict the range, and there are other ways to create ranges as well (see about marking lines, below).
 
 -   **`s`** - substitute (change) command.
 
@@ -2219,7 +2178,7 @@ Picking that apart, we have:
 
 -   **`/gi`** - optional switches, `g` means "global" (change all instances on a line, not just the first one), `i` means (case) "insensitive."
 
-Regular expressions you say! Now we have two problems! But consider:
+Regular expressions you say! Now we have two problems! But consider where we left off:
 
     that is a new line
     that is a word
@@ -2255,13 +2214,15 @@ And finally as a fun exercise for the reader, using the full power of regular ex
 
     :1,$s/\([^.]$\)/\1,/
 
-Like this:
+Renders this:
 
     That is a new line,
     That is a word,
     and so is that.
     That and thus,
     That and that and that.
+
+**Hint:** While trying to figure that out, search the Internet for regular expression "capturing groups."
 
 "X" Marks the Spot
 ------------------
@@ -2274,11 +2235,11 @@ You can "mark" lines in `vi` for use in "ranges" like the "substitute" (change) 
     This is next
     This is last
 
-Maybe we want to change the "This" on the first three lines to "That," but not the last two (imagine this is a much more complex example). We could do it by hand, but that's tedious and error prone. Instead, we can "mark" a range.
+Maybe we want to change the "This" on the first three lines to "That," but not the last two (imagine this is a much more complex example). We could do it by hand with the `r` command, but that's tedious and error prone. Instead, we can "mark" a range.
 
-1.  Place the cursor on the first line and use the `m` command followed by a one-character "label" like `x` (I typically use `m` so I don't have to move my fingers).
+1.  Place the cursor on the first line and use the `m` command followed by a one-character "label" like `x` (I typically use `m` so I don't have to move my fingers, e.g., `mm`).
 
-2.  Place the cursor on the third line and again use the `m` command, but ***with a different label character*** (I usually use `n` so my fingers don't travel far).
+2.  Place the cursor on the third line and again use the `m` command, but ***with a different label character*** (I usually use `n` so my fingers don't travel far, so `mn`).
 
 3.  Now you can use the `'` character followed by a label to denote the beginning and end of the range in all kinds of `vi` commands. In our case we want to change "This" on the first three lines, so:
 
@@ -2288,6 +2249,8 @@ Maybe we want to change the "This" on the first three lines to "That," but not t
 
 Try doing that in Notepad!
 
+**Note:** We could have done that with line ranges, too (`:0,2s/This/That/`), but figuring out the beginning and ending line is a pain in large files.
+
 Executing External Commands
 ---------------------------
 
@@ -2295,7 +2258,7 @@ Sometimes in `vi` it would be great to run the contents of the file through an e
 
 To sort the whole file in place:
 
-    :1,$!sort
+    :0,$!sort
 
 To sort a marked range:
 
@@ -2331,7 +2294,7 @@ Since regular expressions have syntax for expressing control codes in either sho
 Let's Get Small
 ---------------
 
-So, `vi` is the best we can do? No. On many Linux systems an alternative terminal-based editor will be installed, often several. There may be [`emacs`](http://linux.die.net/man/1/emacs), which will make you yearn for the simplicity of `vi`.
+So, `vi` is the best we can do? No. On many Linux systems an alternative terminal-based editor will be installed, often several. There may be [`emacs`](http://linux.die.net/man/1/emacs), which ***will*** make you yearn for the simplicity of `vi`.
 
 Here are two jokes that are only funny once you've used `emacs`:
 
@@ -2339,37 +2302,38 @@ Here are two jokes that are only funny once you've used `emacs`:
 
 > *"'emacs' is a good operating system, but it could use an editor."*
 
-If those are funny to you, then you have already been infected by `emacs`. May God have mercy on your soul.
+If those are funny to you, then you have already been infected by `emacs`. The prognosis is grim.
 
-But there may also others, notably [`pico`](http://linux.die.net/man/1/pico) and its successor, [`nano`](http://linux.die.net/man/1/nano). You can see the difference the second you see a file open in `nano`:
+But there may also others, notably [`pico`](http://linux.die.net/man/1/pico) and its successor, [`nano`](http://linux.die.net/man/1/nano). You can see the difference the second you see a file open in `nano` - in this case, the generated Github-flavored Markdown of this document:
 
-      GNU nano 2.2.6                 File: Title.md                                        
+        GNU nano 2.2.6        File: TenStepsToLinuxSurvival.md                        
 
-    |[author]: # (Jim Lehmer)
-    [title]: # (Jim's Ten Steps to Linux Survival)
+    |![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don't panic.'")
+    Merv sez, "Don't panic."
 
-    # Jim's Ten Steps to Linux Survival
+    By James Lehmer
 
-    **By Jim Lehmer**
+    v0.7
 
-    <a rel="license"
-    href="http://creativecommons.org/licenses/by-sa/4.0/"><img
-    alt="Creative Commons License" style="border-width:0"
-    src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"
-    /></a><br /><span xmlns:dct="http://purl.org/dc/terms/"
-    property="dct:title">Jim's Ten Steps to Linux Survival</span>
-    by <span xmlns:cc="http://creativecommons.org/ns#"
-    property="cc:attributionName">James
-    Lehmer</span> is licensed under a <a rel="license"
-    href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
-    Attribution-ShareAlike 4.0 International License</a>.
-                                       [ Read 18 lines ]
-    ^G Get Help   ^O WriteOut   ^R Read File  ^Y Prev Page  ^K Cut Text   ^C...
-    ^X Exit       ^J Justify    ^W Where Is   ^V Next Page  ^U UnCut Text ^T...
+    ![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 Internat$
+    *Jim's Ten Steps to Linux Survival* by James Lehmer is licensed under a [Creati$
+
+    **Dedicated to my first three technical mentors** - Jim Proffer, who taught me $
+
+    Introduction
+    ============
+
+    > *"And you may ask yourself, 'Well, how did I get here?'"* - Talking Heads (*O$
+
+    This is my little "Linux and Bash in 10 steps" guide. It's based around what I $
+
+                                  [ Read 3627 lines ]
+    ^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Page ^K Cut Text  ^C Cur Pos
+    ^X Exit      ^J Justify   ^W Where Is  ^V Next Page ^U UnCut Text^T To Spell
 
 Two things to note about the above:
 
-1.  The cursor (represented above by `|`) is already in "insert mode" like you would expect in a "normal" editor like Notepad.
+1.  The cursor (represented above by `|`) is already in "insert mode" like you would expect in a "normal" editor such as Notepad.
 
 2.  Those lines at the bottom are commands that can be invoked by shortcuts. For example, `^O` means `Ctrl-O` and stands for "WriteOut" or "Save." That's probably easier to remember than `:w` in `vi`, especially since it is reminding you of it right there on the screen!
 
@@ -2384,7 +2348,7 @@ The Whole Wide World
 
 > *"Gopher, Everett?"* - Delmar O'Donnell (*O Brother, Where Are Thou?*)
 
-If Sun's motto, "The network is the computer" is correct, then of course Linux and similar systems must be able to access the network from the command line and scripts.
+If Sun's motto "The network is the computer" is correct, then of course Linux and similar systems must be able to access the network from the command line and scripts.
 
 For example, our friend [`ping`](http://linux.die.net/man/8/ping) is there:
 
@@ -2409,47 +2373,47 @@ One difference with `ping` is that by default in Linux `ping` doesn't stop until
 
 [`traceroute`](http://linux.die.net/man/8/traceroute) works, too (although for once its name is longer than the `CMD.EXE` counterpart).
 
-    # traceroute www.yahoo.com
-    traceroute to www.yahoo.com (98.138.252.30), 30 hops max, 60 byte packets
-     1  10.208.3.254 (10.208.3.254)  0.720 ms  0.706 ms  0.693 ms
-     2  10.208.6.53 (10.208.6.53)  0.808 ms  0.896 ms  0.943 ms
-     3  10.208.6.46 (10.208.6.46)  2.632 ms  2.636 ms  2.634 ms
-     4  kcm-priv-20.inet.qwest.net (63.159.159.185)  30.786 ms  30.852 ms  3...
+    ~ $ traceroute google.com
+    traceroute to google.com (216.58.216.78), 30 hops max, 60 byte packets
+     1  192.168.0.1 (192.168.0.1)  3.623 ms  3.978 ms  7.231 ms
+     2  * * *
+     3  * * *
+     4  * * *
      5  * * *
-     6  67.134.114.230 (67.134.114.230)  30.441 ms  29.811 ms  30.372 ms
-     7  67.130.10.174 (67.130.10.174)  32.267 ms  32.700 ms  32.789 ms
-     8  67.130.10.103 (67.130.10.103)  32.416 ms  32.421 ms  32.420 ms
-     9  min-edge-13.inet.qwest.net (67.130.30.21)  33.878 ms  31.719 ms  34....
-    10  chp-brdr-03.inet.qwest.net (67.14.8.194)  45.668 ms  55.177 ms  45.6...
-    11  63.146.27.18 (63.146.27.18)  46.371 ms  46.333 ms  47.234 ms
-    ...and so on...
+     6  * * *
+     7  72.14.215.212 (72.14.215.212)  26.205 ms  27.502 ms  27.648 ms
+     8  209.85.242.133 (209.85.242.133)  31.547 ms  31.550 ms  31.548 ms
+     9  72.14.237.231 (72.14.237.231)  29.516 ms  29.556 ms  29.657 ms
+    10  ord30s21-in-f78.1e100.net (216.58.216.78)  30.313 ms  33.138 ms  28.092 ms
 
 You can do some digging in DNS with `dig`:
 
-    # dig yahoo.com
+    ~ $ dig yahoo.com
 
-    ; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> yahoo.com
+    ; <<>> DiG 9.9.5-3ubuntu0.6-Ubuntu <<>> yahoo.com
     ;; global options: +cmd
     ;; Got answer:
-    ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 18148
-    ;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 0
+    ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 46478
+    ;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 1
 
+    ;; OPT PSEUDOSECTION:
+    ; EDNS: version: 0, flags:; udp: 4096
     ;; QUESTION SECTION:
-    ;yahoo.com.                     IN      A
+    ;yahoo.com.         IN  A
 
     ;; ANSWER SECTION:
-    yahoo.com.              1705    IN      A       206.190.36.45
-    yahoo.com.              1705    IN      A       98.139.183.24
-    yahoo.com.              1705    IN      A       98.138.253.109
+    yahoo.com.      605 IN  A   98.138.253.109
+    yahoo.com.      605 IN  A   206.190.36.45
+    yahoo.com.      605 IN  A   98.139.183.24
 
-    ;; Query time: 17 msec
-    ;; SERVER: 10.208.2.4#53(10.208.2.4)
-    ;; WHEN: Fri Oct 23 13:16:51 2015
-    ;; MSG SIZE  rcvd: 75
+    ;; Query time: 23 msec
+    ;; SERVER: 127.0.1.1#53(127.0.1.1)
+    ;; WHEN: Tue Dec 22 09:46:26 CST 2015
+    ;; MSG SIZE  rcvd: 86
 
 And `whois`:
 
-    # whois yahoo.com
+    ~ $ whois yahoo.com
 
     Whois Server Version 2.0
 
@@ -2463,6 +2427,15 @@ And `whois`:
        Registrar: WILD WEST DOMAINS, LLC
        Whois Server: whois.wildwestdomains.com
        Referral URL: http://www.wildwestdomains.com
+
+       Server Name: YAHOO.COM.ANGRYPIRATES.COM
+       IP Address: 8.8.8.8
+       Registrar: NAME.COM, INC.
+       Whois Server: whois.name.com
+       Referral URL: http://www.name.com
+
+       Server Name: YAHOO.COM.AU
+       Registrar: WILD WEST DOMAINS, LLC
     ...and so on...
 
 `sudo` Make Me a Sandwich
@@ -2472,31 +2445,43 @@ It may not be the best place to discuss it, but we've finally come to a point wh
 
 One way to run restricted commands is to log in as a "elevated" or privileged user, such as `root`. But this is frowned on, and many distros today rely on the [`sudo`](http://linux.die.net/man/8/sudo) command to act as a way for a normal user to signal they want to escalate their privileges temporarily (presuming they are allowed to do so, which is usually indicated by being a member of the `sudo` group or similar.
 
-In a sense, `sudo` is similar to Windows User Access Control (UAC, or "Are you sure?") prompts. They ensure a human is in control, in the case of `sudo` by prompting for the user's password (if multiple commands are invoked by `sudo` within a short time period, you will not be reprompted for a password each time).
+In a sense, `sudo` is similar to Windows User Access Control (UAC, or "Are you sure?") prompts. They ensure a human is in control, in the case of `sudo` by prompting for the user's password (if multiple commands are invoked by `sudo` within a short time period, you will not be reprompted for a password each time, unlike UAC).
 
 Here is a really common example on Debian-based systems:
 
-    $ apt-get update
-    E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permissi...
+    ~ $ apt-get update
+    E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denie
+    d)
     E: Unable to lock directory /var/lib/apt/lists/
-    E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission de...
-    E: Unable to lock the administration directory (/var/lib/dpkg/), are you...
+    E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
+    E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
 
 The error message, especially the last line, is pretty clear. Let's try it again with `sudo`:
 
-    $ sudo apt-get update
-    [sudo] password for myuser: 
-    Ign http://extra.linuxmint.com rafaela InRelease
-    Ign http://packages.linuxmint.com rafaela InRelease                            
-    Hit http://security.ubuntu.com trusty-security InRelease                       
+    ~ $ sudo apt-get update
+    Ign http://packages.linuxmint.com rafaela InRelease
+    Ign http://extra.linuxmint.com rafaela InRelease                               
     Hit http://extra.linuxmint.com rafaela Release.gpg                             
     Hit http://packages.linuxmint.com rafaela Release.gpg                          
-    Hit http://security.ubuntu.com trusty-security/main amd64 Packages             
     Ign http://archive.ubuntu.com trusty InRelease                                 
+    Hit http://security.ubuntu.com trusty-security InRelease                       
+    Hit http://packages.linuxmint.com rafaela Release                              
+    Hit http://extra.linuxmint.com rafaela Release                                 
+    Hit http://archive.ubuntu.com trusty-updates InRelease                         
+    Hit http://security.ubuntu.com trusty-security/main amd64 Packages             
+    Hit http://packages.linuxmint.com rafaela/main amd64 Packages                  
+    Hit http://extra.linuxmint.com rafaela/main amd64 Packages                     
     Ign http://archive.canonical.com trusty InRelease                              
+    Hit http://archive.ubuntu.com trusty Release.gpg                               
     Hit http://security.ubuntu.com trusty-security/restricted amd64 Packages       
-    Hit http://extra.linuxmint.com rafaela Release                
-    ...and so on...
+    Hit http://extra.linuxmint.com rafaela/main i386 Packages                      
+    Hit http://packages.linuxmint.com rafaela/upstream amd64 Packages              
+    Hit http://security.ubuntu.com trusty-security/universe amd64 Packages         
+    Hit http://archive.ubuntu.com trusty-updates/main amd64 Packages               
+    Hit http://packages.linuxmint.com rafaela/import amd64 Packages                
+    Hit http://security.ubuntu.com trusty-security/multiverse amd64 Packages       
+    Hit http://archive.canonical.com trusty Release.gpg                            
+    ...and so on...         
 
 Now you should get the punchline to [this comic](https://xkcd.com/149/), and hence the title of this section.
 
@@ -2505,19 +2490,32 @@ Surfin' the Command Prompt
 
 You can browse the web from the command prompt using something like [`lynx`](http://linux.die.net/man/1/lynx). A text-based browser isn't too exciting, but it can have its purposes (like quickly testing network access from a command prompt). For example, `lynx http://google.com` yields:
 
+                                                                              Google
+
        Search Images Maps Play YouTube News Gmail Drive More »
        Web History | Settings | Sign in
 
        Google
 
-       _______________________________________________________
-       Google Search  I'm Feeling Lucky                          Advanced search
+         _______________________________________________________
+         Google Search  I'm Feeling Lucky                          Advanced search
+                                                                   Language tools
 
-       Advertising Programs     Business Solutions     +Google     About Google
+       Advertising Programs     Business Solutions     +Google     About
+       Google
 
-       © 2015 - Privacy - Terms
+                              © 2015 - Privacy - Terms
 
-There are two other commands that are used to pull down web resources and save them locally - [`curl`](http://linux.die.net/man/1/curl) and [`wget`](http://linux.die.net/man/1/wget). Both support HTTP(S) and FTP, but `curl` supports even more protocols and options, while `curl` tends to be the simplest to just "grab a file and go." You see both used often in install scripts that then download more bits from the internet:
+
+
+
+
+
+    (NORMAL LINK) Use right-arrow or <return> to activate.
+      Arrow keys: Up and Down to move.  Right to follow a link; Left to go back.
+     H)elp O)ptions P)rint G)o M)ain screen Q)uit /=search [delete]=history list 
+
+There are two other commands that are used to pull down web resources and save them locally - [`curl`](http://linux.die.net/man/1/curl) and [`wget`](http://linux.die.net/man/1/wget). Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and tends to be the simplest to just "grab a file and go." You see both used often in install scripts that then download more bits from the internet:
 
     wget -O - http://foocorp.com/installs/install.sh | bash
 
@@ -2530,7 +2528,7 @@ Or:
 You've Got Mail
 ---------------
 
-You can send and receive email from the command prompt. Reading email will be rare, but if the system has [`pine`](http://linux.die.net/man/1/pine) installed, that's probably the most intuitive from a non-UNIX perspective (although it is still obviously a command line program). Otherwise look for [`mutt`](http://linux.die.net/man/1/mutt).
+You can send and receive email from the command prompt. Reading email will be rare, but if the system has [`pine`](http://linux.die.net/man/1/pine) installed, that's probably the most intuitive from a non-UNIX perspective (although it is still obviously a terminal program). Otherwise look for [`mutt`](http://linux.die.net/man/1/mutt).
 
 Sending email is more interesting, especially from shell scripts. There are multiple ways, but [`email`](http://linux.die.net/man/1/email) is straightforward enough:
 
@@ -2543,36 +2541,36 @@ Let's Connect
 
 There are two primary ways to get an interactive "shell" session on a remote machine. The first is the venerable [`telnet`](http://linux.die.net/man/1/telnet) command. It isn't used very often for actual interactive sessions any more (for one, because it sends credentials in plain text on the wire). However, because you can specify the port number, it is still handy for testing and debugging text-based protocols such as SMTP or HTTP. In the following, after opening a `telnet` connection on port 80 to Google, I simply entered the HTTP protocol sequence `GET / HTTP/1.1` followed by a blank line to get Google to return its home page:
 
-    # telnet google.com 80
-    Trying 216.58.216.110...
+    ~ $ telnet google.com 80
+    Trying 216.58.216.78...
     Connected to google.com.
     Escape character is '^]'.
     GET / HTTP/1.1
 
     HTTP/1.1 200 OK
-    Date: Fri, 23 Oct 2015 18:26:04 GMT
+    Date: Tue, 22 Dec 2015 15:58:47 GMT
     Expires: -1
     Cache-Control: private, max-age=0
     Content-Type: text/html; charset=ISO-8859-1
-    P3P: CP="This is not a P3P policy! See http://www.google.com/support/acc...
+    P3P: CP="This is not a P3P policy! See https://www.google.com/support/accounts/a
+    nswer/151657?hl=en for more info."
     Server: gws
     X-XSS-Protection: 1; mode=block
     X-Frame-Options: SAMEORIGIN
-    Set-Cookie: PREF=ID=1111111111111111:FF=0:TM=1445624764:LM=1445624764:V=...
-    Set-Cookie: NID=72=HLgGubMnO1ThhvhOAmvehue96EKTh9D6F19zidZQU-E9AibEg2Op6...
+    Set-Cookie: NID=74=nqD9y_pSQudbaw6obB94Ngw6lsn4t_S8Z3NbZcUJ5HB4qUXCpu988A5QG3EQD
+    kwqgOdGapsUSmsi91yHAa9_LU9JeP4pKop-1p5w7LlrdMyGrGojwoaX58ML6PSH5nGLsdZV0Z5vBqNTh
+    A; expires=Wed, 22-Jun-2016 15:58:47 GMT; path=/; domain=.google.com; HttpOnly
     Accept-Ranges: none
     Vary: Accept-Encoding
     Transfer-Encoding: chunked
 
-    8000
-    <!doctype html><html itemscope="" itemtype="http://schema.org/WebPage"...
     ...and so on...
 
 To get a modern, secure shell to a remote machine, use [`ssh`](http://linux.die.net/man/1/ssh), passing in the userid and server like this:
 
     ssh myuser@remoteserver
 
-You will be prompted for credentials (or you can use certificates, but that is ***way*** beyond this text's goals).
+You will be prompted for credentials (or you can use certificates, but that is ***way*** beyond this text's goals). Once logged in, you will be presented with a command prompt to the remote system.
 
 You can also use the `SSH` protocol to securely transfer files between systems with the [`scp`](http://linux.die.net/man/1/scp) command. It works like this for a recursive directory copy:
 
@@ -2584,7 +2582,7 @@ In this case we are copying the files in `myfiles` and its subdirectories to `/h
 
     ~# ssh myuser@remotehost
     The authenticity of host '[remotehost] ([10.0.2.3]:22)' can't be established.
-    ECDSA key fingerprint is 98:70:17:38:db:d0:16:ee:b2:93:08:3e:30:25:14:70.
+    ECDSA key fingerprint is 98:bb:17:38:ee:d0:16:ee:b2:93:08:4e:30:25:14:70.
     Are you sure you want to continue connecting (yes/no)? yes
     Warning: Permanently added '[remotehost],[10.0.2.3]:22' (ECDSA) to the list
     of known hosts.
@@ -2603,7 +2601,7 @@ In this case we are copying the files in `myfiles` and its subdirectories to `/h
 Network Configuration
 ---------------------
 
-We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig). While you can use `ifconfig` to alter your networking settings, it is most commonly used to get a quick display of them:
+We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig) (and in some ways is similar to `ipconfig` in `CMD.EXE`. While you can use `ifconfig` to alter your networking settings, it is most commonly used to get a quick display of them:
 
     # ifconfig
     eth0      Link encap:Ethernet  HWaddr 00:00:56:a3:35:fe
@@ -2624,7 +2622,7 @@ We won't dive too deep into configuring a network, but there are a few things yo
               collisions:0 txqueuelen:0
               RX bytes:6839306 (6.5 MiB)  TX bytes:6839306 (6.5 MiB)
 
-To see what DNS servers the system is using:
+To see what DNS servers the system is using, you can look in `/etc/resolv.conf`:
 
     # cat /etc/resolv.conf
     domain mydomain.com
@@ -2632,7 +2630,7 @@ To see what DNS servers the system is using:
     nameserver 10.0.2.1
     nameserver 10.0.2.2
 
-And to see any local overrides of network names or aliases:
+And to see any local overrides of network names or aliases, look in `/etc/hosts`:
 
     # cat /etc/hosts
     127.0.0.1       localhost
@@ -2660,20 +2658,29 @@ To see what *processes* you are running, use [`ps`](http://linux.die.net/man/1/p
 
 To show processes from *all* users in a process *hierarchy* (child processes indented under parents), use `ps -AH`:
 
-    ps -AH
-    # ps -AH
+    ~ $ ps -AH
       PID TTY          TIME CMD
         2 ?        00:00:00 kthreadd
-        3 ?        00:05:00   ksoftirqd/0
-        5 ?        00:00:00   kworker/u:0
-        6 ?        00:02:38   migration/0
-        7 ?        00:01:06   watchdog/0
-        8 ?        00:02:37   migration/1
-       10 ?        00:05:02   ksoftirqd/1
-       12 ?        00:00:59   watchdog/1
-       13 ?        00:00:00   cpuset
-       14 ?        00:00:00   khelper
-       15 ?        00:00:00   kdevtmpfs
+        3 ?        00:00:00   ksoftirqd/0
+        5 ?        00:00:00   kworker/0:0H
+        7 ?        00:00:06   rcu_sched
+        8 ?        00:00:02   rcuos/0
+        9 ?        00:00:01   rcuos/1
+       10 ?        00:00:03   rcuos/2
+       11 ?        00:00:01   rcuos/3
+       12 ?        00:00:00   rcuos/4
+       13 ?        00:00:00   rcuos/5
+       14 ?        00:00:00   rcuos/6
+       15 ?        00:00:00   rcuos/7
+       16 ?        00:00:00   rcu_bh
+       17 ?        00:00:00   rcuob/0
+       18 ?        00:00:00   rcuob/1
+       19 ?        00:00:00   rcuob/2
+       20 ?        00:00:00   rcuob/3
+       21 ?        00:00:00   rcuob/4
+       22 ?        00:00:00   rcuob/5
+       23 ?        00:00:00   rcuob/6
+       24 ?        00:00:00   rcuob/7
     ...and so on...
 
 You can *kill* a process using the [`kill`](http://linux.die.net/man/1/kill) command, which takes a process id and optionally a "signal". Here is an example looking for any running instance of `vi` and sending it a `kill` command:
@@ -2727,98 +2734,164 @@ Remember that one of the primary UNIX philosophies is that everything is a file 
 
 One of the places this has become really handy is in the `/proc` "file system." On modern Linux systems, there is typically a `/proc` directory that looks like directories and files:
 
-    # ls /proc
-    1     1776  2     2244   2308   2415   2599   2693   5     9171       cm...
-    10    178   20    2269   2311   2416   26     3      5030  9174       co...
-    12    1781  2052  2287   2333   2417   2611   3120   5032  9715       cp...
-    13    1783  21    22899  2338   2418   2612   31651  560   9718       cr...
-    130   1790  211   2297   2367   2422   2613   3197   570   99         de...
-    14    18    212   23     23835  2432   2614   32502  5991  acpi       di...
-    15    180   2165  2304   23841  24426  2615   355    6     asound     dma
-    16    181   2191  2305   2395   25     2616   4691   7     buddyinfo  dri
-    17    182   22    2306   24     2550   26735  479    8     bus        dr...
-    1713  19    2225  2307   2414   2556   26736  480    88    cgroups    ex...
+    ~ $ ls /proc
+    1     1566  2607  299   4549  53    75         cmdline      mtrr
+    10    1587  2617  3     4579  54    754        consoles     net
+    100   16    2627  300   4589  55    760        cpuinfo      pagetypeinfo
+    1022  17    2629  301   46    56    762        crypto       partitions
+    1030  18    2699  3029  4602  575   764        devices      sched_debug
+    1035  1803  27    31    4612  61    77         diskstats    schedstat
+    1038  19    2712  3111  47    6146  79         dma          scsi
+    11    2     2799  3112  48    6153  8          driver       self
+    12    20    28    3116  49    6199  8167       execdomains  slabinfo
+    1295  2073  2802  3117  4955  62    8168       fb           softirqs
+    1297  2077  2811  3150  4958  6212  8200       filesystems  stat
+    13    21    2815  32    4960  63    822        fs           swaps
+    1304  22    2820  324   4976  640   8296       interrupts   sys
+    1305  23    2823  326   5     642   9          iomem        sysrq-trigger
+    1306  2324  2825  329   50    645   9266       ioports      sysvipc
+    1308  2349  2829  33    5005  6463  927        irq          timer_list
+    1311  2356  2831  330   5012  647   939        kallsyms     timer_stats
+    14    24    2836  34    5033  649   9465       kcore        tty
+    1408  2494  2846  36    5045  661   9613       keys         uptime
+    1468  25    2847  37    51    665   9796       key-users    version
+    147   2507  2848  3713  511   676   9850       kmsg         version_signature
+    148   2518  2850  374   5122  686   99         kpagecount   vmallocinfo
+    ...and so on...
 
 What is all that? Well if we look a little closer:
 
-    # ls -l /proc
+    ~ $ ls -l /proc
     total 0
-    dr-xr-xr-x  8 root       root                     0 Sep 18 11:17 1
-    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 10
-    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 12
-    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 13
-    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 130
-    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 14
-    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 15
-    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 16
-    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 17
-    dr-xr-xr-x  8 root       root                     0 Oct 23 13:55 1713
-    dr-xr-xr-x  8 statd      nogroup                  0 Oct 23 13:55 1776
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 10
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 100
+    dr-xr-xr-x  9 lehmer     lehmer                   0 Dec 22 10:17 10035
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1022
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1030
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1035
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1038
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 11
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 12
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1295
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1297
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 13
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1304
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1305
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1306
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1308
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1311
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 14
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1408
+    dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1468
     ...and so on...
 
 ...we can see that the entries with numeric names are directories. Let's look in one of those directories:
 
-    # ls -l /proc/1
+    ~ # ls -l /proc/1
     total 0
-    dr-xr-xr-x 2 root root 0 Oct 23 14:23 attr
-    -rw-r--r-- 1 root root 0 Oct 23 14:23 autogroup
-    -r-------- 1 root root 0 Oct 23 14:23 auxv
-    -r--r--r-- 1 root root 0 Oct 23 14:23 cgroup
-    --w------- 1 root root 0 Oct 23 14:23 clear_refs
-    -r--r--r-- 1 root root 0 Oct 23 14:23 cmdline
-    -rw-r--r-- 1 root root 0 Oct 23 14:23 comm
-    -rw-r--r-- 1 root root 0 Oct 23 14:23 coredump_filter
-    -r--r--r-- 1 root root 0 Oct 23 14:23 cpuset
-    lrwxrwxrwx 1 root root 0 Oct 23 14:23 cwd -> /
-    -r-------- 1 root root 0 Oct 23 14:23 environ
-    lrwxrwxrwx 1 root root 0 Oct 23 14:23 exe -> /sbin/init
+    dr-xr-xr-x 2 root root 0 Dec 22 10:18 attr
+    -rw-r--r-- 1 root root 0 Dec 22 10:18 autogroup
+    -r-------- 1 root root 0 Dec 22 10:18 auxv
+    -r--r--r-- 1 root root 0 Dec 22 06:06 cgroup
+    --w------- 1 root root 0 Dec 22 10:18 clear_refs
+    -r--r--r-- 1 root root 0 Dec 22 06:06 cmdline
+    -rw-r--r-- 1 root root 0 Dec 22 10:18 comm
+    -rw-r--r-- 1 root root 0 Dec 22 10:18 coredump_filter
+    -r--r--r-- 1 root root 0 Dec 22 10:18 cpuset
+    lrwxrwxrwx 1 root root 0 Dec 22 10:18 cwd -> /
+    -r-------- 1 root root 0 Dec 22 06:06 environ
+    lrwxrwxrwx 1 root root 0 Dec 22 06:06 exe -> /sbin/init
+    dr-x------ 2 root root 0 Dec 22 10:18 fd
+    dr-x------ 2 root root 0 Dec 22 10:18 fdinfo
+    -rw-r--r-- 1 root root 0 Dec 22 10:18 gid_map
+    -r-------- 1 root root 0 Dec 22 10:18 io
+    -r--r--r-- 1 root root 0 Dec 22 06:06 limits
+    -rw-r--r-- 1 root root 0 Dec 22 10:18 loginuid
+    dr-x------ 2 root root 0 Dec 22 10:18 map_files
+    -r--r--r-- 1 root root 0 Dec 22 10:18 maps
+    -rw------- 1 root root 0 Dec 22 10:18 mem
     ...and so on...
 
-This contains a lot of information on the process with process id (PID) \#1. If the directory listing shows the entry as a file, it can be examined and holds ***current*** statistics for whatever the file name implies. If it is a directory it will hold other entries (files or directories) with yet more statistics.
+This contains a lot of information on the process with process id (PID) \#1. If the directory listing shows the entry as a file, it can be examined and holds ***current*** statistics for whatever the file name implies:
+
+    ~ # cat /proc/1/io
+    rchar: 803882767
+    wchar: 152731542
+    syscr: 201510
+    syscw: 57855
+    read_bytes: 663872512
+    write_bytes: 113012736
+    cancelled_write_bytes: 3072000
+
+If it is a directory it will hold other entries (files or directories) with yet more statistics.
 
 In addition, there are system-wide statistics, such as `/proc/cpuinfo`:
 
-    # cat /proc/cpuinfo
-    processor       : 0
-    vendor_id       : GenuineIntel
-    cpu family      : 6
-    model           : 37
-    model name      : Intel(R) Xeon(R) CPU           X5690  @ 3.47GHz
-    stepping        : 1
-    microcode       : 0x15
-    cpu MHz         : 3458.000
-    cache size      : 12288 KB
-    fpu             : yes
+    ~ # cat /proc/cpuinfo 
+    processor   : 0
+    vendor_id   : GenuineIntel
+    cpu family  : 6
+    model       : 69
+    model name  : Intel(R) Core(TM) i5-4200U CPU @ 1.60GHz
+    stepping    : 1
+    microcode   : 0x14
+    cpu MHz     : 895.023
+    cache size  : 3072 KB
+    physical id : 0
+    siblings    : 4
+    core id     : 0
+    cpu cores   : 2
+    apicid      : 0
+    initial apicid  : 0
+    fpu     : yes
     fpu_exception   : yes
-    cpuid level     : 11
+    cpuid level : 13
+    wp      : yes
+    flags       : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov 
+    pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pd
+    pe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopol
+    ogy nonstop_tsc ap
     ...and so on...
 
 Sawing Logs
 -----------
 
-Many Linux components and subsystems log to `/var/log`. Here is a pretty standard directory listing for it on a Debian system:
+Many Linux components and subsystems log to `/var/log`. Here is a pretty standard directory listing for it on a Mint system:
 
-    # ls /var/log
-    alternatives.log       auth.log.2.gz    debug       dmesg.4.gz     kern....
-    alternatives.log.1     auth.log.3.gz    debug.1     dpkg.log       kern....
-    alternatives.log.2.gz  auth.log.4.gz    debug.2.gz  dpkg.log.1     kern....
-    alternatives.log.3.gz  btmp             debug.3.gz  dpkg.log.2.gz  kern....
-    apache2                btmp.1           debug.4.gz  dpkg.log.3.gz  kern....
-    apt                    daemon.log       dmesg       dpkg.log.4.gz  lastlog
-    aptitude               daemon.log.1     dmesg.0     exim4          lpr.log
-    aptitude.1.gz          daemon.log.2.gz  dmesg.1.gz  faillog        mail.err
-    auth.log               daemon.log.3.gz  dmesg.2.gz  fsck           mail....
-    auth.log.1             daemon.log.4.gz  dmesg.3.gz  installer      mail....
+    ~ # ls /var/log
+    alternatives.log       dmesg.4.gz             pm-suspend.log.1
+    alternatives.log.1     dpkg.log               pm-suspend.log.2.gz
+    alternatives.log.2.gz  dpkg.log.1             pm-suspend.log.3.gz
+    alternatives.log.3.gz  dpkg.log.2.gz          pycentral.log
+    apt                    dpkg.log.3.gz          samba
+    aptitude               faillog                speech-dispatcher
+    aptitude.1.gz          fontconfig.log         syslog
+    aptitude.2.gz          fsck                   syslog.1
+    auth.log               gpu-manager.log        syslog.2.gz
+    auth.log.1             hp                     syslog.3.gz
+    auth.log.2.gz          installer              syslog.4.gz
+    auth.log.3.gz          kern.log               syslog.5.gz
+    auth.log.4.gz          kern.log.1             syslog.6.gz
+    boot.log               kern.log.2.gz          syslog.7.gz
+    bootstrap.log          kern.log.3.gz          udev
+    btmp                   kern.log.4.gz          unattended-upgrades
+    btmp.1                 lastlog                upstart
+    ConsoleKit             mdm                    wtmp
+    cups                   mintsystem.log         wtmp.1
+    dmesg                  pm-powersave.log       Xorg.0.log
+    dmesg.0                pm-powersave.log.1     Xorg.0.log.old
+    dmesg.1.gz             pm-powersave.log.2.gz  Xorg.20.log
+    ...and so on...
 
 Some, like `samba` are their own subdirectories with log files under that. Others are log files that get "rotated" from the most current (no suffix) through ever older ones (increasing suffix number, e.g., `mail.log.2`).
 
-If you are pursuing a problem with a specific subsystem (like `samba`), it is good to start in its log files. The two files of general interest are `dmesg`, which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. The other is `messages`, which holds more general "system" messages.
+If you are pursuing a problem with a specific subsystem (like `samba`), it is good to start in its log files. The two log files of general interest are `dmesg`, which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. The other is `messages`, which holds more general "system" messages.
 
 Let's look for kernel errors when booting:
 
-    # cat dmesg | grep -i error
-    [    2.310161] Error: Driver 'pcspkr' is already registered, aborting...
-    [    2.754699] EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro
+    ~ # cat /var/log/dmesg | grep -i error
+    [   15.828463] EXT4-fs (dm-1): re-mounted. Opts: errors=remount-ro
 
 It's All Temporary
 ------------------
@@ -2841,7 +2914,7 @@ There are three commands that are the basis for reading "UNIX" documentation wit
 
 `man` is short for *manual pages*, and is used to display the main help for most "UNIX" commands. For example, `man ls` shows:
 
-    LS(1)                                                             User C...
+    LS(1)                            User Commands                           LS(1)
 
     NAME
            ls - list directory contents
@@ -2850,18 +2923,21 @@ There are three commands that are the basis for reading "UNIX" documentation wit
            ls [OPTION]... [FILE]...
 
     DESCRIPTION
-           List information about the FILEs (the current directory by
-           default).  Sort entries alphabetically if none of -cftuvSUX nor
-           --sort is specified.
+           List  information  about  the FILEs (the current directory by default).
+           Sort entries alphabetically if none of -cftuvSUX nor --sort  is  speci‐
+           fied.
 
-           Mandatory arguments to long options are mandatory for short optio...
+           Mandatory  arguments  to  long  options are mandatory for short options
+           too.
 
            -a, --all
                   do not ignore entries starting with .
 
            -A, --almost-all
                   do not list implied . and ..
-    ...and so on...
+
+           --author
+     Manual page ls(1) line 1 (press h for help or q to quit)
 
 **Note:** `man` uses `less` as a paginator, with all that means, including the same navigation and search keys, and most important to remember - `Q` to quit. How do I know this? Because of course you can `man man`!
 
@@ -2869,7 +2945,7 @@ Notice the `LS(1)` part. The UNIX manual was originally divided into multiple se
 
 But sometimes there are duplicate names in the different sections. For example, there is both a `passwd` command and a `passwd` file format (for `/etc/passwd`). By default, `man passwd` will show you the documentation from the lowest numbered section with a match, in this case section 1, usually referred to as `passwd(1)` to disambiguate which thing we're talking about:
 
-    PASSWD(1)                                                         User C...
+    PASSWD(1)                        User Commands                       PASSWD(1)
 
     NAME
            passwd - change user password
@@ -2880,25 +2956,30 @@ But sometimes there are duplicate names in the different sections. For example, 
     DESCRIPTION
            The passwd command changes passwords for user accounts. A normal user
            may only change the password for his/her own account, while the
-           superuser may change the password for any account.  passwd also
-           changes the account or associated password validity period.
+           superuser may change the password for any account.  passwd also changes
+           the account or associated password validity period.
 
        Password Changes
-           The user is first prompted for his/her old password, if one is
-           present. This password is then encrypted and compared against the
-           stored
-    ...and so on...
+           The user is first prompted for his/her old password, if one is present.
+           This password is then encrypted and compared against the stored
+           password. The user has only one chance to enter the correct password.
+           The superuser is permitted to bypass this step so that forgotten
+           passwords may be changed.
+
+           After the password has been entered, password aging information is
+           checked to see if the user is permitted to change the password at this
+     Manual page passwd(1) line 1 (press h for help or q to quit)
 
 To see the `man` page for the `passwd` file format, we have to explicitly specify the section, in this case by using `man 5 passwd`:
 
-    PASSWD(5)                                                  File Formats ...
+    PASSWD(5)                File Formats and Conversions                PASSWD(5)
 
     NAME
            passwd - the password file
 
     DESCRIPTION
-           /etc/passwd contains one line for each user account, with seven
-           fields delimited by colons (“:”). These fields are:
+           /etc/passwd contains one line for each user account, with seven fields
+           delimited by colons (“:”). These fields are:
 
            ·   login name
 
@@ -2907,54 +2988,83 @@ To see the `man` page for the `passwd` file format, we have to explicitly specif
            ·   numerical user ID
 
            ·   numerical group ID
-    ...and so on...
 
-Besides `man`, many GNU tools come with help in `info` format, which is from `emacs`. While `info` is much better at enabling complex help files with navigation I am not a fan because I tend not to hold all the keystrokes in my head. The biggest thing to remember if you do something like `info vi` is that `q` quits the `info` command.
+           ·   user name or comment field
+
+           ·   user home directory
+
+           ·   optional user command interpreter
+
+     Manual page passwd(5) line 1 (press h for help or q to quit)
+
+Besides `man`, many GNU tools come with help in `info` format, which is originally from `emacs`. Here are the results of `info find`:
+
+    File: find.info,  Node: Invoking find,  Next: Invoking locate,  Up: Reference
+
+    7.1 Invoking 'find'
+    ===================
+
+         find [-H] [-L] [-P] [-D DEBUGOPTIONS] [-OLEVEL] [FILE...] [EXPRESSION]
+
+       'find' searches the directory tree rooted at each file name FILE by
+    evaluating the EXPRESSION on each file it finds in the tree.
+
+       The command line may begin with the '-H', '-L', '-P', '-D' and '-O'
+    options.  These are followed by a list of files or directories that
+    should be searched.  If no files to search are specified, the current
+    directory ('.') is used.
+
+       This list of files to search is followed by a list of expressions
+    describing the files we wish to search for.  The first part of the
+    expression is recognised by the fact that it begins with '-' followed by
+    some other letters (for example '-print'), or is either '(' or '!'.  Any
+    arguments after it are the rest of the expression.
+
+       If no expression is given, the expression '-print' is used.
+    --zz-Info: (find.info.gz)Invoking find, 44 lines --Top--------------------------
+    Welcome to Info version 5.2. Type h for help, m for menu item.
+
+While `info` is much better at enabling complex help files with navigation I am not a fan because I tend not to hold all the keystrokes in my head. The biggest thing to remember if you do something like `info find` is that `q` quits the `info` command.
 
 Finally, what if you don't know the name of the command? Well, each "man page" has a title and brief description, e.g., "passwd - change user password" in the `man passwd` output above. The `apropos` command can simply search those titles and descriptions for a word or phrase and show you all the results:
 
-    # apropos edit
-    dpatch-edit-patch (1) - maintain dpatch patches for a Debian source package
+    ~ $ apropos edit
+    atobm (1)            - bitmap editor and converter utilities for the X Window...
+    bitmap (1)           - bitmap editor and converter utilities for the X Window...
+    bmtoa (1)            - bitmap editor and converter utilities for the X Window...
+    cinnamon-menu-editor (1) - Editor for the panel menu
+    desktop-file-edit (1) - Installation and edition of desktop files
+    desktop-file-install (1) - Installation and edition of desktop files
+    ed (1)               - line-oriented text editor
     edit (1)             - execute programs via entries in the mailcap file
-    rediff (1)           - fix offsets and counts of a hand-edited diff
+    editdiff (1)         - fix offsets and counts of a hand-edited diff
+    editkeep (8)         - frontend for deborphan
     editor (1)           - Nano's ANOther editor, an enhanced free Pico clone
+    editres (1)          - a dynamic resource editor for X Toolkit applications
     elfedit (1)          - Update the ELF header of ELF files.
     ex (1)               - Vi IMproved, a programmers text editor
+    fix-qdf (1)          - repair PDF files in QDF form after editing
+    gedit (1)            - text editor for the GNOME Desktop
+    gnome-desktop-item-edit (1) - tool to edit .desktop file
+    gnome-text-editor (1) - text editor for the GNOME Desktop
+    Gnome2::DateEdit (3pm) - wrapper for GnomeDateEdit
     grub-editenv (1)     - edit GRUB environment block
-    msgfilter (1)        - edit translations of message catalog
-    nano (1)             - Nano's ANOther editor, an enhanced free Pico clone
-    pdbedit (8)          - manage the SAM database (Database of Samba Users)
-    pico (1)             - Nano's ANOther editor, an enhanced free Pico clone
-    psed (1)             - a stream editor
-    readline (3readline) - get a line from a user with editing
-    rnano (1)            - Restricted mode for Nano's ANOther editor, an enh...
-    rview (1)            - Vi IMproved, a programmers text editor
-    rvim (1)             - Vi IMproved, a programmers text editor
-    s2p (1)              - a stream editor
-    sed (1)              - stream editor for filtering and transforming text
-    sensible-browser (1) - sensible editing, paging, and web browsing
-    sensible-editor (1)  - sensible editing, paging, and web browsing
-    sensible-pager (1)   - sensible editing, paging, and web browsing
-    sudoedit (8)         - execute a command as another user
-    vi (1)               - Vi IMproved, a programmers text editor
-    view (1)             - Vi IMproved, a programmers text editor
-    vigr (8)             - edit the password, group, shadow-password or shad...
-    vim (1)              - Vi IMproved, a programmers text editor
-    vimdiff (1)          - edit two, three or four versions of a file with V...
-    vipw (8)             - edit the password, group, shadow-password or shad...
-    visudo (8)           - edit the sudoers file
+    jfs_debugfs (8)      - shell-type JFS file system editor
+    mintsources (1)      - Software Sources List editor
+    ...and so on...
 
 Note the `man` section numbers after each command name. Also note that `apropos` is not sophisticated - it is simply searching for the exact string you give it in the very limited "brief descriptions" from the `man` pages. That's all. But a lot of time that's all you need to remember, "Ah, yes, `nano` is the other editor I was thinking about and like better than `vi`."
 
 **Note:** `man`, `info` and `apropos` are just normal "UNIX" commands like all the others, so while they may default to displaying with a paginator on an interactive terminal, you can run their output through other commands, just like any other. For example, maybe we remember only that the command had something with "edit" and was a system administration ("section 8") command:
 
-    $ apropos edit | grep "(8)"
+    ~ $ apropos edit | grep "(8)"
+    editkeep (8)         - frontend for deborphan
     jfs_debugfs (8)      - shell-type JFS file system editor
     pdbedit (8)          - manage the SAM database (Database of Samba Users)
     samba-regedit (8)    - ncurses based tool to manage the Samba registry
     sudoedit (8)         - execute a command as another user
-    vigr (8)             - edit the password, group, shadow-password or shad...
-    vipw (8)             - edit the password, group, shadow-password or shad...
+    vigr (8)             - edit the password, group, shadow-password or shadow-gr...
+    vipw (8)             - edit the password, group, shadow-password or shadow-gr...
     visudo (8)           - edit the sudoers file
 
 Or maybe you can't remember whether it's `-r`, `-R` or `--recursive` to copy subdirectories recursively with `cp`:
@@ -2997,7 +3107,7 @@ And So On
 
 > *"Et cetera, et cetera, et cetera!"* - The King (*The King and I*)
 
-This step is a grab bag of stuff that didn't seem to directly belong anywhere before, but I still think needs to be known, or at least brushed up against.
+This step is a grab bag of stuff that didn't seem to directly belong anywhere else, but I still think needs to be known, or at least brushed up against.
 
 One-Stop Shopping
 -----------------
@@ -3006,22 +3116,32 @@ In UNIX-like systems, most (not all) system configuration is stored in directori
 
 **Note:** In Linux almost universally `/etc` is pronounced "slash-et-see," ***not*** "forward slash et cetera."
 
-    # ls -l /etc
-    total 844
-    drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
-    -rw-r--r-- 1 root root    2981 Apr 23  2014 adduser.conf
-    -rw-r--r-- 1 root root      45 Jul  9 08:46 adjtime
-    -rw-r--r-- 2 root root     621 May 22  2014 aliases
-    -rw-r--r-- 1 root root   12288 May 22  2014 aliases.db
-    drwxr-xr-x 2 root root   20480 Feb 25  2015 alternatives
-    -rw-r--r-- 1 root root    4185 Dec 28  2011 analog.cfg
-    drwxr-xr-x 7 root root    4096 Feb 25  2015 apache2
-    drwxr-xr-x 6 root root    4096 Feb 25  2015 apt
-    -rw-r----- 1 root daemon   144 Jun  9  2012 at.deny
-    -rw-r--r-- 1 root root    1895 Dec 29  2012 bash.bashrc
+    ~ $ ls /etc
+    acpi                    hosts                 pki
+    adduser.conf            hosts.allow           pm
+    adjtime                 hosts.deny            pnm2ppa.conf
+    alternatives            hp                    polkit-1
+    anacrontab              icedtea-web           ppp
+    apg.conf                ifplugd               printcap
+    apm                     ImageMagick           profile
+    apparmor                init                  profile.d
+    apparmor.d              init.d                protocols
+    apport                  initramfs-tools       pulse
+    apt                     inputrc               purple
+    at-spi2                 insserv               python
+    avahi                   insserv.conf          python2.7
+    bash.bashrc             insserv.conf.d        python3
+    bash_completion         inxi.conf             python3.4
+    bash_completion.d       iproute2              rc0.d
+    bindresvport.blacklist  issue                 rc1.d
+    blkid.conf              issue.dpkg-old        rc2.d
+    blkid.tab               issue.net             rc3.d
+    bluetooth               issue.net.dpkg-old    rc4.d
+    bonobo-activation       java-7-openjdk        rc5.d
+    brlapi.key              kbd                   rc6.d
     ...and so on...
 
-Depending on what you are trying to configure, you may be in one or many files in `/etc`. This is a ***very short*** list of files and directories you may need to examine there:
+Depending on what you are trying to configure, you may need to be in one or many files in `/etc`. This is a ***very short*** list of files and directories you may need to examine there:
 
 -   **`fstab`** - a listing of the file systems currently mounted and their types.
 
@@ -3046,25 +3166,31 @@ Service Station
 
 We are going to ignore system initialization and "stages," and assume most of the time you are running on a well-functioning system. Even so sometimes you want to restart a specific system service without rebooting the whole system, often to force re-reading changed configuration files. If the service has a script in `/etc/init.d`:
 
-    # ls /etc/init.d
-    acpid                   console-setup  kbd                    mountkernf...
-    apache2                 cron           keyboard-setup         mountnfs-b...
-    atd                     dbus           killprocs              mountnfs.s...
-    bootlogs                exim4          kmod                   mpt-status...
-    bootmisc.sh             gitlab         motd                   mtab.sh
-    checkfs.sh              halt           mountall-bootclean.sh  networking
-    checkroot-bootclean.sh  hostname.sh    mountall.sh            nfs-common
-    checkroot.sh            hwclock.sh     mountdevsubfs.sh       nfs-kernel...
+    ~ $ ls /etc/init.d
+    acpid             dbus               ondemand     single
+    anacron           dns-clean          pppd-dns     skeleton
+    apparmor          friendly-recovery  procps       smbd
+    avahi-daemon      grub-common        pulseaudio   speech-dispatcher
+    binfmt-support    halt               rc           sudo
+    bluetooth         hddtemp            rc.local     udev
+    brltty            irqbalance         rcS          umountfs
+    casper            kerneloops         README       umountnfs.sh
+    cinnamon          killprocs          reboot       umountroot
+    console-setup     kmod               resolvconf   unattended-upgrades
+    cpufrequtils      lm-sensors         rsync        urandom
+    cron              loadcpufreq        rsyslog      virtualbox-guest-utils
+    cryptdisks        mdm                samba        virtualbox-guest-x11
+    cryptdisks-early  mintsystem         samba-ad-dc  x11-common
+    cups              networking         saned
+    cups-browsed      nmbd               sendsigs
 
 ...then chances are it will respond to a fairly standard set of commands, such as the following samples with `samba`:
 
-    # /etc/init.d/samba stop
+    ~ # /etc/init.d/samba stop
     [ ok ] Stopping Samba daemons: nmbd smbd.
-
-    # /etc/init.d/samba start
+    ~ # /etc/init.d/samba start
     [ ok ] Starting Samba daemons: nmbd smbd.
-
-    # /etc/init.d/samba restart
+    ~ # /etc/init.d/samba restart
     [ ok ] Stopping Samba daemons: nmbd smbd.
     [ ok ] Starting Samba daemons: nmbd smbd.
 
@@ -3079,28 +3205,40 @@ One of the nicest things about Linux-style package managers (as opposed to tradi
 
 One thing Linux distros do is define the "repositories" (servers and file structures) that serve the various packages. In addition, there are usually multiple versions of packages, typically matching different releases of the distro. We won't go into setting up a system to point to these here.
 
-In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get) is usually the tool of choice for package management.
+In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get) is usually the tool of choice for package management. Another option is [`aptitude`](http://linux.die.net/man/8/aptitude).
 
 There are three common `apt-get` commands that get used over and over. The first downloads and *updates* the local metadata cache for the repositories:
 
-    $ sudo apt-get update
-    [sudo] password for myuser: 
+    ~ $ sudo apt-get update
+    [sudo] password for lehmer:
     Ign http://packages.linuxmint.com rafaela InRelease
-    Hit http://packages.linuxmint.com rafaela Release.gpg                          
-    Ign http://extra.linuxmint.com rafaela InRelease                               
-    Ign http://archive.ubuntu.com trusty InRelease                                 
-    Hit http://security.ubuntu.com trusty-security InRelease                       
-    Hit http://packages.linuxmint.com rafaela Release                              
+    Ign http://extra.linuxmint.com rafaela InRelease
     Hit http://extra.linuxmint.com rafaela Release.gpg                             
-    Hit http://archive.ubuntu.com trusty-updates InRelease                         
-    Hit http://extra.linuxmint.com rafaela Release                
+    Hit http://packages.linuxmint.com rafaela Release.gpg                          
+    Hit http://security.ubuntu.com trusty-security InRelease                       
+    Hit http://extra.linuxmint.com rafaela Release
+    Hit http://packages.linuxmint.com rafaela Release
+    Hit http://security.ubuntu.com trusty-security/main amd64 Packages
+    Hit http://packages.linuxmint.com rafaela/main amd64 Packages
+    Hit http://extra.linuxmint.com rafaela/main amd64 Packages
+    Hit http://security.ubuntu.com trusty-security/restricted amd64 Packages
+    Hit http://extra.linuxmint.com rafaela/main i386 Packages
+    Hit http://packages.linuxmint.com rafaela/upstream amd64 Packages
+    Ign http://archive.canonical.com trusty InRelease
+    Ign http://archive.ubuntu.com trusty InRelease
+    Hit http://security.ubuntu.com trusty-security/universe amd64 Packages
+    Hit http://packages.linuxmint.com rafaela/import amd64 Packages
+    Hit http://security.ubuntu.com trusty-security/multiverse amd64 Packages
+    Hit http://packages.linuxmint.com rafaela/main i386 Packages
+    Hit http://archive.canonical.com trusty Release.gpg
+    Hit http://archive.ubuntu.com trusty-updates InRelease
     ...and so on...
 
 **Note:** `apt-get` is an administrative command and usually requires `sudo`.
 
 The second common command *upgrades* all the packages in the system to the latest release in the repository (which may not be the latest and greatest release of the package):
 
-    $ sudo apt-get dist-upgrade
+    ~ $ sudo apt-get dist-upgrade
     Reading package lists... Done
     Building dependency tree       
     Reading state information... Done
@@ -3109,28 +3247,33 @@ The second common command *upgrades* all the packages in the system to the lates
 
 In this case there was nothing to upgrade. And the final common command is obviously to install a package:
 
-    $ sudo apt-get install curl
+    ~ $ sudo apt-get install traceroute
     Reading package lists... Done
     Building dependency tree       
     Reading state information... Done
     The following NEW packages will be installed:
-      curl
+      traceroute
     0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
-    Need to get 123 kB of archives.
-    After this operation, 314 kB of additional disk space will be used.
-    Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl
-    amd64 7.35.0-1ubuntu2.5 [123 kB]
-    Fetched 123 kB in 0s (312 kB/s)
-    Selecting previously unselected package curl.
-    (Reading database ... 182823 files and directories currently installed.)
-    Preparing to unpack .../curl_7.35.0-1ubuntu2.5_amd64.deb ...
-    Unpacking curl (7.35.0-1ubuntu2.5) ...
+    Need to get 0 B/45.0 kB of archives.
+    After this operation, 176 kB of additional disk space will be used.
+    Selecting previously unselected package traceroute.
+    (Reading database ... 307895 files and directories currently installed.)
+    Preparing to unpack .../traceroute_1%3a2.0.20-0ubuntu0.1_amd64.deb ...
+    Unpacking traceroute (1:2.0.20-0ubuntu0.1) ...
     Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
-    Setting up curl (7.35.0-1ubuntu2.5) ...
+    Setting up traceroute (1:2.0.20-0ubuntu0.1) ...
+    update-alternatives: using /usr/bin/traceroute.db to provide /usr/bin/traceroute
+     (traceroute) in auto mode
+    update-alternatives: using /usr/bin/lft.db to provide /usr/bin/lft (lft) in auto
+     mode
+    update-alternatives: using /usr/bin/traceproto.db to provide /usr/bin/traceproto
+     (traceproto) in auto mode
+    update-alternatives: using /usr/sbin/tcptraceroute.db to provide /usr/sbin/tcptr
+    aceroute (tcptraceroute) in auto mode
 
-You can also `remove` packages.
+You can also `apt-get remove` or `apt-get purge` packages. See the man page for details.
 
-This all looks very convenient, and it is. The problems arise because some distros are better at tracking current versions of packages in their repositories than others. In fact, some distros purposefully stay behind cutting edge for system stability purposes.
+This all looks very convenient, and it is. The problems arise because some distros are better at tracking current versions of packages in their repositories than others. In fact, some distros purposefully stay behind cutting edge for system stability purposes. Debian itself is a good example of this, as are many "LTS" (long term support) releases in other distros.
 
 Other Sources
 -------------
@@ -3154,12 +3297,12 @@ Now that we've seen that we can have multiple versions of the same command or ex
 
 Luckily we have the [`which`](http://linux.die.net/man/1/which) command for just that!
 
-    $ which curl
+    ~ $ which curl
     /usr/bin/curl
 
 How can you tell if you have multiple versions of something installed? One way is with the [`locate`](http://linux.die.net/man/1/locate) command:
 
-    locate md5
+    ~ $ locate md5
     /boot/grub/i386-pc/gcry_md5.mod
     /lib/modules/3.16.0-38-generic/kernel/drivers/usb/gadget/amd5536udc.ko
     /usr/bin/md5pass
@@ -3170,16 +3313,27 @@ How can you tell if you have multiple versions of something installed? One way i
     /usr/lib/casper/casper-md5check
     /usr/lib/grub/i386-pc/gcry_md5.mod
     /usr/lib/i386-linux-gnu/sasl2/libcrammd5.so
+    /usr/lib/i386-linux-gnu/sasl2/libcrammd5.so.2
+    /usr/lib/i386-linux-gnu/sasl2/libcrammd5.so.2.0.25
+    /usr/lib/i386-linux-gnu/sasl2/libdigestmd5.so
+    /usr/lib/i386-linux-gnu/sasl2/libdigestmd5.so.2
+    /usr/lib/i386-linux-gnu/sasl2/libdigestmd5.so.2.0.25
+    /usr/lib/python2.7/md5.py
+    /usr/lib/python2.7/md5.pyc
+    /usr/lib/ruby/1.9.1/x86_64-linux/digest/md5.so
+    /usr/lib/x86_64-linux-gnu/sasl2/libcrammd5.so
+    /usr/lib/x86_64-linux-gnu/sasl2/libcrammd5.so.2
+    /usr/lib/x86_64-linux-gnu/sasl2/libcrammd5.so.2.0.25
+    /usr/lib/x86_64-linux-gnu/sasl2/libdigestmd5.so
     ...and so on...
 
-The `locate` command, if installed, is basically a database of all of the file names on the system (collected periodically - not real time). You are simply searching the database for a pattern.
+The `locate` command, if installed, is basically a database of all of the file names on the system (collected periodically - not in real time). You are simply searching the database for a pattern. It is a quicker way to look than `find / -name \*pattern*\`.
 
 One final note on which thing gets executed. Unlike in Windows, UNIX environments do not consider the local directory (the current directory you are sitting at the command prompt, i.e., what [`pwd`](http://linux.die.net/man/1/pwd) shows) as part of the path unless `.` is explicitly listed in `$PATH`. This is for security purposes. So it can be a bit unnerving to try and execute `foo` in the current directory and get:
 
-    $ ls -l foo
+    ~ $ ls -l foo
     -rwxrwx--- 1 myuser mygroup 16 Oct 23 19:03 foo
-
-    $ foo
+    ~ $ foo
     No command 'foo' found, did you mean:
      Command 'fgo' from package 'fgo' (universe)
      Command 'fop' from package 'fop' (main)
@@ -3193,16 +3347,16 @@ One final note on which thing gets executed. Unlike in Windows, UNIX environment
 
 Instead, to invoke `foo`, you can either fully qualify the path as shown by `pwd`:
 
-    $ /home/myuser/foo
+    ~ $ /home/myuser/foo
 
 Or you can prepend the `./` relative path to it, to indicate "the `foo` in the current directory (`.`)":
 
-    $ ./foo
+    ~ $ ./foo
 
 Over and Over and Over
 ----------------------
 
-The function of scheduled tasks in Windows is performed by [`cron`](http://linux.die.net/man/8/cron). It reads in the various [`crontab(5)`](http://linux.die.net/man/5/crontab) files on the system and executes the commands in them at the specified times. You use the [`crontab(1)`](http://linux.die.net/man/1/crontab) command to view and edit the `crontab` files for you and other users (if you have admin privileges).
+The function of scheduled tasks in Windows is performed by [`cron`](http://linux.die.net/man/8/cron) in Linux. It reads in the various [`crontab(5)`](http://linux.die.net/man/5/crontab) files on the system and executes the commands in them at the specified times. You use the [`crontab(1)`](http://linux.die.net/man/1/crontab) command to view and edit the `crontab` files for your user (and other users if you have admin privileges).
 
 The sample given in the comments of the `crontab` when initially opened using `crontab -e` give a fine example of the syntax of the `crontab` file:
 
@@ -3244,7 +3398,7 @@ If you need to reboot the system the quickest way is with the [`reboot`](http://
 
     $ sudo reboot
 
-You can also use the [`shutdown`](http://linux.die.net/man/8/shutdown) command with the `-r` option, but why? The handy use for `shutdown` is to tell a system to halt and power off after shutting down:
+You can also use the [`shutdown`](http://linux.die.net/man/8/shutdown) command with the `-r` option, but why? The handier use for `shutdown` is to tell a system to halt and power off after shutting down:
 
     $ sudo shutdown -h now
 
@@ -3253,7 +3407,7 @@ Turn on Your Signals
 
 One of the basic concepts in UNIX program is that of ["signals"](https://en.wikipedia.org/wiki/Unix_signal). You are probably already familiar with one way to send signals to a program, which is via `Ctrl-C` at the command prompt, which sends the `SIGINT` ("interrupt") signal to the program. Typically this will cause a program to terminate.
 
-However, most signals can be "caught" by a program and coded around. There is one "uninterruptable" signal, however, which is `SIGKILL`. We can send `SIGKILL` to a process and cause it to terminate immediately with:
+However, most signals can be "caught" by a program and coded around. There is one "uninterruptable" signal, however - `SIGKILL`. We can send `SIGKILL` to a process and cause it to terminate immediately with:
 
     kill -s 9 14302
 
@@ -3267,28 +3421,25 @@ Or if you want to get all verbose:
 
     kill -s SIGKILL 14302
 
-**Note:** `SIGKILL` should be used as a last resort, because a program is not allowed to catch it or be notified of it and hence can perform no closing logic or cleanup and may lead to data corruption. It is for getting rid of "hung" processes when nothing else will work. Always try to stop a program with a more "normal" method, which can include sending `SIGINT` to it first.
+**Note:** `SIGKILL` should be used as a last resort, because a program is not allowed to catch it or be notified of it and hence can perform no closing logic or cleanup and that may lead to data corruption. It is for getting rid of "hung" processes when nothing else will work. Always try to stop a program with a more "normal" method, which can include sending `SIGINT` to it first.
 
 Exit, Smiling
 -------------
 
 Sometimes a command runs and there isn't a good way to tell if it worked or not. UNIX programs are supposed to set an "exit status" when they end that by convention is `0` if the program exited successfully and a non-zero, typically positive number if there was an error. The exit status for the last executed command or program can be shown at the command line using the `$?` environment variable. Consider if the file `foo` exists and `bar` does not:
 
-    $ ls foo
+    ~ $ ls foo
     foo
-
     $ echo $?
     0
-
-    $ ls bar
+    ~ $ ls bar
     ls: cannot access bar: No such file or directory
-
-    $ echo $?
+    ~ $ echo $?
     2
 
 **Note:** In many cases the exit codes come from the ANSI Standard C library's [`errno.h` file](http://mazack.org/unix/errno.php). All of this is much handier when handling errors in scripts, but we're not going to go into script logic here.
 
-However, sometimes even at the command line we want to be able to conditionally control a sequence of commands, and continue (or not continue) based on the success (or failure) of a previous command. In `bash` we have `&&` and `||` to the rescue!
+However, sometimes even at the command line we want to be able to conditionally control a sequence of commands, and continue (or not) based on the success (or failure) of a previous command. In `bash` we have `&&` and `||` to the rescue!
 
 -   **`a && b`** - execute `a` ***and*** `b`, i.e., execute `b` only if `a` is successful.
 
@@ -3296,52 +3447,43 @@ However, sometimes even at the command line we want to be able to conditionally 
 
 Our example of file `foo` (which exists) and file `bar` (which does not) and the effect on the exit code of `ls` can be illustrative here, too:
 
-    $ ls foo && ls bar
+    ~ $ ls foo && ls bar
     foo
     ls: cannot access bar: No such file or directory
-
-    $ echo $?
+    ~ $ echo $?
     2
 
 Both `ls` commands execute because the first successfully found `foo`, but the second emits its error and sets the exit code to `2` (failure).
 
-    $ ls foo || ls bar
+    ~ $ ls foo || ls bar
     foo
-
-    $ echo $?
+    ~ $ echo $?
     0
 
-Note in this case the second `ls` didn't execute because the logical "or" condition was already satisfied by the successful execution of the first `ls`. The exit code is obviously `0` (success).
+Note in this case the second `ls` ***did not*** execute because the logical "or" condition was already satisfied by the successful execution of the first `ls`. The exit code is obviously `0` (success).
 
-    $ ls bar && ls foo
+    ~ $ ls bar && ls foo
     ls: cannot access bar: No such file or directory
-
-    $ echo $?
+    ~ $ echo $?
     2
 
-Obviously if the first command fails, the "and" condition as a whole fails and the expression exits with a code of `2`.
+Obviously if the first command fails, the "and" condition as a whole fails and the expression exits with a code of `2`. And finally, while the first command failed the second still can execute because of the "or", and the whole expression returns `0`.
 
-    $ ls bar || ls foo
+    ~ $ ls bar || ls foo
     ls: cannot access bar: No such file or directory
     foo
-
-    $ echo $?
+    ~ $ echo $?
     0
-
-And finally, while the first command failed the second still can execute because of the "or", and the whole expression returns `0`.
 
 **Note:** There is actually a [`true`](http://linux.die.net/man/1/true) command whose purpose is to, "do nothing, successfully." All it does is return a `0` (success) exit code. This can be useful in scripting and also sometimes when building "and" and "or" clauses like above.
 
 And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false) command to "do nothing, unsuccessfully!"
 
-    $ true
-
-    $ echo $?
+    ~ $ true
+    ~ $ echo $?
     0
-
-    $ false
-
-    $ echo $?
+    ~ $ false
+    ~ $ echo $?
     1
 
 The End
@@ -3531,6 +3673,8 @@ These are "section 8" commands, and ***may*** require special privileges such as
 
 -   [**`apt-get`**](http://linux.die.net/man/8/apt-get) - package manager for Debian flavors.
 
+-   [**`aptitude`**](http://linux.die.net/man/8/aptitude) - package manager for Debian flavors.
+
 -   [**`cron`**](http://linux.die.net/man/8/cron) - system for running "scheduled tasks."
 
 -   [**`dmesg`**](http://linux.die.net/man/8/dmesg) - display kernel log messages.
@@ -3562,14 +3706,12 @@ Here's a good example. During the debugging of this book I kept having problems 
 
 I had a suspicion it was because I was wrapping links from one line to the next in Markdown (trying to keep below a certain column count), so I wanted to find all lines that had an opening square bracket but ***not*** a closing one, e.g., I wanted to catch the first line in the following:
 
-~~~~ {.markdown}
-See [Important System
-Directories.](http://linux.die.net/abs-guide/systemdirs.html)
-~~~~
+    See [Important System
+    Directories.](http://linux.die.net/abs-guide/systemdirs.html)
 
 Now you could spend a long time with regular expressions trying to figure out how to do negative matching on that closing `]`. Good luck!
 
-Or you could do something as simple as this, which shows the source files now, after I've cleaned them all up (the only remnants are now in examples):
+Or you could do something as simple as this:
 
     $ grep '\[' *.md | grep -v ']'
     Step01.md: (( expression ))           if COMMANDS; then COMMANDS; [ elif C>
@@ -3579,35 +3721,27 @@ Or you could do something as simple as this, which shows the source files now, a
 
 What makes this simple? Finding `[` with the first `grep` and then simply piping it to a second `grep` and inverting the match logic (`-v`) on `]`.
 
-**Note:** For what it's worth, it doesn't look like the wrapped links in Markdown were the issue. In fact, now that I generate Markdown as an output format for the `README.md` file, I've noticed it does the same thing. So I still haven't figured it out! Ideas welcome.
-
 ### Chain Gangs
 
 Remembering that `&&` only executes the next command if the prior one is successful, we can do things like set up a sample directory and (empty) files for playing around with files and directories in one fell swoop:
 
-    $ mkdir -p /tmp/foo/d && cd /tmp/foo && touch a b c d/e
-
-    $ ls
+    ~ $ mkdir -p /tmp/foo/d && cd /tmp/foo && touch a b c d/e
+    ~ $ ls
     a  b  c  d
 
 That is roughly equivalent to:
 
-    $ cd /tmp
-
-    $ mkdir -p foo
-
-    $ cd foo
-
-    $ mkdir -p d
-
-    $ touch a b c d/e
-
-    $ ls
+    ~ $ cd /tmp
+    ~ $ mkdir -p foo
+    ~ $ cd foo
+    ~ $ mkdir -p d
+    ~ $ touch a b c d/e
+    ~ $ ls
     a  b  c  d
 
 ### Simple Scripts
 
-I said I wasn't going to cover scripting, especially logical constructs like `if`/`fi`. But simple scripts that just "do things" in a certain order are within scope, and the following, which installs [`freerdp`](https://github.com/freerdp/freerdp), is a good example of simply taking the guesswork out of doing something repetitive across multiple machines. I keep this `installrdp` script in Dropbox so I can run it on any new machine I set up quickly and easily (once I get Dropbox set up on the machine!)
+I said I wasn't going to cover scripting, especially logical constructs like `if`/`fi`. But simple scripts that just "do things" in a certain order are within scope, and the following, which installs [`freerdp`](https://github.com/freerdp/freerdp), is a good example of simply taking the guesswork out of doing something repetitive across multiple machines. I keep this `installrdp` script in Dropbox so I can run it quickly and easily on any new machine I set up (once I get Dropbox set up on the machine!)
 
     #!/bin/bash
     sudo apt-get -y install git
@@ -3654,7 +3788,7 @@ I could have done something with my Raspberry Pi, too, but that would just be sh
 
 Written in [`pandoc`-flavored Markdown](http://pandoc.org/README.html#pandocs-markdown) using [`vi`](http://linux.die.net/man/1/vi) and [Visual Studio Code](https://github.com/Microsoft/vscode), among others.
 
-Output produced using [`pandoc`](http://pandoc.org/), [TeX Live](http://www.tug.org/texlive/) and [`pdflatex`](http://linux.die.net/man/1/pdflatex), [`make`](http://linux.die.net/man/1/make), originally based on the [@evangoer's work](https://github.com/evangoer/pandoc-ebook-template).
+Output produced using [`pandoc`](http://pandoc.org/), [TeX Live](http://www.tug.org/texlive/), [`pdflatex`](http://linux.die.net/man/1/pdflatex), [`make`](http://linux.die.net/man/1/make), originally based on the [@evangoer's work](https://github.com/evangoer/pandoc-ebook-template).
 
 Source code control is provided by [`git`](http://linux.die.net/man/1/git). You can view [the files used to create this book](https://github.com/dullroar/ten-steps-to-linux-survival) on GitHub.
 
@@ -3665,4 +3799,4 @@ The cover photo is of our dog, Merv, who is reminding you, "Don't panic!" Photo 
 About the Author
 ----------------
 
-Jim is son to Barb and Lou; husband to Leslie; father to Meghann (and Jeremy), Morgann, Erin, Gloria and Jon; grandfather to Ryan, Lindsay, Logan and Hannah; and alpha wolf to Merv. He has been "in computers" since 1980. His hobbies include reading, running, hiking and climbing, and apparently writing books.
+Jim is son to Barb and Lou; husband to Leslie; father to Meghann (and Jeremy), Morgann, Erin, Gloria and Jon; grandfather to Ryan, Lindsay, Logan and Hannah; and alpha wolf to Merv. He has been "in computers" since 1980. His hobbies include reading, running, hiking, climbing, and apparently writing books.

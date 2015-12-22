@@ -1,4 +1,4 @@
-  
+
 # Some History
 
 ***UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,”
@@ -114,7 +114,7 @@ part of it, such as the file system layout, the `init` system,
 documentation, and now even what is part of the most basic "core OS" for
 things like better containerization.
 
-## Why Does This Matter?
+## Why Does This Matter?{.unnumbered}
 
 Because there are various "flavors" of commands and tools, based on whether
 you're dealing with a System V (Linux) or BSD (Free/Net/Open) descendant.
@@ -180,7 +180,7 @@ is the default shell:
 To make things even more confusing, the Linux version of `ps` has been
 written to understand the BSD-style syntax and flags, too!
 
-## Panic at the Distro
+## Panic at the Distro{.unnumbered}
 
 Remember that "Linux," FreeBSD, OpenBSD and NetBSD are all really just OS
 kernels, boot loaders, drivers and enough functionality to get a computer
@@ -223,7 +223,7 @@ zipped directories. Common on
 [Slackware](https://en.wikipedia.org/wiki/Slackware)\drios{Slackware},
 some others.
 
-## Get Embed With Me
+## Get Embed With Me{.unnumbered}
 
 A lot of firmware in embedded devices is based on some sort of "UNIX" flavor.
 Networking gear at both the consumer and enterprise level, storage devices
@@ -233,7 +233,7 @@ is a good example of a "UNIX-like" shell (command prompt) used by many
 embedded systems. Of course, as to what's actually available, who knows?
 If you can get shell open, the best thing to do is see what works.
 
-## Cygwin
+## Cygwin{.unnumbered}
 
 [Cygwin](http://cygwin.com/)\drios{Cygwin} is an interesting beast. It is a
 DLL for Windows that implements most of the POSIX and related UNIX-like
@@ -256,5 +256,3 @@ box. You can do a lot of amazing things with Cygwin with enough effort
 (including running X and a desktop environment like GNOME!), but at some
 point why not expend that effort in standing up a "real" Linux (virtual)
 machine anyway?
-
-  

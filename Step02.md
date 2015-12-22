@@ -1,4 +1,4 @@
-  
+
 # File Under "Directories"
 
 ***`ls`, `mv`, `cp`, `rm` (`-rf *`), `cat`, `chmod`/`chgrp`/`chown` and
@@ -45,7 +45,7 @@ under any directory or subdirectory in the hierarchy.
 **Note:** Dynamically mounted devices like USB drives and DVDs are often
 mounted automatically under either a `/mnt` or `/media` directory.
 
-## Looking at Files
+## Looking at Files{.unnumbered}
 
 As we've already seen, the command to *list* the contents of a directory
 is [`ls`](http://linux.die.net/man/1/ls)\drcmd{ls}:
@@ -120,7 +120,7 @@ drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Pictures
 -rw-r--r--  1 myuser mygroup  716 Dec 13 14:30 .profile
 ```
 
-## A Brief Detour Around Parameters
+## A Brief Detour Around Parameters{.unnumbered}
 
 In `bash` and many Linux commands in general, there are old, "short"
 (terse) parameter names, like `ls -a`, and newer, longer, descriptive
@@ -162,7 +162,7 @@ are quite "verbose":
 Again, it is ***highly recommended*** that you take the time to use the
 GNU-style parameters in scripts as self-documenting code.
 
-## More Poking at Files
+## More Poking at Files{.unnumbered}
 
 If we suspect the file is a text file, we can echo it to the console
 with the [`cat`](http://linux.die.net/man/1/cat)\drcmd{cat}
@@ -311,7 +311,7 @@ out what type of file it is examining.
 a file name with no extension like `installrdp` is perfectly valid. Hence
 the utility of the `file` command.
 
-## Sorting Things Out
+## Sorting Things Out{.unnumbered}
 
 Let's say we have three files, and want to display the contents of one
 of them with `cat`:
@@ -471,7 +471,7 @@ Combine tires   2500
 If you read that command in a script file, there would be little
 confusion as to what it was doing.
 
-## Rearranging Deck Chairs
+## Rearranging Deck Chairs{.unnumbered}
 
 We can copy, move (or rename - same thing) and delete files and
 directories. To *copy*, simply use the
@@ -511,7 +511,7 @@ However, there are some really cool renaming scenarios that the
 take care of beyond `mv`, like renaming all file extensions from `.htm`
 to `.html`.
 
-## Making Files Disappear
+## Making Files Disappear{.unnumbered}
 
 To delete or *remove* a file you use [`rm`](http://linux.die.net/man/1/rm)\drcmd{rm}:
 
@@ -567,7 +567,7 @@ Citations.bak  Dissertation.bak
 Then using the "up arrow" to bring back up the `ls` command and changing
 `ls` to `rm` and re-executing it. Safer that way.
 
-## Touch Me
+## Touch Me{.unnumbered}
 
 We just learned how to make a file disappear. We can also make a file
 magically appear, just by [`touch`](http://linux.die.net/man/1/touch)\drcmd{touch}:
@@ -648,7 +648,7 @@ a  b  Bar  c  d  Xyzzy
 Something
 ```
 
-## Navigating Through Life
+## Navigating Through Life{.unnumbered}
 
 Ever notice that "life" is an anagram for "file"? Spooky, eh?
 
@@ -743,7 +743,7 @@ Did you notice how both `mkdir`\drcmd{mkdir} and `touch`\drcmd{touch}
 allow for specifying multiple directory and file names in the same
 command?
 
-## May I?
+## May I?{.unnumbered}
 
 Most "UNIX" file systems come with a set of nine permissions that can
 be thought of as a "grid" of 3x3 showing "who has what?" The "who" is
@@ -947,7 +947,7 @@ total 4
 Hello world
 ```
 
-## "I'll Send You a Tar Ball"
+## "I'll Send You a Tar Ball"{.unnumbered}
 
 In the Windows world, we are used to compressing and sending directories
 around as `.zip` files. In Linux you can also deal with `.zip` files,
@@ -1062,7 +1062,7 @@ Foo/d/e
 Foo/a
 ```
 
-## Let's Link Up!
+## Let's Link Up!{.unnumbered}
 
 In Windows there are "shortcuts," which are simply special files that the
 OS knows to interpret as "go open this other file over there." There are
@@ -1148,7 +1148,7 @@ The "net net" of all the above is that now `b`, `B` and `d/b` all point to
 exactly the same inode, or disk location, i.e., the exact same physical
 file.
 
-### I Said "Go Away!", Dammit!
+### I Said "Go Away!", Dammit!{.unnumbered}
 
 So what can possibly go wrong with links? With soft links the answer is
 easy - the "remote" location being pointed to goes away or is renamed:
@@ -1225,7 +1225,7 @@ This is b.
 So, ultimately, it takes a `rm` for every hard link to permanently delete
 a file.
 
-### Mount It? I Don't Even Know It's Name!
+### Mount It? I Don't Even Know It's Name!{.unnumbered}
 
 With all this talk that a hard link can only be on the same file system,
 how do you know whether two directories are on the same file system? In
@@ -1262,9 +1262,9 @@ to, really bad, but with all the different file systems and device types
 and all the options for both it can get so complex so fast that I decided
 not to. Maybe if you ask, real nice...
 
-### I'm Seeing Double
+### I'm Seeing Double{.unnumbered}
 
-So, both hard\index{hard links} and soft links\index{soft links} can have
+So, both hard\index{hard link} and soft links\index{soft link} can have
 some interesting side effects if you think about them. For one, if you are
 backing things up, then you may get duplicates in your backup set. In fact,
 with hard links you will, by definition, unless the backup software is very
@@ -1302,7 +1302,7 @@ Many commands that deal with files and file systems, like `find`\drcmd{find},
 have parameters specifically telling the command whether to follow soft links
 or not (by default, `find` does not - see the next chapter for more).
 
-## What's the `diff`?
+## What's the `diff`?{.unnumbered}
 
 Most people think of [`diff`](http://linux.die.net/man/1/diff)\drcmd{diff}
 as a tool only programmers find useful, but that is short-sighted. The whole
@@ -1379,5 +1379,3 @@ control system to compare against.
 `diff` is your friend. It really comes into play with a version control
 system like [`git`](http://linux.die.net/man/1/git)\drcmd{git}, but again,
 that is beyond the scope of this book.
-
-  

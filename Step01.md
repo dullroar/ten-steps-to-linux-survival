@@ -1,4 +1,4 @@
-  
+
 # Come Out of Your Shell
 
 ***`sh` vs. `ash` vs. `bash` vs. everything else, "REPL”, interactive vs.
@@ -54,7 +54,7 @@ going to assume `bash` for the rest of this tutorial. With few
 modifications, anything in the `sh` hierarchy above can usually run in the
 other members of the same tree.
 
-## `bash` Built-Ins
+## `bash` Built-Ins{.unnumbered}
 
 Every shell has some "built-in" commands that are implemented as part
 of the shell and not as an external command or program, and `bash`\drshl{bash}
@@ -142,7 +142,7 @@ and on some it is a different implementation of the original `sh`
 command, such as `ash` or `dash`. Now you know what to google if you hit
 problems as simple as an expected built-in command not being found.
 
-## Everything You Know is (Almost) Wrong
+## Everything You Know is (Almost) Wrong{.unnumbered}
 
 `CMD.EXE`\drshl{CMD.EXE} has a lineage that is a mish-mash of CP/M and
 UNIX excreted through three decades of backwards compatibility via that
@@ -257,7 +257,7 @@ system you touch. In my opinion it is better to just learn the native
 commands, because then you are instantly productive at any shell
 window.
 
-## You're a Product of Your Environment (Variables)
+## You're a Product of Your Environment (Variables){.unnumbered}
 
 It is much more common to set up environment variables to control
 execution in Linux than in Windows. In fact, it is quite common to
@@ -298,7 +298,7 @@ command by surrounding it with paired \` ("back ticks", or "grave accent"):
 otschecker.csv: text/plain
 ```
 
-### Who Am I?
+### Who Am I?{.unnumbered}
 
 When writing scripts that can be run by any user, it may be helpful to
 know their user name at run-time. There are at least two different ways to
@@ -324,7 +324,7 @@ Some environments set the `$USER` environment variable, some set a
 `$USERNAME`\drenv{USERNAME} variable, and some like Mint set both. I think
 it is better to use `whoami`, which tends to be on almost all systems.
 
-## Paths (a Part of Any Balanced Shrubbery)
+## Paths (a Part of Any Balanced Shrubbery){.unnumbered}
 
 The concept of a "path" for finding executables is almost identical, and
 Windows lifted it from UNIX (or CP/M, which lifted it from UNIX). Look at
@@ -376,7 +376,7 @@ ver/120/Tools/Binn:/cygdrive/c/Program Files (x86)/Microsoft SDKs/Azure/CLI/wbin
 :/cygdrive/c/Windows/System32/WindowsPowerShell/v1.0
 ```
 
-## Open Your Shell and Interact
+## Open Your Shell and Interact{.unnumbered}
 
 The actual "command prompt" is when you bring up a shell in an "interactive
 session" in a terminal window.  This might be from logging into the console
@@ -396,7 +396,7 @@ and invoked with cryptic options.
 I am not a real shell wizard. See [chapter 9](#how-do-you-know-what-you-dont-know-man)
 for how you can fake it like I do.
 
-## Getting Lazy
+## Getting Lazy{.unnumbered}
 
 Most modern interactive shells like `bash` and `CMD.EXE` allow for
 tab expansion and command history, at least for the current session of
@@ -479,4 +479,3 @@ them and re-execute them.
 **Note:** If you start multiple sessions under the same account,
 the saved history will be of the last login to successfully write back out
 `.bash_history`.
-  

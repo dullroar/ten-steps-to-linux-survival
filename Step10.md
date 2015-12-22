@@ -1,4 +1,4 @@
-  
+
 # And So On
 
 ***`/etc`, starting and stopping services, `apt-get`/`rpm`/`yum`, and
@@ -7,62 +7,73 @@ more.***
 > *"Et cetera, et cetera, et cetera!"* - The King (*The King and I*)
 
 This step is a grab bag of stuff that didn't seem to directly belong
-anywhere before, but I still think needs to be known, or at least brushed
+anywhere else, but I still think needs to be known, or at least brushed
 up against.
 
-## One-Stop Shopping
+## One-Stop Shopping{.unnumbered}
 
 In UNIX-like systems, most (not all) system configuration is stored in
-directories and text files under `/etc`.
+directories and text files under `/etc`\index{etc}.
 
 **Note:** In Linux almost universally `/etc` is pronounced "slash-et-see,"
 ***not*** "forward slash et cetera."
 
+\drcap{/etc directory}
 ```
-# ls -l /etc
-total 844
-drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
--rw-r--r-- 1 root root    2981 Apr 23  2014 adduser.conf
--rw-r--r-- 1 root root      45 Jul  9 08:46 adjtime
--rw-r--r-- 2 root root     621 May 22  2014 aliases
--rw-r--r-- 1 root root   12288 May 22  2014 aliases.db
-drwxr-xr-x 2 root root   20480 Feb 25  2015 alternatives
--rw-r--r-- 1 root root    4185 Dec 28  2011 analog.cfg
-drwxr-xr-x 7 root root    4096 Feb 25  2015 apache2
-drwxr-xr-x 6 root root    4096 Feb 25  2015 apt
--rw-r----- 1 root daemon   144 Jun  9  2012 at.deny
--rw-r--r-- 1 root root    1895 Dec 29  2012 bash.bashrc
+~ $ ls /etc
+acpi                    hosts                 pki
+adduser.conf            hosts.allow           pm
+adjtime                 hosts.deny            pnm2ppa.conf
+alternatives            hp                    polkit-1
+anacrontab              icedtea-web           ppp
+apg.conf                ifplugd               printcap
+apm                     ImageMagick           profile
+apparmor                init                  profile.d
+apparmor.d              init.d                protocols
+apport                  initramfs-tools       pulse
+apt                     inputrc               purple
+at-spi2                 insserv               python
+avahi                   insserv.conf          python2.7
+bash.bashrc             insserv.conf.d        python3
+bash_completion         inxi.conf             python3.4
+bash_completion.d       iproute2              rc0.d
+bindresvport.blacklist  issue                 rc1.d
+blkid.conf              issue.dpkg-old        rc2.d
+blkid.tab               issue.net             rc3.d
+bluetooth               issue.net.dpkg-old    rc4.d
+bonobo-activation       java-7-openjdk        rc5.d
+brlapi.key              kbd                   rc6.d
 ...and so on...
 ```
 
-Depending on what you are trying to configure, you may be in one or many
+Depending on what you are trying to configure, you may need to be in one or many
 files in `/etc`. This is a ***very short*** list of files and directories
 you may need to examine there:
 
-* **`fstab`** - a listing of the file systems currently mounted and their
+* **`fstab`**\index{fstab} - a listing of the file systems currently mounted and their
 types.
 
-* **`group`** - the security groups on the system.
+* **`group`**\index{group} - the security groups on the system.
 
-* **`hosts`** - network aliases (overrides DNS, takes effect immediately).
+* **`hosts`**\index{hosts} - network aliases (overrides DNS, takes effect immediately).
 
-* **`init.d`** - startup and shutdown scripts for "services."
+* **`init.d`**\index{init.d} - startup and shutdown scripts for "services."
 
-* **`mtab`** - list of current "mounts."
+* **`mtab`**\index{mtab} - list of current "mounts."
 
-* **`passwd`** - "shadow" file containing all the user accounts on the
+* **`passwd`**\index{passwd} - "shadow" file containing all the user accounts on the
 system.
 
-* **`resolv.conf`** - DNS settings.
+* **`resolv.conf`**\index{resolv.conf} - DNS settings.
 
-* **`samba`** - file sharing settings for CIFS-style shares.
+* **`samba`**\index{samba} - file sharing settings for CIFS-style shares.
 
 There are lots of other interesting files under `/etc`, but I keep
 returning to the above again and again. On most of them you can run the
 `man` command against section 5 to see their format and documentation,
 e.g., `man 5 hosts`.
 
-## Service Station
+## Service Station{.unnumbered}
 
 We are going to ignore system initialization and "stages," and assume most
 of the time you are running on a well-functioning system. Even so sometimes
@@ -70,29 +81,37 @@ you want to restart a specific system service without rebooting the whole
 system, often to force re-reading changed configuration files. If the
 service has a script in `/etc/init.d`:
 
+\drcap{init.d directory}
 ```
-# ls /etc/init.d
-acpid                   console-setup  kbd                    mountkernf...
-apache2                 cron           keyboard-setup         mountnfs-b...
-atd                     dbus           killprocs              mountnfs.s...
-bootlogs                exim4          kmod                   mpt-status...
-bootmisc.sh             gitlab         motd                   mtab.sh
-checkfs.sh              halt           mountall-bootclean.sh  networking
-checkroot-bootclean.sh  hostname.sh    mountall.sh            nfs-common
-checkroot.sh            hwclock.sh     mountdevsubfs.sh       nfs-kernel...
+~ $ ls /etc/init.d
+acpid             dbus               ondemand     single
+anacron           dns-clean          pppd-dns     skeleton
+apparmor          friendly-recovery  procps       smbd
+avahi-daemon      grub-common        pulseaudio   speech-dispatcher
+binfmt-support    halt               rc           sudo
+bluetooth         hddtemp            rc.local     udev
+brltty            irqbalance         rcS          umountfs
+casper            kerneloops         README       umountnfs.sh
+cinnamon          killprocs          reboot       umountroot
+console-setup     kmod               resolvconf   unattended-upgrades
+cpufrequtils      lm-sensors         rsync        urandom
+cron              loadcpufreq        rsyslog      virtualbox-guest-utils
+cryptdisks        mdm                samba        virtualbox-guest-x11
+cryptdisks-early  mintsystem         samba-ad-dc  x11-common
+cups              networking         saned
+cups-browsed      nmbd               sendsigs
 ```
 
 ...then chances are it will respond to a fairly standard set of commands,
 such as the following samples with `samba`:
 
+\drcap{Stopping and starting services}
 ```
-# /etc/init.d/samba stop
+~ # /etc/init.d/samba stop
 [ ok ] Stopping Samba daemons: nmbd smbd.
-
-# /etc/init.d/samba start
+~ # /etc/init.d/samba start
 [ ok ] Starting Samba daemons: nmbd smbd.
-
-# /etc/init.d/samba restart
+~ # /etc/init.d/samba restart
 [ ok ] Stopping Samba daemons: nmbd smbd.
 [ ok ] Starting Samba daemons: nmbd smbd.
 ```
@@ -100,14 +119,14 @@ such as the following samples with `samba`:
 **Note:** The above examples were run as `root`, otherwise they would
 probably have required execution using `sudo`.
 
-## Package Management
+## Package Management{.unnumbered}
 
 Almost all Linux distros have the concept of "packages" which are used to
 install, update and uninstall software. There are different package
-managers, including `dpkg` and `apt-get` on Debian-based distros, `rpm` on
-Fedora descendants, etc. For the rest of this section we will use Debian
-tools, but in general the concepts and problems are similar for the other
-toolsets.
+managers, including `dpkg`\drcmd{dpkg} and `apt-get`\drcmd{apt-get} on
+Debian-based distros, `rpm`\drcmd{rpm} on Fedora descendants, etc. For
+the rest of this section we will use Debian tools, but in general the
+concepts and problems are similar for the other toolsets.
 
 One of the nicest things about Linux-style package managers (as opposed to
 traditional Windows installers) is that they can satisfy all a packages
@@ -122,25 +141,39 @@ usually multiple versions of packages, typically matching different
 releases of the distro. We won't go into setting up a system to point to
 these here.
 
-In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get) is
-usually the tool of choice for package management.
+In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get)\drcmd{apt-get} is
+usually the tool of choice for package management. Another option is
+[`aptitude`](http://linux.die.net/man/8/aptitude)\drcmd{aptitude}.
 
 There are three common `apt-get` commands that get used over and over. The
 first downloads and *updates* the local metadata cache for the
 repositories:
 
+\drcap{apt-get update}
 ```
-$ sudo apt-get update
-[sudo] password for myuser: 
+~ $ sudo apt-get update
+[sudo] password for lehmer:
 Ign http://packages.linuxmint.com rafaela InRelease
-Hit http://packages.linuxmint.com rafaela Release.gpg                          
-Ign http://extra.linuxmint.com rafaela InRelease                               
-Ign http://archive.ubuntu.com trusty InRelease                                 
-Hit http://security.ubuntu.com trusty-security InRelease                       
-Hit http://packages.linuxmint.com rafaela Release                              
+Ign http://extra.linuxmint.com rafaela InRelease
 Hit http://extra.linuxmint.com rafaela Release.gpg                             
-Hit http://archive.ubuntu.com trusty-updates InRelease                         
-Hit http://extra.linuxmint.com rafaela Release                
+Hit http://packages.linuxmint.com rafaela Release.gpg                          
+Hit http://security.ubuntu.com trusty-security InRelease                       
+Hit http://extra.linuxmint.com rafaela Release
+Hit http://packages.linuxmint.com rafaela Release
+Hit http://security.ubuntu.com trusty-security/main amd64 Packages
+Hit http://packages.linuxmint.com rafaela/main amd64 Packages
+Hit http://extra.linuxmint.com rafaela/main amd64 Packages
+Hit http://security.ubuntu.com trusty-security/restricted amd64 Packages
+Hit http://extra.linuxmint.com rafaela/main i386 Packages
+Hit http://packages.linuxmint.com rafaela/upstream amd64 Packages
+Ign http://archive.canonical.com trusty InRelease
+Ign http://archive.ubuntu.com trusty InRelease
+Hit http://security.ubuntu.com trusty-security/universe amd64 Packages
+Hit http://packages.linuxmint.com rafaela/import amd64 Packages
+Hit http://security.ubuntu.com trusty-security/multiverse amd64 Packages
+Hit http://packages.linuxmint.com rafaela/main i386 Packages
+Hit http://archive.canonical.com trusty Release.gpg
+Hit http://archive.ubuntu.com trusty-updates InRelease
 ...and so on...
 ```
 
@@ -151,8 +184,9 @@ The second common command *upgrades* all the packages in the system to
 the latest release in the repository (which may not be the latest and
 greatest release of the package):
 
+\drcap{Upgrading installed packages}
 ```
-$ sudo apt-get dist-upgrade
+~ $ sudo apt-get dist-upgrade
 Reading package lists... Done
 Building dependency tree       
 Reading state information... Done
@@ -163,46 +197,55 @@ Calculating upgrade... Done
 In this case there was nothing to upgrade. And the final common command
 is obviously to install a package:
 
+\drcap{Installing a package}
 ```
-$ sudo apt-get install curl
+~ $ sudo apt-get install traceroute
 Reading package lists... Done
 Building dependency tree       
 Reading state information... Done
 The following NEW packages will be installed:
-  curl
+  traceroute
 0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
-Need to get 123 kB of archives.
-After this operation, 314 kB of additional disk space will be used.
-Get:1 http://archive.ubuntu.com/ubuntu/ trusty-updates/main curl
-amd64 7.35.0-1ubuntu2.5 [123 kB]
-Fetched 123 kB in 0s (312 kB/s)
-Selecting previously unselected package curl.
-(Reading database ... 182823 files and directories currently installed.)
-Preparing to unpack .../curl_7.35.0-1ubuntu2.5_amd64.deb ...
-Unpacking curl (7.35.0-1ubuntu2.5) ...
+Need to get 0 B/45.0 kB of archives.
+After this operation, 176 kB of additional disk space will be used.
+Selecting previously unselected package traceroute.
+(Reading database ... 307895 files and directories currently installed.)
+Preparing to unpack .../traceroute_1%3a2.0.20-0ubuntu0.1_amd64.deb ...
+Unpacking traceroute (1:2.0.20-0ubuntu0.1) ...
 Processing triggers for man-db (2.6.7.1-1ubuntu1) ...
-Setting up curl (7.35.0-1ubuntu2.5) ...
+Setting up traceroute (1:2.0.20-0ubuntu0.1) ...
+update-alternatives: using /usr/bin/traceroute.db to provide /usr/bin/traceroute
+ (traceroute) in auto mode
+update-alternatives: using /usr/bin/lft.db to provide /usr/bin/lft (lft) in auto
+ mode
+update-alternatives: using /usr/bin/traceproto.db to provide /usr/bin/traceproto
+ (traceproto) in auto mode
+update-alternatives: using /usr/sbin/tcptraceroute.db to provide /usr/sbin/tcptr
+aceroute (tcptraceroute) in auto mode
 ```
 
-You can also `remove` packages.
+You can also `apt-get remove` or `apt-get purge` packages. See the man
+page for details.
 
 This all looks very convenient, and it is. The problems arise because some
 distros are better at tracking current versions of packages in their
 repositories than others. In fact, some distros purposefully stay behind
-cutting edge for system stability purposes.
+cutting edge for system stability purposes. Debian itself is a good example
+of this, as are many "LTS" (long term support) releases in other distros.
 
-## Other Sources
+## Other Sources{.unnumbered}
 
 Besides the distribution's repositories, you can install packages and
 other software from a variety of places. It may be an "official" site for
 the package, GitHub, or whatever. The package may be in a binary
-installable format (`.deb` files for Debian systems), in source format
+installable format (`.deb`\index{.deb files} files for Debian systems), in source format
 requiring it to be built, in a zipped "tarball," and more.
 
 If you want the latest and greatest version of a package you often have to
 go to its "official" site or GitHub repository. There, you may find a
-`.deb` file, in which case you could install it with `dpkg`:
+`.deb` file, in which case you could install it with `dpkg`\drcmd{dpkg}:
 
+\drcap{Installing a package with dpkg}
 ```
 sudo dpkg -i somesoftware.deb
 ```
@@ -227,28 +270,30 @@ versions of a package to allow different versions of the same package to
 exist on the same system, where different applications may be relying on
 the different versions to work.
 
-## Which `which` is Which?
+## Which `which` is Which?{.unnumbered}
 
 Now that we've seen that we can have multiple versions of the same command
 or executable on the system, an interesting question arises. *Which* `foo`
 command am I going to call if I just type `foo` at the command prompt? In
-other words, after taking the `$PATH` variable into consideration and
+other words, after taking the `$PATH`\drenv{PATH} variable into consideration and
 searching for the program through that from left to right, which version
 in which directory is going to be called?
 
-Luckily we have the [`which`](http://linux.die.net/man/1/which) command
+Luckily we have the [`which`](http://linux.die.net/man/1/which)\drcmd{which} command
 for just that!
 
+\drcap{which command}
 ```
-$ which curl
+~ $ which curl
 /usr/bin/curl
 ```
 
 How can you tell if you have multiple versions of something installed?
-One way is with the [`locate`](http://linux.die.net/man/1/locate) command:
+One way is with the [`locate`](http://linux.die.net/man/1/locate)\drcmd{locate} command:
 
+\drcap{locate command}
 ```
-locate md5
+~ $ locate md5
 /boot/grub/i386-pc/gcry_md5.mod
 /lib/modules/3.16.0-38-generic/kernel/drivers/usb/gadget/amd5536udc.ko
 /usr/bin/md5pass
@@ -259,26 +304,39 @@ locate md5
 /usr/lib/casper/casper-md5check
 /usr/lib/grub/i386-pc/gcry_md5.mod
 /usr/lib/i386-linux-gnu/sasl2/libcrammd5.so
+/usr/lib/i386-linux-gnu/sasl2/libcrammd5.so.2
+/usr/lib/i386-linux-gnu/sasl2/libcrammd5.so.2.0.25
+/usr/lib/i386-linux-gnu/sasl2/libdigestmd5.so
+/usr/lib/i386-linux-gnu/sasl2/libdigestmd5.so.2
+/usr/lib/i386-linux-gnu/sasl2/libdigestmd5.so.2.0.25
+/usr/lib/python2.7/md5.py
+/usr/lib/python2.7/md5.pyc
+/usr/lib/ruby/1.9.1/x86_64-linux/digest/md5.so
+/usr/lib/x86_64-linux-gnu/sasl2/libcrammd5.so
+/usr/lib/x86_64-linux-gnu/sasl2/libcrammd5.so.2
+/usr/lib/x86_64-linux-gnu/sasl2/libcrammd5.so.2.0.25
+/usr/lib/x86_64-linux-gnu/sasl2/libdigestmd5.so
 ...and so on...
 ```
 
 The `locate` command, if installed, is basically a database of all of the
-file names on the system (collected periodically - not real time). You are
-simply searching the database for a pattern.
+file names on the system (collected periodically - not in real time). You are
+simply searching the database for a pattern. It is a quicker way to look
+than `find / -name \*pattern*\`.
 
 One final note on which thing gets executed. Unlike in Windows, UNIX
 environments do not consider the local directory (the current directory
 you are sitting at the command prompt, i.e., what
-[`pwd`](http://linux.die.net/man/1/pwd) shows) as part of the path unless
+[`pwd`](http://linux.die.net/man/1/pwd)\drcmd{pwd} shows) as part of the path unless
 `.` is explicitly listed in `$PATH`. This is for security purposes. So it
 can be a bit unnerving to try and execute `foo` in the current directory
 and get:
 
+\drcap{Command not found - but it's right there!}
 ```
-$ ls -l foo
+~ $ ls -l foo
 -rwxrwx--- 1 myuser mygroup 16 Oct 23 19:03 foo
-
-$ foo
+~ $ foo
 No command 'foo' found, did you mean:
  Command 'fgo' from package 'fgo' (universe)
  Command 'fop' from package 'fop' (main)
@@ -294,31 +352,34 @@ foo: command not found
 Instead, to invoke `foo`, you can either fully qualify the path as shown
 by `pwd`:
 
+\drcap{Using a fully qualified path to execute a command}
 ```
-$ /home/myuser/foo
+~ $ /home/myuser/foo
 ```
 
 Or you can prepend the `./` relative path to it, to indicate "the `foo` in
 the current directory (`.`)":
 
+\drcap{Specifying the command in the current directory}
 ```
-$ ./foo
+~ $ ./foo
 ```
 
-## Over and Over and Over
+## Over and Over and Over{.unnumbered}
 
 The function of scheduled tasks in Windows is performed by
-[`cron`](http://linux.die.net/man/8/cron). It reads in the various
-[`crontab(5)`](http://linux.die.net/man/5/crontab) files on the system
+[`cron`](http://linux.die.net/man/8/cron)\drcmd{cron} in Linux. It reads in the various
+[`crontab(5)`](http://linux.die.net/man/5/crontab)\index{crontab} files on the system
 and executes the commands in them at the specified times. You use the
-[`crontab(1)`](http://linux.die.net/man/1/crontab) command to view and
-edit the `crontab` files for you and other users (if you have admin
+[`crontab(1)`](http://linux.die.net/man/1/crontab)\drcmd{crontab} command to view and
+edit the `crontab` files for your user (and other users if you have admin
 privileges).
 
 The sample given in the comments of the `crontab` when initially opened
 using `crontab -e` give a fine example of the syntax of the `crontab`
 file:
 
+\drcap{Looking at default crontab file}
 ```
 # Edit this file to introduce tasks to be run by cron.
 #
@@ -347,6 +408,7 @@ file:
 If you have `sudo` privileges you can edit the `crontab` file for another
 user with:
 
+\drcap{Editing another user's crontab file}
 ```
 $ sudo crontab -e -u otheruser
 ```
@@ -360,39 +422,42 @@ commands from each `crontab`, they are typically not invoked with that
 particular user's environment settings, so it is best to fully specify
 the paths to files both in the `crontab` file itself and in any scripts
 or parameters to scripts it calls. Depending on the system and whether
-`$PATH` is set at all when a "`cron` job" runs, you may have to specify
+`$PATH`\drenv{PATH} is set at all when a "`cron` job" runs, you may have to specify
 the full paths to binaries in installed packages or even what you would
 consider "system" libraries! The `which` command comes in handy here.
 
-## Start Me Up
+## Start Me Up{.unnumbered}
 
 If you need to reboot the system the quickest way is with the
-[`reboot`](http://linux.die.net/man/8/reboot) command:
+[`reboot`](http://linux.die.net/man/8/reboot)\drcmd{reboot} command:
 
+\drcap{reboot command}
 ```
 $ sudo reboot
 ```
 
-You can also use the [`shutdown`](http://linux.die.net/man/8/shutdown)
-command with the `-r` option, but why? The handy use for `shutdown` is to
+You can also use the [`shutdown`](http://linux.die.net/man/8/shutdown)\drcmd{shutdown}
+command with the `-r` option, but why? The handier use for `shutdown` is to
 tell a system to halt and power off after shutting down:
 
+\drcap{Shutdown and power off}
 ```
 $ sudo shutdown -h now
 ```
 
-## Turn on Your Signals
+## Turn on Your Signals{.unnumbered}
 
 One of the basic concepts in UNIX program is that of
-["signals"](https://en.wikipedia.org/wiki/Unix_signal). You are probably
+["signals"](https://en.wikipedia.org/wiki/Unix_signal)\index{signals}. You are probably
 already familiar with one way to send signals to a program, which is via
 `Ctrl-C` at the command prompt, which sends the `SIGINT` ("interrupt")
 signal to the program. Typically this will cause a program to terminate.
 
 However, most signals can be "caught" by a program and coded around. There
-is one "uninterruptable" signal, however, which is `SIGKILL`. We can send
+is one "uninterruptable" signal, however - `SIGKILL`. We can send
 `SIGKILL` to a process and cause it to terminate immediately with:
 
+\drcap{Terminating a process with extreme prejudice}
 ```
 kill -s 9 14302
 ```
@@ -402,44 +467,44 @@ is the tenth signal in the signal list, which is 0-relative, hence #9).
 
 You can also use the following "shorthand" for `SIGKILL`:
 
+\drcap{Even shorter way to kill the process}
 ```
 kill -9 14302
 ```
 
 Or if you want to get all verbose:
 
+\drcap{A more verbose killer}
 ```
 kill -s SIGKILL 14302
 ```
 
 **Note:** `SIGKILL` should be used as a last resort, because a program is
 not allowed to catch it or be notified of it and hence can perform no
-closing logic or cleanup and may lead to data corruption. It is for getting
+closing logic or cleanup and that may lead to data corruption. It is for getting
 rid of "hung" processes when nothing else will work. Always try to stop a
 program with a more "normal" method, which can include sending `SIGINT` to
 it first.
 
-## Exit, Smiling
+## Exit, Smiling{.unnumbered}
 
 Sometimes a command runs and there isn't a good way to tell if it worked
 or not. UNIX programs are supposed to set an "exit status"
 when they end that by convention is `0` if the program exited successfully
 and a non-zero, typically positive number if there was an error. The exit
 status for the last executed command or program can be shown at the
-command line using the `$?` environment variable. Consider if the file
+command line using the `$?`\drenv{Question mark} environment variable. Consider if the file
 `foo` exists and `bar` does not:
 
+\drcap{Examining exit codes}
 ```
-$ ls foo
+~ $ ls foo
 foo
-
 $ echo $?
 0
-
-$ ls bar
+~ $ ls bar
 ls: cannot access bar: No such file or directory
-
-$ echo $?
+~ $ echo $?
 2
 ```
 
@@ -449,92 +514,88 @@ is much handier when handling errors in scripts, but we're not going to go
 into script logic here.
 
 However, sometimes even at the command line we want to be able to
-conditionally control a sequence of commands, and continue (or not
-continue) based on the success (or failure) of a previous command. In
-`bash` we have `&&` and `||` to the rescue!
+conditionally control a sequence of commands, and continue (or not) based on
+the success (or failure) of a previous command. In `bash` we have `&&` and `||`
+to the rescue!
 
-* **`a && b`** - execute `a` ***and*** `b`, i.e., execute `b` only if `a`
+* **`a && b`**\index{And operator} - execute `a` ***and*** `b`, i.e., execute `b` only if `a`
 is successful.
 
-* **`a || b`** - execute `a` ***or*** `b`, that is execute `b` whether
+* **`a || b`**\index{Or operator} - execute `a` ***or*** `b`, that is execute `b` whether
 ***or*** not `a` is successful.
 
 Our example of file `foo` (which exists) and file `bar` (which does not)
 and the effect on the exit code of `ls` can be illustrative here, too:
 
+\drcap{Using ampersands to chain commands together}
 ```
-$ ls foo && ls bar
+~ $ ls foo && ls bar
 foo
 ls: cannot access bar: No such file or directory
-
-$ echo $?
+~ $ echo $?
 2
 ```
 
 Both `ls` commands execute because the first successfully found `foo`,
 but the second emits its error and sets the exit code to `2` (failure).
 
+\drcap{Using || to execute the first and possibly the second command}
 ```
-$ ls foo || ls bar
+~ $ ls foo || ls bar
 foo
-
-$ echo $?
+~ $ echo $?
 0
 ```
 
-Note in this case the second `ls` didn't execute because the logical "or"
+Note in this case the second `ls` ***did not*** execute because the logical "or"
 condition was already satisfied by the successful execution of the first
 `ls`. The exit code is obviously `0` (success).
 
+\drcap{The second command won't execute if the first fails}
 ```
-$ ls bar && ls foo
+~ $ ls bar && ls foo
 ls: cannot access bar: No such file or directory
-
-$ echo $?
+~ $ echo $?
 2
 ```
 
 Obviously if the first command fails, the "and" condition as a whole
 fails and the expression exits with a code of `2`.
-
-```
-$ ls bar || ls foo
-ls: cannot access bar: No such file or directory
-foo
-
-$ echo $?
-0
-```
-
 And finally, while the first command failed the second still can execute
 because of the "or", and the whole expression returns `0`.
 
-**Note:** There is actually a [`true`](http://linux.die.net/man/1/true)
+\drcap{One more example with ||}
+```
+~ $ ls bar || ls foo
+ls: cannot access bar: No such file or directory
+foo
+~ $ echo $?
+0
+```
+
+**Note:** There is actually a [`true`](http://linux.die.net/man/1/true)\drcmd{true}
 command whose purpose is to, "do nothing, successfully." All it does is
 return a `0` (success) exit code. This can be useful in scripting and
 also sometimes when building "and" and "or" clauses like above.
 
 And yes, of course, that means there is also a
-[`false`](http://linux.die.net/man/1/false) command to "do nothing,
+[`false`](http://linux.die.net/man/1/false)\drcmd{false} command to "do nothing,
 unsuccessfully!"
 
+\drcap{true and false commands}
 ```
-$ true
-
-$ echo $?
+~ $ true
+~ $ echo $?
 0
-
-$ false
-
-$ echo $?
+~ $ false
+~ $ echo $?
 1
 ```
 
-## The End
+## The End{.unnumbered}
 
 Now you know what I know. Or at least what I keep loaded in my head vs.
 what I simply search for when I need to know it, and you know how to do
 that searching, too.
 
 Good luck, citizen!
-  
