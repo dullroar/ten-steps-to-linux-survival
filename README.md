@@ -1,14 +1,14 @@
 ![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don't panic.'") 
-Merv sez, "Don't panic."  
+<br/> Merv sez, "Don't panic."  
  
-By James Lehmer  
+<br/> <br/> By James Lehmer  
  
-v0.7  
+<br/> <br/> v0.7  
  
-![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 International")
+<br/> <br/> ![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 International")
 *Jim's Ten Steps to Linux Survival* by James Lehmer is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).  
  
-**Dedicated to my first three technical mentors** - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think (and once called me an "inveterate toolmaker" in a review). And Kim Manchak, who let me be more than he hired me to be (and continues to be a great chess opponent). Thank you, gentlemen. I've tried to pay it forward. This book is part of that.
+<br/> <br/> **Dedicated to my first three technical mentors** - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think (and once called me an "inveterate toolmaker" in a review). And Kim Manchak, who let me be more than he hired me to be (and continues to be a great chess opponent). Thank you, gentlemen. I've tried to pay it forward. This book is part of that.
 
 Introduction
 ============
@@ -3799,4 +3799,4 @@ The cover photo is of our dog, Merv, who is reminding you, "Don't panic!" Photo 
 About the Author
 ----------------
 
-Jim is son to Barb and Lou; husband to Leslie; father to Meghann (and Jeremy), Morgann, Erin, Gloria and Jon; grandfather to Ryan, Lindsay, Logan and Hannah; and alpha wolf to Merv. He has been "in computers" since 1980. His hobbies include reading, running, hiking, climbing, and apparently writing books.
+Jim is son to Barb and Lou; husband to Leslie; father to Meghann (and Jeremy), Morgann, Erin, Gloria and Jon; grandfather to Ryan, Lindsay, Logan and Hannah; and alpha wolf to Merv. He has been "in computers" since 1980. His hobbies include reading, running, hiking, climbing and apparently writing books.

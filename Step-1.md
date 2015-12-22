@@ -1,21 +1,30 @@
 \cleardoublepage
 ![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don&apos;t panic.'")\ \
+<br/>
 Merv sez, "Don't panic."
 \clearpage
 \ \
 \ \
+<br/>
+<br/>
 By James Lehmer
 \ \
 \ \
+<br/>
+<br/>
 v0.7
 \ \
 \ \
+<br/>
+<br/>
 ![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 International")\
 *Jim's Ten Steps to Linux Survival* by James Lehmer is licensed under a
 [Creative Commons Attribution-ShareAlike 4.0 International
 License](http://creativecommons.org/licenses/by-sa/4.0/).
 \ \
 \ \
+<br/>
+<br/>
 **Dedicated to my first three technical mentors** - Jim Proffer,
 who taught me digging deeper was fun and let me do so (often in
 production). Jerry Wood, who taught me to stop and think (and once
