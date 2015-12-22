@@ -1,3 +1,4 @@
+
 # Step 4
 
 # Grokking `grep`
@@ -7,13 +8,13 @@
 Finds files based on their ***content***
 
 ```
-$ touch a b c
-$ echo This sequence of characters is called a \"string\". > d
-$ cat d
+~ $ touch a b c
+~ $ echo This sequence of characters is called a \"string\". > d
+~ $ cat d
 This sequence of characters is called a "string".
-$ ls
+~ $ ls
 a  b  c  d
-$ grep is *
+~ $ grep is *
 d:This sequence of characters is called a "string".
 ```
 
@@ -51,5 +52,3 @@ What does the following do?
 > * Checks a Web URL for validity
 > * Are you going to remember that?
 > * Are you going to be able to figure it out?
-
-  

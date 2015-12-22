@@ -193,6 +193,7 @@ $endif$
 % End of overriding commands.
 
 \begin{document}
+\setlength{\cftfignumwidth}{4em}
 \pagestyle{empty}
 
 $if(title)$
@@ -214,7 +215,6 @@ $endif$
 % Add list of figures.
 $if(lof)$
 {
-\setlength{\cftfignumwidth}{4em}
 \listoffigures
 \vfill
 }

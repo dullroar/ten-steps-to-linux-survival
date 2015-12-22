@@ -1,3 +1,4 @@
+
 # Step 7
 
 # The Whole Wide World
@@ -26,7 +27,7 @@
 ## Sending mail
 
 ```
-email --blank-mail --subject "Possibly corrupted files found..." \
+~ $ email --blank-mail --subject "Possibly corrupted files found..." \
   --smtp-server smtp --attach badfiles.csv --from-name NoReply \
   --from-addr noreply@mycorp.com alert@mycorp.com
 ```
@@ -43,5 +44,3 @@ email --blank-mail --subject "Possibly corrupted files found..." \
 > * `ifconfig` - display current network settings
 > * `cat /etc/resolv.conf` - display current DNS settings
 > * `cat /etc/hosts` - display local network aliases
-
-  

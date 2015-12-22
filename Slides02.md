@@ -1,4 +1,4 @@
-  
+
 # Step 2
 
 ## File under "Directories"
@@ -8,32 +8,35 @@
 ## `ls` - list files
 
 ```
-$ ls
-Desktop    Downloads  FreeRDP     Music     Public  Temp       Videos
-Documents  Dropbox    installrdp  Pictures  rdp     Templates
+~ $ ls
+Audiobooks  Downloads  KindleGen  Podcasts  Templates
+Desktop     Dropbox    Music      Public    Videos
+Documents   FreeRDP    Pictures   Temp      VSCode-linux-x64
 ```
 
 ## "Dotfiles"
 
 ```
-$ ls -a
-.              Desktop        .gksu.lock       .mozilla   .themes
-..             .dmrc          .gnome2          Music      .thumbnails
-.adobe         Documents      .gnome2_private  Pictures   .thunderbird
-.atom          Downloads      .hugin           .pki       Videos
-.bash_history  .dropbox       .ICEauthority    .profile   .wine
-.bash_logout   Dropbox        .icons           .ptbt1     .Xauthority
-.cache         .dropbox-dist  installrdp       Public     .xinputrc
-.cinnamon      .face          .lastpass        rdp        .xsession-errors
-.cmake         FreeRDP        .linuxmint       .sbd
-.config        .gconf         .local           Temp
-.dbus          .gimp-2.8      .macromedia      Templates
+~ $ ls -a
+.              .dmrc          .gnome2_private  Pictures    .themes
+..             Documents      .hplip           .pki        .thumbnails
+.adobe         Downloads      .hugin           Podcasts    .thunderbird
+.atom          .dropbox       .ICEauthority    .profile    Videos
+Audiobooks     Dropbox        .icons           .ptbt1      .vscode
+.bash_history  .dropbox-dist  KindleGen        Public      VSCode-linux-x64
+.bash_logout   .face          .lastpass        .sbd        .wine
+.cache         FreeRDP        .lesshst         .ssh        .Xauthority
+.cinnamon      .gconf         .linuxmint       .swp        .xinputrc
+.cmake         .gimp-2.8      .local           Temp        .xsession-errors
+.config        .gitconfig     .macromedia      Templates
+.dbus          .gksu.lock     .mozilla         .texmf-var
+Desktop        .gnome2        Music            .TeXworks
 ```
 
 ## List details
 
 ```
-$ ls -l
+~ $ ls -l
 total 92
 drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Desktop
 drwxr-xr-x  2 myuser mygroup      4096 Oct 13 10:02 Documents
@@ -80,7 +83,7 @@ drwx------  3 myuser mygroup      4096 Sep  7 04:16 .dbus
 ## `cat` - concatenate files
 
 ```
-$ cat installrdp 
+~ $ cat installrdp 
 #!/bin/bash
 sudo apt-get -y install git
 cd ~
@@ -101,7 +104,7 @@ make
 ## `tail` - show end of files
 
 ```
-# tail dmesg
+~ # tail dmesg
 [    2.774931] loop: module loaded
 [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
 [    3.351331] eth0: NIC Link is Up 10000 Mbps
@@ -117,7 +120,7 @@ make
 ## "Follow" a file
 
 ```
-# tail -f dmesg
+~ # tail -f dmesg
 [    2.774931] loop: module loaded
 [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
 [    3.351331] eth0: NIC Link is Up 10000 Mbps
@@ -134,7 +137,7 @@ make
 ## `sort` - sorting files
 
 ```
-$ sort -k 3 -n * | tail -n 3
+~ $ sort -k 3 -n * | tail -n 3
 Combine motor   1500
 Tractor tires   2000
 Combine tires   2500
@@ -143,17 +146,15 @@ Combine tires   2500
 ## `cp` - copy files
 
 ```
-$ cp diary.txt diary.bak
-
-$ cp -r thisdir thatdir
-
-$ cp --recursive thisdir thatdir
+~ $ cp diary.txt diary.bak
+~ $ cp -r thisdir thatdir
+~ $ cp --recursive thisdir thatdir
 ```
 
 ## `mv` - move files
 
 ```
-$ mv thismonth.log lastmonth.log
+~ $ mv thismonth.log lastmonth.log
 ```
 
 > * `mv` is simple rename
@@ -162,35 +163,31 @@ $ mv thismonth.log lastmonth.log
 ## `rm` - remove files
 
 ```
-$ rm desktop.ini
+~ $ rm desktop.ini
 ```
 
 ## Danger, Will Robinson!
 
 ```
-$ cd MyDissertation
-
-$ ls
+~ $ cd MyDissertation
+~ $ ls
 Citations.bak  Citations.doc  Dissertation.bak  Dissertation.doc  Notes.doc
-
-$ rm * .bak
+~ $ rm * .bak
 rm: cannot remove ‘.bak’: No such file or directory
-
-$ ls
+~ $ ls
 ```
 
 ## And all was null and void...
 
 ```
-$ rm -rf *
+~ $ rm -rf *
 ```
 
 ## `touch` - update file time
 
 ```
-$ touch NewEmptyDissertation.doc
-
-$ ls -l
+~ $ touch NewEmptyDissertation.doc
+~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:12 NewEmptyDissertation.doc
 ```
@@ -198,9 +195,8 @@ total 0
 ## Reset file time
 
 ```
-$ touch -t 201412242300 NewEmptyDissertation.doc
-
-$ ls -l
+~ $ touch -t 201412242300 NewEmptyDissertation.doc
+~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Dec 24  2014 NewEmptyDissertation.doc
 ```
@@ -208,18 +204,16 @@ total 0
 ## `mkdir` - make directory
 
 ```
-$ mkdir Bar
-
-$ ls
+~ $ mkdir Bar
+~ $ ls
 Bar
 ```
 
 ## `cd` - change directory
 
 ```
-$ cd /etc
-
-$ pwd
+~ $ cd /etc
+~ $ pwd
 /etc
 ```
 
@@ -264,7 +258,7 @@ $ pwd
 ## `ls -l`, again
 
 ```
-$ ls -l
+~ $ ls -l
 total 92
 drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Desktop
 drwxr-xr-x  2 myuser mygroup      4096 Oct 13 10:02 Documents
@@ -324,33 +318,33 @@ Quicker than `chmod u=rwx,g=rx,o=r foo`
 ## Why won't it run?
 
 ```
-# echo "echo Hello world" > foo
-# ls -l
+~ # echo "echo Hello world" > foo
+~ # ls -l
 total 4
 -rw-r--r-- 1 root root 17 Oct 20 10:07 foo
-# ./foo
+~ # ./foo
 -bash: ./foo: Permission denied
-# chmod u+x foo
-# ls -l
+~ # chmod u+x foo
+~ # ls -l
 total 4
 -rwxr--r-- 1 root root 17 Oct 20 10:07 foo
-# ./foo
+~ # ./foo
 Hello world
 ```
 
 ## Compressing files
 
 ```
-$ zip -r foo foo
+~ $ zip -r foo foo
 updating: foo/ (stored 0%)
   adding: foo/c (stored 0%)
   adding: foo/b (stored 0%)
   adding: foo/d/ (stored 0%)
   adding: foo/d/e (stored 0%)
   adding: foo/a (stored 0%)
-$ ls -l foo.zip
+~ $ ls -l foo.zip
 -rw-r--r-- 1 myuser mygroup 854 Oct 24 15:56 foo.zip
-$ unzip foo
+~ $ unzip foo
 Archive:  foo.zip
  extracting: foo/c                   
  extracting: foo/b                   
@@ -361,16 +355,16 @@ Archive:  foo.zip
 ## tarballs
 
 ```
-$ tar cvzf foo.tgz foo
+~ $ tar cvzf foo.tgz foo
 foo/
 foo/c
 foo/b
 foo/d/
 foo/d/e
 foo/a
-$ ls -l foo.tgz
+~ $ ls -l foo.tgz
 -rw-r--r-- 1 myuser mygroup 191 Oct 24 16:19 foo.tgz
-$ tar xvf foo.tgz
+~ $ tar xvf foo.tgz
 foo/
 foo/c
 foo/b
@@ -382,7 +376,7 @@ foo/a
 ## Soft links
 
 ```
-ln -s d Dee
+~ $ ln -s d Dee
 ```
 
 > * Equivalent to a shortcut
@@ -394,7 +388,7 @@ ln -s d Dee
 ## Hard links
 
 ```
-ln d Dee
+~ $ ln d Dee
 ```
 
 > * `Equivalent to NTFS junction point
@@ -405,7 +399,7 @@ ln d Dee
 ## File systems
 
 ```
-$ df
+~ $ df
 Filesystem                1K-blocks     Used Available Use% Mounted on
 /dev/mapper/mint--vg-root 118647068 28847464  83749608  26% /
 none                              4        0         4   0% /sys/fs/cgroup
@@ -420,7 +414,7 @@ none                         102400       24    102376   1% /run/user
 ## What's the `diff`?
 
 ```
-$ diff orig.conf new.conf
+~ $ diff orig.conf new.conf
 1c1
 < FOO=1
 ---
@@ -428,5 +422,3 @@ $ diff orig.conf new.conf
 7d6
 < BAR=Xyzzy
 ```
-
-  

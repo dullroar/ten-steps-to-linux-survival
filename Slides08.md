@@ -1,3 +1,4 @@
+
 # Step 8
 
 # The Man Behind the Curtain
@@ -12,7 +13,7 @@
 ## /proc file system
 
 ```
-# cat /proc/cpuinfo
+~ # cat /proc/cpuinfo
 processor       : 0
 vendor_id       : GenuineIntel
 cpu family      : 6
@@ -33,7 +34,7 @@ cpuid level     : 11
 ## Sawing logs
 
 ```
-# ls /var/log
+~ # ls /var/log
 alternatives.log       auth.log.2.gz    debug       dmesg.4.gz     kern....
 alternatives.log.1     auth.log.3.gz    debug.1     dpkg.log       kern....
 alternatives.log.2.gz  auth.log.4.gz    debug.2.gz  dpkg.log.1     kern....
@@ -50,5 +51,3 @@ auth.log.1             daemon.log.4.gz  dmesg.3.gz  installer      mail....
 
 > * `/tmp` - standard location for temp files
 > * Cleared at reboot
-
-  

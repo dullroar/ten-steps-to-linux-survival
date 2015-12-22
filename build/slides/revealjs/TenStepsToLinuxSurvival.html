@@ -96,27 +96,32 @@
 </section></section>
 <section><section id="comparing-cmd.exe-and-bash" class="titleslide slide level1"><h1>Comparing <code>CMD.EXE</code> and <code>bash</code></h1></section><section id="set-in-bash" class="slide level2">
 <h1><code>set</code> in <code>bash</code></h1>
-<pre><code>$ set
-ALLUSERSPROFILE='C:\ProgramData'
-APPDATA='C:\Users\myuser\AppData\Roaming'
+<pre><code>~ $ set
 BASH=/bin/bash
+BASHOPTS=checkwinsize:cmdhist:complete_fullquote:...
+BASH_ALIASES=()
+BASH_ARGC=()
+BASH_ARGV=()
+BASH_CMDS=()
 ...and so on...</code></pre>
 </section><section id="set-in-cmd.exe" class="slide level2">
 <h1><code>set</code> in <code>CMD.EXE</code></h1>
-<pre><code>C:\&gt; set
+<pre><code>C:\Users\myuser&gt;set
 ALLUSERSPROFILE=C:\ProgramData
 APPDATA=C:\Users\myuser\AppData\Roaming
-CLIENTNAME=MYMACHINE
+CommonProgramFiles=C:\Program Files\Common Files
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+CommonProgramW6432=C:\Program Files\Common Files
+COMPUTERNAME=JLEHMER650
 ...and so on...</code></pre>
 </section><section id="echo" class="slide level2">
 <h1><code>echo</code></h1>
 <p><strong><code>bash</code>:</strong></p>
-<p>(Inside Cygwin)</p>
-<pre><code>$ echo $HOMEDRIVE
-C:</code></pre>
+<pre><code>~ $ echo $HOME
+/home/myuser</code></pre>
 <p><strong><code>CMD.EXE</code>:</strong></p>
-<pre><code>C:\&gt; echo %homedrive%
-C:</code></pre>
+<pre><code>C:\&gt; echo %homepath%
+\Users\myuser</code></pre>
 </section><section id="similar-but-different" class="slide level2">
 <h1>Similar, but different</h1>
 <ul>
@@ -127,11 +132,9 @@ C:</code></pre>
 <h1>Product of your environment</h1>
 </section><section id="setting-variables" class="slide level2">
 <h1>Setting variables</h1>
-<pre><code>$ FOO=myval /home/myuser/myscript
-
-$ CURRDATE=`date`
-
-$ echo $CURRDATE
+<pre><code>~ $ FOO=myval /home/myuser/myscript
+~ $ CURRDATE=`date`
+~ $ echo $CURRDATE
 Wed Oct 28 11:43:38 CDT 2015</code></pre>
 </section><section id="a-path-a-path" class="slide level2">
 <h1>A path! A path!</h1>
@@ -148,26 +151,29 @@ Wed Oct 28 11:43:38 CDT 2015</code></pre>
 <h1>File under &quot;Directories&quot;</h1>
 </section><section id="ls---list-files" class="slide level2">
 <h1><code>ls</code> - list files</h1>
-<pre><code>$ ls
-Desktop    Downloads  FreeRDP     Music     Public  Temp       Videos
-Documents  Dropbox    installrdp  Pictures  rdp     Templates</code></pre>
+<pre><code>~ $ ls
+Audiobooks  Downloads  KindleGen  Podcasts  Templates
+Desktop     Dropbox    Music      Public    Videos
+Documents   FreeRDP    Pictures   Temp      VSCode-linux-x64</code></pre>
 </section><section id="dotfiles" class="slide level2">
 <h1>&quot;Dotfiles&quot;</h1>
-<pre><code>$ ls -a
-.              Desktop        .gksu.lock       .mozilla   .themes
-..             .dmrc          .gnome2          Music      .thumbnails
-.adobe         Documents      .gnome2_private  Pictures   .thunderbird
-.atom          Downloads      .hugin           .pki       Videos
-.bash_history  .dropbox       .ICEauthority    .profile   .wine
-.bash_logout   Dropbox        .icons           .ptbt1     .Xauthority
-.cache         .dropbox-dist  installrdp       Public     .xinputrc
-.cinnamon      .face          .lastpass        rdp        .xsession-errors
-.cmake         FreeRDP        .linuxmint       .sbd
-.config        .gconf         .local           Temp
-.dbus          .gimp-2.8      .macromedia      Templates</code></pre>
+<pre><code>~ $ ls -a
+.              .dmrc          .gnome2_private  Pictures    .themes
+..             Documents      .hplip           .pki        .thumbnails
+.adobe         Downloads      .hugin           Podcasts    .thunderbird
+.atom          .dropbox       .ICEauthority    .profile    Videos
+Audiobooks     Dropbox        .icons           .ptbt1      .vscode
+.bash_history  .dropbox-dist  KindleGen        Public      VSCode-linux-x64
+.bash_logout   .face          .lastpass        .sbd        .wine
+.cache         FreeRDP        .lesshst         .ssh        .Xauthority
+.cinnamon      .gconf         .linuxmint       .swp        .xinputrc
+.cmake         .gimp-2.8      .local           Temp        .xsession-errors
+.config        .gitconfig     .macromedia      Templates
+.dbus          .gksu.lock     .mozilla         .texmf-var
+Desktop        .gnome2        Music            .TeXworks</code></pre>
 </section><section id="list-details" class="slide level2">
 <h1>List details</h1>
-<pre><code>$ ls -l
+<pre><code>~ $ ls -l
 total 92
 drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Desktop
 drwxr-xr-x  2 myuser mygroup      4096 Oct 13 10:02 Documents
@@ -213,7 +219,7 @@ drwx------  3 myuser mygroup      4096 Sep  7 04:16 .dbus
 </ul>
 </section><section id="cat---concatenate-files" class="slide level2">
 <h1><code>cat</code> - concatenate files</h1>
-<pre><code>$ cat installrdp 
+<pre><code>~ $ cat installrdp 
 #!/bin/bash
 sudo apt-get -y install git
 cd ~
@@ -231,7 +237,7 @@ make
 ...and so on...</code></pre>
 </section><section id="tail---show-end-of-files" class="slide level2">
 <h1><code>tail</code> - show end of files</h1>
-<pre><code># tail dmesg
+<pre><code>~ # tail dmesg
 [    2.774931] loop: module loaded
 [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
 [    3.351331] eth0: NIC Link is Up 10000 Mbps
@@ -244,7 +250,7 @@ make
 [    3.449794] Installing knfsd (copyright (C) 1996 okir@monad.swb.de).</code></pre>
 </section><section id="follow-a-file" class="slide level2">
 <h1>&quot;Follow&quot; a file</h1>
-<pre><code># tail -f dmesg
+<pre><code>~ # tail -f dmesg
 [    2.774931] loop: module loaded
 [    3.349880] eth0: intr type 3, mode 0, 3 vectors allocated
 [    3.351331] eth0: NIC Link is Up 10000 Mbps
@@ -258,66 +264,57 @@ make
 ...new lines will appear here over time...</code></pre>
 </section><section id="sort---sorting-files" class="slide level2">
 <h1><code>sort</code> - sorting files</h1>
-<pre><code>$ sort -k 3 -n * | tail -n 3
+<pre><code>~ $ sort -k 3 -n * | tail -n 3
 Combine motor   1500
 Tractor tires   2000
 Combine tires   2500</code></pre>
 </section><section id="cp---copy-files" class="slide level2">
 <h1><code>cp</code> - copy files</h1>
-<pre><code>$ cp diary.txt diary.bak
-
-$ cp -r thisdir thatdir
-
-$ cp --recursive thisdir thatdir</code></pre>
+<pre><code>~ $ cp diary.txt diary.bak
+~ $ cp -r thisdir thatdir
+~ $ cp --recursive thisdir thatdir</code></pre>
 </section><section id="mv---move-files" class="slide level2">
 <h1><code>mv</code> - move files</h1>
-<pre><code>$ mv thismonth.log lastmonth.log</code></pre>
+<pre><code>~ $ mv thismonth.log lastmonth.log</code></pre>
 <ul>
 <li class="fragment"><code>mv</code> is simple rename</li>
 <li class="fragment"><code>rename</code> offers more options</li>
 </ul>
 </section><section id="rm---remove-files" class="slide level2">
 <h1><code>rm</code> - remove files</h1>
-<pre><code>$ rm desktop.ini</code></pre>
+<pre><code>~ $ rm desktop.ini</code></pre>
 </section><section id="danger-will-robinson" class="slide level2">
 <h1>Danger, Will Robinson!</h1>
-<pre><code>$ cd MyDissertation
-
-$ ls
+<pre><code>~ $ cd MyDissertation
+~ $ ls
 Citations.bak  Citations.doc  Dissertation.bak  Dissertation.doc  Notes.doc
-
-$ rm * .bak
+~ $ rm * .bak
 rm: cannot remove ‘.bak’: No such file or directory
-
-$ ls</code></pre>
+~ $ ls</code></pre>
 </section><section id="and-all-was-null-and-void..." class="slide level2">
 <h1>And all was null and void...</h1>
-<pre><code>$ rm -rf *</code></pre>
+<pre><code>~ $ rm -rf *</code></pre>
 </section><section id="touch---update-file-time" class="slide level2">
 <h1><code>touch</code> - update file time</h1>
-<pre><code>$ touch NewEmptyDissertation.doc
-
-$ ls -l
+<pre><code>~ $ touch NewEmptyDissertation.doc
+~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:12 NewEmptyDissertation.doc</code></pre>
 </section><section id="reset-file-time" class="slide level2">
 <h1>Reset file time</h1>
-<pre><code>$ touch -t 201412242300 NewEmptyDissertation.doc
-
-$ ls -l
+<pre><code>~ $ touch -t 201412242300 NewEmptyDissertation.doc
+~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Dec 24  2014 NewEmptyDissertation.doc</code></pre>
 </section><section id="mkdir---make-directory" class="slide level2">
 <h1><code>mkdir</code> - make directory</h1>
-<pre><code>$ mkdir Bar
-
-$ ls
+<pre><code>~ $ mkdir Bar
+~ $ ls
 Bar</code></pre>
 </section><section id="cd---change-directory" class="slide level2">
 <h1><code>cd</code> - change directory</h1>
-<pre><code>$ cd /etc
-
-$ pwd
+<pre><code>~ $ cd /etc
+~ $ pwd
 /etc</code></pre>
 </section><section id="absolute-paths" class="slide level2">
 <h1>Absolute paths</h1>
@@ -377,7 +374,7 @@ $ pwd
 </ul>
 </section><section id="ls--l-again" class="slide level2">
 <h1><code>ls -l</code>, again</h1>
-<pre><code>$ ls -l
+<pre><code>~ $ ls -l
 total 92
 drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Desktop
 drwxr-xr-x  2 myuser mygroup      4096 Oct 13 10:02 Documents
@@ -437,30 +434,30 @@ drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Public
 <p>Quicker than <code>chmod u=rwx,g=rx,o=r foo</code></p>
 </section><section id="why-wont-it-run" class="slide level2">
 <h1>Why won't it run?</h1>
-<pre><code># echo &quot;echo Hello world&quot; &gt; foo
-# ls -l
+<pre><code>~ # echo &quot;echo Hello world&quot; &gt; foo
+~ # ls -l
 total 4
 -rw-r--r-- 1 root root 17 Oct 20 10:07 foo
-# ./foo
+~ # ./foo
 -bash: ./foo: Permission denied
-# chmod u+x foo
-# ls -l
+~ # chmod u+x foo
+~ # ls -l
 total 4
 -rwxr--r-- 1 root root 17 Oct 20 10:07 foo
-# ./foo
+~ # ./foo
 Hello world</code></pre>
 </section><section id="compressing-files" class="slide level2">
 <h1>Compressing files</h1>
-<pre><code>$ zip -r foo foo
+<pre><code>~ $ zip -r foo foo
 updating: foo/ (stored 0%)
   adding: foo/c (stored 0%)
   adding: foo/b (stored 0%)
   adding: foo/d/ (stored 0%)
   adding: foo/d/e (stored 0%)
   adding: foo/a (stored 0%)
-$ ls -l foo.zip
+~ $ ls -l foo.zip
 -rw-r--r-- 1 myuser mygroup 854 Oct 24 15:56 foo.zip
-$ unzip foo
+~ $ unzip foo
 Archive:  foo.zip
  extracting: foo/c                   
  extracting: foo/b                   
@@ -468,16 +465,16 @@ Archive:  foo.zip
  extracting: foo/a                   </code></pre>
 </section><section id="tarballs" class="slide level2">
 <h1>tarballs</h1>
-<pre><code>$ tar cvzf foo.tgz foo
+<pre><code>~ $ tar cvzf foo.tgz foo
 foo/
 foo/c
 foo/b
 foo/d/
 foo/d/e
 foo/a
-$ ls -l foo.tgz
+~ $ ls -l foo.tgz
 -rw-r--r-- 1 myuser mygroup 191 Oct 24 16:19 foo.tgz
-$ tar xvf foo.tgz
+~ $ tar xvf foo.tgz
 foo/
 foo/c
 foo/b
@@ -486,7 +483,7 @@ foo/d/e
 foo/a</code></pre>
 </section><section id="soft-links" class="slide level2">
 <h1>Soft links</h1>
-<pre><code>ln -s d Dee</code></pre>
+<pre><code>~ $ ln -s d Dee</code></pre>
 <ul>
 <li class="fragment">Equivalent to a shortcut</li>
 <li class="fragment">Target can be directory or file</li>
@@ -496,7 +493,7 @@ foo/a</code></pre>
 </ul>
 </section><section id="hard-links" class="slide level2">
 <h1>Hard links</h1>
-<pre><code>ln d Dee</code></pre>
+<pre><code>~ $ ln d Dee</code></pre>
 <ul>
 <li class="fragment">`Equivalent to NTFS junction point</li>
 <li class="fragment">Target can be only files</li>
@@ -505,7 +502,7 @@ foo/a</code></pre>
 </ul>
 </section><section id="file-systems" class="slide level2">
 <h1>File systems</h1>
-<pre><code>$ df
+<pre><code>~ $ df
 Filesystem                1K-blocks     Used Available Use% Mounted on
 /dev/mapper/mint--vg-root 118647068 28847464  83749608  26% /
 none                              4        0         4   0% /sys/fs/cgroup
@@ -517,7 +514,7 @@ none                         102400       24    102376   1% /run/user
 /dev/sda1                    240972    50153    178378  22% /boot</code></pre>
 </section><section id="whats-the-diff" class="slide level2">
 <h1>What's the <code>diff</code>?</h1>
-<pre><code>$ diff orig.conf new.conf
+<pre><code>~ $ diff orig.conf new.conf
 1c1
 &lt; FOO=1
 ---
@@ -535,7 +532,7 @@ none                         102400       24    102376   1% /run/user
 </ol>
 </section><section id="example" class="slide level2">
 <h1>Example</h1>
-<pre><code>find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
+<pre><code>~ $ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;</code></pre>
 <ol type="1">
 <li class="fragment">Starting at <code>//myserver/myshare/logs/000[4-9]</code></li>
@@ -545,7 +542,7 @@ none                         102400       24    102376   1% /run/user
 </ol>
 </section><section id="whats-with-the-backslashes" class="slide level2">
 <h1>What's with the backslashes?</h1>
-<pre><code>find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
+<pre><code>~ $ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;</code></pre>
 <p>Backslashes prevent &quot;shell expansion&quot;</p>
 </section><section id="useful-find-tests" class="slide level2">
@@ -580,7 +577,7 @@ none                         102400       24    102376   1% /run/user
 </ul>
 </section><section id="find--printf" class="slide level2">
 <h1><code>find -printf</code></h1>
-<pre><code>$ find . -type f -printf &quot;%p\n%u\n%TY-%Tm-%TdT%TT\n\n&quot;
+<pre><code>~ $ find . -type f -printf &quot;%p\n%u\n%TY-%Tm-%TdT%TT\n\n&quot;
 ./a
 myuser
 2015-10-21T11:02:51.7014527000</code></pre>
@@ -589,13 +586,13 @@ myuser
 <section><section id="grokking-grep" class="titleslide slide level1"><h1>Grokking <code>grep</code></h1></section><section id="grep" class="slide level2">
 <h1><code>grep</code></h1>
 <p>Finds files based on their <strong><em>content</em></strong></p>
-<pre><code>$ touch a b c
-$ echo This sequence of characters is called a \&quot;string\&quot;. &gt; d
-$ cat d
+<pre><code>~ $ touch a b c
+~ $ echo This sequence of characters is called a \&quot;string\&quot;. &gt; d
+~ $ cat d
 This sequence of characters is called a &quot;string&quot;.
-$ ls
+~ $ ls
 a  b  c  d
-$ grep is *
+~ $ grep is *
 d:This sequence of characters is called a &quot;string&quot;.</code></pre>
 </section><section id="famous-quote" class="slide level2">
 <h1>Famous quote</h1>
@@ -643,22 +640,22 @@ d:This sequence of characters is called a &quot;string&quot;.</code></pre>
 </ul>
 </section><section id="output-redirection" class="slide level2">
 <h1>Output redirection</h1>
-<pre><code>$ echo Hello, world &gt; hw
-$ ls -l
+<pre><code>~ $ echo Hello, world &gt; hw
+~ $ ls -l
 total 1
 -rw-rwxr--+ 1 myuser mygroup 13 Oct 22 10:40 hw
-$ cat hw
+~ $ cat hw
 Hello, world</code></pre>
 </section><section id="input-redirection" class="slide level2">
 <h1>Input redirection</h1>
-<pre><code>$ cat &lt; hw
+<pre><code>~ $ cat &lt; hw
 Hello, world</code></pre>
 <p>Equivalent to:</p>
-<pre><code>$cat hw
+<pre><code>~ $ cat hw
 Hello, world</code></pre>
 </section><section id="errors" class="slide level2">
 <h1>Errors</h1>
-<pre><code>$ find . -exec cat \{\} \;
+<pre><code>~ $ find . -exec cat \{\} \;
 cat: .: Is a directory
 This is a
 This is b
@@ -668,19 +665,19 @@ This is e</code></pre>
 <p>&quot;Is a directory&quot; is an error message</p>
 </section><section id="error-redirection" class="slide level2">
 <h1>Error redirection</h1>
-<pre><code>$ find . -exec cat \{\} \; 2&gt;/tmp/finderrors.log
+<pre><code>~ $ find . -exec cat \{\} \; 2&gt;/tmp/finderrors.log
 This is a
 This is b
 This is c
 This is e
-$ cat /tmp/finderrors.log
+~ $ cat /tmp/finderrors.log
 cat: .: Is a directory
 cat: ./d: Is a directory</code></pre>
 <p>This is where those &quot;file descriptors&quot; come in</p>
 </section><section id="logging-all-output-to-file" class="slide level2">
 <h1>Logging ALL output to file</h1>
-<pre><code>$ find . -exec cat \{\} \; &gt;/tmp/find.log 2&gt;&amp;1
-$ cat /tmp/find.log
+<pre><code>~ $ find . -exec cat \{\} \; &gt;/tmp/find.log 2&gt;&amp;1
+~ $ cat /tmp/find.log
 cat: .: Is a directory
 This is a
 This is b
@@ -690,12 +687,12 @@ This is e</code></pre>
 <p>The <code>2&gt;&amp;1</code> trick works in <code>CMD.EXE</code>, too!</p>
 </section><section id="rewrite-vs.-append" class="slide level2">
 <h1>Rewrite vs. append</h1>
-<pre><code>$ find . -exec cat \{\} \; &gt;/tmp/find.log</code></pre>
+<pre><code>~ $ find . -exec cat \{\} \; &gt;/tmp/find.log</code></pre>
 <p>vs.</p>
-<pre><code>$ find . -exec cat \{\} \; &gt;&gt;/tmp/find.log</code></pre>
+<pre><code>~ $ find . -exec cat \{\} \; &gt;&gt;/tmp/find.log</code></pre>
 </section><section id="everyone-line-up" class="slide level2">
 <h1>Everyone line up</h1>
-<pre><code>$ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd &quot;$line&quot; ; done</code></pre>
+<pre><code>~ $ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd &quot;$line&quot; ; done</code></pre>
 <ol type="1">
 <li><code>cat</code> echos all <code>.txt</code> files to <code>stdout</code>, piped to...</li>
 <li><a href="http://linux.die.net/man/1/tr"><code>tr</code></a> translates any backslash characters before sending it into...</li>
@@ -704,7 +701,7 @@ This is e</code></pre>
 </ol>
 </section><section id="two-places-at-once" class="slide level2">
 <h1>Two places at once</h1>
-<pre><code>find . -name error.log | tee &gt; errorlogs.txt</code></pre>
+<pre><code>~ $ find . -name error.log | tee &gt; errorlogs.txt</code></pre>
 <ul>
 <li class="fragment">Log output to <code>error.log</code></li>
 <li class="fragment">Monitor its progress on the console at the same time</li>
@@ -716,8 +713,10 @@ This is e</code></pre>
 <ul>
 <li class="fragment">Use <code>nano</code> if available</li>
 <li class="fragment">But <code>vi</code> is (almost) <strong><em>always</em></strong> there</li>
-<li class="fragment">Good to know the basics &quot;just in case&quot; ## <code>vi</code> strangeness</li>
+<li class="fragment">Good to know the basics &quot;just in case&quot;</li>
 </ul>
+</section><section id="vi-strangeness" class="slide level2">
+<h1><code>vi</code> strangeness</h1>
 <p><code>vi</code> is a &quot;modal&quot; editor</p>
 <ul>
 <li class="fragment">In &quot;command&quot; mode to start</li>
@@ -841,7 +840,7 @@ This is e</code></pre>
 </ul>
 </section><section id="sending-mail" class="slide level2">
 <h1>Sending mail</h1>
-<pre><code>email --blank-mail --subject &quot;Possibly corrupted files found...&quot; \
+<pre><code>~ $ email --blank-mail --subject &quot;Possibly corrupted files found...&quot; \
   --smtp-server smtp --attach badfiles.csv --from-name NoReply \
   --from-addr noreply@mycorp.com alert@mycorp.com</code></pre>
 </section><section id="logging-in-elsewhere" class="slide level2">
@@ -877,7 +876,7 @@ This is e</code></pre>
 </ul>
 </section><section id="proc-file-system" class="slide level2">
 <h1>/proc file system</h1>
-<pre><code># cat /proc/cpuinfo
+<pre><code>~ # cat /proc/cpuinfo
 processor       : 0
 vendor_id       : GenuineIntel
 cpu family      : 6
@@ -896,7 +895,7 @@ cpuid level     : 11
 </ul>
 </section><section id="sawing-logs" class="slide level2">
 <h1>Sawing logs</h1>
-<pre><code># ls /var/log
+<pre><code>~ # ls /var/log
 alternatives.log       auth.log.2.gz    debug       dmesg.4.gz     kern....
 alternatives.log.1     auth.log.3.gz    debug.1     dpkg.log       kern....
 alternatives.log.2.gz  auth.log.4.gz    debug.2.gz  dpkg.log.1     kern....
@@ -949,7 +948,7 @@ auth.log.1             daemon.log.4.gz  dmesg.3.gz  installer      mail....</cod
 <section><section id="step-10" class="titleslide slide level1"><h1>Step 10</h1></section></section>
 <section><section id="and-so-on..." class="titleslide slide level1"><h1>And So On...</h1></section><section id="etc" class="slide level2">
 <h1><code>/etc</code></h1>
-<pre><code># ls -l /etc
+<pre><code>~ # ls -l /etc
 total 844
 drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
 -rw-r--r-- 1 root root    2981 Apr 23  2014 adduser.conf

@@ -346,7 +346,7 @@ Everything You Know is (Almost) Wrong
 
 `CMD.EXE` has a lineage that is a mish-mash of CP/M and UNIX excreted through three decades of backwards compatibility via that devil spawn we call DOS. It has gotten even muddier over the years as Microsoft has added more commands, PowerShell, POSIX subsystems, etc.
 
-But even so, there are some similarities. In both `bash` and `CMD.EXE` the [`set`](http://linux.die.net/man/1/set) command shows you all environment variables that have been set:
+But even so, there are some similarities. In both `bash` and `CMD.EXE` the [`set`](http://linux.die.net/man/1/set) command shows you all environment variables that have been set. Here's `bash`:
 
     ~ $ set
     BASH=/bin/bash
@@ -372,6 +372,8 @@ But even so, there are some similarities. In both `bash` and `CMD.EXE` the [`set
     HISTCONTROL=ignoreboth
     HISTFILE=/home/myuser/.bash_history
     HISTFILESIZE=2000
+
+And `CMD.EXE`:
 
     C:\Users\myuser>set
     ALLUSERSPROFILE=C:\ProgramData
@@ -2386,7 +2388,7 @@ One difference with `ping` is that by default in Linux `ping` doesn't stop until
      9  72.14.237.231 (72.14.237.231)  29.516 ms  29.556 ms  29.657 ms
     10  ord30s21-in-f78.1e100.net (216.58.216.78)  30.313 ms  33.138 ms  28.092 ms
 
-You can do some digging in DNS with `dig`:
+You can do some digging in DNS with [`dig`](http://linux.die.net/man/1/dig):
 
     ~ $ dig yahoo.com
 
@@ -2411,7 +2413,7 @@ You can do some digging in DNS with `dig`:
     ;; WHEN: Tue Dec 22 09:46:26 CST 2015
     ;; MSG SIZE  rcvd: 86
 
-And `whois`:
+And [`whois`](http://linux.die.net/man/1/whois):
 
     ~ $ whois yahoo.com
 

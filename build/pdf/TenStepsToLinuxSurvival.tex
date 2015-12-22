@@ -125,6 +125,7 @@
 % End of overriding commands.
 
 \begin{document}
+\setlength{\cftfignumwidth}{4em}
 \pagestyle{empty}
 
 \maketitle
@@ -137,7 +138,6 @@
 
 % Add list of figures.
 {
-\setlength{\cftfignumwidth}{4em}
 \listoffigures
 \vfill
 }
@@ -944,7 +944,8 @@ subsystems, etc.
 But even so, there are some similarities. In both
 \texttt{bash}\drshl{bash} and \texttt{CMD.EXE}\drshl{CMD.EXE} the
 \href{http://linux.die.net/man/1/set}{\texttt{set}}\drcmd{set} command
-shows you all environment variables that have been set:
+shows you all environment variables that have been set. Here's
+\texttt{bash}:
 
 \drcap{set command in bash}
 
@@ -974,6 +975,8 @@ HISTCONTROL=ignoreboth
 HISTFILE=/home/myuser/.bash_history
 HISTFILESIZE=2000
 \end{verbatim}
+
+And \texttt{CMD.EXE}:
 
 \drcap{set command in CMD.EXE}
 
@@ -4590,7 +4593,8 @@ traceroute to google.com (216.58.216.78), 30 hops max, 60 byte packets
 10  ord30s21-in-f78.1e100.net (216.58.216.78)  30.313 ms  33.138 ms  28.092 ms
 \end{verbatim}
 
-You can do some digging in DNS with \texttt{dig}\drcmd{dig}:
+You can do some digging in DNS with
+\href{http://linux.die.net/man/1/dig}{\texttt{dig}}\drcmd{dig}:
 
 \drcap{dig command}
 
@@ -4619,7 +4623,8 @@ yahoo.com.      605 IN  A   98.139.183.24
 ;; MSG SIZE  rcvd: 86
 \end{verbatim}
 
-And \texttt{whois}\drcmd{whois}:
+And
+\href{http://linux.die.net/man/1/whois}{\texttt{whois}}\drcmd{whois}:
 
 \begin{verbatim}
 ~ $ whois yahoo.com

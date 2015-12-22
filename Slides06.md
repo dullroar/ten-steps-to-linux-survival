@@ -1,3 +1,4 @@
+
 # Step 6
 
 # `vi`
@@ -7,6 +8,7 @@
 > * Use `nano` if available
 > * But `vi` is (almost) ***always*** there
 > * Good to know the basics "just in case"
+
 ## `vi` strangeness
 
 `vi` is a "modal" editor
@@ -93,5 +95,3 @@ You can constrain the lines you want to affect by a command by "marking" a
 
 > * `:1,$!sort`
 > * `:'m,'n!sort`
-
-  

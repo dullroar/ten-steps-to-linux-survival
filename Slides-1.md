@@ -28,5 +28,3 @@ Merv sez, "Don't panic."
 > * Step 8 - The Man Behind the Curtain
 > * Step 9 - How Do You Know What You Don't Know, `man`?
 > * Step 10 - And So On
-
-  

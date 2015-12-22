@@ -1,3 +1,4 @@
+
 # Step 10
 
 # And So On...
@@ -5,7 +6,7 @@
 ## `/etc`
 
 ```
-# ls -l /etc
+~ # ls -l /etc
 total 844
 drwxr-xr-x 3 root root    4096 Feb 25  2015 acpi
 -rw-r--r-- 1 root root    2981 Apr 23  2014 adduser.conf
@@ -94,5 +95,3 @@ data
 > * `echo $?` - show "return code" or exit code for last command or program
 > * `a && b` - execute `a` and if it is successful execute `b`
 > * `a || b` - execute `a` and then execute `b` regardless of `a`
-
-  

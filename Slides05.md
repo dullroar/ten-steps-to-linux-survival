@@ -1,3 +1,4 @@
+
 # Step 5
 
 # A Series of Pipes
@@ -12,11 +13,11 @@
 ## Output redirection
 
 ```
-$ echo Hello, world > hw
-$ ls -l
+~ $ echo Hello, world > hw
+~ $ ls -l
 total 1
 -rw-rwxr--+ 1 myuser mygroup 13 Oct 22 10:40 hw
-$ cat hw
+~ $ cat hw
 Hello, world
 ```
 
@@ -24,21 +25,21 @@ Hello, world
 
 
 ```
-$ cat < hw
+~ $ cat < hw
 Hello, world
 ```
 
 Equivalent to:
 
 ```
-$cat hw
+~ $ cat hw
 Hello, world
 ```
 
 ## Errors
 
 ```
-$ find . -exec cat \{\} \;
+~ $ find . -exec cat \{\} \;
 cat: .: Is a directory
 This is a
 This is b
@@ -52,12 +53,12 @@ This is e
 ## Error redirection
 
 ```
-$ find . -exec cat \{\} \; 2>/tmp/finderrors.log
+~ $ find . -exec cat \{\} \; 2>/tmp/finderrors.log
 This is a
 This is b
 This is c
 This is e
-$ cat /tmp/finderrors.log
+~ $ cat /tmp/finderrors.log
 cat: .: Is a directory
 cat: ./d: Is a directory
 ```
@@ -67,8 +68,8 @@ This is where those "file descriptors" come in
 ## Logging ALL output to file
 
 ```
-$ find . -exec cat \{\} \; >/tmp/find.log 2>&1
-$ cat /tmp/find.log
+~ $ find . -exec cat \{\} \; >/tmp/find.log 2>&1
+~ $ cat /tmp/find.log
 cat: .: Is a directory
 This is a
 This is b
@@ -82,19 +83,19 @@ The `2>&1` trick works in `CMD.EXE`, too!
 ## Rewrite vs. append
 
 ```
-$ find . -exec cat \{\} \; >/tmp/find.log
+~ $ find . -exec cat \{\} \; >/tmp/find.log
 ```
 
 vs.
 
 ```
-$ find . -exec cat \{\} \; >>/tmp/find.log
+~ $ find . -exec cat \{\} \; >>/tmp/find.log
 ```
 
 ## Everyone line up
 
 ```
-$ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
+~ $ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
 ```
 
 1.  `cat` echos all `.txt` files to `stdout`, piped to...
@@ -105,10 +106,8 @@ $ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
 ## Two places at once
 
 ```
-find . -name error.log | tee > errorlogs.txt
+~ $ find . -name error.log | tee > errorlogs.txt
 ```
 
 > * Log output to `error.log`
 > * Monitor its progress on the console at the same time
-
-  

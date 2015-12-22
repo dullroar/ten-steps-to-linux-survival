@@ -371,7 +371,7 @@ Hello, World!</code></pre>
 <p>Note that on some systems <code>#!/bin/sh</code>is pointing to an alias of <code>bash</code>, and on some it is a different implementation of the original <code>sh</code> command, such as <code>ash</code> or <code>dash</code>. Now you know what to google if you hit problems as simple as an expected built-in command not being found.</p>
 <h2 id="everything-you-know-is-almost-wrong" class="unnumbered"><a href="#everything-you-know-is-almost-wrong">Everything You Know is (Almost) Wrong</a></h2>
 <p><code>CMD.EXE</code> has a lineage that is a mish-mash of CP/M and UNIX excreted through three decades of backwards compatibility via that devil spawn we call DOS. It has gotten even muddier over the years as Microsoft has added more commands, PowerShell, POSIX subsystems, etc.</p>
-<p>But even so, there are some similarities. In both <code>bash</code> and <code>CMD.EXE</code> the <a href="http://linux.die.net/man/1/set"><code>set</code></a> command shows you all environment variables that have been set:</p>
+<p>But even so, there are some similarities. In both <code>bash</code> and <code>CMD.EXE</code> the <a href="http://linux.die.net/man/1/set"><code>set</code></a> command shows you all environment variables that have been set. Here's <code>bash</code>:</p>
 <p></p>
 <pre><code>~ $ set
 BASH=/bin/bash
@@ -397,6 +397,7 @@ GROUPS=()
 HISTCONTROL=ignoreboth
 HISTFILE=/home/myuser/.bash_history
 HISTFILESIZE=2000</code></pre>
+<p>And <code>CMD.EXE</code>:</p>
 <p></p>
 <pre><code>C:\Users\myuser&gt;set
 ALLUSERSPROFILE=C:\ProgramData
@@ -2003,7 +2004,7 @@ traceroute to google.com (216.58.216.78), 30 hops max, 60 byte packets
  8  209.85.242.133 (209.85.242.133)  31.547 ms  31.550 ms  31.548 ms
  9  72.14.237.231 (72.14.237.231)  29.516 ms  29.556 ms  29.657 ms
 10  ord30s21-in-f78.1e100.net (216.58.216.78)  30.313 ms  33.138 ms  28.092 ms</code></pre>
-<p>You can do some digging in DNS with <code>dig</code>:</p>
+<p>You can do some digging in DNS with <a href="http://linux.die.net/man/1/dig"><code>dig</code></a>:</p>
 <p></p>
 <pre><code>~ $ dig yahoo.com
 
@@ -2027,7 +2028,7 @@ yahoo.com.      605 IN  A   98.139.183.24
 ;; SERVER: 127.0.1.1#53(127.0.1.1)
 ;; WHEN: Tue Dec 22 09:46:26 CST 2015
 ;; MSG SIZE  rcvd: 86</code></pre>
-<p>And <code>whois</code>:</p>
+<p>And <a href="http://linux.die.net/man/1/whois"><code>whois</code></a>:</p>
 <pre><code>~ $ whois yahoo.com
 
 Whois Server Version 2.0

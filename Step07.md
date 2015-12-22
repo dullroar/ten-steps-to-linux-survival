@@ -57,7 +57,7 @@ traceroute to google.com (216.58.216.78), 30 hops max, 60 byte packets
 10  ord30s21-in-f78.1e100.net (216.58.216.78)  30.313 ms  33.138 ms  28.092 ms
 ```
 
-You can do some digging in DNS with `dig`\drcmd{dig}:
+You can do some digging in DNS with [`dig`](http://linux.die.net/man/1/dig)\drcmd{dig}:
 
 \drcap{dig command}
 ```
@@ -85,7 +85,7 @@ yahoo.com.		605	IN	A	98.139.183.24
 ;; MSG SIZE  rcvd: 86
 ```
 
-And `whois`\drcmd{whois}:
+And [`whois`](http://linux.die.net/man/1/whois)\drcmd{whois}:
 
 ```
 ~ $ whois yahoo.com

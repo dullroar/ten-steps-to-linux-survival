@@ -151,7 +151,7 @@ Microsoft has added more commands, PowerShell, POSIX subsystems, etc.
 
 But even so, there are some similarities. In both `bash`\drshl{bash}
 and `CMD.EXE`\drshl{CMD.EXE} the [`set`](http://linux.die.net/man/1/set)\drcmd{set}
-command shows you all environment variables that have been set:
+command shows you all environment variables that have been set. Here's `bash`:
 
 \drcap{set command in bash}
 ```
@@ -180,6 +180,8 @@ HISTCONTROL=ignoreboth
 HISTFILE=/home/myuser/.bash_history
 HISTFILESIZE=2000
 ```
+
+And `CMD.EXE`:
 
 \drcap{set command in CMD.EXE}
 ```

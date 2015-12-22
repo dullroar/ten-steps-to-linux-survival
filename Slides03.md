@@ -1,3 +1,4 @@
+
 # Step 3
 
 # Finding Meaning
@@ -11,7 +12,7 @@
 ## Example
 
 ```
-find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
+~ $ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 ```
 
@@ -23,7 +24,7 @@ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
 ## What's with the backslashes?
 
 ```
-find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
+~ $ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 ```
 
@@ -54,10 +55,8 @@ Backslashes prevent "shell expansion"
 ## `find -printf`
 
 ```
-$ find . -type f -printf "%p\n%u\n%TY-%Tm-%TdT%TT\n\n"
+~ $ find . -type f -printf "%p\n%u\n%TY-%Tm-%TdT%TT\n\n"
 ./a
 myuser
 2015-10-21T11:02:51.7014527000
 ```
-
-  

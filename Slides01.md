@@ -1,4 +1,4 @@
-  
+
 # Step 1
 
 ## Come Out of Your Shell
@@ -36,20 +36,26 @@ Typically `bash`
 ## `set` in `bash`
 
 ```
-$ set
-ALLUSERSPROFILE='C:\ProgramData'
-APPDATA='C:\Users\myuser\AppData\Roaming'
+~ $ set
 BASH=/bin/bash
+BASHOPTS=checkwinsize:cmdhist:complete_fullquote:...
+BASH_ALIASES=()
+BASH_ARGC=()
+BASH_ARGV=()
+BASH_CMDS=()
 ...and so on...
 ```
 
 ## `set` in `CMD.EXE`
 
 ```
-C:\> set
+C:\Users\myuser>set
 ALLUSERSPROFILE=C:\ProgramData
 APPDATA=C:\Users\myuser\AppData\Roaming
-CLIENTNAME=MYMACHINE
+CommonProgramFiles=C:\Program Files\Common Files
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+CommonProgramW6432=C:\Program Files\Common Files
+COMPUTERNAME=JLEHMER650
 ...and so on...
 ```
 
@@ -57,18 +63,16 @@ CLIENTNAME=MYMACHINE
 
 **`bash`:**
 
-(Inside Cygwin)
-
 ```
-$ echo $HOMEDRIVE
-C:
+~ $ echo $HOME
+/home/myuser
 ```
 
 **`CMD.EXE`:**
 
 ```
-C:\> echo %homedrive%
-C:
+C:\> echo %homepath%
+\Users\myuser
 ```
 
 ## Similar, but different
@@ -81,11 +85,9 @@ C:
 ## Setting variables
 
 ```
-$ FOO=myval /home/myuser/myscript
-
-$ CURRDATE=`date`
-
-$ echo $CURRDATE
+~ $ FOO=myval /home/myuser/myscript
+~ $ CURRDATE=`date`
+~ $ echo $CURRDATE
 Wed Oct 28 11:43:38 CDT 2015
 ```
 
@@ -100,4 +102,3 @@ $ echo $PATH
 
 > * Tab expansion
 > * Command history
-  

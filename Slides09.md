@@ -1,3 +1,4 @@
+
 # Step 9
 
 # How Do You Know What You Don't Know, `man`?
@@ -26,5 +27,3 @@ Following are some of the better resources on the web:
 > * [linux.die.net](http://linux.die.net) - online `man` pages
 > * Stackoverflow
 > * Docs for individual packages at maintainer's site (Samba, etc.)
-
-  
