@@ -24,9 +24,11 @@ html: $(BUILD)/html/$(BOOKNAME).html
 
 pdf: $(BUILD)/pdf/$(BOOKNAME).pdf
 
-slides: revealjs
+slides: revealjs beamer
 
 revealjs: $(BUILD)/slides/revealjs/$(BOOKNAME).html
+
+beamer: $(BUILD)/slides/beamer/$(BOOKNAME).pdf
 
 markdown: $(BUILD)/markdown/$(BOOKNAME).md
 
@@ -54,7 +56,7 @@ $(BUILD)/markdown/$(BOOKNAME).md: $(CHAPTERS)
 
 $(BUILD)/pdf/$(BOOKNAME).pdf: $(TITLE) $(CHAPTERS)
 	mkdir -p $(BUILD)/pdf
-	pandoc $(TOC) --highlight-style="tango" --latex-engine=xelatex --template template.tex --no-tex-ligatures -V linkcolor=black -V toccolor=black -V urlcolor=black -V citecolor=black -V hidelinks=true -V links-as-notes=true -V documentclass=$(LATEX_CLASS) -V fontsize=10pt -V geometry:"margin=1in, paperwidth=7in, paperheight=9in" -V mainfont:"DejaVu Serif" -V sansfont:"DejaVu Sans" -V monofont:"Ubuntu Mono" --to=latex -o $(BUILD)/pdf/$(BOOKNAME).tex $^
+	pandoc $(TOC) --highlight-style="tango" --latex-engine=xelatex --template template.tex --no-tex-ligatures -V linkcolor=black -V toccolor=black -V urlcolor=black -V citecolor=black -V hidelinks=true -V links-as-notes=true -V documentclass=$(LATEX_CLASS) -V fontsize=10pt -V geometry:"margin=1in, paperwidth=7in, paperheight=9in" -V mainfont="DejaVu Serif" -V sansfont="DejaVu Sans" -V monofont="Ubuntu Mono" --to=latex -o $(BUILD)/pdf/$(BOOKNAME).tex $^
 	xelatex -output-directory=$(BUILD)/pdf $(BUILD)/pdf/$(BOOKNAME).tex
 	makeindex $(BUILD)/pdf/$(BOOKNAME)
 	xelatex -output-directory=$(BUILD)/pdf $(BUILD)/pdf/$(BOOKNAME)
@@ -63,5 +65,10 @@ $(BUILD)/slides/revealjs/$(BOOKNAME).html: $(SLIDES)
 	mkdir -p $(BUILD)/slides
 	mkdir -p $(BUILD)/slides/revealjs
 	pandoc $(SYNTAX) --to=revealjs --standalone --self-contained -o $@ $^
+
+$(BUILD)/slides/beamer/$(BOOKNAME).pdf: $(SLIDES)
+	mkdir -p $(BUILD)/slides
+	mkdir -p $(BUILD)/slides/beamer
+	pandoc $(SYNTAX) -V theme=Hannover --to=beamer --latex-engine=xelatex -V classoption="aspectratio=169" --standalone --self-contained -o $@ $^
 
 .PHONY: all book clean epub html pdf
