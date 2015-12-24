@@ -20,7 +20,7 @@ First, an example of `grep`, showing all files in a directory with the
 pattern "is" in them:
 
 \drcap{grep example}
-```
+```bash
 ~ $ touch a b c
 ~ $ echo This sequence of characters is called a \"string\". > d
 ~ $ cat d
@@ -37,7 +37,7 @@ So what are "regular expressions?" Simply, they are patterns for matching
 "strings," which are sequences of "characters," e.g.:
 
 \drcap{A string}
-```
+```bash
 This sequence of characters is called a "string".
 ```
 
@@ -50,7 +50,7 @@ In the `grep` example, we can see a regular expression can be as
 simple as "is". It can also be as complicated as:
 
 \drcap{Complex regular expression}
-```
+```bash
 (?bhttp://[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@f
 ```
 
@@ -75,7 +75,7 @@ In the mean time, following are a few ***simple*** regex examples. Consider
 the file `invoices`:
 
 \drcap{Invoices file}
-```
+```bash
 ~ $ cat invoices
 Combine brakes  400
 Combine motor   1500
@@ -93,7 +93,7 @@ Truck   winch   100
 Let's find all lines with "tractor":
 
 \drcap{Trying to find tractors}
-```
+```bash
 ~ $ grep tractor invoices
 ```
 
@@ -101,7 +101,7 @@ Huh, nothing was found. But this is UNIX-land, so we know it is sensitive -
 about case anyway:
 
 \drcap{Trying to find tractors, part two}
-```
+```bash
 ~ $ grep Tractor invoices
 Tractor brakes  300
 Tractor motor   1000
@@ -111,7 +111,7 @@ Tractor tires   2000
 Or we could just tell `grep` we are insensitive (to case, anyway):
 
 \drcap{Let's be insensitive}
-```
+```bash
 ~ $ grep -i tractor invoices
 Tractor brakes  300
 Tractor motor   1000
@@ -121,7 +121,7 @@ Tractor tires   2000
 And just to remind you about long-style parameters:
 
 \drcap{Spelling out our insensitivity}
-```
+```bash
 ~ $ grep --ignore-case tractor invoices
 Tractor brakes  300
 Tractor motor   1000
@@ -131,7 +131,7 @@ Tractor tires   2000
 But what ***lines*** are those on?
 
 \drcap{Print the line numbers of matches}
-```
+```bash
 ~ $ grep -i -n tractor invoices
 1:Tractor       motor   1000
 2:Tractor       brakes  300
@@ -143,7 +143,7 @@ regular expressions) and start doing some really fun stuff. Let's look for
 lines with either "Tractor" or "Truck":
 
 \drcap{Extended regular expressions}
-```
+```bash
 ~ $ grep -E "Tractor|Truck" invoices
 Tractor brakes  300
 Tractor motor   1000
@@ -170,7 +170,7 @@ uppercase Latin alphabetic character).
 For example, to find the lines that end in `400`:
 
 \drcap{Find lines ending with 400}
-```
+```bash
 $ grep  -E "^*400$" invoices
 Combine brakes  400
 Truck   tires   400
@@ -178,12 +178,12 @@ Truck   tires   400
 Truck   tires   400
 ```
 
-## Groveling With `grep`{.unnumbered}
+## Groveling With grep{.unnumbered}
 
 To recursively find all files that contain the string "pdfinfo":
 
 \drcap{Recursive grep}
-```
+```bash
 ~ $ grep -R -i pdfinfo *
 ./FileCheckers/otschecker:# pdfinfo, too. If pdfinfo thinks it's junk, ...
 ./FileCheckers/otschecker:        pdfinfo=`pdfinfo -opw foo "$1" 2>&1 1...
@@ -199,7 +199,7 @@ To recursively find all files that contain the string "pdfinfo":
 The above is functionally equivalent but ***much*** quicker than:
 
 \drcap{Recursive grep is faster than find plus grep}
-```
+```bash
 ~ $ find . -type f -exec grep -H -i pdfinfo \{\} \; 
 ```
 
@@ -216,7 +216,7 @@ have been created or modified since the last time you checked, it ***could
 be*** quicker to run something like:
 
 \drcap{A better example of when to use find plus grep}
-```
+```bash
 ~ $ find . ! -name pdfinfo.log -newer pdfinfo.log -type f -exec grep -H \
     -i pdfinfo \{\} \; > pdfinfo.log
 ```
@@ -230,7 +230,7 @@ just a few seconds. This was because the number of files to be searched
 through all directories was big enough it paid to pre-filter the results
 before handing them to `grep`.
 
-## Gawking at `awk`{.unnumbered}
+## Gawking at awk{.unnumbered}
 
 I don't have much to say about [`awk`](http://linux.die.net/man/1/awk)\drcmd{awk}
 other than:
@@ -258,7 +258,7 @@ famous, in this case [formatting and printing a report on user
 ids](http://www.ibm.com/developerworks/library/l-awk1/) from `/etc/passwd`:
 
 \drcap{awk example}
-```
+```bash
 ~ $ awk -F":" '{ print "username: " $1 "\t\tuid:" $3 }' /etc/passwd
 username: root		uid:0
 username: daemon		uid:1

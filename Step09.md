@@ -1,5 +1,5 @@
 
-# How Do You Know What You Don’t Know, `man`?
+# How Do You Know What You Don’t Know, man?
 
 ***`man`, `info`, `apropos`, Linux Documentation Project, Debian and Arch
 guides, StackOverflow and the dangers of searching for “`man find`” or
@@ -13,7 +13,7 @@ attitude by most old-timers toward most newbies. Besides the typical
 "Google" and "StackOverflow" answers, there are actually lots of very
 reliable places to turn to for information:
 
-## `man`, is that `info` `apropos`?{.unnumbered}
+## man, is that info apropos?{.unnumbered}
 
 There are three commands that are the basis for reading "UNIX" documentation
 within "UNIX" itself - [`man`](http://linux.die.net/man/1/man)\drcmd{man},
@@ -24,7 +24,7 @@ within "UNIX" itself - [`man`](http://linux.die.net/man/1/man)\drcmd{man},
 most "UNIX" commands. For example, `man ls` shows:
 
 \drcap{man command}
-```
+```bash
 LS(1)                            User Commands                           LS(1)
 
 NAME
@@ -69,7 +69,7 @@ usually referred to as `passwd(1)` to disambiguate which thing we're
 talking about:
 
 \drcap{Ambiguous man commands default to lowest documentation section}
-```
+```bash
 PASSWD(1)                        User Commands                       PASSWD(1)
 
 NAME
@@ -100,7 +100,7 @@ To see the `man` page for the `passwd` file format, we have to explicitly
 specify the section, in this case by using `man 5 passwd`:
 
 \drcap{Specifying a specific man section}
-```
+```bash
 PASSWD(5)                File Formats and Conversions                PASSWD(5)
 
 NAME
@@ -131,7 +131,7 @@ Besides `man`, many GNU tools come with help in `info`\drcmd{info} format, which
 originally from `emacs`. Here are the results of `info find`:
 
 \drcap{Running info on the find command}
-```
+```bash
 File: find.info,  Node: Invoking find,  Next: Invoking locate,  Up: Reference
 
 7.1 Invoking 'find'
@@ -170,7 +170,7 @@ simply search those titles and descriptions for a word or phrase and show
 you all the results:
 
 \drcap{apropos command}
-```
+```bash
 ~ $ apropos edit
 atobm (1)            - bitmap editor and converter utilities for the X Window...
 bitmap (1)           - bitmap editor and converter utilities for the X Window...
@@ -212,7 +212,7 @@ something with "edit" and was a system administration ("section 8")
 command:
 
 \drcap{Refining output from apropos}
-```
+```bash
 ~ $ apropos edit | grep "(8)"
 editkeep (8)         - frontend for deborphan
 jfs_debugfs (8)      - shell-type JFS file system editor
@@ -228,7 +228,7 @@ Or maybe you can't remember whether it's `-r`, `-R` or `--recursive` to
 copy subdirectories recursively with `cp`\drcmd{cp}:
 
 \drcap{Looking for specific parameter names in a man page}
-```
+```bash
 $ man cp | grep -i "recurs"
               copy contents of special files when recursive
        -R, -r, --recursive
@@ -240,7 +240,7 @@ Whaddya know. It can be any of the three.
 And yes, you can `man man`, `man info`, `info info` and `info man`, for
 that matter!
 
-## How Do You Google, `man`?{.unnumbered}
+## How Do You Google, man?{.unnumbered}
 
 You can often search the internet for "UNIX" documentation, and the `man`
 pages have long been online. A site I like (and link to a lot here) is

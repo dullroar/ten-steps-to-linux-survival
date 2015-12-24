@@ -30,7 +30,7 @@ Instead everything is "mounted" under a single hierarchy that starts at the
 "root directory" or `/`:
 
 \drcap{Listing of the root directory}
-```
+```bash
 ~ $ ls /
 bin    dev   home        lib64       mnt    Other  run   sys  var
 boot   Docs  initrd.img  lost+found  Music  proc   sbin  tmp  vmlinuz
@@ -51,7 +51,7 @@ As we've already seen, the command to *list* the contents of a directory
 is [`ls`](http://linux.die.net/man/1/ls)\drcmd{ls}:
 
 \drcap{Listing of home directory}
-```
+```bash
 ~ $ ls
 Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
 ```
@@ -62,7 +62,7 @@ Remember, "UNIX" environments think of files that start with a `.` as
 you can use `ls -a`:
 
 \drcap{Listing of home directory showing hidden files}
-```
+```bash
 ~ $ ls -a
 .              .config    .gconf           .mozilla  Templates
 ..             .dbus      .gnome2          Music     Videos
@@ -77,7 +77,7 @@ Wow! That's a lot of dotfiles!
 If you want to see some details of each file, use `ls -l`:
 
 \drcap{Detailed listing of home directory}
-```
+```bash
 ~ $ ls -l
 total 32
 drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Desktop
@@ -93,7 +93,7 @@ drwxr-xr-x 2 myuser mygroup 4096 Dec 13 18:18 Videos
 And of course parameters can be combined, as with the two above:
 
 \drcap{Detailed listing of all files}
-```
+```bash
 ~ $ ls -al
 total 112
 drwxr-xr-x 21 myuser mygroup 4096 Dec 13 18:19 .
@@ -138,7 +138,7 @@ The older style parameters are typically preceded by a single hyphen
 "switch" character:
 
 \drcap{Short parameter}
-```
+```bash
 ~ $ ls -r
 ```
 
@@ -147,7 +147,7 @@ with `xvf` (e***X***tract, ***V***erbose, input ***F***ile name) in the
 following:
 
 \drcap{Alternate short parameter syntax}
-```
+```bash
 ~ $ tar xvf backup.tar
 ```
 
@@ -155,7 +155,7 @@ The newer "GNU-style" parameters are preceded by two hyphens and usually
 are quite "verbose":
 
 \drcap{Long parameters}
-```
+```bash
 ~ $ ls --recursive --almost-all --ignore-backups
 ```
 
@@ -169,7 +169,7 @@ with the [`cat`](http://linux.die.net/man/1/cat)\drcmd{cat}
 (*concatenate*) command:
 
 \drcap{cat command}
-```
+```bash
 ~ $ cat installrdp
 #!/bin/bash
 sudo apt-get -y install git
@@ -226,7 +226,7 @@ command. The next example shows the last 10 lines of the kernel `dmesg`
 log:
 
 \drcap{tail command}
-```
+```bash
 /var/log $ tail dmesg
 [    3.913318] Bluetooth: BNEP socket layer initialized
 [    3.914888] Bluetooth: RFCOMM TTY layer initialized
@@ -243,7 +243,7 @@ log:
 To show a specific number of lines use the `-n` parameter:
 
 \drcap{tail -n command}
-```
+```bash
 /var/log $ tail -n 15 dmesg
 [    3.899169] Bluetooth: HCI socket layer initialized
 [    3.899170] Bluetooth: L2CAP socket layer initialized
@@ -267,7 +267,7 @@ any new output at the end, which is useful for monitoring log files in real
 time:
 
 \drcap{tail -f command}
-```
+```bash
 /var/log $ tail -f syslog
 Dec 13 19:23:40 MtLindsey dhclient: DHCPACK of 192.168.0.8 from 192.168.0.1
 Dec 13 19:23:40 MtLindsey dhclient: bound to 192.168.0.8 -- renewal in 1423 seco
@@ -295,7 +295,7 @@ If we know nothing about a *file*, we can use the
 us guess:
 
 \drcap{file command}
-```
+```bash
 ~ $ file installrdp 
 installrdp: Bourne-Again shell script, ASCII text executable
 ```
@@ -317,7 +317,7 @@ Let's say we have three files, and want to display the contents of one
 of them with `cat`:
 
 \drcap{Show contents of a file}
-```
+```bash
 ~ $ cd Invoices/
 ~/Invoices $ ls
 ElevatorTrucks  FarmCombines  FarmTractors
@@ -336,7 +336,7 @@ processed in file name order, not the ultimate sorted order of all the file
 contents.
 
 \drcap{Show contents of all files}
-```
+```bash
 ~/Invoices $ cat *
 Truck   brakes  200
 Truck   tires   400
@@ -356,7 +356,7 @@ rescue! We will see that the `sort` command can be used to not just *sort*
 files, but also to merge them and remove duplicates.
 
 \drcap{sort command}
-```
+```bash
 ~/Invoices $ sort *
 Combine brakes  400
 Combine motor   1500
@@ -375,7 +375,7 @@ What if we want to sort by the parts column? Well, it is the second "key"
 field delimited by whitespace, so:
 
 \drcap{Sort by the second column}
-```
+```bash
 ~/Invoices $ sort -k 2 *
 Truck   brakes  200
 Tractor brakes  300
@@ -393,7 +393,7 @@ Truck   winch   100
 What about by the third column, the amount?
 
 \drcap{Sort by third column}
-```
+```bash
 ~/Invoices $ sort -k 3 *
 Truck   winch   100
 Tractor motor   1000
@@ -412,7 +412,7 @@ That's not what we expected because it is sorting numbers alphabetically.
 Let's fix that by telling it to sort numerically:
 
 \drcap{Sort by third column, numerically}
-```
+```bash
 ~/Invoices $ sort -k 3 -n *
 Truck   winch   100
 Truck   brakes  200
@@ -431,7 +431,7 @@ Maybe we care about the top three most expensive items. We haven't talked
 about `pipes`\index{pipes} yet, but check this out:
 
 \drcap{Top three most expensive items}
-```
+```bash
 ~ $ sort -k 3 -n * | tail -n 3
 Combine motor   1500
 Tractor tires   2000
@@ -441,7 +441,7 @@ Combine tires   2500
 Finally, what if we want only unique rows?
 
 \drcap{Sort and show only unique rows}
-```
+```bash
 ~/Invoices $ sort -k 3 -n -u *
 Truck   winch   100
 Truck   brakes  200
@@ -456,7 +456,7 @@ Combine tires   2500
 Just to reinforce long parameters, the last example is equivalent to:
 
 \drcap{Unique sort with long parameter names}
-```
+```bash
 ~/Invoices $ sort --key 3 --numeric-sort --unique *
 Truck   winch   100
 Truck   brakes  200
@@ -478,14 +478,14 @@ directories. To *copy*, simply use the
 [`cp`](http://linux.die.net/man/1/cp)\drcmd{cp} command:
 
 \drcap{cp command}
-```
+```bash
 ~ $ cp diary.txt diary.bak
 ```
 
 You can copy entire directories recursively:
 
 \drcap{Copying directories recursively}
-```
+```bash
 ~ $ cp -r thisdir thatdir
 ```
 
@@ -493,7 +493,7 @@ Or, if we want to be self-documenting in a script, we can use those long
 parameter names:
 
 \drcap{cp command with long parameter names}
-```
+```bash
 ~ $ cp --recursive thisdir thatdir
 ```
 
@@ -501,7 +501,7 @@ parameter names:
 To *move* use [`mv`](http://linux.die.net/man/1/mv)\drcmd{mv}:
 
 \drcap{mv command}
-```
+```bash
 ~ $ mv thismonth.log lastmonth.log
 ```
 
@@ -516,7 +516,7 @@ to `.html`.
 To delete or *remove* a file you use [`rm`](http://linux.die.net/man/1/rm)\drcmd{rm}:
 
 \drcap{rm command}
-```
+```bash
 ~ $ rm desktop.ini
 ```
 
@@ -529,7 +529,7 @@ This kind of scenario can happen ***way*** too often, even to experienced
 system administrators. Note the space between `*` and `.bak`:
 
 \drcap{Oops!}
-```
+```bash
 ~ $ cd MyDissertation/
 ~/MyDissertation $ ls
 Bibliography.bak  Bibliography.doc  Dissertation.bak  Dissertation.doc
@@ -559,7 +559,7 @@ extra error check. Or a lot of times I use command history in these cases
 by changing the `ls` to look for just the files I want to delete:
 
 \drcap{Make sure we are dealing with the right files}
-```
+```bash
 ~ $ ls *.bak
 Citations.bak  Dissertation.bak
 ```
@@ -573,7 +573,7 @@ We just learned how to make a file disappear. We can also make a file
 magically appear, just by [`touch`](http://linux.die.net/man/1/touch)\drcmd{touch}:
 
 \drcap{touch command}
-```
+```bash
 ~ $ touch NewEmptyDissertation.doc
 ~ $ ls -l
 total 0
@@ -587,7 +587,7 @@ modified date" of an existing file, as you can see in time change in the
 following listing after running `touch` on the same file again:
 
 \drcap{A second touch}
-```
+```bash
 ~ $ touch NewEmptyDissertation.doc
 ~ $ ls -l
 total 0
@@ -600,7 +600,7 @@ which `touch` also allows you to do, in this case to the night before
 Christmas:
 
 \drcap{Set file modified date to a specific date and time}
-```
+```bash
 ~ $ touch -t 201412242300 NewEmptyDissertation.doc
 ~ $ ls -l
 total 0
@@ -610,7 +610,7 @@ total 0
 To *make a directory* you use [`mkdir`](http://linux.die.net/man/1/mkdir)\drcmd{mkdir}:
 
 \drcap{mkdir command}
-```
+```bash
 ~ $ cd Foo
 ~/Foo $ ls -l
 total 4
@@ -632,7 +632,7 @@ Typically you need to create all intervening directories before creating a
 "child" directory:
 
 \drcap{mkdir error}
-```
+```bash
 ~ $ mkdir Xyzzy/Something
 mkdir: cannot create directory ‘Xyzzy/Something’: No such file or directory
 ```
@@ -640,7 +640,7 @@ mkdir: cannot create directory ‘Xyzzy/Something’: No such file or directory
 But of course you can override that behavior:
 
 \drcap{Make multiple directories at once}
-```
+```bash
 ~/Foo $ mkdir --parents Xyzzy/Something
 ~/Foo $ ls 
 a  b  Bar  c  d  Xyzzy
@@ -660,7 +660,7 @@ To *change directories*, simply use [`cd`](http://linux.die.net/man/1/cd)\drcmd{
 much like in Windows:
 
 \drcap{cd command}
-```
+```bash
 ~ $ cd /etc
 ~ $ pwd
 /etc
@@ -675,7 +675,7 @@ the "root" (admin) id. To change to a user's "home" directory, simply use
 `cd` with no parameters:
 
 \drcap{Change to home directory}
-```
+```bash
 /etc $ cd
 ~ $ pwd
 /home/myuser
@@ -685,7 +685,7 @@ The tilde (`~`) character is an alias for the current user's home
 directory. The following example is equivalent to above:
 
 \drcap{Alternative way to change to home directory}
-```
+```bash
 /etc $ cd ~
 ~ $ pwd
 /home/myuser
@@ -695,7 +695,7 @@ More useful is that the tilde can be combined with a user name to specify
 the home directory of ***another*** user:
 
 \drcap{Change to the home directory of another user}
-```
+```bash
 ~ # cd ~myuser
 myuser # pwd
 /home/myuser
@@ -720,7 +720,7 @@ examples that combine all of the above about relative paths and see if it
 all makes sense:
 
 \drcap{Relative paths exercise}
-```
+```bash
 ~/Foo $ ls
 ~/Foo $ mkdir Bar Baz
 ~/Foo $ ls
@@ -769,7 +769,7 @@ listings by a set of ten characters, with the first one determining
 whether an entry is a directory (`d`) or a file (`-`):
 
 \drcap{Another ls -l example, this time on FreeBSD}
-```
+```bash
 %ls -l /etc
 total 1876
 drwxr-xr-x   2 root  wheel        512 Jan 15  2009 X11
@@ -810,7 +810,7 @@ Back on Linux, if we look in `/etc/init.d` where many services store
 their startup scripts we see:
 
 \drcap{Listing the /etc/init.d directory}
-```
+```bash
 ~ $ ls -l /etc/init.d
 total 276
 -rwxr-xr-x 1 root root 2243 Apr  3  2014 acpid
@@ -847,7 +847,7 @@ permissions to do so), use the [`chown`](http://linux.die.net/man/1/chown)\drcmd
 command:
 
 \drcap{Change file ownership}
-```
+```bash
 # ls -l
 total 4
 -rwxr--r-- 1 root root 17 Oct 20 10:07 foo
@@ -861,7 +861,7 @@ To *change* the primary *group*, use the
 [`chgrp`](http://linux.die.net/man/1/chgrp)\drcmd{chgrp} command:
 
 \drcap{chgrp command}
-```
+```bash
 # chgrp git foo
 # ls -l
 total 4
@@ -876,7 +876,7 @@ a permission and `-` to remove it. For example, to add the execute
 permission for the group and remove read permission for "other":
 
 \drcap{chmod command}
-```
+```bash
 # chmod g+x,o-r foo
 # ls -l
 total 4
@@ -888,18 +888,18 @@ any set of "rwx" permissions into an octal number from 0 (no permissions)
 to 7 (all permissions). It helps to think of the three permissions as
 "binary places":
 
-* **r** - 2^2 = 4
-* **w** - 2^1 = 2
-* **x** - 2^0 = 1
+* **r** - 2^2^ = 4
+* **w** - 2^1^ = 2
+* **x** - 2^0^ = 1
 * **-** - 0
 
 Some examples:
 
 * **---** - 0 + 0 + 0 = 0
-* **r--** - 2^2 + 0 + 0 = 4
-* **r-x** - 2^2 + 0 + 2^0 = 5
-* **rw-** - 2^2 + 2^1 + 0 = 6
-* **rwx** - 2^2 + 2^1 + 2^0 = 7
+* **r--** - 2^2^ + 0 + 0 = 4
+* **r-x** - 2^2^ + 0 + 2^0^ = 5
+* **rw-** - 2^2^ + 2^1^ + 0 = 6
+* **rwx** - 2^2^ + 2^1^ + 2^0^ = 7
 
 Now to use octal with `chmod`, we think of the overall result we want for
 a file. For example, if we want the `foo` file to be readable, writable
@@ -907,7 +907,7 @@ and executable by both its owning user and group, and not accessible at all
 by anyone else, we could use:
 
 \drcap{chmod with lots of typing}
-```
+```bash
 # chmod u+rwx,g+rwx,o- foo
 # ls -l
 total 4
@@ -917,7 +917,7 @@ total 4
 Or we could simply convert those permissions into octal in our head and:
 
 \drcap{chmod with octal like a boss}
-```
+```bash
 # chmod 770 foo
 # ls -l
 total 4
@@ -932,7 +932,7 @@ question you asked in school!
 entries. The following should be insightful:
 
 \drcap{Marking a file as executable}
-```
+```bash
 # echo "echo Hello world" > foo
 # ls -l
 total 4
@@ -956,7 +956,7 @@ although they don't tend to be the most common, using the
 [`unzip`](http://linux.die.net/man/1/unzip)\drcmd{unzip} commands:
 
 \drcap{zip command}
-```
+```bash
 ~ $ cd Foo
 ~/Foo $ touch a b c
 ~/Foo $ mkdir d
@@ -974,7 +974,7 @@ although they don't tend to be the most common, using the
 ```
 
 \drcap{unzip command}
-```
+```bash
 ~ $ unzip Foo
 Archive:  Foo.zip
 replace Foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
@@ -998,7 +998,7 @@ is then typically ran through a compression command and the result is
 called a "tarball":
 
 \drcap{Creating a tarball}
-```
+```bash
 ~ $ tar cvf Foo.tar Foo/*
 Foo/a
 Foo/b
@@ -1022,7 +1022,7 @@ as shown in these examples. So both of the following are also equivalent
 to the above:
 
 \drcap{tar parameter styles}
-```
+```bash
 ~ $ tar -c -v -f Foo.tar Foo/*
 ~ $ tar --create --verbose --file=Foo.tar Foo/*
 ```
@@ -1031,7 +1031,7 @@ The use of compression commands along with `tar` is so prevalent that
 they've been built into `tar` itself now as optional parameters:
 
 \drcap{One-step tarball}
-```
+```bash
 ~ $ tar cvzf Foo.tgz Foo
 Foo/
 Foo/c
@@ -1052,7 +1052,7 @@ like the above, you can change the create (`c`) parameter to extract
 (`x`), like this:
 
 \drcap{Extracting a tarball}
-```
+```bash
 ~ $ tar xvf Foo.tgz 
 Foo/
 Foo/c
@@ -1077,7 +1077,7 @@ to a file or a directory, and can point to anything on any mounted file
 system:
 
 \drcap{Soft links example}
-```
+```bash
 ~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
@@ -1122,7 +1122,7 @@ within a single directory it is impossible to tell if there are other
 directories with pointers to the same files (inodes) on disk.
 
 \drcap{Hard links example}
-```
+```bash
 ~ $ ls
 a  b  c  d  Dee  MyThesis.doc
 ~ $ ln b B
@@ -1154,7 +1154,7 @@ So what can possibly go wrong with links? With soft links the answer is
 easy - the "remote" location being pointed to goes away or is renamed:
 
 \drcap{Broken soft links example}
-```
+```bash
 ~ $ ls -l
 total 4
 -rw-r--r-- 1 myuser mygroup    0 Oct 24 15:53 a
@@ -1189,7 +1189,7 @@ file has other hard links pointing to it, it "exists." Only when the last
 remaining hard link is removed has it been "deleted." Let's play:
 
 \drcap{Many hard linkes, one inode}
-```
+```bash
 ~ $ echo "This is b." > b
 ~ $ cat b
 This is b.
@@ -1208,7 +1208,7 @@ Can you guess how many `rm` commands it will take to delete the file
 containing "This is b."?
 
 \drcap{Deleting a file with many hard links}
-```
+```bash
 ~ $ rm b
 ~ $ cat b
 cat: b: No such file or directory
@@ -1238,7 +1238,7 @@ There are multiple ways to tell, actually. The easiest is with the
 [`df`](http://linux.die.net/man/1/df)\drcmd{df} command:
 
 \drcap{df command}
-```
+```bash
 ~ $ df
 Filesystem                1K-blocks     Used Available Use% Mounted on
 /dev/mapper/mint--vg-root 118647068 28847464  83749608  26% /
@@ -1280,7 +1280,7 @@ following, and what the effects of the ***relative paths*** as the sample
 progresses:
 
 \drcap{Soft links and relative paths}
-```
+```bash
 ~ $ cd Foo
 ~/Foo $ rm -rf *
 ~/Foo $ cd ..
@@ -1302,7 +1302,7 @@ Many commands that deal with files and file systems, like `find`\drcmd{find},
 have parameters specifically telling the command whether to follow soft links
 or not (by default, `find` does not - see the next chapter for more).
 
-## What's the `diff`?{.unnumbered}
+## What's the diff?{.unnumbered}
 
 Most people think of [`diff`](http://linux.die.net/man/1/diff)\drcmd{diff}
 as a tool only programmers find useful, but that is short-sighted. The whole
@@ -1312,7 +1312,7 @@ typed this introduction to `diff`. This is what `diff` showed after I added
 the new paragraph:
 
 \drcap{diff example}
-```
+```bash
 ~ $ diff Step02.bak Step02.md
 1285a1286,1291
 > Most people think of [`diff`](http://linux.die.net/man/1/diff) as a tool
@@ -1331,7 +1331,7 @@ Let's look at something else, say a configuration file for an application.
 We have an original file, `orig.conf`:
 
 \drcap{orig.conf file}
-```
+```bash
 ~ $ cat orig.conf
 FOO=1
 
@@ -1345,7 +1345,7 @@ BAR=Xyzzy
 Then we have a new file, `new.conf`:
 
 \drcap{new.conf file}
-```
+```bash
 ~ $ cat new.conf
 FOO=2
 
@@ -1357,7 +1357,7 @@ SAME=ALWAYS
 Now if we `diff` them:
 
 \drcap{Using diff on config files}
-```
+```bash
 ~ $ diff orig.conf new.conf
 1c1
 < FOO=1

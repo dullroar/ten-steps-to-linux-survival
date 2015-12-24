@@ -12,7 +12,7 @@ By James Lehmer
 \ \
 <br/>
 <br/>
-v0.7
+v0.8
 \ \
 \ \
 <br/>
@@ -257,7 +257,7 @@ If a command and its output, script code or something else is shown in
 a block, it will appear like this:
 
 \drcap{Code snippet}
-```
+```bash
 ~ $ ps -AH
   PID TTY          TIME CMD
     2 ?        00:00:00 kthreadd

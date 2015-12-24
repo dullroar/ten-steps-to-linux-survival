@@ -19,18 +19,18 @@ To see what *processes* you are running, use
 [`ps`](http://linux.die.net/man/1/ps)\drcmd{ps}:
 
 \drcap{ps command}
-```
+```bash
 # ps
   PID TTY          TIME CMD
 14691 pts/0    00:00:00 bash
 25530 pts/0    00:00:00 ps
-```
+```bash
 
 To show processes from *all* users in a process *hierarchy* (child
 processes indented under parents), use `ps -AH`:
 
 \drcap{Showing all processes}
-```
+```bash
 ~ $ ps -AH
   PID TTY          TIME CMD
     2 ?        00:00:00 kthreadd
@@ -63,7 +63,7 @@ and optionally a "signal"\index{signals}. Here is an example looking for any run
 instance of `vi` and sending it a `kill` command:
 
 \drcap{Hunting down and killing vi sessions}
-```
+```bash
 ps -A | grep vi | kill `cut -f2 -d" "`
 ```
 
@@ -92,7 +92,7 @@ command, which unlike most in this book updates dynamically every second
 by default:
 
 \drcap{top command}
-```
+```bash
 top - 14:11:26 up 106 days,  5:24,  2 users,  load average: 0.11, 0.05, ...
 Tasks:  95 total,   1 running,  94 sleeping,   0 stopped,   0 zombie
 %Cpu(s):  0.2 us,  0.8 sy,  0.0 ni, 99.0 id,  0.0 wa,  0.0 hi,  0.0 si, ...
@@ -131,7 +131,7 @@ system." On modern Linux systems, there is typically a `/proc` directory
 that looks like directories and files:
 
 \drcap{proc file system}
-```
+```bash
 ~ $ ls /proc
 1     1566  2607  299   4549  53    75         cmdline      mtrr
 10    1587  2617  3     4579  54    754        consoles     net
@@ -161,7 +161,7 @@ that looks like directories and files:
 What is all that? Well if we look a little closer:
 
 \drcap{Detailed listing of the proc file system}
-```
+```bash
 ~ $ ls -l /proc
 total 0
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1
@@ -192,7 +192,7 @@ dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1468
 look in one of those directories:
 
 \drcap{Looking inside one of the proc process directories}
-```
+```bash
 ~ # ls -l /proc/1
 total 0
 dr-xr-xr-x 2 root root 0 Dec 22 10:18 attr
@@ -224,7 +224,7 @@ If the directory listing shows the entry as a file, it can be examined and
 holds ***current*** statistics for whatever the file name implies:
 
 \drcap{How much I/O has process 1 done?}
-```
+```bash
 ~ # cat /proc/1/io
 rchar: 803882767
 wchar: 152731542
@@ -241,7 +241,7 @@ statistics.
 In addition, there are system-wide statistics, such as `/proc/cpuinfo`:
 
 \drcap{Looking at CPU info in /proc/cpuinfo}
-```
+```bash
 ~ # cat /proc/cpuinfo 
 processor	: 0
 vendor_id	: GenuineIntel
@@ -275,7 +275,7 @@ Many Linux components and subsystems log to `/var/log`. Here is a pretty
 standard directory listing for it on a Mint system:
 
 \drcap{Looking at logs}
-```
+```bash
 ~ # ls /var/log
 alternatives.log       dmesg.4.gz             pm-suspend.log.1
 alternatives.log.1     dpkg.log               pm-suspend.log.2.gz
@@ -315,7 +315,7 @@ holds more general "system" messages.
 Let's look for kernel errors when booting: 
 
 \drcap{Kernel errors when booting}
-```
+```bash
 ~ # cat /var/log/dmesg | grep -i error
 [   15.828463] EXT4-fs (dm-1): re-mounted. Opts: errors=remount-ro
 ```

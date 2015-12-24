@@ -26,7 +26,7 @@ The simplest example is "starting in the current directory, recursively
 list all files you find":
 
 \drcap{Simplest find example}
-```
+```bash
 ~ $ find
 .
 ./Agenda.md
@@ -55,7 +55,7 @@ tell in this case. Let's dive into a semi-complicated one and pick it
 apart:
 
 \drcap{More complicated find example}
-```
+```bash
 ~ $ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 ```
@@ -90,7 +90,7 @@ currently found (matching) file.
 Reconsider this example:
 
 \drcap{More complicated find example, explained}
-```
+```bash
 ~ $ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 ```
@@ -116,7 +116,7 @@ That last point bears repeating. Any time you `-exec` in a `find`
 command (which will be a lot), just get used to typing `\{\} \;` (the
 space between the ending brace and the `\;` is ***required***).
 
-## Useful `find` Options{.unnumbered}
+## Useful find Options{.unnumbered}
 
 The [`find`](http://linux.die.net/man/1/find) documentation gives a
 bewildering number of options. Here are the ones you may "find" the most
@@ -147,7 +147,7 @@ various measures like 512-byte blocks (`b`) through gigabytes (`G`).
 
 * **`-user <uname>`** - file is owned by *uname*.
 
-## Useful `find` Actions{.unnumbered}
+## Useful find Actions{.unnumbered}
 
 Similarly, you are going to keep coming back to just a handful of `find`
 actions:
@@ -178,7 +178,7 @@ created date and time in ISO 8601 format, all followed by a blank
 line, we could use the following `find` command:
 
 \drcap{Using find as a simple reporting tool}
-```
+```bash
 ~ $ touch a b c
 ~ $ ls -l
 total 0

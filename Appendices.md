@@ -289,7 +289,7 @@ to find all lines that had an opening square bracket but ***not*** a
 closing one, e.g., I wanted to catch the first line in the following:
 
 \drcap{Some Markdown}
-```
+```bash
 See [Important System
 Directories.](http://linux.die.net/abs-guide/systemdirs.html)
 ```
@@ -300,7 +300,7 @@ out how to do negative matching on that closing `]`. Good luck!
 Or you could do something as simple as this:
 
 \drcap{Searching through the Markdown for mismatched brackets}
-```
+```bash
 $ grep '\[' *.md | grep -v ']'
 Step01.md: (( expression ))           if COMMANDS; then COMMANDS; [ elif C>
 Step01.md: :                          kill [-s sigspec | -n signum | -sigs>
@@ -318,7 +318,7 @@ successful, we can do things like set up a sample directory and (empty)
 files for playing around with files and directories in one fell swoop:
 
 \drcap{Make a bunch of files and directories at once}
-```
+```bash
 ~ $ mkdir -p /tmp/foo/d && cd /tmp/foo && touch a b c d/e
 ~ $ ls
 a  b  c  d
@@ -327,7 +327,7 @@ a  b  c  d
 That is roughly equivalent to:
 
 \drcap{Make a bunch of files the long way}
-```
+```bash
 ~ $ cd /tmp
 ~ $ mkdir -p foo
 ~ $ cd foo
@@ -349,7 +349,7 @@ quickly and easily on any new machine I set up (once I get Dropbox set
 up on the machine!)
 
 \drcap{A simple install script}
-```
+```bash
 #!/bin/bash
 sudo apt-get -y install git
 cd ~

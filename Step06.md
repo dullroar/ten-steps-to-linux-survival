@@ -1,5 +1,5 @@
 
-# `vi`
+# vi
 
 ***How to stay sane for 10 minutes in `vi`. Navigation, basic editing, find,
 change/change-all, cut and paste, undo, saving and canceling. Plus easier
@@ -62,7 +62,7 @@ where the cursor is through (including) the next whitespace character.
 If the `|` in the following represents the cursor:
 
 \drcap{Deleting a "word"}
-```
+```bash
 This is a wo|rd and so is this.
 ```
 
@@ -70,7 +70,7 @@ Then typing `dw` will delete from the cursor position the characters `r`,
 `d` and the space, leaving the following:
 
 \drcap{After deleting the "word"}
-```
+```bash
 This is a wo|and so is this.
 ```
 
@@ -79,7 +79,7 @@ prefixing it to the command. So now if we wanted to delete three words
 from the cursor position in the above, we'd use `3dw` and end up with:
 
 \drcap{Deleting multiple words}
-```
+```bash
 This is a wo|this.
 ```
 
@@ -95,14 +95,14 @@ above, just be sure you understand `r`\drvic{r}{Replace} means "replace a single
 so `3rx` executed on:
 
 \drcap{Replace three characters with "x"}
-```
+```bash
 This is a wo|this.
 ```
 
 ...results in:
 
 \drcap{Three "x" characters}
-```
+```bash
 This is a woxx|xs.
 ```
 
@@ -123,7 +123,7 @@ If you want to protect yourself from inadvertent changes to a file you can
 always open it using [`view`](http://linux.die.net/man/1/view)\drcmd{view},
 the alias for `vi` invoked in read-only mode.
 
-## Circumnavigating `vi`{.unnumbered}
+## Circumnavigating vi{.unnumbered}
 
 In modern implementations of `vi` (like `vim`) running under modern shells
 the arrow and page keys will work as you expect, ***in general***. However,
@@ -138,7 +138,7 @@ the first line, typed in "This is a new line" and then hit the up arrow
 five times, yielding this:
 
 \drcap{Garbage characters}
-```
+```bash
 This is a word and so is this.
 A
 A
@@ -204,7 +204,7 @@ So if deleting is synonymous with cutting, and the cursor is on the second
 line:
 
 \drcap{Deleting a line}
-```
+```bash
 This is a word and so is this.
 This is a new line.|
 ```
@@ -212,7 +212,7 @@ This is a new line.|
 Then executing `dd` leaves:
 
 \drcap{After the line is gone}
-```
+```bash
 |This is a word and so is this.
 ```
 
@@ -221,7 +221,7 @@ above the current line with `P`\drvic{P}{Paste above current line},
 which would result in:
 
 \drcap{After pasting the line above the current line}
-```
+```bash
 |This is a new line.
 This is a word and so is this.
 ```
@@ -246,7 +246,7 @@ The most common scenario is the "change all" command. Given the following
 file:
 
 \drcap{Sample text file}
-```
+```bash
 This is a new line
 This is a word
 and so is this
@@ -257,7 +257,7 @@ This and this and this
 Let's change all "this" to "that" by using:
 
 \drcap{Changing this to that}
-```
+```bash
 :0,$s/this/that/
 ```
 
@@ -265,7 +265,7 @@ We'll get into the details in a bit, but the results are interesting, and
 not what we'd expect:
 
 \drcap{What happened?}
-```
+```bash
 This is a new line
 This is a word
 and so is that
@@ -285,14 +285,14 @@ it to change *globally*.
 So let's hit `u`\drvic{u}{Undo} to reset (undo) the file, and try again with this:
 
 \drcap{Changing this to that, redux}
-```
+```bash
 :0,$s/this/that/i
 ```
 
 Results in:
 
 \drcap{Closer, but not quite}
-```
+```bash
 that is a new line
 that is a word
 and so is that
@@ -307,14 +307,14 @@ the "this" words changed, as the last line shows. Hit `u` and try one more
 time with this:
 
 \drcap{Changing this to that, one more time!}
-```
+```bash
 :0,$s/this/that/gi
 ```
 
 Results in:
 
 \drcap{Finally!}
-```
+```bash
 that is a new line
 that is a word
 and so is that
@@ -329,7 +329,7 @@ In general, if you are looking for a Windows Notepad-like, case insensitive
 "change all," the magic string to remember is:
 
 \drcap{Memorize this - no, really}
-```
+```bash
 :0,$s/from/to/gi
 ```
 
@@ -355,7 +355,7 @@ Regular expressions you say! Now we have two problems! But consider where
 we left off:
 
 \drcap{But what about capitalization?}
-```
+```bash
 that is a new line
 that is a word
 and so is that
@@ -367,14 +367,14 @@ First, let's capitalize all `t` characters, but only where they are at the
 beginning of the line:
 
 \drcap{Regular expression for the start of a line}
-```
+```bash
 :1,$s/^t/T/
 ```
 
 Yields:
 
 \drcap{Voila! Capitals!}
-```
+```bash
 That is a new line
 That is a word
 and so is that
@@ -385,14 +385,14 @@ That and that and that
 Now let's change all instances of "that" at the end of a line to be "that."
 
 \drcap{Regular expression for the end of a line}
-```
+```bash
 :1,$s/that$/that./
 ```
 
 Ends up with:
 
 \drcap{That with a full stop}
-```
+```bash
 That is a new line
 That is a word
 and so is that.
@@ -405,14 +405,14 @@ regular expressions see if you can figure out how this is adding commas
 to the end of lines that don't already have a period:
 
 \drcap{Say what?}
-```
+```bash
 :1,$s/\([^.]$\)/\1,/
 ```
 
 Renders this:
 
 \drcap{Nicely punctuated}
-```
+```bash
 That is a new line,
 That is a word,
 and so is that.
@@ -429,7 +429,7 @@ You can "mark" lines in `vi` for use in "ranges" like the "substitute"
 (change) command above. Let's say you have a file like the following:
 
 \drcap{Simple file}
-```
+```bash
 This is a line
 This is also a line
 This, too
@@ -454,7 +454,7 @@ don't travel far, so `mn`).
 beginning and end of the range in all kinds of `vi` commands. In our case
 we want to change "This" on the first three lines, so:
 
-```
+```bash
 :'m,'ns/This/That/
 ```
 
@@ -473,14 +473,14 @@ exiting the file, sorting it, and then re-editing it. We can do that with
 To sort the whole file in place:
 
 \drcap{Sort a whole file in vi}
-```
+```bash
 :0,$!sort
 ```
 
 To sort a marked range:
 
 \drcap{Sorting a range}
-```
+```bash
 :'m,'n!sort
 ```
 
@@ -530,7 +530,7 @@ either shorthand (`\t`) or as hexadecimal, you can alter control codes in
 `vi` easily. For example, to change all tab characters to four spaces:
 
 \drcap{Change all tabs to four spaces as God meant them to be}
-```
+```bash
 :1,$s/\t/    /g
 ```
 
@@ -557,7 +557,7 @@ difference the second you see a file open in `nano` - in this case, the
 generated Github-flavored Markdown of this document:
 
 \drcap{Editing a file in nano}
-```
+```bash
     GNU nano 2.2.6        File: TenStepsToLinuxSurvival.md                        
 
 |![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don't panic.'")

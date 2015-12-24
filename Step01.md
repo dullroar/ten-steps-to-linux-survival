@@ -54,7 +54,7 @@ going to assume `bash` for the rest of this tutorial. With few
 modifications, anything in the `sh` hierarchy above can usually run in the
 other members of the same tree.
 
-## `bash` Built-Ins{.unnumbered}
+## bash Built-Ins{.unnumbered}
 
 Every shell has some "built-in" commands that are implemented as part
 of the shell and not as an external command or program, and `bash`\drshl{bash}
@@ -63,7 +63,7 @@ has its share, as shown by running the
 `bash` terminal:
 
 \drcap{Built-in commands in bash}
-```
+```bash
 ~ $ help
 GNU bash, version 4.3.11(1)-release (x86_64-pc-linux-gnu)
 These shell commands are defined internally.  Type `help' to see this list.
@@ -103,7 +103,7 @@ have a ["shebang"](https://en.wikipedia.org/wiki/Shebang_%28Unix%29)\index{Sheba
 line that looks like this:
 
 \drcap{bash shebang}
-```
+```bash
 #!/bin/bash
 ```
 
@@ -113,7 +113,7 @@ example, on the FreeBSD system I have access to, `dash` is not installed.
 So consider the following `hello.sh` script:
 
 \drcap{Script with dash shebang}
-```
+```bash
 #!/bin/dash
 echo Hello, World!
 ```
@@ -121,7 +121,7 @@ echo Hello, World!
 When I try to run it on FreeBSD, I get:
 
 \drcap{Shebang error}
-```
+```bash
 %./hello.sh
 ./hello.sh: Command not found.
 ```
@@ -132,7 +132,7 @@ script to point to `bash` (which is installed on that FreeBSD system),
 it works as expected:
 
 \drcap{Hello, World!}
-```
+```bash
 %./hello.sh 
 Hello, World!
 ```
@@ -154,7 +154,7 @@ and `CMD.EXE`\drshl{CMD.EXE} the [`set`](http://linux.die.net/man/1/set)\drcmd{s
 command shows you all environment variables that have been set. Here's `bash`:
 
 \drcap{set command in bash}
-```
+```bash
 ~ $ set
 BASH=/bin/bash
 BASHOPTS=checkwinsize:cmdhist:complete_fullquote:expand_aliases:extglob:extquote
@@ -184,7 +184,7 @@ HISTFILESIZE=2000
 And `CMD.EXE`:
 
 \drcap{set command in CMD.EXE}
-```
+```bash
 C:\Users\myuser>set
 ALLUSERSPROFILE=C:\ProgramData
 APPDATA=C:\Users\myuser\AppData\Roaming
@@ -217,13 +217,13 @@ command can be used to show you the contents of an environment variable
 like `HOME`\drenv{HOME} (among other things):
 
 \drcap{echo HOME environment variable in bash}
-```
+```bash
 ~ $ echo $HOME
 /home/myuser
 ```
 
 \drcap{echo HOMEPATH environment variable in CMD.EXE}
-```
+```bash
 C:\> echo %homepath%
 \Users\myuser
 ```
@@ -267,7 +267,7 @@ override a given environment variable for the single execution of a
 program, to the point that `bash` has built-in "one-line" support for it:
 
 \drcap{Set FOO before executing myscript}
-```
+```bash
 ~ $ FOO=myval /home/myuser/myscript
 ```
 
@@ -282,7 +282,7 @@ You can set or override multiple variables for a single command or script
 execution simply by separating them with spaces:
 
 \drcap{Set multiple environment variables at once}
-```
+```bash
 ~ $ FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript
 ```
 
@@ -294,7 +294,7 @@ You can also set the value of environment variables to the output of a
 command by surrounding it with paired \` ("back ticks", or "grave accent"):
 
 \drcap{Set environment variable to output from command}
-```
+```bash
 ~ $ FILETYPE=`file --print --mime-type --no-pad --print0 otschecker.csv`
 ~ $ echo $FILETYPE
 otschecker.csv: text/plain
@@ -308,7 +308,7 @@ determine that. The first is via the `USER`\drenv{USER} environment
 variable:
 
 \drcap{USER environment variable}
-```
+```bash
 ~ $ echo $USER
 myuser
 ```
@@ -317,7 +317,7 @@ The second is with a command with one of the best names, ever -
 [`whoami`](http://linux.die.net/man/1/whoami)\drcmd{whoami}:
 
 \drcap{whoami command}
-```
+```bash
 ~ $ whoami
 myuser
 ```
@@ -333,7 +333,7 @@ Windows lifted it from UNIX (or CP/M, which lifted it from UNIX). Look at
 the output of the `PATH`\drenv{PATH} environment variable under `bash`:
 
 \drcap{PATH environment variable in bash}
-```
+```bash
 ~ $ echo $PATH
 /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 ```
@@ -366,7 +366,7 @@ combination of both Cygwin and Windows directories, and Windows drive letters
 like `C:` mapped to `/cygdrive/c`:
 
 \drcap{PATH environment variable in Cygwin}
-```
+```bash
 $ echo $PATH
 /usr/local/bin:/usr/bin:/cygdrive/c/Windows/system32:/cygdrive/c/Windows:/cygdri
 ve/c/Windows/System32/Wbem:/cygdrive/c/Windows/system32/config/systemprofile/.dn
@@ -408,7 +408,7 @@ Tab expansion is "auto-complete" for the command prompt. Let's say you
 have some files in a directory:
 
 \drcap{Some files}
-```
+```bash
 ~/Documents $ ls
 Disabled User Accounts.csv  elsewhere  LOLcatz.jpg  MyResume.md
 ```
@@ -416,7 +416,7 @@ Disabled User Accounts.csv  elsewhere  LOLcatz.jpg  MyResume.md
 Without tab expansion, typing out something like this is painful:
 
 \drcap{Lots of typing and escape characters}
-```
+```bash
 ~/Documents $ mv Disabled\ User\ Accounts.csv elsewhere/.
 ```
 
@@ -425,7 +425,7 @@ represents hitting the `Tab` key, and since there is only one file that
 starts with a "D" tab expansion will fill in the rest of the file name:
 
 \drcap{Tab expansion magic}
-```
+```bash
 ~/Documents $ mv Disabled\ User\ Accounts.csv
 ```
 
@@ -459,7 +459,7 @@ one of your hidden "profile" or "dot" files in your home directory called
 `.bash_history`, which you can display with `ls -a`:
 
 \drcap{ls command showing hidden files}
-```
+```bash
 ~ $ ls -a
 .              .config    .gconf           .mozilla  Templates
 ..             .dbus      .gnome2          Music     Videos

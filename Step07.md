@@ -13,7 +13,7 @@ command line and scripts.
 For example, our friend [`ping`](http://linux.die.net/man/8/ping)\drcmd{ping} is there:
 
 \drcap{ping command}
-```
+```bash
 # ping www.yahoo.com
 PING fd-fp3.wg1.b.yahoo.com (98.138.253.109) 56(84) bytes of data.
 64 bytes from ir1.fp.vip.ne1.yahoo.com (98.138.253.109): icmp_req=1 ttl=...
@@ -42,7 +42,7 @@ aware that on Cygwin `ping` is still the system (Windows) `ping`.
 for once its name is longer than the `CMD.EXE` counterpart).
 
 \drcap{traceroute command}
-```
+```bash
 ~ $ traceroute google.com
 traceroute to google.com (216.58.216.78), 30 hops max, 60 byte packets
  1  192.168.0.1 (192.168.0.1)  3.623 ms  3.978 ms  7.231 ms
@@ -60,7 +60,7 @@ traceroute to google.com (216.58.216.78), 30 hops max, 60 byte packets
 You can do some digging in DNS with [`dig`](http://linux.die.net/man/1/dig)\drcmd{dig}:
 
 \drcap{dig command}
-```
+```bash
 ~ $ dig yahoo.com
 
 ; <<>> DiG 9.9.5-3ubuntu0.6-Ubuntu <<>> yahoo.com
@@ -87,7 +87,7 @@ yahoo.com.		605	IN	A	98.139.183.24
 
 And [`whois`](http://linux.die.net/man/1/whois)\drcmd{whois}:
 
-```
+```bash
 ~ $ whois yahoo.com
 
 Whois Server Version 2.0
@@ -114,7 +114,7 @@ for detailed information.
 ...and so on...
 ```
 
-## `sudo` Make Me a Sandwich{.unnumbered}
+## sudo Make Me a Sandwich{.unnumbered}
 
 It may not be the best place to discuss it, but we've finally come to a
 point where your normal user account may not have access to these tools.
@@ -137,7 +137,7 @@ for a password each time, unlike UAC).
 Here is a really common example on Debian-based systems:
 
 \drcap{Make me a sandwich}
-```
+```bash
 ~ $ apt-get update
 E: Could not open lock file /var/lib/apt/lists/lock - open (13: Permission denie
 d)
@@ -150,7 +150,7 @@ The error message, especially the last line, is pretty clear. Let's try it
 again with `sudo`:
 
 \drcap{sudo Make me a sandwich}
-```
+```bash
 ~ $ sudo apt-get update
 Ign http://packages.linuxmint.com rafaela InRelease
 Ign http://extra.linuxmint.com rafaela InRelease                               
@@ -188,7 +188,7 @@ exciting, but it can have its purposes (like quickly testing network access
 from a command prompt). For example, `lynx http://google.com` yields:
 
 \drcap{Browsing like it's 1994}
-```
+```bash
                                                                           Google
 
    Search Images Maps Play YouTube News Gmail Drive More »
@@ -223,14 +223,14 @@ to be the simplest to just "grab a file and go." You see both used often in
 install scripts that then download more bits from the internet:
 
 \drcap{wget in an install script}
-```
+```bash
 wget -O - http://foocorp.com/installs/install.sh | bash
 ```
 
 Or:
 
 \drcap{curl in an install script}
-```
+```bash
 curl http://foocorp.com/installs/install.sh | bash
 ```
 
@@ -251,7 +251,7 @@ multiple ways, but [`email`](http://linux.die.net/man/1/email)\drcmd{email} is
 straightforward enough:
 
 \drcap{Sending email from the command line}
-```
+```bash
 email --blank-mail --subject "Possibly corrupted files found..." \
   --smtp-server smtp --attach badfiles.csv --from-name NoReply \
   --from-addr noreply@mycorp.com alert@mycorp.com
@@ -271,7 +271,7 @@ sequence `GET / HTTP/1.1` followed by a blank line to get Google to return
 its home page:
 
 \drcap{Using telnet to diagnose HTTP}
-```
+```bash
 ~ $ telnet google.com 80
 Trying 216.58.216.78...
 Connected to google.com.
@@ -303,7 +303,7 @@ To get a modern, secure shell to a remote machine, use
 like this:
 
 \drcap{ssh command}
-```
+```bash
 ssh myuser@remoteserver
 ```
 
@@ -316,7 +316,7 @@ systems with the [`scp`](http://linux.die.net/man/1/scp)\drcmd{scp} command. It 
 like this for a recursive directory copy:
 
 \drcap{scp command}
-```
+```bash
 scp -r myfiles/* myuser@remoteserver:/home/myuser/.
 ```
 
@@ -328,7 +328,7 @@ you will be asked to accept the remote server's "fingerprint." You can
 usually just say "yes":
 
 \drcap{Sample ssh session}
-```
+```bash
 ~# ssh myuser@remotehost
 The authenticity of host '[remotehost] ([10.0.2.3]:22)' can't be established.
 ECDSA key fingerprint is 98:bb:17:38:ee:d0:16:ee:b2:93:08:4e:30:25:14:70.
@@ -358,7 +358,7 @@ some ways is similar to `ipconfig` in `CMD.EXE`\drshl{CMD.EXE}. While you can us
 to get a quick display of them:
 
 \drcap{ifconfig command}
-```
+```bash
 # ifconfig
 eth0      Link encap:Ethernet  HWaddr 00:00:56:a3:35:fe
           inet addr:10.0.2.3  Bcast:10.0.2.255  Mask:255.255.252.0
@@ -383,7 +383,7 @@ To see what DNS servers the system is using, you can look in
 `/etc/resolv.conf`\index{resolv.conf}:
 
 \drcap{DNS servers in resolv.conf}
-```
+```bash
 # cat /etc/resolv.conf
 domain mydomain.com
 search mydomain.com
@@ -395,7 +395,7 @@ And to see any local overrides of network names or aliases, look in
 `/etc/hosts`\index{hosts}:
 
 \drcap{hosts file}
-```
+```bash
 # cat /etc/hosts
 127.0.0.1       localhost
 ```

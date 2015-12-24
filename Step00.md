@@ -127,13 +127,13 @@ It is similar to the history and relationship between `COMMAND.EXE`\drshl{COMMAN
 in DOS and `CMD.EXE`\drshl{CMD.EXE} in Windows 10, where this would work
 in both:
 
-```
+```bash
 COPY A.TXT B.TXT
 ```
 
 But only the later, network-and-NTFS-aware `CMD.EXE` could handle:
 
-```
+```bash
 COPY "My 2015 Tax Returns.pdf" \\MyServer\Finances\.
 ```
 
@@ -158,7 +158,7 @@ with the [`ps`](http://linux.die.net/man/1/ps)\drcmd{ps} (*process*) command
 on a Linux system, in this case Linux Mint under `bash`\drshl{bash}:
 
 \drcap{ps on Linux in bash}
-```
+```bash
 ~ $ ps -a
   PID TTY          TIME CMD
  4508 pts/3    00:00:00 su
@@ -170,7 +170,7 @@ on a Linux system, in this case Linux Mint under `bash`\drshl{bash}:
 is the default shell:
 
 \drcap{ps on FreeBSD in csh}
-```
+```bash
 %ps -a
   PID  TT  STAT      TIME COMMAND
  5073  p0  Ss     0:00.02 -csh (csh)

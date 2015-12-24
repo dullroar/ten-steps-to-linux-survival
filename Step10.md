@@ -19,7 +19,7 @@ directories and text files under `/etc`\index{etc}.
 ***not*** "forward slash et cetera."
 
 \drcap{/etc directory}
-```
+```bash
 ~ $ ls /etc
 acpi                    hosts                 pki
 adduser.conf            hosts.allow           pm
@@ -82,7 +82,7 @@ system, often to force re-reading changed configuration files. If the
 service has a script in `/etc/init.d`:
 
 \drcap{init.d directory}
-```
+```bash
 ~ $ ls /etc/init.d
 acpid             dbus               ondemand     single
 anacron           dns-clean          pppd-dns     skeleton
@@ -106,7 +106,7 @@ cups-browsed      nmbd               sendsigs
 such as the following samples with `samba`:
 
 \drcap{Stopping and starting services}
-```
+```bash
 ~ # /etc/init.d/samba stop
 [ ok ] Stopping Samba daemons: nmbd smbd.
 ~ # /etc/init.d/samba start
@@ -150,7 +150,7 @@ first downloads and *updates* the local metadata cache for the
 repositories:
 
 \drcap{apt-get update}
-```
+```bash
 ~ $ sudo apt-get update
 [sudo] password for lehmer:
 Ign http://packages.linuxmint.com rafaela InRelease
@@ -185,7 +185,7 @@ the latest release in the repository (which may not be the latest and
 greatest release of the package):
 
 \drcap{Upgrading installed packages}
-```
+```bash
 ~ $ sudo apt-get dist-upgrade
 Reading package lists... Done
 Building dependency tree       
@@ -198,7 +198,7 @@ In this case there was nothing to upgrade. And the final common command
 is obviously to install a package:
 
 \drcap{Installing a package}
-```
+```bash
 ~ $ sudo apt-get install traceroute
 Reading package lists... Done
 Building dependency tree       
@@ -246,7 +246,7 @@ go to its "official" site or GitHub repository. There, you may find a
 `.deb` file, in which case you could install it with `dpkg`\drcmd{dpkg}:
 
 \drcap{Installing a package with dpkg}
-```
+```bash
 sudo dpkg -i somesoftware.deb
 ```
 
@@ -270,7 +270,7 @@ versions of a package to allow different versions of the same package to
 exist on the same system, where different applications may be relying on
 the different versions to work.
 
-## Which `which` is Which?{.unnumbered}
+## Which which is Which?{.unnumbered}
 
 Now that we've seen that we can have multiple versions of the same command
 or executable on the system, an interesting question arises. *Which* `foo`
@@ -283,7 +283,7 @@ Luckily we have the [`which`](http://linux.die.net/man/1/which)\drcmd{which} com
 for just that!
 
 \drcap{which command}
-```
+```bash
 ~ $ which curl
 /usr/bin/curl
 ```
@@ -292,7 +292,7 @@ How can you tell if you have multiple versions of something installed?
 One way is with the [`locate`](http://linux.die.net/man/1/locate)\drcmd{locate} command:
 
 \drcap{locate command}
-```
+```bash
 ~ $ locate md5
 /boot/grub/i386-pc/gcry_md5.mod
 /lib/modules/3.16.0-38-generic/kernel/drivers/usb/gadget/amd5536udc.ko
@@ -333,7 +333,7 @@ can be a bit unnerving to try and execute `foo` in the current directory
 and get:
 
 \drcap{Command not found - but it's right there!}
-```
+```bash
 ~ $ ls -l foo
 -rwxrwx--- 1 myuser mygroup 16 Oct 23 19:03 foo
 ~ $ foo
@@ -353,7 +353,7 @@ Instead, to invoke `foo`, you can either fully qualify the path as shown
 by `pwd`:
 
 \drcap{Using a fully qualified path to execute a command}
-```
+```bash
 ~ $ /home/myuser/foo
 ```
 
@@ -361,7 +361,7 @@ Or you can prepend the `./` relative path to it, to indicate "the `foo` in
 the current directory (`.`)":
 
 \drcap{Specifying the command in the current directory}
-```
+```bash
 ~ $ ./foo
 ```
 
@@ -380,7 +380,7 @@ using `crontab -e` give a fine example of the syntax of the `crontab`
 file:
 
 \drcap{Looking at default crontab file}
-```
+```bash
 # Edit this file to introduce tasks to be run by cron.
 #
 # Each task to run has to be defined through a single line
@@ -409,7 +409,7 @@ If you have `sudo` privileges you can edit the `crontab` file for another
 user with:
 
 \drcap{Editing another user's crontab file}
-```
+```bash
 $ sudo crontab -e -u otheruser
 ```
 
@@ -432,7 +432,7 @@ If you need to reboot the system the quickest way is with the
 [`reboot`](http://linux.die.net/man/8/reboot)\drcmd{reboot} command:
 
 \drcap{reboot command}
-```
+```bash
 $ sudo reboot
 ```
 
@@ -441,7 +441,7 @@ command with the `-r` option, but why? The handier use for `shutdown` is to
 tell a system to halt and power off after shutting down:
 
 \drcap{Shutdown and power off}
-```
+```bash
 $ sudo shutdown -h now
 ```
 
@@ -458,7 +458,7 @@ is one "uninterruptable" signal, however - `SIGKILL`. We can send
 `SIGKILL` to a process and cause it to terminate immediately with:
 
 \drcap{Terminating a process with extreme prejudice}
-```
+```bash
 kill -s 9 14302
 ```
 
@@ -468,14 +468,14 @@ is the tenth signal in the signal list, which is 0-relative, hence #9).
 You can also use the following "shorthand" for `SIGKILL`:
 
 \drcap{Even shorter way to kill the process}
-```
+```bash
 kill -9 14302
 ```
 
 Or if you want to get all verbose:
 
 \drcap{A more verbose killer}
-```
+```bash
 kill -s SIGKILL 14302
 ```
 
@@ -497,7 +497,7 @@ command line using the `$?`\drenv{Question mark} environment variable. Consider 
 `foo` exists and `bar` does not:
 
 \drcap{Examining exit codes}
-```
+```bash
 ~ $ ls foo
 foo
 $ echo $?
@@ -528,7 +528,7 @@ Our example of file `foo` (which exists) and file `bar` (which does not)
 and the effect on the exit code of `ls` can be illustrative here, too:
 
 \drcap{Using ampersands to chain commands together}
-```
+```bash
 ~ $ ls foo && ls bar
 foo
 ls: cannot access bar: No such file or directory
@@ -540,7 +540,7 @@ Both `ls` commands execute because the first successfully found `foo`,
 but the second emits its error and sets the exit code to `2` (failure).
 
 \drcap{Using || to execute the first and possibly the second command}
-```
+```bash
 ~ $ ls foo || ls bar
 foo
 ~ $ echo $?
@@ -552,7 +552,7 @@ condition was already satisfied by the successful execution of the first
 `ls`. The exit code is obviously `0` (success).
 
 \drcap{The second command won't execute if the first fails}
-```
+```bash
 ~ $ ls bar && ls foo
 ls: cannot access bar: No such file or directory
 ~ $ echo $?
@@ -565,7 +565,7 @@ And finally, while the first command failed the second still can execute
 because of the "or", and the whole expression returns `0`.
 
 \drcap{One more example with ||}
-```
+```bash
 ~ $ ls bar || ls foo
 ls: cannot access bar: No such file or directory
 foo
@@ -583,7 +583,7 @@ And yes, of course, that means there is also a
 unsuccessfully!"
 
 \drcap{true and false commands}
-```
+```bash
 ~ $ true
 ~ $ echo $?
 0

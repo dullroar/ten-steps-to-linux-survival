@@ -42,7 +42,7 @@ be emulated with `Ctrl-D`, shown as `^D` in the example below but not seen on
 the console in real life:
 
 \drcap{stdin and stdout}
-```
+```bash
 ~ $ cat
 This shows reading from stdin
 This shows reading from stdin
@@ -62,7 +62,7 @@ Let's create a file with a single line of text in it. One way would be to
 way is to simply use file redirection:
 
 \drcap{Hello, world}
-```
+```bash
 ~ $ echo Hello, world > hw
 ~ $ ls -l
 total 1
@@ -81,7 +81,7 @@ anything over the above example, the following is illustrative of
 redirecting a file to `stdin` for a command or program:
 
 \drcap{Redundant redirection}
-```
+```bash
 ~ $ cat < hw
 Hello, world
 ```
@@ -90,7 +90,7 @@ Finally, we need to deal with `stderr`. By convention it is sent to the
 console just like `stdout`, and that can make output confusing:
 
 \drcap{Default stderr behavior}
-```
+```bash
 ~ $ echo This is a > a
 ~ $ echo This is b > b
 ~ $ echo This is c > c
@@ -112,7 +112,7 @@ good way of telling that. One way to get rid of them would be to change
 find to filter for only files:
 
 \drcap{Get rid of the errors in the first place}
-```
+```bash
 ~ $ find . -type f -exec cat \{\} \;
 This is a
 This is b
@@ -129,7 +129,7 @@ numbers come in handy! To redirect `stderr` we recall it is ***always***
 file descriptor 2, and then we can use:
 
 \drcap{Redirecting stderr}
-```
+```bash
 ~ $ find . -exec cat \{\} \; 2>/tmp/finderrors.log
 This is a
 This is b
@@ -147,7 +147,7 @@ A very common paradigm is to capture both `stdout` and `stderr` to the same
 file. Here is how that is done, again using file descriptors:
 
 \drcap{Redirecting both stdout and stderr to a file}
-```
+```bash
 ~ $ find . -exec cat \{\} \; >/tmp/find.log 2>&1
 ~ $ cat /tmp/find.log
 cat: .: Is a directory
@@ -169,7 +169,7 @@ appending to it using redirection. The following creates a new
 first):
 
 \drcap{Overwriting a file with redirection}
-```
+```bash
 ~ $ find . -exec cat \{\} \; >/tmp/find.log
 ```
 
@@ -177,7 +177,7 @@ However, the next sample creates a new `/tmp/find.log` file if it doesn't
 exist, but otherwise appends to it:
 
 \drcap{Appending to a file with redirection}
-```
+```bash
 ~ $ find . -exec cat \{\} \; >>/tmp/find.log
 ```
 
@@ -193,7 +193,7 @@ concept of a command "pipeline" that allows directly sending `stdout` from
 one program into `stdin` of another:
 
 \drcap{Piping output between programs}
-```
+```bash
 ~ $ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
 ```
 
@@ -236,7 +236,7 @@ Finally, if you want to capture something to a file ***and*** see it on the
 console at the same time, that is where the
 [`tee`](http://linux.die.net/man/1/tee)\drcmd{tee} command comes in:
 
-```
+```bash
 ~ $ find . -name error.log | tee > errorlogs.txt
 ```
 
