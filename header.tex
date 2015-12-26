@@ -1,0 +1,76 @@
+% Packages I added.
+\usepackage{placeins}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{flafter}
+\usepackage{makeidx}
+\usepackage[nottoc]{tocbibind}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{tocloft}
+% End of packages I added.
+
+% Overriding commands.
+\makeindex
+\restylefloat{figure}
+\floatplacement{figure}{H}
+% Originals from http://www-rohan.sdsu.edu/~aty/bibliog/latex/floats.html
+% General parameters, for ALL pages:
+\renewcommand{\topfraction}{0.7}	  % max fraction of floats at top
+\renewcommand{\bottomfraction}{0.7}	% max fraction of floats at bottom
+\renewcommand{\textfraction}{0.3}	  % allow minimal text w. figs
+% Parameters for TEXT pages (not float pages):
+\setcounter{topnumber}{2}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{2}         % 2 may work better
+% Parameters for FLOAT pages (not text pages):
+% N.B.: floatpagefraction MUST be less than topfraction !!
+\renewcommand{\floatpagefraction}{0.65}	% require fuller float pages
+% Parameters for double-column pages:
+\renewcommand{\dbltopfraction}{0.9}	% fit big float above 2-col. text
+\renewcommand{\dblfloatpagefraction}{0.7}	% require fuller float pages
+\setcounter{dbltopnumber}{2}        % for 2-column pages
+\overfullrule=2cm   % Black bars to show overfull boxes
+\renewcommand{\chaptername}{Step}
+\renewcommand{\contentsname}{Steps}
+\numberwithin{figure}{chapter}
+\DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
+\DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1}}
+\DeclareRobustCommand{\drenv}[1]{\index{Environment Variables!#1}}
+\DeclareRobustCommand{\drios}[1]{\index{OS and OS-Like Substances!#1}}
+\DeclareRobustCommand{\drshl}[1]{\index{Shells!#1}}
+\DeclareRobustCommand{\drvic}[2]{\index{vi Commands!#1 (#2)}}
+\renewcommand{\KeywordTok}[1]{{#1}}
+\renewcommand{\DataTypeTok}[1]{{#1}}
+\renewcommand{\DecValTok}[1]{{#1}}
+\renewcommand{\BaseNTok}[1]{{#1}}
+\renewcommand{\FloatTok}[1]{{#1}}
+\renewcommand{\CharTok}[1]{{#1}}
+\renewcommand{\StringTok}[1]{{#1}}
+\renewcommand{\CommentTok}[1]{{#1}}
+\renewcommand{\OtherTok}[1]{{#1}}
+\renewcommand{\AlertTok}[1]{{#1}}
+\renewcommand{\FunctionTok}[1]{{#1}}
+\renewcommand{\RegionMarkerTok}[1]{{#1}}
+\renewcommand{\ErrorTok}[1]{{#1}}
+\renewcommand{\NormalTok}[1]{{#1}}
+\renewcommand{\ConstantTok}[1]{{#1}}
+\renewcommand{\SpecialCharTok}[1]{{#1}}
+\renewcommand{\VerbatimStringTok}[1]{{#1}}
+\renewcommand{\SpecialStringTok}[1]{{#1}}
+\renewcommand{\ImportTok}[1]{{#1}}
+\renewcommand{\DocumentationTok}[1]{{#1}}
+\renewcommand{\AnnotationTok}[1]{{#1}}
+\renewcommand{\CommentVarTok}[1]{{#1}}
+\renewcommand{\VariableTok}[1]{{#1}}
+\renewcommand{\ControlFlowTok}[1]{{#1}}
+\renewcommand{\OperatorTok}[1]{{#1}}
+\renewcommand{\BuiltInTok}[1]{{#1}}
+\renewcommand{\ExtensionTok}[1]{{#1}}
+\renewcommand{\PreprocessorTok}[1]{{#1}}
+\renewcommand{\AttributeTok}[1]{{#1}}
+\renewcommand{\RegionMarkerTok}[1]{{#1}}
+\renewcommand{\InformationTok}[1]{{#1}}
+\renewcommand{\WarningTok}[1]{{#1}}
+% End of overriding commands.

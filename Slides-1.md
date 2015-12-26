@@ -1,4 +1,4 @@
-% Jim's Ten Steps to Linux Survival
+% Ten Steps to Linux Survival - Bash for Windows People
 % Jim Lehmer
 % October 27, 2015
 

@@ -54,7 +54,7 @@ going to assume `bash` for the rest of this tutorial. With few
 modifications, anything in the `sh` hierarchy above can usually run in the
 other members of the same tree.
 
-## bash Built-Ins{.unnumbered}
+## `bash` Built-Ins{.unnumbered}
 
 Every shell has some "built-in" commands that are implemented as part
 of the shell and not as an external command or program, and `bash`\drshl{bash}

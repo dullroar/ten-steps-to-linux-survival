@@ -567,7 +567,7 @@ Citations.bak  Dissertation.bak
 Then using the "up arrow" to bring back up the `ls` command and changing
 `ls` to `rm` and re-executing it. Safer that way.
 
-## Touch Me{.unnumbered}
+## `touch` Me{.unnumbered}
 
 We just learned how to make a file disappear. We can also make a file
 magically appear, just by [`touch`](http://linux.die.net/man/1/touch)\drcmd{touch}:
@@ -888,18 +888,18 @@ any set of "rwx" permissions into an octal number from 0 (no permissions)
 to 7 (all permissions). It helps to think of the three permissions as
 "binary places":
 
-* **r** - 2^2^ = 4
-* **w** - 2^1^ = 2
-* **x** - 2^0^ = 1
-* **-** - 0
+* **`r`** `= 2`^`2`^` = 4`
+* **`w`** `= 2`^`1`^` = 2`
+* **`x`** `= 2`^`0`^` = 1`
+* **`-`** `= 0`
 
 Some examples:
 
-* **---** - 0 + 0 + 0 = 0
-* **r--** - 2^2^ + 0 + 0 = 4
-* **r-x** - 2^2^ + 0 + 2^0^ = 5
-* **rw-** - 2^2^ + 2^1^ + 0 = 6
-* **rwx** - 2^2^ + 2^1^ + 2^0^ = 7
+* **`---`** `= 0 + 0 + 0 = 0`
+* **`r--`** `= 2`^`2`^` + 0 + 0 = 4`
+* **`r-x`** `= 2`^`2`^` + 0 + 2`^`0`^` = 5`
+* **`rw-`** `= 2`^`2`^` + 2`^`1`^` + 0 = 6`
+* **`rwx`** `= 2`^`2`^` + 2`^`1`^` + 2`^`0`^` = 7`
 
 Now to use octal with `chmod`, we think of the overall result we want for
 a file. For example, if we want the `foo` file to be readable, writable
@@ -1062,7 +1062,7 @@ Foo/d/e
 Foo/a
 ```
 
-## Let's Link Up!{.unnumbered}
+## Let's `link` Up!{.unnumbered}
 
 In Windows there are "shortcuts," which are simply special files that the
 OS knows to interpret as "go open this other file over there." There are
@@ -1225,7 +1225,7 @@ This is b.
 So, ultimately, it takes a `rm` for every hard link to permanently delete
 a file.
 
-### Mount It? I Don't Even Know It's Name!{.unnumbered}
+### `mount` It? I Don't Even Know It's Name!{.unnumbered}
 
 With all this talk that a hard link can only be on the same file system,
 how do you know whether two directories are on the same file system? In
@@ -1302,7 +1302,7 @@ Many commands that deal with files and file systems, like `find`\drcmd{find},
 have parameters specifically telling the command whether to follow soft links
 or not (by default, `find` does not - see the next chapter for more).
 
-## What's the diff?{.unnumbered}
+## What's the `diff`?{.unnumbered}
 
 Most people think of [`diff`](http://linux.die.net/man/1/diff)\drcmd{diff}
 as a tool only programmers find useful, but that is short-sighted. The whole

@@ -1,11 +1,13 @@
 
 ---
-title: Jim's Ten Steps to Linux Survival
+title: Ten Steps to Linux Survival
+subtitle: Bash for Windows People
 author: Jim Lehmer
 tags: [linux, bash]
 date: 2015
-rights: 'Creative Commons Attribution-ShareAlike 4.0 International License'
-subject: Linux
-description: Linux for Windows people
+rights: '© 2015 Jim Lehmer, Creative Commons Attribution-ShareAlike 4.0 International License'
+subject: [Linux, bash]
+lang: en-US
+description: Bash for Windows People
 stylesheet: ./css/styles.css
 ...

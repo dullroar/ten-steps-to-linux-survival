@@ -1,5 +1,5 @@
 \cleardoublepage
-![Merv sez, "Don't panic."](./images/Merv.jpg "Merv sez, 'Don&apos;t panic.'")\ \
+![Merv sez, "Don't panic."](./images/MervBW.jpg "Merv sez, 'Don&apos;t panic.'")\ \
 <br/>
 Merv sez, "Don't panic."
 \clearpage
@@ -12,13 +12,13 @@ By James Lehmer
 \ \
 <br/>
 <br/>
-v0.8
+v0.9
 \ \
 \ \
 <br/>
 <br/>
 ![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 International")\
-*Jim's Ten Steps to Linux Survival* by James Lehmer is licensed under a
+*Ten Steps to Linux Survival - Bash for Windows People* by James Lehmer is licensed under a
 [Creative Commons Attribution-ShareAlike 4.0 International
 License](http://creativecommons.org/licenses/by-sa/4.0/).
 \ \
@@ -35,7 +35,7 @@ is part of that.
 
 \pagestyle{fancy}
 \fancyhead{}
-\fancyhead[LE]{\slshape JIM'S\ TEN\ STEPS\ TO\ LINUX\ SURVIVAL}
+\fancyhead[LE]{\slshape TEN\ STEPS\ TO\ LINUX\ SURVIVAL}
 \fancyhead[RO]{\slshape \leftmark}
 \renewcommand{\headrulewidth}{0.4pt}
 
@@ -201,11 +201,11 @@ see in my head is for one of the participants in that "lunch and learn,"
 armed with that discussion and having glanced through this book, to be
 better able to survive if dropped into the jungle with:
 
-> *"The main www site is down, and all the people who know about it are >
-out. It's running on some sort of Linux, I think, and the credentials
-and > IP address are scrawled on this sticky note. Can you get in and
-poke > around and see if you can figure it out?"* - your boss (next
-Tuesday > morning)
+> *"The main www site is down, and all the people who know about it are
+> out. It's running on some sort of Linux, I think, and the credentials and
+> IP address are scrawled on this sticky note. Can you get in and poke
+> around and see if you can figure it out?"* - your boss (next Tuesday
+> morning)
 
 Well, as I started to type out my notes of what I considered to be
 "essential," they just kept growing and growing. And now, some nights,
@@ -226,8 +226,10 @@ This book is not meant to be an authoritative source, but instead a
 up and running ***quickly*** with the sheer basics, plus knowing
 where to go for help. I modeled it explicitly after "short and
 opinionated" tech books such as Douglas Crockford's [*Javascript: The
-Good Parts*](http://shop.oreilly.com/product/9780596517748.do) or Zed
-Shaw's [*Learn Python the Hard Way*](http://learnpythonthehardway.org/).
+Good Parts*](http://shop.oreilly.com/product/9780596517748.do) and
+especially those licensed under [Creative
+Commons](http://creativecommons.org/licenses/by-sa/4.0/) licenses,
+such as the books from [Green Tea Press](http://greenteapress.com/).
 If you like those big, thick tech books that are measured by the kilogram,
 this is not the book for you.
 

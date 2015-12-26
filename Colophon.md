@@ -34,7 +34,8 @@ Output produced using [`pandoc`](http://pandoc.org/)\drcmd{pandoc},
 [TeX Live](http://www.tug.org/texlive/)\drcmd{texlive},
 [`pdflatex`](http://linux.die.net/man/1/pdflatex)\drcmd{pdflatex},
 [`make`](http://linux.die.net/man/1/make)\drcmd{make}, originally based on the
-[\@evangoer's work](https://github.com/evangoer/pandoc-ebook-template).
+[\@evangoer's pandoc ebook template](https://github.com/evangoer/pandoc-ebook-template)
+but long since modified so don't blame him.
 
 Source code control is provided by [`git`](http://linux.die.net/man/1/git)\drcmd{git}.
 You can view [the files used to create this

@@ -178,7 +178,7 @@ Truck   tires   400
 Truck   tires   400
 ```
 
-## Groveling With grep{.unnumbered}
+## Groveling With `grep`{.unnumbered}
 
 To recursively find all files that contain the string "pdfinfo":
 
@@ -230,7 +230,7 @@ just a few seconds. This was because the number of files to be searched
 through all directories was big enough it paid to pre-filter the results
 before handing them to `grep`.
 
-## Gawking at awk{.unnumbered}
+## Gawking at `awk`{.unnumbered}
 
 I don't have much to say about [`awk`](http://linux.die.net/man/1/awk)\drcmd{awk}
 other than:

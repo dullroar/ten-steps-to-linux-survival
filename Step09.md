@@ -1,5 +1,5 @@
 
-# How Do You Know What You Don’t Know, man?
+# How Do You Know What You Don’t Know, `man`?
 
 ***`man`, `info`, `apropos`, Linux Documentation Project, Debian and Arch
 guides, StackOverflow and the dangers of searching for “`man find`” or
@@ -13,7 +13,7 @@ attitude by most old-timers toward most newbies. Besides the typical
 "Google" and "StackOverflow" answers, there are actually lots of very
 reliable places to turn to for information:
 
-## man, is that info apropos?{.unnumbered}
+## `man`, is that `info` `apropos`?{.unnumbered}
 
 There are three commands that are the basis for reading "UNIX" documentation
 within "UNIX" itself - [`man`](http://linux.die.net/man/1/man)\drcmd{man},
@@ -240,7 +240,7 @@ Whaddya know. It can be any of the three.
 And yes, you can `man man`, `man info`, `info info` and `info man`, for
 that matter!
 
-## How Do You Google, man?{.unnumbered}
+## How Do You Google, `man`?{.unnumbered}
 
 You can often search the internet for "UNIX" documentation, and the `man`
 pages have long been online. A site I like (and link to a lot here) is

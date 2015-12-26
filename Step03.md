@@ -116,7 +116,7 @@ That last point bears repeating. Any time you `-exec` in a `find`
 command (which will be a lot), just get used to typing `\{\} \;` (the
 space between the ending brace and the `\;` is ***required***).
 
-## Useful find Options{.unnumbered}
+## Useful `find` Options{.unnumbered}
 
 The [`find`](http://linux.die.net/man/1/find) documentation gives a
 bewildering number of options. Here are the ones you may "find" the most
@@ -147,7 +147,7 @@ various measures like 512-byte blocks (`b`) through gigabytes (`G`).
 
 * **`-user <uname>`** - file is owned by *uname*.
 
-## Useful find Actions{.unnumbered}
+## Useful `find` Actions{.unnumbered}
 
 Similarly, you are going to keep coming back to just a handful of `find`
 actions:

@@ -270,7 +270,7 @@ versions of a package to allow different versions of the same package to
 exist on the same system, where different applications may be relying on
 the different versions to work.
 
-## Which which is Which?{.unnumbered}
+## Which `which` is Which?{.unnumbered}
 
 Now that we've seen that we can have multiple versions of the same command
 or executable on the system, an interesting question arises. *Which* `foo`

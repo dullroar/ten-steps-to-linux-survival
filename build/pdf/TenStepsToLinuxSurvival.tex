@@ -1,43 +1,49 @@
-\documentclass[10pt,]{book}
-
-% Packages I added.
-\usepackage{placeins}
-\usepackage{caption}
-\usepackage{float}
-\usepackage{flafter}
-\usepackage{makeidx}
-\usepackage[nottoc]{tocbibind}
-\usepackage{fancyhdr}
-\usepackage{xcolor}
-\usepackage{framed}
-\usepackage{tocloft}
-% End of packages I added.
-
-\usepackage[T1]{fontenc}
+\documentclass[10pt,american,]{book}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
 \usepackage{fixltx2e} % provides \textsubscript
-% use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
 \else % if luatex or xelatex
   \ifxetex
     \usepackage{mathspec}
-    \usepackage{xltxtra,xunicode}
   \else
     \usepackage{fontspec}
   \fi
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
   \newcommand{\euro}{€}
-    \setmainfont{DejaVu Serif}
-    \setsansfont{DejaVu Sans}
+    \setmainfont[]{DejaVu Serif}
+    \setsansfont[]{DejaVu Sans}
     \setmonofont[Mapping=tex-ansi]{Ubuntu Mono}
 \fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
-\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
 \usepackage[margin=1in, paperwidth=7in, paperheight=9in]{geometry}
+\usepackage{hyperref}
+\PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
+\hypersetup{unicode=true,
+            pdftitle={Ten Steps to Linux Survival},
+            pdfauthor={Jim Lehmer},
+            pdfsubject={Bash for Windows People},
+            colorlinks=true,
+            linkcolor=black,
+            citecolor=black,
+            urlcolor=black,
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=american]{babel}
+\else
+  \usepackage{polyglossia}
+  \setmainlanguage[variant=american]{english}
+\fi
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -52,55 +58,41 @@
 \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
 \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
 \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
 \newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
 \newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{{#1}}}
+\newcommand{\ImportTok}[1]{{#1}}
 \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
 \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{{#1}}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
 \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{{#1}}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{{#1}}}}
+\newcommand{\BuiltInTok}[1]{{#1}}
+\newcommand{\ExtensionTok}[1]{{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{{#1}}}
 \newcommand{\RegionMarkerTok}[1]{{#1}}
-\newcommand{\ErrorTok}[1]{\textbf{{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{{#1}}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{{#1}}}}
 \newcommand{\NormalTok}[1]{{#1}}
-\usepackage{graphicx}
-% Redefine \includegraphics so that, unless explicit options are
-% given, the image width will not exceed the width of the page.
-% Images get their normal width if they fit onto the page, but
-% are scaled down if they would overflow the margins.
+\usepackage{graphicx,grffile}
 \makeatletter
-% Fix TOC overflow.
-\renewcommand{\@pnumwidth}{3em} 
-\renewcommand{\@tocrmarg}{4em}
-% End fix TOC overflow.
-\def\ScaleIfNeeded{%
-  \ifdim\Gin@nat@width>\linewidth
-    \linewidth
-  \else
-    \Gin@nat@width
-  \fi
-}
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
 \makeatother
-\let\Oldincludegraphics\includegraphics
-{%
- \catcode`\@=11\relax%
- \gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[width=\ScaleIfNeeded]}}%
-}%
-\ifxetex
-  \usepackage[setpagesize=false, % page size defined by xetex
-              unicode=false, % unicode breaks when used with xetex
-              xetex]{hyperref}
-\else
-  \usepackage[unicode=true]{hyperref}
-\fi
-\hypersetup{breaklinks=true,
-            bookmarks=true,
-            pdfauthor={Jim Lehmer},
-            pdftitle={Jim's Ten Steps to Linux Survival},
-            colorlinks=true,
-            citecolor=black,
-            urlcolor=black,
-            linkcolor=black,
-            pdfborder={0 0 0}}
-\urlstyle{same}  % don't use monospace font for urls
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 % Make links footnotes instead of hotlinks:
 \renewcommand{\href}[2]{#2\footnote{\url{#1}}}
 \usepackage[normalem]{ulem}
@@ -109,11 +101,25 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \setcounter{secnumdepth}{0}
 
-\title{Jim's Ten Steps to Linux Survival}
+\title{Ten Steps to Linux Survival\\\vspace{0.5em}{\large Bash for Windows People}}
 \author{Jim Lehmer}
 \date{2015}
+% Packages I added.
+\usepackage{placeins}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{flafter}
+\usepackage{makeidx}
+\usepackage[nottoc]{tocbibind}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{tocloft}
+% End of packages I added.
 
 % Overriding commands.
 \makeindex
@@ -159,51 +165,81 @@
 \renewcommand{\RegionMarkerTok}[1]{{#1}}
 \renewcommand{\ErrorTok}[1]{{#1}}
 \renewcommand{\NormalTok}[1]{{#1}}
+\renewcommand{\ConstantTok}[1]{{#1}}
+\renewcommand{\SpecialCharTok}[1]{{#1}}
+\renewcommand{\VerbatimStringTok}[1]{{#1}}
+\renewcommand{\SpecialStringTok}[1]{{#1}}
+\renewcommand{\ImportTok}[1]{{#1}}
+\renewcommand{\DocumentationTok}[1]{{#1}}
+\renewcommand{\AnnotationTok}[1]{{#1}}
+\renewcommand{\CommentVarTok}[1]{{#1}}
+\renewcommand{\VariableTok}[1]{{#1}}
+\renewcommand{\ControlFlowTok}[1]{{#1}}
+\renewcommand{\OperatorTok}[1]{{#1}}
+\renewcommand{\BuiltInTok}[1]{{#1}}
+\renewcommand{\ExtensionTok}[1]{{#1}}
+\renewcommand{\PreprocessorTok}[1]{{#1}}
+\renewcommand{\AttributeTok}[1]{{#1}}
+\renewcommand{\RegionMarkerTok}[1]{{#1}}
+\renewcommand{\InformationTok}[1]{{#1}}
+\renewcommand{\WarningTok}[1]{{#1}}
 % End of overriding commands.
 
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
 \begin{document}
+\maketitle
+
 \setlength{\cftfignumwidth}{4em}
 \pagestyle{empty}
-
-\maketitle
+\setcounter{chapter}{-2}
+% Fix TOC overflow.
+%\renewcommand{\@pnumwidth}{3em} 
+%\renewcommand{\@tocrmarg}{4em}
+% End fix TOC overflow.
 
 {
 \hypersetup{linkcolor=black}
-\setcounter{tocdepth}{3}
+\setcounter{tocdepth}{2}
 \tableofcontents
 }
-
-% Add list of figures.
-{
 \listoffigures
-\vfill
-}
-% End of list of figures.
-
-\setcounter{chapter}{-2}
-
 \cleardoublepage
-\includegraphics{./images/Merv.jpg}~\\ Merv sez, "Don't panic."
-\clearpage
-~\\\hspace*{0.333em}\\ By James Lehmer ~\\\hspace*{0.333em}\\ v0.8
-~\\\hspace*{0.333em}\\
-\includegraphics{./images/cc-by-sa.png}\\\emph{Jim's Ten Steps to Linux
-Survival} by James Lehmer is licensed under a
+\includegraphics{./images/MervBW.jpg}~\\
+ Merv sez, "Don't panic." \clearpage
+~\\
+\hspace*{0.333em}\\
+ By James Lehmer ~\\
+\hspace*{0.333em}\\
+ v0.9 ~\\
+\hspace*{0.333em}\\
+ \includegraphics{./images/cc-by-sa.png}\\
+\emph{Ten Steps to Linux Survival - Bash for Windows People} by James
+Lehmer is licensed under a
 \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
-Attribution-ShareAlike 4.0 International License}.
-~\\\hspace*{0.333em}\\ \textbf{Dedicated to my first three technical
-mentors} - Jim Proffer, who taught me digging deeper was fun and let me
-do so (often in production). Jerry Wood, who taught me to stop and think
-(and once called me an "inveterate toolmaker" in a review). And Kim
-Manchak, who let me be more than he hired me to be (and continues to be
-a great chess opponent). Thank you, gentlemen. I've tried to pay it
-forward. This book is part of that.
+Attribution-ShareAlike 4.0 International License}. ~\\
+\hspace*{0.333em}\\
+ \textbf{Dedicated to my first three technical mentors} - Jim Proffer,
+who taught me digging deeper was fun and let me do so (often in
+production). Jerry Wood, who taught me to stop and think (and once
+called me an "inveterate toolmaker" in a review). And Kim Manchak, who
+let me be more than he hired me to be (and continues to be a great chess
+opponent). Thank you, gentlemen. I've tried to pay it forward. This book
+is part of that.
 
 \pagestyle{fancy} \fancyhead{}
-\fancyhead[LE]{\slshape JIM'S\ TEN\ STEPS\ TO\ LINUX\ SURVIVAL}
+\fancyhead[LE]{\slshape TEN\ STEPS\ TO\ LINUX\ SURVIVAL}
 \fancyhead[RO]{\slshape \leftmark} \renewcommand{\headrulewidth}{0.4pt}
 
-\hyperdef{}{introduction}{\chapter{Introduction}\label{introduction}}
+\hypertarget{introduction}{\chapter{Introduction}\label{introduction}}
 
 \begin{quote}
 \emph{"And you may ask yourself, 'Well, how did I get here?'"} - Talking
@@ -227,61 +263,62 @@ Here is what we'll cover in the rest of this book:
 \def\labelenumi{\arabic{enumi}.}
 \setcounter{enumi}{-1}
 \item
-  \hyperref[some-history]{\textbf{Some History}} – UNIX vs. BSD, System
-  V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,” Cygwin, and why any of
-  this matters now, “Why does this script off the internet work on this
-  system and not on that one?”
+  \protect\hyperlink{some-history}{\textbf{Some History}} – UNIX vs.
+  BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,” Cygwin, and
+  why any of this matters now, “Why does this script off the internet
+  work on this system and not on that one?”
 \item
-  \hyperref[come-out-of-your-shell]{\textbf{Come Out of Your Shell}} –
-  \texttt{sh} vs. \texttt{ash} vs. \texttt{bash} vs. everything else,
-  "REPL”, interactive vs. scripts, command history, tab expansion,
-  environment variables and "A path! A path!"
+  \protect\hyperlink{come-out-of-your-shell}{\textbf{Come Out of Your
+  Shell}} – \texttt{sh} vs. \texttt{ash} vs. \texttt{bash} vs.
+  everything else, "REPL”, interactive vs. scripts, command history, tab
+  expansion, environment variables and "A path! A path!"
 \item
-  \hyperref[file-under-directories]{\textbf{File Under "Directories"}} –
-  \texttt{ls}, \texttt{mv}, \texttt{cp}, \texttt{rm} (\texttt{-rf *}),
-  \texttt{cat}, \texttt{chmod}/\texttt{chgrp}/\texttt{chown} and
-  everyone's favorite, \texttt{touch}.
+  \protect\hyperlink{file-under-directories}{\textbf{File Under
+  "Directories"}} – \texttt{ls}, \texttt{mv}, \texttt{cp}, \texttt{rm}
+  (\texttt{-rf\ *}), \texttt{cat},
+  \texttt{chmod}/\texttt{chgrp}/\texttt{chown} and everyone's favorite,
+  \texttt{touch}.
 \item
-  \hyperref[finding-meaning]{\textbf{Finding Meaning}} – the
+  \protect\hyperlink{finding-meaning}{\textbf{Finding Meaning}} – the
   \texttt{find} command in all its glory. Probably the single most
   useful command in "UNIX" (I think).
 \item
-  \hyperref[grokking-grep]{\textbf{Grokking \texttt{grep}}} – and
-  probably gawking at \texttt{awk} while we are at it, which means
+  \protect\hyperlink{grokking-grep}{\textbf{Grokking \texttt{grep}}} –
+  and probably gawking at \texttt{awk} while we are at it, which means
   regular expressions, too. Now we have two problems.
 \item
-  \hyperref[just-a-series-of-pipes]{\textbf{“Just a Series of Pipes”}} –
-  \texttt{stdin}/\texttt{stdout}/\texttt{stderr}, redirects, piping
-  between commands.
+  \protect\hyperlink{just-a-series-of-pipes}{\textbf{“Just a Series of
+  Pipes”}} – \texttt{stdin}/\texttt{stdout}/\texttt{stderr}, redirects,
+  piping between commands.
 \item
-  \hyperref[vi]{\textbf{\texttt{vi}}} (had to be \#6, if you think about
-  it) – how to stay sane for 10 minutes in \texttt{vi}. Navigation,
-  basic editing, find, change/change-all, cut and paste, undo, saving
-  and canceling. Plus easier alternatives like \texttt{nano}, and why
-  \texttt{vi} still matters.
+  \protect\hyperlink{vi}{\textbf{\texttt{vi}}} (had to be \#6, if you
+  think about it) – how to stay sane for 10 minutes in \texttt{vi}.
+  Navigation, basic editing, find, change/change-all, cut and paste,
+  undo, saving and canceling. Plus easier alternatives like
+  \texttt{nano}, and why \texttt{vi} still matters.
 \item
-  \hyperref[the-whole-wide-world]{\textbf{The Whole Wide World}} –
-  \texttt{curl}, \texttt{wget}, \texttt{ifconfig}, \texttt{ping},
-  \texttt{ssh}, \texttt{telnet}, \texttt{/etc/hosts} and email before
-  Outlook.
+  \protect\hyperlink{the-whole-wide-world}{\textbf{The Whole Wide
+  World}} – \texttt{curl}, \texttt{wget}, \texttt{ifconfig},
+  \texttt{ping}, \texttt{ssh}, \texttt{telnet}, \texttt{/etc/hosts} and
+  email before Outlook.
 \item
-  \hyperref[the-man-behind-the-curtain]{\textbf{The Man Behind the
-  Curtain}} - \texttt{/proc}, \texttt{/dev}, \texttt{ps},
+  \protect\hyperlink{the-man-behind-the-curtain}{\textbf{The Man Behind
+  the Curtain}} - \texttt{/proc}, \texttt{/dev}, \texttt{ps},
   \texttt{/var/log}, \texttt{/tmp} and other things under the covers.
 \item
-  \hyperref[how-do-you-know-what-you-dont-know-man]{\textbf{How Do You
-  Know What You Don’t Know, \texttt{man}?}} – \texttt{man},
+  \protect\hyperlink{how-do-you-know-what-you-dont-know-man}{\textbf{How
+  Do You Know What You Don’t Know, \texttt{man}?}} – \texttt{man},
   \texttt{info}, \texttt{apropos}, Linux Documentation Project, Debian
   and Arch guides, StackOverflow and the dangers of searching for
-  “\texttt{man find}” or “\texttt{man touch}” on the internet.
+  “\texttt{man\ find}” or “\texttt{man\ touch}” on the internet.
 \item
-  \hyperref[and-so-on]{\textbf{And So On}} - \texttt{/etc}, starting and
-  stopping services, \texttt{apt-get}/\texttt{rpm}/\texttt{yum}, and
-  more.
+  \protect\hyperlink{and-so-on}{\textbf{And So On}} - \texttt{/etc},
+  starting and stopping services,
+  \texttt{apt-get}/\texttt{rpm}/\texttt{yum}, and more.
 \end{enumerate}
 
-Plus \hyperref[appendices]{some stuff} at the end to tie the whole room
-together.
+Plus \protect\hyperlink{appendices}{some stuff} at the end to tie the
+whole room together.
 
 \section*{Batteries Not Included}\label{batteries-not-included}
 \addcontentsline{toc}{section}{Batteries Not Included}
@@ -325,8 +362,8 @@ or mistake, or a command or parameter you \textbf{\emph{really, really,
 really}} think should be in here even though I said I am not trying to
 be exhaustive, feel free to
 \href{https://github.com/dullroar/ten-steps-to-linux-survival}{clone it
-from GitHub}, make your changes and send me a \texttt{git pull} request.
-Or you can try to
+from GitHub}, make your changes and send me a \texttt{git\ pull}
+request. Or you can try to
 \href{https://github.com/dullroar/ten-steps-to-linux-survival/issues}{file
 it as an issue} and I'll see how I feel that day.
 
@@ -387,8 +424,8 @@ Galaxy})
 It started out as a proposal I made a while ago to develop a "lunch and
 learn" session of about 60-90 minutes of what I considered to be "a
 Linux survival guide." The list in the
-\hyperref[introduction]{\emph{Introduction}} above is based on my
-original email proposal. The audience would be entirely technical,
+\protect\hyperlink{introduction}{\emph{Introduction}} above is based on
+my original email proposal. The audience would be entirely technical,
 primarily "IT" (Windows/Cisco/VMWare/Exchange/SAN admins).
 
 My goal is not to get into scripting or system setup and hardening or
@@ -399,11 +436,10 @@ better able to survive if dropped into the jungle with:
 
 \begin{quote}
 \emph{"The main www site is down, and all the people who know about it
-are \textgreater{} out. It's running on some sort of Linux, I think, and
-the credentials and \textgreater{} IP address are scrawled on this
-sticky note. Can you get in and poke \textgreater{} around and see if
-you can figure it out?"} - your boss (next Tuesday \textgreater{}
-morning)
+are out. It's running on some sort of Linux, I think, and the
+credentials and IP address are scrawled on this sticky note. Can you get
+in and poke around and see if you can figure it out?"} - your boss (next
+Tuesday morning)
 \end{quote}
 
 Well, as I started to type out my notes of what I considered to be
@@ -427,10 +463,11 @@ up and running \textbf{\emph{quickly}} with the sheer basics, plus
 knowing where to go for help. I modeled it explicitly after "short and
 opinionated" tech books such as Douglas Crockford's
 \href{http://shop.oreilly.com/product/9780596517748.do}{\emph{Javascript:
-The Good Parts}} or Zed Shaw's
-\href{http://learnpythonthehardway.org/}{\emph{Learn Python the Hard
-Way}}. If you like those big, thick tech books that are measured by the
-kilogram, this is not the book for you.
+The Good Parts}} and especially those licensed under
+\href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons}
+licenses, such as the books from \href{http://greenteapress.com/}{Green
+Tea Press}. If you like those big, thick tech books that are measured by
+the kilogram, this is not the book for you.
 
 It is also not a replacement for reading the real documentation and
 doing research and testing, especially in production! But hopefully it
@@ -453,7 +490,7 @@ production. \textbf{\emph{You have been warned!}}
 
 If a command, file name or other "computer code" is shown in-line in a
 sentence, it will appear in a fixed-width font, e.g.,
-\texttt{ls -{}-recursive *.txt}.
+\texttt{ls\ -\/-recursive\ *.txt}.
 
 If a command and its output, script code or something else is shown in a
 block, it will appear like this:
@@ -476,7 +513,7 @@ block, it will appear like this:
 \end{Shaded}
 
 \textbf{Note:} The examples in this book typically show something like
-\texttt{\textasciitilde{} \$} before the command, or \texttt{\#} (when
+\texttt{\textasciitilde{}\ \$} before the command, or \texttt{\#} (when
 logged in as root) or \texttt{\%} (when running under \texttt{csh}).
 These "command prompts" are set in \texttt{bash} via the
 \href{https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto}{\texttt{PS1}
@@ -488,7 +525,7 @@ part of the command.
 
 Thanks to Ken Astl for reading an early draft of this book.
 
-\hyperdef{}{some-history}{\chapter{Some History}\label{some-history}}
+\hypertarget{some-history}{\chapter{Some History}\label{some-history}}
 
 \textbf{\emph{UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX,
 “UNIX-like,” Cygwin, and why any of this matters now. “Why does this
@@ -534,7 +571,7 @@ the depths of time:
   "UNIX" platforms:
 
   \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
+  \tightlist
   \item
     \textbf{HP HP-UX}
   \item
@@ -595,7 +632,7 @@ To further muddy the waters, there have been multiple attempts to
 "standardize" whatever it is this thing is called:
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\tightlist
 \item
   \href{https://en.wikipedia.org/wiki/POSIX}{\textbf{POSIX}}\drios{POSIX}
   - a de jure set of standards created in the 1980s and 1990s to try to
@@ -806,7 +843,7 @@ You can do a lot of amazing things with Cygwin with enough effort
 point why not expend that effort in standing up a "real" Linux (virtual)
 machine anyway?
 
-\hyperdef{}{come-out-of-your-shell}{\chapter{Come Out of Your
+\hypertarget{come-out-of-your-shell}{\chapter{Come Out of Your
 Shell}\label{come-out-of-your-shell}}
 
 \textbf{\emph{\texttt{sh} vs. \texttt{ash} vs. \texttt{bash} vs.
@@ -847,7 +884,7 @@ In UNIX-land:
     - Almquist shell.
 
     \begin{itemize}
-    \itemsep1pt\parskip0pt\parsep0pt
+    \tightlist
     \item
       \textbf{\texttt{dash}} - Debian Almquist shell (replaced
       \texttt{ash} in Debian)
@@ -880,8 +917,9 @@ place. We're going to assume \texttt{bash} for the rest of this
 tutorial. With few modifications, anything in the \texttt{sh} hierarchy
 above can usually run in the other members of the same tree.
 
-\section*{bash Built-Ins}\label{bash-built-ins}
-\addcontentsline{toc}{section}{bash Built-Ins}
+\section*{\texorpdfstring{\texttt{bash}
+Built-Ins}{bash Built-Ins}}\label{bash-built-ins}
+\addcontentsline{toc}{section}{\texttt{bash} Built-Ins}
 
 Every shell has some "built-in" commands that are implemented as part of
 the shell and not as an external command or program, and
@@ -1063,7 +1101,7 @@ And \texttt{CMD.EXE}:
  \KeywordTok{Server}\NormalTok{\textbackslash{}130\textbackslash{}DTS\textbackslash{}Binn}\DataTypeTok{\textbackslash{};}\NormalTok{C:\textbackslash{}Program Files\textbackslash{}Microsoft SQL Server\textbackslash{}120\textbackslash{}Tools\textbackslash{}Binn}\DataTypeTok{\textbackslash{};}\NormalTok{C:\textbackslash{}P}
 \KeywordTok{rogram} \NormalTok{Files (x86)\textbackslash{}}\KeywordTok{Microsoft} \NormalTok{SDKs\textbackslash{}Azure\textbackslash{}CLI\textbackslash{}wbin}\KeywordTok{;C}\NormalTok{:\textbackslash{}Windows\textbackslash{}System32\textbackslash{}WindowsPowe}
 \KeywordTok{rShell}\NormalTok{\textbackslash{}v1.0\textbackslash{}}
-\OtherTok{PATHEXT=}\NormalTok{.COM;}\KeywordTok{.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC}
+\NormalTok{PATHEXT=.COM}\KeywordTok{;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC}
 \OtherTok{PROCESSOR_ARCHITECTURE=}\NormalTok{AMD64}
 \OtherTok{PROCESSOR_IDENTIFIER=}\NormalTok{Intel64 }\KeywordTok{Family} \NormalTok{6 Model 60 Stepping 3, GenuineIntel}
 \end{Highlighting}
@@ -1103,11 +1141,11 @@ out their contents using the "same" command, note that:
   \texttt{\$variable} in \texttt{bash} and \texttt{\%variable\%} in
   \texttt{CMD.EXE}.
 \item
-  \texttt{bash} is case-sensitive and so \texttt{echo \$HOME} works but
-  \texttt{echo \$home} does not. \texttt{CMD.EXE} is \textbf{\emph{not}}
-  case-sensitive, so either \texttt{echo \%homedrive\%} or
-  \texttt{echo \%HOMEDRIVE\%} (or \texttt{EcHo \%hOmEdRiVe\%}) would
-  work.
+  \texttt{bash} is case-sensitive and so \texttt{echo\ \$HOME} works but
+  \texttt{echo\ \$home} does not. \texttt{CMD.EXE} is
+  \textbf{\emph{not}} case-sensitive, so either
+  \texttt{echo\ \%homedrive\%} or \texttt{echo\ \%HOMEDRIVE\%} (or
+  \texttt{EcHo\ \%hOmEdRiVe\%}) would work.
 \end{enumerate}
 
 One final note of caution. You can set up command aliases in
@@ -1173,7 +1211,7 @@ script execution simply by separating them with spaces:
 
 Note that passing in values in this way does not safeguard sensitive
 information from other users on the system who can see the values at
-least while the script is running using the \texttt{ps -x} command.
+least while the script is running using the \texttt{ps\ -x} command.
 
 You can also set the value of environment variables to the output of a
 command by surrounding it with paired ` ("back ticks", or "grave
@@ -1309,8 +1347,8 @@ one-liner typed from memory with lots of obscure commands piped together
 and invoked with cryptic options.
 
 I am not a real shell wizard. See
-\hyperref[how-do-you-know-what-you-dont-know-man]{chapter 9} for how you
-can fake it like I do.
+\protect\hyperlink{how-do-you-know-what-you-dont-know-man}{chapter 9}
+for how you can fake it like I do.
 
 \section*{Getting Lazy}\label{getting-lazy}
 \addcontentsline{toc}{section}{Getting Lazy}
@@ -1341,7 +1379,7 @@ Without tab expansion, typing out something like this is painful:
 \end{Highlighting}
 \end{Shaded}
 
-But with tab expansion, we can simply type \texttt{mv D\^{}t} where
+But with tab expansion, we can simply type \texttt{mv\ D\^{}t} where
 \texttt{\^{}t} represents hitting the \texttt{Tab} key, and since there
 is only one file that starts with a "D" tab expansion will fill in the
 rest of the file name:
@@ -1388,7 +1426,7 @@ history. Again, both \texttt{CMD.EXE} and \texttt{bash} give you command
 history, but \texttt{CMD.EXE} only remembers it for the session, while
 \texttt{bash} stores it in one of your hidden "profile" or "dot" files
 in your home directory called \texttt{.bash\_history}, which you can
-display with \texttt{ls -a}:
+display with \texttt{ls\ -a}:
 
 \drcap{ls command showing hidden files}
 
@@ -1417,11 +1455,11 @@ you can update them and re-execute them.
 the saved history will be of the last login to successfully write back
 out \texttt{.bash\_history}.
 
-\hyperdef{}{file-under-directories}{\chapter{File Under
+\hypertarget{file-under-directories}{\chapter{File Under
 "Directories"}\label{file-under-directories}}
 
 \textbf{\emph{\texttt{ls}, \texttt{mv}, \texttt{cp}, \texttt{rm}
-(\texttt{-rf *}), \texttt{cat},
+(\texttt{-rf\ *}), \texttt{cat},
 \texttt{chmod}/\texttt{chgrp}/\texttt{chown} and everyone's favorite,
 \texttt{touch}.}}
 
@@ -1495,7 +1533,7 @@ directory is
 Remember, "UNIX" environments think of files that start with a
 \texttt{.} as "hidden." If you want to see all these
 \href{https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory\#Unix_and_Unix-like_environments}{"dotfiles"}\index{dotfiles},
-you can use \texttt{ls -a}:
+you can use \texttt{ls\ -a}:
 
 \drcap{Listing of home directory showing hidden files}
 
@@ -1513,7 +1551,7 @@ you can use \texttt{ls -a}:
 
 Wow! That's a lot of dotfiles!
 
-If you want to see some details of each file, use \texttt{ls -l}:
+If you want to see some details of each file, use \texttt{ls\ -l}:
 
 \drcap{Detailed listing of home directory}
 
@@ -1570,14 +1608,14 @@ Parameters}\label{a-brief-detour-around-parameters}
 \addcontentsline{toc}{section}{A Brief Detour Around Parameters}
 
 In \texttt{bash} and many Linux commands in general, there are old,
-"short" (terse) parameter names, like \texttt{ls -a}, and newer, longer,
-descriptive parameter names like \texttt{ls -{}-all} that mean the same
-thing. It is typically good to use the shorter version during
+"short" (terse) parameter names, like \texttt{ls\ -a}, and newer,
+longer, descriptive parameter names like \texttt{ls\ -\/-all} that mean
+the same thing. It is typically good to use the shorter version during
 interactive sessions and testing, but I prefer long parameter names in
 scripts, because when I come back and look at it in two years, I may not
-remember what \texttt{rm -rf *}\drcmd{rm} means (in the "UNIX" world it
-means you're toast if you run it by mistake), thus
-\texttt{rm -{}-recursive -{}-force *} seems a bit more "intuitive."
+remember what \texttt{rm\ -rf\ *}\drcmd{rm} means (in the "UNIX" world
+it means you're toast if you run it by mistake), thus
+\texttt{rm\ -\/-recursive\ -\/-force\ *} seems a bit more "intuitive."
 
 \begin{quote}
 \textbf{\emph{The behind you save in the future by describing things
@@ -1640,9 +1678,9 @@ with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}\drcmd{cat}
 \KeywordTok{cd} \NormalTok{FreeRDP}
 \KeywordTok{sudo} \NormalTok{apt-get -y install build-essential git-core cmake libssl-dev libx11-dev lib}
 \KeywordTok{xext-dev} \NormalTok{libxinerama-dev \textbackslash{}}
-  \KeywordTok{libxcursor-dev} \NormalTok{libxdamage-dev libxv-dev libxkbfile-dev libasound2-dev libcups2}
+  \NormalTok{libxcursor-dev libxdamage-dev libxv-dev libxkbfile-dev libasound2-dev libcups2}
   \KeywordTok{-dev} \NormalTok{libxml2 libxml2-dev \textbackslash{}}
-  \KeywordTok{libxrandr-dev} \NormalTok{libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libxi-dev}
+  \NormalTok{libxrandr-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev libxi-dev}
    \KeywordTok{libgstreamer-plugins-base1.0-dev}
 \KeywordTok{sudo} \NormalTok{apt-get -y install libavutil-dev libavcodec-dev}
 \KeywordTok{sudo} \NormalTok{apt-get -y install libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev}
@@ -1658,8 +1696,8 @@ with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}\drcmd{cat}
 \end{Highlighting}
 \end{Shaded}
 
-In this example when we \texttt{cat installrdp} we can determine it is a
-\texttt{bash} shell script that looks to install and configure
+In this example when we \texttt{cat\ installrdp} we can determine it is
+a \texttt{bash} shell script that looks to install and configure
 \href{https://github.com/FreeRDP/FreeRDP}{FreeRDP}\drcmd{xfreerdp} on a
 Debian-style system:
 
@@ -1669,7 +1707,7 @@ Debian-style system:
   \textbf{\texttt{apt-get}}\drcmd{apt-get} - Debian-style package
   manager.
 \item
-  \textbf{\texttt{git clone}}\drcmd{git} - cloning package from
+  \textbf{\texttt{git\ clone}}\drcmd{git} - cloning package from
   \href{http://github.com}{GitHub}.
 \item
   \textbf{\texttt{cmake}}\drcmd{cmake} and
@@ -1682,8 +1720,8 @@ A better way to display a longer file is to use the
 command (which is a derivative of the original
 \href{http://linux.die.net/man/1/more}{\texttt{more}}\drcmd{more}, hence
 the name). \texttt{less} is a paginator, where the \texttt{Space},
-\texttt{Page Down} or down arrow keys scroll down and the
-\texttt{Page Up} or up arrow keys scrolls up. \texttt{Q} quits.
+\texttt{Page\ Down} or down arrow keys scroll down and the
+\texttt{Page\ Up} or up arrow keys scrolls up. \texttt{Q} quits.
 
 \textbf{Note:} The \texttt{vi}\drcmd{vi} search (\texttt{/}, \texttt{?},
 \texttt{n} and \texttt{p}) and navigation (\texttt{G}, \texttt{0}) keys
@@ -2111,8 +2149,8 @@ delete:
 Then using the "up arrow" to bring back up the \texttt{ls} command and
 changing \texttt{ls} to \texttt{rm} and re-executing it. Safer that way.
 
-\section*{Touch Me}\label{touch-me}
-\addcontentsline{toc}{section}{Touch Me}
+\section*{\texorpdfstring{\texttt{touch} Me}{touch Me}}\label{touch-me}
+\addcontentsline{toc}{section}{\texttt{touch} Me}
 
 We just learned how to make a file disappear. We can also make a file
 magically appear, just by
@@ -2293,12 +2331,12 @@ In addition, you need to know the difference between "absolute" and
 \begin{itemize}
 \item
   \textbf{Absolute path} - \textbf{\emph{always}} "goes through" or
-  specifies the "root" (\texttt{/}) directory, e.g. \texttt{cd /etc}.
+  specifies the "root" (\texttt{/}) directory, e.g. \texttt{cd\ /etc}.
 \item
   \textbf{Relative path} - does \textbf{\emph{not}} specify the root
   directory, expects to start the navigation at the current directory
   with all path components existing from there, e.g.,
-  \texttt{cd Dissertations}.
+  \texttt{cd\ Dissertations}.
 \end{itemize}
 
 Windows inherited the concept of \texttt{.} for the current directory
@@ -2402,8 +2440,8 @@ In the above, for example, we can see that the user \texttt{root} owns
 the file \texttt{aliases} while the \texttt{wheel} group is the primary
 group for it. \texttt{root} can both read and write the file
 (\texttt{rw-}) while any user in the \texttt{wheel} group can only read
-it (\texttt{r-{}-}). Any other id will also have read access
-(\texttt{r-{}-}).
+it (\texttt{r-\/-}). Any other id will also have read access
+(\texttt{r-\/-}).
 
 Similarly we see that \texttt{defaults} is a directory (\texttt{d}) that
 can be read, written (new files created) and listed by \texttt{root}
@@ -2509,32 +2547,38 @@ permissions) to 7 (all permissions). It helps to think of the three
 permissions as "binary places":
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\tightlist
 \item
-  \textbf{r} - 2\textsuperscript{2} = 4
+  \textbf{\texttt{r}}
+  \texttt{=\ 2}\textsuperscript{\texttt{2}}\texttt{=\ 4}
 \item
-  \textbf{w} - 2\textsuperscript{1} = 2
+  \textbf{\texttt{w}}
+  \texttt{=\ 2}\textsuperscript{\texttt{1}}\texttt{=\ 2}
 \item
-  \textbf{x} - 2\textsuperscript{0} = 1
+  \textbf{\texttt{x}}
+  \texttt{=\ 2}\textsuperscript{\texttt{0}}\texttt{=\ 1}
 \item
-  \textbf{-} - 0
+  \textbf{\texttt{-}} \texttt{=\ 0}
 \end{itemize}
 
 Some examples:
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\tightlist
 \item
-  \textbf{-{}-{}-} - 0 + 0 + 0 = 0
+  \textbf{\texttt{-\/-\/-}} \texttt{=\ 0\ +\ 0\ +\ 0\ =\ 0}
 \item
-  \textbf{r-{}-} - 2\textsuperscript{2} + 0 + 0 = 4
+  \textbf{\texttt{r-\/-}}
+  \texttt{=\ 2}\textsuperscript{\texttt{2}}\texttt{+\ 0\ +\ 0\ =\ 4}
 \item
-  \textbf{r-x} - 2\textsuperscript{2} + 0 + 2\textsuperscript{0} = 5
+  \textbf{\texttt{r-x}}
+  \texttt{=\ 2}\textsuperscript{\texttt{2}}\texttt{+\ 0\ +\ 2}\textsuperscript{\texttt{0}}\texttt{=\ 5}
 \item
-  \textbf{rw-} - 2\textsuperscript{2} + 2\textsuperscript{1} + 0 = 6
+  \textbf{\texttt{rw-}}
+  \texttt{=\ 2}\textsuperscript{\texttt{2}}\texttt{+\ 2}\textsuperscript{\texttt{1}}\texttt{+\ 0\ =\ 6}
 \item
-  \textbf{rwx} - 2\textsuperscript{2} + 2\textsuperscript{1} +
-  2\textsuperscript{0} = 7
+  \textbf{\texttt{rwx}}
+  \texttt{=\ 2}\textsuperscript{\texttt{2}}\texttt{+\ 2}\textsuperscript{\texttt{1}}\texttt{+\ 2}\textsuperscript{\texttt{0}}\texttt{=\ 7}
 \end{itemize}
 
 Now to use octal with \texttt{chmod}, we think of the overall result we
@@ -2674,7 +2718,7 @@ a new archive), \texttt{v} (turn on "verbose" output) and \texttt{f}
 followed by the file name of the new \texttt{.tar} file.
 
 \textbf{Note:} \texttt{tar} supports POSIX-style parameters
-(\texttt{-c}), GNU-style (\texttt{-{}-create}), as well as the older
+(\texttt{-c}), GNU-style (\texttt{-\/-create}), as well as the older
 style (\texttt{c} with no hyphens at all), as shown in these examples.
 So both of the following are also equivalent to the above:
 
@@ -2730,8 +2774,9 @@ parameter to extract (\texttt{x}), like this:
 \end{Highlighting}
 \end{Shaded}
 
-\section*{Let's Link Up!}\label{lets-link-up}
-\addcontentsline{toc}{section}{Let's Link Up!}
+\section*{\texorpdfstring{Let's \texttt{link}
+Up!}{Let's link Up!}}\label{lets-link-up}
+\addcontentsline{toc}{section}{Let's \texttt{link} Up!}
 
 In Windows there are "shortcuts," which are simply special files that
 the OS knows to interpret as "go open this other file over there." There
@@ -2917,10 +2962,10 @@ file containing "This is b."?
 So, ultimately, it takes a \texttt{rm} for every hard link to
 permanently delete a file.
 
-\subsection*{Mount It? I Don't Even Know It's
-Name!}\label{mount-it-i-dont-even-know-its-name}
-\addcontentsline{toc}{subsection}{Mount It? I Don't Even Know It's
-Name!}
+\subsection*{\texorpdfstring{\texttt{mount} It? I Don't Even Know It's
+Name!}{mount It? I Don't Even Know It's Name!}}\label{mount-it-i-dont-even-know-its-name}
+\addcontentsline{toc}{subsection}{\texttt{mount} It? I Don't Even Know
+It's Name!}
 
 With all this talk that a hard link can only be on the same file system,
 how do you know whether two directories are on the same file system? In
@@ -3007,8 +3052,9 @@ Many commands that deal with files and file systems, like
 command whether to follow soft links or not (by default, \texttt{find}
 does not - see the next chapter for more).
 
-\section*{What's the diff?}\label{whats-the-diff}
-\addcontentsline{toc}{section}{What's the diff?}
+\section*{\texorpdfstring{What's the
+\texttt{diff}?}{What's the diff?}}\label{whats-the-diff}
+\addcontentsline{toc}{section}{What's the \texttt{diff}?}
 
 Most people think of
 \href{http://linux.die.net/man/1/diff}{\texttt{diff}}\drcmd{diff} as a
@@ -3101,7 +3147,7 @@ control system like
 \href{http://linux.die.net/man/1/git}{\texttt{git}}\drcmd{git}, but
 again, that is beyond the scope of this book.
 
-\hyperdef{}{finding-meaning}{\chapter{Finding
+\hypertarget{finding-meaning}{\chapter{Finding
 Meaning}\label{finding-meaning}}
 
 \textbf{\emph{The \texttt{find} command in all its glory. Probably the
@@ -3162,7 +3208,7 @@ list all files you find":
 \end{Shaded}
 
 In this case \texttt{find} is just shorthand for
-\texttt{find . -true -print}.
+\texttt{find\ .\ -true\ -print}.
 
 That's not really that interesting. Let's poke around and "find" (pun
 intended) some better examples of using \texttt{find}. It is better to
@@ -3174,7 +3220,7 @@ pick it apart:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{~} \NormalTok{$ }\KeywordTok{find} \NormalTok{//myserver/myshare/logs/000[4-9] -name }\DataTypeTok{\textbackslash{}*}\NormalTok{.dat -newer logchecker.csv \textbackslash{}}
-    \KeywordTok{-exec} \NormalTok{/home/myuser/Sandbox/FileCheckers/logchecker }\DataTypeTok{\textbackslash{}\{\textbackslash{}\}} \DataTypeTok{\textbackslash{};}
+    \NormalTok{-exec /home/myuser/Sandbox/FileCheckers/logchecker }\DataTypeTok{\textbackslash{}\{\textbackslash{}\}} \DataTypeTok{\textbackslash{};}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3225,7 +3271,7 @@ Reconsider this example:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{~} \NormalTok{$ }\KeywordTok{find} \NormalTok{//myserver/myshare/logs/000[4-9] -name }\DataTypeTok{\textbackslash{}*}\NormalTok{.dat -newer logchecker.csv \textbackslash{}}
-    \KeywordTok{-exec} \NormalTok{/home/myuser/Sandbox/FileCheckers/logchecker }\DataTypeTok{\textbackslash{}\{\textbackslash{}\}} \DataTypeTok{\textbackslash{};}
+    \NormalTok{-exec /home/myuser/Sandbox/FileCheckers/logchecker }\DataTypeTok{\textbackslash{}\{\textbackslash{}\}} \DataTypeTok{\textbackslash{};}
 \end{Highlighting}
 \end{Shaded}
 
@@ -3246,7 +3292,7 @@ expansion}:
   the end of the first line tells the shell that the command continues
   on the next line.
 \item
-  \textbf{\texttt{\textbackslash{}\{\textbackslash{}\} \textbackslash{};}}
+  \textbf{\texttt{\textbackslash{}\{\textbackslash{}\}\ \textbackslash{};}}
   - these three prevent the shell from trying to expand the braces into
   an environment variable or the semicolon (which is meant to tell
   \texttt{find} when the command being ran via \texttt{-exec} and its
@@ -3256,12 +3302,13 @@ expansion}:
 
 That last point bears repeating. Any time you \texttt{-exec} in a
 \texttt{find} command (which will be a lot), just get used to typing
-\texttt{\textbackslash{}\{\textbackslash{}\} \textbackslash{};} (the
+\texttt{\textbackslash{}\{\textbackslash{}\}\ \textbackslash{};} (the
 space between the ending brace and the \texttt{\textbackslash{};} is
 \textbf{\emph{required}}).
 
-\section*{Useful find Options}\label{useful-find-options}
-\addcontentsline{toc}{section}{Useful find Options}
+\section*{\texorpdfstring{Useful \texttt{find}
+Options}{Useful find Options}}\label{useful-find-options}
+\addcontentsline{toc}{section}{Useful \texttt{find} Options}
 
 The \href{http://linux.die.net/man/1/find}{\texttt{find}} documentation
 gives a bewildering number of options. Here are the ones you may "find"
@@ -3276,33 +3323,34 @@ the most useful:
   \texttt{find} command falls into one of the categories for which it is
   set.
 \item
-  \textbf{\texttt{-group \textless{}gname\textgreater{}}} - file belongs
-  to group \emph{gname}.
+  \textbf{\texttt{-group\ \textless{}gname\textgreater{}}} - file
+  belongs to group \emph{gname}.
 \item
-  \textbf{\texttt{-iname \textless{}pattern\textgreater{}}} -
+  \textbf{\texttt{-iname\ \textless{}pattern\textgreater{}}} -
   case-insensitive name search. Any wildcard characters should be
   escaped.
 \item
-  \textbf{\texttt{-name \textless{}pattern\textgreater{}}} -
+  \textbf{\texttt{-name\ \textless{}pattern\textgreater{}}} -
   case-sensitive name search. Any wildcard characters should be escaped.
 \item
-  \textbf{\texttt{-newer \textless{}file\textgreater{}}} - each file is
+  \textbf{\texttt{-newer\ \textless{}file\textgreater{}}} - each file is
   tested to see if it is newer than \emph{file}.
 \item
-  \textbf{\texttt{-size \textless{}n\textgreater{}}} - file uses
+  \textbf{\texttt{-size\ \textless{}n\textgreater{}}} - file uses
   \emph{n} units of space, which can be specified in various measures
   like 512-byte blocks (\texttt{b}) through gigabytes (\texttt{G}).
 \item
-  \textbf{\texttt{-type \textless{}c\textgreater{}}} - file is of type
+  \textbf{\texttt{-type\ \textless{}c\textgreater{}}} - file is of type
   \emph{c}, with the two most common being \texttt{d} (directory) or
   \texttt{f} (file).
 \item
-  \textbf{\texttt{-user \textless{}uname\textgreater{}}} - file is owned
-  by \emph{uname}.
+  \textbf{\texttt{-user\ \textless{}uname\textgreater{}}} - file is
+  owned by \emph{uname}.
 \end{itemize}
 
-\section*{Useful find Actions}\label{useful-find-actions}
-\addcontentsline{toc}{section}{Useful find Actions}
+\section*{\texorpdfstring{Useful \texttt{find}
+Actions}{Useful find Actions}}\label{useful-find-actions}
+\addcontentsline{toc}{section}{Useful \texttt{find} Actions}
 
 Similarly, you are going to keep coming back to just a handful of
 \texttt{find} actions:
@@ -3316,7 +3364,7 @@ Similarly, you are going to keep coming back to just a handful of
   make find try to delete everything below the starting points you
   specified." In other words, placing \texttt{-delete} too early in the
   expression is going to yield behavior distressingly similar to
-  \texttt{rm -r *}.
+  \texttt{rm\ -r\ *}.
 \item
   \textbf{\texttt{-exec} and \texttt{-execdir}} - executes a command or
   script, typically passing in the name of the file or directory found.
@@ -3369,7 +3417,7 @@ That \texttt{-printf} format string
 down into:
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\tightlist
 \item
   \textbf{\texttt{"}} - prevent shell expansion on the format string.
 \item
@@ -3404,8 +3452,8 @@ down into:
   \textbf{\texttt{"}} - prevent shell expansion on the format string.
 \end{itemize}
 
-\hyperdef{}{grokking-grep}{\chapter{Grokking
-\texttt{grep}}\label{grokking-grep}}
+\hypertarget{grokking-grep}{\chapter{\texorpdfstring{Grokking
+\texttt{grep}}{Grokking grep}}\label{grokking-grep}}
 
 \textbf{\emph{And probably gawking at \texttt{awk} while we are at it,
 which means regular expressions, too. Now we have two problems.}}
@@ -3604,7 +3652,7 @@ stuff. Let's look for lines with either "Tractor" or "Truck":
 For me, the following keep coming up when using regular expressions:
 
 \begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\tightlist
 \item
   \textbf{\texttt{one\textbar{}other}} - find \texttt{one} pattern or
   the \texttt{other}.
@@ -3640,8 +3688,8 @@ For example, to find the lines that end in \texttt{400}:
 \end{Highlighting}
 \end{Shaded}
 
-\section*{Groveling With grep}\label{groveling-with-grep}
-\addcontentsline{toc}{section}{Groveling With grep}
+\section{\texorpdfstring{Groveling With
+\texttt{grep}}{Groveling With grep}}\label{groveling-with-grep}
 
 To recursively find all files that contain the string "pdfinfo":
 
@@ -3691,22 +3739,22 @@ that have been created or modified since the last time you checked, it
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{~} \NormalTok{$ }\KeywordTok{find} \NormalTok{. ! -name pdfinfo.log -newer pdfinfo.log -type f -exec grep -H \textbackslash{}}
-    \KeywordTok{-i} \NormalTok{pdfinfo }\DataTypeTok{\textbackslash{}\{\textbackslash{}\}} \DataTypeTok{\textbackslash{};} \KeywordTok{>} \NormalTok{pdfinfo.log}
+    \NormalTok{-i pdfinfo }\DataTypeTok{\textbackslash{}\{\textbackslash{}\}} \DataTypeTok{\textbackslash{};} \KeywordTok{>} \NormalTok{pdfinfo.log}
 \end{Highlighting}
 \end{Shaded}
 
 This says to ignore files named "pdfinfo.log"
-(\texttt{! -name pdfinfo.log}) and otherwise look for files
-(\texttt{-type f}) containing "pdfinfo" (\texttt{-exec grep ...}) that
-haven't been checked since the last time "pdfinfo.log" was modified
-(\texttt{-newer pdfinfo.log}). In my tests the first run (which
+(\texttt{!\ -name\ pdfinfo.log}) and otherwise look for files
+(\texttt{-type\ f}) containing "pdfinfo" (\texttt{-exec\ grep\ ...})
+that haven't been checked since the last time "pdfinfo.log" was modified
+(\texttt{-newer\ pdfinfo.log}). In my tests the first run (which
 initially creates the "pdfinfo.log" file) ran in 30 seconds but
 subsequents runs took just a few seconds. This was because the number of
 files to be searched through all directories was big enough it paid to
 pre-filter the results before handing them to \texttt{grep}.
 
-\section*{Gawking at awk}\label{gawking-at-awk}
-\addcontentsline{toc}{section}{Gawking at awk}
+\section{\texorpdfstring{Gawking at
+\texttt{awk}}{Gawking at awk}}\label{gawking-at-awk}
 
 I don't have much to say about
 \href{http://linux.die.net/man/1/awk}{\texttt{awk}}\drcmd{awk} other
@@ -3759,7 +3807,7 @@ printing a report on user ids} from \texttt{/etc/passwd}:
 \end{Highlighting}
 \end{Shaded}
 
-\hyperdef{}{just-a-series-of-pipes}{\chapter{“Just a Series of
+\hypertarget{just-a-series-of-pipes}{\chapter{“Just a Series of
 Pipes”}\label{just-a-series-of-pipes}}
 
 \textbf{\emph{\texttt{stdin}/\texttt{stdout}/\texttt{stderr}, redirects
@@ -3833,7 +3881,7 @@ redirection. This is a concept that works even in
 \texttt{CMD.EXE}\drshl{CMD.EXE} and even with the same syntax.
 
 Let's create a file with a single line of text in it. One way would be
-to \texttt{vi newfilename}, edit the file, save it, and exit
+to \texttt{vi\ newfilename}, edit the file, save it, and exit
 \texttt{vi}\drcmd{vi}. A quicker way is to simply use file redirection:
 
 \drcap{Hello, world}
@@ -3849,7 +3897,7 @@ to \texttt{vi newfilename}, edit the file, save it, and exit
 \end{Highlighting}
 \end{Shaded}
 
-In this case the \texttt{\textgreater{} hw} tells \texttt{bash} to take
+In this case the \texttt{\textgreater{}\ hw} tells \texttt{bash} to take
 the output that \texttt{echo} sends to \texttt{stdout} and send it to
 the file \texttt{hw} instead.
 
@@ -4022,9 +4070,9 @@ programs, each doing one thing. In this case:
 \item
   \href{http://linux.die.net/man/1/tr}{\texttt{tr}}\drcmd{tr}
   "translates" (replaces) any backslash characters (here "escaped" as
-  \texttt{'\textbackslash{}\textbackslash{}'} because the backslash
-  character is a special character) to forward slashes (\texttt{/}),
-  before sending it into...
+  \texttt{\textquotesingle{}\textbackslash{}\textbackslash{}\textquotesingle{}}
+  because the backslash character is a special character) to forward
+  slashes (\texttt{/}), before sending it into...
 \item
   A \texttt{while}\drcmd{while} loop that reads each line into a
   variable called \texttt{\$line} and then calls...
@@ -4068,7 +4116,7 @@ This would write the results of finding all files names
 This is useful when you are manually running things and want to see the
 results immediately, but also want a log of what you did.
 
-\hyperdef{}{vi}{\chapter{vi}\label{vi}}
+\hypertarget{vi}{\chapter{\texorpdfstring{\texttt{vi}}{vi}}\label{vi}}
 
 \textbf{\emph{How to stay sane for 10 minutes in \texttt{vi}.
 Navigation, basic editing, find, change/change-all, cut and paste, undo,
@@ -4227,8 +4275,8 @@ can always open it using
 \href{http://linux.die.net/man/1/view}{\texttt{view}}\drcmd{view}, the
 alias for \texttt{vi} invoked in read-only mode.
 
-\section*{Circumnavigating vi}\label{circumnavigating-vi}
-\addcontentsline{toc}{section}{Circumnavigating vi}
+\section{\texorpdfstring{Circumnavigating
+\texttt{vi}}{Circumnavigating vi}}\label{circumnavigating-vi}
 
 In modern implementations of \texttt{vi} (like \texttt{vim}) running
 under modern shells the arrow and page keys will work as you expect,
@@ -4659,7 +4707,8 @@ error prone. Instead, we can "mark" a range.
   usually use \texttt{n} so my fingers don't travel far, so
   \texttt{mn}).
 \item
-  Now you can use the \texttt{'}\drvic{single quote}{Reference a mark}
+  Now you can use the
+  \texttt{\textquotesingle{}}\drvic{single quote}{Reference a mark}
   character followed by a label to denote the beginning and end of the
   range in all kinds of \texttt{vi} commands. In our case we want to
   change "This" on the first three lines, so:
@@ -4864,7 +4913,7 @@ mode", and use \texttt{vi}.
 
 And if you have the opportunity to use \texttt{emacs}...don't.
 
-\hyperdef{}{the-whole-wide-world}{\chapter{The Whole Wide
+\hypertarget{the-whole-wide-world}{\chapter{The Whole Wide
 World}\label{the-whole-wide-world}}
 
 \textbf{\emph{\texttt{curl}, \texttt{wget}, \texttt{ifconfig},
@@ -4912,8 +4961,9 @@ One difference with \texttt{ping} is that by default in Linux
 sends the
 \href{https://en.wikipedia.org/wiki/Unix_signal}{\texttt{SIGINT}
 interrupt}\index{signals} to the program). In this way it acts more like
-\texttt{ping -t} in \texttt{CMD.EXE}\drshl{CMD.EXE}. Also, be aware that
-on Cygwin \texttt{ping} is still the system (Windows) \texttt{ping}.
+\texttt{ping\ -t} in \texttt{CMD.EXE}\drshl{CMD.EXE}. Also, be aware
+that on Cygwin \texttt{ping} is still the system (Windows)
+\texttt{ping}.
 
 \href{http://linux.die.net/man/8/traceroute}{\texttt{traceroute}}\drcmd{traceroute}
 works, too (although for once its name is longer than the
@@ -5085,7 +5135,7 @@ You can browse the web from the command prompt using something like
 \href{http://linux.die.net/man/1/lynx}{\texttt{lynx}}\drcmd{lynx}. A
 text-based browser isn't too exciting, but it can have its purposes
 (like quickly testing network access from a command prompt). For
-example, \texttt{lynx http://google.com} yields:
+example, \texttt{lynx\ http://google.com} yields:
 
 \drcap{Browsing like it's 1994}
 
@@ -5170,8 +5220,8 @@ straightforward enough:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{email} \NormalTok{--blank-mail --subject }\StringTok{"Possibly corrupted files found..."} \NormalTok{\textbackslash{}}
-  \KeywordTok{--smtp-server} \NormalTok{smtp --attach badfiles.csv --from-name NoReply \textbackslash{}}
-  \KeywordTok{--from-addr} \NormalTok{noreply@mycorp.com alert@mycorp.com}
+  \NormalTok{--smtp-server smtp --attach badfiles.csv --from-name NoReply \textbackslash{}}
+  \NormalTok{--from-addr noreply@mycorp.com alert@mycorp.com}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5187,8 +5237,8 @@ However, because you can specify the port number, it is still handy for
 testing and debugging text-based protocols such as SMTP or HTTP. In the
 following, after opening a \texttt{telnet} connection on port 80 to
 Google, I simply entered the HTTP protocol sequence
-\texttt{GET / HTTP/1.1} followed by a blank line to get Google to return
-its home page:
+\texttt{GET\ /\ HTTP/1.1} followed by a blank line to get Google to
+return its home page:
 
 \drcap{Using telnet to diagnose HTTP}
 
@@ -5350,7 +5400,7 @@ Windows version located at
 \texttt{C:\textbackslash{}Windows\textbackslash{}System32\textbackslash{}drivers\textbackslash{}etc\textbackslash{}hosts},
 and has similar syntax.
 
-\hyperdef{}{the-man-behind-the-curtain}{\chapter{The Man Behind the
+\hypertarget{the-man-behind-the-curtain}{\chapter{The Man Behind the
 Curtain}\label{the-man-behind-the-curtain}}
 
 \textbf{\emph{\texttt{/proc}, \texttt{/dev}, \texttt{ps},
@@ -5374,10 +5424,10 @@ To see what \emph{processes} you are running, use
 \href{http://linux.die.net/man/1/ps}{\texttt{ps}}\drcmd{ps}:
 
 \drcap{ps command}
-\texttt{bash \# ps   PID TTY          TIME CMD 14691 pts/0    00:00:00 bash 25530 pts/0    00:00:00 ps}bash
+\texttt{bash\ \#\ ps\ \ \ PID\ TTY\ \ \ \ \ \ \ \ \ \ TIME\ CMD\ 14691\ pts/0\ \ \ \ 00:00:00\ bash\ 25530\ pts/0\ \ \ \ 00:00:00\ ps}bash
 
 To show processes from \emph{all} users in a process \emph{hierarchy}
-(child processes indented under parents), use \texttt{ps -AH}:
+(child processes indented under parents), use \texttt{ps\ -AH}:
 
 \drcap{Showing all processes}
 
@@ -5428,12 +5478,12 @@ That's:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{ps -A}} - list all running processes.
+  \textbf{\texttt{ps\ -A}} - list all running processes.
 \item
   \textbf{\texttt{\textbar{}}} - pipe \texttt{stdout}\index{stdout} from
   \texttt{ps} to next command.
 \item
-  \textbf{\texttt{grep vi}} - find all instances of \texttt{vi} (be
+  \textbf{\texttt{grep\ vi}} - find all instances of \texttt{vi} (be
   careful, because that would include \texttt{view} and anything else
   containing the string \texttt{vi}, too).
 \item
@@ -5443,7 +5493,7 @@ That's:
   \textbf{\texttt{kill}} - send a \texttt{SIGINT} signal\index{signals}
   to a process specified by:
 \item
-  \textbf{\texttt{`cut -f2 -d" "`}} - execute the
+  \textbf{\texttt{`cut\ -f2\ -d"\ "`}} - execute the
   \href{http://linux.die.net/man/1/cut}{\texttt{cut}}\drcmd{cut} command
   and take the second space-delimited field (in this case the process id
   - the first "field" is just leading spaces), and place the results of
@@ -5728,14 +5778,14 @@ great place to unzip install bits, for example. Just note that the
 temporariness is enforced in that when the system reboots, \texttt{/tmp}
 is reset to empty.
 
-\hyperdef{}{how-do-you-know-what-you-dont-know-man}{\chapter{How Do You
-Know What You Don’t Know,
-man?}\label{how-do-you-know-what-you-dont-know-man}}
+\hypertarget{how-do-you-know-what-you-dont-know-man}{\chapter{\texorpdfstring{How
+Do You Know What You Don’t Know,
+\texttt{man}?}{How Do You Know What You Don’t Know, man?}}\label{how-do-you-know-what-you-dont-know-man}}
 
 \textbf{\emph{\texttt{man}, \texttt{info}, \texttt{apropos}, Linux
 Documentation Project, Debian and Arch guides, StackOverflow and the
-dangers of searching for “\texttt{man find}” or “\texttt{man touch}” on
-the internet.}}
+dangers of searching for “\texttt{man\ find}” or “\texttt{man\ touch}”
+on the internet.}}
 
 \begin{quote}
 \emph{"You're soaking in it."} - Palmolive commercial
@@ -5747,8 +5797,10 @@ attitude by most old-timers toward most newbies. Besides the typical
 "Google" and "StackOverflow" answers, there are actually lots of very
 reliable places to turn to for information:
 
-\section*{man, is that info apropos?}\label{man-is-that-info-apropos}
-\addcontentsline{toc}{section}{man, is that info apropos?}
+\section*{\texorpdfstring{\texttt{man}, is that \texttt{info}
+\texttt{apropos}?}{man, is that info apropos?}}\label{man-is-that-info-apropos}
+\addcontentsline{toc}{section}{\texttt{man}, is that \texttt{info}
+\texttt{apropos}?}
 
 There are three commands that are the basis for reading "UNIX"
 documentation within "UNIX" itself -
@@ -5757,7 +5809,7 @@ documentation within "UNIX" itself -
 \href{http://linux.die.net/man/1/apropos}{\texttt{apropos}}\drcmd{apropos}.
 
 \texttt{man} is short for \emph{manual pages}, and is used to display
-the main help for most "UNIX" commands. For example, \texttt{man ls}
+the main help for most "UNIX" commands. For example, \texttt{man\ ls}
 shows:
 
 \drcap{man command}
@@ -5794,19 +5846,19 @@ shows:
 \textbf{Note:} \texttt{man} uses \texttt{less}\drcmd{less} as a
 paginator, with all that means, including the same navigation and search
 keys, and most important to remember - \texttt{Q} to quit. How do I know
-this? Because of course you can \texttt{man man}!
+this? Because of course you can \texttt{man\ man}!
 
 Notice the \texttt{LS(1)} part. The UNIX manual was originally divided
 into multiple sections by AT\&T. Section 1 is normal user commands.
 Section 5 is file formats (like for config files), and section 8 is for
 system administration commands. You usually don't care, and can
-\texttt{man ls} or \texttt{man ifconfig} to your heart's content.
+\texttt{man\ ls} or \texttt{man\ ifconfig} to your heart's content.
 
 But sometimes there are duplicate names in the different sections. For
 example, there is both a \texttt{passwd}\drcmd{passwd} command and a
 \texttt{passwd}\drcmd{passwd file} file format (for
-\texttt{/etc/passwd}). By default, \texttt{man passwd} will show you the
-documentation from the lowest numbered section with a match, in this
+\texttt{/etc/passwd}). By default, \texttt{man\ passwd} will show you
+the documentation from the lowest numbered section with a match, in this
 case section 1, usually referred to as \texttt{passwd(1)} to
 disambiguate which thing we're talking about:
 
@@ -5843,7 +5895,7 @@ disambiguate which thing we're talking about:
 
 To see the \texttt{man} page for the \texttt{passwd} file format, we
 have to explicitly specify the section, in this case by using
-\texttt{man 5 passwd}:
+\texttt{man\ 5\ passwd}:
 
 \drcap{Specifying a specific man section}
 
@@ -5878,7 +5930,7 @@ have to explicitly specify the section, in this case by using
 
 Besides \texttt{man}, many GNU tools come with help in
 \texttt{info}\drcmd{info} format, which is originally from
-\texttt{emacs}. Here are the results of \texttt{info find}:
+\texttt{emacs}. Here are the results of \texttt{info\ find}:
 
 \drcap{Running info on the find command}
 
@@ -5914,11 +5966,11 @@ Besides \texttt{man}, many GNU tools come with help in
 While \texttt{info} is much better at enabling complex help files with
 navigation I am not a fan because I tend not to hold all the keystrokes
 in my head. The biggest thing to remember if you do something like
-\texttt{info find} is that \texttt{q} quits the \texttt{info} command.
+\texttt{info\ find} is that \texttt{q} quits the \texttt{info} command.
 
 Finally, what if you don't know the name of the command? Well, each "man
 page" has a title and brief description, e.g., "passwd - change user
-password" in the \texttt{man passwd} output above. The \texttt{apropos}
+password" in the \texttt{man\ passwd} output above. The \texttt{apropos}
 command can simply search those titles and descriptions for a word or
 phrase and show you all the results:
 
@@ -5984,7 +6036,7 @@ was a system administration ("section 8") command:
 \end{Shaded}
 
 Or maybe you can't remember whether it's \texttt{-r}, \texttt{-R} or
-\texttt{-{}-recursive} to copy subdirectories recursively with
+\texttt{-\/-recursive} to copy subdirectories recursively with
 \texttt{cp}\drcmd{cp}:
 
 \drcap{Looking for specific parameter names in a man page}
@@ -6000,11 +6052,12 @@ Or maybe you can't remember whether it's \texttt{-r}, \texttt{-R} or
 
 Whaddya know. It can be any of the three.
 
-And yes, you can \texttt{man man}, \texttt{man info}, \texttt{info info}
-and \texttt{info man}, for that matter!
+And yes, you can \texttt{man\ man}, \texttt{man\ info},
+\texttt{info\ info} and \texttt{info\ man}, for that matter!
 
-\section*{How Do You Google, man?}\label{how-do-you-google-man}
-\addcontentsline{toc}{section}{How Do You Google, man?}
+\section*{\texorpdfstring{How Do You Google,
+\texttt{man}?}{How Do You Google, man?}}\label{how-do-you-google-man}
+\addcontentsline{toc}{section}{How Do You Google, \texttt{man}?}
 
 You can often search the internet for "UNIX" documentation, and the
 \texttt{man} pages have long been online. A site I like (and link to a
@@ -6013,7 +6066,7 @@ just google \href{https://www.google.com/\#q=man+ls}{"man ls"} and the
 top hits will be what you want.
 
 \textbf{\emph{However}}, there are times you need to be careful.
-Googling for either \texttt{man touch} or \texttt{man tail}, for
+Googling for either \texttt{man\ touch} or \texttt{man\ tail}, for
 example, will probably not give you the results you seek and may set off
 filters at work, so be careful out there and remember to bookmark a
 couple of actual \texttt{man} page sites so that you can go there
@@ -6065,7 +6118,7 @@ setting up CIFS shares on Linux, you should always look at
 documentation} as well as any specific info you can find about the
 distro you are running.
 
-\hyperdef{}{and-so-on}{\chapter{And So On}\label{and-so-on}}
+\hypertarget{and-so-on}{\chapter{And So On}\label{and-so-on}}
 
 \textbf{\emph{\texttt{/etc}, starting and stopping services,
 \texttt{apt-get}/\texttt{rpm}/\texttt{yum}, and more.}}
@@ -6151,7 +6204,7 @@ list of files and directories you may need to examine there:
 There are lots of other interesting files under \texttt{/etc}, but I
 keep returning to the above again and again. On most of them you can run
 the \texttt{man} command against section 5 to see their format and
-documentation, e.g., \texttt{man 5 hosts}.
+documentation, e.g., \texttt{man\ 5\ hosts}.
 
 \section*{Service Station}\label{service-station}
 \addcontentsline{toc}{section}{Service Station}
@@ -6324,8 +6377,8 @@ is obviously to install a package:
 \end{Highlighting}
 \end{Shaded}
 
-You can also \texttt{apt-get remove} or \texttt{apt-get purge} packages.
-See the man page for details.
+You can also \texttt{apt-get\ remove} or \texttt{apt-get\ purge}
+packages. See the man page for details.
 
 This all looks very convenient, and it is. The problems arise because
 some distros are better at tracking current versions of packages in
@@ -6359,7 +6412,7 @@ to go to its "official" site or GitHub repository. There, you may find a
 
 There is, however, a problem. You now have to remember that you
 installed that package by hand and keep it up to date by hand (or not).
-\texttt{apt-get upgrade} isn't going to help you here. This is true no
+\texttt{apt-get\ upgrade} isn't going to help you here. This is true no
 matter what way you get the alternative package - \texttt{.deb} file,
 tarball, source code, or whatever.
 
@@ -6378,8 +6431,9 @@ directory) versions of a package to allow different versions of the same
 package to exist on the same system, where different applications may be
 relying on the different versions to work.
 
-\section*{Which which is Which?}\label{which-which-is-which}
-\addcontentsline{toc}{section}{Which which is Which?}
+\section*{\texorpdfstring{Which \texttt{which} is
+Which?}{Which which is Which?}}\label{which-which-is-which}
+\addcontentsline{toc}{section}{Which \texttt{which} is Which?}
 
 Now that we've seen that we can have multiple versions of the same
 command or executable on the system, an interesting question arises.
@@ -6442,7 +6496,7 @@ The \texttt{locate} command, if installed, is basically a database of
 all of the file names on the system (collected periodically - not in
 real time). You are simply searching the database for a pattern. It is a
 quicker way to look than
-\texttt{find / -name \textbackslash{}*pattern*\textbackslash{}}.
+\texttt{find\ /\ -name\ \textbackslash{}*pattern*\textbackslash{}}.
 
 One final note on which thing gets executed. Unlike in Windows, UNIX
 environments do not consider the local directory (the current directory
@@ -6509,7 +6563,7 @@ command to view and edit the \texttt{crontab} files for your user (and
 other users if you have admin privileges).
 
 The sample given in the comments of the \texttt{crontab} when initially
-opened using \texttt{crontab -e} give a fine example of the syntax of
+opened using \texttt{crontab\ -e} give a fine example of the syntax of
 the \texttt{crontab} file:
 
 \drcap{Looking at default crontab file}
@@ -6618,7 +6672,7 @@ immediately with:
 \end{Highlighting}
 \end{Shaded}
 
-The \texttt{-s 9} is for signal \#9, which is the \texttt{SIGKILL}
+The \texttt{-s\ 9} is for signal \#9, which is the \texttt{SIGKILL}
 signal (it is the tenth signal in the signal list, which is 0-relative,
 hence \#9).
 
@@ -6689,11 +6743,11 @@ the rescue!
 
 \begin{itemize}
 \item
-  \textbf{\texttt{a \&\& b}}\index{And operator} - execute \texttt{a}
+  \textbf{\texttt{a\ \&\&\ b}}\index{And operator} - execute \texttt{a}
   \textbf{\emph{and}} \texttt{b}, i.e., execute \texttt{b} only if
   \texttt{a} is successful.
 \item
-  \textbf{\texttt{a \textbar{}\textbar{} b}}\index{Or operator} -
+  \textbf{\texttt{a\ \textbar{}\textbar{}\ b}}\index{Or operator} -
   execute \texttt{a} \textbf{\emph{or}} \texttt{b}, that is execute
   \texttt{b} whether \textbf{\emph{or}} not \texttt{a} is successful.
 \end{itemize}
@@ -6797,7 +6851,7 @@ Good luck, citizen!
 \renewcommand{\chaptername}{}
 \renewcommand{\thechapter}{A}
 
-\hyperdef{}{appendices}{\chapter{Appendices}\label{appendices}}
+\hypertarget{appendices}{\chapter{Appendices}\label{appendices}}
 
 \begin{quote}
 \emph{"That rug really tied the room together, did it not?"} - Walter
@@ -7234,12 +7288,12 @@ I set up (once I get Dropbox set up on the machine!)
 \KeywordTok{git} \NormalTok{clone git://github.com/FreeRDP/FreeRDP.git}
 \KeywordTok{cd} \NormalTok{FreeRDP}
 \KeywordTok{sudo} \NormalTok{apt-get -y install build-essential git-core cmake libssl-dev \textbackslash{}}
-  \KeywordTok{libx11-dev} \NormalTok{libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \textbackslash{}}
-  \KeywordTok{libxv-dev} \NormalTok{libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \textbackslash{}}
-  \KeywordTok{libxml2-dev} \NormalTok{libxrandr-dev libgstreamer0.10-dev \textbackslash{}}
-  \KeywordTok{libgstreamer-plugins-base0.10-dev} \NormalTok{libxi-dev \textbackslash{}}
-  \KeywordTok{libgstreamer-plugins-base1.0-dev} \NormalTok{libavutil-dev libavcodec-dev \textbackslash{}}
-  \KeywordTok{libcunit1-dev} \NormalTok{libdirectfb-dev xmlto doxygen libxtst-dev}
+  \NormalTok{libx11-dev libxext-dev libxinerama-dev libxcursor-dev libxdamage-dev \textbackslash{}}
+  \NormalTok{libxv-dev libxkbfile-dev libasound2-dev libcups2-dev   libxml2 \textbackslash{}}
+  \NormalTok{libxml2-dev libxrandr-dev libgstreamer0.10-dev \textbackslash{}}
+  \NormalTok{libgstreamer-plugins-base0.10-dev libxi-dev \textbackslash{}}
+  \NormalTok{libgstreamer-plugins-base1.0-dev libavutil-dev libavcodec-dev \textbackslash{}}
+  \NormalTok{libcunit1-dev libdirectfb-dev xmlto doxygen libxtst-dev}
 \KeywordTok{cmake} \NormalTok{-DCMAKE_BUILD_TYPE=Debug -DWITH_SSE2=ON .}
 \KeywordTok{make}
 \KeywordTok{sudo} \NormalTok{make install}
@@ -7280,22 +7334,22 @@ it's up to me to track and update the software (if I care).
 
 This document was produced in the environments it discusses, including
 (with their
-\href{http://linux.die.net/man/1/uname}{\texttt{uname -rv}}\drcmd{uname}
+\href{http://linux.die.net/man/1/uname}{\texttt{uname\ -rv}}\drcmd{uname}
 results):
 
 \begin{itemize}
 \item
   \href{https://cygwin.com/}{\textbf{Cygwin}}\drios{Cygwin} -
-  \texttt{2.2.1(0.289/5/3) 2015-08-20 11:42}
+  \texttt{2.2.1(0.289/5/3)\ 2015-08-20\ 11:42}
 \item
   \href{http://www.debian.org/}{\textbf{Debian}}\drios{Debian} -
-  \texttt{3.2.0-4-amd64 \#1 SMP Debian 3.2.65-1+deb7u2}
+  \texttt{3.2.0-4-amd64\ \#1\ SMP\ Debian\ 3.2.65-1+deb7u2}
 \item
   \href{http://www.freebsd.org/}{\textbf{FreeBSD}}\drios{FreeBSD} -
-  \texttt{7.3-RELEASE-p2 FreeBSD 7.3-RELEASE-p2 \#0: Tue Nov  4 22:08:52 EST 2014}
+  \texttt{7.3-RELEASE-p2\ FreeBSD\ 7.3-RELEASE-p2\ \#0:\ Tue\ Nov\ \ 4\ 22:08:52\ EST\ 2014}
 \item
   \href{http://linuxmint.com/}{\textbf{Linux Mint}}\drios{Mint} -
-  \texttt{3.16.0-38-generic \#52\textasciitilde{}14.04.1-Ubuntu SMP Fri May 8 09:43:57 UTC 2015}
+  \texttt{3.16.0-38-generic\ \#52\textasciitilde{}14.04.1-Ubuntu\ SMP\ Fri\ May\ 8\ 09:43:57\ UTC\ 2015}
 \end{itemize}
 
 I could have done something with my Raspberry Pi, too, but that would
@@ -7315,7 +7369,7 @@ Output produced using
 \href{http://linux.die.net/man/1/make}{\texttt{make}}\drcmd{make},
 originally based on the
 \href{https://github.com/evangoer/pandoc-ebook-template}{@evangoer's
-work}.
+pandoc ebook template} but long since modified so don't blame him.
 
 Source code control is provided by
 \href{http://linux.die.net/man/1/git}{\texttt{git}}\drcmd{git}. You can
@@ -7339,8 +7393,6 @@ Jeremy), Morgann, Erin, Gloria and Jon; grandfather to Ryan, Lindsay,
 Logan and Hannah; and alpha wolf to Merv. He has been "in computers"
 since 1980. His hobbies include reading, running, hiking, climbing and
 apparently writing books.
-
-
 
 % Add index.
 \cleardoublepage

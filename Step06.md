@@ -1,5 +1,5 @@
 
-# vi
+# `vi`
 
 ***How to stay sane for 10 minutes in `vi`. Navigation, basic editing, find,
 change/change-all, cut and paste, undo, saving and canceling. Plus easier
@@ -123,7 +123,7 @@ If you want to protect yourself from inadvertent changes to a file you can
 always open it using [`view`](http://linux.die.net/man/1/view)\drcmd{view},
 the alias for `vi` invoked in read-only mode.
 
-## Circumnavigating vi{.unnumbered}
+## Circumnavigating `vi`{.unnumbered}
 
 In modern implementations of `vi` (like `vim`) running under modern shells
 the arrow and page keys will work as you expect, ***in general***. However,
