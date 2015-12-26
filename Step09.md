@@ -9,16 +9,18 @@ guides, StackOverflow and the dangers of searching for “`man find`” or
 
 The biggest issue with bootstrapping into "UNIX" is not the lack of
 documentation but almost the surplus of it, coupled with a severe "RTFM"
-attitude by most old-timers toward most newbies. Besides the typical
-"Google" and "StackOverflow" answers, there are actually lots of very
-reliable places to turn to for information:
+attitude by most old-timers toward newbies. Besides the typical
+"Google" and
+["StackOverflow"](http://unix.stackexchange.com/)\index{Documentation!\textit{http://unix.stackexchange.com/}}
+answers, there are actually lots of very
+reliable places to turn to for information
 
 ## `man`, is that `info` `apropos`?{.unnumbered}
 
 There are three commands that are the basis for reading "UNIX" documentation
-within "UNIX" itself - [`man`](http://linux.die.net/man/1/man)\drcmd{man},
-[`info`](http://linux.die.net/man/1/info)\drcmd{info} and
-[`apropos`](http://linux.die.net/man/1/apropos)\drcmd{apropos}.
+within "UNIX" itself - [`man`](http://linux.die.net/man/1/man)\drcmd{man}\index{Documentation!\texttt{man} command},
+[`info`](http://linux.die.net/man/1/info)\drcmd{info}\index{Documentation!\texttt{info} command} and
+[`apropos`](http://linux.die.net/man/1/apropos)\drcmd{apropos}\index{Documentation!\texttt{apropos} command}.
 
 `man` is short for *manual pages*, and is used to display the main help for
 most "UNIX" commands. For example, `man ls` shows:
@@ -51,7 +53,7 @@ DESCRIPTION
  Manual page ls(1) line 1 (press h for help or q to quit)
 ```
 
-**Note:** `man` uses `less`\drcmd{less} as a paginator, with all that means, including
+**Note:** `man` uses `less`\drcmd{less}\index{Pagination!\texttt{less} command} as a paginator, with all that means, including
 the same navigation and search keys, and most important to remember - `Q`
 to quit. How do I know this? Because of course you can `man man`!
 
@@ -62,7 +64,8 @@ administration commands. You usually don't care, and can `man ls` or `man
 ifconfig` to your heart's content.
 
 But sometimes there are duplicate names in the different sections. For
-example, there is both a `passwd`\drcmd{passwd} command and a `passwd`\drcmd{passwd file} file format (for
+example, there is both a `passwd`\drcmd{passwd} command and a
+`passwd`\drcmd{passwd file}\index{Files!Special files!\texttt{/etc/passwd}} file format (for
 `/etc/passwd`). By default, `man passwd` will show you the documentation
 from the lowest numbered section with a match, in this case section 1,
 usually referred to as `passwd(1)` to disambiguate which thing we're
@@ -127,7 +130,7 @@ DESCRIPTION
  Manual page passwd(5) line 1 (press h for help or q to quit)
 ```
 
-Besides `man`, many GNU tools come with help in `info`\drcmd{info} format, which is
+Besides `man`, many GNU tools come with help in `info`\drcmd{info}\index{Documentation!\texttt{info} command} format, which is
 originally from `emacs`. Here are the results of `info find`:
 
 \drcap{Running info on the find command}
@@ -165,7 +168,8 @@ like `info find` is that `q` quits the `info` command.
 
 Finally, what if you don't know the name of the command? Well, each "man
 page" has a title and brief description, e.g., "passwd - change user
-password" in the `man passwd` output above. The `apropos` command can
+password" in the `man passwd` output above. The `apropos`\drcmd{apropos}\index{Documentation!\texttt{apropos} command}
+command can
 simply search those titles and descriptions for a word or phrase and show
 you all the results:
 
@@ -211,7 +215,7 @@ like any other. For example, maybe we remember only that the command had
 something with "edit" and was a system administration ("section 8")
 command:
 
-\drcap{Refining output from apropos}
+\drcap{Refining output from \texttt{apropos}}
 ```bash
 ~ $ apropos edit | grep "(8)"
 editkeep (8)         - frontend for deborphan
@@ -244,7 +248,7 @@ that matter!
 
 You can often search the internet for "UNIX" documentation, and the `man`
 pages have long been online. A site I like (and link to a lot here) is
-[http://linux.die.net/man/](http://linux.die.net/man/). Often, though,
+[http://linux.die.net/man/](http://linux.die.net/man/)\index{Documentation!\textit{http://linux.die.net/man/}}. Often, though,
 you can just google ["man ls"](https://www.google.com/#q=man+ls) and the
 top hits will be what you want.
 
@@ -260,15 +264,15 @@ There are several consistently high-quality free sources of information on
 various parts of Linux and related systems on the internet.
 
 * [**The Linux Documentation Project
-(LDP)**](http://www.tldp.org/guides.html)\index{Linux Documentation Project} -
+(LDP)**](http://www.tldp.org/guides.html)\index{Documentation!Linux Documentation Project} -
 has fallen a bit behind over the years, but still has two of the best
 `bash` scripting books out there, [*Bash Guide for
-Beginners*](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html)
+Beginners*](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html)\index{Documentation!\textit{Bash Guide for Beginners}}\drios{bash}
 and [*Advanced Bash-Scripting
-Guide*](http://www.tldp.org/LDP/abs/html/index.html).
+Guide*](http://www.tldp.org/LDP/abs/html/index.html)\index{Documentation!\textit{Advanced Bash-Scripting Guide}}.
 I continue to use the latter all the time.
 
-* [**Arch Linux Wiki**](https://wiki.archlinux.org/)\index{Arch wiki} -
+* [**Arch Linux Wiki**](https://wiki.archlinux.org/)\index{Documentation!Arch wiki} -
 you may not think this would be useful if you are running Debian or Fedora
 or something else, but remember most "UNIX" systems are all very similar,
 and often the best documentation on a package or setting something up in
@@ -279,9 +283,9 @@ you are not running a Debian-based distro, this can be handy because it
 describes how to administer Linux in a way that often transcends distro
 specifics (and at least explains how Debian approaches the differences).
 The best books in the series are [*The Debian Administrator's
-Handbook*](https://www.debian.org/doc/manuals/debian-handbook/)\index{Debian Administrator's Handbook}
+Handbook*](https://www.debian.org/doc/manuals/debian-handbook/)\index{Documentation!\textit{Debian Administrator's Handbook}}
 and the [*Debian
-Reference*](https://www.debian.org/doc/manuals/debian-reference/)\index{Debian Reference},
+Reference*](https://www.debian.org/doc/manuals/debian-reference/)\index{Documentation!\textit{Debian Reference}},
 which is a lot more formal attempt at the same type of territory this
 guide covers.
 

@@ -59,7 +59,7 @@ other members of the same tree.
 Every shell has some "built-in" commands that are implemented as part
 of the shell and not as an external command or program, and `bash`\drshl{bash}
 has its share, as shown by running the
-[`help`](http://linux.die.net/man/1/help)\drcmd{help} command in a
+[`help`](http://linux.die.net/man/1/help)\drcmd{help}\index{Documentation!\texttt{help} command} command in a
 `bash` terminal:
 
 \drcap{Built-in commands in bash}

@@ -32,12 +32,10 @@
 \renewcommand{\dblfloatpagefraction}{0.7}	% require fuller float pages
 \setcounter{dbltopnumber}{2}        % for 2-column pages
 \overfullrule=2cm   % Black bars to show overfull boxes
-\renewcommand{\chaptername}{Step}
-\renewcommand{\contentsname}{Steps}
 \numberwithin{figure}{chapter}
 \DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
-\DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1}}
-\DeclareRobustCommand{\drenv}[1]{\index{Environment Variables!#1}}
+\DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1@\texttt{#1}}}
+\DeclareRobustCommand{\drenv}[1]{\index{Environment Variables!#1@\texttt{#1}}}
 \DeclareRobustCommand{\drios}[1]{\index{OS and OS-Like Substances!#1}}
 \DeclareRobustCommand{\drshl}[1]{\index{Shells!#1}}
 \DeclareRobustCommand{\drvic}[2]{\index{vi Commands!#1 (#2)}}

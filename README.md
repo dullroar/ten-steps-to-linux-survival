@@ -1,6 +1,6 @@
 -   [Introduction](#introduction)
     -   [Batteries Not Included](#batteries-not-included)
-    -   [Please, Give Generously](#please-give-generously)
+    -   [Please, Give (Suggestions) Generously](#please-give-suggestions-generously)
     -   [Why?](#why)
     -   [Caveat Administrator](#caveat-administrator)
     -   [Conventions](#conventions)
@@ -103,19 +103,27 @@
  
 <br/> <br/> By James Lehmer  
  
-<br/> <br/> v0.9  
+<br/> <br/> v0.7  
  
 <br/> <br/> ![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 International")
 *Ten Steps to Linux Survival - Bash for Windows People* by James Lehmer is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).  
  
-<br/> <br/> **Dedicated to my first three technical mentors** - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think (and once called me an "inveterate toolmaker" in a review). And Kim Manchak, who let me be more than he hired me to be (and continues to be a great chess opponent). Thank you, gentlemen. I've tried to pay it forward. This book is part of that.
+<br/> <br/> **Dedicated to my first three technical mentors**
+
+-   Jim Proffer, who taught me digging deeper was fun and let me do so, often in production!
+
+-   Jerry Wood, who taught me to stop and think, and once called me an "inveterate toolmaker" in a review, a badge I still wear with pride.
+
+-   Kim Manchak, who allowed me to be more than he hired me to be, and continues to be a great chess opponent.
+
+Thank you, gentlemen. I've tried to pay it forward. This book is part of that.
 
 Introduction
 ============
 
 > *"And you may ask yourself, 'Well, how did I get here?'"* - Talking Heads (*Once in a Lifetime*)
 
-This is my little "Linux and Bash in 10 steps" guide. It's based around what I consider the essentials for ~~floundering around~~ acting like I know what I'm doing in Linux, BSD and "UNIX-flavored" systems and looking impressive among people who have only worked on Windows in the GUI. Your "10 steps" may be different than mine and that's fine, but this list is mine.
+This is my little "Linux and Bash in 10 steps" guide. It's based on what I consider the essentials for ~~floundering around~~ acting like I know what I'm doing in Linux, BSD and "UNIX-flavored" systems and looking impressive among people who have only worked on Windows in the GUI. Your "10 steps" may be different than mine and that's fine, but this list is mine.
 
 I said ten things, but I lied, because history is really important, so we will start at step \#0. And since this is before even that I guess that means this is a 12-step program...
 
@@ -145,6 +153,8 @@ Here is what we'll cover in the rest of this book:
 
 Plus [some stuff](#appendices) at the end to tie the whole room together.
 
+The most current release of the book should always be available for download in different formats on [GitHub](https://github.com/dullroar/ten-steps-to-linux-survival/releases).
+
 Batteries Not Included
 ----------------------
 
@@ -160,10 +170,10 @@ It should be obvious that there is ***plenty*** that is not covered:
 
 -   **Security** - other than the simple basics of the file system security model.
 
-Plus so much more. Again, this is not meant to be exhaustive, but to help someone whose system administration experience has been limited to "Next-Next-Next-Finish" installs and filling in text boxes in wizards on Windows.
+Plus so much more. Again, this is not meant to be exhaustive, but to help someone whose system administration experience has been limited to Windows.
 
-Please, Give Generously
------------------------
+Please, Give (Suggestions) Generously
+-------------------------------------
 
 That said, if you find something amiss in here - a typo, a misconception or mistake, or a command or parameter you ***really, really, really*** think should be in here even though I said I am not trying to be exhaustive, feel free to [clone it from GitHub](https://github.com/dullroar/ten-steps-to-linux-survival), make your changes and send me a `git pull` request. Or you can try to [file it as an issue](https://github.com/dullroar/ten-steps-to-linux-survival/issues) and I'll see how I feel that day.
 
@@ -184,34 +194,40 @@ Because I work in a primarily Windows-oriented shop, and I seem to be "the guy" 
 
 -   **SunOS**
 
-...on various machines and machine architectures from mighty Sun servers to generic "Intel" VMs down to Raspberry Pis (plus an original "wedge" iMac running as a kitchen kiosk long after its "Best by" date and OS/9's demise, thanks to Yellow Dog Linux).
+All on various machines and machine architectures from mighty Sun servers to generic "Intel" VMs down to Raspberry Pis, plus an original "wedge" iMac running as a kitchen kiosk long after its "Best by" date and OS/9's demise, thanks to Yellow Dog Linux.
 
 All that while also working on MVS, VSE, OS/2, DOS since 3.x, Windows since 1.x, etc., etc. I don't think I am special when I list all that - there are lots of people with my level of experience ***and better***, especially in commercial software engineering. I am just one of them.
 
-But for some reason there are many places, especially in small and medium business (SMB) environments, where the "stack" tends to be more purely Microsoft because it keeps things simpler and cheaper for the (smaller) staff. I work in such a place. The technical staff is quite competent, but when they bump up against systems whose primary "user interface" for system administration is a command prompt and some scripts, they panic.
+But for some reason there are many places, especially in small and medium business (SMB) environments, where the "stack" tends to be more purely Microsoft because it keeps things simpler and cheaper for the smaller staff. I work in such a place. The technical staff is quite competent, but when they bump up against systems whose primary "user interface" for system administration is a `bash` command prompt and some scripts, they panic.
 
 This is my attempt to help my co-workers by saying:
 
 > *"Don't panic."* - Douglas Adams (*Hitchhiker's Guide to the Galaxy*)
 
-It started out as a proposal I made a while ago to develop a "lunch and learn" session of about 60-90 minutes of what I considered to be "a Linux survival guide." The list in the [*Introduction*](#introduction) above is based on my original email proposal. The audience would be entirely technical, primarily "IT" (Windows/Cisco/VMWare/Exchange/SAN admins).
+It started out as a proposal I made a while ago to develop a "lunch and learn" session of about 60-90 minutes of what I considered to be "a Linux survival guide." The list in the [*Introduction*](#introduction) above is based on my original email proposal. The audience is entirely technical, primarily "IT" (Windows/Cisco/VMWare/Exchange/SAN admins).
 
-My goal is not to get into scripting or system setup and hardening or the thousand different ways to slice a file. Instead, the scenario I see in my head is for one of the participants in that "lunch and learn," armed with that discussion and having glanced through this book, to be better able to survive if dropped into the jungle with:
+My goal is not to get into scripting, or system setup and hardening, or the thousand different ways to slice a file. Instead, the scenario I see in my head is for one of the participants in that "lunch and learn," armed with that discussion and having glanced through this book, to be better able to survive if dropped into the jungle with:
 
 > *"The main www site is down, and all the people who know about it are out. It's running on some sort of Linux, I think, and the credentials and IP address are scrawled on this sticky note. Can you get in and poke around and see if you can figure it out?"* - your boss (next Tuesday morning)
 
-Well, as I started to type out my notes of what I considered to be "essential," they just kept growing and growing. And now, some nights, weekends and lunch hours gone, this is what you see as the result. I figure the slides will be easier to prepare for that "lunch and learn," now that I have the "notes"!
+As I started to type out my notes of what I considered to be "essential," they just kept growing and growing. Many nights, weekends and lunch hours later, this is the result. The slides were much easier to prepare now that I have the "notes"!
+
+**Note:** - The slides are included in [the same GitHub repository as this book](https://github.com/dullroar/ten-steps-to-linux-survival/releases).
 
 Caveat Administrator
 --------------------
 
-Even so, anything like this is incomplete. Anyone knowledgable of Linux will probably splutter their coffee into their neckbeard at least once a chapter because I don't mention a parameter on a command or an entire subject at all! And that's right - because this "survival guide" is already long enough.
+Even so, anything like this is incomplete. Anyone truly knowledgable of Linux will splutter their coffee into their neckbeard[1] at least once a chapter because I don't mention a parameter on a command or an entire subject at all! And that's right - because this "survival guide" is already long enough.
 
-This book is not meant to be an authoritative source, but instead a ["fake book"](https://en.wikipedia.org/wiki/Fake_book) for getting up and running ***quickly*** with the sheer basics, plus knowing where to go for help. I modeled it explicitly after "short and opinionated" tech books such as Douglas Crockford's [*Javascript: The Good Parts*](http://shop.oreilly.com/product/9780596517748.do) and especially those licensed under [Creative Commons](http://creativecommons.org/licenses/by-sa/4.0/) licenses, such as the books from [Green Tea Press](http://greenteapress.com/). If you like those big, thick tech books that are measured by the kilogram, this is not the book for you.
+This book is not meant to be an authoritative source, but instead a ["fake book"](https://en.wikipedia.org/wiki/Fake_book) for getting up and running ***quickly*** with the sheer basics, plus knowing where to go for help. I modeled it explicitly after "short and opinionated" tech books such as Douglas Crockford's [*Javascript: The Good Parts*](http://shop.oreilly.com/product/9780596517748.do) and especially those licensed under [Creative Commons](http://creativecommons.org/licenses/by-sa/4.0/), such as the books from [Green Tea Press](http://greenteapress.com/). If you like those big tech books that are priced by the kilogram, this is not the book for you.
 
-It is also not a replacement for reading the real documentation and doing research and testing, especially in production! But hopefully it will help get you through that "Can you get in and poke around and see if you can figure it out?" scenario, above. And if Linux should start becoming more of your job, maybe this will help as a gentle push toward "RTFM" along with thinking in "The UNIX Way."
+It is also not a replacement for reading the real documentation and doing research and testing, especially in production! But hopefully it will help get you through that "Can you get in and poke around and see if you can figure it out?" scenario above. And if Linux should start becoming more of your job, maybe this will help as a gentle push toward "RTFM" along with thinking in "The UNIX Way."
 
-**WARNING:** ***Many of the commands in this book can alter your system and possibly damage it.*** Obvious candidates include the file system commands like `rm`, the `vi` editor (obviously), and some of the "system admin" commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production. ***You have been warned!***
+**WARNING:** ***Many of the commands in this book can alter your system and possibly damage it.***
+
+Obvious candidates include the file system commands like `rm` , the `vi` editor (obviously), and some of the "system admin" commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production.
+
+***YOU HAVE BEEN WARNED!***
 
 Conventions
 -----------
@@ -226,19 +242,35 @@ If a command and its output, script code or something else is shown in a block, 
     2 ?        00:00:00 kthreadd
     3 ?        00:00:00   ksoftirqd/0
     5 ?        00:00:00   kworker/0:0H
-    7 ?        00:00:19   rcu_sched
-    8 ?        00:00:04   rcuos/0
-    9 ?        00:00:09   rcuos/1
-   10 ?        00:00:07   rcuos/2
+    7 ?        00:00:06   rcu_sched
+    8 ?        00:00:02   rcuos/0
+    9 ?        00:00:01   rcuos/1
+   10 ?        00:00:03   rcuos/2
+   11 ?        00:00:01   rcuos/3
+   12 ?        00:00:00   rcuos/4
+   13 ?        00:00:00   rcuos/5
+   14 ?        00:00:00   rcuos/6
+   15 ?        00:00:00   rcuos/7
+   16 ?        00:00:00   rcu_bh
+   17 ?        00:00:00   rcuob/0
+   18 ?        00:00:00   rcuob/1
+   19 ?        00:00:00   rcuob/2
+   20 ?        00:00:00   rcuob/3
+   21 ?        00:00:00   rcuob/4
+   22 ?        00:00:00   rcuob/5
+   23 ?        00:00:00   rcuob/6
+   24 ?        00:00:00   rcuob/7
 ...and so on...
 ```
 
-**Note:** The examples in this book typically show something like `~ $` before the command, or `#` (when logged in as root) or `%` (when running under `csh`). These "command prompts" are set in `bash` via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto) and are not meant to be typed in as part of the command.
+All such blocks have been normalized to only show a maximum of 80x24 characters. This is intentional. While most modern "UNIX" systems and terminal windows like `ssh` can handle any geometry, there are still systems and situations where you get the same terminal size that your grandfather would've used. It is best to learn how to deal with these by using `less`, redirection and the like.
+
+**Note:** The examples in this book typically show something like `~ $` before the command, or `~ #` (when logged in as root) or `%` (when running under `csh`). These "command prompts" are set in `bash` via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto) and are not meant to be typed in as part of the command.
 
 Acknowledgments
 ---------------
 
-Thanks to Ken Astl for reading an early draft of this book.
+Thanks to Ken Astl for reading an early draft of this book. Thanks to my wife Leslie for putting up with me while I obsessed over it.
 
 Some History
 ============
@@ -3356,7 +3388,7 @@ How Do You Know What You Don’t Know, `man`?
 
 > *"You're soaking in it."* - Palmolive commercial
 
-The biggest issue with bootstrapping into "UNIX" is not the lack of documentation but almost the surplus of it, coupled with a severe "RTFM" attitude by most old-timers toward most newbies. Besides the typical "Google" and "StackOverflow" answers, there are actually lots of very reliable places to turn to for information:
+The biggest issue with bootstrapping into "UNIX" is not the lack of documentation but almost the surplus of it, coupled with a severe "RTFM" attitude by most old-timers toward newbies. Besides the typical "Google" and ["StackOverflow"](http://unix.stackexchange.com/) answers, there are actually lots of very reliable places to turn to for information
 
 `man`, is that `info` `apropos`?
 --------------------------------
@@ -4325,3 +4357,5 @@ About the Author
 ----------------
 
 Jim is son to Barb and Lou; husband to Leslie; father to Meghann (and Jeremy), Morgann, Erin, Gloria and Jon; grandfather to Ryan, Lindsay, Logan and Hannah; and alpha wolf to Merv. He has been "in computers" since 1980. His hobbies include reading, running, hiking, climbing and apparently writing books.
+
+[1] Stereotype intentional.

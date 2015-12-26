@@ -142,12 +142,10 @@
 \renewcommand{\dblfloatpagefraction}{0.7}	% require fuller float pages
 \setcounter{dbltopnumber}{2}        % for 2-column pages
 \overfullrule=2cm   % Black bars to show overfull boxes
-\renewcommand{\chaptername}{Step}
-\renewcommand{\contentsname}{Steps}
 \numberwithin{figure}{chapter}
 \DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
-\DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1}}
-\DeclareRobustCommand{\drenv}[1]{\index{Environment Variables!#1}}
+\DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1@\texttt{#1}}}
+\DeclareRobustCommand{\drenv}[1]{\index{Environment Variables!#1@\texttt{#1}}}
 \DeclareRobustCommand{\drios}[1]{\index{OS and OS-Like Substances!#1}}
 \DeclareRobustCommand{\drshl}[1]{\index{Shells!#1}}
 \DeclareRobustCommand{\drvic}[2]{\index{vi Commands!#1 (#2)}}
@@ -201,6 +199,8 @@
 \setlength{\cftfignumwidth}{4em}
 \pagestyle{empty}
 \setcounter{chapter}{-2}
+\renewcommand{\chaptername}{Step}
+\renewcommand{\contentsname}{Steps}
 % Fix TOC overflow.
 %\renewcommand{\@pnumwidth}{3em} 
 %\renewcommand{\@tocrmarg}{4em}
@@ -219,7 +219,7 @@
 \hspace*{0.333em}\\
  By James Lehmer ~\\
 \hspace*{0.333em}\\
- v0.9 ~\\
+ v0.7 ~\\
 \hspace*{0.333em}\\
  \includegraphics{./images/cc-by-sa.png}\\
 \emph{Ten Steps to Linux Survival - Bash for Windows People} by James
@@ -227,13 +227,22 @@ Lehmer is licensed under a
 \href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons
 Attribution-ShareAlike 4.0 International License}. ~\\
 \hspace*{0.333em}\\
- \textbf{Dedicated to my first three technical mentors} - Jim Proffer,
-who taught me digging deeper was fun and let me do so (often in
-production). Jerry Wood, who taught me to stop and think (and once
-called me an "inveterate toolmaker" in a review). And Kim Manchak, who
-let me be more than he hired me to be (and continues to be a great chess
-opponent). Thank you, gentlemen. I've tried to pay it forward. This book
-is part of that.
+ \textbf{Dedicated to my first three technical mentors}
+
+\begin{itemize}
+\item
+  Jim Proffer, who taught me digging deeper was fun and let me do so,
+  often in production!
+\item
+  Jerry Wood, who taught me to stop and think, and once called me an
+  "inveterate toolmaker" in a review, a badge I still wear with pride.
+\item
+  Kim Manchak, who allowed me to be more than he hired me to be, and
+  continues to be a great chess opponent.
+\end{itemize}
+
+Thank you, gentlemen. I've tried to pay it forward. This book is part of
+that.
 
 \pagestyle{fancy} \fancyhead{}
 \fancyhead[LE]{\slshape TEN\ STEPS\ TO\ LINUX\ SURVIVAL}
@@ -246,9 +255,9 @@ is part of that.
 Heads (\emph{Once in a Lifetime})
 \end{quote}
 
-This is my little "Linux and Bash in 10 steps" guide. It's based around
-what I consider the essentials for \sout{floundering around} acting like
-I know what I'm doing in Linux, BSD and "UNIX-flavored" systems and
+This is my little "Linux and Bash in 10 steps" guide. It's based on what
+I consider the essentials for \sout{floundering around} acting like I
+know what I'm doing in Linux, BSD and "UNIX-flavored" systems and
 looking impressive among people who have only worked on Windows in the
 GUI. Your "10 steps" may be different than mine and that's fine, but
 this list is mine.
@@ -320,6 +329,10 @@ Here is what we'll cover in the rest of this book:
 Plus \protect\hyperlink{appendices}{some stuff} at the end to tie the
 whole room together.
 
+The most current release of the book should always be available for
+download in different formats on
+\href{https://github.com/dullroar/ten-steps-to-linux-survival/releases}{GitHub}.
+
 \section*{Batteries Not Included}\label{batteries-not-included}
 \addcontentsline{toc}{section}{Batteries Not Included}
 
@@ -351,11 +364,11 @@ covered:
 
 Plus so much more. Again, this is not meant to be exhaustive, but to
 help someone whose system administration experience has been limited to
-"Next-Next-Next-Finish" installs and filling in text boxes in wizards on
 Windows.
 
-\section*{Please, Give Generously}\label{please-give-generously}
-\addcontentsline{toc}{section}{Please, Give Generously}
+\section*{Please, Give (Suggestions)
+Generously}\label{please-give-suggestions-generously}
+\addcontentsline{toc}{section}{Please, Give (Suggestions) Generously}
 
 That said, if you find something amiss in here - a typo, a misconception
 or mistake, or a command or parameter you \textbf{\emph{really, really,
@@ -395,10 +408,10 @@ including:
   \textbf{SunOS}
 \end{itemize}
 
-...on various machines and machine architectures from mighty Sun servers
-to generic "Intel" VMs down to Raspberry Pis (plus an original "wedge"
-iMac running as a kitchen kiosk long after its "Best by" date and OS/9's
-demise, thanks to Yellow Dog Linux).
+All on various machines and machine architectures from mighty Sun
+servers to generic "Intel" VMs down to Raspberry Pis, plus an original
+"wedge" iMac running as a kitchen kiosk long after its "Best by" date
+and OS/9's demise, thanks to Yellow Dog Linux.
 
 All that while also working on MVS, VSE, OS/2, DOS since 3.x, Windows
 since 1.x, etc., etc. I don't think I am special when I list all that -
@@ -409,10 +422,10 @@ of them.
 But for some reason there are many places, especially in small and
 medium business (SMB) environments, where the "stack" tends to be more
 purely Microsoft because it keeps things simpler and cheaper for the
-(smaller) staff. I work in such a place. The technical staff is quite
+smaller staff. I work in such a place. The technical staff is quite
 competent, but when they bump up against systems whose primary "user
-interface" for system administration is a command prompt and some
-scripts, they panic.
+interface" for system administration is a \texttt{bash} command prompt
+and some scripts, they panic.
 
 This is my attempt to help my co-workers by saying:
 
@@ -425,10 +438,10 @@ It started out as a proposal I made a while ago to develop a "lunch and
 learn" session of about 60-90 minutes of what I considered to be "a
 Linux survival guide." The list in the
 \protect\hyperlink{introduction}{\emph{Introduction}} above is based on
-my original email proposal. The audience would be entirely technical,
+my original email proposal. The audience is entirely technical,
 primarily "IT" (Windows/Cisco/VMWare/Exchange/SAN admins).
 
-My goal is not to get into scripting or system setup and hardening or
+My goal is not to get into scripting, or system setup and hardening, or
 the thousand different ways to slice a file. Instead, the scenario I see
 in my head is for one of the participants in that "lunch and learn,"
 armed with that discussion and having glanced through this book, to be
@@ -442,20 +455,23 @@ in and poke around and see if you can figure it out?"} - your boss (next
 Tuesday morning)
 \end{quote}
 
-Well, as I started to type out my notes of what I considered to be
-"essential," they just kept growing and growing. And now, some nights,
-weekends and lunch hours gone, this is what you see as the result. I
-figure the slides will be easier to prepare for that "lunch and learn,"
-now that I have the "notes"!
+As I started to type out my notes of what I considered to be
+"essential," they just kept growing and growing. Many nights, weekends
+and lunch hours later, this is the result. The slides were much easier
+to prepare now that I have the "notes"!
+
+\textbf{Note:} - The slides are included in
+\href{https://github.com/dullroar/ten-steps-to-linux-survival/releases}{the
+same GitHub repository as this book}.
 
 \section*{Caveat Administrator}\label{caveat-administrator}
 \addcontentsline{toc}{section}{Caveat Administrator}
 
-Even so, anything like this is incomplete. Anyone knowledgable of Linux
-will probably splutter their coffee into their neckbeard at least once a
-chapter because I don't mention a parameter on a command or an entire
-subject at all! And that's right - because this "survival guide" is
-already long enough.
+Even so, anything like this is incomplete. Anyone truly knowledgable of
+Linux will splutter their coffee into their neckbeard\footnote{Stereotype
+  intentional.} at least once a chapter because I don't mention a
+parameter on a command or an entire subject at all! And that's right -
+because this "survival guide" is already long enough.
 
 This book is not meant to be an authoritative source, but instead a
 \href{https://en.wikipedia.org/wiki/Fake_book}{"fake book"} for getting
@@ -464,26 +480,30 @@ knowing where to go for help. I modeled it explicitly after "short and
 opinionated" tech books such as Douglas Crockford's
 \href{http://shop.oreilly.com/product/9780596517748.do}{\emph{Javascript:
 The Good Parts}} and especially those licensed under
-\href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons}
-licenses, such as the books from \href{http://greenteapress.com/}{Green
-Tea Press}. If you like those big, thick tech books that are measured by
-the kilogram, this is not the book for you.
+\href{http://creativecommons.org/licenses/by-sa/4.0/}{Creative Commons},
+such as the books from \href{http://greenteapress.com/}{Green Tea
+Press}. If you like those big tech books that are priced by the
+kilogram, this is not the book for you.
 
 It is also not a replacement for reading the real documentation and
 doing research and testing, especially in production! But hopefully it
 will help get you through that "Can you get in and poke around and see
-if you can figure it out?" scenario, above. And if Linux should start
+if you can figure it out?" scenario above. And if Linux should start
 becoming more of your job, maybe this will help as a gentle push toward
 "RTFM" along with thinking in "The UNIX Way."
 
 \textbf{WARNING:} \textbf{\emph{Many of the commands in this book can
-alter your system and possibly damage it.}} Obvious candidates include
-the file system commands like \texttt{rm}, the \texttt{vi} editor
-(obviously), and some of the "system admin" commands mentioned later,
-including system and service restarts. Use your common sense plus the
-various resources for documentation mentioned in this book to make sure
-you aren't doing anything destructive to your system, especially in
-production. \textbf{\emph{You have been warned!}}
+alter your system and possibly damage it.}}
+
+Obvious candidates include the file system commands like
+\texttt{rm}\drcmd{rm} \index{Files!Delete (\texttt{rm} command)}, the
+\texttt{vi}\drcmd{vi}\index{Editors!\texttt{vi}} editor (obviously), and
+some of the "system admin" commands mentioned later, including system
+and service restarts. Use your common sense plus the various resources
+for documentation mentioned in this book to make sure you aren't doing
+anything destructive to your system, especially in production.
+
+\textbf{\emph{YOU HAVE BEEN WARNED!}}
 
 \section*{Conventions}\label{conventions}
 \addcontentsline{toc}{section}{Conventions}
@@ -495,7 +515,7 @@ sentence, it will appear in a fixed-width font, e.g.,
 If a command and its output, script code or something else is shown in a
 block, it will appear like this:
 
-\drcap{Code snippet}
+\drcap{Sample command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -504,18 +524,41 @@ block, it will appear like this:
     \KeywordTok{2} \NormalTok{?        00:00:00 kthreadd}
     \KeywordTok{3} \NormalTok{?        00:00:00   ksoftirqd/0}
     \KeywordTok{5} \NormalTok{?        00:00:00   kworker/0:0H}
-    \KeywordTok{7} \NormalTok{?        00:00:19   rcu_sched}
-    \KeywordTok{8} \NormalTok{?        00:00:04   rcuos/0}
-    \KeywordTok{9} \NormalTok{?        00:00:09   rcuos/1}
-   \KeywordTok{10} \NormalTok{?        00:00:07   rcuos/2}
+    \KeywordTok{7} \NormalTok{?        00:00:06   rcu_sched}
+    \KeywordTok{8} \NormalTok{?        00:00:02   rcuos/0}
+    \KeywordTok{9} \NormalTok{?        00:00:01   rcuos/1}
+   \KeywordTok{10} \NormalTok{?        00:00:03   rcuos/2}
+   \KeywordTok{11} \NormalTok{?        00:00:01   rcuos/3}
+   \KeywordTok{12} \NormalTok{?        00:00:00   rcuos/4}
+   \KeywordTok{13} \NormalTok{?        00:00:00   rcuos/5}
+   \KeywordTok{14} \NormalTok{?        00:00:00   rcuos/6}
+   \KeywordTok{15} \NormalTok{?        00:00:00   rcuos/7}
+   \KeywordTok{16} \NormalTok{?        00:00:00   rcu_bh}
+   \KeywordTok{17} \NormalTok{?        00:00:00   rcuob/0}
+   \KeywordTok{18} \NormalTok{?        00:00:00   rcuob/1}
+   \KeywordTok{19} \NormalTok{?        00:00:00   rcuob/2}
+   \KeywordTok{20} \NormalTok{?        00:00:00   rcuob/3}
+   \KeywordTok{21} \NormalTok{?        00:00:00   rcuob/4}
+   \KeywordTok{22} \NormalTok{?        00:00:00   rcuob/5}
+   \KeywordTok{23} \NormalTok{?        00:00:00   rcuob/6}
+   \KeywordTok{24} \NormalTok{?        00:00:00   rcuob/7}
 \KeywordTok{...and} \NormalTok{so on...}
 \end{Highlighting}
 \end{Shaded}
 
+All such blocks have been normalized to only show a maximum of 80x24
+characters. This is intentional. While most modern "UNIX" systems and
+terminal windows like \texttt{ssh}\drcmd{ssh} can handle any geometry,
+there are still systems and situations where you get the same terminal
+size that your grandfather would've used. It is best to learn how to
+deal with these by using \texttt{less}\drcmd{less}, redirection and the
+like.
+
 \textbf{Note:} The examples in this book typically show something like
-\texttt{\textasciitilde{}\ \$} before the command, or \texttt{\#} (when
-logged in as root) or \texttt{\%} (when running under \texttt{csh}).
-These "command prompts" are set in \texttt{bash} via the
+\texttt{\textasciitilde{}\ \$} before the command, or
+\texttt{\textasciitilde{}\ \#} (when logged in as root) or \texttt{\%}
+(when running under \texttt{csh}\drshl{csh}). These "command prompts"
+are set in \texttt{bash}\drshl{bash} via the
 \href{https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto}{\texttt{PS1}
 environment variable}\drenv{PS1} and are not meant to be typed in as
 part of the command.
@@ -523,7 +566,8 @@ part of the command.
 \section*{Acknowledgments}\label{acknowledgments}
 \addcontentsline{toc}{section}{Acknowledgments}
 
-Thanks to Ken Astl for reading an early draft of this book.
+Thanks to Ken Astl for reading an early draft of this book. Thanks to my
+wife Leslie for putting up with me while I obsessed over it.
 
 \hypertarget{some-history}{\chapter{Some History}\label{some-history}}
 
@@ -924,7 +968,7 @@ Built-Ins}{bash Built-Ins}}\label{bash-built-ins}
 Every shell has some "built-in" commands that are implemented as part of
 the shell and not as an external command or program, and
 \texttt{bash}\drshl{bash} has its share, as shown by running the
-\href{http://linux.die.net/man/1/help}{\texttt{help}}\drcmd{help}
+\href{http://linux.die.net/man/1/help}{\texttt{help}}\drcmd{help}\index{Documentation!\texttt{help} command}
 command in a \texttt{bash} terminal:
 
 \drcap{Built-in commands in bash}
@@ -5793,9 +5837,11 @@ on the internet.}}
 
 The biggest issue with bootstrapping into "UNIX" is not the lack of
 documentation but almost the surplus of it, coupled with a severe "RTFM"
-attitude by most old-timers toward most newbies. Besides the typical
-"Google" and "StackOverflow" answers, there are actually lots of very
-reliable places to turn to for information:
+attitude by most old-timers toward newbies. Besides the typical "Google"
+and
+\href{http://unix.stackexchange.com/}{"StackOverflow"}\index{Documentation!\textit{http://unix.stackexchange.com/}}
+answers, there are actually lots of very reliable places to turn to for
+information
 
 \section*{\texorpdfstring{\texttt{man}, is that \texttt{info}
 \texttt{apropos}?}{man, is that info apropos?}}\label{man-is-that-info-apropos}
@@ -5804,9 +5850,10 @@ reliable places to turn to for information:
 
 There are three commands that are the basis for reading "UNIX"
 documentation within "UNIX" itself -
-\href{http://linux.die.net/man/1/man}{\texttt{man}}\drcmd{man},
-\href{http://linux.die.net/man/1/info}{\texttt{info}}\drcmd{info} and
-\href{http://linux.die.net/man/1/apropos}{\texttt{apropos}}\drcmd{apropos}.
+\href{http://linux.die.net/man/1/man}{\texttt{man}}\drcmd{man}\index{Documentation!\texttt{man} command},
+\href{http://linux.die.net/man/1/info}{\texttt{info}}\drcmd{info}\index{Documentation!\texttt{info} command}
+and
+\href{http://linux.die.net/man/1/apropos}{\texttt{apropos}}\drcmd{apropos}\index{Documentation!\texttt{apropos} command}.
 
 \texttt{man} is short for \emph{manual pages}, and is used to display
 the main help for most "UNIX" commands. For example, \texttt{man\ ls}
@@ -5843,7 +5890,8 @@ shows:
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Note:} \texttt{man} uses \texttt{less}\drcmd{less} as a
+\textbf{Note:} \texttt{man} uses
+\texttt{less}\drcmd{less}\index{Pagination!\texttt{less} command} as a
 paginator, with all that means, including the same navigation and search
 keys, and most important to remember - \texttt{Q} to quit. How do I know
 this? Because of course you can \texttt{man\ man}!
@@ -5856,11 +5904,11 @@ system administration commands. You usually don't care, and can
 
 But sometimes there are duplicate names in the different sections. For
 example, there is both a \texttt{passwd}\drcmd{passwd} command and a
-\texttt{passwd}\drcmd{passwd file} file format (for
-\texttt{/etc/passwd}). By default, \texttt{man\ passwd} will show you
-the documentation from the lowest numbered section with a match, in this
-case section 1, usually referred to as \texttt{passwd(1)} to
-disambiguate which thing we're talking about:
+\texttt{passwd}\drcmd{passwd file}\index{Files!Special files!\texttt{/etc/passwd}}
+file format (for \texttt{/etc/passwd}). By default, \texttt{man\ passwd}
+will show you the documentation from the lowest numbered section with a
+match, in this case section 1, usually referred to as \texttt{passwd(1)}
+to disambiguate which thing we're talking about:
 
 \drcap{Ambiguous man commands default to lowest documentation section}
 
@@ -5929,8 +5977,9 @@ have to explicitly specify the section, in this case by using
 \end{Shaded}
 
 Besides \texttt{man}, many GNU tools come with help in
-\texttt{info}\drcmd{info} format, which is originally from
-\texttt{emacs}. Here are the results of \texttt{info\ find}:
+\texttt{info}\drcmd{info}\index{Documentation!\texttt{info} command}
+format, which is originally from \texttt{emacs}. Here are the results of
+\texttt{info\ find}:
 
 \drcap{Running info on the find command}
 
@@ -5970,7 +6019,8 @@ in my head. The biggest thing to remember if you do something like
 
 Finally, what if you don't know the name of the command? Well, each "man
 page" has a title and brief description, e.g., "passwd - change user
-password" in the \texttt{man\ passwd} output above. The \texttt{apropos}
+password" in the \texttt{man\ passwd} output above. The
+\texttt{apropos}\drcmd{apropos}\index{Documentation!\texttt{apropos} command}
 command can simply search those titles and descriptions for a word or
 phrase and show you all the results:
 
@@ -6019,7 +6069,7 @@ their output through other commands, just like any other. For example,
 maybe we remember only that the command had something with "edit" and
 was a system administration ("section 8") command:
 
-\drcap{Refining output from apropos}
+\drcap{Refining output from \texttt{apropos}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6061,9 +6111,11 @@ And yes, you can \texttt{man\ man}, \texttt{man\ info},
 
 You can often search the internet for "UNIX" documentation, and the
 \texttt{man} pages have long been online. A site I like (and link to a
-lot here) is \url{http://linux.die.net/man/}. Often, though, you can
-just google \href{https://www.google.com/\#q=man+ls}{"man ls"} and the
-top hits will be what you want.
+lot here) is
+\url{http://linux.die.net/man/}\index{Documentation!\textit{http://linux.die.net/man/}}.
+Often, though, you can just google
+\href{https://www.google.com/\#q=man+ls}{"man ls"} and the top hits will
+be what you want.
 
 \textbf{\emph{However}}, there are times you need to be careful.
 Googling for either \texttt{man\ touch} or \texttt{man\ tail}, for
@@ -6081,19 +6133,23 @@ on various parts of Linux and related systems on the internet.
 \begin{itemize}
 \item
   \href{http://www.tldp.org/guides.html}{\textbf{The Linux Documentation
-  Project (LDP)}}\index{Linux Documentation Project} - has fallen a bit
-  behind over the years, but still has two of the best \texttt{bash}
-  scripting books out there,
+  Project (LDP)}}\index{Documentation!Linux Documentation Project} - has
+  fallen a bit behind over the years, but still has two of the best
+  \texttt{bash} scripting books out there,
   \href{http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html}{\emph{Bash
-  Guide for Beginners}} and
-  \href{http://www.tldp.org/LDP/abs/html/index.html}{\emph{Advanced
-  Bash-Scripting Guide}}. I continue to use the latter all the time.
+  Guide for
+  Beginners}}\index{Documentation!\textit{Bash Guide for Beginners}}\drios{bash}
+  and \href{http://www.tldp.org/LDP/abs/html/index.html}{\emph{Advanced
+  Bash-Scripting
+  Guide}}\index{Documentation!\textit{Advanced Bash-Scripting Guide}}. I
+  continue to use the latter all the time.
 \item
   \href{https://wiki.archlinux.org/}{\textbf{Arch Linux
-  Wiki}}\index{Arch wiki} - you may not think this would be useful if
-  you are running Debian or Fedora or something else, but remember most
-  "UNIX" systems are all very similar, and often the best documentation
-  on a package or setting something up in Linux is in the Arch wiki.
+  Wiki}}\index{Documentation!Arch wiki} - you may not think this would
+  be useful if you are running Debian or Fedora or something else, but
+  remember most "UNIX" systems are all very similar, and often the best
+  documentation on a package or setting something up in Linux is in the
+  Arch wiki.
 \item
   \href{https://www.debian.org/doc/}{\textbf{Debian documentation}} -
   again, even if you are not running a Debian-based distro, this can be
@@ -6102,10 +6158,12 @@ on various parts of Linux and related systems on the internet.
   approaches the differences). The best books in the series are
   \href{https://www.debian.org/doc/manuals/debian-handbook/}{\emph{The
   Debian Administrator's
-  Handbook}}\index{Debian Administrator's Handbook} and the
+  Handbook}}\index{Documentation!\textit{Debian Administrator's Handbook}}
+  and the
   \href{https://www.debian.org/doc/manuals/debian-reference/}{\emph{Debian
-  Reference}}\index{Debian Reference}, which is a lot more formal
-  attempt at the same type of territory this guide covers.
+  Reference}}\index{Documentation!\textit{Debian Reference}}, which is a
+  lot more formal attempt at the same type of territory this guide
+  covers.
 \end{itemize}
 
 Ubuntu, Mint and some other distros have quite active message fora, and

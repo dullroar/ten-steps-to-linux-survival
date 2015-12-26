@@ -24,7 +24,7 @@
 <ul>
 <li><a href="#introduction"><span class="toc-section-number">-1</span> Introduction</a><ul>
 <li><a href="#batteries-not-included">Batteries Not Included</a></li>
-<li><a href="#please-give-generously">Please, Give Generously</a></li>
+<li><a href="#please-give-suggestions-generously">Please, Give (Suggestions) Generously</a></li>
 <li><a href="#why">Why?</a></li>
 <li><a href="#caveat-administrator">Caveat Administrator</a></li>
 <li><a href="#conventions">Conventions</a></li>
@@ -146,18 +146,24 @@
  <br />
 <br/> <br/> By James Lehmer  <br />
  <br />
-<br/> <br/> v0.9  <br />
+<br/> <br/> v0.7  <br />
  <br />
 <br/> <br/> <img src="./images/cc-by-sa.png" title="Creative Commons Attribution-ShareAlike 4.0 International" alt="" /><br />
 <em>Ten Steps to Linux Survival - Bash for Windows People</em> by James Lehmer is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.  <br />
  <br />
-<br/> <br/> <strong>Dedicated to my first three technical mentors</strong> - Jim Proffer, who taught me digging deeper was fun and let me do so (often in production). Jerry Wood, who taught me to stop and think (and once called me an &quot;inveterate toolmaker&quot; in a review). And Kim Manchak, who let me be more than he hired me to be (and continues to be a great chess opponent). Thank you, gentlemen. I've tried to pay it forward. This book is part of that.</p>
+<br/> <br/> <strong>Dedicated to my first three technical mentors</strong></p>
+<ul>
+<li><p>Jim Proffer, who taught me digging deeper was fun and let me do so, often in production!</p></li>
+<li><p>Jerry Wood, who taught me to stop and think, and once called me an &quot;inveterate toolmaker&quot; in a review, a badge I still wear with pride.</p></li>
+<li><p>Kim Manchak, who allowed me to be more than he hired me to be, and continues to be a great chess opponent.</p></li>
+</ul>
+<p>Thank you, gentlemen. I've tried to pay it forward. This book is part of that.</p>
 <p>    </p>
 <h1 id="introduction"><span class="header-section-number">-1</span> Introduction</h1>
 <blockquote>
 <p><em>&quot;And you may ask yourself, 'Well, how did I get here?'&quot;</em> - Talking Heads (<em>Once in a Lifetime</em>)</p>
 </blockquote>
-<p>This is my little &quot;Linux and Bash in 10 steps&quot; guide. It's based around what I consider the essentials for <del>floundering around</del> acting like I know what I'm doing in Linux, BSD and &quot;UNIX-flavored&quot; systems and looking impressive among people who have only worked on Windows in the GUI. Your &quot;10 steps&quot; may be different than mine and that's fine, but this list is mine.</p>
+<p>This is my little &quot;Linux and Bash in 10 steps&quot; guide. It's based on what I consider the essentials for <del>floundering around</del> acting like I know what I'm doing in Linux, BSD and &quot;UNIX-flavored&quot; systems and looking impressive among people who have only worked on Windows in the GUI. Your &quot;10 steps&quot; may be different than mine and that's fine, but this list is mine.</p>
 <p>I said ten things, but I lied, because history is really important, so we will start at step #0. And since this is before even that I guess that means this is a 12-step program...</p>
 <p>Here is what we'll cover in the rest of this book:</p>
 <ol start="0" type="1">
@@ -174,6 +180,7 @@
 <li><p><a href="#and-so-on"><strong>And So On</strong></a> - <code>/etc</code>, starting and stopping services, <code>apt-get</code>/<code>rpm</code>/<code>yum</code>, and more.</p></li>
 </ol>
 <p>Plus <a href="#appendices">some stuff</a> at the end to tie the whole room together.</p>
+<p>The most current release of the book should always be available for download in different formats on <a href="https://github.com/dullroar/ten-steps-to-linux-survival/releases">GitHub</a>.</p>
 <h2 id="batteries-not-included" class="unnumbered">Batteries Not Included</h2>
 <p>It should be obvious that there is <strong><em>plenty</em></strong> that is not covered:</p>
 <ul>
@@ -183,8 +190,8 @@
 <li><p><strong>Servers</strong> - setting up or configuring web servers like Apache or node, email servers like dovecot, Samba servers for file shares, and so on.</p></li>
 <li><p><strong>Security</strong> - other than the simple basics of the file system security model.</p></li>
 </ul>
-<p>Plus so much more. Again, this is not meant to be exhaustive, but to help someone whose system administration experience has been limited to &quot;Next-Next-Next-Finish&quot; installs and filling in text boxes in wizards on Windows.</p>
-<h2 id="please-give-generously" class="unnumbered">Please, Give Generously</h2>
+<p>Plus so much more. Again, this is not meant to be exhaustive, but to help someone whose system administration experience has been limited to Windows.</p>
+<h2 id="please-give-suggestions-generously" class="unnumbered">Please, Give (Suggestions) Generously</h2>
 <p>That said, if you find something amiss in here - a typo, a misconception or mistake, or a command or parameter you <strong><em>really, really, really</em></strong> think should be in here even though I said I am not trying to be exhaustive, feel free to <a href="https://github.com/dullroar/ten-steps-to-linux-survival">clone it from GitHub</a>, make your changes and send me a <code>git pull</code> request. Or you can try to <a href="https://github.com/dullroar/ten-steps-to-linux-survival/issues">file it as an issue</a> and I'll see how I feel that day.</p>
 <h2 id="why" class="unnumbered">Why?</h2>
 <p>Because I work in a primarily Windows-oriented shop, and I seem to be &quot;the guy&quot; that everyone comes to when they need help on a Linux or related system. I don't count myself a Linux guru (<strong><em>at all</em></strong>), but I have been running it since 1996 (Slackware on a laptop with 8MB of memory!), and have worked on or run at home various ports and flavors and and versions and distros of &quot;UNIX&quot; over the years, including:</p>
@@ -196,24 +203,27 @@
 <li><p><strong>Solaris</strong></p></li>
 <li><p><strong>SunOS</strong></p></li>
 </ul>
-<p>...on various machines and machine architectures from mighty Sun servers to generic &quot;Intel&quot; VMs down to Raspberry Pis (plus an original &quot;wedge&quot; iMac running as a kitchen kiosk long after its &quot;Best by&quot; date and OS/9's demise, thanks to Yellow Dog Linux).</p>
+<p>All on various machines and machine architectures from mighty Sun servers to generic &quot;Intel&quot; VMs down to Raspberry Pis, plus an original &quot;wedge&quot; iMac running as a kitchen kiosk long after its &quot;Best by&quot; date and OS/9's demise, thanks to Yellow Dog Linux.</p>
 <p>All that while also working on MVS, VSE, OS/2, DOS since 3.x, Windows since 1.x, etc., etc. I don't think I am special when I list all that - there are lots of people with my level of experience <strong><em>and better</em></strong>, especially in commercial software engineering. I am just one of them.</p>
-<p>But for some reason there are many places, especially in small and medium business (SMB) environments, where the &quot;stack&quot; tends to be more purely Microsoft because it keeps things simpler and cheaper for the (smaller) staff. I work in such a place. The technical staff is quite competent, but when they bump up against systems whose primary &quot;user interface&quot; for system administration is a command prompt and some scripts, they panic.</p>
+<p>But for some reason there are many places, especially in small and medium business (SMB) environments, where the &quot;stack&quot; tends to be more purely Microsoft because it keeps things simpler and cheaper for the smaller staff. I work in such a place. The technical staff is quite competent, but when they bump up against systems whose primary &quot;user interface&quot; for system administration is a <code>bash</code> command prompt and some scripts, they panic.</p>
 <p>This is my attempt to help my co-workers by saying:</p>
 <blockquote>
 <p><em>&quot;Don't panic.&quot;</em> - Douglas Adams (<em>Hitchhiker's Guide to the Galaxy</em>)</p>
 </blockquote>
-<p>It started out as a proposal I made a while ago to develop a &quot;lunch and learn&quot; session of about 60-90 minutes of what I considered to be &quot;a Linux survival guide.&quot; The list in the <a href="#introduction"><em>Introduction</em></a> above is based on my original email proposal. The audience would be entirely technical, primarily &quot;IT&quot; (Windows/Cisco/VMWare/Exchange/SAN admins).</p>
-<p>My goal is not to get into scripting or system setup and hardening or the thousand different ways to slice a file. Instead, the scenario I see in my head is for one of the participants in that &quot;lunch and learn,&quot; armed with that discussion and having glanced through this book, to be better able to survive if dropped into the jungle with:</p>
+<p>It started out as a proposal I made a while ago to develop a &quot;lunch and learn&quot; session of about 60-90 minutes of what I considered to be &quot;a Linux survival guide.&quot; The list in the <a href="#introduction"><em>Introduction</em></a> above is based on my original email proposal. The audience is entirely technical, primarily &quot;IT&quot; (Windows/Cisco/VMWare/Exchange/SAN admins).</p>
+<p>My goal is not to get into scripting, or system setup and hardening, or the thousand different ways to slice a file. Instead, the scenario I see in my head is for one of the participants in that &quot;lunch and learn,&quot; armed with that discussion and having glanced through this book, to be better able to survive if dropped into the jungle with:</p>
 <blockquote>
 <p><em>&quot;The main www site is down, and all the people who know about it are out. It's running on some sort of Linux, I think, and the credentials and IP address are scrawled on this sticky note. Can you get in and poke around and see if you can figure it out?&quot;</em> - your boss (next Tuesday morning)</p>
 </blockquote>
-<p>Well, as I started to type out my notes of what I considered to be &quot;essential,&quot; they just kept growing and growing. And now, some nights, weekends and lunch hours gone, this is what you see as the result. I figure the slides will be easier to prepare for that &quot;lunch and learn,&quot; now that I have the &quot;notes&quot;!</p>
+<p>As I started to type out my notes of what I considered to be &quot;essential,&quot; they just kept growing and growing. Many nights, weekends and lunch hours later, this is the result. The slides were much easier to prepare now that I have the &quot;notes&quot;!</p>
+<p><strong>Note:</strong> - The slides are included in <a href="https://github.com/dullroar/ten-steps-to-linux-survival/releases">the same GitHub repository as this book</a>.</p>
 <h2 id="caveat-administrator" class="unnumbered">Caveat Administrator</h2>
-<p>Even so, anything like this is incomplete. Anyone knowledgable of Linux will probably splutter their coffee into their neckbeard at least once a chapter because I don't mention a parameter on a command or an entire subject at all! And that's right - because this &quot;survival guide&quot; is already long enough.</p>
-<p>This book is not meant to be an authoritative source, but instead a <a href="https://en.wikipedia.org/wiki/Fake_book">&quot;fake book&quot;</a> for getting up and running <strong><em>quickly</em></strong> with the sheer basics, plus knowing where to go for help. I modeled it explicitly after &quot;short and opinionated&quot; tech books such as Douglas Crockford's <a href="http://shop.oreilly.com/product/9780596517748.do"><em>Javascript: The Good Parts</em></a> and especially those licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons</a> licenses, such as the books from <a href="http://greenteapress.com/">Green Tea Press</a>. If you like those big, thick tech books that are measured by the kilogram, this is not the book for you.</p>
-<p>It is also not a replacement for reading the real documentation and doing research and testing, especially in production! But hopefully it will help get you through that &quot;Can you get in and poke around and see if you can figure it out?&quot; scenario, above. And if Linux should start becoming more of your job, maybe this will help as a gentle push toward &quot;RTFM&quot; along with thinking in &quot;The UNIX Way.&quot;</p>
-<p><strong>WARNING:</strong> <strong><em>Many of the commands in this book can alter your system and possibly damage it.</em></strong> Obvious candidates include the file system commands like <code>rm</code>, the <code>vi</code> editor (obviously), and some of the &quot;system admin&quot; commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production. <strong><em>You have been warned!</em></strong></p>
+<p>Even so, anything like this is incomplete. Anyone truly knowledgable of Linux will splutter their coffee into their neckbeard<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> at least once a chapter because I don't mention a parameter on a command or an entire subject at all! And that's right - because this &quot;survival guide&quot; is already long enough.</p>
+<p>This book is not meant to be an authoritative source, but instead a <a href="https://en.wikipedia.org/wiki/Fake_book">&quot;fake book&quot;</a> for getting up and running <strong><em>quickly</em></strong> with the sheer basics, plus knowing where to go for help. I modeled it explicitly after &quot;short and opinionated&quot; tech books such as Douglas Crockford's <a href="http://shop.oreilly.com/product/9780596517748.do"><em>Javascript: The Good Parts</em></a> and especially those licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons</a>, such as the books from <a href="http://greenteapress.com/">Green Tea Press</a>. If you like those big tech books that are priced by the kilogram, this is not the book for you.</p>
+<p>It is also not a replacement for reading the real documentation and doing research and testing, especially in production! But hopefully it will help get you through that &quot;Can you get in and poke around and see if you can figure it out?&quot; scenario above. And if Linux should start becoming more of your job, maybe this will help as a gentle push toward &quot;RTFM&quot; along with thinking in &quot;The UNIX Way.&quot;</p>
+<p><strong>WARNING:</strong> <strong><em>Many of the commands in this book can alter your system and possibly damage it.</em></strong></p>
+<p>Obvious candidates include the file system commands like <code>rm</code> , the <code>vi</code> editor (obviously), and some of the &quot;system admin&quot; commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production.</p>
+<p><strong><em>YOU HAVE BEEN WARNED!</em></strong></p>
 <h2 id="conventions" class="unnumbered">Conventions</h2>
 <p>If a command, file name or other &quot;computer code&quot; is shown in-line in a sentence, it will appear in a fixed-width font, e.g., <code>ls --recursive *.txt</code>.</p>
 <p>If a command and its output, script code or something else is shown in a block, it will appear like this:</p>
@@ -223,14 +233,29 @@
     2 ?        00:00:00 kthreadd
     3 ?        00:00:00   ksoftirqd/0
     5 ?        00:00:00   kworker/0:0H
-    7 ?        00:00:19   rcu_sched
-    8 ?        00:00:04   rcuos/0
-    9 ?        00:00:09   rcuos/1
-   10 ?        00:00:07   rcuos/2
+    7 ?        00:00:06   rcu_sched
+    8 ?        00:00:02   rcuos/0
+    9 ?        00:00:01   rcuos/1
+   10 ?        00:00:03   rcuos/2
+   11 ?        00:00:01   rcuos/3
+   12 ?        00:00:00   rcuos/4
+   13 ?        00:00:00   rcuos/5
+   14 ?        00:00:00   rcuos/6
+   15 ?        00:00:00   rcuos/7
+   16 ?        00:00:00   rcu_bh
+   17 ?        00:00:00   rcuob/0
+   18 ?        00:00:00   rcuob/1
+   19 ?        00:00:00   rcuob/2
+   20 ?        00:00:00   rcuob/3
+   21 ?        00:00:00   rcuob/4
+   22 ?        00:00:00   rcuob/5
+   23 ?        00:00:00   rcuob/6
+   24 ?        00:00:00   rcuob/7
 ...and so on...</code></pre>
-<p><strong>Note:</strong> The examples in this book typically show something like <code>~ $</code> before the command, or <code>#</code> (when logged in as root) or <code>%</code> (when running under <code>csh</code>). These &quot;command prompts&quot; are set in <code>bash</code> via the <a href="https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto"><code>PS1</code> environment variable</a> and are not meant to be typed in as part of the command.</p>
+<p>All such blocks have been normalized to only show a maximum of 80x24 characters. This is intentional. While most modern &quot;UNIX&quot; systems and terminal windows like <code>ssh</code> can handle any geometry, there are still systems and situations where you get the same terminal size that your grandfather would've used. It is best to learn how to deal with these by using <code>less</code>, redirection and the like.</p>
+<p><strong>Note:</strong> The examples in this book typically show something like <code>~ $</code> before the command, or <code>~ #</code> (when logged in as root) or <code>%</code> (when running under <code>csh</code>). These &quot;command prompts&quot; are set in <code>bash</code> via the <a href="https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto"><code>PS1</code> environment variable</a> and are not meant to be typed in as part of the command.</p>
 <h2 id="acknowledgments" class="unnumbered">Acknowledgments</h2>
-<p>Thanks to Ken Astl for reading an early draft of this book.</p>
+<p>Thanks to Ken Astl for reading an early draft of this book. Thanks to my wife Leslie for putting up with me while I obsessed over it.</p>
 <h1 id="some-history"><span class="header-section-number">0</span> Some History</h1>
 <p><strong><em>UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,” Cygwin, and why any of this matters now. “Why does this script off the internet work on this system and not on that one?”</em></strong></p>
 <blockquote>
@@ -2460,7 +2485,7 @@ dmesg.1.gz             pm-powersave.log.2.gz  Xorg.20.log
 <blockquote>
 <p><em>&quot;You're soaking in it.&quot;</em> - Palmolive commercial</p>
 </blockquote>
-<p>The biggest issue with bootstrapping into &quot;UNIX&quot; is not the lack of documentation but almost the surplus of it, coupled with a severe &quot;RTFM&quot; attitude by most old-timers toward most newbies. Besides the typical &quot;Google&quot; and &quot;StackOverflow&quot; answers, there are actually lots of very reliable places to turn to for information:</p>
+<p>The biggest issue with bootstrapping into &quot;UNIX&quot; is not the lack of documentation but almost the surplus of it, coupled with a severe &quot;RTFM&quot; attitude by most old-timers toward newbies. Besides the typical &quot;Google&quot; and <a href="http://unix.stackexchange.com/">&quot;StackOverflow&quot;</a> answers, there are actually lots of very reliable places to turn to for information</p>
 <h2 id="man-is-that-info-apropos" class="unnumbered"><code>man</code>, is that <code>info</code> <code>apropos</code>?</h2>
 <p>There are three commands that are the basis for reading &quot;UNIX&quot; documentation within &quot;UNIX&quot; itself - <a href="http://linux.die.net/man/1/man"><code>man</code></a>, <a href="http://linux.die.net/man/1/info"><code>info</code></a> and <a href="http://linux.die.net/man/1/apropos"><code>apropos</code></a>.</p>
 <p><code>man</code> is short for <em>manual pages</em>, and is used to display the main help for most &quot;UNIX&quot; commands. For example, <code>man ls</code> shows:</p>
@@ -3132,5 +3157,11 @@ xfreerdp --version</code></pre>
 <p>The cover photo is of our dog, Merv, who is reminding you, &quot;Don't panic!&quot; Photo by Gloria Anderson, used with permission.</p>
 <h2 id="about-the-author" class="unnumbered">About the Author</h2>
 <p>Jim is son to Barb and Lou; husband to Leslie; father to Meghann (and Jeremy), Morgann, Erin, Gloria and Jon; grandfather to Ryan, Lindsay, Logan and Hannah; and alpha wolf to Merv. He has been &quot;in computers&quot; since 1980. His hobbies include reading, running, hiking, climbing and apparently writing books.</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Stereotype intentional.<a href="#fnref1">↩</a></p></li>
+</ol>
+</section>
 </body>
 </html>
