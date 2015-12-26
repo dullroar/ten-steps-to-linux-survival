@@ -586,26 +586,27 @@ the depths of time:
 \begin{itemize}
 \item
   \textbf{Prehistory} - late 1960s, Nixon, Vietnam, Woodstock, Moon
-  landing, \href{https://en.wikipedia.org/wiki/Multics}{Multics} at MIT,
-  GE and Bell Labs.
+  landing,
+  \href{https://en.wikipedia.org/wiki/Multics}{Multics}\drios{Multics}
+  at MIT, GE and Bell Labs.
 \item
   \textbf{In the beginning} - early 1970s, Nixon drags on, Watergate,
   Bell Labs, \href{https://en.wikipedia.org/wiki/Ken_Thompson}{Thompson}
   \& \href{https://en.wikipedia.org/wiki/Dennis_Ritchie}{Ritchie},
-  \href{https://en.wikipedia.org/wiki/History_of_Unix}{UNIX}\drios{UNIX},
-  blah blah blah...
+  \href{https://en.wikipedia.org/wiki/History_of_Unix}{UNIX}\drios{UNIX}
+  is born.
 \item
-  \textbf{More Trouble From Berkeley} - late 1970s, Carter, disco, Iran
+  \textbf{More trouble from Berkeley} - late 1970s, Carter, disco, Iran
   hostages, UC Berkely releases the
   \href{https://en.wikipedia.org/wiki/Berkeley_Software_Distribution}{Berkeley
   Software Distribution} (BSD)\drios{BSD}, a port based on the Bell Labs
   UNIX. Let the forking begin!
 \item
-  \textbf{Goes commercial} - 1980s, Reagan, Iran Contra, \emph{E.T.},
-  AT\&T releases
+  \textbf{UNIX goes commercial} - 1980s, Reagan, Iran Contra,
+  \emph{E.T.}, AT\&T releases
   \href{https://en.wikipedia.org/wiki/UNIX_System_V}{System
   V}\drios{System V} as first commercial UNIX. From the same background
-  as Bell Labs UNIX, but evolved with subtle and not so subtle
+  as Bell Labs UNIX, System V evolved with subtle and not so subtle
   differences in approaches to command syntax, networking and much more.
   It is this release and AT\&T's copyrights that are the basis of all
   the SCO-vs-Linux lawsuits 2-3 decades later.
@@ -617,15 +618,16 @@ the depths of time:
   \begin{itemize}
   \tightlist
   \item
-    \textbf{HP HP-UX}
+    \textbf{HP HP-UX}\drios{HP-UX}
   \item
-    \textbf{Sun SunOS} - BSD flavor.
+    \textbf{Sun SunOS}\drios{SunOS} - BSD flavor.
   \item
-    \textbf{Sun Solaris} - System V flavor. Now Oracle Solaris.
+    \textbf{Sun Solaris}\drios{Solaris} - System V flavor. Now Oracle
+    Solaris.
   \item
-    \textbf{IBM AIX}
+    \textbf{IBM AIX}\drios{AIX}
   \item
-    \textbf{SGI IRIX}
+    \textbf{SGI IRIX}\drios{IRIX}
   \item
     \textbf{...and many, many more!} - although mostly all that's left
     now is HP-UX, AIX and Solaris.
@@ -644,8 +646,8 @@ the depths of time:
   \href{https://en.wikipedia.org/wiki/NetBSD}{NetBSD}\drios{NetBSD},
   \href{https://en.wikipedia.org/wiki/FreeBSD}{FreeBSD}\drios{FreeBSD}
   and
-  \href{https://en.wikipedia.org/wiki/OpenBSD}{OpenBSD}\drios{OpenBSD},
-  all happen in the same time frame as Linux. Like Linux distros, each
+  \href{https://en.wikipedia.org/wiki/OpenBSD}{OpenBSD}\drios{OpenBSD}.
+  All happen in the same time frame as Linux. Like Linux distros, each
   has its own focus and prejudices, some of which are distinctly
   "anti-Linux." The "big three" are all still in heavy use today,
   especially among ISPs. The perception is still out there among a
@@ -653,13 +655,14 @@ the depths of time:
   servers, but that reality shifted a long time ago.
 \item
   \textbf{Ports of call} - 2000+, Bush II \& Obama, Afghanistan \& Gulf
-  War 2, lots of cross-porting of everything open source. However,
+  War II, lots of cross-porting of everything open source. However,
   \href{https://en.wikipedia.org/wiki/Open-source_license}{licenses
   matter}, and
   \href{https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses}{there
-  sure are a lot of them}. While it has settled down some with the
+  sure are a lot of them}. While things have settled down some with the
   dismissal of the SCO lawsuit, intellectual property remains a problem
-  area in open source, even as its use has exploded.
+  area in open source, even as the use of open source software (OSS) has
+  exploded.
 \end{itemize}
 
 \textbf{Q:} So, what's Linux? Or BSD? Or even UNIX?
@@ -685,10 +688,10 @@ To further muddy the waters, there have been multiple attempts to
   government started wanting systems to be "POSIX-compliant."
 \end{itemize}
 
-\textbf{Note:} No system runs POSIX, they all are "similar but
-different." Even Windows can claim to be POSIX in some respects (and has
-an installable POSIX subsystem), but that doesn't mean POSIX-compliant
-code will run there unchanged.
+\textbf{Note:} No system runs POSIX. All POSIX-compliant system are
+"similar but different." Even Windows can claim to be POSIX-compliant in
+some respects (and has an installable POSIX subsystem), but that doesn't
+mean POSIX-compliant code will run there unchanged.
 
 \begin{itemize}
 \item
@@ -733,8 +736,8 @@ both:
 \end{Highlighting}
 \end{Shaded}
 
-But only the later, network-and-NTFS-aware \texttt{CMD.EXE} could
-handle:
+But only the later, long file name and network-aware \texttt{CMD.EXE}
+could handle:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -768,7 +771,7 @@ with the \href{http://linux.die.net/man/1/ps}{\texttt{ps}}\drcmd{ps}
 (\emph{process}) command on a Linux system, in this case Linux Mint
 under \texttt{bash}\drshl{bash}:
 
-\drcap{ps on Linux in bash}
+\drcap{\texttt{ps} on Linux in \texttt{bash}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -780,10 +783,10 @@ under \texttt{bash}\drshl{bash}:
 \end{Highlighting}
 \end{Shaded}
 
-...versus on a FreeBSD\drios{FreeBSD} system at my ISP, where
-\texttt{csh}\drshl{csh} is the default shell:
+Versus the "same" command on a FreeBSD\drios{FreeBSD} system at my ISP,
+where \texttt{csh}\drshl{csh} is the default shell:
 
-\drcap{ps on FreeBSD in csh}
+\drcap{\texttt{ps} on FreeBSD in \texttt{csh}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -804,8 +807,8 @@ Remember that "Linux," FreeBSD, OpenBSD and NetBSD are all really just
 OS kernels, boot loaders, drivers and enough functionality to get a
 computer up and running. Most functionality comes via other "packages."
 From almost the beginning there have been alternative approaches to both
-what packages should (and should not) be included, as well as how best
-to manage the installing, updating and removal of those packages.
+what packages should (and should not) be included, as well as how to
+best manage the installing, updating and removal of those packages.
 
 In the BSD world each major port has its own approach. In the Linux
 world the job of deciding all this and putting it all together falls to
@@ -818,24 +821,27 @@ tool} predominantly used:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{apt-get}\drcmd{apt-get}, \texttt{dpkg}\drcmd{dpkg} and
-  \texttt{.deb} files} -
+  \textbf{\texttt{apt-get}\drcmd{apt-get}\index{Package management!\texttt{apt-get} command},
+  \texttt{dpkg}\drcmd{dpkg}\index{Package management!\texttt{dpkg} command}
+  and \texttt{.deb}\index{Files!\texttt{.deb} package files} files} -
   \href{https://en.wikipedia.org/wiki/Debian}{Debian}\drios{Debian}
   flavors, such as
   \href{https://en.wikipedia.org/wiki/Ubuntu_\%28operating_system\%29}{Ubuntu}\drios{Ubuntu}
-  and \href{https://en.wikipedia.org/wiki/Linux_Mint}{Mint}\drios{Mint}
-  (Mint is currently my desktop Linux of choice, Debian my preferred
-  server OS, but both solely based on familiarity).
+  and \href{https://en.wikipedia.org/wiki/Linux_Mint}{Mint}\drios{Mint}.
+  Mint is currently my desktop Linux of choice and Debian my preferred
+  server OS, both based on familiarity.
 \item
-  \textbf{\texttt{pacman}}\drcmd{pacman} -
-  \href{https://en.wikipedia.org/wiki/Arch_Linux}{Arch}\drios{Arch}
+  \textbf{\texttt{pacman}}\drcmd{pacman}\index{Package management!\texttt{pacman} command}
+  - \href{https://en.wikipedia.org/wiki/Arch_Linux}{Arch}\drios{Arch}
   flavors.
 \item
-  \textbf{\texttt{rpm}\drcmd{rpm} and \texttt{yum}\drcmd{yum}} - Red
-  Hat\drios{Red Hat} flavors, such as
+  \textbf{\texttt{rpm}\drcmd{rpm}\index{Package management!\texttt{rpm} command}
+  and
+  \texttt{yum}\drcmd{yum}\index{Package management!\texttt{yum} command}}
+  - Red Hat\drios{Red Hat} flavors,such as
   \href{https://en.wikipedia.org/wiki/Fedora_\%28operating_system\%29}{Fedora}\drios{Fedora},
   \href{https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux}{Red Hat
-  Enterprise}\drios{RHEL} and
+  Enterprise}\drios{Red Hat Enterprise Linux (RHEL)} and
   \href{https://en.wikipedia.org/wiki/CentOS}{CentOS}\drios{CentOS}.
 \item
   \textbf{Source code} -

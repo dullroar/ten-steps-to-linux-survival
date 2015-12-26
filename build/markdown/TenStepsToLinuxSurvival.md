@@ -283,11 +283,11 @@ UNIX and its successors such as Linux have a long history reaching into the dept
 
 -   **Prehistory** - late 1960s, Nixon, Vietnam, Woodstock, Moon landing, [Multics](https://en.wikipedia.org/wiki/Multics) at MIT, GE and Bell Labs.
 
--   **In the beginning** - early 1970s, Nixon drags on, Watergate, Bell Labs, [Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) & [Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie), [UNIX](https://en.wikipedia.org/wiki/History_of_Unix), blah blah blah...
+-   **In the beginning** - early 1970s, Nixon drags on, Watergate, Bell Labs, [Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) & [Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie), [UNIX](https://en.wikipedia.org/wiki/History_of_Unix) is born.
 
--   **More Trouble From Berkeley** - late 1970s, Carter, disco, Iran hostages, UC Berkely releases the [Berkeley Software Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution) (BSD), a port based on the Bell Labs UNIX. Let the forking begin!
+-   **More trouble from Berkeley** - late 1970s, Carter, disco, Iran hostages, UC Berkely releases the [Berkeley Software Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution) (BSD), a port based on the Bell Labs UNIX. Let the forking begin!
 
--   **Goes commercial** - 1980s, Reagan, Iran Contra, *E.T.*, AT&T releases [System V](https://en.wikipedia.org/wiki/UNIX_System_V) as first commercial UNIX. From the same background as Bell Labs UNIX, but evolved with subtle and not so subtle differences in approaches to command syntax, networking and much more. It is this release and AT&T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.
+-   **UNIX goes commercial** - 1980s, Reagan, Iran Contra, *E.T.*, AT&T releases [System V](https://en.wikipedia.org/wiki/UNIX_System_V) as first commercial UNIX. From the same background as Bell Labs UNIX, System V evolved with subtle and not so subtle differences in approaches to command syntax, networking and much more. It is this release and AT&T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.
 
 -   **Explosion of "UNIX"** -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) "UNIX" platforms:
 
@@ -299,9 +299,9 @@ UNIX and its successors such as Linux have a long history reaching into the dept
     -   **...and many, many more!** - although mostly all that's left now is HP-UX, AIX and Solaris.
 -   **Linux** - 1991+, Clinton I, grunge, *Titanic*, [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) releases a project called [Linux](https://en.wikipedia.org/wiki/Linux) based on [MINIX](https://en.wikipedia.org/wiki/MINIX) (and hence why Linus says Linux is pronounced like "MINIX" and not like "Linus").
 
--   **Proliferation of the BSDs** - mid-to-late 1990s, still Clinton I, Monicagate, Kosovo, various ports of BSD including [NetBSD](https://en.wikipedia.org/wiki/NetBSD), [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD) and [OpenBSD](https://en.wikipedia.org/wiki/OpenBSD), all happen in the same time frame as Linux. Like Linux distros, each has its own focus and prejudices, some of which are distinctly "anti-Linux." The "big three" are all still in heavy use today, especially among ISPs. The perception is still out there among a generation of sysadmins that Linux is for the desktop and BSDs for servers, but that reality shifted a long time ago.
+-   **Proliferation of the BSDs** - mid-to-late 1990s, still Clinton I, Monicagate, Kosovo, various ports of BSD including [NetBSD](https://en.wikipedia.org/wiki/NetBSD), [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD) and [OpenBSD](https://en.wikipedia.org/wiki/OpenBSD). All happen in the same time frame as Linux. Like Linux distros, each has its own focus and prejudices, some of which are distinctly "anti-Linux." The "big three" are all still in heavy use today, especially among ISPs. The perception is still out there among a generation of sysadmins that Linux is for the desktop and BSDs for servers, but that reality shifted a long time ago.
 
--   **Ports of call** - 2000+, Bush II & Obama, Afghanistan & Gulf War 2, lots of cross-porting of everything open source. However, [licenses matter](https://en.wikipedia.org/wiki/Open-source_license), and [there sure are a lot of them](https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses). While it has settled down some with the dismissal of the SCO lawsuit, intellectual property remains a problem area in open source, even as its use has exploded.
+-   **Ports of call** - 2000+, Bush II & Obama, Afghanistan & Gulf War II, lots of cross-porting of everything open source. However, [licenses matter](https://en.wikipedia.org/wiki/Open-source_license), and [there sure are a lot of them](https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses). While things have settled down some with the dismissal of the SCO lawsuit, intellectual property remains a problem area in open source, even as the use of open source software (OSS) has exploded.
 
 **Q:** So, what's Linux? Or BSD? Or even UNIX?
 
@@ -313,7 +313,7 @@ To further muddy the waters, there have been multiple attempts to "standardize" 
 
 -   [**POSIX**](https://en.wikipedia.org/wiki/POSIX) - a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the US government started wanting systems to be "POSIX-compliant."
 
-**Note:** No system runs POSIX, they all are "similar but different." Even Windows can claim to be POSIX in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.
+**Note:** No system runs POSIX. All POSIX-compliant system are "similar but different." Even Windows can claim to be POSIX-compliant in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.
 
 -   [**GNU Project**](https://en.wikipedia.org/wiki/GNU_Project) - [Richard Stallman](https://en.wikipedia.org/wiki/Richard_Stallman) founded the [Free Software Foundation](https://en.wikipedia.org/wiki/Free_Software_Foundation) (FSF) and GNU project in the mid-1980s, ***long*** before Linux (GNU = "GNU's Not Unix"). The GNU project delivers [a suite of programs and tools](https://www.gnu.org/software/software.html), many of which are used in both Linux and BSD variants as de facto standards.
 
@@ -330,7 +330,7 @@ It is similar to the history and relationship between `COMMAND.EXE` in DOS and `
 COPY A.TXT B.TXT
 ```
 
-But only the later, network-and-NTFS-aware `CMD.EXE` could handle:
+But only the later, long file name and network-aware `CMD.EXE` could handle:
 
 ``` bash
 COPY "My 2015 Tax Returns.pdf" \\MyServer\Finances\.
@@ -354,7 +354,7 @@ For example, note the difference in output between showing all processes with th
  4594 pts/3    00:00:00 ps
 ```
 
-...versus on a FreeBSD system at my ISP, where `csh` is the default shell:
+Versus the "same" command on a FreeBSD system at my ISP, where `csh` is the default shell:
 
 ``` bash
 %ps -a
@@ -368,15 +368,15 @@ To make things even more confusing, the Linux version of `ps` has been written t
 Panic at the Distro
 -------------------
 
-Remember that "Linux," FreeBSD, OpenBSD and NetBSD are all really just OS kernels, boot loaders, drivers and enough functionality to get a computer up and running. Most functionality comes via other "packages." From almost the beginning there have been alternative approaches to both what packages should (and should not) be included, as well as how best to manage the installing, updating and removal of those packages.
+Remember that "Linux," FreeBSD, OpenBSD and NetBSD are all really just OS kernels, boot loaders, drivers and enough functionality to get a computer up and running. Most functionality comes via other "packages." From almost the beginning there have been alternative approaches to both what packages should (and should not) be included, as well as how to best manage the installing, updating and removal of those packages.
 
 In the BSD world each major port has its own approach. In the Linux world the job of deciding all this and putting it all together falls to distributions or "distros." These have evolved over time into a series of ["families"](https://en.wikipedia.org/wiki/Linux_distribution#Popular_distributions) based in large part around the [package management tool](https://en.wikipedia.org/wiki/Package_manager) predominantly used:
 
--   **`apt-get`, `dpkg` and `.deb` files** - [Debian](https://en.wikipedia.org/wiki/Debian) flavors, such as [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29) and [Mint](https://en.wikipedia.org/wiki/Linux_Mint) (Mint is currently my desktop Linux of choice, Debian my preferred server OS, but both solely based on familiarity).
+-   **`apt-get`, `dpkg` and `.deb` files** - [Debian](https://en.wikipedia.org/wiki/Debian) flavors, such as [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29) and [Mint](https://en.wikipedia.org/wiki/Linux_Mint). Mint is currently my desktop Linux of choice and Debian my preferred server OS, both based on familiarity.
 
 -   **`pacman`** - [Arch](https://en.wikipedia.org/wiki/Arch_Linux) flavors.
 
--   **`rpm` and `yum`** - Red Hat flavors, such as [Fedora](https://en.wikipedia.org/wiki/Fedora_%28operating_system%29), [Red Hat Enterprise](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux) and [CentOS](https://en.wikipedia.org/wiki/CentOS).
+-   **`rpm` and `yum`** - Red Hat flavors,such as [Fedora](https://en.wikipedia.org/wiki/Fedora_%28operating_system%29), [Red Hat Enterprise](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux) and [CentOS](https://en.wikipedia.org/wiki/CentOS).
 
 -   **Source code** - [Gentoo](https://en.wikipedia.org/wiki/Gentoo_Linux) tends to be a "compile from scratch" environment, much like [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD_Ports).
 
