@@ -265,7 +265,9 @@ If a command and its output, script code or something else is shown in a block, 
 
 All such blocks have been normalized to only show a maximum of 80x24 characters. This is intentional. While most modern "UNIX" systems and terminal windows like `ssh` can handle any geometry, there are still systems and situations where you get the same terminal size that your grandfather would've used. It is best to learn how to deal with these by using `less`, redirection and the like.
 
-**Note:** The examples in this book typically show something like `~ $` before the command, or `~ #` (when logged in as root) or `%` (when running under `csh`). These "command prompts" are set in `bash` via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto) and are not meant to be typed in as part of the command.
+The examples in this book typically show something like `~ $` before the command, or `~ #` (when logged in as root) or `%` (when running under `csh`). These "command prompts" are set in `bash` via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto) and are not meant to be typed in as part of the command.
+
+In the few places where a "UNIX" command is shown in comparison to a "DOS" command run under `CMD.EXE`, the latter is shown in all uppercase to help distinguish it from the "UNIX" equivalent, even though `CMD.EXE` is case-insensitive. In other words, `set` will be shown for `bash` and `SET` for `CMD.EXE`.
 
 Acknowledgments
 ---------------
@@ -459,7 +461,7 @@ A star (*) next to a name means that the command is disabled.
  caller [expr]                           pwd [-LP]
  case WORD in [PATTERN [| PATTERN]...)>  read [-ers] [-a array] [-d delim] [->
  cd [-L|[-P [-e]] [-@]] [dir]            readarray [-n count] [-O origin] [-s>
- command [-pVv] command [arg ...]        readonly [-aAf] [name[=value] ...] o>
+...and so on...
 ```
 
 Why does this matter? Because if you are in an environment and something as fundamental as `echo` isn't working, you may not be working in a shell that is going to act like a "`sh`" shell. ***In general***, `sh`, `ash`, `bash`, `dash` and `ksh` all act similarly enough that you don't care, but sometimes you may have to care. Knowing if you are on a `csh` variant or even something more esoteric can be key.
@@ -480,25 +482,25 @@ echo Hello, World!
 When I try to run it on FreeBSD, I get:
 
 ``` bash
-%./hello.sh
+% ./hello.sh
 ./hello.sh: Command not found.
 ```
 
-This is confusing, because it seems to be saying that `hello.sh` is not found! But in reality it is complaining about `dash`. If I change the script to point to `bash` (which is installed on that FreeBSD system), it works as expected:
+This is confusing, because it seems to be saying that `hello.sh` is not found! But in reality it is complaining about missing `dash`. If I change the script to point to `bash` (which is installed on that FreeBSD system), it works as expected:
 
 ``` bash
-%./hello.sh 
+% ./hello.sh 
 Hello, World!
 ```
 
-Note that on some systems `#!/bin/sh`is pointing to an alias of `bash`, and on some it is a different implementation of the original `sh` command, such as `ash` or `dash`. Now you know what to google if you hit problems as simple as an expected built-in command not being found.
+Note that on some systems `#!/bin/sh` points to an alias of `bash`, and on some it is a different implementation of the original `sh` command, such as `ash` or `dash`. Now you know what to search for if you hit problems as simple as an expected "built-in" command not being found.
 
 Everything You Know is (Almost) Wrong
 -------------------------------------
 
-`CMD.EXE` has a lineage that is a mish-mash of CP/M and UNIX excreted through three decades of backwards compatibility via that devil spawn we call DOS. It has gotten even muddier over the years as Microsoft has added more commands, PowerShell, POSIX subsystems, etc.
+`CMD.EXE` has a lineage that is a mish-mash of CP/M and UNIX excreted through three decades of backwards compatibility to that devil's spawn we call DOS. It has gotten even muddier over the years as Microsoft has added more commands, PowerShell, POSIX subsystems, etc.
 
-But even so, there are some similarities. In both `bash` and `CMD.EXE` the [`set`](http://linux.die.net/man/1/set) command shows you all environment variables that have been set. Here's `bash`:
+But even so, there are some similarities between `CMD.EXE` and a Linux shell like `bash`. In both `bash` and `CMD.EXE` the [`set`](http://linux.die.net/man/1/set) command shows you all environment variables that have been set. Here's `bash`:
 
 ``` bash
 ~ $ set
@@ -524,13 +526,13 @@ EUID=1003
 GROUPS=()
 HISTCONTROL=ignoreboth
 HISTFILE=/home/myuser/.bash_history
-HISTFILESIZE=2000
+...and so on...
 ```
 
 And `CMD.EXE`:
 
 ``` bash
-C:\Users\myuser>set
+C:\Users\myuser>SET
 ALLUSERSPROFILE=C:\ProgramData
 APPDATA=C:\Users\myuser\AppData\Roaming
 CommonProgramFiles=C:\Program Files\Common Files
@@ -553,29 +555,30 @@ iles (x86)\nodejs\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program
 rogram Files (x86)\Microsoft SDKs\Azure\CLI\wbin;C:\Windows\System32\WindowsPowe
 rShell\v1.0\
 PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
-PROCESSOR_ARCHITECTURE=AMD64
-PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 60 Stepping 3, GenuineIntel
+...and so on...
 ```
 
-Similarly, the [`echo`](http://linux.die.net/man/1/echo) command can be used to show you the contents of an environment variable like `HOME` (among other things):
+Similarly, the [`echo`](http://linux.die.net/man/1/echo) command can be used to show you the contents of an environment variable like `HOME` on `bash`:
 
 ``` bash
 ~ $ echo $HOME
 /home/myuser
 ```
 
+Versus the `HOMEPATH` variable under `CMD.EXE`:
+
 ``` bash
-C:\> echo %homepath%
+C:\> ECHO %HOMEPATH%
 \Users\myuser
 ```
 
-This example shows some valuable differences between shells, though. Even though both have the concept of environment variables and echoing out their contents using the "same" command, note that:
+This example shows some valuable differences between shells. Even though both have the concept of environment variables and displaying their contents using the "same" `echo` command, note that:
 
 1.  The syntax for accessing an environment variable is `$variable` in `bash` and `%variable%` in `CMD.EXE`.
 
 2.  `bash` is case-sensitive and so `echo $HOME` works but `echo $home` does not. `CMD.EXE` is ***not*** case-sensitive, so either `echo %homedrive%` or `echo %HOMEDRIVE%` (or `EcHo %hOmEdRiVe%`) would work.
 
-One final note of caution. You can set up command aliases in `bash` and other shells that allow you to define a `CMD.EXE`-style `dir` as a substitute the `ls` command in `bash`, or `copy` for `cp`, `del` for `rm`, and so on. I recommend you don't do this for at least two reasons:
+One final note of caution. You can set up command aliases in `bash` and other shells that allow you to define a `CMD.EXE`-style `dir` command as a substitute for the `ls` command in `bash`, or `copy` for `cp`, `del` for `rm`, and so on. I recommend you don't do this for at least two reasons:
 
 1.  It is difficult to get these right in terms of being able to map all the various parameters from the `bash` command to the appropriate parameters for a `CMD.EXE`-style command. Most people don't go that far, which means you then end up with a "toy" substitute for the `CMD.EXE` command, and have to fall back to the native commands anyway.
 
@@ -584,7 +587,7 @@ One final note of caution. You can set up command aliases in `bash` and other sh
 You're a Product of Your Environment (Variables)
 ------------------------------------------------
 
-It is much more common to set up environment variables to control execution in Linux than in Windows. In fact, it is quite common to override a given environment variable for the single execution of a program, to the point that `bash` has built-in "one-line" support for it:
+It is much more common to set up environment variables to control run-time execution in Linux than in Windows. In fact, it is quite common to assign a given environment variable for the single execution of a program, to the point that `bash` has built-in "one-line" support for it:
 
 ``` bash
 ~ $ FOO=myval /home/myuser/myscript
@@ -594,7 +597,7 @@ This sets the environment variable `FOO` to "myval" but only for the duration an
 
 By convention, environment variables are named all uppercase, whereas all scripts and programs tend to be named all lowercase. Remember, almost without exception "UNIX" is case-sensitive and Windows is not.
 
-You can set or override multiple variables for a single command or script execution simply by separating them with spaces:
+You can assign multiple variables for a single command or script execution simply by separating them with spaces:
 
 ``` bash
 ~ $ FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript
@@ -602,12 +605,12 @@ You can set or override multiple variables for a single command or script execut
 
 Note that passing in values in this way does not safeguard sensitive information from other users on the system who can see the values at least while the script is running using the `ps -x` command.
 
-You can also set the value of environment variables to the output of a command by surrounding it with paired \` ("back ticks", or "grave accent"):
+You can also set the value of environment variables to the output of another command by surrounding it with paired \` ("back ticks", or "grave accents"):
 
 ``` bash
-~ $ FILETYPE=`file --print --mime-type --no-pad --print0 otschecker.csv`
+~ $ FILETYPE=`file --brief --mime-type header.tex`
 ~ $ echo $FILETYPE
-otschecker.csv: text/plain
+text/plain
 ```
 
 ### Who Am I?
@@ -626,12 +629,12 @@ The second is with a command with one of the best names, ever - [`whoami`](http:
 myuser
 ```
 
-Some environments set the `$USER` environment variable, some set a `$USERNAME` variable, and some like Mint set both. I think it is better to use `whoami`, which tends to be on almost all systems.
+Some environments set the `USER` environment variable, some set a `USERNAME` variable, and some like Mint set both. I think it is better to use `whoami`, which tends to be on almost all systems.
 
 Paths (a Part of Any Balanced Shrubbery)
 ----------------------------------------
 
-The concept of a "path" for finding executables is almost identical, and Windows lifted it from UNIX (or CP/M, which lifted it from UNIX). Look at the output of the `PATH` environment variable under `bash`:
+The concept of a "path" for finding executables is almost identical between "UNIX" and Windows, and Windows lifted it from UNIX (or CP/M, which lifted it from UNIX). Look at the output of the `PATH` environment variable under `bash`:
 
 ``` bash
 ~ $ echo $PATH
@@ -640,7 +643,7 @@ The concept of a "path" for finding executables is almost identical, and Windows
 
 Echoing the `PATH` environment variable under `CMD.EXE` works, too:
 
-    C:\Users\myuser>echo %PATH%
+    C:\Users\myuser>ECHO %PATH%
     C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\system32\conf
     ig\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files
     (x86)\nodejs\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program File
@@ -649,9 +652,9 @@ Echoing the `PATH` environment variable under `CMD.EXE` works, too:
     m Files (x86)\Microsoft SDKs\Azure\CLI\wbin;C:\Windows\System32\WindowsPowerShel
     l\v1.0\
 
-Note the differences and similarities. Both the paths are evaluated left to right. Both use separators between path components, a `;` for DOS and Windows, a `:` for Linux. Both delimit their directory names with slashes, with `\` for DOS and Windows and `/` for Linux. But Linux has no concept of a "drive letter" like `C:`, and instead everything is rooted in a single namespace hierarchy starting at the root `/`. We'll be talking more about directories in the next chapter.
+Note the differences and similarities. Both the paths are evaluated left to right. Both use separators between path components, a `;` for DOS and Windows, a `:` for Linux. Both delimit their directory names with slashes, with `\` for DOS and Windows and `/` for Linux. But Linux has no concept of a "drive letter" like `C:` in Windows, and instead everything is mounted in a single namespace hierarchy starting at the root `/`. We'll be talking more about directories, paths and file systems in the next chapter.
 
-And just to muddy the waters further, notice how Cygwin under Windows shows the `PATH` environment variable, with `bash` syntax but a combination of both Cygwin and Windows directories, and Windows drive letters like `C:` mapped to `/cygdrive/c`:
+Just to muddy the waters further, notice how Cygwin under Windows shows the `PATH` environment variable with `bash` syntax but a combination of both Cygwin and Windows directories, and Windows drive letters like `C:` mapped to `/cygdrive/c`:
 
 ``` bash
 $ echo $PATH
@@ -668,11 +671,11 @@ ver/120/Tools/Binn:/cygdrive/c/Program Files (x86)/Microsoft SDKs/Azure/CLI/wbin
 Open Your Shell and Interact
 ----------------------------
 
-The actual "command prompt" is when you bring up a shell in an "interactive session" in a terminal window. This might be from logging into the console of a Linux VM, or starting a terminal window in a X window manager like GNOME or KDE, or `ssh`'ing into an interactive session of a remote machine, or even running a Cygwin command prompt under Windows.
+The actual "command prompt" is when you run a shell in an "interactive session" in a terminal window. This might be from logging into the console of a Linux VM, or starting a terminal window in a X window manager like GNOME or KDE, or `ssh`'ing into an interactive session of a remote machine, or even running a Cygwin command prompt under Windows.
 
 Command prompts allow you to work in a so-called "REPL" environment (Read, Evaluate, Print, Loop). You can run a series of commands once, or keep refining a command or commands until you get them working the way you want, then transfer their sequence to a script file to capture it.
 
-Real shell wizards can often show off their magic in an incredible one-liner typed from memory with lots of obscure commands piped together and invoked with cryptic options.
+Real wizards at using the shell can often show off their magic with an incredible one-liner typed rom memory with lots of obscure commands piped together and invoked with cryptic options.
 
 I am not a real shell wizard. See [chapter 9](#how-do-you-know-what-you-dont-know-man) for how you can fake it like I do.
 
@@ -694,7 +697,7 @@ Without tab expansion, typing out something like this is painful:
 ~/Documents $ mv Disabled\ User\ Accounts.csv elsewhere/.
 ```
 
-But with tab expansion, we can simply type `mv D^t` where `^t` represents hitting the `Tab` key, and since there is only one file that starts with a "D" tab expansion will fill in the rest of the file name:
+But with tab expansion, we can simply type `mv D^t`, where `^t` represents hitting the `Tab` key, and since there is only one file that starts with a "D", tab expansion will fill in the rest of the file name for us:
 
 ``` bash
 ~/Documents $ mv Disabled\ User\ Accounts.csv
@@ -702,7 +705,7 @@ But with tab expansion, we can simply type `mv D^t` where `^t` represents hittin
 
 Then we can go about our business of finishing our command.
 
-One place the tab completion in `bash` is different than `CMD.EXE` is that in `bash` if you hit `Tab` and there are multiple candidates, it will expand as far as it can and then show you a list of files that match up to that point and allow you to type in more characters and hit `Tab` again to complete it. Whereas in `CMD.EXE` it will "cycle" between the multiple candidates, showing you each one as the completion option in turn. Both are useful, but each is subtly different and can give you fits when moving between one environment and another.
+One place tab completion in `bash` is different than `CMD.EXE` is that in `bash` if you hit `Tab` and there are multiple candidates, it will expand as far as it can and then show you a list of files that match up to that point and allow you to type in more characters and hit `Tab` again to complete it. Whereas in `CMD.EXE` it will "cycle" between the multiple candidates, showing you each one as the completion option in turn. Both are useful, but each is subtly different and can give you fits when moving between one environment and another.
 
 **Pro Tip:** Remember, UNIX was built by people on slow, klunky teletypes and terminals, and they hated to type! Tab expansion is your friend and you should use it as often as possible. It gives at least three benefits:
 
@@ -710,7 +713,7 @@ One place the tab completion in `bash` is different than `CMD.EXE` is that in `b
 
 2.  Helps eliminate misspellings in a long file or command name.
 
-3.  Acts as an error checker, because if the tab doesn't expand, chances are you are specifying something else (the beginning path of the file) wrong.
+3.  Acts as an error checker, because if the tab doesn't expand, chances are you are specifying something else (the beginning part of the file name) wrong.
 
 The other thing to remember about the interactive shell is command history. Again, both `CMD.EXE` and `bash` give you command history, but `CMD.EXE` only remembers it for the session, while `bash` stores it in one of your hidden "profile" or "dot" files in your home directory called `.bash_history`, which you can display with `ls -a`:
 

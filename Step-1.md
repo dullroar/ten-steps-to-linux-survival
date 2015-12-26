@@ -266,11 +266,16 @@ any geometry, there are still systems and situations where you get the same term
 grandfather would've used. It is best to learn how to deal with these by using `less`\drcmd{less},
 redirection and the like.
 
-**Note:** The examples in this book typically show something like `~ $` before the command, or `~ #`
-(when logged in as root) or `%` (when running under `csh`\drshl{csh}). These "command prompts" are
-set in `bash`\drshl{bash} via the [`PS1` environment
+The examples in this book typically show something like `~ $` before the command, or `~ #` (when
+logged in as root) or `%` (when running under `csh`\drshl{csh}). These "command prompts" are set in
+`bash`\drshl{bash} via the [`PS1` environment
 variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)\drenv{PS1}
 and are not meant to be typed in as part of the command.
+
+In the few places where a "UNIX" command is shown in comparison to a "DOS" command run under
+`CMD.EXE`\drshl{CMD.EXE}, the latter is shown in all uppercase to help distinguish it from the
+"UNIX" equivalent, even though `CMD.EXE` is case-insensitive. In other words, `set` will be shown
+for `bash` and `SET` for `CMD.EXE`.
 
 ## Acknowledgments{.unnumbered}
 

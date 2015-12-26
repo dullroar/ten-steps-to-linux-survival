@@ -147,7 +147,7 @@
 \DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1@\texttt{#1}}}
 \DeclareRobustCommand{\drenv}[1]{\index{Environment Variables!#1@\texttt{#1}}}
 \DeclareRobustCommand{\drios}[1]{\index{OS and OS-Like Substances!#1}}
-\DeclareRobustCommand{\drshl}[1]{\index{Shells!#1}}
+\DeclareRobustCommand{\drshl}[1]{\index{Shells!#1@\texttt{#1}}}
 \DeclareRobustCommand{\drvic}[2]{\index{vi Commands!#1 (#2)}}
 \renewcommand{\KeywordTok}[1]{{#1}}
 \renewcommand{\DataTypeTok}[1]{{#1}}
@@ -554,7 +554,7 @@ size that your grandfather would've used. It is best to learn how to
 deal with these by using \texttt{less}\drcmd{less}, redirection and the
 like.
 
-\textbf{Note:} The examples in this book typically show something like
+The examples in this book typically show something like
 \texttt{\textasciitilde{}\ \$} before the command, or
 \texttt{\textasciitilde{}\ \#} (when logged in as root) or \texttt{\%}
 (when running under \texttt{csh}\drshl{csh}). These "command prompts"
@@ -562,6 +562,13 @@ are set in \texttt{bash}\drshl{bash} via the
 \href{https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto}{\texttt{PS1}
 environment variable}\drenv{PS1} and are not meant to be typed in as
 part of the command.
+
+In the few places where a "UNIX" command is shown in comparison to a
+"DOS" command run under \texttt{CMD.EXE}\drshl{CMD.EXE}, the latter is
+shown in all uppercase to help distinguish it from the "UNIX"
+equivalent, even though \texttt{CMD.EXE} is case-insensitive. In other
+words, \texttt{set} will be shown for \texttt{bash} and \texttt{SET} for
+\texttt{CMD.EXE}.
 
 \section*{Acknowledgments}\label{acknowledgments}
 \addcontentsline{toc}{section}{Acknowledgments}
@@ -977,7 +984,7 @@ the shell and not as an external command or program, and
 \href{http://linux.die.net/man/1/help}{\texttt{help}}\drcmd{help}\index{Documentation!\texttt{help} command}
 command in a \texttt{bash} terminal:
 
-\drcap{Built-in commands in bash}
+\drcap{Built-in commands in \texttt{bash}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1004,7 +1011,7 @@ command in a \texttt{bash} terminal:
  \KeywordTok{caller} \NormalTok{[expr]                           pwd [-LP]}
  \KeywordTok{case} \NormalTok{WORD}\KeywordTok{ in} \NormalTok{[PATTERN [}\KeywordTok{|} \NormalTok{PATTERN]...}\KeywordTok{)>}  \KeywordTok{read} \OtherTok{[-ers]} \OtherTok{[-a array]} \OtherTok{[-d delim]} \OtherTok{[->}
 \OtherTok{ cd [-L|[-P [-e]}\NormalTok{] [}\KeywordTok{-@}\NormalTok{]] [dir]            readarray [-n count] [-O origin] [-s}\KeywordTok{>}
- \KeywordTok{command} \NormalTok{[-pVv] command [arg ...]        readonly [-aAf] [name[=value] ...] o}\KeywordTok{>}
+\KeywordTok{...and} \NormalTok{so on...}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1019,10 +1026,10 @@ key.
 
 Pay attention to the first line in script files, which will typically
 have a
-\href{https://en.wikipedia.org/wiki/Shebang_\%28Unix\%29}{"shebang"}\index{Shebang}
+\href{https://en.wikipedia.org/wiki/Shebang_\%28Unix\%29}{"shebang"}\index{0@Symbols!\texttt{\#"!} (shebang)}
 line that looks like this:
 
-\drcap{bash shebang}
+\drcap{\texttt{bash} "shebang"}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1036,7 +1043,7 @@ doesn't exist. For example, on the FreeBSD system I have access to,
 \texttt{dash} is not installed. So consider the following
 \texttt{hello.sh} script:
 
-\drcap{Script with dash shebang}
+\drcap{Script with `dash` "shebang"}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1047,52 +1054,53 @@ doesn't exist. For example, on the FreeBSD system I have access to,
 
 When I try to run it on FreeBSD, I get:
 
-\drcap{Shebang error}
+\drcap{"Shebang" error}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{%./hello.sh}
+\KeywordTok{%} \NormalTok{./hello.sh}
 \KeywordTok{.}\NormalTok{/hello.sh: }\KeywordTok{Command} \NormalTok{not found.}
 \end{Highlighting}
 \end{Shaded}
 
 This is confusing, because it seems to be saying that \texttt{hello.sh}
-is not found! But in reality it is complaining about \texttt{dash}. If I
-change the script to point to \texttt{bash} (which is installed on that
-FreeBSD system), it works as expected:
+is not found! But in reality it is complaining about missing
+\texttt{dash}. If I change the script to point to \texttt{bash} (which
+is installed on that FreeBSD system), it works as expected:
 
 \drcap{Hello, World!}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{%./hello.sh} 
+\KeywordTok{%} \NormalTok{./hello.sh }
 \KeywordTok{Hello}\NormalTok{, World!}
 \end{Highlighting}
 \end{Shaded}
 
-Note that on some systems \texttt{\#!/bin/sh}is pointing to an alias of
+Note that on some systems \texttt{\#!/bin/sh} points to an alias of
 \texttt{bash}, and on some it is a different implementation of the
 original \texttt{sh} command, such as \texttt{ash} or \texttt{dash}. Now
-you know what to google if you hit problems as simple as an expected
-built-in command not being found.
+you know what to search for if you hit problems as simple as an expected
+"built-in" command not being found.
 
 \section*{Everything You Know is (Almost)
 Wrong}\label{everything-you-know-is-almost-wrong}
 \addcontentsline{toc}{section}{Everything You Know is (Almost) Wrong}
 
 \texttt{CMD.EXE}\drshl{CMD.EXE} has a lineage that is a mish-mash of
-CP/M and UNIX excreted through three decades of backwards compatibility
-via that devil spawn we call DOS. It has gotten even muddier over the
-years as Microsoft has added more commands, PowerShell, POSIX
-subsystems, etc.
+CP/M\drios{CP/M} and UNIX excreted through three decades of backwards
+compatibility to that devil's spawn we call DOS\drios{DOS}. It has
+gotten even muddier over the years as Microsoft has added more commands,
+PowerShell, POSIX subsystems, etc.
 
-But even so, there are some similarities. In both
-\texttt{bash}\drshl{bash} and \texttt{CMD.EXE}\drshl{CMD.EXE} the
-\href{http://linux.die.net/man/1/set}{\texttt{set}}\drcmd{set} command
-shows you all environment variables that have been set. Here's
+But even so, there are some similarities between \texttt{CMD.EXE} and a
+Linux shell like \texttt{bash}\drshl{bash}. In both \texttt{bash} and
+\texttt{CMD.EXE}\drshl{CMD.EXE} the
+\href{http://linux.die.net/man/1/set}{\texttt{set}}\drcmd{set}\index{Environment Variables!Displaying (\texttt{set} command)}
+command shows you all environment variables that have been set. Here's
 \texttt{bash}:
 
-\drcap{set command in bash}
+\drcap{\texttt{set} command in \texttt{bash}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1119,17 +1127,17 @@ shows you all environment variables that have been set. Here's
 \OtherTok{GROUPS=()}
 \OtherTok{HISTCONTROL=}\NormalTok{ignoreboth}
 \OtherTok{HISTFILE=}\NormalTok{/home/myuser/.bash_history}
-\OtherTok{HISTFILESIZE=}\NormalTok{2000}
+\KeywordTok{...and} \NormalTok{so on...}
 \end{Highlighting}
 \end{Shaded}
 
 And \texttt{CMD.EXE}:
 
-\drcap{set command in CMD.EXE}
+\drcap{\texttt{SET} command in \texttt{CMD.EXE}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{C}\NormalTok{:\textbackslash{}Users\textbackslash{}myuser}\KeywordTok{>}\NormalTok{set}
+\KeywordTok{C}\NormalTok{:\textbackslash{}Users\textbackslash{}myuser}\KeywordTok{>}\NormalTok{SET}
 \OtherTok{ALLUSERSPROFILE=}\NormalTok{C:\textbackslash{}}\KeywordTok{ProgramData}
 \OtherTok{APPDATA=}\NormalTok{C:\textbackslash{}}\KeywordTok{Users}\NormalTok{\textbackslash{}myuser\textbackslash{}AppData\textbackslash{}Roaming}
 \OtherTok{CommonProgramFiles=}\NormalTok{C:\textbackslash{}}\KeywordTok{Program} \NormalTok{Files\textbackslash{}Common Files}
@@ -1152,17 +1160,16 @@ And \texttt{CMD.EXE}:
 \KeywordTok{rogram} \NormalTok{Files (x86)\textbackslash{}}\KeywordTok{Microsoft} \NormalTok{SDKs\textbackslash{}Azure\textbackslash{}CLI\textbackslash{}wbin}\KeywordTok{;C}\NormalTok{:\textbackslash{}Windows\textbackslash{}System32\textbackslash{}WindowsPowe}
 \KeywordTok{rShell}\NormalTok{\textbackslash{}v1.0\textbackslash{}}
 \NormalTok{PATHEXT=.COM}\KeywordTok{;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC}
-\OtherTok{PROCESSOR_ARCHITECTURE=}\NormalTok{AMD64}
-\OtherTok{PROCESSOR_IDENTIFIER=}\NormalTok{Intel64 }\KeywordTok{Family} \NormalTok{6 Model 60 Stepping 3, GenuineIntel}
+\KeywordTok{...and} \NormalTok{so on...}
 \end{Highlighting}
 \end{Shaded}
 
 Similarly, the
-\href{http://linux.die.net/man/1/echo}{\texttt{echo}}\drcmd{echo}
+\href{http://linux.die.net/man/1/echo}{\texttt{echo}}\drcmd{echo}\index{Environment Variables!Displaying (\texttt{echo} command)}
 command can be used to show you the contents of an environment variable
-like \texttt{HOME}\drenv{HOME} (among other things):
+like \texttt{HOME}\drenv{HOME} on \texttt{bash}:
 
-\drcap{echo HOME environment variable in bash}
+\drcap{\texttt{echo} the \texttt{HOME} environment variable in \texttt{bash}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1171,25 +1178,27 @@ like \texttt{HOME}\drenv{HOME} (among other things):
 \end{Highlighting}
 \end{Shaded}
 
-\drcap{echo HOMEPATH environment variable in CMD.EXE}
+Versus the \texttt{HOMEPATH} variable under \texttt{CMD.EXE}:
+
+\drcap{\texttt{echo} the \texttt{HOMEPATH} environment variable in \texttt{CMD.EXE}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{C}\NormalTok{:}\DataTypeTok{\textbackslash{}>} \NormalTok{echo %homepath%}
+\KeywordTok{C}\NormalTok{:}\DataTypeTok{\textbackslash{}>} \NormalTok{ECHO %HOMEPATH%}
 \NormalTok{\textbackslash{}}\KeywordTok{Users}\NormalTok{\textbackslash{}myuser}
 \end{Highlighting}
 \end{Shaded}
 
-This example shows some valuable differences between shells, though.
-Even though both have the concept of environment variables and echoing
-out their contents using the "same" command, note that:
+This example shows some valuable differences between shells. Even though
+both have the concept of environment variables and displaying their
+contents using the "same" \texttt{echo} command, note that:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
   The syntax for accessing an environment variable is
-  \texttt{\$variable} in \texttt{bash} and \texttt{\%variable\%} in
-  \texttt{CMD.EXE}.
+  \texttt{\$variable}\index{Environment Variables!Syntax} in
+  \texttt{bash} and \texttt{\%variable\%} in \texttt{CMD.EXE}.
 \item
   \texttt{bash} is case-sensitive and so \texttt{echo\ \$HOME} works but
   \texttt{echo\ \$home} does not. \texttt{CMD.EXE} is
@@ -1200,10 +1209,10 @@ out their contents using the "same" command, note that:
 
 One final note of caution. You can set up command aliases in
 \texttt{bash} and other shells that allow you to define a
-\texttt{CMD.EXE}-style \texttt{dir} as a substitute the \texttt{ls}
-command in \texttt{bash}, or \texttt{copy} for \texttt{cp}, \texttt{del}
-for \texttt{rm}, and so on. I recommend you don't do this for at least
-two reasons:
+\texttt{CMD.EXE}-style \texttt{dir} command as a substitute for the
+\texttt{ls} command in \texttt{bash}, or \texttt{copy} for \texttt{cp},
+\texttt{del} for \texttt{rm}, and so on. I recommend you don't do this
+for at least two reasons:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1228,12 +1237,12 @@ two reasons:
 (Variables)}
 
 It is much more common to set up environment variables to control
-execution in Linux than in Windows. In fact, it is quite common to
-override a given environment variable for the single execution of a
-program, to the point that \texttt{bash} has built-in "one-line" support
-for it:
+run-time execution in Linux than in Windows. In fact, it is quite common
+to assign\index{Environment Variables!Assigning} a given environment
+variable for the single execution of a program, to the point that
+\texttt{bash} has built-in "one-line" support for it:
 
-\drcap{Set FOO before executing myscript}
+\drcap{Assign \texttt{FOO} environment variable before executing script}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1248,8 +1257,8 @@ By convention, environment variables are named all uppercase, whereas
 all scripts and programs tend to be named all lowercase. Remember,
 almost without exception "UNIX" is case-sensitive and Windows is not.
 
-You can set or override multiple variables for a single command or
-script execution simply by separating them with spaces:
+You can assign multiple variables for a single command or script
+execution simply by separating them with spaces:
 
 \drcap{Set multiple environment variables at once}
 
@@ -1261,19 +1270,20 @@ script execution simply by separating them with spaces:
 
 Note that passing in values in this way does not safeguard sensitive
 information from other users on the system who can see the values at
-least while the script is running using the \texttt{ps\ -x} command.
+least while the script is running using the \texttt{ps\ -x}\drcmd{ps}
+command.
 
-You can also set the value of environment variables to the output of a
-command by surrounding it with paired ` ("back ticks", or "grave
-accent"):
+You can also set the value of environment variables to the output of
+another command by surrounding it with paired ` ("back ticks", or "grave
+accents"):
 
-\drcap{Set environment variable to output from command}
+\drcap{Set environment variable to output from a command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{~} \NormalTok{$ }\OtherTok{FILETYPE=}\KeywordTok{`file} \NormalTok{--print --mime-type --no-pad --print0 otschecker.csv}\KeywordTok{`}
+\KeywordTok{~} \NormalTok{$ }\OtherTok{FILETYPE=}\KeywordTok{`file} \NormalTok{--brief --mime-type header.tex}\KeywordTok{`}
 \KeywordTok{~} \NormalTok{$ }\KeywordTok{echo} \OtherTok{$FILETYPE}
-\KeywordTok{otschecker.csv}\NormalTok{: text/plain}
+\KeywordTok{text/plain}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1285,7 +1295,7 @@ know their user name at run-time. There are at least two different ways
 to determine that. The first is via the \texttt{USER}\drenv{USER}
 environment variable:
 
-\drcap{USER environment variable}
+\drcap{\texttt{USER} environment variable}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1297,7 +1307,7 @@ environment variable:
 The second is with a command with one of the best names, ever -
 \href{http://linux.die.net/man/1/whoami}{\texttt{whoami}}\drcmd{whoami}:
 
-\drcap{whoami command}
+\drcap{\texttt{whoami} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1306,21 +1316,21 @@ The second is with a command with one of the best names, ever -
 \end{Highlighting}
 \end{Shaded}
 
-Some environments set the \texttt{\$USER} environment variable, some set
-a \texttt{\$USERNAME}\drenv{USERNAME} variable, and some like Mint set
-both. I think it is better to use \texttt{whoami}, which tends to be on
-almost all systems.
+Some environments set the \texttt{USER} environment variable, some set a
+\texttt{USERNAME}\drenv{USERNAME} variable, and some like Mint set both.
+I think it is better to use \texttt{whoami}, which tends to be on almost
+all systems.
 
 \section*{Paths (a Part of Any Balanced
 Shrubbery)}\label{paths-a-part-of-any-balanced-shrubbery}
 \addcontentsline{toc}{section}{Paths (a Part of Any Balanced Shrubbery)}
 
-The concept of a "path" for finding executables is almost identical, and
-Windows lifted it from UNIX (or CP/M, which lifted it from UNIX). Look
-at the output of the \texttt{PATH}\drenv{PATH} environment variable
-under \texttt{bash}:
+The concept of a "path" for finding executables is almost identical
+between "UNIX" and Windows, and Windows lifted it from UNIX (or
+CP/M\drios{CP/M}, which lifted it from UNIX). Look at the output of the
+\texttt{PATH}\drenv{PATH} environment variable under \texttt{bash}:
 
-\drcap{PATH environment variable in bash}
+\drcap{\texttt{PATH} environment variable in \texttt{bash}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1329,13 +1339,13 @@ under \texttt{bash}:
 \end{Highlighting}
 \end{Shaded}
 
-Echoing the \texttt{PATH} environment variable under \texttt{CMD.EXE}
-works, too:
+Echoing the \texttt{PATH}\drenv{PATH} environment variable under
+\texttt{CMD.EXE} works, too:
 
-\drcap{PATH environment variable in CMD.EXE}
+\drcap{\texttt{PATH} environment variable in \texttt{CMD.EXE}}
 
 \begin{verbatim}
-C:\Users\myuser>echo %PATH%
+C:\Users\myuser>ECHO %PATH%
 C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\system32\conf
 ig\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files
 (x86)\nodejs\;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program File
@@ -1349,18 +1359,19 @@ Note the differences and similarities. Both the paths are evaluated left
 to right. Both use separators between path components, a \texttt{;} for
 DOS and Windows, a \texttt{:} for Linux. Both delimit their directory
 names with slashes, with \texttt{\textbackslash{}} for DOS and Windows
-and \texttt{/} for Linux. But Linux has no concept of a "drive letter"
-like \texttt{C:}, and instead everything is rooted in a single namespace
+and \texttt{/}\index{0@Symbols!\texttt{/} (path separator)} for Linux.
+But Linux has no concept of a "drive letter" like \texttt{C:} in
+Windows, and instead everything is mounted in a single namespace
 hierarchy starting at the root \texttt{/}. We'll be talking more about
-directories in the next chapter.
+directories, paths and file systems in the next chapter.
 
-And just to muddy the waters further, notice how Cygwin\drshl{Cygwin}
-under Windows shows the \texttt{PATH} environment variable, with
+Just to muddy the waters further, notice how Cygwin\drios{Cygwin} under
+Windows shows the \texttt{PATH}\drenv{PATH} environment variable with
 \texttt{bash} syntax but a combination of both Cygwin and Windows
 directories, and Windows drive letters like \texttt{C:} mapped to
 \texttt{/cygdrive/c}:
 
-\drcap{PATH environment variable in Cygwin}
+\drcap{\texttt{PATH} environment variable in Cygwin}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1380,21 +1391,21 @@ directories, and Windows drive letters like \texttt{C:} mapped to
 Interact}\label{open-your-shell-and-interact}
 \addcontentsline{toc}{section}{Open Your Shell and Interact}
 
-The actual "command prompt" is when you bring up a shell in an
-"interactive session" in a terminal window. This might be from logging
-into the console of a Linux VM, or starting a terminal window in a X
-window manager like GNOME or KDE, or \texttt{ssh}'ing\drcmd{ssh} into an
-interactive session of a remote machine, or even running a Cygwin
-command prompt under Windows.
+The actual "command prompt" is when you run a shell in an "interactive
+session" in a terminal window. This might be from logging into the
+console of a Linux VM, or starting a terminal window in a X window
+manager like GNOME or KDE, or \texttt{ssh}'ing\drcmd{ssh} into an
+interactive session of a remote machine, or even running a
+Cygwin\drios{Cygwin} command prompt under Windows.
 
 Command prompts allow you to work in a so-called "REPL" environment
 (Read, Evaluate, Print, Loop). You can run a series of commands once, or
 keep refining a command or commands until you get them working the way
 you want, then transfer their sequence to a script file to capture it.
 
-Real shell wizards can often show off their magic in an incredible
-one-liner typed from memory with lots of obscure commands piped together
-and invoked with cryptic options.
+Real wizards at using the shell can often show off their magic with an
+incredible one-liner typed rom memory with lots of obscure commands
+piped together and invoked with cryptic options.
 
 I am not a real shell wizard. See
 \protect\hyperlink{how-do-you-know-what-you-dont-know-man}{chapter 9}
@@ -1403,14 +1414,14 @@ for how you can fake it like I do.
 \section*{Getting Lazy}\label{getting-lazy}
 \addcontentsline{toc}{section}{Getting Lazy}
 
-Most modern interactive shells like \texttt{bash} and \texttt{CMD.EXE}
-allow for tab expansion and command history, at least for the current
-session of the shell.
+Most modern interactive shells like \texttt{bash} and
+\texttt{CMD.EXE}\drshl{CMD.EXE} allow for tab expansion and command
+history, at least for the current session of the shell.
 
 Tab expansion is "auto-complete" for the command prompt. Let's say you
 have some files in a directory:
 
-\drcap{Some files}
+\drcap{List some files}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1429,10 +1440,10 @@ Without tab expansion, typing out something like this is painful:
 \end{Highlighting}
 \end{Shaded}
 
-But with tab expansion, we can simply type \texttt{mv\ D\^{}t} where
+But with tab expansion, we can simply type \texttt{mv\ D\^{}t}, where
 \texttt{\^{}t} represents hitting the \texttt{Tab} key, and since there
-is only one file that starts with a "D" tab expansion will fill in the
-rest of the file name:
+is only one file that starts with a "D", tab expansion will fill in the
+rest of the file name for us:
 
 \drcap{Tab expansion magic}
 
@@ -1444,15 +1455,15 @@ rest of the file name:
 
 Then we can go about our business of finishing our command.
 
-One place the tab completion in \texttt{bash} is different than
-\texttt{CMD.EXE} is that in \texttt{bash} if you hit \texttt{Tab} and
-there are multiple candidates, it will expand as far as it can and then
-show you a list of files that match up to that point and allow you to
-type in more characters and hit \texttt{Tab} again to complete it.
-Whereas in \texttt{CMD.EXE} it will "cycle" between the multiple
-candidates, showing you each one as the completion option in turn. Both
-are useful, but each is subtly different and can give you fits when
-moving between one environment and another.
+One place tab completion in \texttt{bash} is different than
+\texttt{CMD.EXE}\drshl{CMD.EXE} is that in \texttt{bash} if you hit
+\texttt{Tab} and there are multiple candidates, it will expand as far as
+it can and then show you a list of files that match up to that point and
+allow you to type in more characters and hit \texttt{Tab} again to
+complete it. Whereas in \texttt{CMD.EXE} it will "cycle" between the
+multiple candidates, showing you each one as the completion option in
+turn. Both are useful, but each is subtly different and can give you
+fits when moving between one environment and another.
 
 \textbf{Pro Tip:} Remember, UNIX was built by people on slow, klunky
 teletypes and terminals, and they hated to type! Tab expansion is your
@@ -1467,18 +1478,19 @@ three benefits:
   Helps eliminate misspellings in a long file or command name.
 \item
   Acts as an error checker, because if the tab doesn't expand, chances
-  are you are specifying something else (the beginning path of the file)
-  wrong.
+  are you are specifying something else (the beginning part of the file
+  name) wrong.
 \end{enumerate}
 
 The other thing to remember about the interactive shell is command
-history. Again, both \texttt{CMD.EXE} and \texttt{bash} give you command
-history, but \texttt{CMD.EXE} only remembers it for the session, while
-\texttt{bash} stores it in one of your hidden "profile" or "dot" files
-in your home directory called \texttt{.bash\_history}, which you can
-display with \texttt{ls\ -a}:
+history. Again, both \texttt{CMD.EXE}\drshl{CMD.EXE} and \texttt{bash}
+give you command history, but \texttt{CMD.EXE} only remembers it for the
+session, while \texttt{bash} stores it in one of your hidden "profile"
+or "dot" files in your home directory called
+\texttt{.bash\_history}\index{Files!Special files!\texttt{.bash\_history}},
+which you can display with \texttt{ls\ -a}:
 
-\drcap{ls command showing hidden files}
+\drcap{\texttt{ls} command showing hidden files}
 
 \begin{Shaded}
 \begin{Highlighting}[]
