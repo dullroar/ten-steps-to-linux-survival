@@ -1374,11 +1374,11 @@ SAME=ALWAYS</code></pre>
 <p>Now we can more easily see that line #1 changed (<code>1c1</code>) from <code>FOO=1</code> on the &quot;left&quot; file to <code>FOO=2</code> on the &quot;right,&quot; and that line #7 was deleted (<code>7d6</code>) from the &quot;left&quot; file to form the &quot;right.&quot; Again, not too interesting, but imagine that both files were thousands of lines long, and there were only a few changes, and you were trying to detect and recover an accidentally-deleted line. Now you can see why <code>diff</code> can be handy, as long as you keep around a prior version either in a backup file or version control system to compare against.</p>
 <p><code>diff</code> is your friend. It really comes into play with a version control system like <a href="http://linux.die.net/man/1/git"><code>git</code></a>, but again, that is beyond the scope of this book.</p>
 <h1 id="finding-meaning"><span class="header-section-number">3</span> Finding Meaning</h1>
-<p><strong><em>The <code>find</code> command in all its glory. Probably the single most useful command in &quot;UNIX&quot; (I think).</em></strong></p>
+<p><strong><em>The <code>find</code> command in all its glory. Probably the single most useful command in &quot;UNIX&quot; (I think)</em></strong></p>
 <blockquote>
 <p><em>&quot;If we had bacon, we could have bacon and eggs, if we had eggs.&quot;</em> - old joke</p>
 </blockquote>
-<p>Different people will have different answers to &quot;What is the single most useful &quot;UNIX&quot; command?&quot; There certainly are many to consider. But I keep coming back to <a href="http://linux.die.net/man/1/find"><code>find</code></a>. It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.</p>
+<p>Different people will have different answers to &quot;What is the single most useful &quot;UNIX&quot; command?&quot; There certainly are many to consider. But I keep coming back to <a href="http://linux.die.net/man/1/find"><code>find</code></a> . It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.</p>
 <p>The main concepts of <code>find</code> are simple:</p>
 <ol type="1">
 <li><p>Starting at location <em>X</em>...</p></li>
@@ -1412,7 +1412,7 @@ SAME=ALWAYS</code></pre>
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;</code></pre>
 <p>How does this all work? Remembering the three steps at the beginning:</p>
 <ol type="1">
-<li><p><strong>Starting at location <code>//myserver/myshare/logs/000[4-9]</code></strong> - in this case a CIFS/SMB share (running under Cygwin - this won't work on Linux). Note the regular expression (which we will cover later), in this case stating only to look in directories 0004-0009.</p></li>
+<li><p><strong>Starting at location <code>//myserver/myshare/logs/000[4-9]</code></strong> - in this case a CIFS/SMB share running under Cygwin<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a> (this won't work on Linux). Note the regular expression (which we will cover later), in this case saying to look only in directories <code>0004</code> through <code>0009</code>.</p></li>
 <li><p><strong>Recursively find file system entries that match one or more tests</strong> - the tests in this example are:</p>
 <ol type="a">
 <li><p><strong><em>All files that have a name that ends in <code>.dat</code></em></strong> - the only thing to note here is the <code>\</code> preceding the wildcard <code>*</code>. This prevents &quot;shell expansion,&quot; which would allow the <code>bash</code> process interpreting the command to expand it to the list of files present in the current directory only, not recursively across all directories.</p></li>
@@ -1472,7 +1472,7 @@ myuser
 ./c
 myuser
 2015-10-21T11:02:51.7048997000</code></pre>
-<p>That <code>-printf</code> format string <code>&quot;%p\n%u\n%TY-%Tm-%TdT%TT\n\n&quot;</code>breaks down into:</p>
+<p>That <code>-printf</code> format string <code>&quot;%p\n%u\n%TY-%Tm-%TdT%TT\n\n&quot;</code> breaks down into:</p>
 <ul>
 <li><strong><code>&quot;</code></strong> - prevent shell expansion on the format string.</li>
 <li><strong><code>%p</code></strong> - file name.</li>
@@ -3164,6 +3164,7 @@ xfreerdp --version</code></pre>
 <hr />
 <ol>
 <li id="fn1"><p>Stereotype intentional.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>In fact, <code>find</code> is one of the main reasons I use Cygwin on Windows.<a href="#fnref2">↩</a></p></li>
 </ol>
 </section>
 </body>

@@ -1822,11 +1822,11 @@ Now we can more easily see that line \#1 changed (`1c1`) from `FOO=1` on the "le
 Finding Meaning
 ===============
 
-***The `find` command in all its glory. Probably the single most useful command in "UNIX" (I think).***
+***The `find` command in all its glory. Probably the single most useful command in "UNIX" (I think)***
 
 > *"If we had bacon, we could have bacon and eggs, if we had eggs."* - old joke
 
-Different people will have different answers to "What is the single most useful "UNIX" command?" There certainly are many to consider. But I keep coming back to [`find`](http://linux.die.net/man/1/find). It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.
+Different people will have different answers to "What is the single most useful "UNIX" command?" There certainly are many to consider. But I keep coming back to [`find`](http://linux.die.net/man/1/find) . It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.
 
 The main concepts of `find` are simple:
 
@@ -1870,7 +1870,7 @@ That's not really that interesting. Let's poke around and "find" (pun intended) 
 
 How does this all work? Remembering the three steps at the beginning:
 
-1.  **Starting at location `//myserver/myshare/logs/000[4-9]`** - in this case a CIFS/SMB share (running under Cygwin - this won't work on Linux). Note the regular expression (which we will cover later), in this case stating only to look in directories 0004-0009.
+1.  **Starting at location `//myserver/myshare/logs/000[4-9]`** - in this case a CIFS/SMB share running under Cygwin[2] (this won't work on Linux). Note the regular expression (which we will cover later), in this case saying to look only in directories `0004` through `0009`.
 
 2.  **Recursively find file system entries that match one or more tests** - the tests in this example are:
 
@@ -1957,7 +1957,7 @@ myuser
 2015-10-21T11:02:51.7048997000
 ```
 
-That `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`breaks down into:
+That `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"` breaks down into:
 
 -   **`"`** - prevent shell expansion on the format string.
 -   **`%p`** - file name.
@@ -4366,3 +4366,5 @@ About the Author
 Jim is son to Barb and Lou; husband to Leslie; father to Meghann (and Jeremy), Morgann, Erin, Gloria and Jon; grandfather to Ryan, Lindsay, Logan and Hannah; and alpha wolf to Merv. He has been "in computers" since 1980. His hobbies include reading, running, hiking, climbing and apparently writing books.
 
 [1] Stereotype intentional.
+
+[2] In fact, `find` is one of the main reasons I use Cygwin on Windows.

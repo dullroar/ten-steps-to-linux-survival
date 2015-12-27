@@ -2438,14 +2438,13 @@ In addition, you need to know the difference between "absolute" and
   current directory to a subdirectory called \texttt{Dissertations}.
 \end{itemize}
 
-Windows inherited the concept of
-\texttt{.}\index{0@Symbols!\texttt{.} (current directory)}
-\index{Files and Directories!Current (\texttt{.})} for the current
-directory and
-\texttt{..}\index{0@Symbols!\texttt{..} (parent directory)}
-\index{Files and Directories!Parent (\texttt{..})} for the parent
-directory directly from UNIX. Consider the following examples that
-combine all of the above about relative paths and see if it makes sense:
+Windows inherited the concept of \texttt{.}
+\index{0@Symbols!\texttt{.} (current directory)}\index{Files and Directories!Current (\texttt{.})}
+for the current directory and \texttt{..}
+\index{0@Symbols!\texttt{..} (parent directory)}\index{Files and Directories!Parent (\texttt{..})}
+for the parent directory directly from UNIX. Consider the following
+examples that combine all of the above about relative paths and see if
+it makes sense:
 
 \drcap{Relative paths exercise}
 
@@ -3269,7 +3268,7 @@ again, that is beyond the scope of this book.
 Meaning}\label{finding-meaning}}
 
 \textbf{\emph{The \texttt{find} command in all its glory. Probably the
-single most useful command in "UNIX" (I think).}}
+single most useful command in "UNIX" (I think)}}
 
 \begin{quote}
 \emph{"If we had bacon, we could have bacon and eggs, if we had eggs."}
@@ -3279,10 +3278,11 @@ single most useful command in "UNIX" (I think).}}
 Different people will have different answers to "What is the single most
 useful "UNIX" command?" There certainly are many to consider. But I keep
 coming back to
-\href{http://linux.die.net/man/1/find}{\texttt{find}}\drcmd{find}. It
-can be intimidating to figure out from the documentation, especially at
-first, but once you start mastering it, you end up using it over and
-over again.
+\href{http://linux.die.net/man/1/find}{\texttt{find}}\drcmd{find}
+\index{Files and Directories!Finding (\texttt{find} command)}. It can be
+intimidating to figure out from the documentation, especially at first,
+but once you start mastering it, you end up using it over and over
+again.
 
 The main concepts of \texttt{find} are simple:
 
@@ -3300,7 +3300,7 @@ The main concepts of \texttt{find} are simple:
 The simplest example is "starting in the current directory, recursively
 list all files you find":
 
-\drcap{Simplest find example}
+\drcap{Simplest \texttt{find} example}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3333,7 +3333,7 @@ intended) some better examples of using \texttt{find}. It is better to
 show than tell in this case. Let's dive into a semi-complicated one and
 pick it apart:
 
-\drcap{More complicated find example}
+\drcap{More complicated \texttt{find} example}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3349,9 +3349,11 @@ How does this all work? Remembering the three steps at the beginning:
 \item
   \textbf{Starting at location
   \texttt{//myserver/myshare/logs/000{[}4-9{]}}} - in this case a
-  CIFS/SMB share (running under Cygwin - this won't work on Linux). Note
-  the regular expression (which we will cover later), in this case
-  stating only to look in directories 0004-0009.
+  CIFS/SMB share running under Cygwin\footnote{In fact, \texttt{find} is
+    one of the main reasons I use Cygwin on Windows.} (this won't work
+  on Linux). Note the regular expression (which we will cover later), in
+  this case saying to look only in directories \texttt{0004} through
+  \texttt{0009}.
 \item
   \textbf{Recursively find file system entries that match one or more
   tests} - the tests in this example are:
@@ -3384,7 +3386,7 @@ Backslashes?}\label{whats-with-the-backslashes}
 
 Reconsider this example:
 
-\drcap{More complicated find example, explained}
+\drcap{More complicated \texttt{find} example, explained}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3393,18 +3395,20 @@ Reconsider this example:
 \end{Highlighting}
 \end{Shaded}
 
-There are five (5) backslash (\texttt{\textbackslash{}}) characters in
-the above. In each case, the backslash is preventing
+There are five (5) backslash
+(\texttt{\textbackslash{}})\index{0@Symbols!\texttt{\textbackslash} (escape character)}
+characters in the above. In each case, the backslash is preventing
 \href{http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html}{shell
 expansion}:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{\texttt{\textbackslash{}*.dat}} - preserves the \texttt{*} for
-  \texttt{find} to use as it recursively searches through directories,
-  instead of the shell expanding it to all files that end in
-  \texttt{.dat} in the current directory.
+  \textbf{\texttt{\textbackslash{}*.dat}} - preserves the
+  \texttt{*}\index{0@Symbols!\texttt{*} (wildcard)} for \texttt{find} to
+  use as it recursively searches through directories, instead of the
+  shell expanding it to all files that end in \texttt{.dat} in the
+  current directory.
 \item
   \textbf{\texttt{\textbackslash{}}} - the \texttt{\textbackslash{}} at
   the end of the first line tells the shell that the command continues
@@ -3414,8 +3418,9 @@ expansion}:
   - these three prevent the shell from trying to expand the braces into
   an environment variable or the semicolon (which is meant to tell
   \texttt{find} when the command being ran via \texttt{-exec} and its
-  parameters end), otherwise \texttt{;} is normally used to separate
-  independent commands on the same line in the shell.
+  parameters end), otherwise
+  \texttt{;}\index{0@Symbols!\texttt{;} (command separator)} is normally
+  used to separate independent commands on the same line in the shell.
 \end{enumerate}
 
 That last point bears repeating. Any time you \texttt{-exec} in a
@@ -3505,7 +3510,7 @@ report where for each file we wanted three lines with the name, owner
 and created date and time in ISO 8601 format, all followed by a blank
 line, we could use the following \texttt{find} command:
 
-\drcap{Using find as a simple reporting tool}
+\drcap{Using \texttt{find} as a simple reporting tool}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3531,8 +3536,8 @@ line, we could use the following \texttt{find} command:
 \end{Shaded}
 
 That \texttt{-printf} format string
-\texttt{"\%p\textbackslash{}n\%u\textbackslash{}n\%TY-\%Tm-\%TdT\%TT\textbackslash{}n\textbackslash{}n"}breaks
-down into:
+\texttt{"\%p\textbackslash{}n\%u\textbackslash{}n\%TY-\%Tm-\%TdT\%TT\textbackslash{}n\textbackslash{}n"}\index{0@Symbols!\texttt{\%} (format)}
+breaks down into:
 
 \begin{itemize}
 \tightlist

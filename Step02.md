@@ -721,12 +721,10 @@ directory, and expects to start the navigation at the current directory with all
 traversed from there, e.g., `cd Dissertations` changes the current directory to a subdirectory
 called `Dissertations`.
 
-Windows inherited the concept of
-`.`\index{0@Symbols!\texttt{.} (current directory)}
-\index{Files and Directories!Current (\texttt{.})}
-for the current directory and
-`..`\index{0@Symbols!\texttt{..} (parent directory)}
-\index{Files and Directories!Parent (\texttt{..})}
+Windows inherited the concept of `.`
+\index{0@Symbols!\texttt{.} (current directory)}\index{Files and Directories!Current (\texttt{.})}
+for the current directory and `..`
+\index{0@Symbols!\texttt{..} (parent directory)}\index{Files and Directories!Parent (\texttt{..})}
 for the parent directory directly from UNIX. Consider the following examples that combine all of
 the above about relative paths and see if it makes sense:
 
