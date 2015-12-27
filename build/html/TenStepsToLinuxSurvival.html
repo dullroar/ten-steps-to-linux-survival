@@ -574,27 +574,29 @@ Disabled User Accounts.csv  elsewhere  LOLcatz.jpg  MyResume.md</code></pre>
 </blockquote>
 <p>Typically in Linux we are scripting and otherwise moving around files. The file system under the covers may be one of any number of supported formats, including:</p>
 <ul>
+<li><p><a href="https://en.wikipedia.org/wiki/Btrfs"><strong>btrfs</strong></a></p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Ext2"><strong>ext2</strong></a></p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Ext3"><strong>ext3</strong></a></p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Ext4"><strong>ext4</strong></a>,</p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/ReiserFS"><strong>ReiserFS</strong></a></p></li>
-<li><p><strong>...and so much more!</strong> - NTFS, FAT, etc.</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/ZFS"><strong>ZFS</strong></a></p></li>
+<li><p><strong>...and so many more!</strong> - NTFS, FAT, CDFS, etc.</p></li>
 </ul>
 <p>Each has its strengths and weaknesses. While Linux tends to treat the ext* file systems as preferred, it can write to a lot of file systems and can read even more.</p>
-<p>As mentioned above, the biggest differences between Linux and Windows is that the Linux environments do not have a concept of &quot;drive letters.&quot; Instead everything is &quot;mounted&quot; under a single hierarchy that starts at the &quot;root directory&quot; or <code>/</code>:</p>
+<p>As mentioned before, the biggest differences between Linux and Windows is that the Linux environments do not have a concept of &quot;drive letters.&quot; Instead everything is &quot;mounted&quot; under a single hierarchy that starts at the &quot;root directory&quot; or <code>/</code>:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls /
 bin    dev   home        lib64       mnt    Other  run   sys  var
 boot   Docs  initrd.img  lost+found  Music  proc   sbin  tmp  vmlinuz
 cdrom  etc   lib         media       opt    root   srv   usr</code></pre>
-<p>The root file system may be backed by a disk device, LUN, memory or even the network. It will have one or more directories under it. Multiple physical drives and network locations can be &quot;mounted&quot; virtually anywhere, under any directory or subdirectory in the hierarchy.</p>
+<p>The root file system may be backed by a disk device, memory or even the network. It will have one or more directories under it. Multiple physical drives and network locations can be &quot;mounted&quot; virtually anywhere, under any directory or subdirectory in the hierarchy.</p>
 <p><strong>Note:</strong> Dynamically mounted devices like USB drives and DVDs are often mounted automatically under either a <code>/mnt</code> or <code>/media</code> directory.</p>
 <h2 id="looking-at-files" class="unnumbered">Looking at Files</h2>
-<p>As we've already seen, the command to <em>list</em> the contents of a directory is <a href="http://linux.die.net/man/1/ls"><code>ls</code></a>:</p>
+<p>As we've already seen, the command to <em>list</em> the contents of a directory is <a href="http://linux.die.net/man/1/ls"><code>ls</code></a> :</p>
 <p></p>
 <pre class="bash"><code>~ $ ls
 Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos</code></pre>
-<p>Remember, &quot;UNIX&quot; environments think of files that start with a <code>.</code> as &quot;hidden.&quot; If you want to see all these <a href="https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments">&quot;dotfiles&quot;</a>, you can use <code>ls -a</code>:</p>
+<p>Remember, &quot;UNIX&quot; environments think of files that start with a <code>.</code> as &quot;hidden.&quot; If you want to see all these <a href="https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments">&quot;dotfiles&quot;</a> , you can use <code>ls -a</code>, in this case on an average &quot;home&quot; directory:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls -a
 .              .config    .gconf           .mozilla  Templates
@@ -604,7 +606,7 @@ Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos</code>
 .cache         Documents  .linuxmint       Public
 .cinnamon      Downloads  .local           .ssh</code></pre>
 <p>Wow! That's a lot of dotfiles!</p>
-<p>If you want to see some details of each file, use <code>ls -l</code>:</p>
+<p>If you want to see some details for each file, use <code>ls -l</code>:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls -l
 total 32
@@ -641,16 +643,16 @@ drwxr-xr-x  3 myuser mygroup 4096 Dec 13 18:18 .local
 drwxr-xr-x  4 myuser mygroup 4096 Dec 13 18:18 .mozilla
 drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Music
 drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Pictures
--rw-r--r--  1 myuser mygroup  716 Dec 13 14:30 .profile</code></pre>
+...and so on...</code></pre>
 <h2 id="a-brief-detour-around-parameters" class="unnumbered">A Brief Detour Around Parameters</h2>
 <p>In <code>bash</code> and many Linux commands in general, there are old, &quot;short&quot; (terse) parameter names, like <code>ls -a</code>, and newer, longer, descriptive parameter names like <code>ls --all</code> that mean the same thing. It is typically good to use the shorter version during interactive sessions and testing, but I prefer long parameter names in scripts, because when I come back and look at it in two years, I may not remember what <code>rm -rf *</code> means (in the &quot;UNIX&quot; world it means you're toast if you run it by mistake), thus <code>rm --recursive --force *</code> seems a bit more &quot;intuitive.&quot;</p>
 <blockquote>
 <p><strong><em>The behind you save in the future by describing things well today may well be your own.</em></strong> - me</p>
 </blockquote>
-<p>The older style parameters are typically preceded by a single hyphen &quot;switch&quot; character:</p>
+<p>The older style parameters are typically preceded by a single hyphen or &quot;switch&quot; character:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls -r</code></pre>
-<p>Some command support parameters with no &quot;switch&quot; character at all, as with <code>xvf</code> (e<strong><em>X</em></strong>tract, <strong><em>V</em></strong>erbose, input <strong><em>F</em></strong>ile name) in the following:</p>
+<p>Some commands support parameters with no &quot;switch&quot; character at all, as with <code>xvf</code> (e<strong><em>X</em></strong>tract, <strong><em>V</em></strong>erbose, input <strong><em>F</em></strong>ile name) in the following <code>tar</code> example:</p>
 <p></p>
 <pre class="bash"><code>~ $ tar xvf backup.tar</code></pre>
 <p>The newer &quot;GNU-style&quot; parameters are preceded by two hyphens and usually are quite &quot;verbose&quot;:</p>
@@ -658,7 +660,7 @@ drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Pictures
 <pre class="bash"><code>~ $ ls --recursive --almost-all --ignore-backups</code></pre>
 <p>Again, it is <strong><em>highly recommended</em></strong> that you take the time to use the GNU-style parameters in scripts as self-documenting code.</p>
 <h2 id="more-poking-at-files" class="unnumbered">More Poking at Files</h2>
-<p>If we suspect the file is a text file, we can echo it to the console with the <a href="http://linux.die.net/man/1/cat"><code>cat</code></a> (<em>concatenate</em>) command:</p>
+<p>If we suspect the file is a text file, we can echo it to the console with the <a href="http://linux.die.net/man/1/cat"><code>cat</code></a>  (<em>concatenate</em>) command:</p>
 <p></p>
 <pre class="bash"><code>~ $ cat installrdp
 #!/bin/bash
@@ -683,15 +685,15 @@ sudo echo &quot;/usr/local/lib&quot; &gt;&gt; /etc/ld.so.conf.d/freerdp.conf
 sudo ldconfig
 which xfreerdp
 xfreerdp --version</code></pre>
-<p>In this example when we <code>cat installrdp</code> we can determine it is a <code>bash</code> shell script that looks to install and configure <a href="https://github.com/FreeRDP/FreeRDP">FreeRDP</a> on a Debian-style system:</p>
+<p>In this example when we <code>cat installrdp</code> we can determine it is a <code>bash</code> shell script (because the &quot;shebang&quot; is pointing to <code>bash</code>) that looks to install and configure <a href="https://github.com/FreeRDP/FreeRDP">FreeRDP</a> on a Debian-style system:</p>
 <ol type="1">
 <li><p><strong><code>apt-get</code></strong> - Debian-style package manager.</p></li>
 <li><p><strong><code>git clone</code></strong> - cloning package from <a href="http://github.com">GitHub</a>.</p></li>
 <li><p><strong><code>cmake</code></strong> and <strong><code>make</code></strong> - configuring and building software from source.</p></li>
 </ol>
-<p>A better way to display a longer file is to use the <a href="http://linux.die.net/man/1/less"><code>less</code></a> command (which is a derivative of the original <a href="http://linux.die.net/man/1/more"><code>more</code></a>, hence the name). <code>less</code> is a paginator, where the <code>Space</code>, <code>Page Down</code> or down arrow keys scroll down and the <code>Page Up</code> or up arrow keys scrolls up. <code>Q</code> quits.</p>
+<p>A better way to display a longer file is to use the <a href="http://linux.die.net/man/1/less"><code>less</code></a>  command (which is a derivative of the original <a href="http://linux.die.net/man/1/more"><code>more</code></a> , hence the name). <code>less</code> is a paginator, where the <code>Space</code>, <code>Page Down</code> or down arrow keys scroll down and the <code>Page Up</code> or up arrow keys scrolls up. <code>Q</code> quits.</p>
 <p><strong>Note:</strong> The <code>vi</code> search (<code>/</code>, <code>?</code>, <code>n</code> and <code>p</code>) and navigation (<code>G</code>, <code>0</code>) keys work within <code>less</code>, too. In general <code>less</code> is a great lightweight way to motor around in a text file without editing it.</p>
-<p>We can also look at just the end or <em>tail</em> of a file (often the most interesting when looking at log files and troubleshooting a current problem) with the <a href="http://linux.die.net/man/1/tail"><code>tail</code></a> command. The next example shows the last 10 lines of the kernel <code>dmesg</code> log:</p>
+<p>We can also look at just the end or <em>tail</em> of a file (often the most interesting when looking at log files and troubleshooting a current problem) with the <a href="http://linux.die.net/man/1/tail"><code>tail</code></a>  command. The next example shows the last 10 lines of the kernel <code>dmesg</code> log:</p>
 <p></p>
 <pre class="bash"><code>/var/log $ tail dmesg
 [    3.913318] Bluetooth: BNEP socket layer initialized
@@ -704,7 +706,7 @@ xfreerdp --version</code></pre>
 [    4.186239] init: samba-ad-dc main process (919) terminated with status 1
 [    4.328999] r8169 0000:02:00.0 eth0: link down
 [    4.329037] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready</code></pre>
-<p>To show a specific number of lines use the <code>-n</code> parameter:</p>
+<p>To show a specific number of lines use the <code>-n</code> parameter with <code>tail</code>:</p>
 <p></p>
 <pre class="bash"><code>/var/log $ tail -n 15 dmesg
 [    3.899169] Bluetooth: HCI socket layer initialized
@@ -722,7 +724,7 @@ xfreerdp --version</code></pre>
 [    4.186239] init: samba-ad-dc main process (919) terminated with status 1
 [    4.328999] r8169 0000:02:00.0 eth0: link down
 [    4.329037] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready</code></pre>
-<p>You can also use <code>tail</code> to <em>follow</em> an open file and continuously display any new output at the end, which is useful for monitoring log files in real time:</p>
+<p>You can also use <code>tail</code> to with the <code>-f</code> parameter to <em>follow</em> an open file and continuously display any new output at the end, which is useful for monitoring log files in real time:</p>
 <p></p>
 <pre class="bash"><code>/var/log $ tail -f syslog
 Dec 13 19:23:40 MtLindsey dhclient: DHCPACK of 192.168.0.8 from 192.168.0.1
@@ -742,15 +744,15 @@ Dec 13 19:23:40 MtLindsey dbus[689]: [system] Activating service name=&#39;org.f
 esktop.nm_dispatcher&#39; (using servicehelper)
 Dec 13 19:23:40 MtLindsey dbus[689]: [system] Successfully activated service &#39;or
 g.freedesktop.nm_dispatcher&#39;</code></pre>
-<p>Use <code>Ctrl-C</code> to cancel following the file changes.</p>
-<p>If we know nothing about a <em>file</em>, we can use the <a href="http://linux.die.net/man/1/file"><code>file</code></a> command to help us guess:</p>
+<p>Use <code>Ctrl-C</code> to cancel following the file.</p>
+<p>If we know nothing about a <em>file</em>, we can use the <a href="http://linux.die.net/man/1/file"><code>file</code></a>  command to help us guess:</p>
 <p></p>
 <pre class="bash"><code>~ $ file installrdp 
 installrdp: Bourne-Again shell script, ASCII text executable</code></pre>
 <p>That's straightforward enough! The <code>file</code> command isn't always 100% accurate, but it is pretty good and uses an interesting set of heuristics and a text file &quot;database&quot; of <a href="http://linux.die.net/man/5/magic">&quot;magic&quot; number definitions</a> to define how it figures out what type of file it is examining.</p>
-<p><strong>Remember:</strong> File extensions have no real meaning per se in Linux (although some are used, especially for media and document formats), so a file name with no extension like <code>installrdp</code> is perfectly valid. Hence the utility of the <code>file</code> command.</p>
+<p><strong>Remember:</strong> File extensions have no real meaning per se in Linux (although some are used especially for media and document formats), so a file name with no extension like <code>installrdp</code> is perfectly valid. Hence the utility of the <code>file</code> command.</p>
 <h2 id="sorting-things-out" class="unnumbered">Sorting Things Out</h2>
-<p>Let's say we have three files, and want to display the contents of one of them with <code>cat</code>:</p>
+<p>Let's say we have three files, and want to display the contents of one of them. We know we can do that with <code>cat</code>:</p>
 <p></p>
 <pre class="bash"><code>~ $ cd Invoices/
 ~/Invoices $ ls
@@ -761,7 +763,7 @@ Truck   tires   400
 Truck   tires   400
 Truck   tires   400
 Truck   winch   100</code></pre>
-<p>But what if we wanted to process all the lines in all the files in a single alphabetical order? Just redirecting the files into a program won't do it, because the file names will be sorted by the shell and the lines will be processed in file name order, not the ultimate sorted order of all the file contents.</p>
+<p>But what if we wanted to process all the lines in all the files in alphabetical order? Just directing the files into a program won't do it, because the file names will be sorted by the shell and the lines will be processed in file name order, not the ultimate sorted order of all the file contents.</p>
 <p></p>
 <pre class="bash"><code>~/Invoices $ cat *
 Truck   brakes  200
@@ -861,25 +863,25 @@ Tractor tires   2000
 Combine tires   2500</code></pre>
 <p>If you read that command in a script file, there would be little confusion as to what it was doing.</p>
 <h2 id="rearranging-deck-chairs" class="unnumbered">Rearranging Deck Chairs</h2>
-<p>We can copy, move (or rename - same thing) and delete files and directories. To <em>copy</em>, simply use the <a href="http://linux.die.net/man/1/cp"><code>cp</code></a> command:</p>
+<p>We can copy, move (or rename - same thing) and delete files and directories. To <em>copy</em>, simply use the <a href="http://linux.die.net/man/1/cp"><code>cp</code></a>  command:</p>
 <p></p>
 <pre class="bash"><code>~ $ cp diary.txt diary.bak</code></pre>
 <p>You can copy entire directories recursively:</p>
 <p></p>
 <pre class="bash"><code>~ $ cp -r thisdir thatdir</code></pre>
-<p>Or, if we want to be self-documenting in a script, we can use those long parameter names:</p>
+<p>Or, if we want to be self-documenting in a script, we can use those long parameter names again:</p>
 <p></p>
 <pre class="bash"><code>~ $ cp --recursive thisdir thatdir</code></pre>
-<p>To <em>move</em> use <a href="http://linux.die.net/man/1/mv"><code>mv</code></a>:</p>
+<p>To <em>move</em> use <a href="http://linux.die.net/man/1/mv"><code>mv</code></a> :</p>
 <p></p>
 <pre class="bash"><code>~ $ mv thismonth.log lastmonth.log</code></pre>
 <p><strong>Note:</strong> There is no semantic difference between &quot;move&quot; and &quot;rename.&quot; However, there are some really cool renaming scenarios that the <a href="http://linux.die.net/man/1/rename"><code>rename</code></a> command can take care of beyond <code>mv</code>, like renaming all file extensions from <code>.htm</code> to <code>.html</code>.</p>
 <h2 id="making-files-disappear" class="unnumbered">Making Files Disappear</h2>
-<p>To delete or <em>remove</em> a file you use <a href="http://linux.die.net/man/1/rm"><code>rm</code></a>:</p>
+<p>To delete or <em>remove</em> a file you use <a href="http://linux.die.net/man/1/rm"><code>rm</code></a> :</p>
 <p></p>
 <pre class="bash"><code>~ $ rm desktop.ini</code></pre>
-<p><strong>Pro Tip:</strong> There is no &quot;Are you sure?&quot; prompt when removing a single file specified with no wildcards, or even all files with a wildcard, and there is no &quot;Recycle Bin&quot; or &quot;Trash Can&quot; when working from the command prompt, so <strong><em>BE CAREFUL!</em></strong></p>
-<p>This kind of scenario can happen <strong><em>way</em></strong> too often, even to experienced system administrators. Note the space between <code>*</code> and <code>.bak</code>:</p>
+<p><strong>Pro Tip:</strong> There is no &quot;Are you sure?&quot; prompt when removing a single file specified with no wildcards, or even <strong><em>all</em></strong> files with a wildcard, and there is no &quot;Recycle Bin&quot; or &quot;Trash Can&quot; when working from the command prompt, so <strong><em>BE CAREFUL!</em></strong></p>
+<p>The following scenario can happen <strong><em>way</em></strong> too often, even to experienced system administrators. Note the accidental space between <code>*</code> and <code>.bak</code> on the <code>rm</code> command:</p>
 <p></p>
 <pre class="bash"><code>~ $ cd MyDissertation/
 ~/MyDissertation $ ls
@@ -893,34 +895,34 @@ rm: cannot remove ‘.bak’: No such file or directory
 <li><p>Changed to directory <code>MyDissertation</code>.</p></li>
 <li><p>Listed the directory contents with <code>ls</code>, saw the combination of <code>.doc</code> and <code>.bak</code> files.</p></li>
 <li><p>Decided to delete the <code>.bak</code> files with <code>rm</code>, but accidentally typed in a space between the wildcard <code>*</code> and the <code>.bak</code>. Note ominous warning message.</p></li>
-<li><p>Presto! <code>ls</code> shows <strong><em>everything</em></strong> is gone, not just the backup files! Yay! The user's priorities just got rearranged as they go hunting for another backup of their dissertation.</p></li>
+<li><p>Presto! <code>ls</code> shows <strong><em>everything</em></strong> is gone, not just the backup files! The user's priorities just got rearranged as they go hunting for another copy of their dissertation.</p></li>
 </ol>
-<p>So be careful out there! This is an example where tab completion can be an extra error check. Or a lot of times I use command history in these cases by changing the <code>ls</code> to look for just the files I want to delete:</p>
+<p>So be careful out there! This is an example where tab completion can be an extra error check. Many times I use command history in these cases by changing the <code>ls</code> to look for just the files I want to delete:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls *.bak
 Citations.bak  Dissertation.bak</code></pre>
-<p>Then using the &quot;up arrow&quot; to bring back up the <code>ls</code> command and changing <code>ls</code> to <code>rm</code> and re-executing it. Safer that way.</p>
+<p>Then I use the &quot;up arrow&quot; to bring back the <code>ls</code> command and change <code>ls</code> to <code>rm</code> before running it. Safer that way.</p>
 <h2 id="touch-me" class="unnumbered"><code>touch</code> Me</h2>
-<p>We just learned how to make a file disappear. We can also make a file magically appear, just by <a href="http://linux.die.net/man/1/touch"><code>touch</code></a>:</p>
+<p>We just learned how to make a file disappear. We can also make a file magically appear, just by <a href="http://linux.die.net/man/1/touch"><code>touch</code></a> :</p>
 <p></p>
 <pre class="bash"><code>~ $ touch NewEmptyDissertation.doc
 ~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:12 NewEmptyDissertation.doc</code></pre>
 <p>Notice the newly created file is zero bytes long.</p>
-<p>Interestingly enough, we can also use touch just to update the &quot;last modified date&quot; of an existing file, as you can see in time change in the following listing after running <code>touch</code> on the same file again:</p>
+<p>Interestingly enough, we can also use <code>touch</code> just to update the &quot;last modified date&quot; of an existing file, as you can see in time change in the following listing after running <code>touch</code> on the same file again:</p>
 <p></p>
 <pre class="bash"><code>~ $ touch NewEmptyDissertation.doc
 ~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:14 NewEmptyDissertation.doc</code></pre>
-<p>It can be useful (but also distressing from a forensics point of view) to sometimes set the last modified date of a file to a specific date and time, which <code>touch</code> also allows you to do, in this case to the night before Christmas:</p>
+<p>It can be useful (but also distressing from a forensics point of view) to set the last modified date of a file to a specific date and time, which <code>touch</code> also allows you to do, in this case to the night before Christmas:</p>
 <p></p>
 <pre class="bash"><code>~ $ touch -t 201412242300 NewEmptyDissertation.doc
 ~ $ ls -l
 total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Dec 24  2014 NewEmptyDissertation.doc</code></pre>
-<p>To <em>make a directory</em> you use <a href="http://linux.die.net/man/1/mkdir"><code>mkdir</code></a>:</p>
+<p>To <em>make a directory</em> you use <a href="http://linux.die.net/man/1/mkdir"><code>mkdir</code></a> :</p>
 <p></p>
 <pre class="bash"><code>~ $ cd Foo
 ~/Foo $ ls -l
@@ -950,19 +952,19 @@ a  b  Bar  c  d  Xyzzy
 Something</code></pre>
 <h2 id="navigating-through-life" class="unnumbered">Navigating Through Life</h2>
 <p>Ever notice that &quot;life&quot; is an anagram for &quot;file&quot;? Spooky, eh?</p>
-<p>Given that the UNIX-style file systems are hierarchical in nature they are similar to navigate as with <code>CMD.EXE</code>. The biggest difference is the absense of drive letter and the direction of the slashes.</p>
-<p>To <em>change directories</em>, simply use <a href="http://linux.die.net/man/1/cd"><code>cd</code></a> much like in Windows:</p>
+<p>Given that the UNIX-style file systems are hierarchical in nature they are similar to navigate as with <code>CMD.EXE</code>. The biggest difference is the absense of drive letters and the direction of the slashes.</p>
+<p>To <em>change directories</em>, simply use <a href="http://linux.die.net/man/1/cd"><code>cd</code></a>  much like in Windows:</p>
 <p></p>
 <pre class="bash"><code>~ $ cd /etc
 ~ $ pwd
 /etc</code></pre>
-<p><a href="http://linux.die.net/man/1/pwd"><code>pwd</code></a> simply <em>prints the working (current) directory</em>.</p>
-<p>In Linux, users can have &quot;home&quot; directories (similar to Windows profiles), typically located under <code>/home/&lt;username&gt;</code> for normal users and <code>/root</code> for the &quot;root&quot; (admin) id. To change to a user's &quot;home&quot; directory, simply use <code>cd</code> with no parameters:</p>
+<p><a href="http://linux.die.net/man/1/pwd"><code>pwd</code></a>  simply <em>prints the working (current) directory</em>. If <code>whoami</code> tells you who you are, <code>pwd</code> tells you <strong><em>where</em></strong> you are.</p>
+<p>In Linux, users can have &quot;home&quot; directories (similar to Windows profiles), typically located under <code>/home/&lt;username&gt;</code> for normal users, and <code>/root</code> for the &quot;root&quot; (admin) id. To change to a user's &quot;home&quot; directory, simply use <code>cd</code> with no parameters:</p>
 <p></p>
 <pre class="bash"><code>/etc $ cd
 ~ $ pwd
 /home/myuser</code></pre>
-<p>The tilde (<code>~</code>) character is an alias for the current user's home directory. The following example is equivalent to above:</p>
+<p>The tilde (<code>~</code>)  character is an alias for the current user's home directory. The following example is equivalent to above:</p>
 <p></p>
 <pre class="bash"><code>/etc $ cd ~
 ~ $ pwd
@@ -972,13 +974,13 @@ Something</code></pre>
 <pre class="bash"><code>~ # cd ~myuser
 myuser # pwd
 /home/myuser</code></pre>
-<p><strong>Note:</strong> The above assumes you have permissions to <code>cd</code> into <code>/home/myuser</code>. See the section on file permissions for more info.</p>
+<p><strong>Note:</strong> The above assumes you have permissions to <code>cd</code> into <code>/home/myuser</code>. See the upcoming section on file permissions for more info.</p>
 <p>In addition, you need to know the difference between &quot;absolute&quot; and &quot;relative&quot; paths:</p>
 <ul>
-<li><p><strong>Absolute path</strong> - <strong><em>always</em></strong> &quot;goes through&quot; or specifies the &quot;root&quot; (<code>/</code>) directory, e.g. <code>cd /etc</code>.</p></li>
-<li><p><strong>Relative path</strong> - does <strong><em>not</em></strong> specify the root directory, expects to start the navigation at the current directory with all path components existing from there, e.g., <code>cd Dissertations</code>.</p></li>
+<li><p><strong>Absolute path</strong>/index{Files and Directories!Absolute path} - <strong><em>always</em></strong> &quot;goes through&quot; or specifies the &quot;root&quot; (<code>/</code>) directory, e.g. regardless of the current working directory, <code>cd /etc</code> will change it to <code>/etc</code>.</p></li>
+<li><p><strong>Relative path</strong>/index{Files and Directories!Relative path} - does <strong><em>not</em></strong> specify the root directory, and expects to start the navigation at the current directory with all path components traversed from there, e.g., <code>cd Dissertations</code> changes the current directory to a subdirectory called <code>Dissertations</code>.</p></li>
 </ul>
-<p>Windows inherited the concept of <code>.</code> for the current directory and <code>..</code> for the parent directory directly from UNIX. Consider the following examples that combine all of the above about relative paths and see if it all makes sense:</p>
+<p>Windows inherited the concept of <code>.</code>  for the current directory and <code>..</code>  for the parent directory directly from UNIX. Consider the following examples that combine all of the above about relative paths and see if it makes sense:</p>
 <p></p>
 <pre class="bash"><code>~/Foo $ ls
 ~/Foo $ mkdir Bar Baz
@@ -998,7 +1000,7 @@ Bar  Baz
 a  b  c</code></pre>
 <p>Did you notice how both <code>mkdir</code> and <code>touch</code> allow for specifying multiple directory and file names in the same command?</p>
 <h2 id="may-i" class="unnumbered">May I?</h2>
-<p>Most &quot;UNIX&quot; file systems come with a set of nine permissions that can be thought of as a &quot;grid&quot; of 3x3 showing &quot;who has what?&quot; The &quot;who&quot; is &quot;UGO&quot;:</p>
+<p>Most &quot;UNIX&quot; file systems come with a set of nine permissions that can be thought of as a &quot;grid&quot; of 3x3 showing &quot;who has what?&quot; The &quot;who&quot; is known as &quot;UGO&quot;:</p>
 <ul>
 <li><p><strong>User</strong> - the user that is the &quot;owner&quot; of the file or directory.</p></li>
 <li><p><strong>Group</strong> - the group that is the &quot;owner&quot; of the file or directory.</p></li>
@@ -1012,7 +1014,7 @@ a  b  c</code></pre>
 </ul>
 <p>The combination of &quot;who has what?&quot; is usually shown in detailed directory listings by a set of ten characters, with the first one determining whether an entry is a directory (<code>d</code>) or a file (<code>-</code>):</p>
 <p></p>
-<pre class="bash"><code>%ls -l /etc
+<pre class="bash"><code>% ls -l /etc
 total 1876
 drwxr-xr-x   2 root  wheel        512 Jan 15  2009 X11
 -rw-r--r--   1 root  wheel          0 Sep  3  2013 aliases
@@ -1035,7 +1037,7 @@ drwxr-xr-x   2 root  wheel        512 May  6  2009 defaults
 -rw-rw-r--   1 root  operator       0 Nov  3  2005 dumpdates
 drwxr-xr-x   6 root  staff        512 Nov 12  2014 fail2ban
 -rw-r--r--   1 root  wheel        142 May  6  2009 fbtab
--rw-r--r--   1 root  wheel       2552 May  6  2009 freebsd-update.conf</code></pre>
+...and so on...</code></pre>
 <p>In the above, for example, we can see that the user <code>root</code> owns the file <code>aliases</code> while the <code>wheel</code> group is the primary group for it. <code>root</code> can both read and write the file (<code>rw-</code>) while any user in the <code>wheel</code> group can only read it (<code>r--</code>). Any other id will also have read access (<code>r--</code>).</p>
 <p>Similarly we see that <code>defaults</code> is a directory (<code>d</code>) that can be read, written (new files created) and listed by <code>root</code> (<code>rwx</code>), and read and listed by the group <code>wheel</code> and all other ids (<code>r-xr-x</code>).</p>
 <p>Back on Linux, if we look in <code>/etc/init.d</code> where many services store their startup scripts we see:</p>
@@ -1063,9 +1065,9 @@ lrwxrwxrwx 1 root root   21 Sep  7 04:00 cron -&gt; /lib/init/upstart-job
 lrwxrwxrwx 1 root root   21 Sep  7 04:00 friendly-recovery -&gt; /lib/init/upstart-
 job
 -rwxr-xr-x 1 root root 1105 May 13  2015 grub-common
--rwxr-xr-x 1 root root 1329 Mar 12  2014 halt</code></pre>
+...and so on...</code></pre>
 <p>In this case all the scripts are readable, writable and executable (<code>rwx</code>) by the <code>root</code> user, and readable and executable by the <code>root</code> group and all other users (<code>r-xr-x</code>). Later on I will explain linked files (those that start with an <code>l</code> instead of a <code>-</code> in the detailed listing above).</p>
-<p>To <em>change</em> the <em>owning</em> user of a file or directory (assuming you have permissions to do so), use the <a href="http://linux.die.net/man/1/chown"><code>chown</code></a> command:</p>
+<p>To <em>change</em> the <em>owning</em> user of a file or directory (assuming you have permissions to do so), use the <a href="http://linux.die.net/man/1/chown"><code>chown</code></a>  command:</p>
 <p></p>
 <pre class="bash"><code># ls -l
 total 4
@@ -1074,13 +1076,13 @@ total 4
 # ls -l
 total 4
 -rwxr--r-- 1 git root 17 Oct 20 10:07 foo</code></pre>
-<p>To <em>change</em> the primary <em>group</em>, use the <a href="http://linux.die.net/man/1/chgrp"><code>chgrp</code></a> command:</p>
+<p>To <em>change</em> the primary <em>group</em>, use the <a href="http://linux.die.net/man/1/chgrp"><code>chgrp</code></a>  command:</p>
 <p></p>
 <pre class="bash"><code># chgrp git foo
 # ls -l
 total 4
 -rwxr--r-- 1 git git 17 Oct 20 10:07 foo</code></pre>
-<p>To <em>change</em> the various permissions or <em>mode</em> bits, you use the <a href="http://linux.die.net/man/1/chmod"><code>chmod</code></a> command. It uses mnemonics of &quot;ugo&quot; for (owning) user, group and &quot;other,&quot; respectively. It also uses mnemonics of &quot;rwx&quot; for read, write and execute, and <code>+</code> to add a permission and <code>-</code> to remove it. For example, to add the execute permission for the group and remove read permission for &quot;other&quot;:</p>
+<p>To <em>change</em> the various permissions or <em>mode</em> bits, you use the <a href="http://linux.die.net/man/1/chmod"><code>chmod</code></a>  command. It uses mnemonics of &quot;ugo&quot; for user, group and &quot;other,&quot; respectively. It also uses mnemonics of &quot;rwx&quot; for read, write and execute, and <code>+</code> to add a permission and <code>-</code> to remove it. For example, to add the execute permission for the group and remove read permission for &quot;other&quot;:</p>
 <p></p>
 <pre class="bash"><code># chmod g+x,o-r foo
 # ls -l
@@ -1114,7 +1116,7 @@ total 4
 total 4
 -rwxrwx--- 1 git git 17 Oct 20 10:07 foo</code></pre>
 <p>Now you know the answer to that &quot;How will we ever use octal in real life?&quot; question you asked in school!</p>
-<p><strong>Note:</strong> For a script or executable file to be allowed to run, it <strong><em>must</em></strong> be marked as executable for one of the user, group or other entries. The following should be insightful:</p>
+<p>For a script or executable file to be allowed to run, it <strong><em>must</em></strong> be marked as executable for one of the user, group or other entries. The following should be insightful:</p>
 <p></p>
 <pre class="bash"><code># echo &quot;echo Hello world&quot; &gt; foo
 # ls -l
@@ -1194,7 +1196,7 @@ Foo/d/
 Foo/d/e
 Foo/a</code></pre>
 <h2 id="lets-link-up" class="unnumbered">Let's <code>link</code> Up!</h2>
-<p>In Windows there are &quot;shortcuts,&quot; which are simply special files that the OS knows to interpret as &quot;go open this other file over there.&quot; There are also &quot;hard links&quot; that allow for different directory entries <em>in the same file system</em> to point to the same physical file.</p>
+<p>In Windows there are &quot;shortcuts,&quot; which are simply special files that the OS knows to interpret as &quot;go open this other file over there.&quot; There are also &quot;hard links&quot; that allow for different directory entries <strong><em>in the same file system</em></strong> to point to the same physical file.</p>
 <p>UNIX file systems also have both these types of links (which isn't surprising, given that Microsoft got the ideas from UNIX). Both are created with the <a href="http://linux.die.net/man/1/ln"><code>ln</code></a> command. A &quot;soft link&quot; is equivalent to a Windows shortcut, and can point to a file or a directory, and can point to anything on any mounted file system:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls -l
@@ -1280,7 +1282,7 @@ This is b.
 This is b.
 ~ $ cat d/b
 This is b.</code></pre>
-<p>So, that makes sense. We had an original file <code>b</code> and created two hard links to it, <code>B</code> and <code>d/b</code>. When we edit <code>b</code> by placing &quot;This is b.&quot; in it, we see that it has the same contents no matter how we access it, because it is pointing to the same inode.</p>
+<p>So, that makes sense. We created an original file <code>b</code> by placing &quot;This is b.&quot; in it, and then created two hard links to it, <code>B</code> and <code>d/b</code>. We see that it has the same contents no matter how we access it, because it is pointing to the same inode.</p>
 <p>Can you guess how many <code>rm</code> commands it will take to delete the file containing &quot;This is b.&quot;?</p>
 <p></p>
 <pre class="bash"><code>~ $ rm b
@@ -1294,9 +1296,9 @@ This is b.
 ~ $ cat d/b
 This is b.
 ~ $ rm d/b</code></pre>
-<p>So, ultimately, it takes a <code>rm</code> for every hard link to permanently delete a file.</p>
+<p>Ultimately, it takes a <code>rm</code> for every hard link to permanently delete a file.</p>
 <h3 id="mount-it-i-dont-even-know-its-name" class="unnumbered"><code>mount</code> It? I Don't Even Know It's Name!</h3>
-<p>With all this talk that a hard link can only be on the same file system, how do you know whether two directories are on the same file system? In Windows it's easy - that's exactly what the drive letters are telling you. But in Linux, where everything is &quot;mounted&quot; under a single hierarchy starting at <code>/</code>, how do I know that <code>/var/something</code> and <code>var/or/other</code> are on the same file system?</p>
+<p>With all this talk that a hard link can only be on the same file system, how do you know whether two directories are on the same file system? In Windows it's easy - that's exactly what the drive letters are telling you. But in Linux, where everything is &quot;mounted&quot; under a single hierarchy starting at <code>/</code> , how do I know that <code>/var/something</code> and <code>var/or/other</code> are on the same file system?</p>
 <p>There are multiple ways to tell, actually. The easiest is with the <a href="http://linux.die.net/man/1/df"><code>df</code></a> command:</p>
 <p></p>
 <pre class="bash"><code>~ $ df
@@ -1313,7 +1315,7 @@ none                         102400       24    102376   1% /run/user
 <p><strong>Note:</strong> - It is (barely) beyond the scope of this book to cover the <a href="http://linux.die.net/man/8/mount"><code>mount</code></a> command. I wanted to, really bad, but with all the different file systems and device types and all the options for both it can get so complex so fast that I decided not to. Maybe if you ask, real nice...</p>
 <h3 id="im-seeing-double" class="unnumbered">I'm Seeing Double</h3>
 <p>So, both hard and soft links can have some interesting side effects if you think about them. For one, if you are backing things up, then you may get duplicates in your backup set. In fact, with hard links you will, by definition, unless the backup software is very smart and doing things like de-duplication.</p>
-<p>But even with soft links if everything just blindly followed them you could also get duplicates where you didn't want them, or even circular references. Also, the pointers in the soft link files are not evaluated until a command references them. Note that the following is perfectly legal with soft links, but may not give the results you expect - think about the current working directory shown by <code>pwd</code> in the following, and what the effects of the <strong><em>relative paths</em></strong> as the sample progresses:</p>
+<p>But even with soft links if everything just blindly followed them you could also get duplicates where you didn't want them, or even circular references. Also, the pointers in the soft link files are not evaluated until a command references them. Note that the following is perfectly legal with soft links, but may not give the results you expect - think about the current working directory shown by <code>pwd</code> in the following, and the effects of the <strong><em>relative paths</em></strong> as the sample progresses:</p>
 <p></p>
 <pre class="bash"><code>~ $ cd Foo
 ~/Foo $ rm -rf *
@@ -1332,7 +1334,7 @@ e  f
 a  b  c  d</code></pre>
 <p>Many commands that deal with files and file systems, like <code>find</code>, have parameters specifically telling the command whether to follow soft links or not (by default, <code>find</code> does not - see the next chapter for more).</p>
 <h2 id="whats-the-diff" class="unnumbered">What's the <code>diff</code>?</h2>
-<p>Most people think of <a href="http://linux.die.net/man/1/diff"><code>diff</code></a> as a tool only programmers find useful, but that is short-sighted. The whole purpose of <code>diff</code> is to show differences between files. For example, I backed up this document (which is a text file) before starting this section, then typed this introduction to <code>diff</code>. This is what <code>diff</code> showed after I added the new paragraph:</p>
+<p>Most people think of <a href="http://linux.die.net/man/1/diff"><code>diff</code></a>  as a tool only programmers find useful, but that is short-sighted. The whole purpose of <code>diff</code> is to show differences between files. For example, I backed up this document (which is a text file) before starting this section, then typed this introduction to <code>diff</code>. This is what <code>diff</code> showed after I added the new paragraph:</p>
 <p></p>
 <pre class="bash"><code>~ $ diff Step02.bak Step02.md
 1285a1286,1291

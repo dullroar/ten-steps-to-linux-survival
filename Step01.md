@@ -140,7 +140,7 @@ subsystems, etc.
 
 But even so, there are some similarities between `CMD.EXE` and a Linux shell like
 `bash`\drshl{bash}. In both `bash` and `CMD.EXE`\drshl{CMD.EXE} the
-[`set`](http://linux.die.net/man/1/set)\drcmd{set}\index{Environment Variables!Displaying (\texttt{set} command)}
+[`set`](http://linux.die.net/man/1/set)\drcmd{set}\index{Environment variables!Displaying (\texttt{set} command)}
 command shows you all environment variables that have been set. Here's `bash`:
 
 \drcap{\texttt{set} command in \texttt{bash}}
@@ -202,7 +202,7 @@ PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 ```
 
 Similarly, the
-[`echo`](http://linux.die.net/man/1/echo)\drcmd{echo}\index{Environment Variables!Displaying (\texttt{echo} command)}
+[`echo`](http://linux.die.net/man/1/echo)\drcmd{echo}\index{Environment variables!Displaying (\texttt{echo} command)}
 command can be used to show you the contents of an environment variable like `HOME`\drenv{HOME} on
 `bash`:
 
@@ -224,7 +224,7 @@ This example shows some valuable differences between shells. Even though both ha
 environment variables and displaying their contents using the "same" `echo` command, note that:
 
 1. The syntax for accessing an environment variable is
-`$variable`\index{Environment Variables!Syntax} in `bash` and `%variable%` in `CMD.EXE`.
+`$variable`\index{Environment variables!Syntax} in `bash` and `%variable%` in `CMD.EXE`.
 
 2. `bash` is case-sensitive and so `echo $HOME` works but `echo $home` does not. `CMD.EXE` is
 ***not*** case-sensitive, so either `echo %homedrive%` or `echo %HOMEDRIVE%` (or `EcHo %hOmEdRiVe%`)
@@ -246,7 +246,7 @@ learn the native commands, because then you are instantly productive at any shel
 ## You're a Product of Your Environment (Variables){.unnumbered}
 
 It is much more common to set up environment variables to control run-time execution in Linux than
-in Windows. In fact, it is quite common to assign\index{Environment Variables!Assigning} a given
+in Windows. In fact, it is quite common to assign\index{Environment variables!Assigning} a given
 environment variable for the single execution of a program, to the point that `bash` has built-in
 "one-line" support for it:
 
@@ -430,8 +430,8 @@ something else (the beginning part of the file name) wrong.
 The other thing to remember about the interactive shell is command history. Again, both
 `CMD.EXE`\drshl{CMD.EXE} and `bash` give you command history, but `CMD.EXE` only remembers it for
 the session, while `bash` stores it in one of your hidden "profile" or "dot" files in your home
-directory called `.bash_history`\index{Files!Special files!\texttt{.bash\_history}}, which you can
-display with `ls -a`:
+directory called `.bash_history`\index{Files and Directories!Special!\texttt{.bash\_history}},
+which you can display with `ls -a`:
 
 \drcap{\texttt{ls} command showing hidden files}
 ```bash

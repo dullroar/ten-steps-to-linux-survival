@@ -172,7 +172,7 @@ tool](https://en.wikipedia.org/wiki/Package_manager) predominantly used:
 
 * **`apt-get`\drcmd{apt-get}\index{Package management!\texttt{apt-get} command},
 `dpkg`\drcmd{dpkg}\index{Package management!\texttt{dpkg} command} and
-`.deb`\index{Files!\texttt{.deb} package files} files** -
+`.deb`\index{Files and Directories!\texttt{.deb} package files} files** -
 [Debian](https://en.wikipedia.org/wiki/Debian)\drios{Debian} flavors, such as
 [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29)\drios{Ubuntu} and
 [Mint](https://en.wikipedia.org/wiki/Linux_Mint)\drios{Mint}. Mint is currently my desktop Linux of

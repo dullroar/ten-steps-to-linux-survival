@@ -300,9 +300,9 @@ drwxr-xr-x  2 myuser mygroup      4096 Sep  7 04:16 Public
 
 If `rwx` were octal:
 
-> * `r` == 2^2 (4)
-> * `w` == 2^1 (2)
-> * `x` == 2^0 (1)
+> * `r` == 2^2^ (4)
+> * `w` == 2^1^ (2)
+> * `x` == 2^0^ (1)
 > * `-` == 0
 
 ## Olde Skool `chmod`

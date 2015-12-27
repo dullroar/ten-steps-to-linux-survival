@@ -65,8 +65,8 @@ ifconfig` to your heart's content.
 
 But sometimes there are duplicate names in the different sections. For
 example, there is both a `passwd`\drcmd{passwd} command and a
-`passwd`\drcmd{passwd file}\index{Files!Special files!\texttt{/etc/passwd}} file format (for
-`/etc/passwd`). By default, `man passwd` will show you the documentation
+`passwd`\drcmd{passwd file}\index{Files and Directories!Special!\texttt{/etc/passwd}} file
+format (for `/etc/passwd`). By default, `man passwd` will show you the documentation
 from the lowest numbered section with a match, in this case section 1,
 usually referred to as `passwd(1)` to disambiguate which thing we're
 talking about:

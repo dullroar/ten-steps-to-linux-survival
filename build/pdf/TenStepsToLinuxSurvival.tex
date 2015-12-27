@@ -145,7 +145,7 @@
 \numberwithin{figure}{chapter}
 \DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
 \DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1@\texttt{#1}}}
-\DeclareRobustCommand{\drenv}[1]{\index{Environment Variables!#1@\texttt{#1}}}
+\DeclareRobustCommand{\drenv}[1]{\index{Environment variables!#1@\texttt{#1}}}
 \DeclareRobustCommand{\drios}[1]{\index{OS and OS-Like Substances!#1}}
 \DeclareRobustCommand{\drshl}[1]{\index{Shells!#1@\texttt{#1}}}
 \DeclareRobustCommand{\drvic}[2]{\index{vi Commands!#1 (#2)}}
@@ -496,7 +496,8 @@ becoming more of your job, maybe this will help as a gentle push toward
 alter your system and possibly damage it.}}
 
 Obvious candidates include the file system commands like
-\texttt{rm}\drcmd{rm} \index{Files!Delete (\texttt{rm} command)}, the
+\texttt{rm}\drcmd{rm}
+\index{Files and Directories!Delete (\texttt{rm} command)}, the
 \texttt{vi}\drcmd{vi}\index{Editors!\texttt{vi}} editor (obviously), and
 some of the "system admin" commands mentioned later, including system
 and service restarts. Use your common sense plus the various resources
@@ -830,7 +831,9 @@ tool} predominantly used:
 \item
   \textbf{\texttt{apt-get}\drcmd{apt-get}\index{Package management!\texttt{apt-get} command},
   \texttt{dpkg}\drcmd{dpkg}\index{Package management!\texttt{dpkg} command}
-  and \texttt{.deb}\index{Files!\texttt{.deb} package files} files} -
+  and
+  \texttt{.deb}\index{Files and Directories!\texttt{.deb} package files}
+  files} -
   \href{https://en.wikipedia.org/wiki/Debian}{Debian}\drios{Debian}
   flavors, such as
   \href{https://en.wikipedia.org/wiki/Ubuntu_\%28operating_system\%29}{Ubuntu}\drios{Ubuntu}
@@ -1096,7 +1099,7 @@ PowerShell, POSIX subsystems, etc.
 But even so, there are some similarities between \texttt{CMD.EXE} and a
 Linux shell like \texttt{bash}\drshl{bash}. In both \texttt{bash} and
 \texttt{CMD.EXE}\drshl{CMD.EXE} the
-\href{http://linux.die.net/man/1/set}{\texttt{set}}\drcmd{set}\index{Environment Variables!Displaying (\texttt{set} command)}
+\href{http://linux.die.net/man/1/set}{\texttt{set}}\drcmd{set}\index{Environment variables!Displaying (\texttt{set} command)}
 command shows you all environment variables that have been set. Here's
 \texttt{bash}:
 
@@ -1165,7 +1168,7 @@ And \texttt{CMD.EXE}:
 \end{Shaded}
 
 Similarly, the
-\href{http://linux.die.net/man/1/echo}{\texttt{echo}}\drcmd{echo}\index{Environment Variables!Displaying (\texttt{echo} command)}
+\href{http://linux.die.net/man/1/echo}{\texttt{echo}}\drcmd{echo}\index{Environment variables!Displaying (\texttt{echo} command)}
 command can be used to show you the contents of an environment variable
 like \texttt{HOME}\drenv{HOME} on \texttt{bash}:
 
@@ -1197,7 +1200,7 @@ contents using the "same" \texttt{echo} command, note that:
 \def\labelenumi{\arabic{enumi}.}
 \item
   The syntax for accessing an environment variable is
-  \texttt{\$variable}\index{Environment Variables!Syntax} in
+  \texttt{\$variable}\index{Environment variables!Syntax} in
   \texttt{bash} and \texttt{\%variable\%} in \texttt{CMD.EXE}.
 \item
   \texttt{bash} is case-sensitive and so \texttt{echo\ \$HOME} works but
@@ -1238,7 +1241,7 @@ for at least two reasons:
 
 It is much more common to set up environment variables to control
 run-time execution in Linux than in Windows. In fact, it is quite common
-to assign\index{Environment Variables!Assigning} a given environment
+to assign\index{Environment variables!Assigning} a given environment
 variable for the single execution of a program, to the point that
 \texttt{bash} has built-in "one-line" support for it:
 
@@ -1487,7 +1490,7 @@ history. Again, both \texttt{CMD.EXE}\drshl{CMD.EXE} and \texttt{bash}
 give you command history, but \texttt{CMD.EXE} only remembers it for the
 session, while \texttt{bash} stores it in one of your hidden "profile"
 or "dot" files in your home directory called
-\texttt{.bash\_history}\index{Files!Special files!\texttt{.bash\_history}},
+\texttt{.bash\_history}\index{Files and Directories!Special!\texttt{.bash\_history}},
 which you can display with \texttt{ls\ -a}:
 
 \drcap{\texttt{ls} command showing hidden files}
@@ -1536,6 +1539,8 @@ formats, including:
 
 \begin{itemize}
 \item
+  \href{https://en.wikipedia.org/wiki/Btrfs}{\textbf{btrfs}}
+\item
   \href{https://en.wikipedia.org/wiki/Ext2}{\textbf{ext2}}
 \item
   \href{https://en.wikipedia.org/wiki/Ext3}{\textbf{ext3}}
@@ -1544,17 +1549,20 @@ formats, including:
 \item
   \href{https://en.wikipedia.org/wiki/ReiserFS}{\textbf{ReiserFS}}
 \item
-  \textbf{...and so much more!} - NTFS, FAT, etc.
+  \href{https://en.wikipedia.org/wiki/ZFS}{\textbf{ZFS}}
+\item
+  \textbf{...and so many more!} - NTFS, FAT, CDFS, etc.
 \end{itemize}
 
 Each has its strengths and weaknesses. While Linux tends to treat the
 ext* file systems as preferred, it can write to a lot of file systems
 and can read even more.
 
-As mentioned above, the biggest differences between Linux and Windows is
-that the Linux environments do not have a concept of "drive letters."
+As mentioned before, the biggest differences between Linux and Windows
+is that the Linux environments do not have a concept of "drive letters."
 Instead everything is "mounted" under a single hierarchy that starts at
-the "root directory" or \texttt{/}:
+the "root directory" or
+\texttt{/}\index{0@Symbols!\texttt{/} (root directory)}\index{Files and Directories!Root (\texttt{/})}:
 
 \drcap{Listing of the root directory}
 
@@ -1567,8 +1575,8 @@ the "root directory" or \texttt{/}:
 \end{Highlighting}
 \end{Shaded}
 
-The root file system may be backed by a disk device, LUN, memory or even
-the network. It will have one or more directories under it. Multiple
+The root file system may be backed by a disk device, memory or even the
+network. It will have one or more directories under it. Multiple
 physical drives and network locations can be "mounted" virtually
 anywhere, under any directory or subdirectory in the hierarchy.
 
@@ -1580,10 +1588,10 @@ often mounted automatically under either a \texttt{/mnt} or
 \addcontentsline{toc}{section}{Looking at Files}
 
 As we've already seen, the command to \emph{list} the contents of a
-directory is
-\href{http://linux.die.net/man/1/ls}{\texttt{ls}}\drcmd{ls}:
+directory is \href{http://linux.die.net/man/1/ls}{\texttt{ls}}\drcmd{ls}
+\index{Files and Directories!List (\texttt{ls} command)}:
 
-\drcap{Listing of home directory}
+\drcap{Listing directory contents}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1594,10 +1602,11 @@ directory is
 
 Remember, "UNIX" environments think of files that start with a
 \texttt{.} as "hidden." If you want to see all these
-\href{https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory\#Unix_and_Unix-like_environments}{"dotfiles"}\index{dotfiles},
-you can use \texttt{ls\ -a}:
+\href{https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory\#Unix_and_Unix-like_environments}{"dotfiles"}
+\index{Files and Directories!Hidden (dotfiles)}, you can use
+\texttt{ls\ -a}, in this case on an average "home" directory:
 
-\drcap{Listing of home directory showing hidden files}
+\drcap{Listing a home directory showing hidden "dotfiles"}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1613,7 +1622,7 @@ you can use \texttt{ls\ -a}:
 
 Wow! That's a lot of dotfiles!
 
-If you want to see some details of each file, use \texttt{ls\ -l}:
+If you want to see some details for each file, use \texttt{ls\ -l}:
 
 \drcap{Detailed listing of home directory}
 
@@ -1634,7 +1643,7 @@ If you want to see some details of each file, use \texttt{ls\ -l}:
 
 And of course parameters can be combined, as with the two above:
 
-\drcap{Detailed listing of all files}
+\drcap{Detailed listing of home directory with "dotfiles"}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1661,7 +1670,7 @@ And of course parameters can be combined, as with the two above:
 \KeywordTok{drwxr-xr-x}  \NormalTok{4 myuser mygroup 4096 Dec 13 18:18 .mozilla}
 \KeywordTok{drwxr-xr-x}  \NormalTok{2 myuser mygroup 4096 Dec 13 18:18 Music}
 \KeywordTok{drwxr-xr-x}  \NormalTok{2 myuser mygroup 4096 Dec 13 18:18 Pictures}
-\KeywordTok{-rw-r--r--}  \NormalTok{1 myuser mygroup  716 Dec 13 14:30 .profile}
+\KeywordTok{...and} \NormalTok{so on...}
 \end{Highlighting}
 \end{Shaded}
 
@@ -1684,7 +1693,7 @@ it means you're toast if you run it by mistake), thus
 well today may well be your own.}} - me
 \end{quote}
 
-The older style parameters are typically preceded by a single hyphen
+The older style parameters are typically preceded by a single hyphen or
 "switch" character:
 
 \drcap{Short parameter}
@@ -1695,9 +1704,10 @@ The older style parameters are typically preceded by a single hyphen
 \end{Highlighting}
 \end{Shaded}
 
-Some command support parameters with no "switch" character at all, as
+Some commands support parameters with no "switch" character at all, as
 with \texttt{xvf} (e\textbf{\emph{X}}tract, \textbf{\emph{V}}erbose,
-input \textbf{\emph{F}}ile name) in the following:
+input \textbf{\emph{F}}ile name) in the following
+\texttt{tar}\drcmd{tar} example:
 
 \drcap{Alternate short parameter syntax}
 
@@ -1726,9 +1736,10 @@ to use the GNU-style parameters in scripts as self-documenting code.
 
 If we suspect the file is a text file, we can echo it to the console
 with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}\drcmd{cat}
+\index{Files and Directories!Display (\texttt{cat} command)}
 (\emph{concatenate}) command:
 
-\drcap{cat command}
+\drcap{\texttt{cat} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1759,15 +1770,16 @@ with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}\drcmd{cat}
 \end{Shaded}
 
 In this example when we \texttt{cat\ installrdp} we can determine it is
-a \texttt{bash} shell script that looks to install and configure
+a \texttt{bash} shell script (because the "shebang" is pointing to
+\texttt{bash}) that looks to install and configure
 \href{https://github.com/FreeRDP/FreeRDP}{FreeRDP}\drcmd{xfreerdp} on a
 Debian-style system:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{\texttt{apt-get}}\drcmd{apt-get} - Debian-style package
-  manager.
+  \textbf{\texttt{apt-get}}\drcmd{apt-get}\index{Package management!\texttt{apt-get} command}
+  - Debian-style package manager.
 \item
   \textbf{\texttt{git\ clone}}\drcmd{git} - cloning package from
   \href{http://github.com}{GitHub}.
@@ -1779,8 +1791,10 @@ Debian-style system:
 
 A better way to display a longer file is to use the
 \href{http://linux.die.net/man/1/less}{\texttt{less}}\drcmd{less}
-command (which is a derivative of the original
-\href{http://linux.die.net/man/1/more}{\texttt{more}}\drcmd{more}, hence
+\index{Files and Directories!Paginate (\texttt{less} command)} command
+(which is a derivative of the original
+\href{http://linux.die.net/man/1/more}{\texttt{more}}\drcmd{more}
+\index{Files and Directories!Paginate (\texttt{more} command)}, hence
 the name). \texttt{less} is a paginator, where the \texttt{Space},
 \texttt{Page\ Down} or down arrow keys scroll down and the
 \texttt{Page\ Up} or up arrow keys scrolls up. \texttt{Q} quits.
@@ -1794,10 +1808,12 @@ We can also look at just the end or \emph{tail} of a file (often the
 most interesting when looking at log files and troubleshooting a current
 problem) with the
 \href{http://linux.die.net/man/1/tail}{\texttt{tail}}\drcmd{tail}
-command. The next example shows the last 10 lines of the kernel
-\texttt{dmesg} log:
+\index{Files and Directories!Display (\texttt{tail} command)} command.
+The next example shows the last 10 lines of the kernel
+\texttt{dmesg}\index{Files and Directories!Special!\texttt{/var/log/dmesg}}
+log:
 
-\drcap{tail command}
+\drcap{\texttt{tail} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1815,9 +1831,10 @@ command. The next example shows the last 10 lines of the kernel
 \end{Highlighting}
 \end{Shaded}
 
-To show a specific number of lines use the \texttt{-n} parameter:
+To show a specific number of lines use the \texttt{-n} parameter with
+\texttt{tail}:
 
-\drcap{tail -n command}
+\drcap{Display last 15 lines of a file with \texttt{tail -n}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1840,11 +1857,11 @@ To show a specific number of lines use the \texttt{-n} parameter:
 \end{Highlighting}
 \end{Shaded}
 
-You can also use \texttt{tail} to \emph{follow} an open file and
-continuously display any new output at the end, which is useful for
-monitoring log files in real time:
+You can also use \texttt{tail} to with the \texttt{-f} parameter to
+\emph{follow} an open file and continuously display any new output at
+the end, which is useful for monitoring log files in real time:
 
-\drcap{tail -f command}
+\drcap{\texttt{tail -f} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1869,13 +1886,13 @@ monitoring log files in real time:
 \end{Highlighting}
 \end{Shaded}
 
-Use \texttt{Ctrl-C} to cancel following the file changes.
+Use \texttt{Ctrl-C} to cancel following the file.
 
 If we know nothing about a \emph{file}, we can use the
 \href{http://linux.die.net/man/1/file}{\texttt{file}}\drcmd{file}
-command to help us guess:
+\index{Files and Directories!Detecting type} command to help us guess:
 
-\drcap{file command}
+\drcap{\texttt{file} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1891,17 +1908,17 @@ heuristics and a text file "database" of
 define how it figures out what type of file it is examining.
 
 \textbf{Remember:} File extensions have no real meaning per se in Linux
-(although some are used, especially for media and document formats), so
-a file name with no extension like \texttt{installrdp} is perfectly
-valid. Hence the utility of the \texttt{file} command.
+(although some are used especially for media and document formats), so a
+file name with no extension like \texttt{installrdp} is perfectly valid.
+Hence the utility of the \texttt{file} command.
 
 \section*{Sorting Things Out}\label{sorting-things-out}
 \addcontentsline{toc}{section}{Sorting Things Out}
 
 Let's say we have three files, and want to display the contents of one
-of them with \texttt{cat}:
+of them. We know we can do that with \texttt{cat}\drcmd{cat}:
 
-\drcap{Show contents of a file}
+\drcap{Show contents of one file}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1917,13 +1934,13 @@ of them with \texttt{cat}:
 \end{Highlighting}
 \end{Shaded}
 
-But what if we wanted to process all the lines in all the files in a
-single alphabetical order? Just redirecting the files into a program
-won't do it, because the file names will be sorted by the shell and the
-lines will be processed in file name order, not the ultimate sorted
-order of all the file contents.
+But what if we wanted to process all the lines in all the files in
+alphabetical order? Just directing the files into a program won't do it,
+because the file names will be sorted by the shell and the lines will be
+processed in file name order, not the ultimate sorted order of all the
+file contents.
 
-\drcap{Show contents of all files}
+\drcap{Show contents of all three files}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1942,12 +1959,13 @@ order of all the file contents.
 \end{Highlighting}
 \end{Shaded}
 
-The \href{http://linux.die.net/man/1/sort}{\texttt{sort}}\drcmd{sort}
+The
+\href{http://linux.die.net/man/1/sort}{\texttt{sort}}\drcmd{sort}\index{Sorting!\texttt{sort} command}
 command to the rescue! We will see that the \texttt{sort} command can be
 used to not just \emph{sort} files, but also to merge them and remove
 duplicates.
 
-\drcap{sort command}
+\drcap{\texttt{sort} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1969,7 +1987,7 @@ duplicates.
 What if we want to sort by the parts column? Well, it is the second
 "key" field delimited by whitespace, so:
 
-\drcap{Sort by the second column}
+\drcap{Sort by the second "key" column}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1990,7 +2008,7 @@ What if we want to sort by the parts column? Well, it is the second
 
 What about by the third column, the amount?
 
-\drcap{Sort by third column}
+\drcap{Sort by the third column}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2032,7 +2050,9 @@ alphabetically. Let's fix that by telling it to sort numerically:
 \end{Shaded}
 
 Maybe we care about the top three most expensive items. We haven't
-talked about \texttt{pipes}\index{pipes} yet, but check this out:
+talked about
+\texttt{pipes}\index{0@Symbols!\texttt{"|} (pipe)}\index{Files and Directories!Redirection}
+yet, but check this out:
 
 \drcap{Top three most expensive items}
 
@@ -2065,7 +2085,7 @@ Finally, what if we want only unique rows?
 
 Just to reinforce long parameters, the last example is equivalent to:
 
-\drcap{Unique sort with long parameter names}
+\drcap{Sort unique rows using long parameter names}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2089,9 +2109,10 @@ confusion as to what it was doing.
 
 We can copy, move (or rename - same thing) and delete files and
 directories. To \emph{copy}, simply use the
-\href{http://linux.die.net/man/1/cp}{\texttt{cp}}\drcmd{cp} command:
+\href{http://linux.die.net/man/1/cp}{\texttt{cp}}\drcmd{cp}
+\index{Files and Directories!Copy (\texttt{cp} command)} command:
 
-\drcap{cp command}
+\drcap{\texttt{cp} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2110,9 +2131,9 @@ You can copy entire directories recursively:
 \end{Shaded}
 
 Or, if we want to be self-documenting in a script, we can use those long
-parameter names:
+parameter names again:
 
-\drcap{cp command with long parameter names}
+\drcap{\texttt{cp} command with long parameter names}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2121,9 +2142,10 @@ parameter names:
 \end{Shaded}
 
 To \emph{move} use
-\href{http://linux.die.net/man/1/mv}{\texttt{mv}}\drcmd{mv}:
+\href{http://linux.die.net/man/1/mv}{\texttt{mv}}\drcmd{mv}
+\index{Files and Directories!Move (\texttt{mv} command)}:
 
-\drcap{mv command}
+\drcap{\texttt{mv} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2142,9 +2164,10 @@ extensions from \texttt{.htm} to \texttt{.html}.
 \addcontentsline{toc}{section}{Making Files Disappear}
 
 To delete or \emph{remove} a file you use
-\href{http://linux.die.net/man/1/rm}{\texttt{rm}}\drcmd{rm}:
+\href{http://linux.die.net/man/1/rm}{\texttt{rm}}\drcmd{rm}
+\index{Files and Directories!Delete (\texttt{rm} command)}:
 
-\drcap{rm command}
+\drcap{\texttt{rm} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2153,13 +2176,13 @@ To delete or \emph{remove} a file you use
 \end{Shaded}
 
 \textbf{Pro Tip:} There is no "Are you sure?" prompt when removing a
-single file specified with no wildcards, or even all files with a
-wildcard, and there is no "Recycle Bin" or "Trash Can" when working from
-the command prompt, so \textbf{\emph{BE CAREFUL!}}
+single file specified with no wildcards, or even \textbf{\emph{all}}
+files with a wildcard, and there is no "Recycle Bin" or "Trash Can" when
+working from the command prompt, so \textbf{\emph{BE CAREFUL!}}
 
-This kind of scenario can happen \textbf{\emph{way}} too often, even to
-experienced system administrators. Note the space between \texttt{*} and
-\texttt{.bak}:
+The following scenario can happen \textbf{\emph{way}} too often, even to
+experienced system administrators. Note the accidental space between
+\texttt{*} and \texttt{.bak} on the \texttt{rm} command:
 
 \drcap{Oops!}
 
@@ -2190,16 +2213,15 @@ So, in order, our hapless user:
   \texttt{.bak}. Note ominous warning message.
 \item
   Presto! \texttt{ls} shows \textbf{\emph{everything}} is gone, not just
-  the backup files! Yay! The user's priorities just got rearranged as
-  they go hunting for another backup of their dissertation.
+  the backup files! The user's priorities just got rearranged as they go
+  hunting for another copy of their dissertation.
 \end{enumerate}
 
 So be careful out there! This is an example where tab completion can be
-an extra error check. Or a lot of times I use command history in these
-cases by changing the \texttt{ls} to look for just the files I want to
-delete:
+an extra error check. Many times I use command history in these cases by
+changing the \texttt{ls} to look for just the files I want to delete:
 
-\drcap{Make sure we are dealing with the right files}
+\drcap{First make sure we are dealing with the right files}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2208,17 +2230,18 @@ delete:
 \end{Highlighting}
 \end{Shaded}
 
-Then using the "up arrow" to bring back up the \texttt{ls} command and
-changing \texttt{ls} to \texttt{rm} and re-executing it. Safer that way.
+Then I use the "up arrow" to bring back the \texttt{ls} command and
+change \texttt{ls} to \texttt{rm} before running it. Safer that way.
 
 \section*{\texorpdfstring{\texttt{touch} Me}{touch Me}}\label{touch-me}
 \addcontentsline{toc}{section}{\texttt{touch} Me}
 
 We just learned how to make a file disappear. We can also make a file
 magically appear, just by
-\href{http://linux.die.net/man/1/touch}{\texttt{touch}}\drcmd{touch}:
+\href{http://linux.die.net/man/1/touch}{\texttt{touch}}\drcmd{touch}
+\index{Files and Directories!Create empty (\texttt{touch} command)}:
 
-\drcap{touch command}
+\drcap{\texttt{touch} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2231,11 +2254,13 @@ magically appear, just by
 
 Notice the newly created file is zero bytes long.
 
-Interestingly enough, we can also use touch just to update the "last
-modified date" of an existing file, as you can see in time change in the
-following listing after running \texttt{touch} on the same file again:
+Interestingly enough, we can also use \texttt{touch} just to update the
+"last modified date" of an existing file, as you can see in time change
+in the following listing after running
+\texttt{touch}\index{Files and Directories!Update last modified date (\texttt{touch} command)}
+on the same file again:
 
-\drcap{A second touch}
+\drcap{A second \texttt{touch}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2247,9 +2272,10 @@ following listing after running \texttt{touch} on the same file again:
 \end{Shaded}
 
 It can be useful (but also distressing from a forensics point of view)
-to sometimes set the last modified date of a file to a specific date and
-time, which \texttt{touch} also allows you to do, in this case to the
-night before Christmas:
+to set the last modified date of a file to a specific date and time,
+which
+\texttt{touch}\index{Files and Directories!Set last modified date (\texttt{touch} command)}
+also allows you to do, in this case to the night before Christmas:
 
 \drcap{Set file modified date to a specific date and time}
 
@@ -2263,9 +2289,10 @@ night before Christmas:
 \end{Shaded}
 
 To \emph{make a directory} you use
-\href{http://linux.die.net/man/1/mkdir}{\texttt{mkdir}}\drcmd{mkdir}:
+\href{http://linux.die.net/man/1/mkdir}{\texttt{mkdir}}\drcmd{mkdir}
+\index{Files and Directories!Create (\texttt{mkdir} command)}:
 
-\drcap{mkdir command}
+\drcap{\texttt{mkdir} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2290,7 +2317,7 @@ To \emph{make a directory} you use
 Typically you need to create all intervening directories before creating
 a "child" directory:
 
-\drcap{mkdir error}
+\drcap{\texttt{mkdir} error}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2301,7 +2328,7 @@ a "child" directory:
 
 But of course you can override that behavior:
 
-\drcap{Make multiple directories at once}
+\drcap{Make multiple intervening directories at once}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2320,14 +2347,15 @@ Ever notice that "life" is an anagram for "file"? Spooky, eh?
 
 Given that the UNIX-style file systems are hierarchical in nature they
 are similar to navigate as with \texttt{CMD.EXE}\drshl{CMD.EXE}. The
-biggest difference is the absense of drive letter and the direction of
+biggest difference is the absense of drive letters and the direction of
 the slashes.
 
 To \emph{change directories}, simply use
-\href{http://linux.die.net/man/1/cd}{\texttt{cd}}\drcmd{cd} much like in
+\href{http://linux.die.net/man/1/cd}{\texttt{cd}}\drcmd{cd}
+\index{Files and Directories!Change (\texttt{cd} command)} much like in
 Windows:
 
-\drcap{cd command}
+\drcap{\texttt{cd} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2337,14 +2365,17 @@ Windows:
 \end{Highlighting}
 \end{Shaded}
 
-\href{http://linux.die.net/man/1/pwd}{\texttt{pwd}}\drcmd{pwd} simply
-\emph{prints the working (current) directory}.
+\href{http://linux.die.net/man/1/pwd}{\texttt{pwd}}\drcmd{pwd}
+\index{Files and Directories!Current (\texttt{pwd} command)} simply
+\emph{prints the working (current) directory}. If \texttt{whoami} tells
+you who you are, \texttt{pwd} tells you \textbf{\emph{where}} you are.
 
-In Linux, users can have "home" directories (similar to Windows
-profiles), typically located under
-\texttt{/home/\textless{}username\textgreater{}} for normal users and
+In Linux, users can have
+"home"\index{Files and Directories!Home (\texttt{\~{}})} directories
+(similar to Windows profiles), typically located under
+\texttt{/home/\textless{}username\textgreater{}} for normal users, and
 \texttt{/root} for the "root" (admin) id. To change to a user's "home"
-directory, simply use \texttt{cd} with no parameters:
+directory, simply use \texttt{cd}\drcmd{cd} with no parameters:
 
 \drcap{Change to home directory}
 
@@ -2356,9 +2387,11 @@ directory, simply use \texttt{cd} with no parameters:
 \end{Highlighting}
 \end{Shaded}
 
-The tilde (\texttt{\textasciitilde{}}) character is an alias for the
-current user's home directory. The following example is equivalent to
-above:
+The tilde
+(\texttt{\textasciitilde{}})\index{0@Symbols!\texttt{\~{}} (home directory)}
+\index{Files and Directories!Home (\texttt{\~{}})} character is an alias
+for the current user's home directory. The following example is
+equivalent to above:
 
 \drcap{Alternative way to change to home directory}
 
@@ -2384,27 +2417,35 @@ specify the home directory of \textbf{\emph{another}} user:
 \end{Shaded}
 
 \textbf{Note:} The above assumes you have permissions to \texttt{cd}
-into \texttt{/home/myuser}. See the section on file permissions for more
-info.
+into \texttt{/home/myuser}. See the upcoming section on file permissions
+for more info.
 
 In addition, you need to know the difference between "absolute" and
 "relative" paths:
 
 \begin{itemize}
 \item
-  \textbf{Absolute path} - \textbf{\emph{always}} "goes through" or
-  specifies the "root" (\texttt{/}) directory, e.g. \texttt{cd\ /etc}.
+  \textbf{Absolute path}/index\{Files and Directories!Absolute path\} -
+  \textbf{\emph{always}} "goes through" or specifies the "root"
+  (\texttt{/})\index{0@Symbols!\texttt{/} (root directory)}\index{Files and Directories!Root (\texttt{/})}
+  directory, e.g. regardless of the current working directory,
+  \texttt{cd\ /etc} will change it to \texttt{/etc}.
 \item
-  \textbf{Relative path} - does \textbf{\emph{not}} specify the root
-  directory, expects to start the navigation at the current directory
-  with all path components existing from there, e.g.,
-  \texttt{cd\ Dissertations}.
+  \textbf{Relative path}/index\{Files and Directories!Relative path\} -
+  does \textbf{\emph{not}} specify the root directory, and expects to
+  start the navigation at the current directory with all path components
+  traversed from there, e.g., \texttt{cd\ Dissertations} changes the
+  current directory to a subdirectory called \texttt{Dissertations}.
 \end{itemize}
 
-Windows inherited the concept of \texttt{.} for the current directory
-and \texttt{..} for the parent directory directly from UNIX. Consider
-the following examples that combine all of the above about relative
-paths and see if it all makes sense:
+Windows inherited the concept of
+\texttt{.}\index{0@Symbols!\texttt{.} (current directory)}
+\index{Files and Directories!Current (\texttt{.})} for the current
+directory and
+\texttt{..}\index{0@Symbols!\texttt{..} (parent directory)}
+\index{Files and Directories!Parent (\texttt{..})} for the parent
+directory directly from UNIX. Consider the following examples that
+combine all of the above about relative paths and see if it makes sense:
 
 \drcap{Relative paths exercise}
 
@@ -2436,9 +2477,10 @@ file names in the same command?
 \section*{May I?}\label{may-i}
 \addcontentsline{toc}{section}{May I?}
 
-Most "UNIX" file systems come with a set of nine permissions that can be
-thought of as a "grid" of 3x3 showing "who has what?" The "who" is
-"UGO":
+Most "UNIX" file systems come with a set of nine
+permissions\index{Files and Directories!Permissions}\index{Files and Directories!Permissions}
+that can be thought of as a "grid" of 3x3 showing "who has what?" The
+"who" is known as "UGO":
 
 \begin{itemize}
 \item
@@ -2467,11 +2509,11 @@ directory listings by a set of ten characters, with the first one
 determining whether an entry is a directory (\texttt{d}) or a file
 (\texttt{-}):
 
-\drcap{Another ls -l example, this time on FreeBSD}
+\drcap{Another \texttt{ls -l} example, this time on FreeBSD}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{%ls} \NormalTok{-l /etc}
+\KeywordTok{%} \NormalTok{ls -l /etc}
 \KeywordTok{total} \NormalTok{1876}
 \KeywordTok{drwxr-xr-x}   \NormalTok{2 root  wheel        512 Jan 15  2009 X11}
 \KeywordTok{-rw-r--r--}   \NormalTok{1 root  wheel          0 Sep  3  2013 aliases}
@@ -2494,7 +2536,7 @@ determining whether an entry is a directory (\texttt{d}) or a file
 \KeywordTok{-rw-rw-r--}   \NormalTok{1 root  operator       0 Nov  3  2005 dumpdates}
 \KeywordTok{drwxr-xr-x}   \NormalTok{6 root  staff        512 Nov 12  2014 fail2ban}
 \KeywordTok{-rw-r--r--}   \NormalTok{1 root  wheel        142 May  6  2009 fbtab}
-\KeywordTok{-rw-r--r--}   \NormalTok{1 root  wheel       2552 May  6  2009 freebsd-update.conf}
+\KeywordTok{...and} \NormalTok{so on...}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2510,10 +2552,11 @@ can be read, written (new files created) and listed by \texttt{root}
 (\texttt{rwx}), and read and listed by the group \texttt{wheel} and all
 other ids (\texttt{r-xr-x}).
 
-Back on Linux, if we look in \texttt{/etc/init.d} where many services
-store their startup scripts we see:
+Back on Linux, if we look in
+\texttt{/etc/init.d}\index{Files and Directories!Special!\texttt{/etc/init.d}}
+where many services store their startup scripts we see:
 
-\drcap{Listing the /etc/init.d directory}
+\drcap{Listing the \texttt{/etc/init.d} directory}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2540,7 +2583,7 @@ store their startup scripts we see:
 \KeywordTok{lrwxrwxrwx} \NormalTok{1 root root   21 Sep  7 04:00 friendly-recovery -}\KeywordTok{>} \NormalTok{/lib/init/upstart-}
 \KeywordTok{job}
 \KeywordTok{-rwxr-xr-x} \NormalTok{1 root root 1105 May 13  2015 grub-common}
-\KeywordTok{-rwxr-xr-x} \NormalTok{1 root root 1329 Mar 12  2014 halt}
+\KeywordTok{...and} \NormalTok{so on...}
 \end{Highlighting}
 \end{Shaded}
 
@@ -2553,6 +2596,7 @@ of a \texttt{-} in the detailed listing above).
 To \emph{change} the \emph{owning} user of a file or directory (assuming
 you have permissions to do so), use the
 \href{http://linux.die.net/man/1/chown}{\texttt{chown}}\drcmd{chown}
+\index{Files and Directories!Permissions!\texttt{chown} command}
 command:
 
 \drcap{Change file ownership}
@@ -2571,9 +2615,10 @@ command:
 
 To \emph{change} the primary \emph{group}, use the
 \href{http://linux.die.net/man/1/chgrp}{\texttt{chgrp}}\drcmd{chgrp}
+\index{Files and Directories!Permissions!\texttt{chgrp} command}
 command:
 
-\drcap{chgrp command}
+\drcap{\texttt{chgrp} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2586,13 +2631,14 @@ command:
 
 To \emph{change} the various permissions or \emph{mode} bits, you use
 the \href{http://linux.die.net/man/1/chmod}{\texttt{chmod}}\drcmd{chmod}
-command. It uses mnemonics of "ugo" for (owning) user, group and
-"other," respectively. It also uses mnemonics of "rwx" for read, write
-and execute, and \texttt{+} to add a permission and \texttt{-} to remove
-it. For example, to add the execute permission for the group and remove
-read permission for "other":
+\index{Files and Directories!Permissions!\texttt{chmod} command}
+command. It uses mnemonics of "ugo" for user, group and "other,"
+respectively. It also uses mnemonics of "rwx" for read, write and
+execute, and \texttt{+} to add a permission and \texttt{-} to remove it.
+For example, to add the execute permission for the group and remove read
+permission for "other":
 
-\drcap{chmod command}
+\drcap{\texttt{chmod} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2648,7 +2694,7 @@ want for a file. For example, if we want the \texttt{foo} file to be
 readable, writable and executable by both its owning user and group, and
 not accessible at all by anyone else, we could use:
 
-\drcap{chmod with lots of typing}
+\drcap{\texttt{chmod} with lots of typing}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2661,7 +2707,7 @@ not accessible at all by anyone else, we could use:
 
 Or we could simply convert those permissions into octal in our head and:
 
-\drcap{chmod with octal like a boss}
+\drcap{\texttt{chmod} with octal like a boss}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2675,7 +2721,7 @@ Or we could simply convert those permissions into octal in our head and:
 Now you know the answer to that "How will we ever use octal in real
 life?" question you asked in school!
 
-\textbf{Note:} For a script or executable file to be allowed to run, it
+For a script or executable file to be allowed to run, it
 \textbf{\emph{must}} be marked as executable for one of the user, group
 or other entries. The following should be insightful:
 
@@ -2703,12 +2749,13 @@ or other entries. The following should be insightful:
 
 In the Windows world, we are used to compressing and sending directories
 around as \texttt{.zip} files. In Linux you can also deal with
-\texttt{.zip} files, although they don't tend to be the most common,
-using the \href{http://linux.die.net/man/1/zip}{\texttt{zip}}\drcmd{zip}
-and \href{http://linux.die.net/man/1/unzip}{\texttt{unzip}}\drcmd{unzip}
+\texttt{.zip}\index{Files and Directories!\texttt{.zip} files} files,
+although they don't tend to be the most common, using the
+\href{http://linux.die.net/man/1/zip}{\texttt{zip}}\drcmd{zip} and
+\href{http://linux.die.net/man/1/unzip}{\texttt{unzip}}\drcmd{unzip}
 commands:
 
-\drcap{zip command}
+\drcap{\texttt{zip} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2729,7 +2776,7 @@ commands:
 \end{Highlighting}
 \end{Shaded}
 
-\drcap{unzip command}
+\drcap{\texttt{unzip} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2777,14 +2824,15 @@ command and the result is called a "tarball":
 
 In the \texttt{tar} command above, the parameters are \texttt{c} (create
 a new archive), \texttt{v} (turn on "verbose" output) and \texttt{f}
-followed by the file name of the new \texttt{.tar} file.
+followed by the file name of the new
+\texttt{.tar}\index{Files and Directories!\texttt{.tar} files} file.
 
 \textbf{Note:} \texttt{tar} supports POSIX-style parameters
 (\texttt{-c}), GNU-style (\texttt{-\/-create}), as well as the older
 style (\texttt{c} with no hyphens at all), as shown in these examples.
 So both of the following are also equivalent to the above:
 
-\drcap{tar parameter styles}
+\drcap{\texttt{tar} parameter styles}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2813,10 +2861,11 @@ parameters:
 \end{Highlighting}
 \end{Shaded}
 
-In this case the \texttt{z} parameter says to use \texttt{gzip}
-compression, and the \texttt{.tgz} file suffix means basically "tarred
-and gzipped", or the equivalent to \texttt{.tar.gz} in the first
-example.
+In this case the \texttt{z} parameter says to use
+\texttt{gzip}\drcmd{gzip} compression, and the
+\texttt{.tgz}\index{Files and Directories!\texttt{.tgz} files} file
+suffix means basically "tarred and gzipped", or the equivalent to
+\texttt{.tar.gz} in the first example.
 
 \texttt{tar} is used to both create and read \texttt{.tar} files. So to
 extract something like the above, you can change the create (\texttt{c})
@@ -2843,15 +2892,16 @@ Up!}{Let's link Up!}}\label{lets-link-up}
 In Windows there are "shortcuts," which are simply special files that
 the OS knows to interpret as "go open this other file over there." There
 are also "hard links" that allow for different directory entries
-\emph{in the same file system} to point to the same physical file.
+\textbf{\emph{in the same file system}} to point to the same physical
+file.
 
 UNIX file systems also have both these types of links (which isn't
 surprising, given that Microsoft got the ideas from UNIX). Both are
 created with the
 \href{http://linux.die.net/man/1/ln}{\texttt{ln}}\drcmd{ln} command. A
-"soft link"\index{soft link} is equivalent to a Windows shortcut, and
-can point to a file or a directory, and can point to anything on any
-mounted file system:
+"soft link"\index{Files and Directories!Soft links} is equivalent to a
+Windows shortcut, and can point to a file or a directory, and can point
+to anything on any mounted file system:
 
 \drcap{Soft links example}
 
@@ -2898,13 +2948,15 @@ The things to notice about this example:
   will be determined after the link is traversed.
 \end{enumerate}
 
-A "hard link"\index{hard link} is a bit different. It can only be made
-between \emph{files} and the two files \textbf{\emph{must be on the same
-file system}}. That is because hard links are actually directory entries
-(as opposed to files in directories) that point to the same
-\href{https://en.wikipedia.org/wiki/Inode}{"inode"}\index{inode} on
-disk. From within a single directory it is impossible to tell if there
-are other directories with pointers to the same files (inodes) on disk.
+A "hard link"\index{Files and Directories!Hard links} is a bit
+different. It can only be made between \emph{files} and the two files
+\textbf{\emph{must be on the same file system}}. That is because hard
+links are actually directory entries (as opposed to files in
+directories) that point to the same
+\href{https://en.wikipedia.org/wiki/Inode}{"inode"}\index{Files and Directories!Inodes}
+on disk. From within a single directory it is impossible to tell if
+there are other directories with pointers to the same files (inodes) on
+disk.
 
 \drcap{Hard links example}
 
@@ -2995,13 +3047,13 @@ last remaining hard link is removed has it been "deleted." Let's play:
 \end{Highlighting}
 \end{Shaded}
 
-So, that makes sense. We had an original file \texttt{b} and created two
-hard links to it, \texttt{B} and \texttt{d/b}. When we edit \texttt{b}
-by placing "This is b." in it, we see that it has the same contents no
-matter how we access it, because it is pointing to the same inode.
+So, that makes sense. We created an original file \texttt{b} by placing
+"This is b." in it, and then created two hard links to it, \texttt{B}
+and \texttt{d/b}. We see that it has the same contents no matter how we
+access it, because it is pointing to the same inode.
 
-Can you guess how many \texttt{rm} commands it will take to delete the
-file containing "This is b."?
+Can you guess how many \texttt{rm}\drcmd{rm} commands it will take to
+delete the file containing "This is b."?
 
 \drcap{Deleting a file with many hard links}
 
@@ -3021,8 +3073,8 @@ file containing "This is b."?
 \end{Highlighting}
 \end{Shaded}
 
-So, ultimately, it takes a \texttt{rm} for every hard link to
-permanently delete a file.
+Ultimately, it takes a \texttt{rm} for every hard link to permanently
+delete a file.
 
 \subsection*{\texorpdfstring{\texttt{mount} It? I Don't Even Know It's
 Name!}{mount It? I Don't Even Know It's Name!}}\label{mount-it-i-dont-even-know-its-name}
@@ -3033,14 +3085,16 @@ With all this talk that a hard link can only be on the same file system,
 how do you know whether two directories are on the same file system? In
 Windows it's easy - that's exactly what the drive letters are telling
 you. But in Linux, where everything is "mounted" under a single
-hierarchy starting at \texttt{/}, how do I know that
+hierarchy starting at
+\texttt{/}\index{0@Symbols!\texttt{/} (root directory)}
+\index{Files and Directories!Root (\texttt{/})}, how do I know that
 \texttt{/var/something} and \texttt{var/or/other} are on the same file
 system?
 
 There are multiple ways to tell, actually. The easiest is with the
 \href{http://linux.die.net/man/1/df}{\texttt{df}}\drcmd{df} command:
 
-\drcap{df command}
+\drcap{\texttt{df} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3072,11 +3126,12 @@ complex so fast that I decided not to. Maybe if you ask, real nice...
 \subsection*{I'm Seeing Double}\label{im-seeing-double}
 \addcontentsline{toc}{subsection}{I'm Seeing Double}
 
-So, both hard\index{hard link} and soft links\index{soft link} can have
-some interesting side effects if you think about them. For one, if you
-are backing things up, then you may get duplicates in your backup set.
-In fact, with hard links you will, by definition, unless the backup
-software is very smart and doing things like de-duplication.
+So, both hard\index{Files and Directories!Hard links} and soft
+links\index{Files and Directories!Soft links} can have some interesting
+side effects if you think about them. For one, if you are backing things
+up, then you may get duplicates in your backup set. In fact, with hard
+links you will, by definition, unless the backup software is very smart
+and doing things like de-duplication.
 
 But even with soft links if everything just blindly followed them you
 could also get duplicates where you didn't want them, or even circular
@@ -3084,8 +3139,8 @@ references. Also, the pointers in the soft link files are not evaluated
 until a command references them. Note that the following is perfectly
 legal with soft links, but may not give the results you expect - think
 about the current working directory shown by \texttt{pwd}\drcmd{pwd} in
-the following, and what the effects of the \textbf{\emph{relative
-paths}} as the sample progresses:
+the following, and the effects of the \textbf{\emph{relative paths}} as
+the sample progresses:
 
 \drcap{Soft links and relative paths}
 
@@ -3119,14 +3174,15 @@ does not - see the next chapter for more).
 \addcontentsline{toc}{section}{What's the \texttt{diff}?}
 
 Most people think of
-\href{http://linux.die.net/man/1/diff}{\texttt{diff}}\drcmd{diff} as a
+\href{http://linux.die.net/man/1/diff}{\texttt{diff}}\drcmd{diff}
+\index{Files and Directories!Compare files (\texttt{diff} command)} as a
 tool only programmers find useful, but that is short-sighted. The whole
 purpose of \texttt{diff} is to show differences between files. For
 example, I backed up this document (which is a text file) before
 starting this section, then typed this introduction to \texttt{diff}.
 This is what \texttt{diff} showed after I added the new paragraph:
 
-\drcap{diff example}
+\drcap{\texttt{diff} example}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3148,7 +3204,7 @@ starting at line 1285. Pretty meta, but not real exciting.
 Let's look at something else, say a configuration file for an
 application. We have an original file, \texttt{orig.conf}:
 
-\drcap{orig.conf file}
+\drcap{\texttt{orig.conf} file}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3165,7 +3221,7 @@ application. We have an original file, \texttt{orig.conf}:
 
 Then we have a new file, \texttt{new.conf}:
 
-\drcap{new.conf file}
+\drcap{\texttt{new.conf} file}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3180,7 +3236,7 @@ Then we have a new file, \texttt{new.conf}:
 
 Now if we \texttt{diff} them:
 
-\drcap{Using diff on config files}
+\drcap{Using \texttt{diff} on config files}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5922,7 +5978,7 @@ system administration commands. You usually don't care, and can
 
 But sometimes there are duplicate names in the different sections. For
 example, there is both a \texttt{passwd}\drcmd{passwd} command and a
-\texttt{passwd}\drcmd{passwd file}\index{Files!Special files!\texttt{/etc/passwd}}
+\texttt{passwd}\drcmd{passwd file}\index{Files and Directories!Special!\texttt{/etc/passwd}}
 file format (for \texttt{/etc/passwd}). By default, \texttt{man\ passwd}
 will show you the documentation from the lowest numbered section with a
 match, in this case section 1, usually referred to as \texttt{passwd(1)}

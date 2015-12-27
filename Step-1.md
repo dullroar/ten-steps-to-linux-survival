@@ -217,10 +217,10 @@ Way."
 **WARNING:** ***Many of the commands in this book can alter your system and possibly damage it.***
 
 Obvious candidates include the file system commands like `rm`\drcmd{rm}
-\index{Files!Delete (\texttt{rm} command)}, the `vi`\drcmd{vi}\index{Editors!\texttt{vi}} editor
-(obviously), and some of the "system admin" commands mentioned later, including system and service
-restarts. Use your common sense plus the various resources for documentation mentioned in this book
-to make sure you aren't doing anything destructive to your system, especially in production.
+\index{Files and Directories!Delete (\texttt{rm} command)}, the
+`vi`\drcmd{vi}\index{Editors!\texttt{vi}} editor (obviously), and some of the "system admin" commands mentioned later, including system and service restarts. Use your common sense plus the
+various resources for documentation mentioned in this book to make sure you aren't doing anything
+destructive to your system, especially in production.
 
 ***YOU HAVE BEEN WARNED!***
 

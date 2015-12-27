@@ -742,6 +742,8 @@ File Under "Directories"
 
 Typically in Linux we are scripting and otherwise moving around files. The file system under the covers may be one of any number of supported formats, including:
 
+-   [**btrfs**](https://en.wikipedia.org/wiki/Btrfs)
+
 -   [**ext2**](https://en.wikipedia.org/wiki/Ext2)
 
 -   [**ext3**](https://en.wikipedia.org/wiki/Ext3)
@@ -750,11 +752,13 @@ Typically in Linux we are scripting and otherwise moving around files. The file 
 
 -   [**ReiserFS**](https://en.wikipedia.org/wiki/ReiserFS)
 
--   **...and so much more!** - NTFS, FAT, etc.
+-   [**ZFS**](https://en.wikipedia.org/wiki/ZFS)
+
+-   **...and so many more!** - NTFS, FAT, CDFS, etc.
 
 Each has its strengths and weaknesses. While Linux tends to treat the ext\* file systems as preferred, it can write to a lot of file systems and can read even more.
 
-As mentioned above, the biggest differences between Linux and Windows is that the Linux environments do not have a concept of "drive letters." Instead everything is "mounted" under a single hierarchy that starts at the "root directory" or `/`:
+As mentioned before, the biggest differences between Linux and Windows is that the Linux environments do not have a concept of "drive letters." Instead everything is "mounted" under a single hierarchy that starts at the "root directory" or `/`:
 
 ``` bash
 ~ $ ls /
@@ -763,21 +767,21 @@ boot   Docs  initrd.img  lost+found  Music  proc   sbin  tmp  vmlinuz
 cdrom  etc   lib         media       opt    root   srv   usr
 ```
 
-The root file system may be backed by a disk device, LUN, memory or even the network. It will have one or more directories under it. Multiple physical drives and network locations can be "mounted" virtually anywhere, under any directory or subdirectory in the hierarchy.
+The root file system may be backed by a disk device, memory or even the network. It will have one or more directories under it. Multiple physical drives and network locations can be "mounted" virtually anywhere, under any directory or subdirectory in the hierarchy.
 
 **Note:** Dynamically mounted devices like USB drives and DVDs are often mounted automatically under either a `/mnt` or `/media` directory.
 
 Looking at Files
 ----------------
 
-As we've already seen, the command to *list* the contents of a directory is [`ls`](http://linux.die.net/man/1/ls):
+As we've already seen, the command to *list* the contents of a directory is [`ls`](http://linux.die.net/man/1/ls) :
 
 ``` bash
 ~ $ ls
 Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
 ```
 
-Remember, "UNIX" environments think of files that start with a `.` as "hidden." If you want to see all these ["dotfiles"](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments), you can use `ls -a`:
+Remember, "UNIX" environments think of files that start with a `.` as "hidden." If you want to see all these ["dotfiles"](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments) , you can use `ls -a`, in this case on an average "home" directory:
 
 ``` bash
 ~ $ ls -a
@@ -791,7 +795,7 @@ Remember, "UNIX" environments think of files that start with a `.` as "hidden." 
 
 Wow! That's a lot of dotfiles!
 
-If you want to see some details of each file, use `ls -l`:
+If you want to see some details for each file, use `ls -l`:
 
 ``` bash
 ~ $ ls -l
@@ -832,7 +836,7 @@ drwxr-xr-x  3 myuser mygroup 4096 Dec 13 18:18 .local
 drwxr-xr-x  4 myuser mygroup 4096 Dec 13 18:18 .mozilla
 drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Music
 drwxr-xr-x  2 myuser mygroup 4096 Dec 13 18:18 Pictures
--rw-r--r--  1 myuser mygroup  716 Dec 13 14:30 .profile
+...and so on...
 ```
 
 A Brief Detour Around Parameters
@@ -842,13 +846,13 @@ In `bash` and many Linux commands in general, there are old, "short" (terse) par
 
 > ***The behind you save in the future by describing things well today may well be your own.*** - me
 
-The older style parameters are typically preceded by a single hyphen "switch" character:
+The older style parameters are typically preceded by a single hyphen or "switch" character:
 
 ``` bash
 ~ $ ls -r
 ```
 
-Some command support parameters with no "switch" character at all, as with `xvf` (e***X***tract, ***V***erbose, input ***F***ile name) in the following:
+Some commands support parameters with no "switch" character at all, as with `xvf` (e***X***tract, ***V***erbose, input ***F***ile name) in the following `tar` example:
 
 ``` bash
 ~ $ tar xvf backup.tar
@@ -893,7 +897,7 @@ which xfreerdp
 xfreerdp --version
 ```
 
-In this example when we `cat installrdp` we can determine it is a `bash` shell script that looks to install and configure [FreeRDP](https://github.com/FreeRDP/FreeRDP) on a Debian-style system:
+In this example when we `cat installrdp` we can determine it is a `bash` shell script (because the "shebang" is pointing to `bash`) that looks to install and configure [FreeRDP](https://github.com/FreeRDP/FreeRDP) on a Debian-style system:
 
 1.  **`apt-get`** - Debian-style package manager.
 
@@ -901,7 +905,7 @@ In this example when we `cat installrdp` we can determine it is a `bash` shell s
 
 3.  **`cmake`** and **`make`** - configuring and building software from source.
 
-A better way to display a longer file is to use the [`less`](http://linux.die.net/man/1/less) command (which is a derivative of the original [`more`](http://linux.die.net/man/1/more), hence the name). `less` is a paginator, where the `Space`, `Page Down` or down arrow keys scroll down and the `Page Up` or up arrow keys scrolls up. `Q` quits.
+A better way to display a longer file is to use the [`less`](http://linux.die.net/man/1/less) command (which is a derivative of the original [`more`](http://linux.die.net/man/1/more) , hence the name). `less` is a paginator, where the `Space`, `Page Down` or down arrow keys scroll down and the `Page Up` or up arrow keys scrolls up. `Q` quits.
 
 **Note:** The `vi` search (`/`, `?`, `n` and `p`) and navigation (`G`, `0`) keys work within `less`, too. In general `less` is a great lightweight way to motor around in a text file without editing it.
 
@@ -921,7 +925,7 @@ We can also look at just the end or *tail* of a file (often the most interesting
 [    4.329037] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
 ```
 
-To show a specific number of lines use the `-n` parameter:
+To show a specific number of lines use the `-n` parameter with `tail`:
 
 ``` bash
 /var/log $ tail -n 15 dmesg
@@ -942,7 +946,7 @@ To show a specific number of lines use the `-n` parameter:
 [    4.329037] IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
 ```
 
-You can also use `tail` to *follow* an open file and continuously display any new output at the end, which is useful for monitoring log files in real time:
+You can also use `tail` to with the `-f` parameter to *follow* an open file and continuously display any new output at the end, which is useful for monitoring log files in real time:
 
 ``` bash
 /var/log $ tail -f syslog
@@ -965,7 +969,7 @@ Dec 13 19:23:40 MtLindsey dbus[689]: [system] Successfully activated service 'or
 g.freedesktop.nm_dispatcher'
 ```
 
-Use `Ctrl-C` to cancel following the file changes.
+Use `Ctrl-C` to cancel following the file.
 
 If we know nothing about a *file*, we can use the [`file`](http://linux.die.net/man/1/file) command to help us guess:
 
@@ -976,12 +980,12 @@ installrdp: Bourne-Again shell script, ASCII text executable
 
 That's straightforward enough! The `file` command isn't always 100% accurate, but it is pretty good and uses an interesting set of heuristics and a text file "database" of ["magic" number definitions](http://linux.die.net/man/5/magic) to define how it figures out what type of file it is examining.
 
-**Remember:** File extensions have no real meaning per se in Linux (although some are used, especially for media and document formats), so a file name with no extension like `installrdp` is perfectly valid. Hence the utility of the `file` command.
+**Remember:** File extensions have no real meaning per se in Linux (although some are used especially for media and document formats), so a file name with no extension like `installrdp` is perfectly valid. Hence the utility of the `file` command.
 
 Sorting Things Out
 ------------------
 
-Let's say we have three files, and want to display the contents of one of them with `cat`:
+Let's say we have three files, and want to display the contents of one of them. We know we can do that with `cat`:
 
 ``` bash
 ~ $ cd Invoices/
@@ -995,7 +999,7 @@ Truck   tires   400
 Truck   winch   100
 ```
 
-But what if we wanted to process all the lines in all the files in a single alphabetical order? Just redirecting the files into a program won't do it, because the file names will be sorted by the shell and the lines will be processed in file name order, not the ultimate sorted order of all the file contents.
+But what if we wanted to process all the lines in all the files in alphabetical order? Just directing the files into a program won't do it, because the file names will be sorted by the shell and the lines will be processed in file name order, not the ultimate sorted order of all the file contents.
 
 ``` bash
 ~/Invoices $ cat *
@@ -1134,13 +1138,13 @@ You can copy entire directories recursively:
 ~ $ cp -r thisdir thatdir
 ```
 
-Or, if we want to be self-documenting in a script, we can use those long parameter names:
+Or, if we want to be self-documenting in a script, we can use those long parameter names again:
 
 ``` bash
 ~ $ cp --recursive thisdir thatdir
 ```
 
-To *move* use [`mv`](http://linux.die.net/man/1/mv):
+To *move* use [`mv`](http://linux.die.net/man/1/mv) :
 
 ``` bash
 ~ $ mv thismonth.log lastmonth.log
@@ -1151,15 +1155,15 @@ To *move* use [`mv`](http://linux.die.net/man/1/mv):
 Making Files Disappear
 ----------------------
 
-To delete or *remove* a file you use [`rm`](http://linux.die.net/man/1/rm):
+To delete or *remove* a file you use [`rm`](http://linux.die.net/man/1/rm) :
 
 ``` bash
 ~ $ rm desktop.ini
 ```
 
-**Pro Tip:** There is no "Are you sure?" prompt when removing a single file specified with no wildcards, or even all files with a wildcard, and there is no "Recycle Bin" or "Trash Can" when working from the command prompt, so ***BE CAREFUL!***
+**Pro Tip:** There is no "Are you sure?" prompt when removing a single file specified with no wildcards, or even ***all*** files with a wildcard, and there is no "Recycle Bin" or "Trash Can" when working from the command prompt, so ***BE CAREFUL!***
 
-This kind of scenario can happen ***way*** too often, even to experienced system administrators. Note the space between `*` and `.bak`:
+The following scenario can happen ***way*** too often, even to experienced system administrators. Note the accidental space between `*` and `.bak` on the `rm` command:
 
 ``` bash
 ~ $ cd MyDissertation/
@@ -1179,21 +1183,21 @@ So, in order, our hapless user:
 
 3.  Decided to delete the `.bak` files with `rm`, but accidentally typed in a space between the wildcard `*` and the `.bak`. Note ominous warning message.
 
-4.  Presto! `ls` shows ***everything*** is gone, not just the backup files! Yay! The user's priorities just got rearranged as they go hunting for another backup of their dissertation.
+4.  Presto! `ls` shows ***everything*** is gone, not just the backup files! The user's priorities just got rearranged as they go hunting for another copy of their dissertation.
 
-So be careful out there! This is an example where tab completion can be an extra error check. Or a lot of times I use command history in these cases by changing the `ls` to look for just the files I want to delete:
+So be careful out there! This is an example where tab completion can be an extra error check. Many times I use command history in these cases by changing the `ls` to look for just the files I want to delete:
 
 ``` bash
 ~ $ ls *.bak
 Citations.bak  Dissertation.bak
 ```
 
-Then using the "up arrow" to bring back up the `ls` command and changing `ls` to `rm` and re-executing it. Safer that way.
+Then I use the "up arrow" to bring back the `ls` command and change `ls` to `rm` before running it. Safer that way.
 
 `touch` Me
 ----------
 
-We just learned how to make a file disappear. We can also make a file magically appear, just by [`touch`](http://linux.die.net/man/1/touch):
+We just learned how to make a file disappear. We can also make a file magically appear, just by [`touch`](http://linux.die.net/man/1/touch) :
 
 ``` bash
 ~ $ touch NewEmptyDissertation.doc
@@ -1204,7 +1208,7 @@ total 0
 
 Notice the newly created file is zero bytes long.
 
-Interestingly enough, we can also use touch just to update the "last modified date" of an existing file, as you can see in time change in the following listing after running `touch` on the same file again:
+Interestingly enough, we can also use `touch` just to update the "last modified date" of an existing file, as you can see in time change in the following listing after running `touch` on the same file again:
 
 ``` bash
 ~ $ touch NewEmptyDissertation.doc
@@ -1213,7 +1217,7 @@ total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Oct 19 14:14 NewEmptyDissertation.doc
 ```
 
-It can be useful (but also distressing from a forensics point of view) to sometimes set the last modified date of a file to a specific date and time, which `touch` also allows you to do, in this case to the night before Christmas:
+It can be useful (but also distressing from a forensics point of view) to set the last modified date of a file to a specific date and time, which `touch` also allows you to do, in this case to the night before Christmas:
 
 ``` bash
 ~ $ touch -t 201412242300 NewEmptyDissertation.doc
@@ -1222,7 +1226,7 @@ total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Dec 24  2014 NewEmptyDissertation.doc
 ```
 
-To *make a directory* you use [`mkdir`](http://linux.die.net/man/1/mkdir):
+To *make a directory* you use [`mkdir`](http://linux.die.net/man/1/mkdir) :
 
 ``` bash
 ~ $ cd Foo
@@ -1264,7 +1268,7 @@ Navigating Through Life
 
 Ever notice that "life" is an anagram for "file"? Spooky, eh?
 
-Given that the UNIX-style file systems are hierarchical in nature they are similar to navigate as with `CMD.EXE`. The biggest difference is the absense of drive letter and the direction of the slashes.
+Given that the UNIX-style file systems are hierarchical in nature they are similar to navigate as with `CMD.EXE`. The biggest difference is the absense of drive letters and the direction of the slashes.
 
 To *change directories*, simply use [`cd`](http://linux.die.net/man/1/cd) much like in Windows:
 
@@ -1274,9 +1278,9 @@ To *change directories*, simply use [`cd`](http://linux.die.net/man/1/cd) much l
 /etc
 ```
 
-[`pwd`](http://linux.die.net/man/1/pwd) simply *prints the working (current) directory*.
+[`pwd`](http://linux.die.net/man/1/pwd) simply *prints the working (current) directory*. If `whoami` tells you who you are, `pwd` tells you ***where*** you are.
 
-In Linux, users can have "home" directories (similar to Windows profiles), typically located under `/home/<username>` for normal users and `/root` for the "root" (admin) id. To change to a user's "home" directory, simply use `cd` with no parameters:
+In Linux, users can have "home" directories (similar to Windows profiles), typically located under `/home/<username>` for normal users, and `/root` for the "root" (admin) id. To change to a user's "home" directory, simply use `cd` with no parameters:
 
 ``` bash
 /etc $ cd
@@ -1300,15 +1304,15 @@ myuser # pwd
 /home/myuser
 ```
 
-**Note:** The above assumes you have permissions to `cd` into `/home/myuser`. See the section on file permissions for more info.
+**Note:** The above assumes you have permissions to `cd` into `/home/myuser`. See the upcoming section on file permissions for more info.
 
 In addition, you need to know the difference between "absolute" and "relative" paths:
 
--   **Absolute path** - ***always*** "goes through" or specifies the "root" (`/`) directory, e.g. `cd /etc`.
+-   **Absolute path**/index{Files and Directories!Absolute path} - ***always*** "goes through" or specifies the "root" (`/`) directory, e.g. regardless of the current working directory, `cd /etc` will change it to `/etc`.
 
--   **Relative path** - does ***not*** specify the root directory, expects to start the navigation at the current directory with all path components existing from there, e.g., `cd Dissertations`.
+-   **Relative path**/index{Files and Directories!Relative path} - does ***not*** specify the root directory, and expects to start the navigation at the current directory with all path components traversed from there, e.g., `cd Dissertations` changes the current directory to a subdirectory called `Dissertations`.
 
-Windows inherited the concept of `.` for the current directory and `..` for the parent directory directly from UNIX. Consider the following examples that combine all of the above about relative paths and see if it all makes sense:
+Windows inherited the concept of `.` for the current directory and `..` for the parent directory directly from UNIX. Consider the following examples that combine all of the above about relative paths and see if it makes sense:
 
 ``` bash
 ~/Foo $ ls
@@ -1334,7 +1338,7 @@ Did you notice how both `mkdir` and `touch` allow for specifying multiple direct
 May I?
 ------
 
-Most "UNIX" file systems come with a set of nine permissions that can be thought of as a "grid" of 3x3 showing "who has what?" The "who" is "UGO":
+Most "UNIX" file systems come with a set of nine permissions that can be thought of as a "grid" of 3x3 showing "who has what?" The "who" is known as "UGO":
 
 -   **User** - the user that is the "owner" of the file or directory.
 
@@ -1353,7 +1357,7 @@ The "what" is:
 The combination of "who has what?" is usually shown in detailed directory listings by a set of ten characters, with the first one determining whether an entry is a directory (`d`) or a file (`-`):
 
 ``` bash
-%ls -l /etc
+% ls -l /etc
 total 1876
 drwxr-xr-x   2 root  wheel        512 Jan 15  2009 X11
 -rw-r--r--   1 root  wheel          0 Sep  3  2013 aliases
@@ -1376,7 +1380,7 @@ drwxr-xr-x   2 root  wheel        512 May  6  2009 defaults
 -rw-rw-r--   1 root  operator       0 Nov  3  2005 dumpdates
 drwxr-xr-x   6 root  staff        512 Nov 12  2014 fail2ban
 -rw-r--r--   1 root  wheel        142 May  6  2009 fbtab
--rw-r--r--   1 root  wheel       2552 May  6  2009 freebsd-update.conf
+...and so on...
 ```
 
 In the above, for example, we can see that the user `root` owns the file `aliases` while the `wheel` group is the primary group for it. `root` can both read and write the file (`rw-`) while any user in the `wheel` group can only read it (`r--`). Any other id will also have read access (`r--`).
@@ -1409,7 +1413,7 @@ lrwxrwxrwx 1 root root   21 Sep  7 04:00 cron -> /lib/init/upstart-job
 lrwxrwxrwx 1 root root   21 Sep  7 04:00 friendly-recovery -> /lib/init/upstart-
 job
 -rwxr-xr-x 1 root root 1105 May 13  2015 grub-common
--rwxr-xr-x 1 root root 1329 Mar 12  2014 halt
+...and so on...
 ```
 
 In this case all the scripts are readable, writable and executable (`rwx`) by the `root` user, and readable and executable by the `root` group and all other users (`r-xr-x`). Later on I will explain linked files (those that start with an `l` instead of a `-` in the detailed listing above).
@@ -1435,7 +1439,7 @@ total 4
 -rwxr--r-- 1 git git 17 Oct 20 10:07 foo
 ```
 
-To *change* the various permissions or *mode* bits, you use the [`chmod`](http://linux.die.net/man/1/chmod) command. It uses mnemonics of "ugo" for (owning) user, group and "other," respectively. It also uses mnemonics of "rwx" for read, write and execute, and `+` to add a permission and `-` to remove it. For example, to add the execute permission for the group and remove read permission for "other":
+To *change* the various permissions or *mode* bits, you use the [`chmod`](http://linux.die.net/man/1/chmod) command. It uses mnemonics of "ugo" for user, group and "other," respectively. It also uses mnemonics of "rwx" for read, write and execute, and `+` to add a permission and `-` to remove it. For example, to add the execute permission for the group and remove read permission for "other":
 
 ``` bash
 # chmod g+x,o-r foo
@@ -1479,7 +1483,7 @@ total 4
 
 Now you know the answer to that "How will we ever use octal in real life?" question you asked in school!
 
-**Note:** For a script or executable file to be allowed to run, it ***must*** be marked as executable for one of the user, group or other entries. The following should be insightful:
+For a script or executable file to be allowed to run, it ***must*** be marked as executable for one of the user, group or other entries. The following should be insightful:
 
 ``` bash
 # echo "echo Hello world" > foo
@@ -1586,7 +1590,7 @@ Foo/a
 Let's `link` Up!
 ----------------
 
-In Windows there are "shortcuts," which are simply special files that the OS knows to interpret as "go open this other file over there." There are also "hard links" that allow for different directory entries *in the same file system* to point to the same physical file.
+In Windows there are "shortcuts," which are simply special files that the OS knows to interpret as "go open this other file over there." There are also "hard links" that allow for different directory entries ***in the same file system*** to point to the same physical file.
 
 UNIX file systems also have both these types of links (which isn't surprising, given that Microsoft got the ideas from UNIX). Both are created with the [`ln`](http://linux.die.net/man/1/ln) command. A "soft link" is equivalent to a Windows shortcut, and can point to a file or a directory, and can point to anything on any mounted file system:
 
@@ -1689,7 +1693,7 @@ This is b.
 This is b.
 ```
 
-So, that makes sense. We had an original file `b` and created two hard links to it, `B` and `d/b`. When we edit `b` by placing "This is b." in it, we see that it has the same contents no matter how we access it, because it is pointing to the same inode.
+So, that makes sense. We created an original file `b` by placing "This is b." in it, and then created two hard links to it, `B` and `d/b`. We see that it has the same contents no matter how we access it, because it is pointing to the same inode.
 
 Can you guess how many `rm` commands it will take to delete the file containing "This is b."?
 
@@ -1707,11 +1711,11 @@ This is b.
 ~ $ rm d/b
 ```
 
-So, ultimately, it takes a `rm` for every hard link to permanently delete a file.
+Ultimately, it takes a `rm` for every hard link to permanently delete a file.
 
 ### `mount` It? I Don't Even Know It's Name!
 
-With all this talk that a hard link can only be on the same file system, how do you know whether two directories are on the same file system? In Windows it's easy - that's exactly what the drive letters are telling you. But in Linux, where everything is "mounted" under a single hierarchy starting at `/`, how do I know that `/var/something` and `var/or/other` are on the same file system?
+With all this talk that a hard link can only be on the same file system, how do you know whether two directories are on the same file system? In Windows it's easy - that's exactly what the drive letters are telling you. But in Linux, where everything is "mounted" under a single hierarchy starting at `/` , how do I know that `/var/something` and `var/or/other` are on the same file system?
 
 There are multiple ways to tell, actually. The easiest is with the [`df`](http://linux.die.net/man/1/df) command:
 
@@ -1736,7 +1740,7 @@ The ones of interest are the `/dev` entries, and we see that everything mounted 
 
 So, both hard and soft links can have some interesting side effects if you think about them. For one, if you are backing things up, then you may get duplicates in your backup set. In fact, with hard links you will, by definition, unless the backup software is very smart and doing things like de-duplication.
 
-But even with soft links if everything just blindly followed them you could also get duplicates where you didn't want them, or even circular references. Also, the pointers in the soft link files are not evaluated until a command references them. Note that the following is perfectly legal with soft links, but may not give the results you expect - think about the current working directory shown by `pwd` in the following, and what the effects of the ***relative paths*** as the sample progresses:
+But even with soft links if everything just blindly followed them you could also get duplicates where you didn't want them, or even circular references. Also, the pointers in the soft link files are not evaluated until a command references them. Note that the following is perfectly legal with soft links, but may not give the results you expect - think about the current working directory shown by `pwd` in the following, and the effects of the ***relative paths*** as the sample progresses:
 
 ``` bash
 ~ $ cd Foo
