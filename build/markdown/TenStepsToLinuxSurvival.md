@@ -411,7 +411,7 @@ Examples of shells:
 
 -   [**`CMD.EXE`**](https://technet.microsoft.com/en-us/library/cc754340.aspx) - yes, Windows has a shell.
 
--   [**`PowerShell.exe`**](https://technet.microsoft.com/en-us/library/ms714469%28v=VS.85%29.aspx) - in fact, it has at least two!
+-   [**`PowerShell.exe`**](https://technet.microsoft.com/en-us/library/ms714469%28v=VS.85%29.aspx)  - in fact, it has at least two!
 
 In UNIX-land:
 
@@ -2207,11 +2207,11 @@ The first thing to note is there are three "file I/O streams" that are open by d
 
 -   **stderr** - "error" output, typically to the console in an interactive session (so it can be hard to distinguish when intermingled with `stdout` output). This is file descriptor 2.
 
-**Note:** The file descriptors will go from being trivia to important in just a bit.
+**Note:** Those numeric file descriptors will go from being trivia to important in just a bit.
 
 When a program written in C calls `printf`, it is writing to `stdout`. When a `bash` script calls `echo`, it too is writing to `stdout`. When a command writes an error message, it is writing to `stderr`. If a command or program accepts input from the console, it is reading from `stdin`.
 
-In this example, `cat` is started with no file name, so it will read from `stdin` (a quite common "UNIX" command convention), and echo each line to `stdout` until the "end of file," which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below but not seen on the console in real life:
+In this example, `cat` is started with no file name, so it will read from `stdin` (a quite common "UNIX" command convention), and echo each line typed by the user to `stdout` until the "end of file," which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below but not seen on the console in real life:
 
 ``` bash
 ~ $ cat
@@ -2222,10 +2222,12 @@ and writing to stdout.
 ^D
 ```
 
+So in the above I typed in "This shows reading from stdin" and hit `Enter` (which send a linefeed and hence marks the "end of the line") and `cat` echoed that line to `stdout`. Then I typed "and writing to stdout." and hit `Enter` and that line was echoed to `stdout` as well. Finally I hit `Ctrl-D`, which ended the process.
+
 All Magic is Redirection
 ------------------------
 
-So one way to string things together in "the UNIX way" is with file redirection. This is a concept that works even in `CMD.EXE` and even with the same syntax.
+So one way to string things together in "the UNIX way" is with file redirection. This is a concept that also works in `CMD.EXE` and even with the same syntax.
 
 Let's create a file with a single line of text in it. One way would be to `vi newfilename`, edit the file, save it, and exit `vi`. A quicker way is to simply use file redirection:
 
@@ -2240,7 +2242,7 @@ Hello, world
 
 In this case the `> hw` tells `bash` to take the output that `echo` sends to `stdout` and send it to the file `hw` instead.
 
-As mentioned above many "UNIX" commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from `stdin`. The `cat` command does that. While it doesn't save us anything over the above example, the following is illustrative of redirecting a file to `stdin` for a command or program:
+As mentioned above many "UNIX" commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from `stdin`. The `cat` command does that. While it doesn't save us anything over the above example, the following example using `<` is illustrative of redirecting a file to `stdin` for a command or program:
 
 ``` bash
 ~ $ cat < hw
@@ -2264,7 +2266,7 @@ cat: ./d: Is a directory
 This is e
 ```
 
-In the above, between echoing the contents of the `a`, `b`, `c` and `e` files, we see two error messages from `cat` complaining that `.` and `d` are directories. These are being emitted on `stderr`, but there is no good way of telling that. One way to get rid of them would be to change find to filter for only files:
+In the above, between echoing the contents of the `a`, `b`, `c` and `e` files, we see two error messages from `cat` complaining that `.` and `d` are directories. These are being emitted on `stderr`, but there is no good way of visually telling that. One way to get rid of them would be to change `find` to filter for only files:
 
 ``` bash
 ~ $ find . -type f -exec cat \{\} \;
@@ -2304,13 +2306,25 @@ This is e
 
 Now we see `stdout` being redirected to `/tmp/find.log` with `>/tmp/find.log`, and `stderr` (file descriptor 2) being sent to the same place as `stdout` (file descriptor 1) with `2>&1`. Note that this works in `CMD.EXE`\]drshl{CMD.EXE}, too!
 
-One final note is the difference between creating or re-writing a file and appending to it using redirection. The following creates a new `/tmp/find.log` file every time it runs (there is no need to `rm` it first):
+If we want to send `stdout` to one file and `stderr` to another, you can do it like this:
+
+    ~ $ find . -exec cat \{\} \; >/tmp/find.log 2>/tmp/finderrors.log
+    ~ $ cat /tmp/find.log
+    This is a
+    This is b
+    This is c
+    This is e
+    ~ $ cat /tmp/finderrors.log
+    cat: .: Is a directory
+    cat: ./d: Is a directory
+
+One final note with redirection is the difference between creating or re-writing a file versus appending. The following creates a new `/tmp/find.log` file every time it runs (there is no need to `rm` it first):
 
 ``` bash
 ~ $ find . -exec cat \{\} \; >/tmp/find.log
 ```
 
-However, the next sample creates a new `/tmp/find.log` file if it doesn't exist, but otherwise appends to it:
+However, the next sample using `>>` creates a new `/tmp/find.log` file if it doesn't exist, but otherwise appends to it:
 
 ``` bash
 ~ $ find . -exec cat \{\} \; >>/tmp/find.log
@@ -2321,13 +2335,13 @@ However, the next sample creates a new `/tmp/find.log` file if it doesn't exist,
 Everyone Line Up
 ----------------
 
-So we can see that we could pass things between programs by redirecting `stdout` to a file and then redirecting that file to `stdin` on the next program, and so on. But "UNIX" environments take it a bit further with the concept of a command "pipeline" that allows directly sending `stdout` from one program into `stdin` of another:
+So we can see that we could pass things between programs by redirecting `stdout` to a file and then redirecting that file to `stdin` on the next program, and so on. But "UNIX" environments take it a bit further with the concept of a command "pipeline" that allows directly sending `stdout` from one program into `stdin` of another using the "pipe" (`|`):
 
 ``` bash
 ~ $ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
 ```
 
-This little one-liner starts showing off the usefulness of small programs, each doing one thing. In this case:
+This little one-liner starts showing off the usefulness of chaining several small programs, each doing one thing. In this case:
 
 1.  `cat` echos the contents of all `.txt` files in alphabetical order by their file name to `stdout`, which is piped to...
 
@@ -2337,7 +2351,7 @@ This little one-liner starts showing off the usefulness of small programs, each 
 
 4.  Some custom script or program called `./mycmd` passing in the value of each `$line`.
 
-Think about the power of that. `cat` didn't know there were multiple `.txt` files or not - the shell expansion of the `*.txt` wildcard did that. It read all those files and echoed them to `stdout` which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in `mycmd`, that only expects a single line or value each time it is run. It has no idea about the `.txt` files or the transformation or the pipeline!
+Think about the power of that. `cat` didn't know there were multiple `.txt` files or not - the shell expansion of the `*.txt` wildcard did that. It read all those files and echoed them to `stdout` which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in `mycmd`, that only expects a single line or value each time it is run. It has no idea about the `.txt` files or the ransformation or the pipeline!
 
 ***That*** is the "UNIX philosophy" at work.
 
@@ -3407,7 +3421,7 @@ The biggest issue with bootstrapping into "UNIX" is not the lack of documentatio
 `man`, is that `info` `apropos`?
 --------------------------------
 
-There are three commands that are the basis for reading "UNIX" documentation within "UNIX" itself - [`man`](http://linux.die.net/man/1/man), [`info`](http://linux.die.net/man/1/info) and [`apropos`](http://linux.die.net/man/1/apropos).
+There are three commands that are the basis for reading "UNIX" documentation within "UNIX" itself - [`man`](http://linux.die.net/man/1/man) , [`info`](http://linux.die.net/man/1/info) and [`apropos`](http://linux.die.net/man/1/apropos) .
 
 `man` is short for *manual pages*, and is used to display the main help for most "UNIX" commands. For example, `man ls` shows:
 
@@ -3592,7 +3606,7 @@ And yes, you can `man man`, `man info`, `info info` and `info man`, for that mat
 How Do You Google, `man`?
 -------------------------
 
-You can often search the internet for "UNIX" documentation, and the `man` pages have long been online. A site I like (and link to a lot here) is <http://linux.die.net/man/>. Often, though, you can just google ["man ls"](https://www.google.com/#q=man+ls) and the top hits will be what you want.
+You can often search the internet for "UNIX" documentation, and the `man` pages have long been online. A site I like (and link to a lot here) is <http://linux.die.net/man/> . Often, though, you can just google ["man ls"](https://www.google.com/#q=man+ls) and the top hits will be what you want.
 
 ***However***, there are times you need to be careful. Googling for either `man touch` or `man tail`, for example, will probably not give you the results you seek and may set off filters at work, so be careful out there and remember to bookmark a couple of actual `man` page sites so that you can go there directly and look up a command.
 
@@ -3601,11 +3615,11 @@ Books and Stuff
 
 There are several consistently high-quality free sources of information on various parts of Linux and related systems on the internet.
 
--   [**The Linux Documentation Project (LDP)**](http://www.tldp.org/guides.html) - has fallen a bit behind over the years, but still has two of the best `bash` scripting books out there, [*Bash Guide for Beginners*](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html) and [*Advanced Bash-Scripting Guide*](http://www.tldp.org/LDP/abs/html/index.html). I continue to use the latter all the time.
+-   [**The Linux Documentation Project (LDP)**](http://www.tldp.org/guides.html) - has fallen a bit behind over the years, but still has two of the best `bash` scripting books out there, [*Bash Guide for Beginners*](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html) and [*Advanced Bash-Scripting Guide*](http://www.tldp.org/LDP/abs/html/index.html) . I continue to use the latter all the time.
 
 -   [**Arch Linux Wiki**](https://wiki.archlinux.org/) - you may not think this would be useful if you are running Debian or Fedora or something else, but remember most "UNIX" systems are all very similar, and often the best documentation on a package or setting something up in Linux is in the Arch wiki.
 
--   [**Debian documentation**](https://www.debian.org/doc/) - again, even if you are not running a Debian-based distro, this can be handy because it describes how to administer Linux in a way that often transcends distro specifics (and at least explains how Debian approaches the differences). The best books in the series are [*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/) and the [*Debian Reference*](https://www.debian.org/doc/manuals/debian-reference/), which is a lot more formal attempt at the same type of territory this guide covers.
+-   [**Debian documentation**](https://www.debian.org/doc/) - again, even if you are not running a Debian-based distro, this can be handy because it describes how to administer Linux in a way that often transcends distro specifics (and at least explains how Debian approaches the differences). The best books in the series are [*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/) and the [*Debian Reference*](https://www.debian.org/doc/manuals/debian-reference/) , which is a lot more formal attempt at the same type of territory this guide covers.
 
 Ubuntu, Mint and some other distros have quite active message fora, and of course StackOverflow and its family are also very useful.
 

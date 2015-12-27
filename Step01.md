@@ -16,7 +16,8 @@ Examples of shells:
 * [**`CMD.EXE`**](https://technet.microsoft.com/en-us/library/cc754340.aspx)\drshl{CMD.EXE} -
 yes, Windows has a shell.
 
-* [**`PowerShell.exe`**](https://technet.microsoft.com/en-us/library/ms714469%28v=VS.85%29.aspx)\drshl{Powershell} -
+* [**`PowerShell.exe`**](https://technet.microsoft.com/en-us/library/ms714469%28v=VS.85%29.aspx)
+\drshl{Powershell} -
 in fact, it has at least two!
 
 In UNIX-land:
@@ -53,8 +54,8 @@ usually run in the other members of the same tree.
 
 Every shell has some "built-in" commands that are implemented as part of the shell and not as an
 external command or program, and `bash`\drshl{bash} has its share, as shown by running the
-[`help`](http://linux.die.net/man/1/help)\drcmd{help}\index{Documentation!\texttt{help} command} 
-command in a `bash` terminal:
+[`help`](http://linux.die.net/man/1/help)\drcmd{help}
+\index{Documentation!help@\texttt{help} command} command in a `bash` terminal:
 
 \drcap{Built-in commands in \texttt{bash}}
 ```bash
@@ -91,8 +92,8 @@ you don't care, but sometimes you may have to care. Knowing if you are on a `csh
 variant or even something more esoteric can be key.
 
 Pay attention to the first line in script files, which will typically have a
-["shebang"](https://en.wikipedia.org/wiki/Shebang_%28Unix%29)\index{0@Symbols!\texttt{\#"!} (shebang)}
-line that looks like this:
+["shebang"](https://en.wikipedia.org/wiki/Shebang_%28Unix%29)
+\index{0@Symbols!\texttt{\#"!} (shebang)} line that looks like this:
 
 \drcap{\texttt{bash} "shebang"}
 ```bash
@@ -140,8 +141,9 @@ subsystems, etc.
 
 But even so, there are some similarities between `CMD.EXE` and a Linux shell like
 `bash`\drshl{bash}. In both `bash` and `CMD.EXE`\drshl{CMD.EXE} the
-[`set`](http://linux.die.net/man/1/set)\drcmd{set}\index{Environment variables!Displaying (\texttt{set} command)}
-command shows you all environment variables that have been set. Here's `bash`:
+[`set`](http://linux.die.net/man/1/set)\drcmd{set}
+\index{Environment variables!Displaying (\texttt{set} command)} command shows you all environment
+variables that have been set. Here's `bash`:
 
 \drcap{\texttt{set} command in \texttt{bash}}
 ```bash
@@ -202,7 +204,8 @@ PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 ```
 
 Similarly, the
-[`echo`](http://linux.die.net/man/1/echo)\drcmd{echo}\index{Environment variables!Displaying (\texttt{echo} command)}
+[`echo`](http://linux.die.net/man/1/echo)\drcmd{echo}
+\index{Environment variables!Displaying (\texttt{echo} command)}
 command can be used to show you the contents of an environment variable like `HOME`\drenv{HOME} on
 `bash`:
 

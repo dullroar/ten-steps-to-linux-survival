@@ -927,8 +927,8 @@ Examples of shells:
   \href{https://technet.microsoft.com/en-us/library/cc754340.aspx}{\textbf{\texttt{CMD.EXE}}}\drshl{CMD.EXE}
   - yes, Windows has a shell.
 \item
-  \href{https://technet.microsoft.com/en-us/library/ms714469\%28v=VS.85\%29.aspx}{\textbf{\texttt{PowerShell.exe}}}\drshl{Powershell}
-  - in fact, it has at least two!
+  \href{https://technet.microsoft.com/en-us/library/ms714469\%28v=VS.85\%29.aspx}{\textbf{\texttt{PowerShell.exe}}}
+  \drshl{Powershell} - in fact, it has at least two!
 \end{itemize}
 
 In UNIX-land:
@@ -984,8 +984,9 @@ Built-Ins}{bash Built-Ins}}\label{bash-built-ins}
 Every shell has some "built-in" commands that are implemented as part of
 the shell and not as an external command or program, and
 \texttt{bash}\drshl{bash} has its share, as shown by running the
-\href{http://linux.die.net/man/1/help}{\texttt{help}}\drcmd{help}\index{Documentation!\texttt{help} command}
-command in a \texttt{bash} terminal:
+\href{http://linux.die.net/man/1/help}{\texttt{help}}\drcmd{help}
+\index{Documentation!help@\texttt{help} command} command in a
+\texttt{bash} terminal:
 
 \drcap{Built-in commands in \texttt{bash}}
 
@@ -1029,8 +1030,8 @@ key.
 
 Pay attention to the first line in script files, which will typically
 have a
-\href{https://en.wikipedia.org/wiki/Shebang_\%28Unix\%29}{"shebang"}\index{0@Symbols!\texttt{\#"!} (shebang)}
-line that looks like this:
+\href{https://en.wikipedia.org/wiki/Shebang_\%28Unix\%29}{"shebang"}
+\index{0@Symbols!\texttt{\#"!} (shebang)} line that looks like this:
 
 \drcap{\texttt{bash} "shebang"}
 
@@ -1099,8 +1100,9 @@ PowerShell, POSIX subsystems, etc.
 But even so, there are some similarities between \texttt{CMD.EXE} and a
 Linux shell like \texttt{bash}\drshl{bash}. In both \texttt{bash} and
 \texttt{CMD.EXE}\drshl{CMD.EXE} the
-\href{http://linux.die.net/man/1/set}{\texttt{set}}\drcmd{set}\index{Environment variables!Displaying (\texttt{set} command)}
-command shows you all environment variables that have been set. Here's
+\href{http://linux.die.net/man/1/set}{\texttt{set}}\drcmd{set}
+\index{Environment variables!Displaying (\texttt{set} command)} command
+shows you all environment variables that have been set. Here's
 \texttt{bash}:
 
 \drcap{\texttt{set} command in \texttt{bash}}
@@ -1168,9 +1170,10 @@ And \texttt{CMD.EXE}:
 \end{Shaded}
 
 Similarly, the
-\href{http://linux.die.net/man/1/echo}{\texttt{echo}}\drcmd{echo}\index{Environment variables!Displaying (\texttt{echo} command)}
-command can be used to show you the contents of an environment variable
-like \texttt{HOME}\drenv{HOME} on \texttt{bash}:
+\href{http://linux.die.net/man/1/echo}{\texttt{echo}}\drcmd{echo}
+\index{Environment variables!Displaying (\texttt{echo} command)} command
+can be used to show you the contents of an environment variable like
+\texttt{HOME}\drenv{HOME} on \texttt{bash}:
 
 \drcap{\texttt{echo} the \texttt{HOME} environment variable in \texttt{bash}}
 
@@ -3974,21 +3977,22 @@ open by default in every "UNIX" process:
 
 \begin{itemize}
 \item
-  \textbf{stdin}\index{stdin} - input, typically from the console in an
-  interactive session. In the underlying C file system APIs, this is
-  file descriptor 0.
+  \textbf{stdin}\index{I/O!Streams!stdin@\textit{stdin}} - input,
+  typically from the console in an interactive session. In the
+  underlying C file system APIs, this is file descriptor 0.
 \item
-  \textbf{stdout}\index{stdout} - "normal" output, typically to the
-  console in an interactive session. This is file descriptor 1.
+  \textbf{stdout}\index{I/O!Streams!stdin@\textit{stdout}} - "normal"
+  output, typically to the console in an interactive session. This is
+  file descriptor 1.
 \item
-  \textbf{stderr}\index{stderr} - "error" output, typically to the
-  console in an interactive session (so it can be hard to distinguish
-  when intermingled with \texttt{stdout} output). This is file
-  descriptor 2.
+  \textbf{stderr}\index{I/O!Streams!stdin@\textit{stderr}} - "error"
+  output, typically to the console in an interactive session (so it can
+  be hard to distinguish when intermingled with \texttt{stdout} output).
+  This is file descriptor 2.
 \end{itemize}
 
-\textbf{Note:} The file descriptors will go from being trivia to
-important in just a bit.
+\textbf{Note:} Those numeric file descriptors will go from being trivia
+to important in just a bit.
 
 When a program written in C calls \texttt{printf}, it is writing to
 \texttt{stdout}. When a \texttt{bash} script calls
@@ -3999,12 +4003,12 @@ command or program accepts input from the console, it is reading from
 
 In this example, \texttt{cat}\drcmd{cat} is started with no file name,
 so it will read from \texttt{stdin} (a quite common "UNIX" command
-convention), and echo each line to \texttt{stdout} until the "end of
-file," which in an interactive session can be emulated with
-\texttt{Ctrl-D}, shown as \texttt{\^{}D} in the example below but not
-seen on the console in real life:
+convention), and echo each line typed by the user to \texttt{stdout}
+until the "end of file," which in an interactive session can be emulated
+with \texttt{Ctrl-D}, shown as \texttt{\^{}D} in the example below but
+not seen on the console in real life:
 
-\drcap{stdin and stdout}
+\drcap{\textit{stdin} and \textit{stdout}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4017,11 +4021,19 @@ seen on the console in real life:
 \end{Highlighting}
 \end{Shaded}
 
+So in the above I typed in "This shows reading from stdin" and hit
+\texttt{Enter} (which send a linefeed and hence marks the "end of the
+line") and \texttt{cat} echoed that line to
+\texttt{stdout}\index{I/O!Streams!stdin@\textit{stdout}}. Then I typed
+"and writing to stdout." and hit \texttt{Enter} and that line was echoed
+to \texttt{stdout} as well. Finally I hit \texttt{Ctrl-D}, which ended
+the process.
+
 \section*{All Magic is Redirection}\label{all-magic-is-redirection}
 \addcontentsline{toc}{section}{All Magic is Redirection}
 
 So one way to string things together in "the UNIX way" is with file
-redirection. This is a concept that works even in
+redirection. This is a concept that also works in
 \texttt{CMD.EXE}\drshl{CMD.EXE} and even with the same syntax.
 
 Let's create a file with a single line of text in it. One way would be
@@ -4041,15 +4053,20 @@ to \texttt{vi\ newfilename}, edit the file, save it, and exit
 \end{Highlighting}
 \end{Shaded}
 
-In this case the \texttt{\textgreater{}\ hw} tells \texttt{bash} to take
-the output that \texttt{echo} sends to \texttt{stdout} and send it to
+In this case the
+\texttt{\textgreater{}\ hw}\index{0@Symbols!\texttt{>} (output redirection)}
+\index{I/O!Redirection!Output (\texttt{>})} tells \texttt{bash} to take
+the output that \texttt{echo} sends to
+\texttt{stdout}\index{I/O!Streams!stdin@\textit{stdout}} and send it to
 the file \texttt{hw} instead.
 
 As mentioned above many "UNIX" commands are set up to take one or more
 file names from the command line as parameters, and if there aren't any,
-to read from \texttt{stdin}. The \texttt{cat} command does that. While
-it doesn't save us anything over the above example, the following is
-illustrative of redirecting a file to \texttt{stdin} for a command or
+to read from \texttt{stdin}\index{I/O!Streams!stdin@\textit{stdin}}. The
+\texttt{cat} command does that. While it doesn't save us anything over
+the above example, the following example using \texttt{\textless{}}
+\index{0@Symbols!\texttt{<} (input redirection)}\index{I/O!Redirection!Input (\texttt{<})}
+is illustrative of redirecting a file to \texttt{stdin} for a command or
 program:
 
 \drcap{Redundant redirection}
@@ -4061,11 +4078,12 @@ program:
 \end{Highlighting}
 \end{Shaded}
 
-Finally, we need to deal with \texttt{stderr}. By convention it is sent
-to the console just like \texttt{stdout}, and that can make output
-confusing:
+Finally, we need to deal with
+\texttt{stderr}.\index{I/O!Streams!stdin@\textit{stderr}} By convention
+it is sent to the console just like \texttt{stdout}, and that can make
+output confusing:
 
-\drcap{Default stderr behavior}
+\drcap{Default \textit{stderr} behavior}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4088,8 +4106,8 @@ In the above, between echoing the contents of the \texttt{a},
 \texttt{b}, \texttt{c} and \texttt{e} files, we see two error messages
 from \texttt{cat} complaining that \texttt{.} and \texttt{d} are
 directories. These are being emitted on \texttt{stderr}, but there is no
-good way of telling that. One way to get rid of them would be to change
-find to filter for only files:
+good way of visually telling that. One way to get rid of them would be
+to change \texttt{find} to filter for only files:
 
 \drcap{Get rid of the errors in the first place}
 
@@ -4109,10 +4127,11 @@ log the error messages separately for later analysis. While we've seen
 \texttt{\textgreater{}} used for redirecting \texttt{stdout}, how do we
 tell the shell we want to redirect \texttt{stderr}? Remember the
 discussion about file handles above? That's where those esoteric numbers
-come in handy! To redirect \texttt{stderr} we recall it is
+come in handy! To redirect
+\texttt{stderr}\index{I/O!Streams!stdin@\textit{stderr}} we recall it is
 \textbf{\emph{always}} file descriptor 2, and then we can use:
 
-\drcap{Redirecting stderr}
+\drcap{Redirecting \textit{stderr}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4127,15 +4146,18 @@ come in handy! To redirect \texttt{stderr} we recall it is
 \end{Highlighting}
 \end{Shaded}
 
-The \texttt{2\textgreater{}/tmp/finderrors.log} is the magic that is
+The
+\texttt{2\textgreater{}/tmp/finderrors.log}\index{0@Symbols!\texttt{2>} (\textit{stderr} redirection)}
+\index{I/O!Redirection!Erro (\texttt{2>})} is the magic that is
 redirecting file descriptor 2 (\texttt{stderr}) to the log file
 \texttt{/tmp/finderrors.log}.
 
-A very common paradigm is to capture both \texttt{stdout} and
+A very common paradigm is to capture both
+\texttt{stdout}\index{I/O!Streams!stdin@\textit{stdout}} and
 \texttt{stderr} to the same file. Here is how that is done, again using
 file descriptors:
 
-\drcap{Redirecting both stdout and stderr to a file}
+\drcap{Redirecting both \textit{stdout} and \textit{stderr} to a file}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4156,8 +4178,25 @@ descriptor 2) being sent to the same place as \texttt{stdout} (file
 descriptor 1) with \texttt{2\textgreater{}\&1}. Note that this works in
 \texttt{CMD.EXE}{]}drshl\{CMD.EXE\}, too!
 
-One final note is the difference between creating or re-writing a file
-and appending to it using redirection. The following creates a new
+If we want to send \texttt{stdout} to one file and \texttt{stderr} to
+another, you can do it like this:
+
+\drcap{Redirecting \textit{stdout} one way \textit{stderr} another}
+
+\begin{verbatim}
+~ $ find . -exec cat \{\} \; >/tmp/find.log 2>/tmp/finderrors.log
+~ $ cat /tmp/find.log
+This is a
+This is b
+This is c
+This is e
+~ $ cat /tmp/finderrors.log
+cat: .: Is a directory
+cat: ./d: Is a directory
+\end{verbatim}
+
+One final note with redirection is the difference between creating or
+re-writing a file versus appending. The following creates a new
 \texttt{/tmp/find.log} file every time it runs (there is no need to
 \texttt{rm} it first):
 
@@ -4169,8 +4208,11 @@ and appending to it using redirection. The following creates a new
 \end{Highlighting}
 \end{Shaded}
 
-However, the next sample creates a new \texttt{/tmp/find.log} file if it
-doesn't exist, but otherwise appends to it:
+However, the next sample using
+\texttt{\textgreater{}\textgreater{}}\index{0@Symbols!\texttt{>>} (output redirection, appending)}
+\index{I/O!Redirection!Output, appending (\texttt{>>})} creates a new
+\texttt{/tmp/find.log} file if it doesn't exist, but otherwise appends
+to it:
 
 \drcap{Appending to a file with redirection}
 
@@ -4188,11 +4230,14 @@ is outside the scope of this book.
 \addcontentsline{toc}{section}{Everyone Line Up}
 
 So we can see that we could pass things between programs by redirecting
-\texttt{stdout} to a file and then redirecting that file to
-\texttt{stdin} on the next program, and so on. But "UNIX" environments
-take it a bit further with the concept of a command "pipeline" that
-allows directly sending \texttt{stdout} from one program into
-\texttt{stdin} of another:
+\texttt{stdout}\index{I/O!Streams!stdin@\textit{stdout}} to a file and
+then redirecting that file to
+\texttt{stdin}\index{I/O!Streams!stdin@\textit{stdin}} on the next
+program, and so on. But "UNIX" environments take it a bit further with
+the concept of a command "pipeline" that allows directly sending
+\texttt{stdout} from one program into \texttt{stdin} of another using
+the "pipe" (\texttt{\textbar{}}):
+\index{0@Symbols!\texttt{"|} (pipe)}\index{I/O!Redirection!pipe (\texttt{"|})}
 
 \drcap{Piping output between programs}
 
@@ -4202,8 +4247,8 @@ allows directly sending \texttt{stdout} from one program into
 \end{Highlighting}
 \end{Shaded}
 
-This little one-liner starts showing off the usefulness of small
-programs, each doing one thing. In this case:
+This little one-liner starts showing off the usefulness of chaining
+several small programs, each doing one thing. In this case:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4232,7 +4277,7 @@ them to \texttt{stdout} which in this case was a pipeline sending each
 line in order to another command to transform the data, before sending
 each line to the custom code in \texttt{mycmd}, that only expects a
 single line or value each time it is run. It has no idea about the
-\texttt{.txt} files or the transformation or the pipeline!
+\texttt{.txt} files or the ransformation or the pipeline!
 
 \textbf{\emph{That}} is the "UNIX philosophy" at work.
 
@@ -5938,8 +5983,8 @@ on the internet.}}
 The biggest issue with bootstrapping into "UNIX" is not the lack of
 documentation but almost the surplus of it, coupled with a severe "RTFM"
 attitude by most old-timers toward newbies. Besides the typical "Google"
-and
-\href{http://unix.stackexchange.com/}{"StackOverflow"}\index{Documentation!\textit{http://unix.stackexchange.com/}}
+and \href{http://unix.stackexchange.com/}{"StackOverflow"}
+\index{Documentation!http://unix.stackexchange.com/@\textit{http://unix.stackexchange.com/}}
 answers, there are actually lots of very reliable places to turn to for
 information
 
@@ -5950,10 +5995,12 @@ information
 
 There are three commands that are the basis for reading "UNIX"
 documentation within "UNIX" itself -
-\href{http://linux.die.net/man/1/man}{\texttt{man}}\drcmd{man}\index{Documentation!\texttt{man} command},
-\href{http://linux.die.net/man/1/info}{\texttt{info}}\drcmd{info}\index{Documentation!\texttt{info} command}
-and
-\href{http://linux.die.net/man/1/apropos}{\texttt{apropos}}\drcmd{apropos}\index{Documentation!\texttt{apropos} command}.
+\href{http://linux.die.net/man/1/man}{\texttt{man}}\drcmd{man}
+\index{Documentation!man@\texttt{man} command},
+\href{http://linux.die.net/man/1/info}{\texttt{info}}\drcmd{info}
+\index{Documentation!info@\texttt{info} command} and
+\href{http://linux.die.net/man/1/apropos}{\texttt{apropos}}\drcmd{apropos}
+\index{Documentation!apropos@\texttt{apropos} command}.
 
 \texttt{man} is short for \emph{manual pages}, and is used to display
 the main help for most "UNIX" commands. For example, \texttt{man\ ls}
@@ -6077,8 +6124,9 @@ have to explicitly specify the section, in this case by using
 \end{Shaded}
 
 Besides \texttt{man}, many GNU tools come with help in
-\texttt{info}\drcmd{info}\index{Documentation!\texttt{info} command}
-format, which is originally from \texttt{emacs}. Here are the results of
+\texttt{info}\drcmd{info}
+\index{Documentation!info@\texttt{info} command} format, which is
+originally from \texttt{emacs}. Here are the results of
 \texttt{info\ find}:
 
 \drcap{Running info on the find command}
@@ -6120,9 +6168,10 @@ in my head. The biggest thing to remember if you do something like
 Finally, what if you don't know the name of the command? Well, each "man
 page" has a title and brief description, e.g., "passwd - change user
 password" in the \texttt{man\ passwd} output above. The
-\texttt{apropos}\drcmd{apropos}\index{Documentation!\texttt{apropos} command}
-command can simply search those titles and descriptions for a word or
-phrase and show you all the results:
+\texttt{apropos}\drcmd{apropos}
+\index{Documentation!apropos@\texttt{apropos} command} command can
+simply search those titles and descriptions for a word or phrase and
+show you all the results:
 
 \drcap{apropos command}
 
@@ -6211,8 +6260,8 @@ And yes, you can \texttt{man\ man}, \texttt{man\ info},
 
 You can often search the internet for "UNIX" documentation, and the
 \texttt{man} pages have long been online. A site I like (and link to a
-lot here) is
-\url{http://linux.die.net/man/}\index{Documentation!\textit{http://linux.die.net/man/}}.
+lot here) is \url{http://linux.die.net/man/}
+\index{Documentation!http://linux.die.net/man/@\textit{http://linux.die.net/man/}}.
 Often, though, you can just google
 \href{https://www.google.com/\#q=man+ls}{"man ls"} and the top hits will
 be what you want.
@@ -6237,12 +6286,12 @@ on various parts of Linux and related systems on the internet.
   fallen a bit behind over the years, but still has two of the best
   \texttt{bash} scripting books out there,
   \href{http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html}{\emph{Bash
-  Guide for
-  Beginners}}\index{Documentation!\textit{Bash Guide for Beginners}}\drios{bash}
+  Guide for Beginners}}
+  \index{Documentation!Bash Guide for Beginners@\textit{Bash Guide for Beginners}}\drios{bash}
   and \href{http://www.tldp.org/LDP/abs/html/index.html}{\emph{Advanced
-  Bash-Scripting
-  Guide}}\index{Documentation!\textit{Advanced Bash-Scripting Guide}}. I
-  continue to use the latter all the time.
+  Bash-Scripting Guide}}
+  \index{Documentation!Advanced Bash-Scripting Guide@\textit{Advanced Bash-Scripting Guide}}.
+  I continue to use the latter all the time.
 \item
   \href{https://wiki.archlinux.org/}{\textbf{Arch Linux
   Wiki}}\index{Documentation!Arch wiki} - you may not think this would
@@ -6257,13 +6306,14 @@ on various parts of Linux and related systems on the internet.
   transcends distro specifics (and at least explains how Debian
   approaches the differences). The best books in the series are
   \href{https://www.debian.org/doc/manuals/debian-handbook/}{\emph{The
-  Debian Administrator's
-  Handbook}}\index{Documentation!\textit{Debian Administrator's Handbook}}
+  Debian Administrator's Handbook}}
+  \index{Documentation!Debian Administrator's Handbook@\textit{Debian Administrator's Handbook}}
   and the
   \href{https://www.debian.org/doc/manuals/debian-reference/}{\emph{Debian
-  Reference}}\index{Documentation!\textit{Debian Reference}}, which is a
-  lot more formal attempt at the same type of territory this guide
-  covers.
+  Reference}}
+  \index{Documentation!Debian Reference@\textit{Debian Reference}},
+  which is a lot more formal attempt at the same type of territory this
+  guide covers.
 \end{itemize}
 
 Ubuntu, Mint and some other distros have quite active message fora, and
