@@ -1494,7 +1494,7 @@ myuser
 <blockquote>
 <p><em>&quot;Some people, when confronted with a problem, think 'I know, I'll use regular expressions.' Now they have two problems.&quot;</em> - Jamie Zawinski</p>
 </blockquote>
-<p>If the <code>file</code> command is useful for finding file system entries based on their attributes, the <a href="http://linux.die.net/man/1/grep"><code>grep</code></a> command is good for finding files whose <strong><em>contents</em></strong> match a <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expression</a>. You already know at least one regular expression, the wildcard <code>*</code> character from the <code>CMD.EXE</code> prompt and Windows Explorer. It means &quot;match zero or more characters.&quot; We'll cover more on regular expressions, or &quot;regexes,&quot; in a moment.</p>
+<p>If the <code>file</code> command is useful for finding file system entries based on their attributes, the <a href="http://linux.die.net/man/1/grep"><code>grep</code></a>  command is good for finding files whose <strong><em>contents</em></strong> match a <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expression</a>. You already know at least one regular expression, the wildcard <code>*</code>  character from the <code>CMD.EXE</code> prompt and Windows Explorer. It means &quot;match zero or more characters.&quot; We'll cover more on regular expressions, or &quot;regexes,&quot; in a moment.</p>
 <p>First, an example of <code>grep</code>, showing all files in a directory with the pattern &quot;is&quot; in them:</p>
 <p></p>
 <pre class="bash"><code>~ $ touch a b c
@@ -1513,8 +1513,8 @@ d:This sequence of characters is called a &quot;string&quot;.</code></pre>
 <p>In the <code>grep</code> example, we can see a regular expression can be as simple as &quot;is&quot;. It can also be as complicated as:</p>
 <p></p>
 <pre class="bash"><code>(?bhttp://[-A-Za-z0-9+&amp;@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&amp;@f</code></pre>
-<p>That shows at least one attempt at being <a href="http://blog.codinghorror.com/the-problem-with-urls/">a very complete parser of valid HTTP URLs</a>. Wow! What's all that? Now you see why you have two problems. Even if you get that all figured out, or if you actually sit and create something like that from scratch yourself (and it works!), imagine coming back six months later and trying to decipher it again.</p>
-<p>There are literally <a href="http://www.regular-expressions.info/">whole web sites</a> and books on just regular expressions. With variations they are used in all &quot;UNIX&quot; shells, Perl, Python, Javascript, Java, C# and more. So obviously (a) they are really useful, and (b) we're not going to cover all of regexes here.</p>
+<p>That shows at least one attempt at being <a href="http://blog.codinghorror.com/the-problem-with-urls/">a very complete parser of valid HTTP URLs</a>. Wow! What <strong><em>is</em></strong> all that? Now you see why you have two problems. Even if you get that all figured out, or if you actually sit and create something like that from scratch yourself (and it works!), imagine coming back six months later and trying to decipher it again.</p>
+<p>There are literally <a href="http://www.regular-expressions.info/">whole web sites</a> and books just on regular expressions. With variations they are used in all &quot;UNIX&quot; shells, Perl, Python, Javascript, Java, C# and more. So obviously (a) they are really useful, and (b) we're not going to cover all of regexes here.</p>
 <p>There are so many things you can do, the only thing to remember is &quot;regular expressions&quot; when you think &quot;I need to find things based on a pattern&quot; and then research what it will take to define the pattern you want.</p>
 <p>In the mean time, following are a few <strong><em>simple</em></strong> regex examples. Consider the file <code>invoices</code>:</p>
 <p></p>
@@ -1570,14 +1570,14 @@ Truck   tires   400
 Truck   winch   100</code></pre>
 <p>For me, the following keep coming up when using regular expressions:</p>
 <ul>
-<li><strong><code>one|other</code></strong> - find <code>one</code> pattern or the <code>other</code>.</li>
-<li><strong><code>^</code></strong> - pattern for the beginning of a line.</li>
-<li><strong><code>$</code></strong> - pattern for the end of a line.</li>
-<li><strong><code>?</code></strong> - match exactly one character.</li>
-<li><strong><code>*</code></strong> - match zero or more characters.</li>
-<li><strong><code>+</code></strong> - match one or more characters.</li>
-<li><strong><code>[A-Z]</code></strong> - match any character in a range (such as in this case any uppercase Latin alphabetic character).</li>
-<li><strong><code>[n|y]</code></strong> - match one character or another (such as <code>n</code> or <code>y</code> here).</li>
+<li><p><strong><code>one|other</code></strong> - find <code>one</code> pattern or the <code>other</code>.  </p></li>
+<li><p><strong><code>^</code></strong> - pattern for the beginning of a line.  </p></li>
+<li><p><strong><code>$</code></strong> - pattern for the end of a line.  </p></li>
+<li><p><strong><code>?</code></strong> - match exactly one character.  </p></li>
+<li><p><strong><code>*</code></strong> - match zero or more characters.  </p></li>
+<li><p><strong><code>+</code></strong> - match one or more characters.  </p></li>
+<li><p><strong><code>[A-Z]</code></strong> - match any character in a range (in this case any uppercase Latin alphabetic character).  </p></li>
+<li><p><strong><code>[n|y]</code></strong> - match one character or another (such as <code>n</code> or <code>y</code> here).  </p></li>
 </ul>
 <p>For example, to find the lines that end in <code>400</code>:</p>
 <p></p>
@@ -1608,21 +1608,21 @@ Truck   tires   400</code></pre>
 <p></p>
 <pre class="bash"><code>~ $ find . ! -name pdfinfo.log -newer pdfinfo.log -type f -exec grep -H \
     -i pdfinfo \{\} \; &gt; pdfinfo.log</code></pre>
-<p>This says to ignore files named &quot;pdfinfo.log&quot; (<code>! -name pdfinfo.log</code>) and otherwise look for files (<code>-type f</code>) containing &quot;pdfinfo&quot; (<code>-exec grep ...</code>) that haven't been checked since the last time &quot;pdfinfo.log&quot; was modified (<code>-newer pdfinfo.log</code>). In my tests the first run (which initially creates the &quot;pdfinfo.log&quot; file) ran in 30 seconds but subsequents runs took just a few seconds. This was because the number of files to be searched through all directories was big enough it paid to pre-filter the results before handing them to <code>grep</code>.</p>
+<p>This says to ignore files named <code>pdfinfo.log</code> (<code>! -name pdfinfo.log</code>) and otherwise look for files (<code>-type f</code>) containing &quot;pdfinfo&quot; (<code>-exec grep -H -i pdfinfo</code>) that haven't been checked since the last time <code>pdfinfo.log</code> was modified (<code>-newer pdfinfo.log</code>). In my tests the first run (which initially creates the <code>pdfinfo.log</code> file) ran in 30 seconds but subsequents runs took just a few seconds. This was because the number of files to be searched through all directories was big enough it paid to pre-filter the results with <code>find</code> before handing them to <code>grep</code>.</p>
 <h2 id="gawking-at-awk"><span class="header-section-number">4.2</span> Gawking at <code class="unnumbered">awk</code></h2>
 <p>I don't have much to say about <a href="http://linux.die.net/man/1/awk"><code>awk</code></a> other than:</p>
 <ol type="1">
 <li><p>It is named after its three authors, <a href="https://en.wikipedia.org/wiki/AWK">Aho, Weinberger and Kernighan</a>, all three of whom are computer science greats from Bell Labs. The GNU version is called <code>gawk</code>, of course!</p></li>
 <li><p>It is a &quot;data driven scripting language.&quot; That's a fancy way of saying it was written specifically with slicing and dicing text in mind.</p></li>
 <li><p>It generally is broken out when the typical &quot;UNIX&quot; commands and shell features like pipes and redirection aren't enough.</p></li>
-<li><p>Usually, if I start thinking of <code>awk</code>, I start thinking of a way to program the answer in another language, or reframe the question to get an answer not requiring <code>awk</code>.</p></li>
+<li><p>Usually, if I start thinking of <code>awk</code>, I start thinking of a way to program the answer in another language such as Python, or reframe the question to get an answer not requiring <code>awk</code>.</p></li>
 </ol>
-<p>That said, it is a powerful knife in the tool belt, and you should be aware it exists.</p>
+<p>That said, it is a powerful knife in the tool belt, and you should be aware it exists. If you are searching the internet and find an answer using <code>awk</code> that you can <strong><em>quickly</em></strong> adapt to your needs, use it.</p>
 <p>To whet your taste, here is the type of &quot;one-liner&quot; for which <code>awk</code> is famous, in this case <a href="http://www.ibm.com/developerworks/library/l-awk1/">formatting and printing a report on user ids</a> from <code>/etc/passwd</code>:</p>
 <p></p>
 <pre class="bash"><code>~ $ awk -F&quot;:&quot; &#39;{ print &quot;username: &quot; $1 &quot;\t\tuid:&quot; $3 }&#39; /etc/passwd
 username: root      uid:0
-username: daemon        uid:1
+username: daemon    uid:1
 username: bin       uid:2
 username: sys       uid:3
 username: sync      uid:4

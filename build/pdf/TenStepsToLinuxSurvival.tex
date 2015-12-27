@@ -3589,18 +3589,20 @@ use regular expressions.' Now they have two problems."} - Jamie Zawinski
 If the \texttt{file} command is useful for finding file system entries
 based on their attributes, the
 \href{http://linux.die.net/man/1/grep}{\texttt{grep}}\drcmd{grep}
-command is good for finding files whose \textbf{\emph{contents}} match a
+\index{Files and Directories!Searching(\texttt{grep} command)} command
+is good for finding files whose \textbf{\emph{contents}} match a
 \href{https://en.wikipedia.org/wiki/Regular_expression}{regular
-expression}\index{regular expression}. You already know at least one
-regular expression, the wildcard \texttt{*} character from the
-\texttt{CMD.EXE}\drshl{CMD.EXE} prompt and Windows Explorer. It means
-"match zero or more characters." We'll cover more on regular
+expression}\index{Regular expressions}. You already know at least one
+regular expression, the wildcard \texttt{*}
+\index{0@Symbols!\texttt{*} (match zero or more characters)} character
+from the \texttt{CMD.EXE}\drshl{CMD.EXE} prompt and Windows Explorer. It
+means "match zero or more characters." We'll cover more on regular
 expressions, or "regexes," in a moment.
 
 First, an example of \texttt{grep}, showing all files in a directory
 with the pattern "is" in them:
 
-\drcap{grep example}
+\drcap{\texttt{grep} example}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3619,8 +3621,9 @@ with the pattern "is" in them:
 Regularly}\label{expressing-yourself-regularly}
 \addcontentsline{toc}{section}{Expressing Yourself Regularly}
 
-So what are "regular expressions?" Simply, they are patterns for
-matching "strings," which are sequences of "characters," e.g.:
+So what are "regular expressions?"\index{Regular expressions} Simply,
+they are patterns for matching "strings," which are sequences of
+"characters," e.g.:
 
 \drcap{A string}
 
@@ -3649,14 +3652,14 @@ simple as "is". It can also be as complicated as:
 
 That shows at least one attempt at being
 \href{http://blog.codinghorror.com/the-problem-with-urls/}{a very
-complete parser of valid HTTP URLs}. Wow! What's all that? Now you see
-why you have two problems. Even if you get that all figured out, or if
-you actually sit and create something like that from scratch yourself
-(and it works!), imagine coming back six months later and trying to
-decipher it again.
+complete parser of valid HTTP URLs}. Wow! What \textbf{\emph{is}} all
+that? Now you see why you have two problems. Even if you get that all
+figured out, or if you actually sit and create something like that from
+scratch yourself (and it works!), imagine coming back six months later
+and trying to decipher it again.
 
 There are literally \href{http://www.regular-expressions.info/}{whole
-web sites} and books on just regular expressions. With variations they
+web sites} and books just on regular expressions. With variations they
 are used in all "UNIX" shells, Perl, Python, Javascript, Java, C\# and
 more. So obviously (a) they are really useful, and (b) we're not going
 to cover all of regexes here.
@@ -3775,26 +3778,40 @@ stuff. Let's look for lines with either "Tractor" or "Truck":
 For me, the following keep coming up when using regular expressions:
 
 \begin{itemize}
-\tightlist
 \item
   \textbf{\texttt{one\textbar{}other}} - find \texttt{one} pattern or
-  the \texttt{other}.
+  the \texttt{other}. \index{Regular expressions!\texttt{"|} (or)}
+  \index{0@Symbols!\texttt{"|} (match zero or more characters)}
 \item
   \textbf{\texttt{\^{}}} - pattern for the beginning of a line.
+  \index{Regular expressions!\texttt{\^{}} (beginning of line)}
+  \index{0@Symbols!\texttt{\^{}} (beginning of line)}
 \item
   \textbf{\texttt{\$}} - pattern for the end of a line.
+  \index{Regular expressions!\texttt{\$} (end of line)}
+  \index{0@Symbols!\texttt{\$} (end of line)}
 \item
   \textbf{\texttt{?}} - match exactly one character.
+  \index{Regular expressions!\texttt{?} (match one character)}
+  \index{0@Symbols!\texttt{?} (match one character)}
 \item
   \textbf{\texttt{*}} - match zero or more characters.
+  \index{Regular expressions!\texttt{*} (match zero or more characters)}
+  \index{0@Symbols!\texttt{*} (match zero or more characters)}
 \item
   \textbf{\texttt{+}} - match one or more characters.
+  \index{Regular expressions!\texttt{+} (match one or more characters)}
+  \index{0@Symbols!\texttt{+} (match one or more characters)}
 \item
-  \textbf{\texttt{{[}A-Z{]}}} - match any character in a range (such as
-  in this case any uppercase Latin alphabetic character).
+  \textbf{\texttt{{[}A-Z{]}}} - match any character in a range (in this
+  case any uppercase Latin alphabetic character).
+  \index{Regular expressions!\texttt{[A-Z]} (match a character in range)}
+  \index{0@Symbols!\texttt{[A-Z]} (match a character in range)}
 \item
   \textbf{\texttt{{[}n\textbar{}y{]}}} - match one character or another
   (such as \texttt{n} or \texttt{y} here).
+  \index{Regular expressions!\texttt{[n"|y]} (match one character or other)}
+  \index{0@Symbols!\texttt{[n"|y]} (match one character or other)}
 \end{itemize}
 
 For example, to find the lines that end in \texttt{400}:
@@ -3816,7 +3833,7 @@ For example, to find the lines that end in \texttt{400}:
 
 To recursively find all files that contain the string "pdfinfo":
 
-\drcap{Recursive grep}
+\drcap{Recursive \texttt{grep}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3836,7 +3853,7 @@ To recursively find all files that contain the string "pdfinfo":
 The above is functionally equivalent but \textbf{\emph{much}} quicker
 than:
 
-\drcap{Recursive grep is faster than find plus grep}
+\drcap{Recursive \texttt{grep} is faster than \texttt{find ... -exec grep}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3857,7 +3874,7 @@ For example, if you only wanted to check files that contain "pdfinfo"
 that have been created or modified since the last time you checked, it
 \textbf{\emph{could be}} quicker to run something like:
 
-\drcap{A better example of when to use find plus grep}
+\drcap{A better example of when to use \texttt{find ... -exec grep}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3866,15 +3883,17 @@ that have been created or modified since the last time you checked, it
 \end{Highlighting}
 \end{Shaded}
 
-This says to ignore files named "pdfinfo.log"
+This says to ignore files named \texttt{pdfinfo.log}
 (\texttt{!\ -name\ pdfinfo.log}) and otherwise look for files
-(\texttt{-type\ f}) containing "pdfinfo" (\texttt{-exec\ grep\ ...})
-that haven't been checked since the last time "pdfinfo.log" was modified
+(\texttt{-type\ f}) containing "pdfinfo"
+(\texttt{-exec\ grep\ -H\ -i\ pdfinfo}) that haven't been checked since
+the last time \texttt{pdfinfo.log} was modified
 (\texttt{-newer\ pdfinfo.log}). In my tests the first run (which
-initially creates the "pdfinfo.log" file) ran in 30 seconds but
+initially creates the \texttt{pdfinfo.log} file) ran in 30 seconds but
 subsequents runs took just a few seconds. This was because the number of
 files to be searched through all directories was big enough it paid to
-pre-filter the results before handing them to \texttt{grep}.
+pre-filter the results with \texttt{find} before handing them to
+\texttt{grep}.
 
 \section{\texorpdfstring{Gawking at
 \texttt{awk}}{Gawking at awk}}\label{gawking-at-awk}
@@ -3898,12 +3917,14 @@ than:
   features like pipes and redirection aren't enough.
 \item
   Usually, if I start thinking of \texttt{awk}, I start thinking of a
-  way to program the answer in another language, or reframe the question
-  to get an answer not requiring \texttt{awk}.
+  way to program the answer in another language such as Python, or
+  reframe the question to get an answer not requiring \texttt{awk}.
 \end{enumerate}
 
 That said, it is a powerful knife in the tool belt, and you should be
-aware it exists.
+aware it exists. If you are searching the internet and find an answer
+using \texttt{awk} that you can \textbf{\emph{quickly}} adapt to your
+needs, use it.
 
 To whet your taste, here is the type of "one-liner" for which
 \texttt{awk} is famous, in this case
@@ -3916,7 +3937,7 @@ printing a report on user ids} from \texttt{/etc/passwd}:
 \begin{Highlighting}[]
 \KeywordTok{~} \NormalTok{$ }\KeywordTok{awk} \NormalTok{-F}\StringTok{":"} \StringTok{'\{ print "username: " $1 "\textbackslash{}t\textbackslash{}tuid:" $3 \}'} \NormalTok{/etc/passwd}
 \KeywordTok{username}\NormalTok{: root      uid:0}
-\KeywordTok{username}\NormalTok{: daemon        uid:1}
+\KeywordTok{username}\NormalTok{: daemon    uid:1}
 \KeywordTok{username}\NormalTok{: bin       uid:2}
 \KeywordTok{username}\NormalTok{: sys       uid:3}
 \KeywordTok{username}\NormalTok{: sync      uid:4}

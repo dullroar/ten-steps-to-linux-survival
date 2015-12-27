@@ -2013,9 +2013,9 @@ In the `grep` example, we can see a regular expression can be as simple as "is".
 (?bhttp://[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@f
 ```
 
-That shows at least one attempt at being [a very complete parser of valid HTTP URLs](http://blog.codinghorror.com/the-problem-with-urls/). Wow! What's all that? Now you see why you have two problems. Even if you get that all figured out, or if you actually sit and create something like that from scratch yourself (and it works!), imagine coming back six months later and trying to decipher it again.
+That shows at least one attempt at being [a very complete parser of valid HTTP URLs](http://blog.codinghorror.com/the-problem-with-urls/). Wow! What ***is*** all that? Now you see why you have two problems. Even if you get that all figured out, or if you actually sit and create something like that from scratch yourself (and it works!), imagine coming back six months later and trying to decipher it again.
 
-There are literally [whole web sites](http://www.regular-expressions.info/) and books on just regular expressions. With variations they are used in all "UNIX" shells, Perl, Python, Javascript, Java, C\# and more. So obviously (a) they are really useful, and (b) we're not going to cover all of regexes here.
+There are literally [whole web sites](http://www.regular-expressions.info/) and books just on regular expressions. With variations they are used in all "UNIX" shells, Perl, Python, Javascript, Java, C\# and more. So obviously (a) they are really useful, and (b) we're not going to cover all of regexes here.
 
 There are so many things you can do, the only thing to remember is "regular expressions" when you think "I need to find things based on a pattern" and then research what it will take to define the pattern you want.
 
@@ -2095,12 +2095,19 @@ Truck   winch   100
 For me, the following keep coming up when using regular expressions:
 
 -   **`one|other`** - find `one` pattern or the `other`.
+
 -   **`^`** - pattern for the beginning of a line.
+
 -   **`$`** - pattern for the end of a line.
+
 -   **`?`** - match exactly one character.
+
 -   **`*`** - match zero or more characters.
+
 -   **`+`** - match one or more characters.
--   **`[A-Z]`** - match any character in a range (such as in this case any uppercase Latin alphabetic character).
+
+-   **`[A-Z]`** - match any character in a range (in this case any uppercase Latin alphabetic character).
+
 -   **`[n|y]`** - match one character or another (such as `n` or `y` here).
 
 For example, to find the lines that end in `400`:
@@ -2148,7 +2155,7 @@ For example, if you only wanted to check files that contain "pdfinfo" that have 
     -i pdfinfo \{\} \; > pdfinfo.log
 ```
 
-This says to ignore files named "pdfinfo.log" (`! -name pdfinfo.log`) and otherwise look for files (`-type f`) containing "pdfinfo" (`-exec grep ...`) that haven't been checked since the last time "pdfinfo.log" was modified (`-newer pdfinfo.log`). In my tests the first run (which initially creates the "pdfinfo.log" file) ran in 30 seconds but subsequents runs took just a few seconds. This was because the number of files to be searched through all directories was big enough it paid to pre-filter the results before handing them to `grep`.
+This says to ignore files named `pdfinfo.log` (`! -name pdfinfo.log`) and otherwise look for files (`-type f`) containing "pdfinfo" (`-exec grep -H -i pdfinfo`) that haven't been checked since the last time `pdfinfo.log` was modified (`-newer pdfinfo.log`). In my tests the first run (which initially creates the `pdfinfo.log` file) ran in 30 seconds but subsequents runs took just a few seconds. This was because the number of files to be searched through all directories was big enough it paid to pre-filter the results with `find` before handing them to `grep`.
 
 Gawking at `awk`
 ----------------
@@ -2161,16 +2168,16 @@ I don't have much to say about [`awk`](http://linux.die.net/man/1/awk) other tha
 
 3.  It generally is broken out when the typical "UNIX" commands and shell features like pipes and redirection aren't enough.
 
-4.  Usually, if I start thinking of `awk`, I start thinking of a way to program the answer in another language, or reframe the question to get an answer not requiring `awk`.
+4.  Usually, if I start thinking of `awk`, I start thinking of a way to program the answer in another language such as Python, or reframe the question to get an answer not requiring `awk`.
 
-That said, it is a powerful knife in the tool belt, and you should be aware it exists.
+That said, it is a powerful knife in the tool belt, and you should be aware it exists. If you are searching the internet and find an answer using `awk` that you can ***quickly*** adapt to your needs, use it.
 
 To whet your taste, here is the type of "one-liner" for which `awk` is famous, in this case [formatting and printing a report on user ids](http://www.ibm.com/developerworks/library/l-awk1/) from `/etc/passwd`:
 
 ``` bash
 ~ $ awk -F":" '{ print "username: " $1 "\t\tuid:" $3 }' /etc/passwd
 username: root      uid:0
-username: daemon        uid:1
+username: daemon    uid:1
 username: bin       uid:2
 username: sys       uid:3
 username: sync      uid:4
