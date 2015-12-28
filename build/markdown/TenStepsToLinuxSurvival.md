@@ -3167,9 +3167,14 @@ All Part of the Process
 
 To see what *processes* you are running, use [`ps`](http://linux.die.net/man/1/ps):
 
- `bash # ps   PID TTY          TIME CMD 14691 pts/0    00:00:00 bash 25530 pts/0    00:00:00 ps`bash
+``` bash
+# ps
+  PID TTY          TIME CMD
+14691 pts/0    00:00:00 bash
+25530 pts/0    00:00:00 ps
+```
 
-To show processes from *all* users in a process *hierarchy* (child processes indented under parents), use `ps -AH`:
+To show processes from *all* users in a process *hierarchy* (child processes indented under parents) use `ps -AH`:
 
 ``` bash
 ~ $ ps -AH
@@ -3280,7 +3285,7 @@ One of the places this has become really handy is in the `/proc` "file system." 
 ...and so on...
 ```
 
-What is all that? Well if we look a little closer:
+What is all that? Well, look a little closer:
 
 ``` bash
 ~ $ ls -l /proc
@@ -3288,7 +3293,7 @@ total 0
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 10
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 100
-dr-xr-xr-x  9 lehmer     lehmer                   0 Dec 22 10:17 10035
+dr-xr-xr-x  9 myuser     mygroup                  0 Dec 22 10:17 10035
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1022
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1030
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1035
@@ -3309,7 +3314,7 @@ dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1468
 ...and so on...
 ```
 
-...we can see that the entries with numeric names are directories. Let's look in one of those directories:
+We can see that the entries with numeric names are directories. Let's look in one of those directories:
 
 ``` bash
 ~ # ls -l /proc/1
@@ -3386,7 +3391,7 @@ ogy nonstop_tsc ap
 Sawing Logs
 -----------
 
-Many Linux components and subsystems log to `/var/log`. Here is a pretty standard directory listing for it on a Mint system:
+Many Linux components and subsystems log to `/var/log`. Here is a pretty standard directory listing for it on a Linux Mint system:
 
 ``` bash
 ~ # ls /var/log
@@ -3417,7 +3422,7 @@ dmesg.1.gz             pm-powersave.log.2.gz  Xorg.20.log
 
 Some, like `samba` are their own subdirectories with log files under that. Others are log files that get "rotated" from the most current (no suffix) through ever older ones (increasing suffix number, e.g., `mail.log.2`).
 
-If you are pursuing a problem with a specific subsystem (like `samba`), it is good to start in its log files. The two log files of general interest are `dmesg`, which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. The other is `messages`, which holds more general "system" messages.
+If you are pursuing a problem with a specific subsystem (like `samba`), it is good to start in its log files. The two log files of general interest are `dmesg` , which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. The other is `messages`, which holds more general "system" messages.
 
 Let's look for kernel errors when booting:
 
@@ -3429,7 +3434,7 @@ Let's look for kernel errors when booting:
 It's All Temporary
 ------------------
 
-By convention, temporary files are written to `/tmp`. You can place your own temporary or "work" files there, too. It's a great place to unzip install bits, for example. Just note that the temporariness is enforced in that when the system reboots, `/tmp` is reset to empty.
+By convention, temporary files are written to `/tmp` . You can place your own temporary or "work" files there, too. It's a great place to unzip install bits, for example. Just note that the temporariness is enforced in that when the system reboots, `/tmp` is reset to empty.
 
 How Do You Know What You Don’t Know, `man`?
 ===========================================

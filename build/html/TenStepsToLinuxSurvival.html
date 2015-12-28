@@ -2295,8 +2295,12 @@ nameserver 10.0.2.2</code></pre>
 <p>This section will cover some &quot;background&quot; techniques that are valuable for system monitoring, problem determination and the like. Depending on your role and access levels, some of these commands may not be available to you, or may require <code>sudo</code> access.</p>
 <h2 id="all-part-of-the-process" class="unnumbered">All Part of the Process</h2>
 <p>To see what <em>processes</em> you are running, use <a href="http://linux.die.net/man/1/ps"><code>ps</code></a>:</p>
-<p> <code>bash # ps   PID TTY          TIME CMD 14691 pts/0    00:00:00 bash 25530 pts/0    00:00:00 ps</code>bash</p>
-<p>To show processes from <em>all</em> users in a process <em>hierarchy</em> (child processes indented under parents), use <code>ps -AH</code>:</p>
+<p></p>
+<pre class="bash"><code># ps
+  PID TTY          TIME CMD
+14691 pts/0    00:00:00 bash
+25530 pts/0    00:00:00 ps</code></pre>
+<p>To show processes from <em>all</em> users in a process <em>hierarchy</em> (child processes indented under parents) use <code>ps -AH</code>:</p>
 <p></p>
 <pre class="bash"><code>~ $ ps -AH
   PID TTY          TIME CMD
@@ -2360,7 +2364,7 @@ KiB Swap:  4191228 total,   287620 used,  3903608 free,   654900 cached
 <p><strong>Note:</strong> Use <code>Q</code> or <code>Ctrl-C</code> to exit <code>top</code>.</p>
 <h2 id="when-all-you-have-is-a-hammer" class="unnumbered">When All You Have is a Hammer</h2>
 <p>Remember that one of the primary UNIX philosophies is that everything is a file or can be made to look like a file, including network streams, device output and the like. This is a really powerful concept, because it allows you to access things with tools that have <strong><em>no idea</em></strong> what they are working on, as long as it &quot;looks like&quot; a file (or stream of text).</p>
-<p>One of the places this has become really handy is in the <code>/proc</code> &quot;file system.&quot; On modern Linux systems, there is typically a <code>/proc</code> directory that looks like directories and files:</p>
+<p>One of the places this has become really handy is in the <code>/proc</code>  &quot;file system.&quot; On modern Linux systems, there is typically a <code>/proc</code> directory that looks like directories and files:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls /proc
 1     1566  2607  299   4549  53    75         cmdline      mtrr
@@ -2386,14 +2390,14 @@ KiB Swap:  4191228 total,   287620 used,  3903608 free,   654900 cached
 147   2507  2848  3713  511   676   9850       kmsg         version_signature
 148   2518  2850  374   5122  686   99         kpagecount   vmallocinfo
 ...and so on...</code></pre>
-<p>What is all that? Well if we look a little closer:</p>
+<p>What is all that? Well, look a little closer:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls -l /proc
 total 0
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 10
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 100
-dr-xr-xr-x  9 lehmer     lehmer                   0 Dec 22 10:17 10035
+dr-xr-xr-x  9 myuser     mygroup                  0 Dec 22 10:17 10035
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1022
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1030
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1035
@@ -2412,7 +2416,7 @@ dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 14
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1408
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1468
 ...and so on...</code></pre>
-<p>...we can see that the entries with numeric names are directories. Let's look in one of those directories:</p>
+<p>We can see that the entries with numeric names are directories. Let's look in one of those directories:</p>
 <p></p>
 <pre class="bash"><code>~ # ls -l /proc/1
 total 0
@@ -2477,7 +2481,7 @@ pe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopol
 ogy nonstop_tsc ap
 ...and so on...</code></pre>
 <h2 id="sawing-logs" class="unnumbered">Sawing Logs</h2>
-<p>Many Linux components and subsystems log to <code>/var/log</code>. Here is a pretty standard directory listing for it on a Mint system:</p>
+<p>Many Linux components and subsystems log to <code>/var/log</code>.  Here is a pretty standard directory listing for it on a Linux Mint system:</p>
 <p></p>
 <pre class="bash"><code>~ # ls /var/log
 alternatives.log       dmesg.4.gz             pm-suspend.log.1
@@ -2504,13 +2508,13 @@ dmesg.0                pm-powersave.log.1     Xorg.0.log.old
 dmesg.1.gz             pm-powersave.log.2.gz  Xorg.20.log
 ...and so on...</code></pre>
 <p>Some, like <code>samba</code> are their own subdirectories with log files under that. Others are log files that get &quot;rotated&quot; from the most current (no suffix) through ever older ones (increasing suffix number, e.g., <code>mail.log.2</code>).</p>
-<p>If you are pursuing a problem with a specific subsystem (like <code>samba</code>), it is good to start in its log files. The two log files of general interest are <code>dmesg</code>, which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. The other is <code>messages</code>, which holds more general &quot;system&quot; messages.</p>
+<p>If you are pursuing a problem with a specific subsystem (like <code>samba</code>), it is good to start in its log files. The two log files of general interest are <code>dmesg</code> , which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. The other is <code>messages</code>, which holds more general &quot;system&quot; messages.</p>
 <p>Let's look for kernel errors when booting:</p>
 <p></p>
 <pre class="bash"><code>~ # cat /var/log/dmesg | grep -i error
 [   15.828463] EXT4-fs (dm-1): re-mounted. Opts: errors=remount-ro</code></pre>
 <h2 id="its-all-temporary" class="unnumbered">It's All Temporary</h2>
-<p>By convention, temporary files are written to <code>/tmp</code>. You can place your own temporary or &quot;work&quot; files there, too. It's a great place to unzip install bits, for example. Just note that the temporariness is enforced in that when the system reboots, <code>/tmp</code> is reset to empty.</p>
+<p>By convention, temporary files are written to <code>/tmp</code> . You can place your own temporary or &quot;work&quot; files there, too. It's a great place to unzip install bits, for example. Just note that the temporariness is enforced in that when the system reboots, <code>/tmp</code> is reset to empty.</p>
 <h1 id="how-do-you-know-what-you-dont-know-man"><span class="header-section-number">9</span> How Do You Know What You Don’t Know, <code>man</code>?</h1>
 <p><strong><em><code>man</code>, <code>info</code>, <code>apropos</code>, Linux Documentation Project, Debian and Arch guides, StackOverflow and the dangers of searching for “<code>man find</code>” or “<code>man touch</code>” on the internet.</em></strong></p>
 <blockquote>

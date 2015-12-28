@@ -1,33 +1,29 @@
 
 # The Man Behind the Curtain
 
-***`/proc`, `/dev`, `ps`, `/var/log`, `/tmp` and other things under the
-covers.***
+***`/proc`, `/dev`, `ps`, `/var/log`, `/tmp` and other things under the covers.***
 
-> *"As always, should any member of your team be caught or killed, the
-> Secretary will disavow all knowledge of your actions."* - voice on tape
-> (*Mission: Impossible*)
+> *"As always, should any member of your team be caught or killed, the Secretary will disavow all
+> knowledge of your actions."* - voice on tape (*Mission: Impossible*)
 
-This section will cover some "background" techniques that are valuable for
-system monitoring, problem determination and the like. Depending on your
-role and access levels, some of these commands may not be available to you,
-or may require `sudo` access.
+This section will cover some "background" techniques that are valuable for system monitoring,
+problem determination and the like. Depending on your role and access levels, some of these
+commands may not be available to you, or may require `sudo` access.
 
 ## All Part of the Process{.unnumbered}
 
-To see what *processes* you are running, use
-[`ps`](http://linux.die.net/man/1/ps)\drcmd{ps}:
+To see what *processes* you are running, use [`ps`](http://linux.die.net/man/1/ps)\drcmd{ps}:
 
-\drcap{ps command}
+\drcap{\texttt{ps} command}
 ```bash
 # ps
   PID TTY          TIME CMD
 14691 pts/0    00:00:00 bash
 25530 pts/0    00:00:00 ps
-```bash
+```
 
-To show processes from *all* users in a process *hierarchy* (child
-processes indented under parents), use `ps -AH`:
+To show processes from *all* users in a process *hierarchy* (child processes indented under parents)
+use `ps -AH`:
 
 \drcap{Showing all processes}
 ```bash
@@ -57,12 +53,11 @@ processes indented under parents), use `ps -AH`:
 ...and so on...
 ```
 
-You can *kill* a process using the
-[`kill`](http://linux.die.net/man/1/kill)\drcmd{kill} command, which takes a process id
-and optionally a "signal"\index{signals}. Here is an example looking for any running
-instance of `vi` and sending it a `kill` command:
+You can *kill* a process using the [`kill`](http://linux.die.net/man/1/kill)\drcmd{kill} command,
+which takes a process id and optionally a "signal"\index{signals}. Here is an example looking for
+any running instance of `vi` and sending it a `kill` command:
 
-\drcap{Hunting down and killing vi sessions}
+\drcap{Hunting down and killing \texttt{vi} sessions}
 ```bash
 ps -A | grep vi | kill `cut -f2 -d" "`
 ```
@@ -73,25 +68,23 @@ That's:
 
 * **`|`** - pipe `stdout`\index{stdout} from `ps` to next command.
 
-* **`grep vi`** - find all instances of `vi` (be careful, because that
-would include `view` and anything else containing the string `vi`, too).
+* **`grep vi`** - find all instances of `vi` (be careful, because that would include `view` and
+anything else containing the string `vi`, too).
 
 * **`|`** - pipe `stdout` from `grep`\drcmd{grep} to next command.
 
 * **`kill`** - send a `SIGINT` signal\index{signals} to a process specified by:
 
-* **`` `cut -f2 -d" "` ``** - execute the
-[`cut`](http://linux.die.net/man/1/cut)\drcmd{cut} command and take the second
-space-delimited field (in this case the process id - the first "field" is
-just leading spaces), and place the results of the command execution as
-the parameter to the `kill` command.
+* **`` `cut -f2 -d" "` ``** - execute the [`cut`](http://linux.die.net/man/1/cut)\drcmd{cut}
+command and take the second space-delimited field (in this case the process id - the first "field"
+is just leading spaces), and place the results of the command execution as the parameter to the
+`kill` command.
 
-To monitor the ongoing CPU, memory and other resource utilization of the
-*top* processes, you use the [`top`](http://linux.die.net/man/1/top)\drcmd{top}
-command, which unlike most in this book updates dynamically every second
-by default:
+To monitor the ongoing CPU, memory and other resource utilization of the *top* processes, you use
+the [`top`](http://linux.die.net/man/1/top)\drcmd{top} command, which unlike most in this book
+updates dynamically every second by default:
 
-\drcap{top command}
+\drcap{\texttt{top} command}
 ```bash
 top - 14:11:26 up 106 days,  5:24,  2 users,  load average: 0.11, 0.05, ...
 Tasks:  95 total,   1 running,  94 sleeping,   0 stopped,   0 zombie
@@ -120,17 +113,16 @@ KiB Swap:  4191228 total,   287620 used,  3903608 free,   654900 cached
 
 ## When All You Have is a Hammer{.unnumbered}
 
-Remember that one of the primary UNIX philosophies is that everything is a
-file or can be made to look like a file, including network streams, device
-output and the like. This is a really powerful concept, because it allows
-you to access things with tools that have ***no idea*** what they are
+Remember that one of the primary UNIX philosophies is that everything is a file or can be made to
+look like a file, including network streams, device output and the like. This is a really powerful
+concept, because it allows you to access things with tools that have ***no idea*** what they are
 working on, as long as it "looks like" a file (or stream of text).
 
-One of the places this has become really handy is in the `/proc`\index{proc file system} "file
-system." On modern Linux systems, there is typically a `/proc` directory
-that looks like directories and files:
+One of the places this has become really handy is in the `/proc`
+\index{Files and Directories!Special!\texttt{/proc/}} "file system." On modern Linux systems, there
+is typically a `/proc` directory that looks like directories and files:
 
-\drcap{proc file system}
+\drcap{\texttt{/proc} file system}
 ```bash
 ~ $ ls /proc
 1     1566  2607  299   4549  53    75         cmdline      mtrr
@@ -158,16 +150,16 @@ that looks like directories and files:
 ...and so on...
 ```
 
-What is all that? Well if we look a little closer:
+What is all that? Well, look a little closer:
 
-\drcap{Detailed listing of the proc file system}
+\drcap{Detailed listing of the \texttt{/proc} file system}
 ```bash
 ~ $ ls -l /proc
 total 0
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 10
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 100
-dr-xr-xr-x  9 lehmer     lehmer                   0 Dec 22 10:17 10035
+dr-xr-xr-x  9 myuser     mygroup                  0 Dec 22 10:17 10035
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1022
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1030
 dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1035
@@ -188,10 +180,10 @@ dr-xr-xr-x  9 root       root                     0 Dec 22 06:06 1468
 ...and so on...
 ```
 
-...we can see that the entries with numeric names are directories. Let's
-look in one of those directories:
+We can see that the entries with numeric names are directories. Let's look in one of those
+directories:
 
-\drcap{Looking inside one of the proc process directories}
+\drcap{Looking inside one of the \texttt{/proc} process directories}
 ```bash
 ~ # ls -l /proc/1
 total 0
@@ -219,9 +211,9 @@ dr-x------ 2 root root 0 Dec 22 10:18 map_files
 ...and so on...
 ```
 
-This contains a lot of information on the process with process id (PID) #1.
-If the directory listing shows the entry as a file, it can be examined and
-holds ***current*** statistics for whatever the file name implies:
+This contains a lot of information on the process with process id (PID) #1. If the directory
+listing shows the entry as a file, it can be examined and holds ***current*** statistics for
+whatever the file name implies:
 
 \drcap{How much I/O has process 1 done?}
 ```bash
@@ -235,12 +227,11 @@ write_bytes: 113012736
 cancelled_write_bytes: 3072000
 ```
 
-If it is a directory it will hold other entries (files or directories) with yet more
-statistics.
+If it is a directory it will hold other entries (files or directories) with yet more statistics.
 
 In addition, there are system-wide statistics, such as `/proc/cpuinfo`:
 
-\drcap{Looking at CPU info in /proc/cpuinfo}
+\drcap{Looking at CPU info in \texttt{/proc/cpuinfo}}
 ```bash
 ~ # cat /proc/cpuinfo 
 processor	: 0
@@ -271,8 +262,9 @@ ogy nonstop_tsc ap
 
 ## Sawing Logs{.unnumbered}
 
-Many Linux components and subsystems log to `/var/log`. Here is a pretty
-standard directory listing for it on a Mint system:
+Many Linux components and subsystems log to `/var/log`.
+\index{Files and Directories!Special!\texttt{/var/log/}} Here is a pretty standard directory
+listing for it on a Linux Mint system:
 
 \drcap{Looking at logs}
 ```bash
@@ -302,15 +294,16 @@ dmesg.1.gz             pm-powersave.log.2.gz  Xorg.20.log
 ...and so on...
 ```
 
-Some, like `samba` are their own subdirectories with log files under that.
-Others are log files that get "rotated" from the most current (no suffix)
-through ever older ones (increasing suffix number, e.g., `mail.log.2`).
+Some, like `samba` are their own subdirectories with log files under that. Others are log files
+that get "rotated" from the most current (no suffix) through ever older ones (increasing suffix
+number, e.g., `mail.log.2`).
 
-If you are pursuing a problem with a specific subsystem (like `samba`), it
-is good to start in its log files. The two log files of general interest are
-`dmesg`\index{dmesg}, which holds kernel-level debug messages and usually is useful for
-debugging things like device driver issues. The other is `messages`\index{messages}, which
-holds more general "system" messages.
+If you are pursuing a problem with a specific subsystem (like `samba`), it is good to start in its
+log files. The two log files of general interest are `dmesg`\index{dmesg}
+\index{Files and Directories!Special!\texttt{/var/log/dmesg}}, which holds kernel-level debug
+messages and usually is useful for debugging things like device driver issues. The other is
+`messages`\index{Files and Directories!Special!\texttt{/var/log/messages}}, which holds more
+general "system" messages.
 
 Let's look for kernel errors when booting: 
 
@@ -322,7 +315,7 @@ Let's look for kernel errors when booting:
 
 ## It's All Temporary{.unnumbered}
 
-By convention, temporary files are written to `/tmp`\index{tmp}. You can place your
-own temporary or "work" files there, too. It's a great place to unzip
-install bits, for example. Just note that the temporariness is enforced in
-that when the system reboots, `/tmp` is reset to empty.
+By convention, temporary files are written to `/tmp`
+\index{Files and Directories!Special!\texttt{/tmp/}}. You can place your own temporary or "work"
+files there, too. It's a great place to unzip install bits, for example. Just note that the
+temporariness is enforced in that when the system reboots, `/tmp` is reset to empty.

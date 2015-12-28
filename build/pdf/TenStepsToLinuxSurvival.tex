@@ -5663,11 +5663,19 @@ to you, or may require \texttt{sudo} access.
 To see what \emph{processes} you are running, use
 \href{http://linux.die.net/man/1/ps}{\texttt{ps}}\drcmd{ps}:
 
-\drcap{ps command}
-\texttt{bash\ \#\ ps\ \ \ PID\ TTY\ \ \ \ \ \ \ \ \ \ TIME\ CMD\ 14691\ pts/0\ \ \ \ 00:00:00\ bash\ 25530\ pts/0\ \ \ \ 00:00:00\ ps}bash
+\drcap{\texttt{ps} command}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# ps}
+  \KeywordTok{PID} \NormalTok{TTY          TIME CMD}
+\KeywordTok{14691} \NormalTok{pts/0    00:00:00 bash}
+\KeywordTok{25530} \NormalTok{pts/0    00:00:00 ps}
+\end{Highlighting}
+\end{Shaded}
 
 To show processes from \emph{all} users in a process \emph{hierarchy}
-(child processes indented under parents), use \texttt{ps\ -AH}:
+(child processes indented under parents) use \texttt{ps\ -AH}:
 
 \drcap{Showing all processes}
 
@@ -5706,7 +5714,7 @@ command, which takes a process id and optionally a
 "signal"\index{signals}. Here is an example looking for any running
 instance of \texttt{vi} and sending it a \texttt{kill} command:
 
-\drcap{Hunting down and killing vi sessions}
+\drcap{Hunting down and killing \texttt{vi} sessions}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5746,7 +5754,7 @@ To monitor the ongoing CPU, memory and other resource utilization of the
 which unlike most in this book updates dynamically every second by
 default:
 
-\drcap{top command}
+\drcap{\texttt{top} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5787,12 +5795,12 @@ it allows you to access things with tools that have \textbf{\emph{no
 idea}} what they are working on, as long as it "looks like" a file (or
 stream of text).
 
-One of the places this has become really handy is in the
-\texttt{/proc}\index{proc file system} "file system." On modern Linux
-systems, there is typically a \texttt{/proc} directory that looks like
-directories and files:
+One of the places this has become really handy is in the \texttt{/proc}
+\index{Files and Directories!Special!\texttt{/proc/}} "file system." On
+modern Linux systems, there is typically a \texttt{/proc} directory that
+looks like directories and files:
 
-\drcap{proc file system}
+\drcap{\texttt{/proc} file system}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5823,9 +5831,9 @@ directories and files:
 \end{Highlighting}
 \end{Shaded}
 
-What is all that? Well if we look a little closer:
+What is all that? Well, look a little closer:
 
-\drcap{Detailed listing of the proc file system}
+\drcap{Detailed listing of the \texttt{/proc} file system}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5834,7 +5842,7 @@ What is all that? Well if we look a little closer:
 \KeywordTok{dr-xr-xr-x}  \NormalTok{9 root       root                     0 Dec 22 06:06 1}
 \KeywordTok{dr-xr-xr-x}  \NormalTok{9 root       root                     0 Dec 22 06:06 10}
 \KeywordTok{dr-xr-xr-x}  \NormalTok{9 root       root                     0 Dec 22 06:06 100}
-\KeywordTok{dr-xr-xr-x}  \NormalTok{9 lehmer     lehmer                   0 Dec 22 10:17 10035}
+\KeywordTok{dr-xr-xr-x}  \NormalTok{9 myuser     mygroup                  0 Dec 22 10:17 10035}
 \KeywordTok{dr-xr-xr-x}  \NormalTok{9 root       root                     0 Dec 22 06:06 1022}
 \KeywordTok{dr-xr-xr-x}  \NormalTok{9 root       root                     0 Dec 22 06:06 1030}
 \KeywordTok{dr-xr-xr-x}  \NormalTok{9 root       root                     0 Dec 22 06:06 1035}
@@ -5856,10 +5864,10 @@ What is all that? Well if we look a little closer:
 \end{Highlighting}
 \end{Shaded}
 
-...we can see that the entries with numeric names are directories. Let's
+We can see that the entries with numeric names are directories. Let's
 look in one of those directories:
 
-\drcap{Looking inside one of the proc process directories}
+\drcap{Looking inside one of the \texttt{/proc} process directories}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5916,7 +5924,7 @@ with yet more statistics.
 In addition, there are system-wide statistics, such as
 \texttt{/proc/cpuinfo}:
 
-\drcap{Looking at CPU info in /proc/cpuinfo}
+\drcap{Looking at CPU info in \texttt{/proc/cpuinfo}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5951,8 +5959,9 @@ In addition, there are system-wide statistics, such as
 \section*{Sawing Logs}\label{sawing-logs}
 \addcontentsline{toc}{section}{Sawing Logs}
 
-Many Linux components and subsystems log to \texttt{/var/log}. Here is a
-pretty standard directory listing for it on a Mint system:
+Many Linux components and subsystems log to \texttt{/var/log}.
+\index{Files and Directories!Special!\texttt{/var/log/}} Here is a
+pretty standard directory listing for it on a Linux Mint system:
 
 \drcap{Looking at logs}
 
@@ -5992,11 +6001,12 @@ e.g., \texttt{mail.log.2}).
 
 If you are pursuing a problem with a specific subsystem (like
 \texttt{samba}), it is good to start in its log files. The two log files
-of general interest are \texttt{dmesg}\index{dmesg}, which holds
-kernel-level debug messages and usually is useful for debugging things
-like device driver issues. The other is
-\texttt{messages}\index{messages}, which holds more general "system"
-messages.
+of general interest are \texttt{dmesg}\index{dmesg}
+\index{Files and Directories!Special!\texttt{/var/log/dmesg}}, which
+holds kernel-level debug messages and usually is useful for debugging
+things like device driver issues. The other is
+\texttt{messages}\index{Files and Directories!Special!\texttt{/var/log/messages}},
+which holds more general "system" messages.
 
 Let's look for kernel errors when booting:
 
@@ -6012,11 +6022,11 @@ Let's look for kernel errors when booting:
 \section*{It's All Temporary}\label{its-all-temporary}
 \addcontentsline{toc}{section}{It's All Temporary}
 
-By convention, temporary files are written to \texttt{/tmp}\index{tmp}.
-You can place your own temporary or "work" files there, too. It's a
-great place to unzip install bits, for example. Just note that the
-temporariness is enforced in that when the system reboots, \texttt{/tmp}
-is reset to empty.
+By convention, temporary files are written to \texttt{/tmp}
+\index{Files and Directories!Special!\texttt{/tmp/}}. You can place your
+own temporary or "work" files there, too. It's a great place to unzip
+install bits, for example. Just note that the temporariness is enforced
+in that when the system reboots, \texttt{/tmp} is reset to empty.
 
 \hypertarget{how-do-you-know-what-you-dont-know-man}{\chapter{\texorpdfstring{How
 Do You Know What You Don’t Know,
