@@ -7172,8 +7172,10 @@ outlined in the book to find more information on them.
 
 \begin{itemize}
 \item
-  \href{http://linux.die.net/abs-guide/exit-status.html}{\textbf{\texttt{\$?}}}\drenv{Question mark}
-  - the exit code for the last command or program executed.
+  \href{http://linux.die.net/abs-guide/exit-status.html}{\textbf{\texttt{\$?}}}
+  \index{Environment variables!\?@\texttt{?}}
+  \index{0@Symbols!\texttt{?} (exit status environment variable)} - the
+  exit code for the last command or program executed.
 \item
   \href{http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html}{\textbf{\texttt{\$PATH}}}\drenv{PATH}
   - the execution search path.
@@ -7182,46 +7184,52 @@ outlined in the book to find more information on them.
 \subsection*{Conditional Execution}\label{conditional-execution}
 \addcontentsline{toc}{subsection}{Conditional Execution}
 
-See \href{http://linux.die.net/abs-guide/ops.html}{"logical operators."}
+See \href{http://linux.die.net/abs-guide/ops.html}{"logical operators"}.
 
 \begin{itemize}
 \item
-  \textbf{\texttt{\&\&}}\index{And operator} - execute the second
-  command only if the first command succeeds.
+  \textbf{\texttt{\&\&}}\index{0@Symbols!\texttt{\&}\texttt{\&} (logical "and" operator)}
+  - execute the second command only if the first command succeeds.
 \item
-  \textbf{\texttt{\textbar{}\textbar{}}}\index{Or operator} - execute
-  the secon command even if the first command fails.
+  \textbf{\texttt{\textbar{}\textbar{}}}\index{0@Symbols!\texttt{"|"|} (logical "or" operator)}
+  - execute the second command even if the first command fails.
 \end{itemize}
 
 \subsection*{Redirection}\label{redirection}
 \addcontentsline{toc}{subsection}{Redirection}
 
 See \href{http://linux.die.net/abs-guide/io-redirection.html}{"I/O
-Redirection."}
+Redirection"}.
 
 \begin{itemize}
 \item
-  \textbf{\texttt{stderr}}\index{stderr} - file descriptor 2, always
-  open for writing from a process, defaults to the screen on a terminal
-  session.
+  \textbf{\texttt{stderr}}\index{I/O!Streams!stdin@\textit{stderr}} -
+  file descriptor 2, always open for writing from a process, defaults to
+  the screen on a terminal session.
 \item
-  \textbf{\texttt{stdin}}\index{stdin} - file descriptor 0, always open
-  for reading in a process, defaults to the keyboard input on a terminal
-  session.
+  \textbf{\texttt{stdin}}\index{I/O!Streams!stdin@\textit{stdin}} - file
+  descriptor 0, always open for reading in a process, defaults to the
+  keyboard input on a terminal session.
 \item
-  \textbf{\texttt{stdout}}\index{stdout} - file descriptor 1, always
-  open for writing from a process, defaults to the screen on a terminal
-  session.
+  \textbf{\texttt{stdout}}\index{I/O!Streams!stdin@\textit{stdout}} -
+  file descriptor 1, always open for writing from a process, defaults to
+  the screen on a terminal session.
 \item
-  \textbf{\texttt{\textless{}}} - redirect a file to \texttt{stdin}.
+  \textbf{\texttt{\textless{}}}\index{0@Symbols!\texttt{<} (input redirection)}
+  \index{I/O!Redirection!Input (\texttt{<})} - redirect a file to
+  \texttt{stdin}.
 \item
-  \textbf{\texttt{\textgreater{}}} - redirect \texttt{stdout} to a file.
+  \textbf{\texttt{\textgreater{}}}\index{0@Symbols!\texttt{>} (output redirection)}
+  \index{I/O!Redirection!Output (\texttt{>})} - redirect \texttt{stdout}
+  to a file.
 \item
-  \textbf{\texttt{2\textgreater{}}} - redirect \texttt{stderr} to a
-  file.
+  \textbf{\texttt{2\textgreater{}}}\index{0@Symbols!\texttt{2>} (\textit{stderr} redirection)}
+  \index{I/O!Redirection!Error (\texttt{2>})} - redirect \texttt{stderr}
+  to a file.
 \item
-  \textbf{\texttt{\textbar{}}} - pipe \texttt{stdout} from one process
-  into \texttt{stdin} in another process.
+  \textbf{\texttt{\textbar{}}}\index{0@Symbols!\texttt{"|} (pipe)}\index{I/O!Redirection!pipe (\texttt{"|})}
+  - pipe \texttt{stdout} from one process into \texttt{stdin} in another
+  process.
 \end{itemize}
 
 \subsection*{Special Files and
@@ -7230,35 +7238,40 @@ Directories}\label{special-files-and-directories}
 
 \begin{itemize}
 \item
-  \href{http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html}{\textbf{\texttt{\textasciitilde{}}}}\index{home}
-  - shortcut for current user's home directory.
+  \href{http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html}{\textbf{\texttt{\textasciitilde{}}}}
+  \index{Files and Directories!Home (\texttt{\~{}})} - shortcut for
+  current user's home directory.
 \item
-  \textbf{\texttt{.bash\_history}}\index{.bash\_history} - history of
-  commands entered at the command prompt (also a nice example of a
-  hidden "dotfile").
+  \textbf{\texttt{.bash\_history}}\index{Files and Directories!Special!\texttt{.bash\_history}}
+  - history of commands entered at the command prompt (also a nice
+  example of a hidden "dotfile").
 \end{itemize}
 
 \subsection*{System Directories}\label{system-directories}
 \addcontentsline{toc}{subsection}{System Directories}
 
 See \href{http://linux.die.net/abs-guide/systemdirs.html}{Important
-System Directories.}
+System Directories}.
 
 \begin{itemize}
 \item
-  \textbf{\texttt{/etc}}\index{etc} - configuration files location.
+  \textbf{\texttt{/etc}}\index{Files and Directories!Special!\texttt{/etc/}}
+  - configuration files location.
 \item
-  \textbf{\texttt{/home}}\index{home} - "home" or user profile
-  directories.
+  \textbf{\texttt{/home}}\index{Files and Directories!Home (\texttt{/home/})}
+  - "home" or user profile directories.
 \item
-  \textbf{\texttt{/proc}}\index{proc} - system run-time information.
+  \textbf{\texttt{/proc}}\index{Files and Directories!Special!\texttt{/proc/}}
+  - system run-time information.
 \item
-  \textbf{\texttt{/root}}\index{root} - "home" directory for "root" user
-  (system admin).
+  \textbf{\texttt{/root}}\index{Files and Directories!Root "home" (\texttt{/root/})}
+  - "home" directory for "root" user (system admin).
 \item
-  \textbf{\texttt{/tmp}}\index{tmp} - temporary files location.
+  \textbf{\texttt{/tmp}}\index{Files and Directories!Special!\texttt{/tmp/}}
+  - temporary files location.
 \item
-  \textbf{\texttt{/var/log}}\index{log} - log files location.
+  \textbf{\texttt{/var/log}}\index{Files and Directories!Special!\texttt{/var/log/}}
+  - log files location.
 \end{itemize}
 
 \subsection*{Commands}\label{commands}
@@ -7391,7 +7404,7 @@ access files and the like.
   - sort \texttt{stdin} or a file to \texttt{stdout}.
 \item
   \href{http://linux.die.net/man/1/ssh}{\textbf{\texttt{ssh}}}\drcmd{ssh}
-  - secure shell termina progam and protocol.
+  - secure shell terminal progam and protocol.
 \item
   \href{http://linux.die.net/man/1/tail}{\textbf{\texttt{tail}}}\drcmd{tail}
   - display the last lines of a file.
@@ -7536,10 +7549,11 @@ inverting the match logic (\texttt{-v}) on \texttt{{]}}.
 \subsection*{Chain Gangs}\label{chain-gangs}
 \addcontentsline{toc}{subsection}{Chain Gangs}
 
-Remembering that \texttt{\&\&}\index{And operator} only executes the
-next command if the prior one is successful, we can do things like set
-up a sample directory and (empty) files for playing around with files
-and directories in one fell swoop:
+Remembering that
+\texttt{\&\&}\index{0@Symbols!\texttt{\&}\texttt{\&} (logical "and" operator)}
+only executes the next command if the prior one is successful, we can do
+things like set up a sample directory and (empty) files for playing
+around with files and directories in one fell swoop:
 
 \drcap{Make a bunch of files and directories at once}
 

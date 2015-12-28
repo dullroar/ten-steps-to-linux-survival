@@ -4113,21 +4113,21 @@ This list outlines all the commands, files and other UNIX items of interest brou
 
 ### Environment Variables
 
--   [**`$?`**](http://linux.die.net/abs-guide/exit-status.html) - the exit code for the last command or program executed.
+-   [**`$?`**](http://linux.die.net/abs-guide/exit-status.html)  - the exit code for the last command or program executed.
 
 -   [**`$PATH`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html) - the execution search path.
 
 ### Conditional Execution
 
-See ["logical operators."](http://linux.die.net/abs-guide/ops.html)
+See ["logical operators"](http://linux.die.net/abs-guide/ops.html).
 
 -   **`&&`** - execute the second command only if the first command succeeds.
 
--   **`||`** - execute the secon command even if the first command fails.
+-   **`||`** - execute the second command even if the first command fails.
 
 ### Redirection
 
-See ["I/O Redirection."](http://linux.die.net/abs-guide/io-redirection.html)
+See ["I/O Redirection"](http://linux.die.net/abs-guide/io-redirection.html).
 
 -   **`stderr`** - file descriptor 2, always open for writing from a process, defaults to the screen on a terminal session.
 
@@ -4135,23 +4135,23 @@ See ["I/O Redirection."](http://linux.die.net/abs-guide/io-redirection.html)
 
 -   **`stdout`** - file descriptor 1, always open for writing from a process, defaults to the screen on a terminal session.
 
--   **`<`** - redirect a file to `stdin`.
+-   **`<`**  - redirect a file to `stdin`.
 
--   **`>`** - redirect `stdout` to a file.
+-   **`>`**  - redirect `stdout` to a file.
 
--   **`2>`** - redirect `stderr` to a file.
+-   **`2>`**  - redirect `stderr` to a file.
 
 -   **`|`** - pipe `stdout` from one process into `stdin` in another process.
 
 ### Special Files and Directories
 
--   [**`~`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html) - shortcut for current user's home directory.
+-   [**`~`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html)  - shortcut for current user's home directory.
 
 -   **`.bash_history`** - history of commands entered at the command prompt (also a nice example of a hidden "dotfile").
 
 ### System Directories
 
-See [Important System Directories.](http://linux.die.net/abs-guide/systemdirs.html)
+See [Important System Directories](http://linux.die.net/abs-guide/systemdirs.html).
 
 -   **`/etc`** - configuration files location.
 
@@ -4247,7 +4247,7 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`sort`**](http://linux.die.net/man/1/sort) - sort `stdin` or a file to `stdout`.
 
--   [**`ssh`**](http://linux.die.net/man/1/ssh) - secure shell termina progam and protocol.
+-   [**`ssh`**](http://linux.die.net/man/1/ssh) - secure shell terminal progam and protocol.
 
 -   [**`tail`**](http://linux.die.net/man/1/tail) - display the last lines of a file.
 
