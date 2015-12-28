@@ -2372,13 +2372,13 @@ This would write the results of finding all files names `error.log` to the conso
 
 > *"You're too young to know."* - Vi (*Grease*)
 
-[`vi`](http://linux.die.net/man/1/vi) stands for *visual editor* (as well as the Roman numeral for 6, which is why it is this chapter), and once you use it you will understand what editing fro the command line must've been like for `vi` to seem both "visual" and a step forward.
+[`vi`](http://linux.die.net/man/1/vi) stands for *visual editor* (as well as the Roman numeral for 6, which is why it is this chapter), and once you use it you will understand what editing from the command line must've been like for `vi` to seem both "visual" and a step forward.
 
 Many Linux clones don't use `vi` proper, but a port called [`vim`](http://www.vim.org/) ("**vi** i**m**proved"), that is then accessed via the alias `vi`. The differences tend to be minor, with `vim` being more customizable.
 
 `vi` and a similar editor, [`emacs`](http://linux.die.net/man/1/emacs), both tend to trip up users from GUI operating systems such as Windows or OS X that have editors like Notepad that are always ready for user input.
 
-Instead, `vi` typically starts in "command mode," where keystrokes execute various navigation and editing commands. To actually insert text requires a keystroke such as `i` while in command mode, which then causes `vi` to go into "insert mode." Insert mode is what most Windows users expect from an editor, i.e., when you type the line changes. The `ESC` key exits insert mode.
+Instead, `vi` typically starts in "command mode," where keystrokes execute various navigation and editing commands. To actually insert text requires a keystroke such as `i` while in command mode, which then causes `vi` to go into "insert mode." Insert mode is what most Windows users expect from an editor, i.e., when you type the line changes. The `ESC` Exit insert mode} key exits insert mode.
 
 It is as hard to get used to as it sounds, and you ***will*** execute text you were meaning to insert as commands, and commands that you were meaning to execute you ***will*** insert as text, and sooner or later you ***will*** enter `vi` commands into Notepad. I guarantee it. That will be the day you know you've become truly tainted.
 
@@ -2434,7 +2434,7 @@ Undo Me
 
 If you want to just cancel out of the file without writing any changes to disk, use `:q!` (the `!` means to force the quit without saving).
 
-If you want to protect yourself from inadvertent changes to a file you can always open it using [`view`](http://linux.die.net/man/1/view), the alias for `vi` invoked in read-only mode.
+If you want to protect yourself from inadvertent changes to a file you can always open it using `view`\](http://linux.die.net/man/1/view), the alias for `vi` invoked in read-only mode.
 
 Circumnavigating `vi`
 ---------------------
@@ -2457,7 +2457,7 @@ When in command mode, there are multiple ways to jump around in the file besides
 
 -   **`0`**  - jumps to the beginning of the current line.
 
--   **`$`** - jumps to the end of the current line.
+-   **`$`** -jumps to the end of the current line.
 
 -   **`w`** - jumps forward a whitespace-delimited "word" on the current line (and of course `3w` would jump forward three "words").
 
@@ -2467,9 +2467,9 @@ When in command mode, there are multiple ways to jump around in the file besides
 
 -   **`:0`** - jumps to start of the file (note the preceding `:`).
 
--   **`/foo`** - find "foo" going forward toward the end of the file.
+-   **`/foo`**  - find "foo" going forward toward the end of the file.
 
--   **`?foo`** - find "foo" going backward toward the front of the file.
+-   **`?foo`**  - find "foo" going backward toward the front of the file.
 
 -   **`n`**  - find the next instance of the search text specified by the last `/` or `?`.
 
@@ -2508,7 +2508,7 @@ Then executing `dd` leaves:
 |This is a word and so is this.
 ```
 
-We know "This is a new line." went into the buffer. We can paste it back above the current line with `P`, which would result in:
+We know "This is a new line." went into the buffer. We can paste it back above the current line with `P`(uppercase `P` = "upper" or "above"), which would result in:
 
 ``` bash
 |This is a new line.
@@ -2526,7 +2526,7 @@ Here are some more examples:
 Change Machine
 --------------
 
-The hardest thing to get down in `vi` is the *substitute* (change) command, `:s`. Its syntax is esoteric, but once you've memorized it, it becomes intuitive.
+The hardest thing to get down in `vi` is the *substitute* (change or replace) command, `:s`. Its syntax is esoteric, but once you've memorized it, it becomes intuitive.
 
 The most common scenario is the "change all" command. Given the following file:
 
@@ -2560,7 +2560,7 @@ It only changed the "that" at the end of the third line, and the middle "that" o
 
 2.  The substitute command only makes one change per line unless you tell it to change *globally*.
 
-So let's hit `u` to reset (undo) the file, and try again with this:
+So let's hit `u` to reset (undo) the change, and try again with this:
 
 ``` bash
 :0,$s/this/that/i
@@ -2594,7 +2594,7 @@ that and that and that
 
 That's what we wanted! Well, sort of. If we wanted to keep the capitalization we'd have more work to do. See below.
 
-In general, if you are looking for a Windows Notepad-like, case insensitive "change all," the magic string to remember is:
+In general, if you are looking for a case insensitive "change all" like in Windows Notepad, the magic string to remember is:
 
 ``` bash
 :0,$s/from/to/gi
@@ -2614,7 +2614,7 @@ Picking that apart, we have:
 
 -   **`/gi`** - optional switches, `g` means "global" (change all instances on a line, not just the first one), `i` means (case) "insensitive."
 
-Regular expressions you say! Now we have two problems! But consider where we left off:
+Regular expressions you say! "Now we have two problems." But consider where we left off:
 
 ``` bash
 that is a new line
@@ -2701,12 +2701,12 @@ Maybe we want to change the "This" on the first three lines to "That," but not t
 
 Try doing that in Notepad!
 
-**Note:** We could have done that with line ranges, too (`:0,2s/This/That/`), but figuring out the beginning and ending line is a pain in large files.
+**Note:** We could have done that with line ranges, too (`:0,2s/This/That/`), but figuring out the beginning and ending lines in a large range is a pain. It is much easier to just mark them and go.
 
 Executing External Commands
 ---------------------------
 
-Sometimes in `vi` it would be great to run the contents of the file through an external command (`sort` is a favorite) without saving and exiting the file, sorting it, and then re-editing it. We can do that with `!`, which works a lot like the "substitute" (change) command.
+Sometimes in `vi` it would be great to run the contents of the file through an external command (`sort` is a favorite) without saving and exiting the file, sorting it, and then re-editing it. We can do that with `!` , which works a lot like the "substitute" (change) command.
 
 To sort the whole file in place:
 
@@ -2720,7 +2720,7 @@ To sort a marked range:
 :'m,'n!sort
 ```
 
-Another handy command to check out for this kind of thing, especially for code or written text, is the [`fmt`](http://linux.die.net/man/1/fmt) command.
+Another handy command to check out for this kind of thing, especially for formatting written text, is the [`fmt`](http://linux.die.net/man/1/fmt) command.
 
 The Unseen World
 ----------------
@@ -2733,13 +2733,13 @@ On "UNIX," the line feed control character (`0x0a`, or `\n`) is all that marks t
 
 This difference manifests in two ways:
 
-1.  If you've ever opened a file on Windows in Notepad and all the lines "flow" even though they're supposed to be individual lines, that means it is probably using "UNIX" end-of-lines (`\n`) only. Use a line feed aware editor such as Notepad++ instead.
+1.  If you've ever opened a file on Windows in Notepad and all the lines "flow" even though they're supposed to be individual lines, that means it is probably using "UNIX" end-of-lines (`\n`) only. Use a line feed aware editor such as [Notepad++](https://notepad-plus-plus.org/) instead.
 
 2.  If you open a file in `vi` and it has a `^M` at the end of every line and/or at the bottom you see something like:
 
         "Agenda.md" [dos format] 16 lines, 1692 characters
 
-    Either of those mean the file lines each end with "CRLF" (`\r\n`). To change it in `vi` you can use the following command (`ff` means "file format":
+    Either of those mean the file lines each end with "CRLF" (`\r\n`). To change it in `vi` you can override the `ff` (file format) setting:
 
         :set ff=unix
 
@@ -2752,7 +2752,7 @@ Since regular expressions have syntax for expressing control codes in either sho
 Let's Get Small
 ---------------
 
-So, `vi` is the best we can do? No. On many Linux systems an alternative terminal-based editor will be installed, often several. There may be [`emacs`](http://linux.die.net/man/1/emacs), which ***will*** make you yearn for the simplicity of `vi`.
+So, `vi` is the best we can do? No. On many Linux systems an alternative terminal-based editor will be installed, often several. There may be [`emacs`](http://linux.die.net/man/1/emacs) , which ***will*** make you yearn for the simplicity of `vi`.
 
 Here are two jokes that are only funny once you've used `emacs`:
 
@@ -2762,7 +2762,7 @@ Here are two jokes that are only funny once you've used `emacs`:
 
 If those are funny to you, then you have already been infected by `emacs`. The prognosis is grim.
 
-But there may also others, notably [`pico`](http://linux.die.net/man/1/pico) and its successor, [`nano`](http://linux.die.net/man/1/nano). You can see the difference the second you see a file open in `nano` - in this case, the generated Github-flavored Markdown of this document:
+But there may also others, notably [`pico`](http://linux.die.net/man/1/pico) and its successor, [`nano`](http://linux.die.net/man/1/nano) . You can see the difference the second you see a file open in `nano` - in this case, the generated Github-flavored Markdown of this document:
 
 ``` bash
     GNU nano 2.2.6        File: TenStepsToLinuxSurvival.md                        
@@ -2797,7 +2797,7 @@ Two things to note about the above:
 
 2.  Those lines at the bottom are commands that can be invoked by shortcuts. For example, `^O` means `Ctrl-O` and stands for "WriteOut" or "Save." That's probably easier to remember than `:w` in `vi`, especially since it is reminding you of it right there on the screen!
 
-So why not always use `nano`? Why does this book harp on and on `vi`? Why do I insist on keeping all this arcane `vi` nonsense loaded in my head (and I do!)? Because often, like in the nightmare scenario I posed in the *Introduction*, you may not have control over the system, no ability to install packages - you have to take what the system has. And it's a pretty sure bet it is going to have `vi`. So if you have `nano` (or `pico`), use it! But if you don't, grit your teeth, remember "insert mode" vs. "command mode", and use `vi`.
+So why not always use `nano`? Why does this book harp on and on `vi`? Why do I insist on keeping all this arcane `vi` nonsense loaded in my head (and I do!)? Because often, like in the nightmare scenario I posed in the *Introduction*, you may not have control over the system, no ability to install packages - you have to take what the system has. And it's a pretty sure bet it is going to have `vi`. So if you have `nano` (or `pico`), use it! You can find out simply by typing in `nano <filename>` on what you want to edit and see if it works. But if `nano` or `pico` aren't installed, grit your teeth, remember "insert mode" vs. "command mode", and use `vi`.
 
 And if you have the opportunity to use `emacs`...don't.
 

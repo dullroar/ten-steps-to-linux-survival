@@ -1754,10 +1754,10 @@ cat: ./d: Is a directory</code></pre>
 <blockquote>
 <p><em>&quot;You're too young to know.&quot;</em> - Vi (<em>Grease</em>)</p>
 </blockquote>
-<p><a href="http://linux.die.net/man/1/vi"><code>vi</code></a> stands for <em>visual editor</em> (as well as the Roman numeral for 6, which is why it is this chapter), and once you use it you will understand what editing fro the command line must've been like for <code>vi</code> to seem both &quot;visual&quot; and a step forward.</p>
+<p><a href="http://linux.die.net/man/1/vi"><code>vi</code></a>  stands for <em>visual editor</em> (as well as the Roman numeral for 6, which is why it is this chapter), and once you use it you will understand what editing from the command line must've been like for <code>vi</code> to seem both &quot;visual&quot; and a step forward.</p>
 <p>Many Linux clones don't use <code>vi</code> proper, but a port called <a href="http://www.vim.org/"><code>vim</code></a> (&quot;<strong>vi</strong> i<strong>m</strong>proved&quot;), that is then accessed via the alias <code>vi</code>. The differences tend to be minor, with <code>vim</code> being more customizable.</p>
-<p><code>vi</code> and a similar editor, <a href="http://linux.die.net/man/1/emacs"><code>emacs</code></a>, both tend to trip up users from GUI operating systems such as Windows or OS X that have editors like Notepad that are always ready for user input.</p>
-<p>Instead, <code>vi</code> typically starts in &quot;command mode,&quot; where keystrokes execute various navigation and editing commands. To actually insert text requires a keystroke such as <code>i</code> while in command mode, which then causes <code>vi</code> to go into &quot;insert mode.&quot; Insert mode is what most Windows users expect from an editor, i.e., when you type the line changes. The <code>ESC</code> key exits insert mode.</p>
+<p><code>vi</code> and a similar editor, <a href="http://linux.die.net/man/1/emacs"><code>emacs</code></a>,  both tend to trip up users from GUI operating systems such as Windows or OS X that have editors like Notepad that are always ready for user input.</p>
+<p>Instead, <code>vi</code> typically starts in &quot;command mode,&quot; where keystrokes execute various navigation and editing commands. To actually insert text requires a keystroke such as <code>i</code> while in command mode, which then causes <code>vi</code> to go into &quot;insert mode.&quot; Insert mode is what most Windows users expect from an editor, i.e., when you type the line changes. The <code>ESC</code> Exit insert mode} key exits insert mode.</p>
 <p>It is as hard to get used to as it sounds, and you <strong><em>will</em></strong> execute text you were meaning to insert as commands, and commands that you were meaning to execute you <strong><em>will</em></strong> insert as text, and sooner or later you <strong><em>will</em></strong> enter <code>vi</code> commands into Notepad. I guarantee it. That will be the day you know you've become truly tainted.</p>
 <p>We will not even begin to scratch the surface of <code>vi</code>, when there are many books and web sites just on wielding it to its full potential. In the hands of someone who has mastered it, <code>vi</code> can do some really remarkable feats of editing way beyond the capability of most modern GUI programming environments.</p>
 <h2 id="command-me" class="unnumbered">Command Me</h2>
@@ -1784,7 +1784,7 @@ cat: ./d: Is a directory</code></pre>
 <h2 id="undo-me" class="unnumbered">Undo Me</h2>
 <p><code>u</code> is the &quot;undo&quot; command. It &quot;undoes&quot; or reverts the last change. You can undo the last <em>n</em> changes just as you'd expect, e.g., <code>3u</code> undoes the last three changes.</p>
 <p>If you want to just cancel out of the file without writing any changes to disk, use <code>:q!</code> (the <code>!</code> means to force the quit without saving).</p>
-<p>If you want to protect yourself from inadvertent changes to a file you can always open it using <a href="http://linux.die.net/man/1/view"><code>view</code></a>, the alias for <code>vi</code> invoked in read-only mode.</p>
+<p>If you want to protect yourself from inadvertent changes to a file you can always open it using <code>view</code>](http://linux.die.net/man/1/view), the alias for <code>vi</code> invoked in read-only mode.</p>
 <h2 id="circumnavigating-vi"><span class="header-section-number">6.1</span> Circumnavigating <code class="unnumbered">vi</code></h2>
 <p>In modern implementations of <code>vi</code> (like <code>vim</code>) running under modern shells the arrow and page keys will work as you expect, <strong><em>in general</em></strong>. However, you may want to be aware that when in insert mode, while the left and right arrows may work for navigation, often the up and down arrows can introduce &quot;garbage&quot; characters into the file (since you are in insert mode). This is because the keymappings for those keys aren't being interpreted correctly. I usually just swear, exit insert mode, hit <code>u</code> and try again.</p>
 <p>As an example, under Cygwin I went into <code>vi</code>, went into insert mode after the first line, typed in &quot;This is a new line&quot; and then hit the up arrow five times, yielding this:</p>
@@ -1799,13 +1799,13 @@ This is a new line</code></pre>
 <p>When in command mode, there are multiple ways to jump around in the file besides using the arrow and page keys:</p>
 <ul>
 <li><p><strong><code>0</code></strong>  - jumps to the beginning of the current line.</p></li>
-<li><p><strong><code>$</code></strong> - jumps to the end of the current line.</p></li>
+<li><p><strong><code>$</code></strong>  -jumps to the end of the current line.</p></li>
 <li><p><strong><code>w</code></strong> - jumps forward a whitespace-delimited &quot;word&quot; on the current line (and of course <code>3w</code> would jump forward three &quot;words&quot;).</p></li>
 <li><p><strong><code>b</code></strong> - jumps back a whitespace-delimited &quot;word&quot; on the current line.</p></li>
 <li><p><strong><code>G</code></strong> - jumps to end of the file.</p></li>
 <li><p><strong><code>:0</code></strong> - jumps to start of the file (note the preceding <code>:</code>).</p></li>
-<li><p><strong><code>/foo</code></strong> - find &quot;foo&quot; going forward toward the end of the file.</p></li>
-<li><p><strong><code>?foo</code></strong> - find &quot;foo&quot; going backward toward the front of the file.</p></li>
+<li><p><strong><code>/foo</code></strong>  - find &quot;foo&quot; going forward toward the end of the file.</p></li>
+<li><p><strong><code>?foo</code></strong>  - find &quot;foo&quot; going backward toward the front of the file.</p></li>
 <li><p><strong><code>n</code></strong>  - find the next instance of the search text specified by the last <code>/</code> or <code>?</code>.</p></li>
 </ul>
 <h2 id="insert-tab-a-into-slot-b" class="unnumbered">Insert Tab A Into Slot B</h2>
@@ -1827,7 +1827,7 @@ This is a new line.|</code></pre>
 <p>Then executing <code>dd</code> leaves:</p>
 <p></p>
 <pre class="bash"><code>|This is a word and so is this.</code></pre>
-<p>We know &quot;This is a new line.&quot; went into the buffer. We can paste it back above the current line with <code>P</code>, which would result in:</p>
+<p>We know &quot;This is a new line.&quot; went into the buffer. We can paste it back above the current line with <code>P</code>(uppercase <code>P</code> = &quot;upper&quot; or &quot;above&quot;), which would result in:</p>
 <p></p>
 <pre class="bash"><code>|This is a new line.
 This is a word and so is this.</code></pre>
@@ -1838,7 +1838,7 @@ This is a word and so is this.</code></pre>
 <li><p><strong><code>5yw</code></strong> - &quot;yank&quot; (copy) five words starting at the current cursor position into the buffer.</p></li>
 </ul>
 <h2 id="change-machine" class="unnumbered">Change Machine</h2>
-<p>The hardest thing to get down in <code>vi</code> is the <em>substitute</em> (change) command, <code>:s</code>. Its syntax is esoteric, but once you've memorized it, it becomes intuitive.</p>
+<p>The hardest thing to get down in <code>vi</code> is the <em>substitute</em> (change or replace) command, <code>:s</code>. Its syntax is esoteric, but once you've memorized it, it becomes intuitive.</p>
 <p>The most common scenario is the &quot;change all&quot; command. Given the following file:</p>
 <p></p>
 <pre class="bash"><code>This is a new line
@@ -1861,7 +1861,7 @@ This and that and this</code></pre>
 <li><p>The substitute command is case sensitive, just like everything else in Linux, unless you tell it to be <em>insensitive</em>.</p></li>
 <li><p>The substitute command only makes one change per line unless you tell it to change <em>globally</em>.</p></li>
 </ol>
-<p>So let's hit <code>u</code> to reset (undo) the file, and try again with this:</p>
+<p>So let's hit <code>u</code> to reset (undo) the change, and try again with this:</p>
 <p></p>
 <pre class="bash"><code>:0,$s/this/that/i</code></pre>
 <p>Results in:</p>
@@ -1882,7 +1882,7 @@ and so is that
 that and thus
 that and that and that</code></pre>
 <p>That's what we wanted! Well, sort of. If we wanted to keep the capitalization we'd have more work to do. See below.</p>
-<p>In general, if you are looking for a Windows Notepad-like, case insensitive &quot;change all,&quot; the magic string to remember is:</p>
+<p>In general, if you are looking for a case insensitive &quot;change all&quot; like in Windows Notepad, the magic string to remember is:</p>
 <p></p>
 <pre class="bash"><code>:0,$s/from/to/gi</code></pre>
 <p>Picking that apart, we have:</p>
@@ -1894,7 +1894,7 @@ that and that and that</code></pre>
 <li><p><strong><code>/to</code></strong> - &quot;to&quot; (results).</p></li>
 <li><p><strong><code>/gi</code></strong> - optional switches, <code>g</code> means &quot;global&quot; (change all instances on a line, not just the first one), <code>i</code> means (case) &quot;insensitive.&quot;</p></li>
 </ul>
-<p>Regular expressions you say! Now we have two problems! But consider where we left off:</p>
+<p>Regular expressions you say! &quot;Now we have two problems.&quot; But consider where we left off:</p>
 <p></p>
 <pre class="bash"><code>that is a new line
 that is a word
@@ -1948,33 +1948,33 @@ This is last</code></pre>
 </ol>
 <pre class="bash"><code>:&#39;m,&#39;ns/This/That/</code></pre>
 <p>Try doing that in Notepad!</p>
-<p><strong>Note:</strong> We could have done that with line ranges, too (<code>:0,2s/This/That/</code>), but figuring out the beginning and ending line is a pain in large files.</p>
+<p><strong>Note:</strong> We could have done that with line ranges, too (<code>:0,2s/This/That/</code>), but figuring out the beginning and ending lines in a large range is a pain. It is much easier to just mark them and go.</p>
 <h2 id="executing-external-commands" class="unnumbered">Executing External Commands</h2>
-<p>Sometimes in <code>vi</code> it would be great to run the contents of the file through an external command (<code>sort</code> is a favorite) without saving and exiting the file, sorting it, and then re-editing it. We can do that with <code>!</code>, which works a lot like the &quot;substitute&quot; (change) command.</p>
+<p>Sometimes in <code>vi</code> it would be great to run the contents of the file through an external command (<code>sort</code> is a favorite) without saving and exiting the file, sorting it, and then re-editing it. We can do that with <code>!</code> , which works a lot like the &quot;substitute&quot; (change) command.</p>
 <p>To sort the whole file in place:</p>
 <p></p>
 <pre class="bash"><code>:0,$!sort</code></pre>
 <p>To sort a marked range:</p>
 <p></p>
 <pre class="bash"><code>:&#39;m,&#39;n!sort</code></pre>
-<p>Another handy command to check out for this kind of thing, especially for code or written text, is the <a href="http://linux.die.net/man/1/fmt"><code>fmt</code></a> command.</p>
+<p>Another handy command to check out for this kind of thing, especially for formatting written text, is the <a href="http://linux.die.net/man/1/fmt"><code>fmt</code></a> command.</p>
 <h2 id="the-unseen-world" class="unnumbered">The Unseen World</h2>
 <p>Any technical person knows that all the binary permutations of possible values for a byte aren't mapped to visible characters. Some are <a href="https://en.wikipedia.org/wiki/Control_character">&quot;control characters&quot;</a> that range back to the teletype days. For example, a tab character is hexadecimal 9 (<code>0x09</code>), but is often represented as <code>\t</code> in many programming languages, regular expressions and the like.</p>
 <p>Similarly, the &quot;end of line&quot; is marked by a control character. Or in the case of Windows, <strong><em>two</em></strong> control characters. And this causes no end of problems when editing files that can be opened on both &quot;UNIX&quot; systems and Windows.</p>
 <p>On &quot;UNIX,&quot; the line feed control character (<code>0x0a</code>, or <code>\n</code>) is all that marks the end of a line. For historical reasons (CP/M), Windows ends each line with two control characters, carriage return (<code>0x0d</code>, or <code>\r</code>) and line feed. The two together are often referred to as &quot;CRLF.&quot;</p>
 <p>This difference manifests in two ways:</p>
 <ol type="1">
-<li><p>If you've ever opened a file on Windows in Notepad and all the lines &quot;flow&quot; even though they're supposed to be individual lines, that means it is probably using &quot;UNIX&quot; end-of-lines (<code>\n</code>) only. Use a line feed aware editor such as Notepad++ instead.</p></li>
+<li><p>If you've ever opened a file on Windows in Notepad and all the lines &quot;flow&quot; even though they're supposed to be individual lines, that means it is probably using &quot;UNIX&quot; end-of-lines (<code>\n</code>) only. Use a line feed aware editor such as <a href="https://notepad-plus-plus.org/">Notepad++</a> instead.</p></li>
 <li><p>If you open a file in <code>vi</code> and it has a <code>^M</code> at the end of every line and/or at the bottom you see something like:</p>
 <pre><code>&quot;Agenda.md&quot; [dos format] 16 lines, 1692 characters</code></pre>
-<p>Either of those mean the file lines each end with &quot;CRLF&quot; (<code>\r\n</code>). To change it in <code>vi</code> you can use the following command (<code>ff</code> means &quot;file format&quot;:</p>
+<p>Either of those mean the file lines each end with &quot;CRLF&quot; (<code>\r\n</code>). To change it in <code>vi</code> you can override the <code>ff</code> (file format) setting:</p>
 <pre><code>:set ff=unix</code></pre></li>
 </ol>
 <p>Since regular expressions have syntax for expressing control codes in either shorthand (<code>\t</code>) or as hexadecimal, you can alter control codes in <code>vi</code> easily. For example, to change all tab characters to four spaces:</p>
 <p></p>
 <pre class="bash"><code>:1,$s/\t/    /g</code></pre>
 <h2 id="lets-get-small" class="unnumbered">Let's Get Small</h2>
-<p>So, <code>vi</code> is the best we can do? No. On many Linux systems an alternative terminal-based editor will be installed, often several. There may be <a href="http://linux.die.net/man/1/emacs"><code>emacs</code></a>, which <strong><em>will</em></strong> make you yearn for the simplicity of <code>vi</code>.</p>
+<p>So, <code>vi</code> is the best we can do? No. On many Linux systems an alternative terminal-based editor will be installed, often several. There may be <a href="http://linux.die.net/man/1/emacs"><code>emacs</code></a> , which <strong><em>will</em></strong> make you yearn for the simplicity of <code>vi</code>.</p>
 <p>Here are two jokes that are only funny once you've used <code>emacs</code>:</p>
 <blockquote>
 <p><em>&quot;'emacs' stands for 'escape', 'meta', 'alt', 'control', 'shift'.&quot;</em></p>
@@ -1983,7 +1983,7 @@ This is last</code></pre>
 <p><em>&quot;'emacs' is a good operating system, but it could use an editor.&quot;</em></p>
 </blockquote>
 <p>If those are funny to you, then you have already been infected by <code>emacs</code>. The prognosis is grim.</p>
-<p>But there may also others, notably <a href="http://linux.die.net/man/1/pico"><code>pico</code></a> and its successor, <a href="http://linux.die.net/man/1/nano"><code>nano</code></a>. You can see the difference the second you see a file open in <code>nano</code> - in this case, the generated Github-flavored Markdown of this document:</p>
+<p>But there may also others, notably <a href="http://linux.die.net/man/1/pico"><code>pico</code></a> and its successor, <a href="http://linux.die.net/man/1/nano"><code>nano</code></a> . You can see the difference the second you see a file open in <code>nano</code> - in this case, the generated Github-flavored Markdown of this document:</p>
 <p></p>
 <pre class="bash"><code>    GNU nano 2.2.6        File: TenStepsToLinuxSurvival.md                        
 
@@ -2014,7 +2014,7 @@ This is my little &quot;Linux and Bash in 10 steps&quot; guide. It&#39;s based a
 <li><p>The cursor (represented above by <code>|</code>) is already in &quot;insert mode&quot; like you would expect in a &quot;normal&quot; editor such as Notepad.</p></li>
 <li><p>Those lines at the bottom are commands that can be invoked by shortcuts. For example, <code>^O</code> means <code>Ctrl-O</code> and stands for &quot;WriteOut&quot; or &quot;Save.&quot; That's probably easier to remember than <code>:w</code> in <code>vi</code>, especially since it is reminding you of it right there on the screen!</p></li>
 </ol>
-<p>So why not always use <code>nano</code>? Why does this book harp on and on <code>vi</code>? Why do I insist on keeping all this arcane <code>vi</code> nonsense loaded in my head (and I do!)? Because often, like in the nightmare scenario I posed in the <em>Introduction</em>, you may not have control over the system, no ability to install packages - you have to take what the system has. And it's a pretty sure bet it is going to have <code>vi</code>. So if you have <code>nano</code> (or <code>pico</code>), use it! But if you don't, grit your teeth, remember &quot;insert mode&quot; vs. &quot;command mode&quot;, and use <code>vi</code>.</p>
+<p>So why not always use <code>nano</code>? Why does this book harp on and on <code>vi</code>? Why do I insist on keeping all this arcane <code>vi</code> nonsense loaded in my head (and I do!)? Because often, like in the nightmare scenario I posed in the <em>Introduction</em>, you may not have control over the system, no ability to install packages - you have to take what the system has. And it's a pretty sure bet it is going to have <code>vi</code>. So if you have <code>nano</code> (or <code>pico</code>), use it! You can find out simply by typing in <code>nano &lt;filename&gt;</code> on what you want to edit and see if it works. But if <code>nano</code> or <code>pico</code> aren't installed, grit your teeth, remember &quot;insert mode&quot; vs. &quot;command mode&quot;, and use <code>vi</code>.</p>
 <p>And if you have the opportunity to use <code>emacs</code>...don't.</p>
 <h1 id="the-whole-wide-world"><span class="header-section-number">7</span> The Whole Wide World</h1>
 <p><strong><em><code>curl</code>, <code>wget</code>, <code>ifconfig</code>, <code>ping</code>, <code>ssh</code>, <code>telnet</code>, <code>/etc/hosts</code> and email before Outlook.</em></strong></p>

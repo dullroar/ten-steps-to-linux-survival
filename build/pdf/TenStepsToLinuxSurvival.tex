@@ -148,7 +148,7 @@
 \DeclareRobustCommand{\drenv}[1]{\index{Environment variables!#1@\texttt{#1}}}
 \DeclareRobustCommand{\drios}[1]{\index{OS and OS-Like Substances!#1}}
 \DeclareRobustCommand{\drshl}[1]{\index{Shells!#1@\texttt{#1}}}
-\DeclareRobustCommand{\drvic}[2]{\index{vi Commands!#1 (#2)}}
+\DeclareRobustCommand{\drvic}[2]{\index{vi Commands@\texttt{vi} Commands!#1@\texttt{#1} (#2)}}
 \renewcommand{\KeywordTok}[1]{{#1}}
 \renewcommand{\DataTypeTok}[1]{{#1}}
 \renewcommand{\DecValTok}[1]{{#1}}
@@ -4316,23 +4316,24 @@ why \texttt{vi} still matters.}}
 \emph{"You're too young to know."} - Vi (\emph{Grease})
 \end{quote}
 
-\href{http://linux.die.net/man/1/vi}{\texttt{vi}}\drcmd{vi} stands for
+\href{http://linux.die.net/man/1/vi}{\texttt{vi}}\drcmd{vi}
+\index{Commands!vi@\texttt{vi}|seealso{\texttt{vi} Commands}} stands for
 \emph{visual editor} (as well as the Roman numeral for 6, which is why
 it is this chapter), and once you use it you will understand what
-editing fro the command line must've been like for \texttt{vi} to seem
+editing from the command line must've been like for \texttt{vi} to seem
 both "visual" and a step forward.
 
 Many Linux clones don't use \texttt{vi} proper, but a port called
 \href{http://www.vim.org/}{\texttt{vim}} ("\textbf{vi}
-i\textbf{m}proved"), that is then accessed via the alias \texttt{vi}.
-The differences tend to be minor, with \texttt{vim}\drcmd{vim} being
-more customizable.
+i\textbf{m}proved"),\index{Editors!vim@\texttt{vim}} that is then
+accessed via the alias \texttt{vi}. The differences tend to be minor,
+with \texttt{vim}\drcmd{vim} being more customizable.
 
 \texttt{vi} and a similar editor,
 \href{http://linux.die.net/man/1/emacs}{\texttt{emacs}}\drcmd{emacs},
-both tend to trip up users from GUI operating systems such as Windows or
-OS X that have editors like Notepad that are always ready for user
-input.
+\index{Editors!emacs@\texttt{emacs}} both tend to trip up users from GUI
+operating systems such as Windows or OS X that have editors like Notepad
+that are always ready for user input.
 
 Instead, \texttt{vi} typically starts in "command mode," where
 keystrokes execute various navigation and editing commands. To actually
@@ -4340,7 +4341,7 @@ insert text requires a keystroke such as
 \texttt{i}\drvic{i}{Insert mode} while in command mode, which then
 causes \texttt{vi} to go into "insert mode." Insert mode is what most
 Windows users expect from an editor, i.e., when you type the line
-changes. The \texttt{ESC}\drvic{ESC}{Exit insert mode} key exits insert
+changes. The \texttt{ESC}\drvic{ESC} Exit insert mode\} key exits insert
 mode.
 
 It is as hard to get used to as it sounds, and you \textbf{\emph{will}}
@@ -4368,14 +4369,15 @@ changes to disk and the like.
 What are commands? Well, for example \texttt{d}\drvic{d}{Delete} means
 "delete." We'll talk about how to specify \textbf{\emph{what}} to delete
 next. \texttt{i}\drvic{i}{Insert mode} tells \texttt{vi} to enter
-"insert mode" at the point where the cursor is. \texttt{0} (zero)
-navigates to the start of the current line, and so on.
+"insert mode" at the point where the cursor is.
+\texttt{0}\drvic{0}{Jump to beginning of line} (zero) navigates to the
+start of the current line, and so on.
 
 Commands can have \textbf{\emph{modifiers}} preceding and following
 them. Consider the "delete" command, \texttt{d}. If we follow with
-\texttt{w} as in \texttt{dw} while in command mode, it will delete a
-whitespace-delimited "word" starting at where the cursor is through
-(including) the next whitespace character.
+\texttt{w} as in \texttt{dw}\drvic{dw}{Delete word} while in command
+mode, it will delete a whitespace-delimited "word" starting at where the
+cursor is through (including) the next whitespace character.
 
 If the \texttt{\textbar{}} in the following represents the cursor:
 
@@ -4415,15 +4417,16 @@ Again, in all these examples the \texttt{\textbar{}} represents the
 cursor.
 
 There is a little bit of nuance in using command modifiers. Consider the
-\texttt{r} (\emph{replace}) command. It is typically used to change the
+\texttt{r}\drvic{r}{Replace
+character} (\emph{replace}) command. It is typically used to change the
 single \textbf{\emph{character}} under the cursor. You may be tempted to
 think you can do something like \texttt{rw} for "replace word," but it
 is actually going to simply replace the current character with a
 \texttt{w}, whereas the real command for doing that is
-\texttt{cw}\drvic{c}{Change} ("change word"). In addition, you can use
-repeaters as above, just be sure you understand
-\texttt{r}\drvic{r}{Replace} means "replace a single character," so
-\texttt{3rx} executed on:
+\texttt{cw}\drvic{c}{Change}\drvic{cw}{Change word} ("change word"). In
+addition, you can use repeaters as above, just be sure you understand
+\texttt{r}\drvic{r}{Replace character} means "replace a single
+character," so \texttt{3rx} executed on:
 
 \drcap{Replace three characters with "x"}
 
@@ -4443,10 +4446,11 @@ repeaters as above, just be sure you understand
 \end{Highlighting}
 \end{Shaded}
 
-To quit without saving enter
-\texttt{:q}\drvic{colon-q}{Quit without saving}. To write any file
-changes to disk use \texttt{:w}\drvic{colon-w}{Write to disk}. To save
-\textbf{\emph{and}} quit, type \texttt{:wq}.
+To quit without saving enter \texttt{:q}\drvic{:q}{Quit without saving}.
+To write any file changes to disk use
+\texttt{:w}\drvic{:w}{Write to disk}. To save \textbf{\emph{and}} quit,
+type \texttt{:wq}\drvic{:wq}{Write to disk and
+quit}.
 
 \section*{Undo Me}\label{undo-me}
 \addcontentsline{toc}{section}{Undo Me}
@@ -4456,13 +4460,13 @@ the last change. You can undo the last \emph{n} changes just as you'd
 expect, e.g., \texttt{3u} undoes the last three changes.
 
 If you want to just cancel out of the file without writing any changes
-to disk, use \texttt{:q!} (the \texttt{!} means to force the quit
-without saving).
+to disk, use \texttt{:q!}\drvic{:q"!}{Quit without saving (force)} (the
+\texttt{!} means to force the quit without saving).
 
 If you want to protect yourself from inadvertent changes to a file you
 can always open it using
-\href{http://linux.die.net/man/1/view}{\texttt{view}}\drcmd{view}, the
-alias for \texttt{vi} invoked in read-only mode.
+\texttt{view}{]}(http://linux.die.net/man/1/view)\drcmd{view}\index{Editors!view@\texttt{view}},
+the alias for \texttt{vi} invoked in read-only mode.
 
 \section{\texorpdfstring{Circumnavigating
 \texttt{vi}}{Circumnavigating vi}}\label{circumnavigating-vi}
@@ -4474,7 +4478,7 @@ in insert mode, while the left and right arrows may work for navigation,
 often the up and down arrows can introduce "garbage" characters into the
 file (since you are in insert mode). This is because the keymappings for
 those keys aren't being interpreted correctly. I usually just swear,
-exit insert mode, hit \texttt{u} and try again.
+exit insert mode, hit \texttt{u}\drvic{u}{Undo} and try again.
 
 As an example, under Cygwin I went into \texttt{vi}, went into insert
 mode after the first line, typed in "This is a new line" and then hit
@@ -4502,7 +4506,8 @@ besides using the arrow and page keys:
   \textbf{\texttt{0}} \drvic{0}{Jump to beginning of line} - jumps to
   the beginning of the current line.
 \item
-  \textbf{\texttt{\$}}\drvic{dollar sign}{Jump to end of line} - jumps
+  \textbf{\texttt{\$}}\drvic{\$}{Jump to end of line}
+  \index{0@Symbols!\texttt{\$} (\texttt{vi} jump to end of line)} -jumps
   to the end of the current line.
 \item
   \textbf{\texttt{w}}\drvic{w}{Jump forward a word} - jumps forward a
@@ -4515,14 +4520,16 @@ besides using the arrow and page keys:
   \textbf{\texttt{G}}\drvic{G}{Jump to end of file} - jumps to end of
   the file.
 \item
-  \textbf{\texttt{:0}}\drvic{colon-0}{Jump to beginning of file} - jumps
-  to start of the file (note the preceding \texttt{:}).
+  \textbf{\texttt{:0}}\drvic{:0}{Jump to beginning of file} - jumps to
+  start of the file (note the preceding \texttt{:}).
 \item
-  \textbf{\texttt{/foo}}\drvic{forward slash}{Find forward} - find "foo"
+  \textbf{\texttt{/foo}}\index{vi Commands@\texttt  {vi} Commands!\/@\texttt{/} (Find forward)}
+  \index{0@Symbols!\texttt{/} (\texttt{vi} find forward)} - find "foo"
   going forward toward the end of the file.
 \item
-  \textbf{\texttt{?foo}}\drvic{question mark}{Find backward} - find
-  "foo" going backward toward the front of the file.
+  \textbf{\texttt{?foo}}\index{vi Commands@\texttt  {vi} Commands!\?@\texttt{?} (Find backward)}
+  \index{0@Symbols!\texttt{?} (\texttt{vi} find backward)} - find "foo"
+  going backward toward the front of the file.
 \item
   \textbf{\texttt{n}} \drvic{n}{Find next} - find the next instance of
   the search text specified by the last \texttt{/} or \texttt{?}.
@@ -4564,8 +4571,9 @@ Note that "cutting" and "deleting" are synonymous, since deleting puts
 the deleted text in the buffer.
 
 Another thing to understand is that a command "doubled" or repeated
-typically means "the whole line." So \texttt{dd} means "delete the whole
-line the cursor is currently on."
+typically means "the whole line." So
+\texttt{dd}\drvic{dd}{Delete entire line} means "delete the whole line
+the cursor is currently on."
 
 So if deleting is synonymous with cutting, and the cursor is on the
 second line:
@@ -4591,7 +4599,8 @@ Then executing \texttt{dd} leaves:
 
 We know "This is a new line." went into the buffer. We can paste it back
 above the current line with
-\texttt{P}\drvic{P}{Paste above current line}, which would result in:
+\texttt{P}\drvic{P}{Paste above current line}(uppercase \texttt{P} =
+"upper" or "above"), which would result in:
 
 \drcap{After pasting the line above the current line}
 
@@ -4619,8 +4628,8 @@ Here are some more examples:
 \addcontentsline{toc}{section}{Change Machine}
 
 The hardest thing to get down in \texttt{vi} is the \emph{substitute}
-(change) command, \texttt{:s}\drvic{colon-s}{Change}. Its syntax is
-esoteric, but once you've memorized it, it becomes intuitive.
+(change or replace) command, \texttt{:s}\drvic{:s}{Change}. Its syntax
+is esoteric, but once you've memorized it, it becomes intuitive.
 
 The most common scenario is the "change all" command. Given the
 following file:
@@ -4639,7 +4648,7 @@ following file:
 
 Let's change all "this" to "that" by using:
 
-\drcap{Changing this to that}
+\drcap{Changing "this" to "that"}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4675,10 +4684,10 @@ It only changed the "that" at the end of the third line, and the middle
   it to change \emph{globally}.
 \end{enumerate}
 
-So let's hit \texttt{u}\drvic{u}{Undo} to reset (undo) the file, and try
-again with this:
+So let's hit \texttt{u}\drvic{u}{Undo} to reset (undo) the change, and
+try again with this:
 
-\drcap{Changing this to that, redux}
+\drcap{Changing "this" to "that", redux}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4706,7 +4715,7 @@ the \texttt{s} (substitute) command helped with that. But we still
 didn't get all the "this" words changed, as the last line shows. Hit
 \texttt{u} and try one more time with this:
 
-\drcap{Changing this to that, one more time!}
+\drcap{Changing "this" to "that", one more time!}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4731,10 +4740,10 @@ Results in:
 That's what we wanted! Well, sort of. If we wanted to keep the
 capitalization we'd have more work to do. See below.
 
-In general, if you are looking for a Windows Notepad-like, case
-insensitive "change all," the magic string to remember is:
+In general, if you are looking for a case insensitive "change all" like
+in Windows Notepad, the magic string to remember is:
 
-\drcap{Memorize this - no, really}
+\drcap{Memorize this - No, really}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4765,8 +4774,8 @@ Picking that apart, we have:
   means (case) "insensitive."
 \end{itemize}
 
-Regular expressions you say! Now we have two problems! But consider
-where we left off:
+Regular expressions\index{Regular expressions} you say! "Now we have two
+problems." But consider where we left off:
 
 \drcap{But what about capitalization?}
 
@@ -4897,10 +4906,10 @@ error prone. Instead, we can "mark" a range.
   \texttt{mn}).
 \item
   Now you can use the
-  \texttt{\textquotesingle{}}\drvic{single quote}{Reference a mark}
-  character followed by a label to denote the beginning and end of the
-  range in all kinds of \texttt{vi} commands. In our case we want to
-  change "This" on the first three lines, so:
+  \texttt{\textquotesingle{}}\drvic{'}{Reference a mark} character
+  followed by a label to denote the beginning and end of the range in
+  all kinds of \texttt{vi} commands. In our case we want to change
+  "This" on the first three lines, so:
 \end{enumerate}
 
 \begin{Shaded}
@@ -4913,7 +4922,8 @@ Try doing that in Notepad!
 
 \textbf{Note:} We could have done that with line ranges, too
 (\texttt{:0,2s/This/That/}), but figuring out the beginning and ending
-line is a pain in large files.
+lines in a large range is a pain. It is much easier to just mark them
+and go.
 
 \section*{Executing External
 Commands}\label{executing-external-commands}
@@ -4923,8 +4933,9 @@ Sometimes in \texttt{vi} it would be great to run the contents of the
 file through an external command (\texttt{sort}\drcmd{sort} is a
 favorite) without saving and exiting the file, sorting it, and then
 re-editing it. We can do that with
-\texttt{!}\drvic{exclamation point}{Invoke external command}, which
-works a lot like the "substitute" (change) command.
+\texttt{!}\drvic{"!}{Invoke external command}
+\index{0@Symbols!\texttt{"!} (\texttt{vi} invoke external command)},
+which works a lot like the "substitute" (change) command.
 
 To sort the whole file in place:
 
@@ -4947,7 +4958,7 @@ To sort a marked range:
 \end{Shaded}
 
 Another handy command to check out for this kind of thing, especially
-for code or written text, is the
+for formatting written text, is the
 \href{http://linux.die.net/man/1/fmt}{\texttt{fmt}}\drcmd{fmt} command.
 
 \section*{The Unseen World}\label{the-unseen-world}
@@ -4981,7 +4992,8 @@ This difference manifests in two ways:
   If you've ever opened a file on Windows in Notepad and all the lines
   "flow" even though they're supposed to be individual lines, that means
   it is probably using "UNIX" end-of-lines (\texttt{\textbackslash{}n})
-  only. Use a line feed aware editor such as Notepad++ instead.
+  only. Use a line feed aware editor such as
+  \href{https://notepad-plus-plus.org/}{Notepad++} instead.
 \item
   If you open a file in \texttt{vi} and it has a \texttt{\^{}M} at the
   end of every line and/or at the bottom you see something like:
@@ -4992,8 +5004,7 @@ This difference manifests in two ways:
 
   Either of those mean the file lines each end with "CRLF"
   (\texttt{\textbackslash{}r\textbackslash{}n}). To change it in
-  \texttt{vi} you can use the following command (\texttt{ff} means "file
-  format":
+  \texttt{vi} you can override the \texttt{ff} (file format) setting:
 
 \begin{verbatim}
 :set ff=unix
@@ -5019,9 +5030,9 @@ tab characters to four spaces:
 So, \texttt{vi} is the best we can do? No. On many Linux systems an
 alternative terminal-based editor will be installed, often several.
 There may be
-\href{http://linux.die.net/man/1/emacs}{\texttt{emacs}}\drcmd{emacs},
-which \textbf{\emph{will}} make you yearn for the simplicity of
-\texttt{vi}.
+\href{http://linux.die.net/man/1/emacs}{\texttt{emacs}}\drcmd{emacs}
+\index{Editors!emacs@\texttt{emacs}}, which \textbf{\emph{will}} make
+you yearn for the simplicity of \texttt{vi}.
 
 Here are two jokes that are only funny once you've used \texttt{emacs}:
 
@@ -5037,13 +5048,14 @@ If those are funny to you, then you have already been infected by
 \texttt{emacs}. The prognosis is grim.
 
 But there may also others, notably
-\href{http://linux.die.net/man/1/pico}{\texttt{pico}}\drcmd{pico} and
-its successor,
-\href{http://linux.die.net/man/1/nano}{\texttt{nano}}\drcmd{nano}. You
-can see the difference the second you see a file open in \texttt{nano} -
-in this case, the generated Github-flavored Markdown of this document:
+\href{http://linux.die.net/man/1/pico}{\texttt{pico}}\drcmd{pico}\index{Editors!pico@\texttt{pico}}
+and its successor,
+\href{http://linux.die.net/man/1/nano}{\texttt{nano}}\drcmd{nano}
+\index{Editors!nano@\texttt{nano}}. You can see the difference the
+second you see a file open in \texttt{nano} - in this case, the
+generated Github-flavored Markdown of this document:
 
-\drcap{Editing a file in nano}
+\drcap{Editing a file in \texttt{nano}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5097,8 +5109,11 @@ nightmare scenario I posed in the \emph{Introduction}, you may not have
 control over the system, no ability to install packages - you have to
 take what the system has. And it's a pretty sure bet it is going to have
 \texttt{vi}. So if you have \texttt{nano} (or \texttt{pico}), use it!
-But if you don't, grit your teeth, remember "insert mode" vs. "command
-mode", and use \texttt{vi}.
+You can find out simply by typing in
+\texttt{nano\ \textless{}filename\textgreater{}} on what you want to
+edit and see if it works. But if \texttt{nano} or \texttt{pico} aren't
+installed, grit your teeth, remember "insert mode" vs. "command mode",
+and use \texttt{vi}.
 
 And if you have the opportunity to use \texttt{emacs}...don't.
 
