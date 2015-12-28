@@ -2040,7 +2040,7 @@ PING fd-fp3.wg1.b.yahoo.com (98.138.253.109) 56(84) bytes of data.
 --- fd-fp3.wg1.b.yahoo.com ping statistics ---
 10 packets transmitted, 10 received, 0% packet loss, time 9004ms
 rtt min/avg/max/mdev = 59.933/62.581/70.935/3.191 ms</code></pre>
-<p>One difference with <code>ping</code> is that by default in Linux <code>ping</code> doesn't stop until the user presses <code>Ctrl-C</code> (which sends the <a href="https://en.wikipedia.org/wiki/Unix_signal"><code>SIGINT</code> interrupt</a> to the program). In this way it acts more like <code>ping -t</code> in <code>CMD.EXE</code>. Also, be aware that on Cygwin <code>ping</code> is still the system (Windows) <code>ping</code>.</p>
+<p>One difference with <code>ping</code> is that by default in Linux <code>ping</code> doesn't stop until the user presses <code>Ctrl-C</code> (which sends the <a href="https://en.wikipedia.org/wiki/Unix_signal"><code>SIGINT</code> interrupt</a>  to the program). In this way it acts more like <code>ping -t</code> in <code>CMD.EXE</code> Also, be aware that on Cygwin <code>ping</code> is still the system (Windows) <code>ping</code>.</p>
 <p><a href="http://linux.die.net/man/8/traceroute"><code>traceroute</code></a> works, too (although for once its name is longer than the <code>CMD.EXE</code> counterpart).</p>
 <p></p>
 <pre class="bash"><code>~ $ traceroute google.com
@@ -2106,8 +2106,8 @@ for detailed information.
 ...and so on...</code></pre>
 <h2 id="sudo-make-me-a-sandwich" class="unnumbered">sudo Make Me a Sandwich</h2>
 <p>It may not be the best place to discuss it, but we've finally come to a point where your normal user account may not have access to these tools. On many systems network commands are considered &quot;system&quot; or privileged commands and are restricted.</p>
-<p>One way to run restricted commands is to log in as a &quot;elevated&quot; or privileged user, such as <code>root</code>. But this is frowned on, and many distros today rely on the <a href="http://linux.die.net/man/8/sudo"><code>sudo</code></a> command to act as a way for a normal user to signal they want to escalate their privileges temporarily (presuming they are allowed to do so, which is usually indicated by being a member of the <code>sudo</code> group or similar.</p>
-<p>In a sense, <code>sudo</code> is similar to Windows User Access Control (UAC, or &quot;Are you sure?&quot;) prompts. They ensure a human is in control, in the case of <code>sudo</code> by prompting for the user's password (if multiple commands are invoked by <code>sudo</code> within a short time period, you will not be reprompted for a password each time, unlike UAC).</p>
+<p>One way to run restricted commands is to log in as a &quot;elevated&quot; or privileged user, such as <code>root</code>. But this is frowned on, and many distros today rely on the <a href="http://linux.die.net/man/8/sudo"><code>sudo</code></a>  command to act as a way for a normal user to signal they want to escalate their privileges temporarily, presuming they are allowed to do so, which is usually indicated by being a member of the <code>sudo</code> group or similar.</p>
+<p>In a sense, <code>sudo</code> is similar to Windows User Access Control (UAC) prompts. They ensure a human is in control, in the case of <code>sudo</code> by prompting for the user's password. If multiple commands are invoked by <code>sudo</code> within a short time period, you will not be reprompted for a password each time, (unlike UAC).</p>
 <p>Here is a really common example on Debian-based systems:</p>
 <p></p>
 <pre class="bash"><code>~ $ apt-get update
@@ -2170,13 +2170,29 @@ Hit http://archive.canonical.com trusty Release.gpg
 (NORMAL LINK) Use right-arrow or &lt;return&gt; to activate.
   Arrow keys: Up and Down to move.  Right to follow a link; Left to go back.
  H)elp O)ptions P)rint G)o M)ain screen Q)uit /=search [delete]=history list </code></pre>
-<p>There are two other commands that are used to pull down web resources and save them locally - <a href="http://linux.die.net/man/1/curl"><code>curl</code></a> and <a href="http://linux.die.net/man/1/wget"><code>wget</code></a>. Both support HTTP(S) and FTP, but <code>curl</code> supports even more protocols and options and tends to be the simplest to just &quot;grab a file and go.&quot; You see both used often in install scripts that then download more bits from the internet:</p>
+<p>There are two other commands that are used to pull down web resources and save them locally - <a href="http://linux.die.net/man/1/curl"><code>curl</code></a> and <a href="http://linux.die.net/man/1/wget"><code>wget</code></a> drcmd{wget}. Both support HTTP(S) and FTP, but <code>curl</code> supports even more protocols and options and tends to be the simplest to just &quot;grab a file and go.&quot; You see both used often in install scripts that download bits from the internet and then execute them:</p>
 <p></p>
 <pre class="bash"><code>wget -O - http://foocorp.com/installs/install.sh | bash</code></pre>
 <p>Or:</p>
 <p></p>
 <pre class="bash"><code>curl http://foocorp.com/installs/install.sh | bash</code></pre>
-<p><strong>Note:</strong> As always, you should be cautious when downloading and executing arbitrary bits, and this technique doesn't lessen your responsibility there.</p>
+<p><strong>Note:</strong> As always, you should be cautious when downloading and executing arbitrary bits, and this technique doesn't lessen your responsibility there. It is often better to use something like <code>curl</code> to download the script but instead of piping it to <code>bash</code> to be executed, redirect it to a file and look at what the script is doinng first:</p>
+<p></p>
+<pre class="bash"><code>~ $ curl http://foocorp.com/installs/install.sh &gt; install.sh
+~ $ cat install.sh
+#!/bin/bash
+# I&#39;m a script from a bad guy, check out the next line!
+rm -rf /*</code></pre>
+<p>Now, aren't you glad you didn't just execute that without checking?</p>
+<p>But if the script looks right, then you can <code>chmod</code> it and run it:</p>
+<p></p>
+<pre class="bash"><code>~ $ curl http://foocorp.com/installs/install.sh &gt; install.sh
+~ $ cat install.sh
+#!/bin/bash
+# I&#39;m a script from a good guy.
+# Do some stuff...
+~ $ chmod 770 install.sh
+~ $ ./install.sh</code></pre>
 <h2 id="youve-got-mail" class="unnumbered">You've Got Mail</h2>
 <p>You can send and receive email from the command prompt. Reading email will be rare, but if the system has <a href="http://linux.die.net/man/1/pine"><code>pine</code></a> installed, that's probably the most intuitive from a non-UNIX perspective (although it is still obviously a terminal program). Otherwise look for <a href="http://linux.die.net/man/1/mutt"><code>mutt</code></a>.</p>
 <p>Sending email is more interesting, especially from shell scripts. There are multiple ways, but <a href="http://linux.die.net/man/1/email"><code>email</code></a> is straightforward enough:</p>
@@ -2211,7 +2227,7 @@ Vary: Accept-Encoding
 Transfer-Encoding: chunked
 
 ...and so on...</code></pre>
-<p>To get a modern, secure shell to a remote machine, use <a href="http://linux.die.net/man/1/ssh"><code>ssh</code></a>, passing in the userid and server like this:</p>
+<p>To get a modern, secure shell to a remote machine, use <a href="http://linux.die.net/man/1/ssh"><code>ssh</code></a> , passing in the userid and server like this:</p>
 <p></p>
 <pre class="bash"><code>ssh myuser@remoteserver</code></pre>
 <p>You will be prompted for credentials (or you can use certificates, but that is <strong><em>way</em></strong> beyond this text's goals). Once logged in, you will be presented with a command prompt to the remote system.</p>
@@ -2239,7 +2255,7 @@ permitted by applicable law.
 Last login: Tue Oct 20 09:37:10 2015 from otherhost
 $</code></pre>
 <h2 id="network-configuration" class="unnumbered">Network Configuration</h2>
-<p>We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the <a href="http://linux.die.net/man/8/ifconfig"><code>ifconfig</code></a> (and in some ways is similar to <code>ipconfig</code> in <code>CMD.EXE</code>. While you can use <code>ifconfig</code> to alter your networking settings, it is most commonly used to get a quick display of them:</p>
+<p>We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the <a href="http://linux.die.net/man/8/ifconfig"><code>ifconfig</code></a> command (in some ways is similar to <code>ipconfig</code> in <code>CMD.EXE</code>. While you can use <code>ifconfig</code> to alter your networking settings, it is most commonly used to get a quick display of them:</p>
 <p></p>
 <pre class="bash"><code># ifconfig
 eth0      Link encap:Ethernet  HWaddr 00:00:56:a3:35:fe
@@ -2259,14 +2275,14 @@ lo        Link encap:Local Loopback
           TX packets:111207 errors:0 dropped:0 overruns:0 carrier:0
           collisions:0 txqueuelen:0
           RX bytes:6839306 (6.5 MiB)  TX bytes:6839306 (6.5 MiB)</code></pre>
-<p>To see what DNS servers the system is using, you can look in <code>/etc/resolv.conf</code>:</p>
+<p>To see what DNS servers the system is using, you can look in <code>/etc/resolv.conf</code> :</p>
 <p></p>
 <pre class="bash"><code># cat /etc/resolv.conf
 domain mydomain.com
 search mydomain.com
 nameserver 10.0.2.1
 nameserver 10.0.2.2</code></pre>
-<p>And to see any local overrides of network names or aliases, look in <code>/etc/hosts</code>:</p>
+<p>And to see any local overrides of network names or aliases, look in <code>/etc/hosts</code> :</p>
 <p></p>
 <pre class="bash"><code># cat /etc/hosts
 127.0.0.1       localhost</code></pre>

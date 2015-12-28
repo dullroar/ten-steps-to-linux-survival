@@ -2831,7 +2831,7 @@ PING fd-fp3.wg1.b.yahoo.com (98.138.253.109) 56(84) bytes of data.
 rtt min/avg/max/mdev = 59.933/62.581/70.935/3.191 ms
 ```
 
-One difference with `ping` is that by default in Linux `ping` doesn't stop until the user presses `Ctrl-C` (which sends the [`SIGINT` interrupt](https://en.wikipedia.org/wiki/Unix_signal) to the program). In this way it acts more like `ping -t` in `CMD.EXE`. Also, be aware that on Cygwin `ping` is still the system (Windows) `ping`.
+One difference with `ping` is that by default in Linux `ping` doesn't stop until the user presses `Ctrl-C` (which sends the [`SIGINT` interrupt](https://en.wikipedia.org/wiki/Unix_signal) to the program). In this way it acts more like `ping -t` in `CMD.EXE` Also, be aware that on Cygwin `ping` is still the system (Windows) `ping`.
 
 [`traceroute`](http://linux.die.net/man/8/traceroute) works, too (although for once its name is longer than the `CMD.EXE` counterpart).
 
@@ -2911,9 +2911,9 @@ sudo Make Me a Sandwich
 
 It may not be the best place to discuss it, but we've finally come to a point where your normal user account may not have access to these tools. On many systems network commands are considered "system" or privileged commands and are restricted.
 
-One way to run restricted commands is to log in as a "elevated" or privileged user, such as `root`. But this is frowned on, and many distros today rely on the [`sudo`](http://linux.die.net/man/8/sudo) command to act as a way for a normal user to signal they want to escalate their privileges temporarily (presuming they are allowed to do so, which is usually indicated by being a member of the `sudo` group or similar.
+One way to run restricted commands is to log in as a "elevated" or privileged user, such as `root`. But this is frowned on, and many distros today rely on the [`sudo`](http://linux.die.net/man/8/sudo) command to act as a way for a normal user to signal they want to escalate their privileges temporarily, presuming they are allowed to do so, which is usually indicated by being a member of the `sudo` group or similar.
 
-In a sense, `sudo` is similar to Windows User Access Control (UAC, or "Are you sure?") prompts. They ensure a human is in control, in the case of `sudo` by prompting for the user's password (if multiple commands are invoked by `sudo` within a short time period, you will not be reprompted for a password each time, unlike UAC).
+In a sense, `sudo` is similar to Windows User Access Control (UAC) prompts. They ensure a human is in control, in the case of `sudo` by prompting for the user's password. If multiple commands are invoked by `sudo` within a short time period, you will not be reprompted for a password each time, (unlike UAC).
 
 Here is a really common example on Debian-based systems:
 
@@ -2989,7 +2989,7 @@ You can browse the web from the command prompt using something like [`lynx`](htt
  H)elp O)ptions P)rint G)o M)ain screen Q)uit /=search [delete]=history list 
 ```
 
-There are two other commands that are used to pull down web resources and save them locally - [`curl`](http://linux.die.net/man/1/curl) and [`wget`](http://linux.die.net/man/1/wget). Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and tends to be the simplest to just "grab a file and go." You see both used often in install scripts that then download more bits from the internet:
+There are two other commands that are used to pull down web resources and save them locally - [`curl`](http://linux.die.net/man/1/curl) and [`wget`](http://linux.die.net/man/1/wget) drcmd{wget}. Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and tends to be the simplest to just "grab a file and go." You see both used often in install scripts that download bits from the internet and then execute them:
 
 ``` bash
 wget -O - http://foocorp.com/installs/install.sh | bash
@@ -3001,7 +3001,29 @@ Or:
 curl http://foocorp.com/installs/install.sh | bash
 ```
 
-**Note:** As always, you should be cautious when downloading and executing arbitrary bits, and this technique doesn't lessen your responsibility there.
+**Note:** As always, you should be cautious when downloading and executing arbitrary bits, and this technique doesn't lessen your responsibility there. It is often better to use something like `curl` to download the script but instead of piping it to `bash` to be executed, redirect it to a file and look at what the script is doinng first:
+
+``` bash
+~ $ curl http://foocorp.com/installs/install.sh > install.sh
+~ $ cat install.sh
+#!/bin/bash
+# I'm a script from a bad guy, check out the next line!
+rm -rf /*
+```
+
+Now, aren't you glad you didn't just execute that without checking?
+
+But if the script looks right, then you can `chmod` it and run it:
+
+``` bash
+~ $ curl http://foocorp.com/installs/install.sh > install.sh
+~ $ cat install.sh
+#!/bin/bash
+# I'm a script from a good guy.
+# Do some stuff...
+~ $ chmod 770 install.sh
+~ $ ./install.sh
+```
 
 You've Got Mail
 ---------------
@@ -3048,7 +3070,7 @@ Transfer-Encoding: chunked
 ...and so on...
 ```
 
-To get a modern, secure shell to a remote machine, use [`ssh`](http://linux.die.net/man/1/ssh), passing in the userid and server like this:
+To get a modern, secure shell to a remote machine, use [`ssh`](http://linux.die.net/man/1/ssh) , passing in the userid and server like this:
 
 ``` bash
 ssh myuser@remoteserver
@@ -3089,7 +3111,7 @@ $
 Network Configuration
 ---------------------
 
-We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig) (and in some ways is similar to `ipconfig` in `CMD.EXE`. While you can use `ifconfig` to alter your networking settings, it is most commonly used to get a quick display of them:
+We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig) command (in some ways is similar to `ipconfig` in `CMD.EXE`. While you can use `ifconfig` to alter your networking settings, it is most commonly used to get a quick display of them:
 
 ``` bash
 # ifconfig
@@ -3112,7 +3134,7 @@ lo        Link encap:Local Loopback
           RX bytes:6839306 (6.5 MiB)  TX bytes:6839306 (6.5 MiB)
 ```
 
-To see what DNS servers the system is using, you can look in `/etc/resolv.conf`:
+To see what DNS servers the system is using, you can look in `/etc/resolv.conf` :
 
 ``` bash
 # cat /etc/resolv.conf
@@ -3122,7 +3144,7 @@ nameserver 10.0.2.1
 nameserver 10.0.2.2
 ```
 
-And to see any local overrides of network names or aliases, look in `/etc/hosts`:
+And to see any local overrides of network names or aliases, look in `/etc/hosts` :
 
 ``` bash
 # cat /etc/hosts

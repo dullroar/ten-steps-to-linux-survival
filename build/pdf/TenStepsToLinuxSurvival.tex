@@ -498,11 +498,12 @@ alter your system and possibly damage it.}}
 Obvious candidates include the file system commands like
 \texttt{rm}\drcmd{rm}
 \index{Files and Directories!Delete (\texttt{rm} command)}, the
-\texttt{vi}\drcmd{vi}\index{Editors!\texttt{vi}} editor (obviously), and
-some of the "system admin" commands mentioned later, including system
-and service restarts. Use your common sense plus the various resources
-for documentation mentioned in this book to make sure you aren't doing
-anything destructive to your system, especially in production.
+\texttt{vi}\drcmd{vi}\index{Editors!vi@\texttt{vi}} editor (obviously),
+and some of the "system admin" commands mentioned later, including
+system and service restarts. Use your common sense plus the various
+resources for documentation mentioned in this book to make sure you
+aren't doing anything destructive to your system, especially in
+production.
 
 \textbf{\emph{YOU HAVE BEEN WARNED!}}
 
@@ -5164,8 +5165,8 @@ One difference with \texttt{ping} is that by default in Linux
 \texttt{ping} doesn't stop until the user presses \texttt{Ctrl-C} (which
 sends the
 \href{https://en.wikipedia.org/wiki/Unix_signal}{\texttt{SIGINT}
-interrupt}\index{signals} to the program). In this way it acts more like
-\texttt{ping\ -t} in \texttt{CMD.EXE}\drshl{CMD.EXE}. Also, be aware
+interrupt} \index{signals} to the program). In this way it acts more
+like \texttt{ping\ -t} in \texttt{CMD.EXE}\drshl{CMD.EXE} Also, be aware
 that on Cygwin \texttt{ping} is still the system (Windows)
 \texttt{ping}.
 
@@ -5267,18 +5268,17 @@ commands and are restricted.
 One way to run restricted commands is to log in as a "elevated" or
 privileged user, such as \texttt{root}. But this is frowned on, and many
 distros today rely on the
-\href{http://linux.die.net/man/8/sudo}{\texttt{sudo}}\drcmd{sudo}
+\href{http://linux.die.net/man/8/sudo}{\texttt{sudo}} \drcmd{sudo}
 command to act as a way for a normal user to signal they want to
-escalate their privileges temporarily (presuming they are allowed to do
+escalate their privileges temporarily, presuming they are allowed to do
 so, which is usually indicated by being a member of the \texttt{sudo}
 group or similar.
 
 In a sense, \texttt{sudo} is similar to Windows User Access Control
-(UAC, or "Are you sure?") prompts. They ensure a human is in control, in
-the case of \texttt{sudo} by prompting for the user's password (if
-multiple commands are invoked by \texttt{sudo} within a short time
-period, you will not be reprompted for a password each time, unlike
-UAC).
+(UAC) prompts. They ensure a human is in control, in the case of
+\texttt{sudo} by prompting for the user's password. If multiple commands
+are invoked by \texttt{sudo} within a short time period, you will not be
+reprompted for a password each time, (unlike UAC).
 
 Here is a really common example on Debian-based systems:
 
@@ -5375,13 +5375,13 @@ example, \texttt{lynx\ http://google.com} yields:
 There are two other commands that are used to pull down web resources
 and save them locally -
 \href{http://linux.die.net/man/1/curl}{\texttt{curl}}\drcmd{curl} and
-\href{http://linux.die.net/man/1/wget}{\texttt{wget}}\drcmd{wget}. Both
-support HTTP(S) and FTP, but \texttt{curl} supports even more protocols
-and options and tends to be the simplest to just "grab a file and go."
-You see both used often in install scripts that then download more bits
-from the internet:
+\href{http://linux.die.net/man/1/wget}{\texttt{wget}} drcmd\{wget\}.
+Both support HTTP(S) and FTP, but \texttt{curl} supports even more
+protocols and options and tends to be the simplest to just "grab a file
+and go." You see both used often in install scripts that download bits
+from the internet and then execute them:
 
-\drcap{wget in an install script}
+\drcap{\texttt{wget} in an install script}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5391,7 +5391,7 @@ from the internet:
 
 Or:
 
-\drcap{curl in an install script}
+\drcap{\texttt{curl} in an install script}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5401,7 +5401,41 @@ Or:
 
 \textbf{Note:} As always, you should be cautious when downloading and
 executing arbitrary bits, and this technique doesn't lessen your
-responsibility there.
+responsibility there. It is often better to use something like
+\texttt{curl} to download the script but instead of piping it to
+\texttt{bash} to be executed, redirect it to a file and look at what the
+script is doinng first:
+
+\drcap{Check out what that script is doing first!}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{curl} \NormalTok{http://foocorp.com/installs/install.sh }\KeywordTok{>} \NormalTok{install.sh}
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{cat} \NormalTok{install.sh}
+\CommentTok{#!/bin/bash}
+\CommentTok{# I'm a script from a bad guy, check out the next line!}
+\KeywordTok{rm} \NormalTok{-rf /*}
+\end{Highlighting}
+\end{Shaded}
+
+Now, aren't you glad you didn't just execute that without checking?
+
+But if the script looks right, then you can \texttt{chmod} it and run
+it:
+
+\drcap{Got a good script, so execute it}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{curl} \NormalTok{http://foocorp.com/installs/install.sh }\KeywordTok{>} \NormalTok{install.sh}
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{cat} \NormalTok{install.sh}
+\CommentTok{#!/bin/bash}
+\CommentTok{# I'm a script from a good guy.}
+\CommentTok{# Do some stuff...}
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{chmod} \NormalTok{770 install.sh}
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{./install.sh}
+\end{Highlighting}
+\end{Shaded}
 
 \section*{You've Got Mail}\label{youve-got-mail}
 \addcontentsline{toc}{section}{You've Got Mail}
@@ -5444,7 +5478,7 @@ Google, I simply entered the HTTP protocol sequence
 \texttt{GET\ /\ HTTP/1.1} followed by a blank line to get Google to
 return its home page:
 
-\drcap{Using telnet to diagnose HTTP}
+\drcap{Using \texttt{telnet} to diagnose HTTP}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5476,10 +5510,10 @@ return its home page:
 \end{Shaded}
 
 To get a modern, secure shell to a remote machine, use
-\href{http://linux.die.net/man/1/ssh}{\texttt{ssh}}\drcmd{ssh}, passing
+\href{http://linux.die.net/man/1/ssh}{\texttt{ssh}} \drcmd{ssh}, passing
 in the userid and server like this:
 
-\drcap{ssh command}
+\drcap{\texttt{ssh} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5496,7 +5530,7 @@ between systems with the
 \href{http://linux.die.net/man/1/scp}{\texttt{scp}}\drcmd{scp} command.
 It works like this for a recursive directory copy:
 
-\drcap{scp command}
+\drcap{\texttt{scp} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5512,7 +5546,7 @@ in as \texttt{myuser}.
 \texttt{ssh} or \texttt{scp} you will be asked to accept the remote
 server's "fingerprint." You can usually just say "yes":
 
-\drcap{Sample ssh session}
+\drcap{Sample \texttt{ssh} session}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5542,12 +5576,12 @@ server's "fingerprint." You can usually just say "yes":
 We won't dive too deep into configuring a network, but there are a few
 things you should know about right away. The first is the
 \href{http://linux.die.net/man/8/ifconfig}{\texttt{ifconfig}}\drcmd{ifconfig}
-(and in some ways is similar to \texttt{ipconfig} in
+command (in some ways is similar to \texttt{ipconfig} in
 \texttt{CMD.EXE}\drshl{CMD.EXE}. While you can use \texttt{ifconfig} to
 alter your networking settings, it is most commonly used to get a quick
 display of them:
 
-\drcap{ifconfig command}
+\drcap{\texttt{ifconfig} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5573,9 +5607,10 @@ display of them:
 \end{Shaded}
 
 To see what DNS servers the system is using, you can look in
-\texttt{/etc/resolv.conf}\index{resolv.conf}:
+\texttt{/etc/resolv.conf}
+\index{Files and Directories!Special!\texttt{/etc/resolv.conf}}:
 
-\drcap{DNS servers in resolv.conf}
+\drcap{DNS servers in \texttt{resolv.conf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5588,9 +5623,10 @@ To see what DNS servers the system is using, you can look in
 \end{Shaded}
 
 And to see any local overrides of network names or aliases, look in
-\texttt{/etc/hosts}\index{hosts}:
+\texttt{/etc/hosts}
+\index{Files and Directories!Special!\texttt{/etc/hosts}}:
 
-\drcap{hosts file}
+\drcap{\texttt{hosts} file}
 
 \begin{Shaded}
 \begin{Highlighting}[]

@@ -1,14 +1,12 @@
 
 # The Whole Wide World
 
-***`curl`, `wget`, `ifconfig`, `ping`, `ssh`, `telnet`, `/etc/hosts` and
-email before Outlook.***
+***`curl`, `wget`, `ifconfig`, `ping`, `ssh`, `telnet`, `/etc/hosts` and email before Outlook.***
 
 > *"Gopher, Everett?"* - Delmar O'Donnell (*O Brother, Where Are Thou?*)
 
-If Sun's motto "The network is the computer" is correct, then of course
-Linux and similar systems must be able to access the network from the
-command line and scripts.
+If Sun's motto "The network is the computer" is correct, then of course Linux and similar systems
+must be able to access the network from the command line and scripts.
 
 For example, our friend [`ping`](http://linux.die.net/man/8/ping)\drcmd{ping} is there:
 
@@ -32,11 +30,10 @@ PING fd-fp3.wg1.b.yahoo.com (98.138.253.109) 56(84) bytes of data.
 rtt min/avg/max/mdev = 59.933/62.581/70.935/3.191 ms
 ```
 
-One difference with `ping` is that by default in Linux `ping` doesn't stop
-until the user presses `Ctrl-C` (which sends the
-[`SIGINT` interrupt](https://en.wikipedia.org/wiki/Unix_signal)\index{signals} to the
-program). In this way it acts more like `ping -t` in `CMD.EXE`\drshl{CMD.EXE}. Also, be
-aware that on Cygwin `ping` is still the system (Windows) `ping`.
+One difference with `ping` is that by default in Linux `ping` doesn't stop until the user presses
+`Ctrl-C` (which sends the [`SIGINT` interrupt](https://en.wikipedia.org/wiki/Unix_signal)
+\index{signals} to the program). In this way it acts more like `ping -t` in `CMD.EXE`\drshl{CMD.EXE}
+Also, be aware that on Cygwin `ping` is still the system (Windows) `ping`.
 
 [`traceroute`](http://linux.die.net/man/8/traceroute)\drcmd{traceroute} works, too (although
 for once its name is longer than the `CMD.EXE` counterpart).
@@ -116,23 +113,20 @@ for detailed information.
 
 ## sudo Make Me a Sandwich{.unnumbered}
 
-It may not be the best place to discuss it, but we've finally come to a
-point where your normal user account may not have access to these tools.
-On many systems network commands are considered "system" or privileged
-commands and are restricted.
+It may not be the best place to discuss it, but we've finally come to a point where your normal
+user account may not have access to these tools. On many systems network commands are considered
+"system" or privileged commands and are restricted.
 
-One way to run restricted commands is to log in as a "elevated" or
-privileged user, such as `root`. But this is frowned on, and many distros
-today rely on the [`sudo`](http://linux.die.net/man/8/sudo)\drcmd{sudo} command to
-act as a way for a normal user to signal they want to escalate their
-privileges temporarily (presuming they are allowed to do so, which is
-usually indicated by being a member of the `sudo` group or similar.
+One way to run restricted commands is to log in as a "elevated" or privileged user, such as `root`.
+But this is frowned on, and many distros today rely on the [`sudo`](http://linux.die.net/man/8/sudo)
+\drcmd{sudo} command to act as a way for a normal user to signal they want to escalate their
+privileges temporarily, presuming they are allowed to do so, which is usually indicated by being a
+member of the `sudo` group or similar.
 
-In a sense, `sudo` is similar to Windows User Access Control (UAC, or "Are
-you sure?") prompts. They ensure a human is in control, in the case of
-`sudo` by prompting for the user's password (if multiple commands are
-invoked by `sudo` within a short time period, you will not be reprompted
-for a password each time, unlike UAC).
+In a sense, `sudo` is similar to Windows User Access Control (UAC) prompts. They ensure a human is
+in control, in the case of `sudo` by prompting for the user's password. If multiple commands are
+invoked by `sudo` within a short time period, you will not be reprompted for a password each time,
+(unlike UAC).
 
 Here is a really common example on Debian-based systems:
 
@@ -146,8 +140,7 @@ E: Could not open lock file /var/lib/dpkg/lock - open (13: Permission denied)
 E: Unable to lock the administration directory (/var/lib/dpkg/), are you root?
 ```
 
-The error message, especially the last line, is pretty clear. Let's try it
-again with `sudo`:
+The error message, especially the last line, is pretty clear. Let's try it again with `sudo`:
 
 \drcap{sudo Make me a sandwich}
 ```bash
@@ -177,15 +170,15 @@ Hit http://archive.canonical.com trusty Release.gpg
 ...and so on...         
 ```
 
-Now you should get the punchline to [this comic](https://xkcd.com/149/),
-and hence the title of this section.
+Now you should get the punchline to [this comic](https://xkcd.com/149/), and hence the title of
+this section.
 
 ## Surfin' the Command Prompt{.unnumbered}
 
 You can browse the web from the command prompt using something like
-[`lynx`](http://linux.die.net/man/1/lynx)\drcmd{lynx}. A text-based browser isn't too
-exciting, but it can have its purposes (like quickly testing network access
-from a command prompt). For example, `lynx http://google.com` yields:
+[`lynx`](http://linux.die.net/man/1/lynx)\drcmd{lynx}. A text-based browser isn't too exciting, but
+it can have its purposes (like quickly testing network access from a command prompt). For example,
+`lynx http://google.com` yields:
 
 \drcap{Browsing like it's 1994}
 ```bash
@@ -215,40 +208,62 @@ from a command prompt). For example, `lynx http://google.com` yields:
  H)elp O)ptions P)rint G)o M)ain screen Q)uit /=search [delete]=history list 
 ```
 
-There are two other commands that are used to pull down web resources and
-save them locally - [`curl`](http://linux.die.net/man/1/curl)\drcmd{curl} and
-[`wget`](http://linux.die.net/man/1/wget)\drcmd{wget}. Both support HTTP(S) and FTP,
-but `curl` supports even more protocols and options and tends
-to be the simplest to just "grab a file and go." You see both used often in
-install scripts that then download more bits from the internet:
+There are two other commands that are used to pull down web resources and save them locally -
+[`curl`](http://linux.die.net/man/1/curl)\drcmd{curl} and [`wget`](http://linux.die.net/man/1/wget)
+drcmd{wget}. Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and
+tends to be the simplest to just "grab a file and go." You see both used often in install scripts
+that download bits from the internet and then execute them:
 
-\drcap{wget in an install script}
+\drcap{\texttt{wget} in an install script}
 ```bash
 wget -O - http://foocorp.com/installs/install.sh | bash
 ```
 
 Or:
 
-\drcap{curl in an install script}
+\drcap{\texttt{curl} in an install script}
 ```bash
 curl http://foocorp.com/installs/install.sh | bash
 ```
 
-**Note:** As always, you should be cautious when downloading and executing
-arbitrary bits, and this technique doesn't lessen your responsibility
-there.
+**Note:** As always, you should be cautious when downloading and executing arbitrary bits, and this
+technique doesn't lessen your responsibility there. It is often better to use something like `curl`
+to download the script but instead of piping it to `bash` to be executed, redirect it to a file and
+look at what the script is doinng first:
+
+\drcap{Check out what that script is doing first!}
+```bash
+~ $ curl http://foocorp.com/installs/install.sh > install.sh
+~ $ cat install.sh
+#!/bin/bash
+# I'm a script from a bad guy, check out the next line!
+rm -rf /*
+```
+
+Now, aren't you glad you didn't just execute that without checking?
+
+But if the script looks right, then you can `chmod` it and run it:
+
+\drcap{Got a good script, so execute it}
+```bash
+~ $ curl http://foocorp.com/installs/install.sh > install.sh
+~ $ cat install.sh
+#!/bin/bash
+# I'm a script from a good guy.
+# Do some stuff...
+~ $ chmod 770 install.sh
+~ $ ./install.sh
+```
 
 ## You've Got Mail{.unnumbered}
 
-You can send and receive email from the command prompt. Reading email will
-be rare, but if the system has [`pine`](http://linux.die.net/man/1/pine)\drcmd{pine}
-installed, that's probably the most intuitive from a non-UNIX perspective
-(although it is still obviously a terminal program). Otherwise look for
-[`mutt`](http://linux.die.net/man/1/mutt)\drcmd{mutt}.
+You can send and receive email from the command prompt. Reading email will be rare, but if the
+system has [`pine`](http://linux.die.net/man/1/pine)\drcmd{pine} installed, that's probably the
+most intuitive from a non-UNIX perspective (although it is still obviously a terminal program).
+Otherwise look for [`mutt`](http://linux.die.net/man/1/mutt)\drcmd{mutt}.
 
-Sending email is more interesting, especially from shell scripts. There are
-multiple ways, but [`email`](http://linux.die.net/man/1/email)\drcmd{email} is
-straightforward enough:
+Sending email is more interesting, especially from shell scripts. There are multiple ways, but
+[`email`](http://linux.die.net/man/1/email)\drcmd{email} is straightforward enough:
 
 \drcap{Sending email from the command line}
 ```bash
@@ -259,18 +274,15 @@ email --blank-mail --subject "Possibly corrupted files found..." \
 
 ## Let's Connect{.unnumbered}
 
-There are two primary ways to get an interactive "shell" session on a
-remote machine. The first is the venerable
-[`telnet`](http://linux.die.net/man/1/telnet)\drcmd{telnet} command. It isn't used very
-often for actual interactive sessions any more (for one, because it sends
-credentials in plain text on the wire). However, because you can specify
-the port number, it is still handy for testing and debugging text-based
-protocols such as SMTP or HTTP. In the following, after opening a `telnet`
-connection on port 80 to Google, I simply entered the HTTP protocol
-sequence `GET / HTTP/1.1` followed by a blank line to get Google to return
-its home page:
+There are two primary ways to get an interactive "shell" session on a remote machine. The first is
+the venerable [`telnet`](http://linux.die.net/man/1/telnet)\drcmd{telnet} command. It isn't used
+very often for actual interactive sessions any more (for one, because it sends credentials in plain
+text on the wire). However, because you can specify the port number, it is still handy for testing
+and debugging text-based protocols such as SMTP or HTTP. In the following, after opening a `telnet`
+connection on port 80 to Google, I simply entered the HTTP protocol sequence `GET / HTTP/1.1`
+followed by a blank line to get Google to return its home page:
 
-\drcap{Using telnet to diagnose HTTP}
+\drcap{Using \texttt{telnet} to diagnose HTTP}
 ```bash
 ~ $ telnet google.com 80
 Trying 216.58.216.78...
@@ -298,36 +310,34 @@ Transfer-Encoding: chunked
 ...and so on...
 ```
 
-To get a modern, secure shell to a remote machine, use
-[`ssh`](http://linux.die.net/man/1/ssh)\drcmd{ssh}, passing in the userid and server
-like this:
+To get a modern, secure shell to a remote machine, use [`ssh`](http://linux.die.net/man/1/ssh)
+\drcmd{ssh}, passing in the userid and server like this:
 
-\drcap{ssh command}
+\drcap{\texttt{ssh} command}
 ```bash
 ssh myuser@remoteserver
 ```
 
-You will be prompted for credentials (or you can use certificates, but that
-is ***way*** beyond this text's goals). Once logged in, you will be
-presented with a command prompt to the remote system.
+You will be prompted for credentials (or you can use certificates, but that is ***way*** beyond
+this text's goals). Once logged in, you will be presented with a command prompt to the remote
+system.
 
-You can also use the `SSH` protocol to securely transfer files between
-systems with the [`scp`](http://linux.die.net/man/1/scp)\drcmd{scp} command. It works
-like this for a recursive directory copy:
+You can also use the `SSH` protocol to securely transfer files between systems with the
+[`scp`](http://linux.die.net/man/1/scp)\drcmd{scp} command. It works like this for a recursive
+directory copy:
 
-\drcap{scp command}
+\drcap{\texttt{scp} command}
 ```bash
 scp -r myfiles/* myuser@remoteserver:/home/myuser/.
 ```
 
-In this case we are copying the files in `myfiles` and its subdirectories
-to `/home/myuser/` on `remoteserver` logged in as `myuser`.
+In this case we are copying the files in `myfiles` and its subdirectories to `/home/myuser/` on
+`remoteserver` logged in as `myuser`.
 
-**Note:** The first time you log into a remote server with `ssh` or `scp`
-you will be asked to accept the remote server's "fingerprint." You can
-usually just say "yes":
+**Note:** The first time you log into a remote server with `ssh` or `scp` you will be asked to
+accept the remote server's "fingerprint." You can usually just say "yes":
 
-\drcap{Sample ssh session}
+\drcap{Sample \texttt{ssh} session}
 ```bash
 ~# ssh myuser@remotehost
 The authenticity of host '[remotehost] ([10.0.2.3]:22)' can't be established.
@@ -350,14 +360,13 @@ $
 
 ## Network Configuration{.unnumbered}
 
-We won't dive too deep into configuring a network, but there are a few
-things you should know about right away. The first is the
-[`ifconfig`](http://linux.die.net/man/8/ifconfig)\drcmd{ifconfig} (and in
-some ways is similar to `ipconfig` in `CMD.EXE`\drshl{CMD.EXE}. While you can use
-`ifconfig` to alter your networking settings, it is most commonly used
-to get a quick display of them:
+We won't dive too deep into configuring a network, but there are a few things you should know about
+right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig)\drcmd{ifconfig}
+command (in some ways is similar to `ipconfig` in `CMD.EXE`\drshl{CMD.EXE}. While you can use
+`ifconfig` to alter your networking settings, it is most commonly used to get a quick display of
+them:
 
-\drcap{ifconfig command}
+\drcap{\texttt{ifconfig} command}
 ```bash
 # ifconfig
 eth0      Link encap:Ethernet  HWaddr 00:00:56:a3:35:fe
@@ -379,10 +388,10 @@ lo        Link encap:Local Loopback
           RX bytes:6839306 (6.5 MiB)  TX bytes:6839306 (6.5 MiB)
 ```
 
-To see what DNS servers the system is using, you can look in
-`/etc/resolv.conf`\index{resolv.conf}:
+To see what DNS servers the system is using, you can look in `/etc/resolv.conf`
+\index{Files and Directories!Special!\texttt{/etc/resolv.conf}}:
 
-\drcap{DNS servers in resolv.conf}
+\drcap{DNS servers in \texttt{resolv.conf}}
 ```bash
 # cat /etc/resolv.conf
 domain mydomain.com
@@ -391,10 +400,10 @@ nameserver 10.0.2.1
 nameserver 10.0.2.2
 ```
 
-And to see any local overrides of network names or aliases, look in
-`/etc/hosts`\index{hosts}:
+And to see any local overrides of network names or aliases, look in `/etc/hosts`
+\index{Files and Directories!Special!\texttt{/etc/hosts}}:
 
-\drcap{hosts file}
+\drcap{\texttt{hosts} file}
 ```bash
 # cat /etc/hosts
 127.0.0.1       localhost
