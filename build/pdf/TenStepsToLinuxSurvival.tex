@@ -6056,8 +6056,7 @@ information
 
 There are three commands that are the basis for reading "UNIX"
 documentation within "UNIX" itself -
-\href{http://linux.die.net/man/1/man}{\texttt{man}}\drcmd{man}
-\index{Documentation!man@\texttt{man} command},
+\href{http://linux.die.net/man/1/man}{\texttt{man}}\drcmd{man}\index{Documentation!man@\texttt{man} command},
 \href{http://linux.die.net/man/1/info}{\texttt{info}}\drcmd{info}
 \index{Documentation!info@\texttt{info} command} and
 \href{http://linux.die.net/man/1/apropos}{\texttt{apropos}}\drcmd{apropos}
@@ -6067,7 +6066,7 @@ documentation within "UNIX" itself -
 the main help for most "UNIX" commands. For example, \texttt{man\ ls}
 shows:
 
-\drcap{man command}
+\drcap{\texttt{man} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6112,13 +6111,14 @@ system administration commands. You usually don't care, and can
 
 But sometimes there are duplicate names in the different sections. For
 example, there is both a \texttt{passwd}\drcmd{passwd} command and a
-\texttt{passwd}\drcmd{passwd file}\index{Files and Directories!Special!\texttt{/etc/passwd}}
-file format (for \texttt{/etc/passwd}). By default, \texttt{man\ passwd}
-will show you the documentation from the lowest numbered section with a
-match, in this case section 1, usually referred to as \texttt{passwd(1)}
-to disambiguate which thing we're talking about:
+\texttt{passwd}\drcmd{passwd file}
+\index{Files and Directories!Special!\texttt{/etc/passwd}} file format
+(for \texttt{/etc/passwd}). By default, \texttt{man\ passwd} will show
+you the documentation from the lowest numbered section with a match, in
+this case section 1, usually referred to as \texttt{passwd(1)} to
+disambiguate which thing we're talking about:
 
-\drcap{Ambiguous man commands default to lowest documentation section}
+\drcap{Ambiguous \texttt{man passwd} command default to lowest documentation section}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6153,7 +6153,7 @@ To see the \texttt{man} page for the \texttt{passwd} file format, we
 have to explicitly specify the section, in this case by using
 \texttt{man\ 5\ passwd}:
 
-\drcap{Specifying a specific man section}
+\drcap{Specifying a specific section with \texttt{man 5 passwd}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6190,7 +6190,7 @@ Besides \texttt{man}, many GNU tools come with help in
 originally from \texttt{emacs}. Here are the results of
 \texttt{info\ find}:
 
-\drcap{Running info on the find command}
+\drcap{Running \texttt{info find} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6216,7 +6216,7 @@ originally from \texttt{emacs}. Here are the results of
 \KeywordTok{arguments} \NormalTok{after it are the rest of the expression.}
 
    \KeywordTok{If} \NormalTok{no expression is given, the expression }\StringTok{'-print'} \NormalTok{is used.}
-\KeywordTok{--zz-Info}\NormalTok{: (find.info.gz)}\KeywordTok{Invoking} \NormalTok{find, 44 lines --Top--------------------------}
+\KeywordTok{--zz-Info}\NormalTok{: (find.info.gz)}\KeywordTok{Invoking} \NormalTok{find, 44 lines --Top-------------------------}
 \KeywordTok{Welcome} \NormalTok{to Info version 5.2. Type h for help, m for menu item.}
 \end{Highlighting}
 \end{Shaded}
@@ -6234,7 +6234,7 @@ password" in the \texttt{man\ passwd} output above. The
 simply search those titles and descriptions for a word or phrase and
 show you all the results:
 
-\drcap{apropos command}
+\drcap{\texttt{apropos} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6299,7 +6299,7 @@ Or maybe you can't remember whether it's \texttt{-r}, \texttt{-R} or
 \texttt{-\/-recursive} to copy subdirectories recursively with
 \texttt{cp}\drcmd{cp}:
 
-\drcap{Looking for specific parameter names in a man page}
+\drcap{Looking for specific parameter names in a \texttt{man} page}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6310,7 +6310,7 @@ Or maybe you can't remember whether it's \texttt{-r}, \texttt{-R} or
 \end{Highlighting}
 \end{Shaded}
 
-Whaddya know. It can be any of the three.
+What do you know, it can be any of the three.
 
 And yes, you can \texttt{man\ man}, \texttt{man\ info},
 \texttt{info\ info} and \texttt{info\ man}, for that matter!

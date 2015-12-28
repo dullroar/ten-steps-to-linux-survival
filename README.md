@@ -3448,7 +3448,7 @@ The biggest issue with bootstrapping into "UNIX" is not the lack of documentatio
 `man`, is that `info` `apropos`?
 --------------------------------
 
-There are three commands that are the basis for reading "UNIX" documentation within "UNIX" itself - [`man`](http://linux.die.net/man/1/man) , [`info`](http://linux.die.net/man/1/info) and [`apropos`](http://linux.die.net/man/1/apropos) .
+There are three commands that are the basis for reading "UNIX" documentation within "UNIX" itself - [`man`](http://linux.die.net/man/1/man), [`info`](http://linux.die.net/man/1/info) and [`apropos`](http://linux.die.net/man/1/apropos) .
 
 `man` is short for *manual pages*, and is used to display the main help for most "UNIX" commands. For example, `man ls` shows:
 
@@ -3566,7 +3566,7 @@ some other letters (for example '-print'), or is either '(' or '!'.  Any
 arguments after it are the rest of the expression.
 
    If no expression is given, the expression '-print' is used.
---zz-Info: (find.info.gz)Invoking find, 44 lines --Top--------------------------
+--zz-Info: (find.info.gz)Invoking find, 44 lines --Top-------------------------
 Welcome to Info version 5.2. Type h for help, m for menu item.
 ```
 
@@ -3626,7 +3626,7 @@ $ man cp | grep -i "recurs"
               copy directories recursively
 ```
 
-Whaddya know. It can be any of the three.
+What do you know, it can be any of the three.
 
 And yes, you can `man man`, `man info`, `info info` and `info man`, for that matter!
 

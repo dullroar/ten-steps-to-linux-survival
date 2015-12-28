@@ -2522,7 +2522,7 @@ dmesg.1.gz             pm-powersave.log.2.gz  Xorg.20.log
 </blockquote>
 <p>The biggest issue with bootstrapping into &quot;UNIX&quot; is not the lack of documentation but almost the surplus of it, coupled with a severe &quot;RTFM&quot; attitude by most old-timers toward newbies. Besides the typical &quot;Google&quot; and <a href="http://unix.stackexchange.com/">&quot;StackOverflow&quot;</a>  answers, there are actually lots of very reliable places to turn to for information</p>
 <h2 id="man-is-that-info-apropos" class="unnumbered"><code>man</code>, is that <code>info</code> <code>apropos</code>?</h2>
-<p>There are three commands that are the basis for reading &quot;UNIX&quot; documentation within &quot;UNIX&quot; itself - <a href="http://linux.die.net/man/1/man"><code>man</code></a> , <a href="http://linux.die.net/man/1/info"><code>info</code></a>  and <a href="http://linux.die.net/man/1/apropos"><code>apropos</code></a> .</p>
+<p>There are three commands that are the basis for reading &quot;UNIX&quot; documentation within &quot;UNIX&quot; itself - <a href="http://linux.die.net/man/1/man"><code>man</code></a>, <a href="http://linux.die.net/man/1/info"><code>info</code></a>  and <a href="http://linux.die.net/man/1/apropos"><code>apropos</code></a> .</p>
 <p><code>man</code> is short for <em>manual pages</em>, and is used to display the main help for most &quot;UNIX&quot; commands. For example, <code>man ls</code> shows:</p>
 <p></p>
 <pre class="bash"><code>LS(1)                            User Commands                           LS(1)
@@ -2551,7 +2551,7 @@ DESCRIPTION
  Manual page ls(1) line 1 (press h for help or q to quit)</code></pre>
 <p><strong>Note:</strong> <code>man</code> uses <code>less</code> as a paginator, with all that means, including the same navigation and search keys, and most important to remember - <code>Q</code> to quit. How do I know this? Because of course you can <code>man man</code>!</p>
 <p>Notice the <code>LS(1)</code> part. The UNIX manual was originally divided into multiple sections by AT&amp;T. Section 1 is normal user commands. Section 5 is file formats (like for config files), and section 8 is for system administration commands. You usually don't care, and can <code>man ls</code> or <code>man ifconfig</code> to your heart's content.</p>
-<p>But sometimes there are duplicate names in the different sections. For example, there is both a <code>passwd</code> command and a <code>passwd</code> file format (for <code>/etc/passwd</code>). By default, <code>man passwd</code> will show you the documentation from the lowest numbered section with a match, in this case section 1, usually referred to as <code>passwd(1)</code> to disambiguate which thing we're talking about:</p>
+<p>But sometimes there are duplicate names in the different sections. For example, there is both a <code>passwd</code> command and a <code>passwd</code>  file format (for <code>/etc/passwd</code>). By default, <code>man passwd</code> will show you the documentation from the lowest numbered section with a match, in this case section 1, usually referred to as <code>passwd(1)</code> to disambiguate which thing we're talking about:</p>
 <p></p>
 <pre class="bash"><code>PASSWD(1)                        User Commands                       PASSWD(1)
 
@@ -2627,7 +2627,7 @@ some other letters (for example &#39;-print&#39;), or is either &#39;(&#39; or &
 arguments after it are the rest of the expression.
 
    If no expression is given, the expression &#39;-print&#39; is used.
---zz-Info: (find.info.gz)Invoking find, 44 lines --Top--------------------------
+--zz-Info: (find.info.gz)Invoking find, 44 lines --Top-------------------------
 Welcome to Info version 5.2. Type h for help, m for menu item.</code></pre>
 <p>While <code>info</code> is much better at enabling complex help files with navigation I am not a fan because I tend not to hold all the keystrokes in my head. The biggest thing to remember if you do something like <code>info find</code> is that <code>q</code> quits the <code>info</code> command.</p>
 <p>Finally, what if you don't know the name of the command? Well, each &quot;man page&quot; has a title and brief description, e.g., &quot;passwd - change user password&quot; in the <code>man passwd</code> output above. The <code>apropos</code>  command can simply search those titles and descriptions for a word or phrase and show you all the results:</p>
@@ -2674,7 +2674,7 @@ visudo (8)           - edit the sudoers file</code></pre>
               copy contents of special files when recursive
        -R, -r, --recursive
               copy directories recursively</code></pre>
-<p>Whaddya know. It can be any of the three.</p>
+<p>What do you know, it can be any of the three.</p>
 <p>And yes, you can <code>man man</code>, <code>man info</code>, <code>info info</code> and <code>info man</code>, for that matter!</p>
 <h2 id="how-do-you-google-man" class="unnumbered">How Do You Google, <code>man</code>?</h2>
 <p>You can often search the internet for &quot;UNIX&quot; documentation, and the <code>man</code> pages have long been online. A site I like (and link to a lot here) is <a href="http://linux.die.net/man/" class="uri">http://linux.die.net/man/</a> . Often, though, you can just google <a href="https://www.google.com/#q=man+ls">&quot;man ls&quot;</a> and the top hits will be what you want.</p>
