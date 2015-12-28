@@ -4149,7 +4149,7 @@ come in handy! To redirect
 
 The
 \texttt{2\textgreater{}/tmp/finderrors.log}\index{0@Symbols!\texttt{2>} (\textit{stderr} redirection)}
-\index{I/O!Redirection!Erro (\texttt{2>})} is the magic that is
+\index{I/O!Redirection!Error (\texttt{2>})} is the magic that is
 redirecting file descriptor 2 (\texttt{stderr}) to the log file
 \texttt{/tmp/finderrors.log}.
 
@@ -5165,7 +5165,7 @@ One difference with \texttt{ping} is that by default in Linux
 \texttt{ping} doesn't stop until the user presses \texttt{Ctrl-C} (which
 sends the
 \href{https://en.wikipedia.org/wiki/Unix_signal}{\texttt{SIGINT}
-interrupt} \index{signals} to the program). In this way it acts more
+interrupt} \index{Signals} to the program). In this way it acts more
 like \texttt{ping\ -t} in \texttt{CMD.EXE}\drshl{CMD.EXE} Also, be aware
 that on Cygwin \texttt{ping} is still the system (Windows)
 \texttt{ping}.
@@ -5711,7 +5711,7 @@ To show processes from \emph{all} users in a process \emph{hierarchy}
 You can \emph{kill} a process using the
 \href{http://linux.die.net/man/1/kill}{\texttt{kill}}\drcmd{kill}
 command, which takes a process id and optionally a
-"signal"\index{signals}. Here is an example looking for any running
+"signal"\index{Signals}. Here is an example looking for any running
 instance of \texttt{vi} and sending it a \texttt{kill} command:
 
 \drcap{Hunting down and killing \texttt{vi} sessions}
@@ -5738,7 +5738,7 @@ That's:
   \textbf{\texttt{\textbar{}}} - pipe \texttt{stdout} from
   \texttt{grep}\drcmd{grep} to next command.
 \item
-  \textbf{\texttt{kill}} - send a \texttt{SIGINT} signal\index{signals}
+  \textbf{\texttt{kill}} - send a \texttt{SIGINT} signal\index{Signals}
   to a process specified by:
 \item
   \textbf{\texttt{`cut\ -f2\ -d"\ "`}} - execute the
@@ -6405,12 +6405,13 @@ up against.
 \addcontentsline{toc}{section}{One-Stop Shopping}
 
 In UNIX-like systems, most (not all) system configuration is stored in
-directories and text files under \texttt{/etc}\index{etc}.
+directories and text files under
+\texttt{/etc}\index{Files and Directories!Special!\texttt{/etc/}}.
 
-\textbf{Note:} In Linux almost universally \texttt{/etc} is pronounced
+\textbf{Note:} In Linux \texttt{/etc} is almost universally pronounced
 "slash-et-see," \textbf{\emph{not}} "forward slash et cetera."
 
-\drcap{/etc directory}
+\drcap{\texttt{/etc} directory}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6447,27 +6448,29 @@ list of files and directories you may need to examine there:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{fstab}}\index{fstab} - a listing of the file systems
-  currently mounted and their types.
+  \textbf{\texttt{fstab}}\index{Files and Directories!Special!\texttt{/etc/fstab}}
+  - a listing of the file systems currently mounted and their types.
 \item
-  \textbf{\texttt{group}}\index{group} - the security groups on the
-  system.
+  \textbf{\texttt{group}}\index{Files and Directories!Special!\texttt{/etc/group}}
+  - the security groups on the system.
 \item
-  \textbf{\texttt{hosts}}\index{hosts} - network aliases (overrides DNS,
-  takes effect immediately).
+  \textbf{\texttt{hosts}}\index{Files and Directories!Special!\texttt{/etc/hosts}}
+  - network aliases (overrides DNS, takes effect immediately).
 \item
-  \textbf{\texttt{init.d}}\index{init.d} - startup and shutdown scripts
-  for "services."
+  \textbf{\texttt{init.d}}\index{Files and Directories!Special!\texttt{/etc/init.d/}}
+  - startup and shutdown scripts for "services."
 \item
-  \textbf{\texttt{mtab}}\index{mtab} - list of current "mounts."
+  \textbf{\texttt{mtab}}\index{Files and Directories!Special!\texttt{/etc/mtab}}
+  - list of current "mounts."
 \item
-  \textbf{\texttt{passwd}}\index{passwd} - "shadow" file containing all
-  the user accounts on the system.
+  \textbf{\texttt{passwd}}\index{Files and Directories!Special!\texttt{/etc/passwd}}
+  - "shadow" file containing all the user accounts on the system.
 \item
-  \textbf{\texttt{resolv.conf}}\index{resolv.conf} - DNS settings.
+  \textbf{\texttt{resolv.conf}}\index{Files and Directories!Special!\texttt{/etc/resolv.conf}}
+  - DNS settings.
 \item
-  \textbf{\texttt{samba}}\index{samba} - file sharing settings for
-  CIFS-style shares.
+  \textbf{\texttt{samba}}\index{Files and Directories!Special!\texttt{/etc/samba/}}
+  - file sharing settings for CIFS-style shares.
 \end{itemize}
 
 There are lots of other interesting files under \texttt{/etc}, but I
@@ -6482,7 +6485,7 @@ We are going to ignore system initialization and "stages," and assume
 most of the time you are running on a well-functioning system. Even so
 sometimes you want to restart a specific system service without
 rebooting the whole system, often to force re-reading changed
-configuration files. If the service has a script in
+configuration files. First check if the service has a script in
 \texttt{/etc/init.d}:
 
 \drcap{init.d directory}
@@ -6509,7 +6512,7 @@ configuration files. If the service has a script in
 \end{Highlighting}
 \end{Shaded}
 
-...then chances are it will respond to a fairly standard set of
+If so, then chances are it will respond to a fairly standard set of
 commands, such as the following samples with \texttt{samba}:
 
 \drcap{Stopping and starting services}
@@ -6534,11 +6537,14 @@ they would probably have required execution using \texttt{sudo}.
 
 Almost all Linux distros have the concept of "packages" which are used
 to install, update and uninstall software. There are different package
-managers, including \texttt{dpkg}\drcmd{dpkg} and
-\texttt{apt-get}\drcmd{apt-get} on Debian-based distros,
-\texttt{rpm}\drcmd{rpm} on Fedora descendants, etc. For the rest of this
-section we will use Debian tools, but in general the concepts and
-problems are similar for the other toolsets.
+managers, including \texttt{dpkg}\drcmd{dpkg}
+\index{Package management!\texttt{dpkg} command} and
+\texttt{apt-get}\drcmd{apt-get}
+\index{Package management!\texttt{apt-get} command} on Debian-based
+distros, \texttt{rpm}\drcmd{rpm}
+\index{Package management!\texttt{rpm} command} on Fedora descendants,
+etc. For the rest of this section we will use Debian tools, but in
+general the concepts and problems are similar for the other toolsets.
 
 One of the nicest things about Linux-style package managers (as opposed
 to traditional Windows installers) is that they can satisfy all a
@@ -6556,13 +6562,14 @@ these here.
 In Debian flavors,
 \href{http://linux.die.net/man/8/apt-get}{\texttt{apt-get}}\drcmd{apt-get}
 is usually the tool of choice for package management. Another option is
-\href{http://linux.die.net/man/8/aptitude}{\texttt{aptitude}}\drcmd{aptitude}.
+\href{http://linux.die.net/man/8/aptitude}{\texttt{aptitude}}\drcmd{aptitude}
+\index{Package management!\texttt{aptitude}}.
 
 There are three common \texttt{apt-get} commands that get used over and
 over. The first downloads and \emph{updates} the local metadata cache
 for the repositories:
 
-\drcap{apt-get update}
+\drcap{\texttt{apt-get update}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6613,8 +6620,21 @@ greatest release of the package):
 \end{Highlighting}
 \end{Shaded}
 
-In this case there was nothing to upgrade. And the final common command
-is obviously to install a package:
+In this case there was nothing to upgrade.
+
+\textbf{Note:} In the example above I used
+\texttt{apt-get\ dist-upgrade}. There is also an
+\texttt{apt-get\ upgrade} command. \texttt{apt-get\ dist-upgrade} will
+resolve any new dependencies and download new packages if needed, but
+\textbf{\emph{it may also remove packages it considers no longer
+needed.}} \texttt{apt-get\ upgrade} simply performs an in-place upgrade
+of already-installed packages and in no case will install new or remove
+unneeded packages. Which is appropriate for you will depend on your
+circumstances. You can use the \texttt{-\/-simulate} parameter with
+either to have \texttt{apt-get} show you what it would do without
+actually doing it.
+
+And the final common command is obviously to install a package:
 
 \drcap{Installing a package}
 
@@ -6647,7 +6667,7 @@ is obviously to install a package:
 \end{Shaded}
 
 You can also \texttt{apt-get\ remove} or \texttt{apt-get\ purge}
-packages. See the man page for details.
+packages. See the \texttt{apt-get} \texttt{man} page for details.
 
 This all looks very convenient, and it is. The problems arise because
 some distros are better at tracking current versions of packages in
@@ -6661,17 +6681,18 @@ other distros.
 
 Besides the distribution's repositories, you can install packages and
 other software from a variety of places. It may be an "official" site
-for the package, GitHub, or whatever. The package may be in a binary
-installable format (\texttt{.deb}\index{.deb files} files for Debian
-systems), in source format requiring it to be built, in a zipped
+for the package, GitHub, a "personal package archive" (PPA) or whatever.
+The package may be in a binary installable format (\texttt{.deb}
+\index{Files and Directories!\texttt{.deb} package files} files for
+Debian systems), in source format requiring it to be built, in a zipped
 "tarball," and more.
 
 If you want the latest and greatest version of a package you often have
 to go to its "official" site or GitHub repository. There, you may find a
 \texttt{.deb} file, in which case you could install it with
-\texttt{dpkg}\drcmd{dpkg}:
+\texttt{dpkg}\drcmd{dpkg}\index{Package management!\texttt{dpkg} command}:
 
-\drcap{Installing a package with dpkg}
+\drcap{Installing a package with \texttt{dpkg}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6683,11 +6704,17 @@ There is, however, a problem. You now have to remember that you
 installed that package by hand and keep it up to date by hand (or not).
 \texttt{apt-get\ upgrade} isn't going to help you here. This is true no
 matter what way you get the alternative package - \texttt{.deb} file,
-tarball, source code, or whatever.
+tarball, source code, or whatever (although \texttt{apt-get} can work
+with PPAs in a more automated manner).
+
+The second problem with third-party package sources is how do you know
+whether to trust them or not? If something is in an "official" distro
+repository, chances are it has been vetted to a certain degree. But
+otherwise, it is caveat administrator.
 
 The final problem with package managers is that they're such a good idea
-that everybody has them now. Not just the operating systems like Linux,
-but languages like Python have
+that \textbf{\emph{everything}} has them now. Not just the operating
+systems like Linux, but languages like Python have
 \href{https://pypi.python.org/pypi/pip/}{\texttt{pip}} and execution
 environments like node have \href{https://www.npmjs.com/}{\texttt{npm}}.
 So now you end up with having to keep track of what you have installed
@@ -6698,7 +6725,8 @@ Add into this that many of these language and environment package
 managers allow setting up "global" (system-wide) or "local" (current
 directory) versions of a package to allow different versions of the same
 package to exist on the same system, where different applications may be
-relying on the different versions to work.
+relying on the different versions to work. Do you keep good notes? You'd
+better!
 
 \section*{\texorpdfstring{Which \texttt{which} is
 Which?}{Which which is Which?}}\label{which-which-is-which}
@@ -6716,7 +6744,7 @@ Luckily we have the
 \href{http://linux.die.net/man/1/which}{\texttt{which}}\drcmd{which}
 command for just that!
 
-\drcap{which command}
+\drcap{\texttt{which} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6730,7 +6758,7 @@ One way is with the
 \href{http://linux.die.net/man/1/locate}{\texttt{locate}}\drcmd{locate}
 command:
 
-\drcap{locate command}
+\drcap{\texttt{locate} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6767,14 +6795,14 @@ real time). You are simply searching the database for a pattern. It is a
 quicker way to look than
 \texttt{find\ /\ -name\ \textbackslash{}*pattern*\textbackslash{}}.
 
-One final note on which thing gets executed. Unlike in Windows, UNIX
+One final note on which thing gets executed. Unlike in Windows, "UNIX"
 environments do not consider the local directory (the current directory
 you are sitting at the command prompt, i.e., what
 \href{http://linux.die.net/man/1/pwd}{\texttt{pwd}}\drcmd{pwd} shows) as
 part of the path unless \texttt{.} is explicitly listed in
-\texttt{\$PATH}. This is for security purposes. So it can be a bit
-unnerving to try and execute \texttt{foo} in the current directory and
-get:
+\texttt{\$PATH} (and that is typically a bad idea). This is for security
+purposes. So it can be a bit unnerving to try and execute \texttt{foo}
+in the current directory and get:
 
 \drcap{Command not found - but it's right there!}
 
@@ -6828,14 +6856,15 @@ Linux. It reads in the various
 files on the system and executes the commands in them at the specified
 times. You use the
 \href{http://linux.die.net/man/1/crontab}{\texttt{crontab(1)}}\drcmd{crontab}
-command to view and edit the \texttt{crontab} files for your user (and
-other users if you have admin privileges).
+command to view and edit the
+\texttt{crontab}\index{Files and Directories!Special!\texttt{crontab}}
+files for your user (and other users if you have admin privileges).
 
 The sample given in the comments of the \texttt{crontab} when initially
 opened using \texttt{crontab\ -e} give a fine example of the syntax of
 the \texttt{crontab} file:
 
-\drcap{Looking at default crontab file}
+\drcap{Looking at default \texttt{crontab} file}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6867,7 +6896,7 @@ the \texttt{crontab} file:
 If you have \texttt{sudo} privileges you can edit the \texttt{crontab}
 file for another user with:
 
-\drcap{Editing another user's crontab file}
+\drcap{Editing another user's \texttt{crontab} file}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6887,7 +6916,8 @@ in any scripts or parameters to scripts it calls. Depending on the
 system and whether \texttt{\$PATH}\drenv{PATH} is set at all when a
 "\texttt{cron} job" runs, you may have to specify the full paths to
 binaries in installed packages or even what you would consider "system"
-libraries! The \texttt{which} command comes in handy here.
+libraries! The \texttt{which} command comes in handy here for finding
+out where each command is installed.
 
 \section*{Start Me Up}\label{start-me-up}
 \addcontentsline{toc}{section}{Start Me Up}
@@ -6896,7 +6926,7 @@ If you need to reboot the system the quickest way is with the
 \href{http://linux.die.net/man/8/reboot}{\texttt{reboot}}\drcmd{reboot}
 command:
 
-\drcap{reboot command}
+\drcap{\texttt{reboot} command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6922,7 +6952,7 @@ shutting down:
 \addcontentsline{toc}{section}{Turn on Your Signals}
 
 One of the basic concepts in UNIX program is that of
-\href{https://en.wikipedia.org/wiki/Unix_signal}{"signals"}\index{signals}.
+\href{https://en.wikipedia.org/wiki/Unix_signal}{"signals"}\index{Signals}.
 You are probably already familiar with one way to send signals to a
 program, which is via \texttt{Ctrl-C} at the command prompt, which sends
 the \texttt{SIGINT} ("interrupt") signal to the program. Typically this
@@ -6947,7 +6977,7 @@ hence \#9).
 
 You can also use the following "shorthand" for \texttt{SIGKILL}:
 
-\drcap{Even shorter way to kill the process}
+\drcap{Even shorter way to \texttt{kill} the process}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6976,13 +7006,15 @@ which can include sending \texttt{SIGINT} to it first.
 \addcontentsline{toc}{section}{Exit, Smiling}
 
 Sometimes a command runs and there isn't a good way to tell if it worked
-or not. UNIX programs are supposed to set an "exit status" when they end
-that by convention is \texttt{0} if the program exited successfully and
-a non-zero, typically positive number if there was an error. The exit
-status for the last executed command or program can be shown at the
-command line using the \texttt{\$?}\drenv{Question mark} environment
-variable. Consider if the file \texttt{foo} exists and \texttt{bar} does
-not:
+or not. "UNIX" programs are supposed to set an "exit status" when they
+end that by convention is \texttt{0} if the program exited successfully
+and a non-zero, (typically) positive number if there was an error. The
+exit status for the last executed command or program can be shown at the
+command line using the \texttt{\$?}
+\index{Environment variables!\?@\texttt{?}}
+\index{0@Symbols!\texttt{?} (exit status environment variable)}
+environment variable. Consider if the file \texttt{foo} exists and
+\texttt{bar} does not:
 
 \drcap{Examining exit codes}
 
@@ -7007,25 +7039,26 @@ we're not going to go into script logic here.
 However, sometimes even at the command line we want to be able to
 conditionally control a sequence of commands, and continue (or not)
 based on the success (or failure) of a previous command. In
-\texttt{bash} we have \texttt{\&\&} and \texttt{\textbar{}\textbar{}} to
-the rescue!
+\texttt{bash} we have
+\texttt{\&\&}\index{0@Symbols!\texttt{\&}\texttt{\&} (logical "and" operator)}
+and \texttt{\textbar{}\textbar{}}
+\index{0@Symbols!\texttt{"|"|} (logical "or" operator)} to the rescue!
 
 \begin{itemize}
 \item
-  \textbf{\texttt{a\ \&\&\ b}}\index{And operator} - execute \texttt{a}
-  \textbf{\emph{and}} \texttt{b}, i.e., execute \texttt{b} only if
-  \texttt{a} is successful.
+  \textbf{\texttt{a\ \&\&\ b}} - execute \texttt{a} \textbf{\emph{and}}
+  \texttt{b}, i.e., execute \texttt{b} only if \texttt{a} is successful.
 \item
-  \textbf{\texttt{a\ \textbar{}\textbar{}\ b}}\index{Or operator} -
-  execute \texttt{a} \textbf{\emph{or}} \texttt{b}, that is execute
-  \texttt{b} whether \textbf{\emph{or}} not \texttt{a} is successful.
+  \textbf{\texttt{a\ \textbar{}\textbar{}\ b}} - execute \texttt{a}
+  \textbf{\emph{or}} \texttt{b}, that is execute \texttt{b} whether
+  \textbf{\emph{or}} not \texttt{a} is successful.
 \end{itemize}
 
 Our example of file \texttt{foo} (which exists) and file \texttt{bar}
 (which does not) and the effect on the exit code of \texttt{ls} can be
 illustrative here, too:
 
-\drcap{Using ampersands to chain commands together}
+\drcap{Using \texttt{\&}\texttt{\&} to chain commands together}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7041,7 +7074,7 @@ Both \texttt{ls} commands execute because the first successfully found
 \texttt{foo}, but the second emits its error and sets the exit code to
 \texttt{2} (failure).
 
-\drcap{Using || to execute the first and possibly the second command}
+\drcap{Using \texttt{||} to execute the first and possibly the second command}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7052,12 +7085,12 @@ Both \texttt{ls} commands execute because the first successfully found
 \end{Highlighting}
 \end{Shaded}
 
-Note in this case the second \texttt{ls} \textbf{\emph{did not}} execute
-because the logical "or" condition was already satisfied by the
+Note in this case the \texttt{ls\ bar} command \textbf{\emph{did not}}
+execute because the logical "or" condition was already satisfied by the
 successful execution of the first \texttt{ls}. The exit code is
 obviously \texttt{0} (success).
 
-\drcap{The second command won't execute if the first fails}
+\drcap{With \texttt{\&}\texttt{\&} the second command won't execute if the first fails}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7073,7 +7106,7 @@ fails and the expression exits with a code of \texttt{2}. And finally,
 while the first command failed the second still can execute because of
 the "or", and the whole expression returns \texttt{0}.
 
-\drcap{One more example with ||}
+\drcap{One more example with \texttt{||}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -7092,10 +7125,10 @@ return a \texttt{0} (success) exit code. This can be useful in scripting
 and also sometimes when building "and" and "or" clauses like above.
 
 And yes, of course, that means there is also a
-\href{http://linux.die.net/man/1/false}{\texttt{false}}\drcmd{false}
-command to "do nothing, unsuccessfully!"
+\href{http://linux.die.net/man/1/false}{\texttt{false}}\drcmd
+false\} command to "do nothing, unsuccessfully!"
 
-\drcap{true and false commands}
+\drcap{\texttt{true} and \texttt{false} commands}
 
 \begin{Shaded}
 \begin{Highlighting}[]

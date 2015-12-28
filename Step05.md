@@ -139,7 +139,7 @@ cat: ./d: Is a directory
 ```
 
 The `2>/tmp/finderrors.log`\index{0@Symbols!\texttt{2>} (\textit{stderr} redirection)}
-\index{I/O!Redirection!Erro (\texttt{2>})} is the magic that is redirecting file descriptor 2
+\index{I/O!Redirection!Error (\texttt{2>})} is the magic that is redirecting file descriptor 2
 (`stderr`) to the log file `/tmp/finderrors.log`.
 
 A very common paradigm is to capture both `stdout`\index{I/O!Streams!stdin@\textit{stdout}} and

@@ -54,7 +54,7 @@ use `ps -AH`:
 ```
 
 You can *kill* a process using the [`kill`](http://linux.die.net/man/1/kill)\drcmd{kill} command,
-which takes a process id and optionally a "signal"\index{signals}. Here is an example looking for
+which takes a process id and optionally a "signal"\index{Signals}. Here is an example looking for
 any running instance of `vi` and sending it a `kill` command:
 
 \drcap{Hunting down and killing \texttt{vi} sessions}
@@ -73,7 +73,7 @@ anything else containing the string `vi`, too).
 
 * **`|`** - pipe `stdout` from `grep`\drcmd{grep} to next command.
 
-* **`kill`** - send a `SIGINT` signal\index{signals} to a process specified by:
+* **`kill`** - send a `SIGINT` signal\index{Signals} to a process specified by:
 
 * **`` `cut -f2 -d" "` ``** - execute the [`cut`](http://linux.die.net/man/1/cut)\drcmd{cut}
 command and take the second space-delimited field (in this case the process id - the first "field"

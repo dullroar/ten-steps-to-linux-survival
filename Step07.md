@@ -32,7 +32,7 @@ rtt min/avg/max/mdev = 59.933/62.581/70.935/3.191 ms
 
 One difference with `ping` is that by default in Linux `ping` doesn't stop until the user presses
 `Ctrl-C` (which sends the [`SIGINT` interrupt](https://en.wikipedia.org/wiki/Unix_signal)
-\index{signals} to the program). In this way it acts more like `ping -t` in `CMD.EXE`\drshl{CMD.EXE}
+\index{Signals} to the program). In this way it acts more like `ping -t` in `CMD.EXE`\drshl{CMD.EXE}
 Also, be aware that on Cygwin `ping` is still the system (Windows) `ping`.
 
 [`traceroute`](http://linux.die.net/man/8/traceroute)\drcmd{traceroute} works, too (although

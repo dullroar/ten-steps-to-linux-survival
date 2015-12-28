@@ -2696,7 +2696,7 @@ visudo (8)           - edit the sudoers file</code></pre>
 <p>This step is a grab bag of stuff that didn't seem to directly belong anywhere else, but I still think needs to be known, or at least brushed up against.</p>
 <h2 id="one-stop-shopping" class="unnumbered">One-Stop Shopping</h2>
 <p>In UNIX-like systems, most (not all) system configuration is stored in directories and text files under <code>/etc</code>.</p>
-<p><strong>Note:</strong> In Linux almost universally <code>/etc</code> is pronounced &quot;slash-et-see,&quot; <strong><em>not</em></strong> &quot;forward slash et cetera.&quot;</p>
+<p><strong>Note:</strong> In Linux <code>/etc</code> is almost universally pronounced &quot;slash-et-see,&quot; <strong><em>not</em></strong> &quot;forward slash et cetera.&quot;</p>
 <p></p>
 <pre class="bash"><code>~ $ ls /etc
 acpi                    hosts                 pki
@@ -2735,7 +2735,7 @@ brlapi.key              kbd                   rc6.d
 </ul>
 <p>There are lots of other interesting files under <code>/etc</code>, but I keep returning to the above again and again. On most of them you can run the <code>man</code> command against section 5 to see their format and documentation, e.g., <code>man 5 hosts</code>.</p>
 <h2 id="service-station" class="unnumbered">Service Station</h2>
-<p>We are going to ignore system initialization and &quot;stages,&quot; and assume most of the time you are running on a well-functioning system. Even so sometimes you want to restart a specific system service without rebooting the whole system, often to force re-reading changed configuration files. If the service has a script in <code>/etc/init.d</code>:</p>
+<p>We are going to ignore system initialization and &quot;stages,&quot; and assume most of the time you are running on a well-functioning system. Even so sometimes you want to restart a specific system service without rebooting the whole system, often to force re-reading changed configuration files. First check if the service has a script in <code>/etc/init.d</code>:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls /etc/init.d
 acpid             dbus               ondemand     single
@@ -2754,7 +2754,7 @@ cryptdisks        mdm                samba        virtualbox-guest-x11
 cryptdisks-early  mintsystem         samba-ad-dc  x11-common
 cups              networking         saned
 cups-browsed      nmbd               sendsigs</code></pre>
-<p>...then chances are it will respond to a fairly standard set of commands, such as the following samples with <code>samba</code>:</p>
+<p>If so, then chances are it will respond to a fairly standard set of commands, such as the following samples with <code>samba</code>:</p>
 <p></p>
 <pre class="bash"><code>~ # /etc/init.d/samba stop
 [ ok ] Stopping Samba daemons: nmbd smbd.
@@ -2765,10 +2765,10 @@ cups-browsed      nmbd               sendsigs</code></pre>
 [ ok ] Starting Samba daemons: nmbd smbd.</code></pre>
 <p><strong>Note:</strong> The above examples were run as <code>root</code>, otherwise they would probably have required execution using <code>sudo</code>.</p>
 <h2 id="package-management" class="unnumbered">Package Management</h2>
-<p>Almost all Linux distros have the concept of &quot;packages&quot; which are used to install, update and uninstall software. There are different package managers, including <code>dpkg</code> and <code>apt-get</code> on Debian-based distros, <code>rpm</code> on Fedora descendants, etc. For the rest of this section we will use Debian tools, but in general the concepts and problems are similar for the other toolsets.</p>
+<p>Almost all Linux distros have the concept of &quot;packages&quot; which are used to install, update and uninstall software. There are different package managers, including <code>dpkg</code>  and <code>apt-get</code>  on Debian-based distros, <code>rpm</code>  on Fedora descendants, etc. For the rest of this section we will use Debian tools, but in general the concepts and problems are similar for the other toolsets.</p>
 <p>One of the nicest things about Linux-style package managers (as opposed to traditional Windows installers) is that they can satisfy all a packages &quot;dependencies&quot; (other packages that are required for a package to run) and automatically detect and install those, too. See <a href="https://chocolatey.org/">Chocolately</a> for an attempt to build a similar ecosystem in Windows.</p>
 <p>One thing Linux distros do is define the &quot;repositories&quot; (servers and file structures) that serve the various packages. In addition, there are usually multiple versions of packages, typically matching different releases of the distro. We won't go into setting up a system to point to these here.</p>
-<p>In Debian flavors, <a href="http://linux.die.net/man/8/apt-get"><code>apt-get</code></a> is usually the tool of choice for package management. Another option is <a href="http://linux.die.net/man/8/aptitude"><code>aptitude</code></a>.</p>
+<p>In Debian flavors, <a href="http://linux.die.net/man/8/apt-get"><code>apt-get</code></a> is usually the tool of choice for package management. Another option is <a href="http://linux.die.net/man/8/aptitude"><code>aptitude</code></a> .</p>
 <p>There are three common <code>apt-get</code> commands that get used over and over. The first downloads and <em>updates</em> the local metadata cache for the repositories:</p>
 <p></p>
 <pre class="bash"><code>~ $ sudo apt-get update
@@ -2804,7 +2804,9 @@ Building dependency tree
 Reading state information... Done
 Calculating upgrade... Done
 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.</code></pre>
-<p>In this case there was nothing to upgrade. And the final common command is obviously to install a package:</p>
+<p>In this case there was nothing to upgrade.</p>
+<p><strong>Note:</strong> In the example above I used <code>apt-get dist-upgrade</code>. There is also an <code>apt-get upgrade</code> command. <code>apt-get dist-upgrade</code> will resolve any new dependencies and download new packages if needed, but <strong><em>it may also remove packages it considers no longer needed.</em></strong> <code>apt-get upgrade</code> simply performs an in-place upgrade of already-installed packages and in no case will install new or remove unneeded packages. Which is appropriate for you will depend on your circumstances. You can use the <code>--simulate</code> parameter with either to have <code>apt-get</code> show you what it would do without actually doing it.</p>
+<p>And the final common command is obviously to install a package:</p>
 <p></p>
 <pre class="bash"><code>~ $ sudo apt-get install traceroute
 Reading package lists... Done
@@ -2829,16 +2831,17 @@ update-alternatives: using /usr/bin/traceproto.db to provide /usr/bin/traceproto
  (traceproto) in auto mode
 update-alternatives: using /usr/sbin/tcptraceroute.db to provide /usr/sbin/tcptr
 aceroute (tcptraceroute) in auto mode</code></pre>
-<p>You can also <code>apt-get remove</code> or <code>apt-get purge</code> packages. See the man page for details.</p>
+<p>You can also <code>apt-get remove</code> or <code>apt-get purge</code> packages. See the <code>apt-get</code> <code>man</code> page for details.</p>
 <p>This all looks very convenient, and it is. The problems arise because some distros are better at tracking current versions of packages in their repositories than others. In fact, some distros purposefully stay behind cutting edge for system stability purposes. Debian itself is a good example of this, as are many &quot;LTS&quot; (long term support) releases in other distros.</p>
 <h2 id="other-sources" class="unnumbered">Other Sources</h2>
-<p>Besides the distribution's repositories, you can install packages and other software from a variety of places. It may be an &quot;official&quot; site for the package, GitHub, or whatever. The package may be in a binary installable format (<code>.deb</code> files for Debian systems), in source format requiring it to be built, in a zipped &quot;tarball,&quot; and more.</p>
+<p>Besides the distribution's repositories, you can install packages and other software from a variety of places. It may be an &quot;official&quot; site for the package, GitHub, a &quot;personal package archive&quot; (PPA) or whatever. The package may be in a binary installable format (<code>.deb</code>  files for Debian systems), in source format requiring it to be built, in a zipped &quot;tarball,&quot; and more.</p>
 <p>If you want the latest and greatest version of a package you often have to go to its &quot;official&quot; site or GitHub repository. There, you may find a <code>.deb</code> file, in which case you could install it with <code>dpkg</code>:</p>
 <p></p>
 <pre class="bash"><code>sudo dpkg -i somesoftware.deb</code></pre>
-<p>There is, however, a problem. You now have to remember that you installed that package by hand and keep it up to date by hand (or not). <code>apt-get upgrade</code> isn't going to help you here. This is true no matter what way you get the alternative package - <code>.deb</code> file, tarball, source code, or whatever.</p>
-<p>The final problem with package managers is that they're such a good idea that everybody has them now. Not just the operating systems like Linux, but languages like Python have <a href="https://pypi.python.org/pypi/pip/"><code>pip</code></a> and execution environments like node have <a href="https://www.npmjs.com/"><code>npm</code></a>. So now you end up with having to keep track of what you have installed on a system across two or three or more package managers at different levels of abstraction. It can be a mess!</p>
-<p>Add into this that many of these language and environment package managers allow setting up &quot;global&quot; (system-wide) or &quot;local&quot; (current directory) versions of a package to allow different versions of the same package to exist on the same system, where different applications may be relying on the different versions to work.</p>
+<p>There is, however, a problem. You now have to remember that you installed that package by hand and keep it up to date by hand (or not). <code>apt-get upgrade</code> isn't going to help you here. This is true no matter what way you get the alternative package - <code>.deb</code> file, tarball, source code, or whatever (although <code>apt-get</code> can work with PPAs in a more automated manner).</p>
+<p>The second problem with third-party package sources is how do you know whether to trust them or not? If something is in an &quot;official&quot; distro repository, chances are it has been vetted to a certain degree. But otherwise, it is caveat administrator.</p>
+<p>The final problem with package managers is that they're such a good idea that <strong><em>everything</em></strong> has them now. Not just the operating systems like Linux, but languages like Python have <a href="https://pypi.python.org/pypi/pip/"><code>pip</code></a> and execution environments like node have <a href="https://www.npmjs.com/"><code>npm</code></a>. So now you end up with having to keep track of what you have installed on a system across two or three or more package managers at different levels of abstraction. It can be a mess!</p>
+<p>Add into this that many of these language and environment package managers allow setting up &quot;global&quot; (system-wide) or &quot;local&quot; (current directory) versions of a package to allow different versions of the same package to exist on the same system, where different applications may be relying on the different versions to work. Do you keep good notes? You'd better!</p>
 <h2 id="which-which-is-which" class="unnumbered">Which <code>which</code> is Which?</h2>
 <p>Now that we've seen that we can have multiple versions of the same command or executable on the system, an interesting question arises. <em>Which</em> <code>foo</code> command am I going to call if I just type <code>foo</code> at the command prompt? In other words, after taking the <code>$PATH</code> variable into consideration and searching for the program through that from left to right, which version in which directory is going to be called?</p>
 <p>Luckily we have the <a href="http://linux.die.net/man/1/which"><code>which</code></a> command for just that!</p>
@@ -2872,7 +2875,7 @@ aceroute (tcptraceroute) in auto mode</code></pre>
 /usr/lib/x86_64-linux-gnu/sasl2/libdigestmd5.so
 ...and so on...</code></pre>
 <p>The <code>locate</code> command, if installed, is basically a database of all of the file names on the system (collected periodically - not in real time). You are simply searching the database for a pattern. It is a quicker way to look than <code>find / -name \*pattern*\</code>.</p>
-<p>One final note on which thing gets executed. Unlike in Windows, UNIX environments do not consider the local directory (the current directory you are sitting at the command prompt, i.e., what <a href="http://linux.die.net/man/1/pwd"><code>pwd</code></a> shows) as part of the path unless <code>.</code> is explicitly listed in <code>$PATH</code>. This is for security purposes. So it can be a bit unnerving to try and execute <code>foo</code> in the current directory and get:</p>
+<p>One final note on which thing gets executed. Unlike in Windows, &quot;UNIX&quot; environments do not consider the local directory (the current directory you are sitting at the command prompt, i.e., what <a href="http://linux.die.net/man/1/pwd"><code>pwd</code></a> shows) as part of the path unless <code>.</code> is explicitly listed in <code>$PATH</code> (and that is typically a bad idea). This is for security purposes. So it can be a bit unnerving to try and execute <code>foo</code> in the current directory and get:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls -l foo
 -rwxrwx--- 1 myuser mygroup 16 Oct 23 19:03 foo
@@ -2923,7 +2926,7 @@ foo: command not found</code></pre>
 <p></p>
 <pre class="bash"><code>$ sudo crontab -e -u otheruser</code></pre>
 <p>This can be useful to do things like run backup jobs as the user that is running the web server, say, so it has access rights to all the necessary files to back up the web server installation by definition.</p>
-<p>The only other thing I have to add about <code>cron</code> is when it runs the commands from each <code>crontab</code>, they are typically not invoked with that particular user's environment settings, so it is best to fully specify the paths to files both in the <code>crontab</code> file itself and in any scripts or parameters to scripts it calls. Depending on the system and whether <code>$PATH</code> is set at all when a &quot;<code>cron</code> job&quot; runs, you may have to specify the full paths to binaries in installed packages or even what you would consider &quot;system&quot; libraries! The <code>which</code> command comes in handy here.</p>
+<p>The only other thing I have to add about <code>cron</code> is when it runs the commands from each <code>crontab</code>, they are typically not invoked with that particular user's environment settings, so it is best to fully specify the paths to files both in the <code>crontab</code> file itself and in any scripts or parameters to scripts it calls. Depending on the system and whether <code>$PATH</code> is set at all when a &quot;<code>cron</code> job&quot; runs, you may have to specify the full paths to binaries in installed packages or even what you would consider &quot;system&quot; libraries! The <code>which</code> command comes in handy here for finding out where each command is installed.</p>
 <h2 id="start-me-up" class="unnumbered">Start Me Up</h2>
 <p>If you need to reboot the system the quickest way is with the <a href="http://linux.die.net/man/8/reboot"><code>reboot</code></a> command:</p>
 <p></p>
@@ -2945,7 +2948,7 @@ foo: command not found</code></pre>
 <pre class="bash"><code>kill -s SIGKILL 14302</code></pre>
 <p><strong>Note:</strong> <code>SIGKILL</code> should be used as a last resort, because a program is not allowed to catch it or be notified of it and hence can perform no closing logic or cleanup and that may lead to data corruption. It is for getting rid of &quot;hung&quot; processes when nothing else will work. Always try to stop a program with a more &quot;normal&quot; method, which can include sending <code>SIGINT</code> to it first.</p>
 <h2 id="exit-smiling" class="unnumbered">Exit, Smiling</h2>
-<p>Sometimes a command runs and there isn't a good way to tell if it worked or not. UNIX programs are supposed to set an &quot;exit status&quot; when they end that by convention is <code>0</code> if the program exited successfully and a non-zero, typically positive number if there was an error. The exit status for the last executed command or program can be shown at the command line using the <code>$?</code> environment variable. Consider if the file <code>foo</code> exists and <code>bar</code> does not:</p>
+<p>Sometimes a command runs and there isn't a good way to tell if it worked or not. &quot;UNIX&quot; programs are supposed to set an &quot;exit status&quot; when they end that by convention is <code>0</code> if the program exited successfully and a non-zero, (typically) positive number if there was an error. The exit status for the last executed command or program can be shown at the command line using the <code>$?</code>   environment variable. Consider if the file <code>foo</code> exists and <code>bar</code> does not:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls foo
 foo
@@ -2956,7 +2959,7 @@ ls: cannot access bar: No such file or directory
 ~ $ echo $?
 2</code></pre>
 <p><strong>Note:</strong> In many cases the exit codes come from the ANSI Standard C library's <a href="http://mazack.org/unix/errno.php"><code>errno.h</code> file</a>. All of this is much handier when handling errors in scripts, but we're not going to go into script logic here.</p>
-<p>However, sometimes even at the command line we want to be able to conditionally control a sequence of commands, and continue (or not) based on the success (or failure) of a previous command. In <code>bash</code> we have <code>&amp;&amp;</code> and <code>||</code> to the rescue!</p>
+<p>However, sometimes even at the command line we want to be able to conditionally control a sequence of commands, and continue (or not) based on the success (or failure) of a previous command. In <code>bash</code> we have <code>&amp;&amp;</code> and <code>||</code>  to the rescue!</p>
 <ul>
 <li><p><strong><code>a &amp;&amp; b</code></strong> - execute <code>a</code> <strong><em>and</em></strong> <code>b</code>, i.e., execute <code>b</code> only if <code>a</code> is successful.</p></li>
 <li><p><strong><code>a || b</code></strong> - execute <code>a</code> <strong><em>or</em></strong> <code>b</code>, that is execute <code>b</code> whether <strong><em>or</em></strong> not <code>a</code> is successful.</p></li>
@@ -2974,7 +2977,7 @@ ls: cannot access bar: No such file or directory
 foo
 ~ $ echo $?
 0</code></pre>
-<p>Note in this case the second <code>ls</code> <strong><em>did not</em></strong> execute because the logical &quot;or&quot; condition was already satisfied by the successful execution of the first <code>ls</code>. The exit code is obviously <code>0</code> (success).</p>
+<p>Note in this case the <code>ls bar</code> command <strong><em>did not</em></strong> execute because the logical &quot;or&quot; condition was already satisfied by the successful execution of the first <code>ls</code>. The exit code is obviously <code>0</code> (success).</p>
 <p></p>
 <pre class="bash"><code>~ $ ls bar &amp;&amp; ls foo
 ls: cannot access bar: No such file or directory
@@ -2988,7 +2991,7 @@ foo
 ~ $ echo $?
 0</code></pre>
 <p><strong>Note:</strong> There is actually a <a href="http://linux.die.net/man/1/true"><code>true</code></a> command whose purpose is to, &quot;do nothing, successfully.&quot; All it does is return a <code>0</code> (success) exit code. This can be useful in scripting and also sometimes when building &quot;and&quot; and &quot;or&quot; clauses like above.</p>
-<p>And yes, of course, that means there is also a <a href="http://linux.die.net/man/1/false"><code>false</code></a> command to &quot;do nothing, unsuccessfully!&quot;</p>
+<p>And yes, of course, that means there is also a <a href="http://linux.die.net/man/1/false"><code>false</code></a>false} command to &quot;do nothing, unsuccessfully!&quot;</p>
 <p></p>
 <pre class="bash"><code>~ $ true
 ~ $ echo $?

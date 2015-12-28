@@ -3666,7 +3666,7 @@ One-Stop Shopping
 
 In UNIX-like systems, most (not all) system configuration is stored in directories and text files under `/etc`.
 
-**Note:** In Linux almost universally `/etc` is pronounced "slash-et-see," ***not*** "forward slash et cetera."
+**Note:** In Linux `/etc` is almost universally pronounced "slash-et-see," ***not*** "forward slash et cetera."
 
 ``` bash
 ~ $ ls /etc
@@ -3718,7 +3718,7 @@ There are lots of other interesting files under `/etc`, but I keep returning to 
 Service Station
 ---------------
 
-We are going to ignore system initialization and "stages," and assume most of the time you are running on a well-functioning system. Even so sometimes you want to restart a specific system service without rebooting the whole system, often to force re-reading changed configuration files. If the service has a script in `/etc/init.d`:
+We are going to ignore system initialization and "stages," and assume most of the time you are running on a well-functioning system. Even so sometimes you want to restart a specific system service without rebooting the whole system, often to force re-reading changed configuration files. First check if the service has a script in `/etc/init.d`:
 
 ``` bash
 ~ $ ls /etc/init.d
@@ -3740,7 +3740,7 @@ cups              networking         saned
 cups-browsed      nmbd               sendsigs
 ```
 
-...then chances are it will respond to a fairly standard set of commands, such as the following samples with `samba`:
+If so, then chances are it will respond to a fairly standard set of commands, such as the following samples with `samba`:
 
 ``` bash
 ~ # /etc/init.d/samba stop
@@ -3763,7 +3763,7 @@ One of the nicest things about Linux-style package managers (as opposed to tradi
 
 One thing Linux distros do is define the "repositories" (servers and file structures) that serve the various packages. In addition, there are usually multiple versions of packages, typically matching different releases of the distro. We won't go into setting up a system to point to these here.
 
-In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get) is usually the tool of choice for package management. Another option is [`aptitude`](http://linux.die.net/man/8/aptitude).
+In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get) is usually the tool of choice for package management. Another option is [`aptitude`](http://linux.die.net/man/8/aptitude) .
 
 There are three common `apt-get` commands that get used over and over. The first downloads and *updates* the local metadata cache for the repositories:
 
@@ -3807,7 +3807,11 @@ Calculating upgrade... Done
 0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
 ```
 
-In this case there was nothing to upgrade. And the final common command is obviously to install a package:
+In this case there was nothing to upgrade.
+
+**Note:** In the example above I used `apt-get dist-upgrade`. There is also an `apt-get upgrade` command. `apt-get dist-upgrade` will resolve any new dependencies and download new packages if needed, but ***it may also remove packages it considers no longer needed.*** `apt-get upgrade` simply performs an in-place upgrade of already-installed packages and in no case will install new or remove unneeded packages. Which is appropriate for you will depend on your circumstances. You can use the `--simulate` parameter with either to have `apt-get` show you what it would do without actually doing it.
+
+And the final common command is obviously to install a package:
 
 ``` bash
 ~ $ sudo apt-get install traceroute
@@ -3835,14 +3839,14 @@ update-alternatives: using /usr/sbin/tcptraceroute.db to provide /usr/sbin/tcptr
 aceroute (tcptraceroute) in auto mode
 ```
 
-You can also `apt-get remove` or `apt-get purge` packages. See the man page for details.
+You can also `apt-get remove` or `apt-get purge` packages. See the `apt-get` `man` page for details.
 
 This all looks very convenient, and it is. The problems arise because some distros are better at tracking current versions of packages in their repositories than others. In fact, some distros purposefully stay behind cutting edge for system stability purposes. Debian itself is a good example of this, as are many "LTS" (long term support) releases in other distros.
 
 Other Sources
 -------------
 
-Besides the distribution's repositories, you can install packages and other software from a variety of places. It may be an "official" site for the package, GitHub, or whatever. The package may be in a binary installable format (`.deb` files for Debian systems), in source format requiring it to be built, in a zipped "tarball," and more.
+Besides the distribution's repositories, you can install packages and other software from a variety of places. It may be an "official" site for the package, GitHub, a "personal package archive" (PPA) or whatever. The package may be in a binary installable format (`.deb` files for Debian systems), in source format requiring it to be built, in a zipped "tarball," and more.
 
 If you want the latest and greatest version of a package you often have to go to its "official" site or GitHub repository. There, you may find a `.deb` file, in which case you could install it with `dpkg`:
 
@@ -3850,11 +3854,13 @@ If you want the latest and greatest version of a package you often have to go to
 sudo dpkg -i somesoftware.deb
 ```
 
-There is, however, a problem. You now have to remember that you installed that package by hand and keep it up to date by hand (or not). `apt-get upgrade` isn't going to help you here. This is true no matter what way you get the alternative package - `.deb` file, tarball, source code, or whatever.
+There is, however, a problem. You now have to remember that you installed that package by hand and keep it up to date by hand (or not). `apt-get upgrade` isn't going to help you here. This is true no matter what way you get the alternative package - `.deb` file, tarball, source code, or whatever (although `apt-get` can work with PPAs in a more automated manner).
 
-The final problem with package managers is that they're such a good idea that everybody has them now. Not just the operating systems like Linux, but languages like Python have [`pip`](https://pypi.python.org/pypi/pip/) and execution environments like node have [`npm`](https://www.npmjs.com/). So now you end up with having to keep track of what you have installed on a system across two or three or more package managers at different levels of abstraction. It can be a mess!
+The second problem with third-party package sources is how do you know whether to trust them or not? If something is in an "official" distro repository, chances are it has been vetted to a certain degree. But otherwise, it is caveat administrator.
 
-Add into this that many of these language and environment package managers allow setting up "global" (system-wide) or "local" (current directory) versions of a package to allow different versions of the same package to exist on the same system, where different applications may be relying on the different versions to work.
+The final problem with package managers is that they're such a good idea that ***everything*** has them now. Not just the operating systems like Linux, but languages like Python have [`pip`](https://pypi.python.org/pypi/pip/) and execution environments like node have [`npm`](https://www.npmjs.com/). So now you end up with having to keep track of what you have installed on a system across two or three or more package managers at different levels of abstraction. It can be a mess!
+
+Add into this that many of these language and environment package managers allow setting up "global" (system-wide) or "local" (current directory) versions of a package to allow different versions of the same package to exist on the same system, where different applications may be relying on the different versions to work. Do you keep good notes? You'd better!
 
 Which `which` is Which?
 -----------------------
@@ -3899,7 +3905,7 @@ How can you tell if you have multiple versions of something installed? One way i
 
 The `locate` command, if installed, is basically a database of all of the file names on the system (collected periodically - not in real time). You are simply searching the database for a pattern. It is a quicker way to look than `find / -name \*pattern*\`.
 
-One final note on which thing gets executed. Unlike in Windows, UNIX environments do not consider the local directory (the current directory you are sitting at the command prompt, i.e., what [`pwd`](http://linux.die.net/man/1/pwd) shows) as part of the path unless `.` is explicitly listed in `$PATH`. This is for security purposes. So it can be a bit unnerving to try and execute `foo` in the current directory and get:
+One final note on which thing gets executed. Unlike in Windows, "UNIX" environments do not consider the local directory (the current directory you are sitting at the command prompt, i.e., what [`pwd`](http://linux.die.net/man/1/pwd) shows) as part of the path unless `.` is explicitly listed in `$PATH` (and that is typically a bad idea). This is for security purposes. So it can be a bit unnerving to try and execute `foo` in the current directory and get:
 
 ``` bash
 ~ $ ls -l foo
@@ -3969,7 +3975,7 @@ $ sudo crontab -e -u otheruser
 
 This can be useful to do things like run backup jobs as the user that is running the web server, say, so it has access rights to all the necessary files to back up the web server installation by definition.
 
-The only other thing I have to add about `cron` is when it runs the commands from each `crontab`, they are typically not invoked with that particular user's environment settings, so it is best to fully specify the paths to files both in the `crontab` file itself and in any scripts or parameters to scripts it calls. Depending on the system and whether `$PATH` is set at all when a "`cron` job" runs, you may have to specify the full paths to binaries in installed packages or even what you would consider "system" libraries! The `which` command comes in handy here.
+The only other thing I have to add about `cron` is when it runs the commands from each `crontab`, they are typically not invoked with that particular user's environment settings, so it is best to fully specify the paths to files both in the `crontab` file itself and in any scripts or parameters to scripts it calls. Depending on the system and whether `$PATH` is set at all when a "`cron` job" runs, you may have to specify the full paths to binaries in installed packages or even what you would consider "system" libraries! The `which` command comes in handy here for finding out where each command is installed.
 
 Start Me Up
 -----------
@@ -4016,7 +4022,7 @@ kill -s SIGKILL 14302
 Exit, Smiling
 -------------
 
-Sometimes a command runs and there isn't a good way to tell if it worked or not. UNIX programs are supposed to set an "exit status" when they end that by convention is `0` if the program exited successfully and a non-zero, typically positive number if there was an error. The exit status for the last executed command or program can be shown at the command line using the `$?` environment variable. Consider if the file `foo` exists and `bar` does not:
+Sometimes a command runs and there isn't a good way to tell if it worked or not. "UNIX" programs are supposed to set an "exit status" when they end that by convention is `0` if the program exited successfully and a non-zero, (typically) positive number if there was an error. The exit status for the last executed command or program can be shown at the command line using the `$?` environment variable. Consider if the file `foo` exists and `bar` does not:
 
 ``` bash
 ~ $ ls foo
@@ -4056,7 +4062,7 @@ foo
 0
 ```
 
-Note in this case the second `ls` ***did not*** execute because the logical "or" condition was already satisfied by the successful execution of the first `ls`. The exit code is obviously `0` (success).
+Note in this case the `ls bar` command ***did not*** execute because the logical "or" condition was already satisfied by the successful execution of the first `ls`. The exit code is obviously `0` (success).
 
 ``` bash
 ~ $ ls bar && ls foo
@@ -4077,7 +4083,7 @@ foo
 
 **Note:** There is actually a [`true`](http://linux.die.net/man/1/true) command whose purpose is to, "do nothing, successfully." All it does is return a `0` (success) exit code. This can be useful in scripting and also sometimes when building "and" and "or" clauses like above.
 
-And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false) command to "do nothing, unsuccessfully!"
+And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false)false} command to "do nothing, unsuccessfully!"
 
 ``` bash
 ~ $ true
