@@ -3349,11 +3349,10 @@ single most useful command in "UNIX" (I think)}}
 
 Different people will have different answers to "What is the single most
 useful "UNIX" command?" There certainly are many to consider. But I keep
-coming back to
-\href{http://linux.die.net/man/1/find}{\texttt{find}}.\drfnd{find}{find files}
-It can be intimidating to figure out from the documentation, especially
-at first, but once you start mastering it, you end up using it over and
-over again.
+coming back to \href{http://linux.die.net/man/1/find}{\texttt{find}}. It
+can be intimidating to figure out from the documentation, especially at
+first, but once you start mastering it, you end up using it over and
+over again. \drfnd{find}{find files}
 
 The main concepts of \texttt{find} are simple:
 
@@ -3466,20 +3465,19 @@ Reconsider this example:
 \end{Highlighting}
 \end{Shaded}
 
-There are five (5) backslash
-(\texttt{\textbackslash{}})\index{*@\texttt{\textbackslash{}} (escape character)}
-characters in the above. In each case, the backslash is preventing
+There are five (5) backslash (\texttt{\textbackslash{}}) characters in
+the above. In each case, the backslash is preventing
 \href{http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html}{shell
-expansion}:
+expansion}: \index{*@\texttt{\textbackslash{}} (escape character)}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{\texttt{\textbackslash{}*.dat}} - preserves the
-  \texttt{*}\index{*@\texttt{*} (wildcard)} for \texttt{find} to use as
-  it recursively searches through directories, instead of the shell
-  expanding it to all files that end in \texttt{.dat} in the current
-  directory.
+  \textbf{\texttt{\textbackslash{}*.dat}} - preserves the \texttt{*} for
+  \texttt{find} to use as it recursively searches through directories,
+  instead of the shell expanding it to all files that end in
+  \texttt{.dat} in the current directory.
+  \index{*@\texttt{*} (wildcard)}
 \item
   \textbf{\texttt{\textbackslash{}}} - the \texttt{\textbackslash{}} at
   the end of the first line tells the shell that the command continues
@@ -3489,9 +3487,9 @@ expansion}:
   - these three prevent the shell from trying to expand the braces into
   an environment variable or the semicolon (which is meant to tell
   \texttt{find} when the command being ran via \texttt{-exec} and its
-  parameters end), otherwise
-  \texttt{;}\index{*@\texttt{;} (command separator)} is normally used to
-  separate independent commands on the same line in the shell.
+  parameters end), otherwise \texttt{;} is normally used to separate
+  independent commands on the same line in the shell.
+  \index{*@\texttt{;} (command separator)}
 \end{enumerate}
 
 That last point bears repeating. Any time you \texttt{-exec} in a
@@ -3506,7 +3504,7 @@ Options}{Useful find Options}}\label{useful-find-options}
 
 The \href{http://linux.die.net/man/1/find}{\texttt{find}} documentation
 gives a bewildering number of options. Here are the ones you may "find"
-the most useful:
+the most useful: \drfnd{find}{find files}
 
 \begin{itemize}
 \item
@@ -3607,8 +3605,8 @@ line, we could use the following \texttt{find} command:
 \end{Shaded}
 
 That \texttt{-printf} format string
-\texttt{"\%p\textbackslash{}n\%u\textbackslash{}n\%TY-\%Tm-\%TdT\%TT\textbackslash{}n\textbackslash{}n"}\index{*@\texttt{\%} (format)}
-breaks down into:
+\texttt{"\%p\textbackslash{}n\%u\textbackslash{}n\%TY-\%Tm-\%TdT\%TT\textbackslash{}n\textbackslash{}n"}
+breaks down into: \index{*@\texttt{\%} (format)}
 
 \begin{itemize}
 \tightlist
@@ -3659,15 +3657,16 @@ use regular expressions.' Now they have two problems."} - Jamie Zawinski
 
 If the \texttt{file} command is useful for finding file system entries
 based on their attributes, the
-\href{http://linux.die.net/man/1/grep}{\texttt{grep}}\drfnd{grep}{search files}
-command is good for finding files whose \textbf{\emph{contents}} match a
+\href{http://linux.die.net/man/1/grep}{\texttt{grep}} command is good
+for finding files whose \textbf{\emph{contents}} match a
 \href{https://en.wikipedia.org/wiki/Regular_expression}{regular
-expression}\index{regular expressions}. You already know at least one
-regular expression, the wildcard \texttt{*}
-\index{*@\texttt{*} (match zero or more characters)} character from the
-\texttt{CMD.EXE}\drshl{CMD.EXE} prompt and Windows Explorer. It means
-"match zero or more characters." We'll cover more on regular
-expressions, or "regexes," in a moment.
+expression}. You already know at least one regular expression, the
+wildcard \texttt{*} character from the \texttt{CMD.EXE} prompt and
+Windows Explorer. It means "match zero or more characters." We'll cover
+more on regular expressions, or "regexes," in a moment.
+\drfnd{grep}{search files} \drshl{CMD.EXE}
+\index{*@\texttt{*} (match zero or more characters)}
+\index{regular expressions}
 
 First, an example of \texttt{grep}, showing all files in a directory
 with the pattern "is" in them:
@@ -3691,9 +3690,9 @@ with the pattern "is" in them:
 Regularly}\label{expressing-yourself-regularly}
 \addcontentsline{toc}{section}{Expressing Yourself Regularly}
 
-So what are "regular expressions?"\index{regular expressions} Simply,
-they are patterns for matching "strings," which are sequences of
-"characters," e.g.:
+So what are "regular expressions?" Simply, they are patterns for
+matching "strings," which are sequences of "characters," e.g.:
+\index{regular expressions}
 
 \drcap{A string}
 
@@ -3850,38 +3849,39 @@ For me, the following keep coming up when using regular expressions:
 \begin{itemize}
 \item
   \textbf{\texttt{one\textbar{}other}} - find \texttt{one} pattern or
-  the \texttt{other}. \index{regular expressions!\texttt{"|} (or)}
+  the \texttt{other}.
   \index{*@\texttt{"|} (match zero or more characters)}
+  \index{regular expressions!\texttt{"|} (or)}
 \item
   \textbf{\texttt{\^{}}} - pattern for the beginning of a line.
-  \index{regular expressions!\texttt{\^{}} (beginning of line)}
   \index{*@\texttt{\^{}} (beginning of line)}
+  \index{regular expressions!\texttt{\^{}} (beginning of line)}
 \item
   \textbf{\texttt{\$}} - pattern for the end of a line.
-  \index{regular expressions!\texttt{\$} (end of line)}
   \index{*@\texttt{\$} (end of line)}
+  \index{regular expressions!\texttt{\$} (end of line)}
 \item
   \textbf{\texttt{?}} - match exactly one character.
-  \index{regular expressions!\texttt{?} (match one character)}
   \index{*@\texttt{?} (match one character)}
+  \index{regular expressions!\texttt{?} (match one character)}
 \item
   \textbf{\texttt{*}} - match zero or more characters.
-  \index{regular expressions!\texttt{*} (match zero or more characters)}
   \index{*@\texttt{*} (match zero or more characters)}
+  \index{regular expressions!\texttt{*} (match zero or more characters)}
 \item
   \textbf{\texttt{+}} - match one or more characters.
-  \index{regular expressions!\texttt{+} (match one or more characters)}
   \index{*@\texttt{+} (match one or more characters)}
+  \index{regular expressions!\texttt{+} (match one or more characters)}
 \item
   \textbf{\texttt{{[}A-Z{]}}} - match any character in a range (in this
   case any uppercase Latin alphabetic character).
-  \index{regular expressions!\texttt{[A-Z]} (match a character in range)}
   \index{*@\texttt{[A-Z]} (match a character in range)}
+  \index{regular expressions!\texttt{[A-Z]} (match a character in range)}
 \item
   \textbf{\texttt{{[}n\textbar{}y{]}}} - match one character or another
   (such as \texttt{n} or \texttt{y} here).
-  \index{regular expressions!\texttt{[n"|y]} (match one character or other)}
   \index{*@\texttt{[n"|y]} (match one character or other)}
+  \index{regular expressions!\texttt{[n"|y]} (match one character or other)}
 \end{itemize}
 
 For example, to find the lines that end in \texttt{400}:
@@ -3933,8 +3933,8 @@ than:
 
 \textbf{Note:} In general, if a command has its own "recursive" option
 (such as \texttt{-R} with \texttt{grep}), it is quicker to use that
-rather than to invoke the command repeatedly using
-\texttt{find}\drfnd{find}{find files} instead.
+rather than to invoke the command repeatedly using \texttt{find}
+instead. \drfnd{find}{find files}
 
 However, sometimes you can use \texttt{find} to filter down files to be
 checked before having \texttt{grep} read through them, and have that
@@ -3969,8 +3969,8 @@ pre-filter the results with \texttt{find} before handing them to
 \texttt{awk}}{Gawking at awk}}\label{gawking-at-awk}
 
 I don't have much to say about
-\href{http://linux.die.net/man/1/awk}{\texttt{awk}}\drcmd{awk} other
-than:
+\href{http://linux.die.net/man/1/awk}{\texttt{awk}} other than:
+\drcmd{awk}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4052,7 +4052,7 @@ open by default in every "UNIX" process:
   an interactive session. This is file descriptor 1. \drstd{stdout}
 \item
   \textbf{\emph{stderr}} - "error" output, typically to the console in
-  an interactive session (so it can be ard to distinguish when
+  an interactive session (so it can be hard to distinguish when
   intermingled with \emph{stdout} output). This is file descriptor 2.
   \drstd{stderr}
 \end{itemize}
@@ -4061,18 +4061,17 @@ open by default in every "UNIX" process:
 to important in just a bit.
 
 When a program written in C calls \texttt{printf}, it is writing to
-\emph{stdout}. When a \texttt{bash} script calls
-\texttt{echo}\drcmd{echo}, it too is writing to \emph{stdout}. When a
-command writes an error message, it is writing to \emph{stderr}. If a
-command or program accepts input from the console, it is reading from
-\emph{stdin}.
+\emph{stdout}. When a \texttt{bash} script calls \texttt{echo}, it too
+is writing to \emph{stdout}. When a command writes an error message, it
+is writing to \emph{stderr}. If a command or program accepts input from
+the console, it is reading from \emph{stdin}. \drcmd{echo}
 
-In this example, \texttt{cat}\drcmd{cat} is started with no file name,
-so it will read from \emph{stdin} (a quite common "UNIX" command
-convention), and echo each line typed by the user to \emph{stdout} until
-the "end of file," which in an interactive session can be emulated with
+In this example, \texttt{cat} is started with no file name, so it will
+read from \emph{stdin} (a quite common "UNIX" command convention), and
+echo each line typed by the user to \emph{stdout} until the "end of
+file, which in an interactive session can be emulated with
 \texttt{Ctrl-D}, shown as \texttt{\^{}D} in the example below but not
-seen on the console in real life:
+seen on the console in real life: \drcmd{cat}
 
 \drcap{\textit{stdin} and \textit{stdout}}
 
@@ -4098,12 +4097,12 @@ process. \drstd{stdout}
 \addcontentsline{toc}{section}{All Magic is Redirection}
 
 So one way to string things together in "the UNIX way" is with file
-redirection. This is a concept that also works in
-\texttt{CMD.EXE}\drshl{CMD.EXE} and even with the same syntax.
+redirection. This is a concept that also works in \texttt{CMD.EXE} and
+even with the same syntax. \drshl{CMD.EXE}
 
 Let's create a file with a single line of text in it. One way would be
 to \texttt{vi\ newfilename}, edit the file, save it, and exit
-\texttt{vi}\dreds{vi}. A quicker way is to simply use file redirection:
+\texttt{vi}. A quicker way is to simply use file redirection: \dreds{vi}
 
 \drcap{Hello, world}
 
@@ -4118,20 +4117,20 @@ to \texttt{vi\ newfilename}, edit the file, save it, and exit
 \end{Highlighting}
 \end{Shaded}
 
-In this case the
-\texttt{\textgreater{}\ hw}\index{*@\texttt{>} (output redirection)}
-\index{I/O!redirection!output (\texttt{>})} tells \texttt{bash} to take
+In this case the \texttt{\textgreater{}\ hw} tells \texttt{bash} to take
 the output that \texttt{echo} sends to \emph{stdout} and send it to the
 file \texttt{hw} instead. \drstd{stdout}
+\index{*@\texttt{>} (output redirection)}
+\index{I/O!redirection!output (\texttt{>})}
 
 As mentioned above many "UNIX" commands are set up to take one or more
 file names from the command line as parameters, and if there aren't any,
 to read from \emph{stdin}. The \texttt{cat} command does that. While it
 doesn't save us anything over the above example, the following example
-using \texttt{\textless{}}
-\index{*@\texttt{<} (input redirection)}\index{I/O!redirection!input (\texttt{<})}
-is illustrative of redirecting a file to \emph{stdin} for a command or
-program: \drstd{stdin}
+using \texttt{\textless{}} is illustrative of redirecting a file to
+\emph{stdin} for a command or program: \drstd{stdin}
+\index{*@\texttt{<} (input redirection)}
+\index{I/O!redirection!input (\texttt{<})}
 
 \drcap{Redundant redirection}
 
@@ -4209,15 +4208,15 @@ come in handy! To redirect \emph{stderr} we recall it is
 \end{Highlighting}
 \end{Shaded}
 
-The
-\texttt{2\textgreater{}/tmp/finderrors.log}\index{*@\texttt{2>} (\textit{stderr} redirection)}
-\index{I/O!redirection!error (\texttt{2>})} is the magic that is
+The \texttt{2\textgreater{}/tmp/finderrors.log} is the magic that is
 redirecting file descriptor 2 (\emph{stderr}) to the log file
 \texttt{/tmp/finderrors.log}.
+\index{*@\texttt{2>} (\textit{stderr} redirection)}
+\index{I/O!redirection!error (\texttt{2>})}
 
 A very common paradigm is to capture both \emph{stdout} and
 \emph{stderr} to the same file. Here is how that is done, again using
-file descriptors: \drstd{stdout} \drstd{stderr}
+file descriptors: \drstd{stderr} \drstd{stdout}
 
 \drcap{Redirecting both \textit{stdout} and \textit{stderr} to a file}
 
@@ -4238,7 +4237,7 @@ Now we see \emph{stdout} being redirected to \texttt{/tmp/find.log} with
 \texttt{\textgreater{}/tmp/find.log}, and \emph{stderr} (file descriptor
 2) being sent to the same place as \emph{stdout} (file descriptor 1)
 with \texttt{2\textgreater{}\&1}. Note that this works in
-\texttt{CMD.EXE}{]}drshl\{CMD.EXE\}, too!
+\texttt{CMD.EXE}, too! \drshl{CMD.EXE}
 
 If we want to send \emph{stdout} to one file and \emph{stderr} to
 another, you can do it like this:
@@ -4270,11 +4269,11 @@ re-writing a file versus appending. The following creates a new
 \end{Highlighting}
 \end{Shaded}
 
-However, the next sample using
-\texttt{\textgreater{}\textgreater{}}\index{*@\texttt{>>} (output redirection, appending)}
-\index{I/O!redirection!output, appending (\texttt{>>})} creates a new
-\texttt{/tmp/find.log} file if it doesn't exist, but otherwise appends
-to it:
+However, the next sample using \texttt{\textgreater{}\textgreater{}}
+creates a new \texttt{/tmp/find.log} file if it doesn't exist, but
+otherwise appends to it:
+\index{*@\texttt{>>} (output redirection, appending)}
+\index{I/O!redirection!output, appending (\texttt{>>})}
 
 \drcap{Appending to a file with redirection}
 
@@ -4298,7 +4297,7 @@ further with the concept of a command "pipeline" that allows directly
 sending \emph{stdout} from one program into \emph{stdin} of another
 using the "pipe" (\texttt{\textbar{}}):
 \index{*@\texttt{"|} (pipe)}\index{I/O!redirection!pipe (\texttt{"|})}
-\drstd{stdout} \drstd{stdin}
+\drstd{stdin} \drstd{stdout}
 
 \drcap{Piping output between programs}
 
@@ -4318,14 +4317,14 @@ several small programs, each doing one thing. In this case:
   alphabetical order by their file name to \emph{stdout}, which is piped
   to...
 \item
-  \href{http://linux.die.net/man/1/tr}{\texttt{tr}}\drcmd{tr}
-  "translates" (replaces) any backslash characters (here "escaped" as
+  \href{http://linux.die.net/man/1/tr}{\texttt{tr}} "translates"
+  (replaces) any backslash characters (here "escaped" as
   \texttt{\textquotesingle{}\textbackslash{}\textbackslash{}\textquotesingle{}}
   because the backslash character is a special character) to forward
-  slashes (\texttt{/}), before sending it into...
+  slashes (\texttt{/}) before sending it into... \drcmd{tr}
 \item
-  A \texttt{while}\drcmd{while} loop that reads each line into a
-  variable called \texttt{\$line} and then calls...
+  A \texttt{while} loop that reads each line into a variable called
+  \texttt{\$line} and then calls... \drcmd{while}
 \item
   Some custom script or program called \texttt{./mycmd} passing in the
   value of each \texttt{\$line}.
@@ -4352,8 +4351,8 @@ could start and read in that file as input.
 
 Finally, if you want to capture something to a file \textbf{\emph{and}}
 see it on the console at the same time, that is where the
-\href{http://linux.die.net/man/1/tee}{\texttt{tee}}\drcmd{tee} command
-comes in:
+\href{http://linux.die.net/man/1/tee}{\texttt{tee}} command comes in:
+\drcmd{tee}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4377,33 +4376,32 @@ why \texttt{vi} still matters.}}
 \emph{"You're too young to know."} - Vi (\emph{Grease})
 \end{quote}
 
-\href{http://linux.die.net/man/1/vi}{\texttt{vi}}
-\index{commands!vi@\texttt{vi}|seealso{\texttt{vi} Commands}} \dreds{vi}
-stands for \emph{visual editor} (as well as the Roman numeral for 6,
-which is why it is this chapter), and once you use it you will
-understand what editing from the command line must've been like for
-\texttt{vi} to seem both "visual" and a step forward.
+\href{http://linux.die.net/man/1/vi}{\texttt{vi}} stands for
+\emph{visual editor} (as well as the Roman numeral for 6, which is why
+it is this chapter), and once you use it you will understand what
+editing from the command line must've been like for \texttt{vi} to seem
+both "visual" and a step forward. \dreds{vi}
+\index{commands!vi@\texttt{vi}|seealso{\texttt{vi} Commands}}
 
 Many Linux clones don't use \texttt{vi} proper, but a port called
 \href{http://www.vim.org/}{\texttt{vim}} ("\textbf{vi}
-i\textbf{m}proved"), \dreds{vim} that is then accessed via the alias
-\texttt{vi}. The differences tend to be minor, with \texttt{vim} being
-more customizable.
+i\textbf{m}proved"), that is then accessed via the alias \texttt{vi}.
+The differences tend to be minor, with \texttt{vim} being more
+customizable. \dreds{vim}
 
 \texttt{vi} and a similar editor,
-\href{http://linux.die.net/man/1/emacs}{\texttt{emacs}}, \dreds{emacs}
-both tend to trip up users from GUI operating systems such as Windows or
-OS X that have editors like Notepad that are always ready for user
-input.
+\href{http://linux.die.net/man/1/emacs}{\texttt{emacs}}, both tend to
+trip up users from GUI operating systems such as Windows or OS X that
+have editors like Notepad that are always ready for user input.
+\dreds{emacs}
 
 Instead, \texttt{vi} typically starts in "command mode," where
 keystrokes execute various navigation and editing commands. To actually
-insert text requires a keystroke such as
-\texttt{i}\drvic{i}{insert mode} while in command mode, which then
-causes \texttt{vi} to go into "insert mode." Insert mode is what most
-Windows users expect from an editor, i.e., when you type the line
-changes. The \texttt{ESC}\drvic{ESC} Exit insert mode\} key exits insert
-mode.
+insert text requires a keystroke such as \texttt{i} while in command
+mode, which then causes \texttt{vi} to go into "insert mode." Insert
+mode is what most Windows users expect from an editor, i.e., when you
+type the line changes. The \texttt{ESC} key exits insert mode.
+\drvic{ESC}{exit insert mode} \drvic{i}{insert mode}
 
 It is as hard to get used to as it sounds, and you \textbf{\emph{will}}
 execute text you were meaning to insert as commands, and commands that
@@ -4427,18 +4425,18 @@ be done may be navigating around the file, inserting, deleting or
 changing text, manipulating lines, "undoing" or "redoing," writing the
 changes to disk and the like.
 
-What are commands? Well, for example \texttt{d}\drvic{d}{delete} means
-"delete." We'll talk about how to specify \textbf{\emph{what}} to delete
-next. \texttt{i}\drvic{i}{insert mode} tells \texttt{vi} to enter
-"insert mode" at the point where the cursor is.
-\texttt{0}\drvic{0}{jump to beginning of line} (zero) navigates to the
-start of the current line, and so on.
+What are commands? Well, for example \texttt{d} means "delete." We'll
+talk about how to specify \textbf{\emph{what}} to delete next.
+\texttt{i} tells \texttt{vi} to enter "insert mode" at the point where
+the cursor is. \texttt{0} (zero) navigates to the start of the current
+line, and so on. \drvic{d}{delete} \drvic{i}{insert mode}
+\drvic{0}{jump to beginning of line}
 
 Commands can have \textbf{\emph{modifiers}} preceding and following
 them. Consider the "delete" command, \texttt{d}. If we follow with
-\texttt{w} as in \texttt{dw}\drvic{dw}{delete word} while in command
-mode, it will delete a whitespace-delimited "word" starting at where the
-cursor is through (including) the next whitespace character.
+\texttt{w} as in \texttt{dw} while in command mode, it will delete a
+whitespace-delimited "word" starting at where the cursor is through
+(including) the next whitespace character. \drvic{dw}{delete word}
 
 If the \texttt{\textbar{}} in the following represents the cursor:
 
@@ -4478,16 +4476,15 @@ Again, in all these examples the \texttt{\textbar{}} represents the
 cursor.
 
 There is a little bit of nuance in using command modifiers. Consider the
-\texttt{r}\drvic{r}{replace
-character} (\emph{replace}) command. It is typically used to change the
+\texttt{r} (\emph{replace}) command. It is typically used to change the
 single \textbf{\emph{character}} under the cursor. You may be tempted to
 think you can do something like \texttt{rw} for "replace word," but it
 is actually going to simply replace the current character with a
-\texttt{w}, whereas the real command for doing that is
-\texttt{cw}\drvic{c}{change}\drvic{cw}{change word} ("change word"). In
-addition, you can use repeaters as above, just be sure you understand
-\texttt{r}\drvic{r}{replace character} means "replace a single
-character," so \texttt{3rx} executed on:
+\texttt{w}, whereas the real command for doing that is \texttt{cw}
+("change word"). In addition, you can use repeaters as above, just be
+sure you understand \texttt{r} means "replace a single character," so
+\texttt{3rx} executed on: \drvic{c}{change} \drvic{cw}{change word}
+\drvic{r}{replace character}
 
 \drcap{Replace three characters with "x"}
 
@@ -4507,27 +4504,26 @@ character," so \texttt{3rx} executed on:
 \end{Highlighting}
 \end{Shaded}
 
-To quit without saving enter \texttt{:q}\drvic{:q}{quit without saving}.
-To write any file changes to disk use
-\texttt{:w}\drvic{:w}{write to disk}. To save \textbf{\emph{and}} quit,
-type \texttt{:wq}\drvic{:wq}{write to disk and
-quit}.
+To quit without saving enter \texttt{:q}. To write any file changes to
+disk use \texttt{:w}. To save \textbf{\emph{and}} quit, type
+\texttt{:wq}. \drvic{:q}{quit without saving} \drvic{:w}{write to disk}
+\drvic{:wq}{write to disk and quit}
 
 \section*{Undo Me}\label{undo-me}
 \addcontentsline{toc}{section}{Undo Me}
 
-\texttt{u}\drvic{u}{undo} is the "undo" command. It "undoes" or reverts
-the last change. You can undo the last \emph{n} changes just as you'd
-expect, e.g., \texttt{3u} undoes the last three changes.
+\texttt{u} is the "undo" command. It "undoes" or reverts the last
+change. You can undo the last \emph{n} changes just as you'd expect,
+e.g., \texttt{3u} undoes the last three changes. \drvic{u}{undo}
 
 If you want to just cancel out of the file without writing any changes
-to disk, use \texttt{:q!}\drvic{:q"!}{quit without saving (force)} (the
-\texttt{!} means to force the quit without saving).
+to disk, use \texttt{:q!} (the \texttt{!} means to force the quit
+without saving). \drvic{:q"!}{quit without saving (force)}
 
 If you want to protect yourself from inadvertent changes to a file you
 can always open it using
-\texttt{view}{]}(http://linux.die.net/man/1/view)\dreds{view}, the alias
-for \texttt{vi} invoked in read-only mode.
+\texttt{view}{]}(http://linux.die.net/man/1/view), the alias for
+\texttt{vi} invoked in read-only mode. \dreds{view}
 
 \section{\texorpdfstring{Circumnavigating
 \texttt{vi}}{Circumnavigating vi}}\label{circumnavigating-vi}
@@ -4539,7 +4535,7 @@ in insert mode, while the left and right arrows may work for navigation,
 often the up and down arrows can introduce "garbage" characters into the
 file (since you are in insert mode). This is because the keymappings for
 those keys aren't being interpreted correctly. I usually just swear,
-exit insert mode, hit \texttt{u}\drvic{u}{undo} and try again.
+exit insert mode, hit \texttt{u} and try again. \drvic{u}{undo}
 
 As an example, under Cygwin I went into \texttt{vi}, went into insert
 mode after the first line, typed in "This is a new line" and then hit
@@ -4564,36 +4560,36 @@ besides using the arrow and page keys:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{0}} \drvic{0}{jump to beginning of line} - jumps to
-  the beginning of the current line.
+  \textbf{\texttt{0}} - jumps to the beginning of the current line.
+  \drvic{0}{jump to beginning of line}
 \item
-  \textbf{\texttt{\$}}\drvic{\$}{jump to end of line}
-  \index{*@\texttt{\$} (\texttt{vi} jump to end of line)} -jumps to the
-  end of the current line.
+  \textbf{\texttt{\$}} -jumps to the end of the current line.
+  \drvic{\$}{jump to end of line}
+  \index{*@\texttt{\$} (\texttt{vi} jump to end of line)}
 \item
-  \textbf{\texttt{w}}\drvic{w}{jump forward a word} - jumps forward a
-  whitespace-delimited "word" on the current line (and of course
-  \texttt{3w} would jump forward three "words").
+  \textbf{\texttt{w}} - jumps forward a whitespace-delimited "word" on
+  the current line (and of course \texttt{3w} would jump forward three
+  "words"). \drvic{w}{jump forward a word}
 \item
-  \textbf{\texttt{b}}\drvic{b}{jump back a word} - jumps back a
-  whitespace-delimited "word" on the current line.
+  \textbf{\texttt{b}} - jumps back a whitespace-delimited "word" on the
+  current line. \drvic{b}{jump back a word}
 \item
-  \textbf{\texttt{G}}\drvic{G}{jump to end of file} - jumps to end of
-  the file.
+  \textbf{\texttt{G}} - jumps to end of the file.
+  \drvic{G}{jump to end of file}
 \item
-  \textbf{\texttt{:0}}\drvic{:0}{jump to beginning of file} - jumps to
-  start of the file (note the preceding \texttt{:}).
+  \textbf{\texttt{:0}} - jumps to start of the file (note the preceding
+  \texttt{:}). \drvic{:0}{jump to beginning of file}
 \item
-  \textbf{\texttt{/foo}}\index{vicommands@\texttt  {vi} commands!\/@\texttt{/} (find forward)}
-  \index{*@\texttt{/} (\texttt{vi} find forward)} - find "foo" going
-  forward toward the end of the file.
+  \textbf{\texttt{/foo}} - find "foo" going forward toward the end of
+  the file. \index{*@\texttt{/} (\texttt{vi} find forward)}
+  \index{vicommands@\texttt  {vi} commands!\/@\texttt{/} (find forward)}
 \item
-  \textbf{\texttt{?foo}}\index{vicommands@\texttt  {vi} commands!\?@\texttt{?} (find backward)}
-  \index{*@\texttt{?} (\texttt{vi} find backward)} - find "foo" going
-  backward toward the front of the file.
+  \textbf{\texttt{?foo}} - find "foo" going backward toward the front of
+  the file. \index{*@\texttt{?} (\texttt{vi} find backward)}
+  \index{vicommands@\texttt  {vi} commands!\?@\texttt{?} (find backward)}
 \item
-  \textbf{\texttt{n}} \drvic{n}{find next} - find the next instance of
-  the search text specified by the last \texttt{/} or \texttt{?}.
+  \textbf{\texttt{n}} - find the next instance of the search text
+  specified by the last \texttt{/} or \texttt{?}. \drvic{n}{find next}
 \end{itemize}
 
 \section*{Insert Tab A Into Slot B}\label{insert-tab-a-into-slot-b}
@@ -4604,22 +4600,22 @@ it (pun intended - \texttt{ESC}, get it?)
 
 \begin{itemize}
 \item
-  \textbf{\texttt{i}} \drvic{i}{insert mode} - enters insert mode at the
-  current cursor position.
+  \textbf{\texttt{i}} - enters insert mode at the current cursor
+  position. \drvic{i}{insert mode}
 \item
-  \textbf{\texttt{I}} \drvic{I}{insert mode at beginning of line} -
-  enters insert mode at the beginning of the current line.
+  \textbf{\texttt{I}} - enters insert mode at the beginning of the
+  current line. \drvic{I}{insert mode at beginning of line}
 \item
-  \textbf{\texttt{A}} \drvic{A}{append at end of line} - enters insert
-  mode (appends) at the end of the current line.
+  \textbf{\texttt{A}} - enters insert mode (appends) at the end of the
+  current line. \drvic{A}{append at end of line}
 \item
-  \textbf{\texttt{o}} \drvic{o}{insert new line under current line} -
-  inserts a new line under (lowercase \texttt{o} = "lower" or "below")
-  the current line and puts the cursor on it in insert mode.
+  \textbf{\texttt{o}} - inserts a new line under (lowercase \texttt{o} =
+  "lower" or "below") the current line and puts the cursor on it in
+  insert mode. \drvic{o}{insert new line under current line}
 \item
-  \textbf{\texttt{O}} \drvic{O}{insert new line above current line} -
-  inserts a new line over (uppercase \texttt{O} = "upper" or "above")
-  the current line and puts the cursor on it in insert mode.
+  \textbf{\texttt{O}} - inserts a new line over (uppercase \texttt{O} =
+  "upper" or "above") the current line and puts the cursor on it in
+  insert mode. \drvic{O}{insert new line above current line}
 \end{itemize}
 
 \section*{Ctrl-X, Ctrl-C, Ctrl-V}\label{ctrl-x-ctrl-c-ctrl-v}
@@ -4632,9 +4628,8 @@ Note that "cutting" and "deleting" are synonymous, since deleting puts
 the deleted text in the buffer.
 
 Another thing to understand is that a command "doubled" or repeated
-typically means "the whole line." So
-\texttt{dd}\drvic{dd}{delete entire line} means "delete the whole line
-the cursor is currently on."
+typically means "the whole line." So \texttt{dd} means "delete the whole
+line the cursor is currently on." \drvic{dd}{delete entire line}
 
 So if deleting is synonymous with cutting, and the cursor is on the
 second line:
@@ -4659,9 +4654,8 @@ Then executing \texttt{dd} leaves:
 \end{Shaded}
 
 We know "This is a new line." went into the buffer. We can paste it back
-above the current line with
-\texttt{P}\drvic{P}{paste above current line}(uppercase \texttt{P} =
-"upper" or "above"), which would result in:
+above the current line with \texttt{P}(uppercase \texttt{P} = "upper" or
+"above"), which would result in: \drvic{P}{paste above current line}
 
 \drcap{After pasting the line above the current line}
 
@@ -4676,21 +4670,21 @@ Here are some more examples:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{p}}\drvic{p}{paste after cursor} - paste the buffer
-  into the current line starting after the cursor location.
+  \textbf{\texttt{p}} - paste the buffer into the current line starting
+  after the cursor location. \drvic{p}{paste after cursor}
 \item
   \textbf{\texttt{3dd}} - delete (cut) three lines into the buffer.
 \item
-  \textbf{\texttt{5yw}}\drvic{y}{copy} - "yank" (copy) five words
-  starting at the current cursor position into the buffer.
+  \textbf{\texttt{5yw}} - "yank" (copy) five words starting at the
+  current cursor position into the buffer. \drvic{y}{copy}
 \end{itemize}
 
 \section*{Change Machine}\label{change-machine}
 \addcontentsline{toc}{section}{Change Machine}
 
 The hardest thing to get down in \texttt{vi} is the \emph{substitute}
-(change or replace) command, \texttt{:s}\drvic{:s}{change}. Its syntax
-is esoteric, but once you've memorized it, it becomes intuitive.
+(change or replace) command, \texttt{:s}. Its syntax is esoteric, but
+once you've memorized it, it becomes intuitive. \drvic{:s}{change}
 
 The most common scenario is the "change all" command. Given the
 following file:
@@ -4745,8 +4739,8 @@ It only changed the "that" at the end of the third line, and the middle
   it to change \emph{globally}.
 \end{enumerate}
 
-So let's hit \texttt{u}\drvic{u}{undo} to reset (undo) the change, and
-try again with this:
+So let's hit \texttt{u} to reset (undo) the change, and try again with
+this: \drvic{u}{undo}
 
 \drcap{Changing "this" to "that", redux}
 
@@ -4835,8 +4829,8 @@ Picking that apart, we have:
   means (case) "insensitive."
 \end{itemize}
 
-Regular expressions\index{regular expressions} you say! "Now we have two
-problems." But consider where we left off:
+Regular expressions you say! "Now we have two problems." But consider
+where we left off: \index{regular expressions}
 
 \drcap{But what about capitalization?}
 
@@ -4956,21 +4950,20 @@ error prone. Instead, we can "mark" a range.
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Place the cursor on the first line and use the
-  \texttt{m}\drvic{m}{mark} command followed by a one-character "label"
-  like \texttt{x} (I typically use \texttt{m} so I don't have to move my
-  fingers, e.g., \texttt{mm}).
+  Place the cursor on the first line and use the \texttt{m} command
+  followed by a one-character "label" like \texttt{x} (I typically use
+  \texttt{m} so I don't have to move my fingers, e.g., \texttt{mm}).
+  \drvic{m}{mark}
 \item
   Place the cursor on the third line and again use the \texttt{m}
   command, but \textbf{\emph{with a different label character}} (I
   usually use \texttt{n} so my fingers don't travel far, so
   \texttt{mn}).
 \item
-  Now you can use the
-  \texttt{\textquotesingle{}}\drvic{'}{reference a mark} character
-  followed by a label to denote the beginning and end of the range in
-  all kinds of \texttt{vi} commands. In our case we want to change
-  "This" on the first three lines, so:
+  Now you can use the \texttt{\textquotesingle{}} character followed by
+  a label to denote the beginning and end of the range in all kinds of
+  \texttt{vi} commands. In our case we want to change "This" on the
+  first three lines, so: \drvic{'}{reference a mark}
 \end{enumerate}
 
 \begin{Shaded}
@@ -4991,12 +4984,11 @@ Commands}\label{executing-external-commands}
 \addcontentsline{toc}{section}{Executing External Commands}
 
 Sometimes in \texttt{vi} it would be great to run the contents of the
-file through an external command (\texttt{sort}\drcmd{sort} is a
-favorite) without saving and exiting the file, sorting it, and then
-re-editing it. We can do that with
-\texttt{!}\drvic{"!}{invoke external command}
-\index{*@\texttt{"!} (\texttt{vi} invoke external command)}, which works
-a lot like the "substitute" (change) command.
+file through an external command (\texttt{sort} is a favorite) without
+saving and exiting the file, sorting it, and then re-editing it. We can
+do that with \texttt{!}, which works a lot like the "substitute"
+(change) command. \drcmd{sort} \drvic{"!}{invoke external command}
+\index{*@\texttt{"!} (\texttt{vi} invoke external command)}
 
 To sort the whole file in place:
 
@@ -5020,7 +5012,7 @@ To sort a marked range:
 
 Another handy command to check out for this kind of thing, especially
 for formatting written text, is the
-\href{http://linux.die.net/man/1/fmt}{\texttt{fmt}}\drcmd{fmt} command.
+\href{http://linux.die.net/man/1/fmt}{\texttt{fmt}} command. \drcmd{fmt}
 
 \section*{The Unseen World}\label{the-unseen-world}
 \addcontentsline{toc}{section}{The Unseen World}
@@ -5040,10 +5032,10 @@ systems and Windows.
 
 On "UNIX," the line feed control character (\texttt{0x0a}, or
 \texttt{\textbackslash{}n}) is all that marks the end of a line. For
-historical reasons (CP/M\drios{CP/M}), Windows ends each line with two
-control characters, carriage return (\texttt{0x0d}, or
+historical reasons (CP/M), Windows ends each line with two control
+characters, carriage return (\texttt{0x0d}, or
 \texttt{\textbackslash{}r}) and line feed. The two together are often
-referred to as "CRLF."
+referred to as "CRLF." \drios{CP/M}
 
 This difference manifests in two ways:
 
@@ -5090,9 +5082,9 @@ tab characters to four spaces:
 
 So, \texttt{vi} is the best we can do? No. On many Linux systems an
 alternative terminal-based editor will be installed, often several.
-There may be \href{http://linux.die.net/man/1/emacs}{\texttt{emacs}}
-\dreds{emacs}, which \textbf{\emph{will}} make you yearn for the
-simplicity of \texttt{vi}.
+There may be \href{http://linux.die.net/man/1/emacs}{\texttt{emacs}},
+which \textbf{\emph{will}} make you yearn for the simplicity of
+\texttt{vi}. \dreds{emacs}
 
 Here are two jokes that are only funny once you've used \texttt{emacs}:
 
@@ -5108,11 +5100,11 @@ If those are funny to you, then you have already been infected by
 \texttt{emacs}. The prognosis is grim.
 
 But there may also others, notably
-\href{http://linux.die.net/man/1/pico}{\texttt{pico}}\dreds{pico} and
-its successor, \href{http://linux.die.net/man/1/nano}{\texttt{nano}}
-\dreds{nano}. You can see the difference the second you see a file open
-in \texttt{nano} - in this case, the generated Github-flavored Markdown
-of this document:
+\href{http://linux.die.net/man/1/pico}{\texttt{pico}} and its successor,
+\texttt{nano}{]}(http://linux.die.net/man/1/nano). You can see the
+difference the second you see a file open in \texttt{nano} - in this
+case, the generated Github-flavored Markdown of this document:
+\dreds{nano} \dreds{pico}
 
 \drcap{Editing a file in \texttt{nano}}
 

@@ -8,10 +8,10 @@ think)***
 
 Different people will have different answers to "What is the single most useful "UNIX" command?"
 There certainly are many to consider. But I keep coming back to
-[`find`](http://linux.die.net/man/1/find).\drfnd{find}{find files}
-It can be intimidating to figure out
-from the documentation, especially at first, but once you start mastering it, you end up using it
-over and over again.
+[`find`](http://linux.die.net/man/1/find). It can be intimidating to figure out from the
+documentation, especially at first, but once you start mastering it, you end up using it over and
+over again.
+\drfnd{find}{find files}
 
 The main concepts of `find` are simple:
 
@@ -90,21 +90,22 @@ Reconsider this example:
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 ```
           
-There are five (5) backslash (`\`)\index{*@\texttt{\textbackslash{}} (escape character)}
-characters in the above. In each case, the backslash is preventing [shell
-expansion](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html):
+There are five (5) backslash (`\`) characters in the above. In each case, the backslash is 
+preventing [shell expansion](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html):
+\index{*@\texttt{\textbackslash{}} (escape character)}
 
-1. **`\*.dat`** - preserves the `*`\index{*@\texttt{*} (wildcard)} for `find` to use as it
-recursively searches through directories, instead of the shell expanding it to all files that end
-in `.dat` in the current directory.
+1. **`\*.dat`** - preserves the `*` for `find` to use as it recursively searches through
+directories, instead of the shell expanding it to all files that end in `.dat` in the current directory.
+\index{*@\texttt{*} (wildcard)}
 
 2. **`\`** - the `\` at the end of the first line tells the shell that the command continues on the
 next line.
 
 3. **`\{\} \;`** - these three prevent the shell from trying to expand the braces into an
 environment variable or the semicolon (which is meant to tell `find` when the command being ran via
-`-exec` and its parameters end), otherwise `;`\index{*@\texttt{;} (command separator)} is
-normally used to separate independent commands on the same line in the shell.
+`-exec` and its parameters end), otherwise `;` is normally used to separate independent commands on
+the same line in the shell.
+\index{*@\texttt{;} (command separator)}
 
 That last point bears repeating. Any time you `-exec` in a `find` command (which will be a lot),
 just get used to typing `\{\} \;` (the space between the ending brace and the `\;` is
@@ -114,6 +115,7 @@ just get used to typing `\{\} \;` (the space between the ending brace and the `\
 
 The [`find`](http://linux.die.net/man/1/find) documentation gives a bewildering number of options.
 Here are the ones you may "find" the most useful:
+\drfnd{find}{find files}
 
 * **`-executable`** - the file is executable or the directory is searchable (in other words, the
 file or directory's `x` mode bit is set true for user, group or other ("ugo"), per the file
@@ -182,8 +184,8 @@ myuser
 2015-10-21T11:02:51.7048997000
 ```
 
-That `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`\index{*@\texttt{\%} (format)}
-breaks down into:
+That `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"` breaks down into:
+\index{*@\texttt{\%} (format)}
 
 * **`"`** - prevent shell expansion on the format string.
 * **`%p`** - file name.

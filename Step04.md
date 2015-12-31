@@ -8,13 +8,15 @@ have two problems.***
 > Now they have two problems."* - Jamie Zawinski 
 
 If the `file` command is useful for finding file system entries based on their attributes, the
-[`grep`](http://linux.die.net/man/1/grep)\drfnd{grep}{search files}
-command is good for finding files whose ***contents*** match a [regular
-expression](https://en.wikipedia.org/wiki/Regular_expression)\index{regular expressions}.
-You already know at least one regular expression, the wildcard `*`
+[`grep`](http://linux.die.net/man/1/grep) command is good for finding files whose ***contents***
+match a [regular expression](https://en.wikipedia.org/wiki/Regular_expression).
+You already know at least one regular expression, the wildcard `*` character from the `CMD.EXE`
+prompt and Windows Explorer. It means "match zero or more characters." We'll cover more on regular
+expressions, or "regexes," in a moment.
+\drfnd{grep}{search files}
+\drshl{CMD.EXE}
 \index{*@\texttt{*} (match zero or more characters)}
-character from the `CMD.EXE`\drshl{CMD.EXE} prompt and Windows Explorer. It means "match zero or
-more characters." We'll cover more on regular expressions, or "regexes," in a moment.
+\index{regular expressions}
 
 First, an example of `grep`, showing all files in a directory with the pattern "is" in them:
 
@@ -32,8 +34,9 @@ d:This sequence of characters is called a "string".
 
 ## Expressing Yourself Regularly{.unnumbered}
 
-So what are "regular expressions?"\index{regular expressions} Simply, they are patterns for
-matching "strings," which are sequences of "characters," e.g.:
+So what are "regular expressions?" Simply, they are patterns for matching "strings," which are
+sequences of "characters," e.g.:
+\index{regular expressions}
 
 \drcap{A string}
 ```bash
@@ -151,37 +154,37 @@ Truck   winch   100
 For me, the following keep coming up when using regular expressions:
 
 * **`one|other`** - find `one` pattern or the `other`.
-\index{regular expressions!\texttt{"|} (or)}
 \index{*@\texttt{"|} (match zero or more characters)}
+\index{regular expressions!\texttt{"|} (or)}
 
 * **`^`** - pattern for the beginning of a line.
-\index{regular expressions!\texttt{\^{}} (beginning of line)}
 \index{*@\texttt{\^{}} (beginning of line)}
+\index{regular expressions!\texttt{\^{}} (beginning of line)}
 
 * **`$`** - pattern for the end of a line.
-\index{regular expressions!\texttt{\$} (end of line)}
 \index{*@\texttt{\$} (end of line)}
+\index{regular expressions!\texttt{\$} (end of line)}
 
 * **`?`** - match exactly one character.
-\index{regular expressions!\texttt{?} (match one character)}
 \index{*@\texttt{?} (match one character)}
+\index{regular expressions!\texttt{?} (match one character)}
 
 * **`*`** - match zero or more characters.
-\index{regular expressions!\texttt{*} (match zero or more characters)}
 \index{*@\texttt{*} (match zero or more characters)}
+\index{regular expressions!\texttt{*} (match zero or more characters)}
 
 * **`+`** - match one or more characters.
-\index{regular expressions!\texttt{+} (match one or more characters)}
 \index{*@\texttt{+} (match one or more characters)}
+\index{regular expressions!\texttt{+} (match one or more characters)}
 
 * **`[A-Z]`** - match any character in a range (in this case any uppercase Latin alphabetic
 character).
-\index{regular expressions!\texttt{[A-Z]} (match a character in range)}
 \index{*@\texttt{[A-Z]} (match a character in range)}
+\index{regular expressions!\texttt{[A-Z]} (match a character in range)}
 
 * **`[n|y]`** - match one character or another (such as `n` or `y` here).
-\index{regular expressions!\texttt{[n"|y]} (match one character or other)}
 \index{*@\texttt{[n"|y]} (match one character or other)}
+\index{regular expressions!\texttt{[n"|y]} (match one character or other)}
 
 For example, to find the lines that end in `400`:
 
@@ -220,7 +223,8 @@ The above is functionally equivalent but ***much*** quicker than:
 ```
 
 **Note:** In general, if a command has its own "recursive" option (such as `-R` with `grep`), it is
-quicker to use that rather than to invoke the command repeatedly using `find`\drfnd{find}{find files} instead.
+quicker to use that rather than to invoke the command repeatedly using `find` instead.
+\drfnd{find}{find files}
 
 However, sometimes you can use `find` to filter down files to be checked before having `grep` read
 through them, and have that result in much quicker results.
@@ -243,7 +247,8 @@ it paid to pre-filter the results with `find` before handing them to `grep`.
 
 ## Gawking at `awk`{.unnumbered}
 
-I don't have much to say about [`awk`](http://linux.die.net/man/1/awk)\drcmd{awk} other than:
+I don't have much to say about [`awk`](http://linux.die.net/man/1/awk) other than:
+\drcmd{awk}
 
 1. It is named after its three authors, [Aho, Weinberger and
 Kernighan](https://en.wikipedia.org/wiki/AWK), all three of whom are computer science greats from

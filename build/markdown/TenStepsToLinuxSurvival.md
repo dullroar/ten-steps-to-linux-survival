@@ -2213,13 +2213,13 @@ The first thing to note is there are three "file I/O streams" that are open by d
 
 -   ***stdout*** - "normal" output, typically to the console in an interactive session. This is file descriptor 1.
 
--   ***stderr*** - "error" output, typically to the console in an interactive session (so it can be ard to distinguish when intermingled with *stdout* output). This is file descriptor 2.
+-   ***stderr*** - "error" output, typically to the console in an interactive session (so it can be hard to distinguish when intermingled with *stdout* output). This is file descriptor 2.
 
 **Note:** Those numeric file descriptors will go from being trivia to important in just a bit.
 
 When a program written in C calls `printf`, it is writing to *stdout*. When a `bash` script calls `echo`, it too is writing to *stdout*. When a command writes an error message, it is writing to *stderr*. If a command or program accepts input from the console, it is reading from *stdin*.
 
-In this example, `cat` is started with no file name, so it will read from *stdin* (a quite common "UNIX" command convention), and echo each line typed by the user to *stdout* until the "end of file," which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below but not seen on the console in real life:
+In this example, `cat` is started with no file name, so it will read from *stdin* (a quite common "UNIX" command convention), and echo each line typed by the user to *stdout* until the "end of file, which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below but not seen on the console in real life:
 
 ``` bash
 ~ $ cat
@@ -2312,7 +2312,7 @@ cat: ./d: Is a directory
 This is e
 ```
 
-Now we see *stdout* being redirected to `/tmp/find.log` with `>/tmp/find.log`, and *stderr* (file descriptor 2) being sent to the same place as *stdout* (file descriptor 1) with `2>&1`. Note that this works in `CMD.EXE`\]drshl{CMD.EXE}, too!
+Now we see *stdout* being redirected to `/tmp/find.log` with `>/tmp/find.log`, and *stderr* (file descriptor 2) being sent to the same place as *stdout* (file descriptor 1) with `2>&1`. Note that this works in `CMD.EXE`, too!
 
 If we want to send *stdout* to one file and *stderr* to another, you can do it like this:
 
@@ -2353,7 +2353,7 @@ This little one-liner starts showing off the usefulness of chaining several smal
 
 1.  `cat` echos the contents of all `.txt` files in alphabetical order by their file name to *stdout*, which is piped to...
 
-2.  [`tr`](http://linux.die.net/man/1/tr) "translates" (replaces) any backslash characters (here "escaped" as `'\\'` because the backslash character is a special character) to forward slashes (`/`), before sending it into...
+2.  [`tr`](http://linux.die.net/man/1/tr) "translates" (replaces) any backslash characters (here "escaped" as `'\\'` because the backslash character is a special character) to forward slashes (`/`) before sending it into...
 
 3.  A `while` loop that reads each line into a variable called `$line` and then calls...
 
@@ -2386,7 +2386,7 @@ Many Linux clones don't use `vi` proper, but a port called [`vim`](http://www.vi
 
 `vi` and a similar editor, [`emacs`](http://linux.die.net/man/1/emacs), both tend to trip up users from GUI operating systems such as Windows or OS X that have editors like Notepad that are always ready for user input.
 
-Instead, `vi` typically starts in "command mode," where keystrokes execute various navigation and editing commands. To actually insert text requires a keystroke such as `i` while in command mode, which then causes `vi` to go into "insert mode." Insert mode is what most Windows users expect from an editor, i.e., when you type the line changes. The `ESC` Exit insert mode} key exits insert mode.
+Instead, `vi` typically starts in "command mode," where keystrokes execute various navigation and editing commands. To actually insert text requires a keystroke such as `i` while in command mode, which then causes `vi` to go into "insert mode." Insert mode is what most Windows users expect from an editor, i.e., when you type the line changes. The `ESC` key exits insert mode.
 
 It is as hard to get used to as it sounds, and you ***will*** execute text you were meaning to insert as commands, and commands that you were meaning to execute you ***will*** insert as text, and sooner or later you ***will*** enter `vi` commands into Notepad. I guarantee it. That will be the day you know you've become truly tainted.
 
@@ -2463,7 +2463,7 @@ This is a new line
 
 When in command mode, there are multiple ways to jump around in the file besides using the arrow and page keys:
 
--   **`0`**  - jumps to the beginning of the current line.
+-   **`0`** - jumps to the beginning of the current line.
 
 -   **`$`** -jumps to the end of the current line.
 
@@ -2475,26 +2475,26 @@ When in command mode, there are multiple ways to jump around in the file besides
 
 -   **`:0`** - jumps to start of the file (note the preceding `:`).
 
--   **`/foo`**  - find "foo" going forward toward the end of the file.
+-   **`/foo`** - find "foo" going forward toward the end of the file.
 
--   **`?foo`**  - find "foo" going backward toward the front of the file.
+-   **`?foo`** - find "foo" going backward toward the front of the file.
 
--   **`n`**  - find the next instance of the search text specified by the last `/` or `?`.
+-   **`n`** - find the next instance of the search text specified by the last `/` or `?`.
 
 Insert Tab A Into Slot B
 ------------------------
 
 There are multiple ways to enter insert mode, but only one way to escape it (pun intended - `ESC`, get it?)
 
--   **`i`**  - enters insert mode at the current cursor position.
+-   **`i`** - enters insert mode at the current cursor position.
 
--   **`I`**  - enters insert mode at the beginning of the current line.
+-   **`I`** - enters insert mode at the beginning of the current line.
 
--   **`A`**  - enters insert mode (appends) at the end of the current line.
+-   **`A`** - enters insert mode (appends) at the end of the current line.
 
--   **`o`**  - inserts a new line under (lowercase `o` = "lower" or "below") the current line and puts the cursor on it in insert mode.
+-   **`o`** - inserts a new line under (lowercase `o` = "lower" or "below") the current line and puts the cursor on it in insert mode.
 
--   **`O`**  - inserts a new line over (uppercase `O` = "upper" or "above") the current line and puts the cursor on it in insert mode.
+-   **`O`** - inserts a new line over (uppercase `O` = "upper" or "above") the current line and puts the cursor on it in insert mode.
 
 Ctrl-X, Ctrl-C, Ctrl-V
 ----------------------
@@ -2714,7 +2714,7 @@ Try doing that in Notepad!
 Executing External Commands
 ---------------------------
 
-Sometimes in `vi` it would be great to run the contents of the file through an external command (`sort` is a favorite) without saving and exiting the file, sorting it, and then re-editing it. We can do that with `!` , which works a lot like the "substitute" (change) command.
+Sometimes in `vi` it would be great to run the contents of the file through an external command (`sort` is a favorite) without saving and exiting the file, sorting it, and then re-editing it. We can do that with `!`, which works a lot like the "substitute" (change) command.
 
 To sort the whole file in place:
 
@@ -2760,7 +2760,7 @@ Since regular expressions have syntax for expressing control codes in either sho
 Let's Get Small
 ---------------
 
-So, `vi` is the best we can do? No. On many Linux systems an alternative terminal-based editor will be installed, often several. There may be [`emacs`](http://linux.die.net/man/1/emacs) , which ***will*** make you yearn for the simplicity of `vi`.
+So, `vi` is the best we can do? No. On many Linux systems an alternative terminal-based editor will be installed, often several. There may be [`emacs`](http://linux.die.net/man/1/emacs), which ***will*** make you yearn for the simplicity of `vi`.
 
 Here are two jokes that are only funny once you've used `emacs`:
 
@@ -2770,7 +2770,7 @@ Here are two jokes that are only funny once you've used `emacs`:
 
 If those are funny to you, then you have already been infected by `emacs`. The prognosis is grim.
 
-But there may also others, notably [`pico`](http://linux.die.net/man/1/pico) and its successor, [`nano`](http://linux.die.net/man/1/nano) . You can see the difference the second you see a file open in `nano` - in this case, the generated Github-flavored Markdown of this document:
+But there may also others, notably [`pico`](http://linux.die.net/man/1/pico) and its successor, `nano`\](http://linux.die.net/man/1/nano). You can see the difference the second you see a file open in `nano` - in this case, the generated Github-flavored Markdown of this document:
 
 ``` bash
     GNU nano 2.2.6        File: TenStepsToLinuxSurvival.md                        

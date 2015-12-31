@@ -1379,7 +1379,7 @@ SAME=ALWAYS</code></pre>
 <blockquote>
 <p><em>&quot;If we had bacon, we could have bacon and eggs, if we had eggs.&quot;</em> - old joke</p>
 </blockquote>
-<p>Different people will have different answers to &quot;What is the single most useful &quot;UNIX&quot; command?&quot; There certainly are many to consider. But I keep coming back to <a href="http://linux.die.net/man/1/find"><code>find</code></a>. It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.</p>
+<p>Different people will have different answers to &quot;What is the single most useful &quot;UNIX&quot; command?&quot; There certainly are many to consider. But I keep coming back to <a href="http://linux.die.net/man/1/find"><code>find</code></a>. It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again. </p>
 <p>The main concepts of <code>find</code> are simple:</p>
 <ol type="1">
 <li><p>Starting at location <em>X</em>...</p></li>
@@ -1426,15 +1426,15 @@ SAME=ALWAYS</code></pre>
 <p></p>
 <pre class="bash"><code>~ $ find //myserver/myshare/logs/000[4-9] -name \*.dat -newer logchecker.csv \
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;</code></pre>
-<p>There are five (5) backslash (<code>\</code>) characters in the above. In each case, the backslash is preventing <a href="http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html">shell expansion</a>:</p>
+<p>There are five (5) backslash (<code>\</code>) characters in the above. In each case, the backslash is preventing <a href="http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html">shell expansion</a>: </p>
 <ol type="1">
-<li><p><strong><code>\*.dat</code></strong> - preserves the <code>*</code> for <code>find</code> to use as it recursively searches through directories, instead of the shell expanding it to all files that end in <code>.dat</code> in the current directory.</p></li>
+<li><p><strong><code>\*.dat</code></strong> - preserves the <code>*</code> for <code>find</code> to use as it recursively searches through directories, instead of the shell expanding it to all files that end in <code>.dat</code> in the current directory. </p></li>
 <li><p><strong><code>\</code></strong> - the <code>\</code> at the end of the first line tells the shell that the command continues on the next line.</p></li>
-<li><p><strong><code>\{\} \;</code></strong> - these three prevent the shell from trying to expand the braces into an environment variable or the semicolon (which is meant to tell <code>find</code> when the command being ran via <code>-exec</code> and its parameters end), otherwise <code>;</code> is normally used to separate independent commands on the same line in the shell.</p></li>
+<li><p><strong><code>\{\} \;</code></strong> - these three prevent the shell from trying to expand the braces into an environment variable or the semicolon (which is meant to tell <code>find</code> when the command being ran via <code>-exec</code> and its parameters end), otherwise <code>;</code> is normally used to separate independent commands on the same line in the shell. </p></li>
 </ol>
 <p>That last point bears repeating. Any time you <code>-exec</code> in a <code>find</code> command (which will be a lot), just get used to typing <code>\{\} \;</code> (the space between the ending brace and the <code>\;</code> is <strong><em>required</em></strong>).</p>
 <h2 id="useful-find-options" class="unnumbered">Useful <code>find</code> Options</h2>
-<p>The <a href="http://linux.die.net/man/1/find"><code>find</code></a> documentation gives a bewildering number of options. Here are the ones you may &quot;find&quot; the most useful:</p>
+<p>The <a href="http://linux.die.net/man/1/find"><code>find</code></a> documentation gives a bewildering number of options. Here are the ones you may &quot;find&quot; the most useful: </p>
 <ul>
 <li><p><strong><code>-executable</code></strong> - the file is executable or the directory is searchable (in other words, the file or directory's <code>x</code> mode bit is set true for user, group or other (&quot;ugo&quot;), per the file permissions discussion above), and the user executing the <code>find</code> command falls into one of the categories for which it is set.</p></li>
 <li><p><strong><code>-group &lt;gname&gt;</code></strong> - file belongs to group <em>gname</em>.</p></li>
@@ -1473,7 +1473,7 @@ myuser
 ./c
 myuser
 2015-10-21T11:02:51.7048997000</code></pre>
-<p>That <code>-printf</code> format string <code>&quot;%p\n%u\n%TY-%Tm-%TdT%TT\n\n&quot;</code> breaks down into:</p>
+<p>That <code>-printf</code> format string <code>&quot;%p\n%u\n%TY-%Tm-%TdT%TT\n\n&quot;</code> breaks down into: </p>
 <ul>
 <li><strong><code>&quot;</code></strong> - prevent shell expansion on the format string.</li>
 <li><strong><code>%p</code></strong> - file name.</li>
@@ -1495,7 +1495,7 @@ myuser
 <blockquote>
 <p><em>&quot;Some people, when confronted with a problem, think 'I know, I'll use regular expressions.' Now they have two problems.&quot;</em> - Jamie Zawinski</p>
 </blockquote>
-<p>If the <code>file</code> command is useful for finding file system entries based on their attributes, the <a href="http://linux.die.net/man/1/grep"><code>grep</code></a> command is good for finding files whose <strong><em>contents</em></strong> match a <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expression</a>. You already know at least one regular expression, the wildcard <code>*</code>  character from the <code>CMD.EXE</code> prompt and Windows Explorer. It means &quot;match zero or more characters.&quot; We'll cover more on regular expressions, or &quot;regexes,&quot; in a moment.</p>
+<p>If the <code>file</code> command is useful for finding file system entries based on their attributes, the <a href="http://linux.die.net/man/1/grep"><code>grep</code></a> command is good for finding files whose <strong><em>contents</em></strong> match a <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expression</a>. You already know at least one regular expression, the wildcard <code>*</code> character from the <code>CMD.EXE</code> prompt and Windows Explorer. It means &quot;match zero or more characters.&quot; We'll cover more on regular expressions, or &quot;regexes,&quot; in a moment.    </p>
 <p>First, an example of <code>grep</code>, showing all files in a directory with the pattern &quot;is&quot; in them:</p>
 <p></p>
 <pre class="bash"><code>~ $ touch a b c
@@ -1507,7 +1507,7 @@ a  b  c  d
 ~ $ grep is *
 d:This sequence of characters is called a &quot;string&quot;.</code></pre>
 <h2 id="expressing-yourself-regularly" class="unnumbered">Expressing Yourself Regularly</h2>
-<p>So what are &quot;regular expressions?&quot; Simply, they are patterns for matching &quot;strings,&quot; which are sequences of &quot;characters,&quot; e.g.:</p>
+<p>So what are &quot;regular expressions?&quot; Simply, they are patterns for matching &quot;strings,&quot; which are sequences of &quot;characters,&quot; e.g.: </p>
 <p></p>
 <pre class="bash"><code>This sequence of characters is called a &quot;string&quot;.</code></pre>
 <p>That is a string. So is, &quot;That is a string.&quot; And &quot;That&quot; and &quot;T&quot; and so on. <strong><em>In general</em></strong> (with many exceptions), the UNIX world view is that everything is composed of text (or &quot;strings&quot;), and that creating, changing, finding and passing around text is the primary mode of operation.</p>
@@ -1603,7 +1603,7 @@ Truck   tires   400</code></pre>
 <p>The above is functionally equivalent but <strong><em>much</em></strong> quicker than:</p>
 <p></p>
 <pre class="bash"><code>~ $ find . -type f -exec grep -H -i pdfinfo \{\} \; </code></pre>
-<p><strong>Note:</strong> In general, if a command has its own &quot;recursive&quot; option (such as <code>-R</code> with <code>grep</code>), it is quicker to use that rather than to invoke the command repeatedly using <code>find</code> instead.</p>
+<p><strong>Note:</strong> In general, if a command has its own &quot;recursive&quot; option (such as <code>-R</code> with <code>grep</code>), it is quicker to use that rather than to invoke the command repeatedly using <code>find</code> instead. </p>
 <p>However, sometimes you can use <code>find</code> to filter down files to be checked before having <code>grep</code> read through them, and have that result in much quicker results.</p>
 <p>For example, if you only wanted to check files that contain &quot;pdfinfo&quot; that have been created or modified since the last time you checked, it <strong><em>could be</em></strong> quicker to run something like:</p>
 <p></p>
@@ -1611,7 +1611,7 @@ Truck   tires   400</code></pre>
     -i pdfinfo \{\} \; &gt; pdfinfo.log</code></pre>
 <p>This says to ignore files named <code>pdfinfo.log</code> (<code>! -name pdfinfo.log</code>) and otherwise look for files (<code>-type f</code>) containing &quot;pdfinfo&quot; (<code>-exec grep -H -i pdfinfo</code>) that haven't been checked since the last time <code>pdfinfo.log</code> was modified (<code>-newer pdfinfo.log</code>). In my tests the first run (which initially creates the <code>pdfinfo.log</code> file) ran in 30 seconds but subsequents runs took just a few seconds. This was because the number of files to be searched through all directories was big enough it paid to pre-filter the results with <code>find</code> before handing them to <code>grep</code>.</p>
 <h2 id="gawking-at-awk"><span class="header-section-number">4.2</span> Gawking at <code class="unnumbered">awk</code></h2>
-<p>I don't have much to say about <a href="http://linux.die.net/man/1/awk"><code>awk</code></a> other than:</p>
+<p>I don't have much to say about <a href="http://linux.die.net/man/1/awk"><code>awk</code></a> other than: </p>
 <ol type="1">
 <li><p>It is named after its three authors, <a href="https://en.wikipedia.org/wiki/AWK">Aho, Weinberger and Kernighan</a>, all three of whom are computer science greats from Bell Labs. The GNU version is called <code>gawk</code>, of course!</p></li>
 <li><p>It is a &quot;data driven scripting language.&quot; That's a fancy way of saying it was written specifically with slicing and dicing text in mind.</p></li>
@@ -1644,11 +1644,11 @@ username: uucp      uid:10
 <ul>
 <li><p><strong><em>stdin</em></strong> - input, typically from the console in an interactive session. In the underlying C file system APIs, this is file descriptor 0. </p></li>
 <li><p><strong><em>stdout</em></strong> - &quot;normal&quot; output, typically to the console in an interactive session. This is file descriptor 1. </p></li>
-<li><p><strong><em>stderr</em></strong> - &quot;error&quot; output, typically to the console in an interactive session (so it can be ard to distinguish when intermingled with <em>stdout</em> output). This is file descriptor 2. </p></li>
+<li><p><strong><em>stderr</em></strong> - &quot;error&quot; output, typically to the console in an interactive session (so it can be hard to distinguish when intermingled with <em>stdout</em> output). This is file descriptor 2. </p></li>
 </ul>
 <p><strong>Note:</strong> Those numeric file descriptors will go from being trivia to important in just a bit.</p>
-<p>When a program written in C calls <code>printf</code>, it is writing to <em>stdout</em>. When a <code>bash</code> script calls <code>echo</code>, it too is writing to <em>stdout</em>. When a command writes an error message, it is writing to <em>stderr</em>. If a command or program accepts input from the console, it is reading from <em>stdin</em>.</p>
-<p>In this example, <code>cat</code> is started with no file name, so it will read from <em>stdin</em> (a quite common &quot;UNIX&quot; command convention), and echo each line typed by the user to <em>stdout</em> until the &quot;end of file,&quot; which in an interactive session can be emulated with <code>Ctrl-D</code>, shown as <code>^D</code> in the example below but not seen on the console in real life:</p>
+<p>When a program written in C calls <code>printf</code>, it is writing to <em>stdout</em>. When a <code>bash</code> script calls <code>echo</code>, it too is writing to <em>stdout</em>. When a command writes an error message, it is writing to <em>stderr</em>. If a command or program accepts input from the console, it is reading from <em>stdin</em>. </p>
+<p>In this example, <code>cat</code> is started with no file name, so it will read from <em>stdin</em> (a quite common &quot;UNIX&quot; command convention), and echo each line typed by the user to <em>stdout</em> until the &quot;end of file, which in an interactive session can be emulated with <code>Ctrl-D</code>, shown as <code>^D</code> in the example below but not seen on the console in real life: </p>
 <p></p>
 <pre class="bash"><code>~ $ cat
 This shows reading from stdin
@@ -1658,8 +1658,8 @@ and writing to stdout.
 ^D</code></pre>
 <p>So in the above I typed in &quot;This shows reading from stdin&quot; and hit <code>Enter</code> (which send a linefeed and hence marks the &quot;end of the line&quot;) and <code>cat</code> echoed that line to <em>stdout</em>. Then I typed &quot;and writing to stdout.&quot; and hit <code>Enter</code> and that line was echoed to <em>stdout</em> as well. Finally I hit <code>Ctrl-D</code>, which ended the process. </p>
 <h2 id="all-magic-is-redirection" class="unnumbered">All Magic is Redirection</h2>
-<p>So one way to string things together in &quot;the UNIX way&quot; is with file redirection. This is a concept that also works in <code>CMD.EXE</code> and even with the same syntax.</p>
-<p>Let's create a file with a single line of text in it. One way would be to <code>vi newfilename</code>, edit the file, save it, and exit <code>vi</code>. A quicker way is to simply use file redirection:</p>
+<p>So one way to string things together in &quot;the UNIX way&quot; is with file redirection. This is a concept that also works in <code>CMD.EXE</code> and even with the same syntax. </p>
+<p>Let's create a file with a single line of text in it. One way would be to <code>vi newfilename</code>, edit the file, save it, and exit <code>vi</code>. A quicker way is to simply use file redirection: </p>
 <p></p>
 <pre class="bash"><code>~ $ echo Hello, world &gt; hw
 ~ $ ls -l
@@ -1667,8 +1667,8 @@ total 1
 -rw-rwxr--+ 1 myuser mygroup 13 Oct 22 10:40 hw
 ~ $ cat hw
 Hello, world</code></pre>
-<p>In this case the <code>&gt; hw</code>  tells <code>bash</code> to take the output that <code>echo</code> sends to <em>stdout</em> and send it to the file <code>hw</code> instead. </p>
-<p>As mentioned above many &quot;UNIX&quot; commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from <em>stdin</em>. The <code>cat</code> command does that. While it doesn't save us anything over the above example, the following example using <code>&lt;</code>  is illustrative of redirecting a file to <em>stdin</em> for a command or program: </p>
+<p>In this case the <code>&gt; hw</code> tells <code>bash</code> to take the output that <code>echo</code> sends to <em>stdout</em> and send it to the file <code>hw</code> instead.   </p>
+<p>As mentioned above many &quot;UNIX&quot; commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from <em>stdin</em>. The <code>cat</code> command does that. While it doesn't save us anything over the above example, the following example using <code>&lt;</code> is illustrative of redirecting a file to <em>stdin</em> for a command or program:   </p>
 <p></p>
 <pre class="bash"><code>~ $ cat &lt; hw
 Hello, world</code></pre>
@@ -1703,7 +1703,7 @@ This is e
 ~ $ cat /tmp/finderrors.log
 cat: .: Is a directory
 cat: ./d: Is a directory</code></pre>
-<p>The <code>2&gt;/tmp/finderrors.log</code>  is the magic that is redirecting file descriptor 2 (<em>stderr</em>) to the log file <code>/tmp/finderrors.log</code>.</p>
+<p>The <code>2&gt;/tmp/finderrors.log</code> is the magic that is redirecting file descriptor 2 (<em>stderr</em>) to the log file <code>/tmp/finderrors.log</code>.  </p>
 <p>A very common paradigm is to capture both <em>stdout</em> and <em>stderr</em> to the same file. Here is how that is done, again using file descriptors:  </p>
 <p></p>
 <pre class="bash"><code>~ $ find . -exec cat \{\} \; &gt;/tmp/find.log 2&gt;&amp;1
@@ -1714,7 +1714,7 @@ This is b
 This is c
 cat: ./d: Is a directory
 This is e</code></pre>
-<p>Now we see <em>stdout</em> being redirected to <code>/tmp/find.log</code> with <code>&gt;/tmp/find.log</code>, and <em>stderr</em> (file descriptor 2) being sent to the same place as <em>stdout</em> (file descriptor 1) with <code>2&gt;&amp;1</code>. Note that this works in <code>CMD.EXE</code>]drshl{CMD.EXE}, too!</p>
+<p>Now we see <em>stdout</em> being redirected to <code>/tmp/find.log</code> with <code>&gt;/tmp/find.log</code>, and <em>stderr</em> (file descriptor 2) being sent to the same place as <em>stdout</em> (file descriptor 1) with <code>2&gt;&amp;1</code>. Note that this works in <code>CMD.EXE</code>, too! </p>
 <p>If we want to send <em>stdout</em> to one file and <em>stderr</em> to another, you can do it like this:</p>
 <p></p>
 <pre><code>~ $ find . -exec cat \{\} \; &gt;/tmp/find.log 2&gt;/tmp/finderrors.log
@@ -1729,7 +1729,7 @@ cat: ./d: Is a directory</code></pre>
 <p>One final note with redirection is the difference between creating or re-writing a file versus appending. The following creates a new <code>/tmp/find.log</code> file every time it runs (there is no need to <code>rm</code> it first):</p>
 <p></p>
 <pre class="bash"><code>~ $ find . -exec cat \{\} \; &gt;/tmp/find.log</code></pre>
-<p>However, the next sample using <code>&gt;&gt;</code>  creates a new <code>/tmp/find.log</code> file if it doesn't exist, but otherwise appends to it:</p>
+<p>However, the next sample using <code>&gt;&gt;</code> creates a new <code>/tmp/find.log</code> file if it doesn't exist, but otherwise appends to it:  </p>
 <p></p>
 <pre class="bash"><code>~ $ find . -exec cat \{\} \; &gt;&gt;/tmp/find.log</code></pre>
 <p><strong>Note:</strong> There is also a variation on input redirection using <code>&lt;&lt;</code>, but it is used mostly in scripting and is outside the scope of this book.</p>
@@ -1740,14 +1740,14 @@ cat: ./d: Is a directory</code></pre>
 <p>This little one-liner starts showing off the usefulness of chaining several small programs, each doing one thing. In this case:</p>
 <ol type="1">
 <li><p><code>cat</code> echos the contents of all <code>.txt</code> files in alphabetical order by their file name to <em>stdout</em>, which is piped to...</p></li>
-<li><p><a href="http://linux.die.net/man/1/tr"><code>tr</code></a> &quot;translates&quot; (replaces) any backslash characters (here &quot;escaped&quot; as <code>'\\'</code> because the backslash character is a special character) to forward slashes (<code>/</code>), before sending it into...</p></li>
-<li><p>A <code>while</code> loop that reads each line into a variable called <code>$line</code> and then calls...</p></li>
+<li><p><a href="http://linux.die.net/man/1/tr"><code>tr</code></a> &quot;translates&quot; (replaces) any backslash characters (here &quot;escaped&quot; as <code>'\\'</code> because the backslash character is a special character) to forward slashes (<code>/</code>) before sending it into... </p></li>
+<li><p>A <code>while</code> loop that reads each line into a variable called <code>$line</code> and then calls... </p></li>
 <li><p>Some custom script or program called <code>./mycmd</code> passing in the value of each <code>$line</code>.</p></li>
 </ol>
 <p>Think about the power of that. <code>cat</code> didn't know there were multiple <code>.txt</code> files or not - the shell expansion of the <code>*.txt</code> wildcard did that. It read all those files and echoed them to <em>stdout</em> which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in <code>mycmd</code>, that only expects a single line or value each time it is run. It has no idea about the <code>.txt</code> files or the ransformation or the pipeline!</p>
 <p><strong><em>That</em></strong> is the &quot;UNIX philosophy&quot; at work.</p>
 <p>There are some nice performance benefits for this approach, too. In general Linux &amp; Co. will overlap the processing by starting all the commands in the pipeline, with the ones on the right getting data from the ones further &quot;upstream&quot; to the left as soon as it is written, instead of using file redirection where one program would have to finish completely running and writing out to a file before the next program could start and read in that file as input.</p>
-<p>Finally, if you want to capture something to a file <strong><em>and</em></strong> see it on the console at the same time, that is where the <a href="http://linux.die.net/man/1/tee"><code>tee</code></a> command comes in:</p>
+<p>Finally, if you want to capture something to a file <strong><em>and</em></strong> see it on the console at the same time, that is where the <a href="http://linux.die.net/man/1/tee"><code>tee</code></a> command comes in: </p>
 <pre class="bash"><code>~ $ find . -name error.log | tee &gt; errorlogs.txt</code></pre>
 <p>This would write the results of finding all files names <code>error.log</code> to the console and also to <code>errorlogs.txt</code>. This is useful when you are manually running things and want to see the results immediately, but also want a log of what you did.</p>
 <h1 id="vi"><span class="header-section-number">6</span> <code>vi</code></h1>
@@ -1755,16 +1755,16 @@ cat: ./d: Is a directory</code></pre>
 <blockquote>
 <p><em>&quot;You're too young to know.&quot;</em> - Vi (<em>Grease</em>)</p>
 </blockquote>
-<p><a href="http://linux.die.net/man/1/vi"><code>vi</code></a>   stands for <em>visual editor</em> (as well as the Roman numeral for 6, which is why it is this chapter), and once you use it you will understand what editing from the command line must've been like for <code>vi</code> to seem both &quot;visual&quot; and a step forward.</p>
-<p>Many Linux clones don't use <code>vi</code> proper, but a port called <a href="http://www.vim.org/"><code>vim</code></a> (&quot;<strong>vi</strong> i<strong>m</strong>proved&quot;),  that is then accessed via the alias <code>vi</code>. The differences tend to be minor, with <code>vim</code> being more customizable.</p>
-<p><code>vi</code> and a similar editor, <a href="http://linux.die.net/man/1/emacs"><code>emacs</code></a>,  both tend to trip up users from GUI operating systems such as Windows or OS X that have editors like Notepad that are always ready for user input.</p>
-<p>Instead, <code>vi</code> typically starts in &quot;command mode,&quot; where keystrokes execute various navigation and editing commands. To actually insert text requires a keystroke such as <code>i</code> while in command mode, which then causes <code>vi</code> to go into &quot;insert mode.&quot; Insert mode is what most Windows users expect from an editor, i.e., when you type the line changes. The <code>ESC</code> Exit insert mode} key exits insert mode.</p>
+<p><a href="http://linux.die.net/man/1/vi"><code>vi</code></a> stands for <em>visual editor</em> (as well as the Roman numeral for 6, which is why it is this chapter), and once you use it you will understand what editing from the command line must've been like for <code>vi</code> to seem both &quot;visual&quot; and a step forward.  </p>
+<p>Many Linux clones don't use <code>vi</code> proper, but a port called <a href="http://www.vim.org/"><code>vim</code></a> (&quot;<strong>vi</strong> i<strong>m</strong>proved&quot;), that is then accessed via the alias <code>vi</code>. The differences tend to be minor, with <code>vim</code> being more customizable. </p>
+<p><code>vi</code> and a similar editor, <a href="http://linux.die.net/man/1/emacs"><code>emacs</code></a>, both tend to trip up users from GUI operating systems such as Windows or OS X that have editors like Notepad that are always ready for user input. </p>
+<p>Instead, <code>vi</code> typically starts in &quot;command mode,&quot; where keystrokes execute various navigation and editing commands. To actually insert text requires a keystroke such as <code>i</code> while in command mode, which then causes <code>vi</code> to go into &quot;insert mode.&quot; Insert mode is what most Windows users expect from an editor, i.e., when you type the line changes. The <code>ESC</code> key exits insert mode.  </p>
 <p>It is as hard to get used to as it sounds, and you <strong><em>will</em></strong> execute text you were meaning to insert as commands, and commands that you were meaning to execute you <strong><em>will</em></strong> insert as text, and sooner or later you <strong><em>will</em></strong> enter <code>vi</code> commands into Notepad. I guarantee it. That will be the day you know you've become truly tainted.</p>
 <p>We will not even begin to scratch the surface of <code>vi</code>, when there are many books and web sites just on wielding it to its full potential. In the hands of someone who has mastered it, <code>vi</code> can do some really remarkable feats of editing way beyond the capability of most modern GUI programming environments.</p>
 <h2 id="command-me" class="unnumbered">Command Me</h2>
 <p>Again, when you first open <code>vi</code> it is in &quot;command mode.&quot; That means any keystrokes you enter will &quot;do something.&quot; The &quot;something&quot; to be done may be navigating around the file, inserting, deleting or changing text, manipulating lines, &quot;undoing&quot; or &quot;redoing,&quot; writing the changes to disk and the like.</p>
-<p>What are commands? Well, for example <code>d</code> means &quot;delete.&quot; We'll talk about how to specify <strong><em>what</em></strong> to delete next. <code>i</code> tells <code>vi</code> to enter &quot;insert mode&quot; at the point where the cursor is. <code>0</code> (zero) navigates to the start of the current line, and so on.</p>
-<p>Commands can have <strong><em>modifiers</em></strong> preceding and following them. Consider the &quot;delete&quot; command, <code>d</code>. If we follow with <code>w</code> as in <code>dw</code> while in command mode, it will delete a whitespace-delimited &quot;word&quot; starting at where the cursor is through (including) the next whitespace character.</p>
+<p>What are commands? Well, for example <code>d</code> means &quot;delete.&quot; We'll talk about how to specify <strong><em>what</em></strong> to delete next. <code>i</code> tells <code>vi</code> to enter &quot;insert mode&quot; at the point where the cursor is. <code>0</code> (zero) navigates to the start of the current line, and so on.   </p>
+<p>Commands can have <strong><em>modifiers</em></strong> preceding and following them. Consider the &quot;delete&quot; command, <code>d</code>. If we follow with <code>w</code> as in <code>dw</code> while in command mode, it will delete a whitespace-delimited &quot;word&quot; starting at where the cursor is through (including) the next whitespace character. </p>
 <p>If the <code>|</code> in the following represents the cursor:</p>
 <p></p>
 <pre class="bash"><code>This is a wo|rd and so is this.</code></pre>
@@ -1775,19 +1775,19 @@ cat: ./d: Is a directory</code></pre>
 <p></p>
 <pre class="bash"><code>This is a wo|this.</code></pre>
 <p>Again, in all these examples the <code>|</code> represents the cursor.</p>
-<p>There is a little bit of nuance in using command modifiers. Consider the <code>r</code> (<em>replace</em>) command. It is typically used to change the single <strong><em>character</em></strong> under the cursor. You may be tempted to think you can do something like <code>rw</code> for &quot;replace word,&quot; but it is actually going to simply replace the current character with a <code>w</code>, whereas the real command for doing that is <code>cw</code> (&quot;change word&quot;). In addition, you can use repeaters as above, just be sure you understand <code>r</code> means &quot;replace a single character,&quot; so <code>3rx</code> executed on:</p>
+<p>There is a little bit of nuance in using command modifiers. Consider the <code>r</code> (<em>replace</em>) command. It is typically used to change the single <strong><em>character</em></strong> under the cursor. You may be tempted to think you can do something like <code>rw</code> for &quot;replace word,&quot; but it is actually going to simply replace the current character with a <code>w</code>, whereas the real command for doing that is <code>cw</code> (&quot;change word&quot;). In addition, you can use repeaters as above, just be sure you understand <code>r</code> means &quot;replace a single character,&quot; so <code>3rx</code> executed on:   </p>
 <p></p>
 <pre class="bash"><code>This is a wo|this.</code></pre>
 <p>...results in:</p>
 <p></p>
 <pre class="bash"><code>This is a woxx|xs.</code></pre>
-<p>To quit without saving enter <code>:q</code>. To write any file changes to disk use <code>:w</code>. To save <strong><em>and</em></strong> quit, type <code>:wq</code>.</p>
+<p>To quit without saving enter <code>:q</code>. To write any file changes to disk use <code>:w</code>. To save <strong><em>and</em></strong> quit, type <code>:wq</code>.   </p>
 <h2 id="undo-me" class="unnumbered">Undo Me</h2>
-<p><code>u</code> is the &quot;undo&quot; command. It &quot;undoes&quot; or reverts the last change. You can undo the last <em>n</em> changes just as you'd expect, e.g., <code>3u</code> undoes the last three changes.</p>
-<p>If you want to just cancel out of the file without writing any changes to disk, use <code>:q!</code> (the <code>!</code> means to force the quit without saving).</p>
-<p>If you want to protect yourself from inadvertent changes to a file you can always open it using <code>view</code>](http://linux.die.net/man/1/view), the alias for <code>vi</code> invoked in read-only mode.</p>
+<p><code>u</code> is the &quot;undo&quot; command. It &quot;undoes&quot; or reverts the last change. You can undo the last <em>n</em> changes just as you'd expect, e.g., <code>3u</code> undoes the last three changes. </p>
+<p>If you want to just cancel out of the file without writing any changes to disk, use <code>:q!</code> (the <code>!</code> means to force the quit without saving). </p>
+<p>If you want to protect yourself from inadvertent changes to a file you can always open it using <code>view</code>](http://linux.die.net/man/1/view), the alias for <code>vi</code> invoked in read-only mode. </p>
 <h2 id="circumnavigating-vi"><span class="header-section-number">6.1</span> Circumnavigating <code class="unnumbered">vi</code></h2>
-<p>In modern implementations of <code>vi</code> (like <code>vim</code>) running under modern shells the arrow and page keys will work as you expect, <strong><em>in general</em></strong>. However, you may want to be aware that when in insert mode, while the left and right arrows may work for navigation, often the up and down arrows can introduce &quot;garbage&quot; characters into the file (since you are in insert mode). This is because the keymappings for those keys aren't being interpreted correctly. I usually just swear, exit insert mode, hit <code>u</code> and try again.</p>
+<p>In modern implementations of <code>vi</code> (like <code>vim</code>) running under modern shells the arrow and page keys will work as you expect, <strong><em>in general</em></strong>. However, you may want to be aware that when in insert mode, while the left and right arrows may work for navigation, often the up and down arrows can introduce &quot;garbage&quot; characters into the file (since you are in insert mode). This is because the keymappings for those keys aren't being interpreted correctly. I usually just swear, exit insert mode, hit <code>u</code> and try again. </p>
 <p>As an example, under Cygwin I went into <code>vi</code>, went into insert mode after the first line, typed in &quot;This is a new line&quot; and then hit the up arrow five times, yielding this:</p>
 <p></p>
 <pre class="bash"><code>This is a word and so is this.
@@ -1799,28 +1799,28 @@ A
 This is a new line</code></pre>
 <p>When in command mode, there are multiple ways to jump around in the file besides using the arrow and page keys:</p>
 <ul>
-<li><p><strong><code>0</code></strong>  - jumps to the beginning of the current line.</p></li>
-<li><p><strong><code>$</code></strong>  -jumps to the end of the current line.</p></li>
-<li><p><strong><code>w</code></strong> - jumps forward a whitespace-delimited &quot;word&quot; on the current line (and of course <code>3w</code> would jump forward three &quot;words&quot;).</p></li>
-<li><p><strong><code>b</code></strong> - jumps back a whitespace-delimited &quot;word&quot; on the current line.</p></li>
-<li><p><strong><code>G</code></strong> - jumps to end of the file.</p></li>
-<li><p><strong><code>:0</code></strong> - jumps to start of the file (note the preceding <code>:</code>).</p></li>
-<li><p><strong><code>/foo</code></strong>  - find &quot;foo&quot; going forward toward the end of the file.</p></li>
-<li><p><strong><code>?foo</code></strong>  - find &quot;foo&quot; going backward toward the front of the file.</p></li>
-<li><p><strong><code>n</code></strong>  - find the next instance of the search text specified by the last <code>/</code> or <code>?</code>.</p></li>
+<li><p><strong><code>0</code></strong> - jumps to the beginning of the current line. </p></li>
+<li><p><strong><code>$</code></strong> -jumps to the end of the current line.  </p></li>
+<li><p><strong><code>w</code></strong> - jumps forward a whitespace-delimited &quot;word&quot; on the current line (and of course <code>3w</code> would jump forward three &quot;words&quot;). </p></li>
+<li><p><strong><code>b</code></strong> - jumps back a whitespace-delimited &quot;word&quot; on the current line. </p></li>
+<li><p><strong><code>G</code></strong> - jumps to end of the file. </p></li>
+<li><p><strong><code>:0</code></strong> - jumps to start of the file (note the preceding <code>:</code>). </p></li>
+<li><p><strong><code>/foo</code></strong> - find &quot;foo&quot; going forward toward the end of the file.  </p></li>
+<li><p><strong><code>?foo</code></strong> - find &quot;foo&quot; going backward toward the front of the file.  </p></li>
+<li><p><strong><code>n</code></strong> - find the next instance of the search text specified by the last <code>/</code> or <code>?</code>. </p></li>
 </ul>
 <h2 id="insert-tab-a-into-slot-b" class="unnumbered">Insert Tab A Into Slot B</h2>
 <p>There are multiple ways to enter insert mode, but only one way to escape it (pun intended - <code>ESC</code>, get it?)</p>
 <ul>
-<li><p><strong><code>i</code></strong>  - enters insert mode at the current cursor position.</p></li>
-<li><p><strong><code>I</code></strong>  - enters insert mode at the beginning of the current line.</p></li>
-<li><p><strong><code>A</code></strong>  - enters insert mode (appends) at the end of the current line.</p></li>
-<li><p><strong><code>o</code></strong>  - inserts a new line under (lowercase <code>o</code> = &quot;lower&quot; or &quot;below&quot;) the current line and puts the cursor on it in insert mode.</p></li>
-<li><p><strong><code>O</code></strong>  - inserts a new line over (uppercase <code>O</code> = &quot;upper&quot; or &quot;above&quot;) the current line and puts the cursor on it in insert mode.</p></li>
+<li><p><strong><code>i</code></strong> - enters insert mode at the current cursor position. </p></li>
+<li><p><strong><code>I</code></strong> - enters insert mode at the beginning of the current line. </p></li>
+<li><p><strong><code>A</code></strong> - enters insert mode (appends) at the end of the current line. </p></li>
+<li><p><strong><code>o</code></strong> - inserts a new line under (lowercase <code>o</code> = &quot;lower&quot; or &quot;below&quot;) the current line and puts the cursor on it in insert mode. </p></li>
+<li><p><strong><code>O</code></strong> - inserts a new line over (uppercase <code>O</code> = &quot;upper&quot; or &quot;above&quot;) the current line and puts the cursor on it in insert mode. </p></li>
 </ul>
 <h2 id="ctrl-x-ctrl-c-ctrl-v" class="unnumbered">Ctrl-X, Ctrl-C, Ctrl-V</h2>
 <p>When you copy or cut/delete it, it goes into a &quot;buffer.&quot; There are ways to access multiple buffers, but mostly you want the very last thing to be put in the buffer, especially for copying (or cutting) and pasting. Note that &quot;cutting&quot; and &quot;deleting&quot; are synonymous, since deleting puts the deleted text in the buffer.</p>
-<p>Another thing to understand is that a command &quot;doubled&quot; or repeated typically means &quot;the whole line.&quot; So <code>dd</code> means &quot;delete the whole line the cursor is currently on.&quot;</p>
+<p>Another thing to understand is that a command &quot;doubled&quot; or repeated typically means &quot;the whole line.&quot; So <code>dd</code> means &quot;delete the whole line the cursor is currently on.&quot; </p>
 <p>So if deleting is synonymous with cutting, and the cursor is on the second line:</p>
 <p></p>
 <pre class="bash"><code>This is a word and so is this.
@@ -1828,18 +1828,18 @@ This is a new line.|</code></pre>
 <p>Then executing <code>dd</code> leaves:</p>
 <p></p>
 <pre class="bash"><code>|This is a word and so is this.</code></pre>
-<p>We know &quot;This is a new line.&quot; went into the buffer. We can paste it back above the current line with <code>P</code>(uppercase <code>P</code> = &quot;upper&quot; or &quot;above&quot;), which would result in:</p>
+<p>We know &quot;This is a new line.&quot; went into the buffer. We can paste it back above the current line with <code>P</code>(uppercase <code>P</code> = &quot;upper&quot; or &quot;above&quot;), which would result in: </p>
 <p></p>
 <pre class="bash"><code>|This is a new line.
 This is a word and so is this.</code></pre>
 <p>Here are some more examples:</p>
 <ul>
-<li><p><strong><code>p</code></strong> - paste the buffer into the current line starting after the cursor location.</p></li>
+<li><p><strong><code>p</code></strong> - paste the buffer into the current line starting after the cursor location. </p></li>
 <li><p><strong><code>3dd</code></strong> - delete (cut) three lines into the buffer.</p></li>
-<li><p><strong><code>5yw</code></strong> - &quot;yank&quot; (copy) five words starting at the current cursor position into the buffer.</p></li>
+<li><p><strong><code>5yw</code></strong> - &quot;yank&quot; (copy) five words starting at the current cursor position into the buffer. </p></li>
 </ul>
 <h2 id="change-machine" class="unnumbered">Change Machine</h2>
-<p>The hardest thing to get down in <code>vi</code> is the <em>substitute</em> (change or replace) command, <code>:s</code>. Its syntax is esoteric, but once you've memorized it, it becomes intuitive.</p>
+<p>The hardest thing to get down in <code>vi</code> is the <em>substitute</em> (change or replace) command, <code>:s</code>. Its syntax is esoteric, but once you've memorized it, it becomes intuitive. </p>
 <p>The most common scenario is the &quot;change all&quot; command. Given the following file:</p>
 <p></p>
 <pre class="bash"><code>This is a new line
@@ -1862,7 +1862,7 @@ This and that and this</code></pre>
 <li><p>The substitute command is case sensitive, just like everything else in Linux, unless you tell it to be <em>insensitive</em>.</p></li>
 <li><p>The substitute command only makes one change per line unless you tell it to change <em>globally</em>.</p></li>
 </ol>
-<p>So let's hit <code>u</code> to reset (undo) the change, and try again with this:</p>
+<p>So let's hit <code>u</code> to reset (undo) the change, and try again with this: </p>
 <p></p>
 <pre class="bash"><code>:0,$s/this/that/i</code></pre>
 <p>Results in:</p>
@@ -1895,7 +1895,7 @@ that and that and that</code></pre>
 <li><p><strong><code>/to</code></strong> - &quot;to&quot; (results).</p></li>
 <li><p><strong><code>/gi</code></strong> - optional switches, <code>g</code> means &quot;global&quot; (change all instances on a line, not just the first one), <code>i</code> means (case) &quot;insensitive.&quot;</p></li>
 </ul>
-<p>Regular expressions you say! &quot;Now we have two problems.&quot; But consider where we left off:</p>
+<p>Regular expressions you say! &quot;Now we have two problems.&quot; But consider where we left off: </p>
 <p></p>
 <pre class="bash"><code>that is a new line
 that is a word
@@ -1943,26 +1943,26 @@ This is next
 This is last</code></pre>
 <p>Maybe we want to change the &quot;This&quot; on the first three lines to &quot;That,&quot; but not the last two (imagine this is a much more complex example). We could do it by hand with the <code>r</code> command, but that's tedious and error prone. Instead, we can &quot;mark&quot; a range.</p>
 <ol type="1">
-<li><p>Place the cursor on the first line and use the <code>m</code> command followed by a one-character &quot;label&quot; like <code>x</code> (I typically use <code>m</code> so I don't have to move my fingers, e.g., <code>mm</code>).</p></li>
+<li><p>Place the cursor on the first line and use the <code>m</code> command followed by a one-character &quot;label&quot; like <code>x</code> (I typically use <code>m</code> so I don't have to move my fingers, e.g., <code>mm</code>). </p></li>
 <li><p>Place the cursor on the third line and again use the <code>m</code> command, but <strong><em>with a different label character</em></strong> (I usually use <code>n</code> so my fingers don't travel far, so <code>mn</code>).</p></li>
-<li><p>Now you can use the <code>'</code> character followed by a label to denote the beginning and end of the range in all kinds of <code>vi</code> commands. In our case we want to change &quot;This&quot; on the first three lines, so:</p></li>
+<li><p>Now you can use the <code>'</code> character followed by a label to denote the beginning and end of the range in all kinds of <code>vi</code> commands. In our case we want to change &quot;This&quot; on the first three lines, so: </p></li>
 </ol>
 <pre class="bash"><code>:&#39;m,&#39;ns/This/That/</code></pre>
 <p>Try doing that in Notepad!</p>
 <p><strong>Note:</strong> We could have done that with line ranges, too (<code>:0,2s/This/That/</code>), but figuring out the beginning and ending lines in a large range is a pain. It is much easier to just mark them and go.</p>
 <h2 id="executing-external-commands" class="unnumbered">Executing External Commands</h2>
-<p>Sometimes in <code>vi</code> it would be great to run the contents of the file through an external command (<code>sort</code> is a favorite) without saving and exiting the file, sorting it, and then re-editing it. We can do that with <code>!</code> , which works a lot like the &quot;substitute&quot; (change) command.</p>
+<p>Sometimes in <code>vi</code> it would be great to run the contents of the file through an external command (<code>sort</code> is a favorite) without saving and exiting the file, sorting it, and then re-editing it. We can do that with <code>!</code>, which works a lot like the &quot;substitute&quot; (change) command.   </p>
 <p>To sort the whole file in place:</p>
 <p></p>
 <pre class="bash"><code>:0,$!sort</code></pre>
 <p>To sort a marked range:</p>
 <p></p>
 <pre class="bash"><code>:&#39;m,&#39;n!sort</code></pre>
-<p>Another handy command to check out for this kind of thing, especially for formatting written text, is the <a href="http://linux.die.net/man/1/fmt"><code>fmt</code></a> command.</p>
+<p>Another handy command to check out for this kind of thing, especially for formatting written text, is the <a href="http://linux.die.net/man/1/fmt"><code>fmt</code></a> command. </p>
 <h2 id="the-unseen-world" class="unnumbered">The Unseen World</h2>
 <p>Any technical person knows that all the binary permutations of possible values for a byte aren't mapped to visible characters. Some are <a href="https://en.wikipedia.org/wiki/Control_character">&quot;control characters&quot;</a> that range back to the teletype days. For example, a tab character is hexadecimal 9 (<code>0x09</code>), but is often represented as <code>\t</code> in many programming languages, regular expressions and the like.</p>
 <p>Similarly, the &quot;end of line&quot; is marked by a control character. Or in the case of Windows, <strong><em>two</em></strong> control characters. And this causes no end of problems when editing files that can be opened on both &quot;UNIX&quot; systems and Windows.</p>
-<p>On &quot;UNIX,&quot; the line feed control character (<code>0x0a</code>, or <code>\n</code>) is all that marks the end of a line. For historical reasons (CP/M), Windows ends each line with two control characters, carriage return (<code>0x0d</code>, or <code>\r</code>) and line feed. The two together are often referred to as &quot;CRLF.&quot;</p>
+<p>On &quot;UNIX,&quot; the line feed control character (<code>0x0a</code>, or <code>\n</code>) is all that marks the end of a line. For historical reasons (CP/M), Windows ends each line with two control characters, carriage return (<code>0x0d</code>, or <code>\r</code>) and line feed. The two together are often referred to as &quot;CRLF.&quot; </p>
 <p>This difference manifests in two ways:</p>
 <ol type="1">
 <li><p>If you've ever opened a file on Windows in Notepad and all the lines &quot;flow&quot; even though they're supposed to be individual lines, that means it is probably using &quot;UNIX&quot; end-of-lines (<code>\n</code>) only. Use a line feed aware editor such as <a href="https://notepad-plus-plus.org/">Notepad++</a> instead.</p></li>
@@ -1975,7 +1975,7 @@ This is last</code></pre>
 <p></p>
 <pre class="bash"><code>:1,$s/\t/    /g</code></pre>
 <h2 id="lets-get-small" class="unnumbered">Let's Get Small</h2>
-<p>So, <code>vi</code> is the best we can do? No. On many Linux systems an alternative terminal-based editor will be installed, often several. There may be <a href="http://linux.die.net/man/1/emacs"><code>emacs</code></a> , which <strong><em>will</em></strong> make you yearn for the simplicity of <code>vi</code>.</p>
+<p>So, <code>vi</code> is the best we can do? No. On many Linux systems an alternative terminal-based editor will be installed, often several. There may be <a href="http://linux.die.net/man/1/emacs"><code>emacs</code></a>, which <strong><em>will</em></strong> make you yearn for the simplicity of <code>vi</code>. </p>
 <p>Here are two jokes that are only funny once you've used <code>emacs</code>:</p>
 <blockquote>
 <p><em>&quot;'emacs' stands for 'escape', 'meta', 'alt', 'control', 'shift'.&quot;</em></p>
@@ -1984,7 +1984,7 @@ This is last</code></pre>
 <p><em>&quot;'emacs' is a good operating system, but it could use an editor.&quot;</em></p>
 </blockquote>
 <p>If those are funny to you, then you have already been infected by <code>emacs</code>. The prognosis is grim.</p>
-<p>But there may also others, notably <a href="http://linux.die.net/man/1/pico"><code>pico</code></a> and its successor, <a href="http://linux.die.net/man/1/nano"><code>nano</code></a> . You can see the difference the second you see a file open in <code>nano</code> - in this case, the generated Github-flavored Markdown of this document:</p>
+<p>But there may also others, notably <a href="http://linux.die.net/man/1/pico"><code>pico</code></a> and its successor, <code>nano</code>](http://linux.die.net/man/1/nano). You can see the difference the second you see a file open in <code>nano</code> - in this case, the generated Github-flavored Markdown of this document:  </p>
 <p></p>
 <pre class="bash"><code>    GNU nano 2.2.6        File: TenStepsToLinuxSurvival.md                        
 

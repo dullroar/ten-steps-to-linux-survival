@@ -14,8 +14,7 @@ until it is finally emitted on the console or saved to a file or sent over the I
 The first thing to note is there are three "file I/O streams" that are open by default in every
 "UNIX" process:
 
-* ***stdin*** - input, typically from the console in an interactive session. In the underlying C file
-system APIs, this is file descriptor 0.
+* ***stdin*** - input, typically from the console in an interactive session. In the underlying C file system APIs, this is file descriptor 0.
 \drstd{stdin}
 
 * ***stdout*** - "normal" output, typically to the console in an interactive session. This is file
@@ -23,20 +22,21 @@ descriptor 1.
 \drstd{stdout}
 
 * ***stderr*** - "error" output, typically to the console in an interactive session (so it can be
-ard to distinguish when intermingled with *stdout* output). This is file descriptor 2.
+hard to distinguish when intermingled with *stdout* output). This is file descriptor 2.
 \drstd{stderr}
 
 **Note:** Those numeric file descriptors will go from being trivia to important in just a bit.
 
 When a program written in C calls `printf`, it is writing to *stdout*. When a `bash` script calls
-`echo`\drcmd{echo}, it too is writing to *stdout*. When a command writes an error message, it is
-writing to *stderr*. If a command or program accepts input from the console, it is reading from
-*stdin*.
+`echo`, it too is writing to *stdout*. When a command writes an error message, it is writing to
+*stderr*. If a command or program accepts input from the console, it is reading from *stdin*.
+\drcmd{echo}
 
-In this example, `cat`\drcmd{cat} is started with no file name, so it will read from *stdin* (a
-quite common "UNIX" command convention), and echo each line typed by the user to *stdout* until the
-"end of file," which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the
-example below but not seen on the console in real life:
+In this example, `cat` is started with no file name, so it will read from *stdin* (a quite common
+"UNIX" command convention), and echo each line typed by the user to *stdout* until the "end of file,
+which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below
+but not seen on the console in real life:
+\drcmd{cat}
 
 \drcap{\textit{stdin} and \textit{stdout}}
 ```bash
@@ -57,10 +57,12 @@ writing to stdout." and hit `Enter` and that line was echoed to *stdout* as well
 ## All Magic is Redirection{.unnumbered}
 
 So one way to string things together in "the UNIX way" is with file redirection. This is a concept
-that also works in `CMD.EXE`\drshl{CMD.EXE} and even with the same syntax.
+that also works in `CMD.EXE` and even with the same syntax.
+\drshl{CMD.EXE}
 
 Let's create a file with a single line of text in it. One way would be to `vi newfilename`, edit
-the file, save it, and exit `vi`\dreds{vi}. A quicker way is to simply use file redirection:
+the file, save it, and exit `vi`. A quicker way is to simply use file redirection:
+\dreds{vi}
 
 \drcap{Hello, world}
 ```bash
@@ -72,17 +74,19 @@ total 1
 Hello, world
 ```
 
-In this case the `> hw`\index{*@\texttt{>} (output redirection)}
-\index{I/O!redirection!output (\texttt{>})} tells `bash` to take the output that `echo` sends to
-*stdout* and send it to the file `hw` instead.
+In this case the `> hw` tells `bash` to take the output that `echo` sends to *stdout* and send it
+to the file `hw` instead.
 \drstd{stdout}
+\index{*@\texttt{>} (output redirection)}
+\index{I/O!redirection!output (\texttt{>})}
 
 As mentioned above many "UNIX" commands are set up to take one or more file names from the command
 line as parameters, and if there aren't any, to read from *stdin*. The `cat` command does that.
-While it doesn't save us anything over the above example, the following example using `<`
-\index{*@\texttt{<} (input redirection)}\index{I/O!redirection!input (\texttt{<})} is illustrative
-of redirecting a file to *stdin* for a command or program:
+While it doesn't save us anything over the above example, the following example using `<` is
+illustrative of redirecting a file to *stdin* for a command or program:
 \drstd{stdin}
+\index{*@\texttt{<} (input redirection)}
+\index{I/O!redirection!input (\texttt{<})}
 
 \drcap{Redundant redirection}
 ```bash
@@ -143,14 +147,15 @@ cat: .: Is a directory
 cat: ./d: Is a directory
 ```
 
-The `2>/tmp/finderrors.log`\index{*@\texttt{2>} (\textit{stderr} redirection)}
-\index{I/O!redirection!error (\texttt{2>})} is the magic that is redirecting file descriptor 2
-(*stderr*) to the log file `/tmp/finderrors.log`.
+The `2>/tmp/finderrors.log` is the magic that is redirecting file descriptor 2 (*stderr*) to the
+log file `/tmp/finderrors.log`.
+\index{*@\texttt{2>} (\textit{stderr} redirection)}
+\index{I/O!redirection!error (\texttt{2>})}
 
 A very common paradigm is to capture both *stdout* and *stderr* to the same file. Here is how that
 is done, again using file descriptors:
-\drstd{stdout}
 \drstd{stderr}
+\drstd{stdout}
 
 \drcap{Redirecting both \textit{stdout} and \textit{stderr} to a file}
 ```bash
@@ -166,7 +171,8 @@ This is e
 
 Now we see *stdout* being redirected to `/tmp/find.log` with `>/tmp/find.log`, and *stderr* (file
 descriptor 2) being sent to the same place as *stdout* (file descriptor 1) with `2>&1`. Note that
-this works in `CMD.EXE`]drshl{CMD.EXE}, too!
+this works in `CMD.EXE`, too!
+\drshl{CMD.EXE}
 
 If we want to send *stdout* to one file and *stderr* to another, you can do it like this:
 
@@ -192,9 +198,10 @@ to `rm` it first):
 ~ $ find . -exec cat \{\} \; >/tmp/find.log
 ```
 
-However, the next sample using `>>`\index{*@\texttt{>>} (output redirection, appending)}
-\index{I/O!redirection!output, appending (\texttt{>>})} creates a new `/tmp/find.log` file if it
-doesn't exist, but otherwise appends to it:
+However, the next sample using `>>` creates a new `/tmp/find.log` file if it doesn't exist, but
+otherwise appends to it:
+\index{*@\texttt{>>} (output redirection, appending)}
+\index{I/O!redirection!output, appending (\texttt{>>})}
 
 \drcap{Appending to a file with redirection}
 ```bash
@@ -211,8 +218,8 @@ redirecting that file to *stdin* on the next program, and so on. But "UNIX" envi
 bit further with the concept of a command "pipeline" that allows directly sending *stdout* from one
 program into *stdin* of another using the "pipe" (`|`):
 \index{*@\texttt{"|} (pipe)}\index{I/O!redirection!pipe (\texttt{"|})}
-\drstd{stdout}
 \drstd{stdin}
+\drstd{stdout}
 
 \drcap{Piping output between programs}
 ```bash
@@ -225,11 +232,13 @@ each doing one thing. In this case:
 1. `cat` echos the contents of all `.txt` files in alphabetical order by their file name to
 *stdout*, which is piped to...
 
-2. [`tr`](http://linux.die.net/man/1/tr)\drcmd{tr} "translates" (replaces) any backslash characters
-(here "escaped" as `'\\'` because the backslash character is a special character) to forward
-slashes (`/`), before sending it into...
+2. [`tr`](http://linux.die.net/man/1/tr) "translates" (replaces) any backslash characters (here
+"escaped" as `'\\'` because the backslash character is a special character) to forward slashes (`/`)
+before sending it into...
+\drcmd{tr}
 
-3. A `while`\drcmd{while} loop that reads each line into a variable called `$line` and then calls...
+3. A `while` loop that reads each line into a variable called `$line` and then calls...
+\drcmd{while}
 
 4. Some custom script or program called `./mycmd` passing in the value of each `$line`.
 
@@ -249,7 +258,8 @@ using file redirection where one program would have to finish completely running
 a file before the next program could start and read in that file as input.
 
 Finally, if you want to capture something to a file ***and*** see it on the console at the same
-time, that is where the [`tee`](http://linux.die.net/man/1/tee)\drcmd{tee} command comes in:
+time, that is where the [`tee`](http://linux.die.net/man/1/tee) command comes in:
+\drcmd{tee}
 
 ```bash
 ~ $ find . -name error.log | tee > errorlogs.txt
