@@ -140,30 +140,34 @@ have worked on or run at home various ports and flavors and and versions and dis
 the years, including:
 
 * **AIX**
+\drios{AIX}
 
 * **FreeBSD**
 \drbsd{FreeBSD}
 
 * **HP/UX**
+\drios{HP/UX}
 
 * **Linux** - literally more distros than I can count or remember, but at least Debian, Fedora,
 Yellow Dog, Ubuntu/Kubuntu/Xubuntu, Mint, Raspbian, Gentoo, Red Hat and of course the venerable
 Slackware.
 \drdis{Debian}
 \drdis{Fedora}
-\drdis{Yellow Dog}
-\drdis{Ubuntu}
+\drdis{Gentoo}
 \drdis{Kubuntu}
-\drdis{Xubuntu}
 \drdis{Mint}
 \drdis{Raspbian}
-\drdis{Gentoo}
 \drdis{Red Hat}
 \drdis{Slackware}
+\drdis{Ubuntu}
+\drdis{Xubuntu}
+\drdis{Yellow Dog}
 
 * **Solaris**
+\drios{Solaris}
 
 * **SunOS**
+\drios{SunOS}
 
 All on various machines and machine architectures from mighty Sun servers to generic "Intel" VMs
 down to Raspberry Pis, plus an original "wedge" iMac running as a kitchen kiosk long after its
@@ -233,9 +237,8 @@ Obvious candidates include the file system commands like `rm`, the `vi` editor (
 some of the "system admin" commands mentioned later, including system and service restarts. Use
 your common sense plus the various resources for documentation mentioned in this book to make sure
 you aren't doing anything destructive to your system, especially in production.
-\drcmd{rm}
-\index{files and directories!delete (\texttt{rm} command)}
 \dreds{vi}
+\drfnd{rm}{remove file}
 
 ***YOU HAVE BEEN WARNED!***
 
@@ -280,8 +283,8 @@ intentional. While most modern "UNIX" systems and terminal windows like `ssh` ca
 geometry, there are still systems and situations where you get the same terminal size that your
 grandfather would've used. It is best to learn how to deal with these by using `less`, redirection
 and the like.
-\drnet{ssh}
 \drcmd{less}
+\drnet{ssh}
 \index{files and directories!paginate!less@\texttt{less} command}
 \index{pagination!\texttt{less} command}
 
@@ -289,9 +292,9 @@ The examples in this book typically show something like `~ $` before the command
 logged in as root) or `%` (when running under `csh`). These "command prompts" are set in `bash`
 via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)
 and are not meant to be typed in as part of the command.
-\drshl{csh}
-\drshl{bash}
 \drenv{PS1}{command prompt string}
+\drshl{bash}
+\drshl{csh}
 
 In the few places where a "UNIX" command is shown in comparison to a "DOS" command run under
 `CMD.EXE`, the latter is shown in all uppercase to help distinguish it from the "UNIX" equivalent,
@@ -302,6 +305,6 @@ for `CMD.EXE`.
 ## Acknowledgments{.unnumbered}
 
 Thanks to Ken Astl for reading an early draft of this book. I appreciate the detailed and
-thoughtful discussions I had with Margaret Devere around designing good indexes. And finally, I owe
-more than I can repay (as usual) to my wife Leslie for putting up with me while I obsessed over
-this project.
+thoughtful discussions I had with Margaret Devere around designing good indexes. My boss, Bryan
+Henderson, has been supportive. And finally, I owe more than I can repay (as usual) to my wife
+Leslie for putting up with me while I obsessed over this project.

@@ -33,20 +33,77 @@
 \setcounter{dbltopnumber}{2}        % for 2-column pages
 \overfullrule=2cm   % Black bars to show overfull boxes
 \numberwithin{figure}{chapter}
-\DeclareRobustCommand{\drbsd}[1]{\index{operating systems!#1}\index{operating systems!BSD}\index{BSD (operating system)}\index{#1 (operating system)}}
+\DeclareRobustCommand{\drbsd}[1]{
+    \index{BSD (operating system)}\index{#1 (operating system)}
+    \index{operating systems!#1}
+    \index{operating systems!BSD}
+}
 \DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
-\DeclareRobustCommand{\drcmd}[1]{\index{commands!#1@\texttt{#1}}}
-\DeclareRobustCommand{\drdis}[1]{\index{Linux distros!#1}\index{#1 (Linux distro)}}
-\DeclareRobustCommand{\drdoc}[1]{\index{documentation!#1@\texttt{#1} command}\index{#1@\texttt{#1} (documentation command)}\index{commands!#1@\texttt{#1} (documentation)}}
-\DeclareRobustCommand{\dreds}[1]{\index{editors!#1@\texttt{#1}}\index{#1@\texttt{#1} (editor)}\index{commands!#1@\texttt{#1} (editor)}}
-\DeclareRobustCommand{\drenv}[2]{\index{environment variables!#1@\texttt{\$}\texttt{#1} (#2)}}
-\DeclareRobustCommand{\drios}[1]{\index{operating systems!#1}\index{#1 (operating system)}}
-\DeclareRobustCommand{\drnet}[1]{\index{network commands!#1@\texttt{#1}}\index{#1@\texttt{#1} (network command)}\index{commands!#1@\texttt{#1} (network)}}
-\DeclareRobustCommand{\drpkg}[1]{\index{package management!#1@\texttt{#1}}\index{#1@\texttt{#1} (package management)}\index{commands!#1@\texttt{#1} (package management)}}
-\DeclareRobustCommand{\drshl}[1]{\index{shells!#1}\index{#1 (shell)}}
-\DeclareRobustCommand{\drstd}[1]{\index{I/O!streams!#1@\textit{#1}}\index{#1@\textit{#1} (stream)}\index{streams!#1@\textit{#1}}}
-\DeclareRobustCommand{\drunx}[1]{\index{UNIX-like environments!#1}\index{#1 (UNIX-like environment)}}
-\DeclareRobustCommand{\drvic}[2]{\index{vicommands@\texttt{vi} commands!#1@\texttt{#1} (#2)}}
+\DeclareRobustCommand{\drcmd}[1]{
+    \index{commands!#1@\texttt{#1}}
+}
+\DeclareRobustCommand{\drcom}[1]{
+    \index{#1@\texttt{#1} (compression command)}
+    \index{commands!#1@\texttt{#1} (compression)}
+    \index{compression!#1@\texttt{#1} command}
+}
+\DeclareRobustCommand{\drdis}[1]{
+    \index{#1 (Linux distro)}
+    \index{Linux distros!#1}
+}
+\DeclareRobustCommand{\drdoc}[1]{
+    \index{#1@\texttt{#1} (documentation command)}
+    \index{commands!#1@\texttt{#1} (documentation)}
+    \index{documentation!#1@\texttt{#1} command}
+}
+\DeclareRobustCommand{\dreds}[1]{
+    \index{#1@\texttt{#1} (editor)}
+    \index{commands!#1@\texttt{#1} (editor)}
+    \index{editors!#1@\texttt{#1}}
+}
+\DeclareRobustCommand{\drenv}[2]{
+    \index{environment variables!#1@\texttt{\$}\texttt{#1} (#2)}
+}
+\DeclareRobustCommand{\drfnd}[2]{
+    \index{#1@\texttt{#1} (#2 command)}
+    \index{commands!#1@\texttt{#1} (#2)}
+    \index{files and directories!#2 (\texttt{#1} command)}
+}
+\DeclareRobustCommand{\drios}[1]{
+    \index{#1 (operating system)}
+    \index{operating systems!#1}
+}
+\DeclareRobustCommand{\drnet}[1]{
+    \index{#1@\texttt{#1} (network command)}
+    \index{commands!#1@\texttt{#1} (network)}
+    \index{network commands!#1@\texttt{#1}}
+}
+\DeclareRobustCommand{\drpkg}[1]{
+    \index{#1@\texttt{#1} (package management)}
+    \index{commands!#1@\texttt{#1} (package management)}
+    \index{package management!#1@\texttt{#1}}
+}
+\DeclareRobustCommand{\drshl}[1]{
+    \index{#1 (shell)}
+    \index{shells!#1}
+}
+\DeclareRobustCommand{\drstd}[1]{
+    \index{#1@\textit{#1} (stream)}
+    \index{I/O!streams!#1@\textit{#1}}
+    \index{streams!#1@\textit{#1}}
+}
+\DeclareRobustCommand{\drsys}[2]{
+    \index{#1@\texttt{#1} (#2 command)}
+    \index{commands!#1@\texttt{#1} (#2)}
+    \index{system commands!#2 (\texttt{#1} command)}
+}
+\DeclareRobustCommand{\drunx}[1]{
+    \index{#1 (UNIX-like environment)}
+    \index{UNIX-like environments!#1}
+}
+\DeclareRobustCommand{\drvic}[2]{
+    \index{vicommands@\texttt{vi} commands!#1@\texttt{#1} (#2)}
+}
 \renewcommand{\KeywordTok}[1]{{#1}}
 \renewcommand{\DataTypeTok}[1]{{#1}}
 \renewcommand{\DecValTok}[1]{{#1}}

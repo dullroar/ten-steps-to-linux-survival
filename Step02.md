@@ -51,8 +51,8 @@ under either a `/mnt` or `/media` directory.
 ## Looking at Files{.unnumbered}
 
 As we've already seen, the command to *list* the contents of a directory is
-[`ls`](http://linux.die.net/man/1/ls)\drcmd{ls}
-\index{files and directories!list (\texttt{ls} command)}:
+[`ls`](http://linux.die.net/man/1/ls):\drfnd{ls}{list directory contents}
+
 
 \drcap{Listing directory contents}
 ```bash
@@ -131,7 +131,7 @@ In `bash` and many Linux commands in general, there are old, "short" (terse) par
 `ls -a`, and newer, longer, descriptive parameter names like `ls --all` that mean the same thing.
 It is typically good to use the shorter version during interactive sessions and testing, but I
 prefer long parameter names in scripts, because when I come back and look at it in two years, I may
-not remember what `rm -rf *`\drcmd{rm} means (in the "UNIX" world it means you're toast if you run
+not remember what `rm -rf *`\drfnd{rm}{remove file} means (in the "UNIX" world it means you're toast if you run
 it by mistake), thus `rm --recursive --force *` seems a bit more "intuitive."
 
 > ***The behind you save in the future by describing things well today may well be your own.*** -
@@ -296,8 +296,8 @@ g.freedesktop.nm_dispatcher'
 Use `Ctrl-C` to cancel following the file.
 
 If we know nothing about a *file*, we can use the
-[`file`](http://linux.die.net/man/1/file)\drcmd{file}
-\index{files and directories!detecting type (\texttt{file} command)} command to help
+[`file`](http://linux.die.net/man/1/file)\drfnd{file}{detect file type}
+command to help
 us guess:
 
 \drcap{\texttt{file} command}
@@ -477,8 +477,8 @@ If you read that command in a script file, there would be little confusion as to
 ## Rearranging Deck Chairs{.unnumbered}
 
 We can copy, move (or rename - same thing) and delete files and directories. To *copy*, simply use
-the [`cp`](http://linux.die.net/man/1/cp)\drcmd{cp}
-\index{files and directories!copy (\texttt{cp} command)} command:
+the [`cp`](http://linux.die.net/man/1/cp)\drfnd{cp}{copy}
+command:
 
 \drcap{\texttt{cp} command}
 ```bash
@@ -500,8 +500,7 @@ Or, if we want to be self-documenting in a script, we can use those long paramet
 ```
 
 To *move* use
-[`mv`](http://linux.die.net/man/1/mv)\drcmd{mv}
-\index{files and directories!move (\texttt{mv} command)}:
+[`mv`](http://linux.die.net/man/1/mv):\drfnd{mv}{move files}
 
 \drcap{\texttt{mv} command}
 ```bash
@@ -509,14 +508,13 @@ To *move* use
 ```
 
 **Note:** There is no semantic difference between "move" and "rename." However, there are some
-really cool renaming scenarios that the [`rename`](http://linux.die.net/man/1/rename)\drcmd{rename}
+really cool renaming scenarios that the [`rename`](http://linux.die.net/man/1/rename)\drfnd{rename}{rename file}
 command can take care of beyond `mv`, like renaming all file extensions from `.htm` to `.html`.
 
 ## Making Files Disappear{.unnumbered}
 
 To delete or *remove* a file you use
-[`rm`](http://linux.die.net/man/1/rm)\drcmd{rm}
-\index{files and directories!delete (\texttt{rm} command)}:
+[`rm`](http://linux.die.net/man/1/rm):\drfnd{rm}{remove file}
 
 \drcap{\texttt{rm} command}
 ```bash
@@ -569,8 +567,7 @@ Safer that way.
 ## `touch` Me{.unnumbered}
 
 We just learned how to make a file disappear. We can also make a file magically appear, just by
-[`touch`](http://linux.die.net/man/1/touch)\drcmd{touch}
-\index{files and directories!create empty (\texttt{touch} command)}:
+[`touch`](http://linux.die.net/man/1/touch):\drfnd{touch}{change modified date or create file}
 
 \drcap{\texttt{touch} command}
 ```bash
@@ -584,7 +581,7 @@ Notice the newly created file is zero bytes long.
 
 Interestingly enough, we can also use `touch` just to update the "last modified date" of an
 existing file, as you can see in time change in the following listing after running
-`touch`\index{files and directories!update last modified date (\texttt{touch} command)} on the same
+`touch`\drfnd{touch}{change modified date or create file} on the same
 file again:
 
 \drcap{A second \texttt{touch}}
@@ -609,8 +606,7 @@ total 0
 ```
 
 To *make a directory* you use
-[`mkdir`](http://linux.die.net/man/1/mkdir)\drcmd{mkdir}
-\index{files and directories!create directory (\texttt{mkdir} command)}:
+[`mkdir`](http://linux.die.net/man/1/mkdir):\drfnd{mkdir}{make directory}
 
 \drcap{\texttt{mkdir} command}
 ```bash
@@ -659,8 +655,7 @@ with `CMD.EXE`\drshl{CMD.EXE}. The biggest difference is the absense of drive le
 direction of the slashes.
 
 To *change directories*, simply use
-[`cd`](http://linux.die.net/man/1/cd)\drcmd{cd}
-\index{files and directories!change (\texttt{cd} command)}
+[`cd`](http://linux.die.net/man/1/cd)\drfnd{cd}{change directory}
 much like in Windows:
 
 \drcap{\texttt{cd} command}
@@ -670,15 +665,14 @@ much like in Windows:
 /etc
 ```
 
-[`pwd`](http://linux.die.net/man/1/pwd)\drcmd{pwd}
-\index{files and directories!current directory (\texttt{pwd} command)}
+[`pwd`](http://linux.die.net/man/1/pwd)\drfnd{pwd}{print working directory}
 simply *prints the working (current) directory*. If `whoami` tells you who you are, `pwd` tells you
 ***where*** you are.
 
 In Linux, users can have "home"\index{files and directories!home (\texttt{\~{}})}
 directories (similar to Windows profiles), typically located under `/home/<username>` for normal
 users, and `/root` for the "root" (admin) id. To change to a user's "home" directory, simply use
-`cd`\drcmd{cd} with no parameters:
+`cd`\drfnd{cd}{change directory} with no parameters:
 
 \drcap{Change to home directory}
 ```bash
@@ -710,7 +704,7 @@ myuser # pwd
 /home/myuser
 ```
 
-**Note:** The above assumes you have permissions to `cd` into `/home/myuser`. See the upcoming
+**Note:** The above assumes you have permissions to `cd`\drfnd{cd}{change directory} into `/home/myuser`. See the upcoming
 section on file permissions for more info.
 
 In addition, you need to know the difference between "absolute" and
@@ -753,7 +747,7 @@ Bar  Baz
 a  b  c
 ```
 
-Did you notice how both `mkdir`\drcmd{mkdir} and `touch`\drcmd{touch} allow for specifying multiple
+Did you notice how both `mkdir`\drfnd{mkdir}{make directory} and `touch`\drfnd{touch}{change modified date or create file} allow for specifying multiple
 directory and file names in the same command?
 
 ## May I?{.unnumbered}
@@ -959,10 +953,11 @@ Hello world
 ## "I'll Send You a Tar Ball"{.unnumbered}
 
 In the Windows world, we are used to compressing and sending directories around as `.zip` files. In
-Linux you can also deal with `.zip`\index{files and directories!zipfiles@\texttt{.zip} files} files,
+Linux you can also deal with `.zip`\index{files and directories!zipfiles@\texttt{.zip} files}
+\index{compression!zipfiles@\texttt{.zip} files} files,
 although they don't tend to be the most common, using the
-[`zip`](http://linux.die.net/man/1/zip)\drcmd{zip} and
-[`unzip`](http://linux.die.net/man/1/unzip)\drcmd{unzip} commands:
+[`zip`](http://linux.die.net/man/1/zip)\drcom{zip} and
+[`unzip`](http://linux.die.net/man/1/unzip)\drcom{unzip} commands:
 
 \drcap{\texttt{zip} command}
 ```bash
@@ -994,9 +989,9 @@ replace Foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
 ```
 
 Not too exciting, but you get the drift. There is typically support for other compression
-algorithms, such as the [`gzip`](http://linux.die.net/man/1/gzip)\drcmd{gzip},
-[`bzip2`](http://linux.die.net/man/1/bzip2)\drcmd{bzip2} and
-[`7z`](http://linux.die.net/man/1/7z)\drcmd{7z} (7-zip) commands.
+algorithms, such as the [`gzip`](http://linux.die.net/man/1/gzip)\drcom{gzip},
+[`bzip2`](http://linux.die.net/man/1/bzip2)\drcom{bzip2} and
+[`7z`](http://linux.die.net/man/1/7z)\drcom{7z} (7-zip) commands.
 
 However, the "native" way to "archive" a directory's contents in "UNIX" is with
 [`tar`](http://linux.die.net/man/1/tar)\drcmd{tar}, which is so old that `tar` stands for "tape
@@ -1049,8 +1044,9 @@ Foo/a
 -rw-r--r-- 1 myuser mygroup 197 Dec 19 07:54 Foo.tgz
 ```
 
-In this case the `z` parameter says to use `gzip`\drcmd{gzip} compression, and the
-`.tgz`\index{files and directories!tgzarchivefiles@\texttt{.tgz} archive files} file suffix means
+In this case the `z` parameter says to use `gzip`\drcom{gzip} compression, and the
+`.tgz`\index{files and directories!tgzarchivefiles@\texttt{.tgz} archive files}
+\index{compression!tgzfiles@\texttt{.tgz} files} file suffix means
 basically "tarred and gzipped", or the equivalent to `.tar.gz` in the first example.
 
 `tar` is used to both create and read `.tar` files. So to extract something like the above, you can
@@ -1075,7 +1071,7 @@ directory entries ***in the same file system*** to point to the same physical fi
 
 UNIX file systems also have both these types of links (which isn't surprising, given that Microsoft
 got the ideas from UNIX). Both are created with the
-[`ln`](http://linux.die.net/man/1/ln)\drcmd{ln} command. A "soft
+[`ln`](http://linux.die.net/man/1/ln)\drfnd{ln}{link} command. A "soft
 link"\index{files and directories!soft links} is equivalent to a Windows shortcut, and can point
 to a file or a directory, and can point to anything on any mounted file system:
 
@@ -1201,7 +1197,7 @@ So, that makes sense. We created an original file `b` by placing "This is b." in
 created two hard links to it, `B` and `d/b`. We see that it has the same contents no matter how we
 access it, because it is pointing to the same inode.
 
-Can you guess how many `rm`\drcmd{rm} commands it will take to delete the file containing "This is
+Can you guess how many `rm`\drfnd{rm}{remove file} commands it will take to delete the file containing "This is
 b."?
 
 \drcap{Deleting a file with many hard links}
@@ -1231,7 +1227,7 @@ starting at `/`\index{*@\texttt{/} (root directory)}
 `var/or/other` are on the same file system?
 
 There are multiple ways to tell, actually. The easiest is with the
-[`df`](http://linux.die.net/man/1/df)\drcmd{df} command:
+[`df`](http://linux.die.net/man/1/df)\drfnd{df}{display file system disk space} command:
 
 \drcap{\texttt{df} command}
 ```bash
@@ -1252,7 +1248,7 @@ file system, except for whatever happens to be on the file system mounted under 
 of `/boot`, on this system we could hard link away to our heart's content.
 
 **Note:** - It is (barely) beyond the scope of this book to cover the
-[`mount`](http://linux.die.net/man/8/mount)\drcmd{mount} command. I wanted to, really bad, but with
+[`mount`](http://linux.die.net/man/8/mount)\drsys{mount}{mount file system} command. I wanted to, really bad, but with
 all the different file systems and device types and all the options for both it can get so complex
 so fast that I decided not to. Maybe if you ask, real nice...
 
@@ -1268,7 +1264,7 @@ But even with soft links if everything just blindly followed them you could also
 where you didn't want them, or even circular references. Also, the pointers in the soft link files
 are not evaluated until a command references them. Note that the following is perfectly legal with
 soft links, but may not give the results you expect - think about the current working directory
-shown by `pwd`\drcmd{pwd} in the following, and the effects of the ***relative paths*** as the
+shown by `pwd`\drfnd{pwd}{print working directory} in the following, and the effects of the ***relative paths*** as the
 sample progresses:
 
 \drcap{Soft links and relative paths}
@@ -1290,13 +1286,13 @@ e  f
 a  b  c  d
 ```
 
-Many commands that deal with files and file systems, like `find`\drcmd{find}, have parameters
+Many commands that deal with files and file systems, like `find`\drfnd{find}{find files}, have parameters
 specifically telling the command whether to follow soft links or not (by default, `find` does
 not - see the next chapter for more).
 
 ## What's the `diff`?{.unnumbered}
 
-Most people think of [`diff`](http://linux.die.net/man/1/diff)\drcmd{diff}
+Most people think of [`diff`](http://linux.die.net/man/1/diff)\drfnd{diff}{show differences between files}
 \index{files and directories!compare files (\texttt{diff} command)} as a tool only programmers find
 useful, but that is short-sighted. The whole purpose of `diff` is to show differences between
 files. For example, I backed up this document (which is a text file) before starting this section,

@@ -7,7 +7,7 @@
 > *"I can't come back, I don't know how it works! Good-bye, folks!"* - The Wizard of Oz
 
 This document was produced in the environments it discusses, including (with their
-[`uname -rv`](http://linux.die.net/man/1/uname)\drcmd{uname} results):
+[`uname -rv`](http://linux.die.net/man/1/uname)\drsys{uname}{system info} results):
 
 * [**Cygwin**](https://cygwin.com/)\drunx{Cygwin} - `2.2.1(0.289/5/3) 2015-08-20 11:42`
 

@@ -92,7 +92,7 @@ directories.
 These are "section 1" commands, i.e., normal user commands that typically don't require any special
 privileges beyond permissions to access files and the like.
 
-* [**`7z`**](http://linux.die.net/man/1/7z)\drcmd{7z} - compress and uncompress files and
+* [**`7z`**](http://linux.die.net/man/1/7z)\drcom{7z} - compress and uncompress files and
 directories using the 7-zip algorithm.
 
 * [**`apropos`**](http://linux.die.net/man/1/apropos)\drdoc{apropos} - search for help on commands
@@ -102,13 +102,13 @@ by pattern.
 
 * [**`bash`**](http://linux.die.net/man/1/bash)\drcmd{bash} - the Bourne-again shell.
 
-* [**`bzip2`**](http://linux.die.net/man/1/bzip2)\drcmd{bzip2} - compress and uncompress files
+* [**`bzip2`**](http://linux.die.net/man/1/bzip2)\drcom{bzip2} - compress and uncompress files
 using the `bzip2` algorithm.
 
 * [**`cat`**](http://linux.die.net/man/1/cat)\drcmd{cat} - concatenate the input files to *stdout*.
 \drstd{stdout}
 
-* [**`cd`**](http://linux.die.net/man/1/cd)\drcmd{cd} - change the current directory.
+* [**`cd`**](http://linux.die.net/man/1/cd)\drfnd{cd}{change directory} - change the current directory.
 
 * [**`chgrp`**](http://linux.die.net/man/1/chgrp)\drcmd{chgrp} - change the primary group of a file
 or directory.
@@ -119,16 +119,16 @@ of a file or directory.
 * [**`chown`**](http://linux.die.net/man/1/chown)\drcmd{chown} - change the owner of a file or
 directory.
 
-* [**`cp`**](http://linux.die.net/man/1/cp)\drcmd{cp} - copy files or directories.
+* [**`cp`**](http://linux.die.net/man/1/cp)\drfnd{cp}{copy} - copy files or directories.
 
-* [**`crontab`**](http://linux.die.net/man/1/crontab)\drcmd{crontab} - display or edit tasks to be
+* [**`crontab`**](http://linux.die.net/man/1/crontab)\drsys{crontab}{edit scheduled jobs} - display or edit tasks to be
 run by `cron`.
 
 * [**`curl`**](http://linux.die.net/man/1/curl)\drnet{curl} - download files from the internet.
 
-* [**`df`**](http://linux.die.net/man/1/df)\drcmd{df} - show space utilization by file system.
+* [**`df`**](http://linux.die.net/man/1/df)\drfnd{df}{display file system disk space} - show space utilization by file system.
 
-* [**`diff`**](http://linux.die.net/man/1/diff)\drcmd{diff} - show the differences between files.
+* [**`diff`**](http://linux.die.net/man/1/diff)\drfnd{diff}{show differences between files} - show the differences between files.
 
 * [**`dig`**](http://linux.die.net/man/1/dig)\drnet{dig} - look up DNS info on an address.
 
@@ -141,12 +141,12 @@ run by `cron`.
 
 * [**`false`**](http://linux.die.net/man/1/false)\drcmd{false} - do nothing, unsuccessfully.
 
-* [**`file`**](http://linux.die.net/man/1/file)\drcmd{file} - give best guess as to type of file.
+* [**`file`**](http://linux.die.net/man/1/file)\drfnd{file}{detect file type} - give best guess as to type of file.
 
-* [**`find`**](http://linux.die.net/man/1/find)\drcmd{find} - find files based on various
+* [**`find`**](http://linux.die.net/man/1/find)\drfnd{find}{find files} - find files based on various
 conditions and execute actions against the results.
 
-* [**`grep`**](http://linux.die.net/man/1/grep)\drcmd{grep} - search for a pattern (regular
+* [**`grep`**](http://linux.die.net/man/1/grep)\drfnd{grep}{search files} - search for a pattern (regular
 expression) in files.
 
 * [**`help`**](http://linux.die.net/man/1/help)\drdoc{help} - help for built-in commands in `bash`.
@@ -158,15 +158,17 @@ for GNU programs. Remember `q` quits.
 on *stdout*.
 \drstd{stdout}
 
-* [**`ln`**](http://linux.die.net/man/1/ln)\drcmd{ln} - create hard or soft (shortcut) links.
+* [**`ln`**](http://linux.die.net/man/1/ln)\drfnd{ln}{link} - create hard or soft (shortcut) links.
 
-* [**`ls`**](http://linux.die.net/man/1/ls)\drcmd{ls} - list directory contents.
+* [**`locate`**](http://linux.die.net/man/1/locate)\drfnd{locate}{locate files} - locate files by name.
+
+* [**`ls`**](http://linux.die.net/man/1/ls)\drfnd{ls}{list directory contents} - list directory contents.
 
 * [**`lynx`**](http://linux.die.net/man/1/lynx)\drnet{lynx} - command line web browser.
 
 * [**`man`**](http://linux.die.net/man/1/man)\drdoc{man} - display manual pages. Remember `q` quits.
 
-* [**`mkdir`**](http://linux.die.net/man/1/mkdir)\drcmd{mkdir} - make a new directory.
+* [**`mkdir`**](http://linux.die.net/man/1/mkdir)\drfnd{mkdir}{make directory} - make a new directory.
 
 * [**`more`**](http://linux.die.net/man/1/more)\drcmd{more}\index{files and directories!paginate!more@\texttt{more} command}\index{pagination!\texttt{more} command} - display the file one page at a time on
 *stdout*.
@@ -174,19 +176,19 @@ on *stdout*.
 
 * [**`mutt`**](http://linux.die.net/man/1/mutt)\drnet{mutt} - email client.
 
-* [**`mv`**](http://linux.die.net/man/1/mv)\drcmd{mv} - move files or directories.
+* [**`mv`**](http://linux.die.net/man/1/mv)\drfnd{mv}{move files} - move files or directories.
 
 * [**`pine`**](http://linux.die.net/man/1/pine)\drnet{pine} - email client.
 
-* [**`ps`**](http://linux.die.net/man/1/ps)\drcmd{ps} - list running processes.
+* [**`ps`**](http://linux.die.net/man/1/ps)\drsys{ps}{list processes} - list running processes.
 
-* [**`pwd`**](http://linux.die.net/man/1/pwd)\drcmd{pwd} - print the current (working) directory
+* [**`pwd`**](http://linux.die.net/man/1/pwd)\drfnd{pwd}{print working directory} - print the current (working) directory
 name.
 
-* [**`rename`**](http://linux.die.net/man/1/rename)\drcmd{rename} - rename files in more complex
+* [**`rename`**](http://linux.die.net/man/1/rename)\drfnd{rename}{rename file} - rename files in more complex
 ways than `mv` can.
 
-* [**`rm`**](http://linux.die.net/man/1/rm)\drcmd{rm} - delete (remove) files or directories.
+* [**`rm`**](http://linux.die.net/man/1/rm)\drfnd{rm}{remove file} - delete (remove) files or directories.
 
 * [**`scp`**](http://linux.die.net/man/1/scp)\drnet{scp} - file copy over secure shell protocol.
 
@@ -212,14 +214,16 @@ time.
 * [**`telnet`**](http://linux.die.net/man/1/telnet)\drnet{telnet} - ancient terminal program and
 protocol.
 
-* [**`touch`**](http://linux.die.net/man/1/touch)\drcmd{touch} - create an empty file or change the
+* [**`top`**](http://linux.die.net/man/1/top)\drsys{top}{list processes by resource use} - list processes by resource utilization (CPU).
+
+* [**`touch`**](http://linux.die.net/man/1/touch)\drfnd{touch}{change modified date or create file} - create an empty file or change the
 last-modified time of an existing file.
 
 * [**`true`**](http://linux.die.net/man/1/true)\drcmd{true} - do nothing, successfully.
 
-* [**`uname`**](http://linux.die.net/man/1/uname)\drcmd{uname} - print system info.
+* [**`uname`**](http://linux.die.net/man/1/uname)\drsys{uname}{system info} - print system info.
 
-* [**`unzip`**](http://linux.die.net/man/1/unzip)\drcmd{unzip} - uncompress `.zip` files.
+* [**`unzip`**](http://linux.die.net/man/1/unzip)\drcom{unzip} - uncompress `.zip` files.
 
 * [**`vi`**](http://linux.die.net/man/1/vi)\dreds{vi} - "visual" editor, a file editor.
 
@@ -233,7 +237,7 @@ address.
 
 * [**`xfreerdp`**](http://linux.die.net/man/1/xfreerdp)\drnet{xfreerdp} - RDP protocol client.
 
-* [**`zip`**](http://linux.die.net/man/1/zip)\drcmd{zip} - compress files and directories using the
+* [**`zip`**](http://linux.die.net/man/1/zip)\drcom{zip} - compress files and directories using the
 PKZip algorithm.
 
 ### System Commands{.unnumbered}
@@ -247,24 +251,26 @@ flavors.
 * [**`aptitude`**](http://linux.die.net/man/8/aptitude)\drpkg{aptitude} - package manager for
 Debian flavors.
 
-* [**`cron`**](http://linux.die.net/man/8/cron)\drcmd{cron} - system for running "scheduled tasks."
+* [**`cron`**](http://linux.die.net/man/8/cron)\drsys{cron}{run scheduled jobs} - system for running "scheduled tasks."
 
-* [**`dmesg`**](http://linux.die.net/man/8/dmesg)\drcmd{dmesg} - display kernel log messages.
+* [**`dmesg`**](http://linux.die.net/man/8/dmesg)\drsys{dmesg}{display kernel log} - display kernel log messages.
 
 * [**`ifconfig`**](http://linux.die.net/man/8/ifconfig)\drnet{ifconfig} - display network
 (interface) configuration.
 
-* [**`mount`**](http://linux.die.net/man/8/mount)\drcmd{mount} - mount a file system to a specific
+* [**`mount`**](http://linux.die.net/man/8/mount)\drsys{mount}{mount file system} - mount a file system to a specific
 location.
+
+* [**`passwd`**](http://linux.die.net/man/1/passwd)\drsys{passwd}{change password} - change password.
 
 * [**`ping`**](http://linux.die.net/man/8/ping)\drnet{ping} - test for network connectivity to an
 IP address.
 
-* [**`reboot`**](http://linux.die.net/man/8/reboot)\drcmd{reboot} - restart the system.
+* [**`reboot`**](http://linux.die.net/man/8/reboot)\drsys{reboot}{reboot system} - restart the system.
 
 * [**`rpm`**](http://linux.die.net/man/8/rpm)\drpkg{rpm} - package manager for Fedora flavors.
 
-* [**`shutdown`**](http://linux.die.net/man/8/shutdown)\drcmd{shutdown} - shutdown or restart the
+* [**`shutdown`**](http://linux.die.net/man/8/shutdown)\drsys{shutdown}{shutdown or reboot system} - shutdown or restart the
 system.
 
 * [**`sudo`**](http://linux.die.net/man/8/sudo)\drcmd{sudo} - execute a command with elevated

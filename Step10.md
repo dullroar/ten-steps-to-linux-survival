@@ -290,7 +290,7 @@ for just that!
 ```
 
 How can you tell if you have multiple versions of something installed? One way is with the
-[`locate`](http://linux.die.net/man/1/locate)\drcmd{locate} command:
+[`locate`](http://linux.die.net/man/1/locate)\drfnd{locate}{locate files} command:
 
 \drcap{\texttt{locate} command}
 ```bash
@@ -326,7 +326,7 @@ It is a quicker way to look than `find / -name \*pattern*\`.
 
 One final note on which thing gets executed. Unlike in Windows, "UNIX" environments do not consider
 the local directory (the current directory you are sitting at the command prompt, i.e., what
-[`pwd`](http://linux.die.net/man/1/pwd)\drcmd{pwd} shows) as part of the path unless `.` is
+[`pwd`](http://linux.die.net/man/1/pwd)\drfnd{pwd}{print working directory} shows) as part of the path unless `.` is
 explicitly listed in `$PATH` (and that is typically a bad idea). This is for security purposes. So
 it can be a bit unnerving to try and execute `foo` in the current directory and get:
 
@@ -365,11 +365,11 @@ Or you can prepend the `./` relative path to it, to indicate "the `foo` in the c
 ## Over and Over and Over{.unnumbered}
 
 The function of scheduled tasks in Windows is performed by
-[`cron`](http://linux.die.net/man/8/cron)\drcmd{cron} in Linux. It reads in the various
+[`cron`](http://linux.die.net/man/8/cron)\drsys{cron}{run scheduled jobs} in Linux. It reads in the various
 [`crontab(5)`](http://linux.die.net/man/5/crontab)
 \index{crontab@\texttt{crontab} (file)}
 files on the system and executes the commands in them at the specified times. You use the
-[`crontab(1)`](http://linux.die.net/man/1/crontab)\drcmd{crontab} command to view and edit the
+[`crontab(1)`](http://linux.die.net/man/1/crontab)\drsys{crontab}{edit scheduled jobs} command to view and edit the
 `crontab`\index{files and directories!special!crontab@\texttt{crontab}} files for your user (and other
 users if you have admin privileges).
 
@@ -424,14 +424,14 @@ where each command is installed.
 ## Start Me Up{.unnumbered}
 
 If you need to reboot the system the quickest way is with the
-[`reboot`](http://linux.die.net/man/8/reboot)\drcmd{reboot} command:
+[`reboot`](http://linux.die.net/man/8/reboot)\drsys{reboot}{reboot system} command:
 
 \drcap{\texttt{reboot} command}
 ```bash
 $ sudo reboot
 ```
 
-You can also use the [`shutdown`](http://linux.die.net/man/8/shutdown)\drcmd{shutdown} command with
+You can also use the [`shutdown`](http://linux.die.net/man/8/shutdown)\drsys{shutdown}{shutdown or reboot system} command with
 the `-r` option, but why? The handier use for `shutdown` is to tell a system to halt and power off
 after shutting down:
 

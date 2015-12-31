@@ -8,8 +8,8 @@ think)***
 
 Different people will have different answers to "What is the single most useful "UNIX" command?"
 There certainly are many to consider. But I keep coming back to
-[`find`](http://linux.die.net/man/1/find)\drcmd{find}
-\index{files and directories!finding (\texttt{find} command)}. It can be intimidating to figure out
+[`find`](http://linux.die.net/man/1/find).\drfnd{find}{find files}
+It can be intimidating to figure out
 from the documentation, especially at first, but once you start mastering it, you end up using it
 over and over again.
 

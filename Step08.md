@@ -12,7 +12,7 @@ commands may not be available to you, or may require `sudo` access.
 
 ## All Part of the Process{.unnumbered}
 
-To see what *processes* you are running, use [`ps`](http://linux.die.net/man/1/ps)\drcmd{ps}:
+To see what *processes* you are running, use [`ps`](http://linux.die.net/man/1/ps)\drsys{ps}{list processes}:
 
 \drcap{\texttt{ps} command}
 ```bash
@@ -72,7 +72,7 @@ That's:
 * **`grep vi`** - find all instances of `vi` (be careful, because that would include `view` and
 anything else containing the string `vi`, too).
 
-* **`|`** - pipe *stdout* from `grep`\drcmd{grep} to next command.
+* **`|`** - pipe *stdout* from `grep`\drfnd{grep}{search files} to next command.
 
 * **`kill`** - send a `SIGINT` signal\index{signals} to a process specified by:
 
@@ -82,7 +82,7 @@ is just leading spaces), and place the results of the command execution as the p
 `kill` command.
 
 To monitor the ongoing CPU, memory and other resource utilization of the *top* processes, you use
-the [`top`](http://linux.die.net/man/1/top)\drcmd{top} command, which unlike most in this book
+the [`top`](http://linux.die.net/man/1/top)\drsys{top}{list processes by resource use} command, which unlike most in this book
 updates dynamically every second by default:
 
 \drcap{\texttt{top} command}
@@ -304,7 +304,9 @@ log files. The two log files of general interest are `dmesg`,
 \index{files and directories!special!varlogdmesg@\texttt{/var/log/dmesg}}
 \index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)}
 which holds kernel-level debug
-messages and usually is useful for debugging things like device driver issues. The other is
+messages and usually is useful for debugging things like device driver issues.
+It can also be displayed directly with the [`dmesg`](http://linux.die.net/man/8/dmesg)\drsys{dmesg}{display kernel log} command.
+The other is
 `messages`,
 \index{files and directories!special!varlogmessages@\texttt{/var/log/messages}}
 \index{varlogmessages@\texttt{/var/log/messages} (general log)}

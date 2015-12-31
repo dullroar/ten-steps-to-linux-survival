@@ -13,40 +13,41 @@ of a shell environment almost by definition.
 
 Examples of shells:
 
-* [**`CMD.EXE`**](https://technet.microsoft.com/en-us/library/cc754340.aspx)\drshl{CMD.EXE} -
-yes, Windows
+* [**`CMD.EXE`**](https://technet.microsoft.com/en-us/library/cc754340.aspx) - yes, Windows has a
+shell.
 \drios{Windows}
-has a shell.
+\drshl{CMD.EXE}
 
-* [**`PowerShell.exe`**](https://technet.microsoft.com/en-us/library/ms714469%28v=VS.85%29.aspx)
-\drshl{Powershell} -
+* [**`PowerShell.exe`**](https://technet.microsoft.com/en-us/library/ms714469%28v=VS.85%29.aspx) -
 in fact, it has at least two!
+\drshl{Powershell}
 
 In UNIX-land:
 
-* [**`sh`**](https://en.wikipedia.org/wiki/Bourne_shell)\drshl{sh} -
-the "original" Bourne shell in UNIX, which spawned:
+* [**`sh`**](https://en.wikipedia.org/wiki/Bourne_shell) - the "original" Bourne shell in UNIX,
+which spawned:
+\drshl{sh}
 
-    * [**`ash`**](https://en.wikipedia.org/wiki/Almquist_shell)\drshl{ash} -
-    Almquist shell.
+    * [**`ash`**](https://en.wikipedia.org/wiki/Almquist_shell) - Almquist shell.
+    \drshl{ash}
 
-        * **`dash`** - 
+        * **`dash`** - Debian Almquist shell (replaced `ash` in Debian).
         \drshl{dash}
-        Debian Almquist shell (replaced `ash` in Debian)
 
-    * [**`bash`**](https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29)\drshl{bash} -
-    Bourne-again shell (get it?), the "standard" Linux shell (as much as
-    anything is standard across Linux distros).
+    * [**`bash`**](https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29) - Bourne-again shell (get
+    it?), the "standard" Linux shell (as much as anything is standard across Linux distros).
+    \drshl{bash}
 
-    * [**`ksh`**](https://en.wikipedia.org/wiki/Korn_shell)\drshl{ksh} -
-    Korn shell.
+    * [**`ksh`**](https://en.wikipedia.org/wiki/Korn_shell) - Korn shell.
+    \drshl{ksh}
 
-    * [**`zsh`**](https://en.wikipedia.org/wiki/Z_shell)\drshl{zsh} -
-    Z shell.
+    * [**`zsh`**](https://en.wikipedia.org/wiki/Z_shell) - Z shell.
+    \drshl{zsh}
 
-* [**`csh`**](https://en.wikipedia.org/wiki/C_shell)\drshl{csh} - C
-shell, historically it is the default shell on BSD systems (although there are arguments on why you
-should [***never use it***](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)).
+* [**`csh`**](https://en.wikipedia.org/wiki/C_shell) - C shell, historically it is the default 
+shell on BSD systems (although there are arguments on why you should [***never use
+it***](http://www.faqs.org/faqs/unix-faq/shell/csh-whynot/)).
+\drshl{csh}
 
 * **...and many more!** - [tons, really](https://en.wikipedia.org/wiki/Unix_shell#Shell_categories).
 
@@ -57,10 +58,10 @@ usually run in the other members of the same tree.
 ## `bash` Built-Ins{.unnumbered}
 
 Every shell has some "built-in" commands that are implemented as part of the shell and not as an
-external command or program, and `bash`\drshl{bash} has its share, as shown by running the
-[`help`](http://linux.die.net/man/1/help)
+external command or program, and `bash` has its share, as shown by running the
+[`help`](http://linux.die.net/man/1/help) command in a `bash` terminal:
 \drdoc{help}
-command in a `bash` terminal:
+\drshl{bash}
 
 \drcap{Built-in commands in \texttt{bash}}
 ```bash
@@ -90,15 +91,17 @@ A star (*) next to a name means that the command is disabled.
 ...and so on...
 ```
 
-Why does this matter? Because if you are in an environment and something as fundamental as
-`echo`\drcmd{echo} isn't working, you may not be working in a shell that is going to act like a
-"`sh`" shell. ***In general***, `sh`, `ash`, `bash`, `dash` and `ksh` all act similarly enough that
-you don't care, but sometimes you may have to care. Knowing if you are on a `csh`\drshl{csh}
-variant or even something more esoteric can be key.
+Why does this matter? Because if you are in an environment and something as fundamental as `echo`
+isn't working, you may not be working in a shell that is going to act like a "`sh`" shell. ***In
+general***, `sh`, `ash`, `bash`, `dash` and `ksh` all act similarly enough that you don't care, but
+sometimes you may have to care. Knowing if you are on a `csh` variant or even something more
+esoteric can be key.
+\drcmd{echo}
+\drshl{csh}
 
 Pay attention to the first line in script files, which will typically have a
-["shebang"](https://en.wikipedia.org/wiki/Shebang_%28Unix%29)
-\index{*@\texttt{\#"!} (shebang)} line that looks like this:
+["shebang"](https://en.wikipedia.org/wiki/Shebang_%28Unix%29) line that looks like this:
+\index{*@\texttt{\#"!} (shebang)}
 
 \drcap{\texttt{bash} "shebang"}
 ```bash
@@ -140,16 +143,20 @@ for if you hit problems as simple as an expected "built-in" command not being fo
 
 ## Everything You Know is (Almost) Wrong{.unnumbered}
 
-`CMD.EXE`\drshl{CMD.EXE} has a lineage that is a mish-mash of CP/M\drios{CP/M} and UNIX excreted
-through three decades of backwards compatibility to that devil's spawn we call DOS\drios{DOS}. It
-has gotten even muddier over the years as Microsoft has added more commands, PowerShell, POSIX
-subsystems, etc.
+`CMD.EXE` has a lineage that is a mish-mash of CP/M and UNIX excreted through three decades of
+backwards compatibility to that devil's spawn we call DOS. It has gotten even muddier over the
+years as Microsoft has added more commands, PowerShell, POSIX subsystems, etc.
+\drios{CP/M}
+\drios{DOS}
+\drshl{CMD.EXE}
 
-But even so, there are some similarities between `CMD.EXE` and a Linux shell like
-`bash`\drshl{bash}. In both `bash` and `CMD.EXE`\drshl{CMD.EXE} the
-[`set`](http://linux.die.net/man/1/set)\drcmd{set}
-\index{environment variables!displaying!setcommand@\texttt{set} command} command shows you all environment
+But even so, there are some similarities between `CMD.EXE` and a Linux shell like `bash`. In both
+`bash` and `CMD.EXE` the [`set`](http://linux.die.net/man/1/set) command shows you all environment
 variables that have been set. Here's `bash`:
+\drcmd{set}
+\drshl{bash}
+\drshl{CMD.EXE}
+\index{environment variables!displaying!setcommand@\texttt{set} command}
 
 \drcap{\texttt{set} command in \texttt{bash}}
 ```bash
@@ -209,11 +216,11 @@ PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 ...and so on...
 ```
 
-Similarly, the
-[`echo`](http://linux.die.net/man/1/echo)\drcmd{echo}
+Similarly, the [`echo`](http://linux.die.net/man/1/echo) command can be used to show you the
+contents of an environment variable like `HOME` on `bash`:
+\drcmd{echo}
+\drenv{HOME}{current user's home directory}
 \index{environment variables!displaying!echocommand@\texttt{echo} command}
-command can be used to show you the contents of an environment variable like `HOME`\drenv{HOME}{current user's home directory} on
-`bash`:
 
 \drcap{\texttt{echo} the \texttt{HOME} environment variable in \texttt{bash}}
 ```bash
@@ -232,8 +239,9 @@ C:\> ECHO %HOMEPATH%
 This example shows some valuable differences between shells. Even though both have the concept of
 environment variables and displaying their contents using the "same" `echo` command, note that:
 
-1. The syntax for accessing an environment variable is
-`$variable`\index{environment variables!syntax} in `bash` and `%variable%` in `CMD.EXE`.
+1. The syntax for accessing an environment variable is `$variable` in `bash` and `%variable%` in
+`CMD.EXE`.
+\index{environment variables!syntax}
 
 2. `bash` is case-sensitive and so `echo $HOME` works but `echo $home` does not. `CMD.EXE` is
 ***not*** case-sensitive, so either `echo %homedrive%` or `echo %HOMEDRIVE%` (or `EcHo %hOmEdRiVe%`)
@@ -242,6 +250,7 @@ would work.
 One final note of caution. You can set up command aliases in `bash` and other shells that allow you
 to define a `CMD.EXE`-style `dir` command as a substitute for  the `ls` command in `bash`, or
 `copy` for `cp`, `del` for `rm`, and so on. I recommend you don't do this for at least two reasons:
+\drfnd{cp}{copy}
 
 1. It is difficult to get these right in terms of being able to map all the various parameters from
 the `bash` command to the appropriate parameters for a `CMD.EXE`-style command. Most people don't
@@ -255,9 +264,9 @@ learn the native commands, because then you are instantly productive at any shel
 ## You're a Product of Your Environment (Variables){.unnumbered}
 
 It is much more common to set up environment variables to control run-time execution in Linux than
-in Windows. In fact, it is quite common to assign\index{environment variables!assigning} a given
-environment variable for the single execution of a program, to the point that `bash` has built-in
-"one-line" support for it:
+in Windows. In fact, it is quite common to assign a given environment variable for the single
+execution of a program, to the point that `bash` has built-in "one-line" support for it:
+\index{environment variables!assigning}
 
 \drcap{Assign \texttt{FOO} environment variable before executing script}
 ```bash
@@ -280,8 +289,8 @@ them with spaces:
 ```
 
 Note that passing in values in this way does not safeguard sensitive information from other users
-on the system who can see the values at least while the script is running using the
-`ps -x`\drcmd{ps} command.
+on the system who can see the values at least while the script is running using the `ps -x` command.
+\drsys{ps}{list processes}
 
 You can also set the value of environment variables to the output of another command by surrounding
 it with paired \` ("back ticks", or "grave accents"):
@@ -297,7 +306,8 @@ text/plain
 
 When writing scripts that can be run by any user, it may be helpful to know their user name at
 run-time. There are at least two different ways to determine that. The first is via the
-`USER`\drenv{USER}{current user} environment variable:
+`USER` environment variable:
+\drenv{USER}{current user}
 
 \drcap{\texttt{USER} environment variable}
 ```bash
@@ -306,7 +316,8 @@ myuser
 ```
 
 The second is with a command with one of the best names, ever -
-[`whoami`](http://linux.die.net/man/1/whoami)\drcmd{whoami}:
+[`whoami`](http://linux.die.net/man/1/whoami):
+\drcmd{whoami}
 
 \drcap{\texttt{whoami} command}
 ```bash
@@ -314,15 +325,17 @@ The second is with a command with one of the best names, ever -
 myuser
 ```
 
-Some environments set the `USER` environment variable, some set a `USERNAME`\drenv{USERNAME}{current user}
-variable, and some like Mint set both. I think it is better to use `whoami`, which tends to be on
-almost all systems.
+Some environments set the `USER` environment variable, some set a `USERNAME` variable, and some
+like Mint set both. I think it is better to use `whoami`, which tends to be on almost all systems.
+\drenv{USERNAME}{current user}
 
 ## Paths (a Part of Any Balanced Shrubbery){.unnumbered}
 
 The concept of a "path" for finding executables is almost identical between "UNIX" and Windows, and
-Windows lifted it from UNIX (or CP/M\drios{CP/M}, which lifted it from UNIX). Look at the output of
-the `PATH`\drenv{PATH}{execution search path} environment variable under `bash`:
+Windows lifted it from UNIX (or CP/M, which lifted it from UNIX). Look at the output of the `PATH`
+environment variable under `bash`:
+\drenv{PATH}{execution search path}
+\drios{CP/M}
 
 \drcap{\texttt{PATH} environment variable in \texttt{bash}}
 ```bash
@@ -330,7 +343,8 @@ the `PATH`\drenv{PATH}{execution search path} environment variable under `bash`:
 /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 ```
 
-Echoing the `PATH`\drenv{PATH}{execution search path} environment variable under `CMD.EXE` works, too: 
+Echoing the `PATH` environment variable under `CMD.EXE` works, too: 
+\drenv{PATH}{execution search path}
 
 \drcap{\texttt{PATH} environment variable in \texttt{CMD.EXE}}
 ```
@@ -345,16 +359,18 @@ l\v1.0\
 ```
 
 Note the differences and similarities. Both the paths are evaluated left to right. Both use
-separators between path components, a `;` for DOS and Windows, a
-`:` for Linux. Both delimit their directory names with slashes, with `\` for DOS and Windows and
-`/`\index{*@\texttt{/} (path separator)} for Linux. But Linux has no concept of a "drive
-letter" like `C:` in Windows, and instead everything is mounted in a single namespace hierarchy
-starting at the root `/`. We'll be talking more about directories, paths and file systems in the
-next chapter.
+separators between path components, a `;` for DOS and Windows, a `:` for Linux. Both delimit their
+directory names with slashes, with `\` for DOS and Windows and `/` for Linux. But Linux has no
+concept of a "drive letter" like `C:` in Windows, and instead everything is mounted in a single
+namespace hierarchy starting at the root `/`. We'll be talking more about directories, paths and
+file systems in the next chapter.
+\index{*@\texttt{/} (path separator)}
 
-Just to muddy the waters further, notice how Cygwin\drunx{Cygwin} under Windows shows the
-`PATH`\drenv{PATH}{execution search path} environment variable with `bash` syntax but a combination of both Cygwin and
-Windows directories, and Windows drive letters like `C:` mapped to `/cygdrive/c`:
+Just to muddy the waters further, notice how Cygwin under Windows shows the `PATH` environment
+variable with `bash` syntax but a combination of both Cygwin and Windows directories, and Windows
+drive letters like `C:` mapped to `/cygdrive/c`:
+\drenv{PATH}{execution search path}
+\drunx{Cygwin}
 
 \drcap{\texttt{PATH} environment variable in Cygwin}
 ```bash
@@ -373,8 +389,10 @@ ver/120/Tools/Binn:/cygdrive/c/Program Files (x86)/Microsoft SDKs/Azure/CLI/wbin
 
 The actual "command prompt" is when you run a shell in an "interactive session" in a terminal
 window. This might be from logging into the console of a Linux VM, or starting a terminal window in
-a X window manager like GNOME or KDE, or `ssh`'ing\drnet{ssh} into an interactive session of a
-remote machine, or even running a Cygwin\drunx{Cygwin} command prompt under Windows.
+a X window manager like GNOME or KDE, or `ssh`'ing into an interactive session of a remote machine,
+or even running a Cygwin command prompt under Windows.
+\drnet{ssh}
+\drunx{Cygwin}
 
 Command prompts allow you to work in a so-called "REPL" environment (Read, Evaluate, Print, Loop).
 You can run a series of commands once, or keep refining a command or commands until you get them
@@ -388,8 +406,9 @@ can fake it like I do.
 
 ## Getting Lazy{.unnumbered}
 
-Most modern interactive shells like `bash` and `CMD.EXE`\drshl{CMD.EXE} allow for tab expansion and
-command history, at least for the current session of the shell.
+Most modern interactive shells like `bash` and `CMD.EXE` allow for tab expansion and command
+history, at least for the current session of the shell.
+\drshl{CMD.EXE}
 
 Tab expansion is "auto-complete" for the command prompt. Let's say you have some files in a
 directory:
@@ -418,12 +437,13 @@ file name for us:
 
 Then we can go about our business of finishing our command.
 
-One place tab completion in `bash` is different than `CMD.EXE`\drshl{CMD.EXE} is that in `bash` if
-you hit `Tab` and there are multiple candidates, it will expand as far as it can and then show you
-a list of files that match up to that point and allow you to type in more characters and hit `Tab`
-again to complete it. Whereas in `CMD.EXE` it will "cycle" between the multiple candidates, showing
-you each one as the completion option in turn. Both are useful, but each is subtly different and
-can give you fits when moving between one environment and another.
+One place tab completion in `bash` is different than `CMD.EXE` is that in `bash` if you hit `Tab`
+and there are multiple candidates, it will expand as far as it can and then show you a list of
+files that match up to that point and allow you to type in more characters and hit `Tab` again to
+complete it. Whereas in `CMD.EXE` it will "cycle" between the multiple candidates, showing you each
+one as the completion option in turn. Both are useful, but each is subtly different and can give
+you fits when moving between one environment and another.
+\drshl{CMD.EXE}
 
 **Pro Tip:** Remember, UNIX was built by people on slow, klunky teletypes and terminals, and they
 hated to type! Tab expansion is your friend and you should use it as often as possible. It gives at
@@ -436,12 +456,12 @@ least three benefits:
 3. Acts as an error checker, because if the tab doesn't expand, chances are you are specifying
 something else (the beginning part of the file name) wrong.
 
-The other thing to remember about the interactive shell is command history. Again, both
-`CMD.EXE`\drshl{CMD.EXE} and `bash` give you command history, but `CMD.EXE` only remembers it for
-the session, while `bash` stores it in one of your hidden "profile" or "dot" files in your home
-directory called `.bash_history`
-\index{files and directories!special!bashhistory@\texttt{.bash\_history}},
-which you can display with `ls -a`:
+The other thing to remember about the interactive shell is command history. Again, both `CMD.EXE`
+and `bash` give you command history, but `CMD.EXE` only remembers it for the session, while `bash`
+stores it in one of your hidden "profile" or "dot" files in your home directory called
+`.bash_history`, which you can display with `ls -a`:
+\drshl{CMD.EXE}
+\index{files and directories!special!bashhistory@\texttt{.bash\_history}}
 
 \drcap{\texttt{ls} command showing hidden files}
 ```bash

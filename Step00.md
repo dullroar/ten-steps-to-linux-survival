@@ -10,60 +10,66 @@ matters now. “Why does this script off the internet work on this system and no
 UNIX and its successors such as Linux have a long history reaching into the depths of time:
 
 * **Prehistory** - late 1960s, Nixon, Vietnam, Woodstock, Moon landing,
-[Multics](https://en.wikipedia.org/wiki/Multics)
+[Multics](https://en.wikipedia.org/wiki/Multics) at MIT, GE and Bell Labs.
 \drios{Multics}
-at MIT, GE and Bell Labs.
 
 * **In the beginning** - early 1970s, Nixon drags on, Watergate, Bell Labs,
 [Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) &
 [Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie),
-[UNIX](https://en.wikipedia.org/wiki/History_of_Unix)
+[UNIX](https://en.wikipedia.org/wiki/History_of_Unix) is born.
 \drios{UNIX}
-is born.
 
 * **More trouble from Berkeley** - late 1970s, Carter, disco, Iran hostages, UC Berkeley releases
 the [Berkeley Software
-Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution) (BSD),
+Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution) (BSD), a port based on
+the Bell Labs UNIX. Let the forking begin!
 \drios{BSD}
-a port based on the Bell Labs UNIX. Let the forking begin!
 
 * **UNIX goes commercial** - 1980s, Reagan, Iran Contra, *E.T.*, AT&T releases [System
-V](https://en.wikipedia.org/wiki/UNIX_System_V)
+V](https://en.wikipedia.org/wiki/UNIX_System_V) as first commercial UNIX. From the same background
+as Bell Labs UNIX, System V evolved with subtle and not so subtle differences in approaches to
+command syntax, networking and much more. It is this release and AT&T's copyrights that are the
+basis of all the SCO-vs-Linux lawsuits 2-3 decades later.
 \drios{System V}
-as first commercial UNIX. From the same background as Bell Labs UNIX, System V evolved with subtle
-and not so subtle differences in approaches to command syntax, networking and much more. It is this
-release and AT&T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.
 
 * **Explosion of "UNIX"** -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I,
 proliferation of proprietary (and different) "UNIX" platforms:
 
-    * **HP HP-UX**\drios{HP-UX}
-    * **Sun SunOS** - BSD flavor.\drios{SunOS}
-    * **Sun Solaris** - System V flavor. Now Oracle Solaris.\drios{Solaris}
-    * **IBM AIX**\drios{AIX}
-    * **SGI IRIX**\drios{IRIX}
+    * **HP HP-UX**
+    \drios{HP-UX}
+    
+    * **Sun SunOS** - BSD flavor.
+    \drios{SunOS}
+    
+    * **Sun Solaris** - System V flavor. Now Oracle Solaris.
+    \drios{Solaris}
+    
+    * **IBM AIX**
+    \drios{AIX}
+    
+    * **SGI IRIX**
+    \drios{IRIX}
+    
     * **...and many, many more!** - although mostly all that's left now is HP-UX, AIX and Solaris.
 
 * **Linux** - 1991+, Clinton I, grunge, *Titanic*, [Linus
 Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) releases a project called
-[Linux](https://en.wikipedia.org/wiki/Linux)
-\drios{Linux}
-based on [MINIX](https://en.wikipedia.org/wiki/MINIX)
-\drios{MINIX}
+[Linux](https://en.wikipedia.org/wiki/Linux) based on [MINIX](https://en.wikipedia.org/wiki/MINIX)
 (and hence why Linus says Linux is pronounced like "MINIX" and not like "Linus").
+\drios{Linux}
+\drios{MINIX}
 
 * **Proliferation of the BSDs** - mid-to-late 1990s, still Clinton I, Monicagate, Kosovo, various
-ports of BSD including
-[NetBSD](https://en.wikipedia.org/wiki/NetBSD),
-\drbsd{NetBSD}
-[FreeBSD](https://en.wikipedia.org/wiki/FreeBSD)
-\drbsd{FreeBSD}
-and [OpenBSD](https://en.wikipedia.org/wiki/OpenBSD).
-\drbsd{OpenBSD}
+ports of BSD including [NetBSD](https://en.wikipedia.org/wiki/NetBSD),
+[FreeBSD](https://en.wikipedia.org/wiki/FreeBSD) and
+[OpenBSD](https://en.wikipedia.org/wiki/OpenBSD).
 All happen in the same time frame as Linux. Like Linux distros, each has its own focus and
 prejudices, some of which are distinctly "anti-Linux." The "big three" are all still in heavy use
 today, especially among ISPs. The perception is still out there among a generation of sysadmins
 that Linux is for the desktop and BSDs for servers, but that reality shifted a long time ago.
+\drbsd{FreeBSD}
+\drbsd{NetBSD}
+\drbsd{OpenBSD}
 
 * **Ports of call** - 2000+, Bush II & Obama, Afghanistan & Gulf War II, lots of cross-porting of
 everything open source. However, [licenses
@@ -84,25 +90,24 @@ offspring, or that "acts like," well, UNIX.
 To further muddy the waters, there have been multiple attempts to "standardize" whatever it is this
 thing is called:
 
-* [**POSIX**](https://en.wikipedia.org/wiki/POSIX) -
+* [**POSIX**](https://en.wikipedia.org/wiki/POSIX) - a de jure set of standards created in the
+1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating
+systems of the time. It worked. Sorta. Especially once the US government started wanting systems to
+be "POSIX-compliant."
 \drunx{POSIX}
-a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that
-was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the
-US government started wanting systems to be "POSIX-compliant."
 
 **Note:** No system runs POSIX. All POSIX-compliant system are "similar but different." Even
-Windows
+Windows can claim to be POSIX-compliant in some respects (and has an installable POSIX subsystem)
+but that doesn't mean POSIX-compliant code will run there unchanged.
 \drios{Windows}
-can claim to be POSIX-compliant in some respects (and has an installable POSIX subsystem), but that
-doesn't mean POSIX-compliant code will run there unchanged.
 
-* [**GNU Project**](https://en.wikipedia.org/wiki/GNU_Project) -
-\drunx{GNU}
-[Richard Stallman](https://en.wikipedia.org/wiki/Richard_Stallman) founded the [Free Software
+* [**GNU Project**](https://en.wikipedia.org/wiki/GNU_Project) - [Richard
+Stallman](https://en.wikipedia.org/wiki/Richard_Stallman) founded the [Free Software
 Foundation](https://en.wikipedia.org/wiki/Free_Software_Foundation) (FSF) and GNU project in the
 mid-1980s, ***long*** before Linux (GNU = "GNU's Not Unix"). The GNU project delivers [a suite of
 programs and tools](https://www.gnu.org/software/software.html), many of which are used in both
 Linux and BSD variants as de facto standards.
+\drunx{GNU}
 
 * **Various Linux Efforts** - there have also been various movements over the years, some more
 successful than others, to "standardize" Linux or some part of it, such as the file system layout,
@@ -117,11 +122,10 @@ or networking, or as a desktop. Certain things are "built-in" to the operating s
 installed as packages, and depending on the source of the package it may or may not work correctly
 on another "UNIX" system without effort.
 
-It is similar to the history and relationship between `COMMAND.EXE`
+It is similar to the history and relationship between `COMMAND.EXE` in DOS and `CMD.EXE` in Windows
+10, where this would work in both:
 \drshl{COMMAND.EXE}
-in DOS and `CMD.EXE`
 \drshl{CMD.EXE}
-in Windows 10, where this would work in both:
 
 ```bash
 COPY A.TXT B.TXT
@@ -148,10 +152,10 @@ The best thing is to be vaguely aware of this history and licenses and if someth
 on a certain platform or if a command isn't taking a specific parameter to search for variants.
 
 For example, note the difference in output between showing all processes with the
-[`ps`](http://linux.die.net/man/1/ps)
-\drcmd{ps}
-(*process*) command on a Linux system, in this case Linux Mint under `bash`:
+[`ps`](http://linux.die.net/man/1/ps) (*process*) command on a Linux system, in this case Linux
+Mint under `bash`:
 \drshl{bash}
+\drsys{ps}{list processes}
 
 \drcap{\texttt{ps} on Linux in \texttt{bash}}
 ```bash
@@ -162,11 +166,9 @@ For example, note the difference in output between showing all processes with th
  4594 pts/3    00:00:00 ps
 ```
 
-Versus the "same" command on a FreeBSD
+Versus the "same" command on a FreeBSD system at my ISP, where `csh` is the default shell:
 \drbsd{FreeBSD}
-system at my ISP, where `csh`
 \drshl{csh}
-is the default shell:
 
 \drcap{\texttt{ps} on FreeBSD in \texttt{csh}}
 ```bash
@@ -186,84 +188,74 @@ drivers and enough functionality to get a computer up and running. Most function
 other "packages." From almost the beginning there have been alternative approaches to both what
 packages should (and should not) be included, as well as how to best manage the installing,
 updating and removal of those packages.
-\drios{Linux}
 \drbsd{FreeBSD}
-\drbsd{OpenBSD}
 \drbsd{NetBSD}
+\drbsd{OpenBSD}
+\drios{Linux}
 
 In the BSD world each major port has its own approach. In the Linux world the job of deciding all
-this and putting it all together falls to distributions or "distros."
-\index{Linux distros}
-These have evolved over time into a series of
+this and putting it all together falls to distributions or "distros." These have evolved over time
+into a series of
 ["families"](https://en.wikipedia.org/wiki/Linux_distribution#Popular_distributions)
 based in large part around the [package management
 tool](https://en.wikipedia.org/wiki/Package_manager) predominantly used:
+\index{Linux distros}
 
-* **`apt-get`, `dpkg` and `.deb` files** -
+* **`apt-get`, `dpkg` and `.deb` files** - [Debian](https://en.wikipedia.org/wiki/Debian) flavors,
+such as [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29) and
+[Mint](https://en.wikipedia.org/wiki/Linux_Mint). Mint is currently my desktop Linux of choice and
+Debian my preferred server OS, both based on familiarity.
+\drdis{Debian}
+\drdis{Mint}
+\drdis{Ubuntu}
 \drpkg{apt-get}
 \drpkg{dpkg}
 \index{files and directories!debpackagefiles@\texttt{.deb} package files}
-[Debian](https://en.wikipedia.org/wiki/Debian)
-\drdis{Debian}
-flavors, such as
-[Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29)
-\drdis{Ubuntu}
-and [Mint](https://en.wikipedia.org/wiki/Linux_Mint).
-\drdis{Mint}
-Mint is currently my desktop Linux of choice and Debian my preferred server OS, both based on 
-familiarity.
 
-* **`pacman`** -
-\drpkg{pacman}
-[Arch](https://en.wikipedia.org/wiki/Arch_Linux)
+* **`pacman`** - [Arch](https://en.wikipedia.org/wiki/Arch_Linux) flavors.
 \drdis{Arch}
-flavors.
+\drpkg{pacman}
 
-* **`rpm` and `yum`** -
+* **`rpm`, `yum` and `.rpm` files** - Red Hat flavors,such as
+[Fedora](https://en.wikipedia.org/wiki/Fedora_%28operating_system%29),
+[Red Hat Enterprise](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux) and
+[CentOS](https://en.wikipedia.org/wiki/CentOS).
+\drdis{CentOS}
+\drdis{Fedora}
+\drdis{Red Hat}
+\drdis{Red Hat Enterprise Linux (RHEL)}
 \drpkg{rpm}
 \drpkg{yum}
-Red Hat
-\drdis{Red Hat}
-flavors,such as
-[Fedora](https://en.wikipedia.org/wiki/Fedora_%28operating_system%29),
-\drdis{Fedora}
-[Red Hat Enterprise](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux)
-\drdis{Red Hat Enterprise Linux (RHEL)}
-and [CentOS](https://en.wikipedia.org/wiki/CentOS).
-\drdis{CentOS}
+\index{files and directories!debpackagefiles@\texttt{.rpm} package files}
 
-* **Source code** - [Gentoo](https://en.wikipedia.org/wiki/Gentoo_Linux)
-\drdis{Gentoo}
-tends to be a "compile from scratch" environment, much like
-[FreeBSD](https://en.wikipedia.org/wiki/FreeBSD_Ports).
+* **Source code** - [Gentoo](https://en.wikipedia.org/wiki/Gentoo_Linux) tends to be a "compile
+from scratch" environment, much like [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD_Ports).
 \drbsd{FreeBSD}
+\drdis{Gentoo}
 
 * **"Tar balls"** - source code or binaries delivered via archived and zipped directories. Common on
-[Slackware](https://en.wikipedia.org/wiki/Slackware),
+[Slackware](https://en.wikipedia.org/wiki/Slackware), some others.
 \drdis{Slackware}
-some others.
 
 ## Get Embed With Me{.unnumbered}
 
 A lot of firmware in embedded devices is based on some sort of "UNIX" flavor. Networking gear at
 both the consumer and enterprise level, storage devices and so on all tend to run something that
-"looks like" UNIX at some level. [BusyBox](https://en.wikipedia.org/wiki/BusyBox)
-\drunx{BusyBox}
+"looks like" UNIX at some level. [BusyBox](https://en.wikipedia.org/wiki/BusyBox) is a good example
+of a "UNIX-like" shell (command prompt) used by many embedded systems. Of course, as to what's
+actually available, who knows? If you can get shell open, the best thing to do is see what works.
 \drshl{BusyBox}
-is a good example of a "UNIX-like" shell (command prompt) used by many embedded systems. Of course,
-as to what's actually available, who knows? If you can get shell open, the best thing to do is see
-what works.
+\drunx{BusyBox}
 
 ## Cygwin{.unnumbered}
 
-[Cygwin](http://cygwin.com/)
+[Cygwin](http://cygwin.com/) is an interesting beast. It is a DLL for Windows that implements most
+of the POSIX and related UNIX-like "system API calls" for programming, and then is also a series of
+ported open source packages, including shells, utilities and even desktop environments, all
+***recompiled*** to run on Windows as long as the Cygwin DLL is accessible. Like a Linux distro it
+has an installer that is a "package manager," and if a package isn't available, you can usually
+recompile the source code using Cygwin.
 \drunx{Cygwin}
-is an interesting beast. It is a DLL for Windows that implements most of the POSIX and related
-UNIX-like "system API calls" for programming, and then is also a series of ported open source
-packages, including shells, utilities and even desktop environments, all ***recompiled*** to run on
-Windows as long as the Cygwin DLL is accessible. Like a Linux distro it has an installer that is a
-"package manager," and if a package isn't available, you can usually recompile the source code
-using Cygwin.
 
 You cannot run Linux or BSD binaries on Cygwin without recompiling them first.  **However**, you
 can often run ***scripts*** from a Linux environment on Cygwin with little or no tweaking. Which

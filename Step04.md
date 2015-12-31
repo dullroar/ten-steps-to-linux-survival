@@ -8,8 +8,7 @@ have two problems.***
 > Now they have two problems."* - Jamie Zawinski 
 
 If the `file` command is useful for finding file system entries based on their attributes, the
-[`grep`](http://linux.die.net/man/1/grep)\drcmd{grep}
-\index{files and directories!searching (\texttt{grep} command)}
+[`grep`](http://linux.die.net/man/1/grep)\drfnd{grep}{search files}
 command is good for finding files whose ***contents*** match a [regular
 expression](https://en.wikipedia.org/wiki/Regular_expression)\index{regular expressions}.
 You already know at least one regular expression, the wildcard `*`
@@ -221,7 +220,7 @@ The above is functionally equivalent but ***much*** quicker than:
 ```
 
 **Note:** In general, if a command has its own "recursive" option (such as `-R` with `grep`), it is
-quicker to use that rather than to invoke the command repeatedly using `find`\drcmd{find} instead.
+quicker to use that rather than to invoke the command repeatedly using `find`\drfnd{find}{find files} instead.
 
 However, sometimes you can use `find` to filter down files to be checked before having `grep` read
 through them, and have that result in much quicker results.

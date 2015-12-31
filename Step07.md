@@ -210,9 +210,9 @@ it can have its purposes (like quickly testing network access from a command pro
 
 There are two other commands that are used to pull down web resources and save them locally -
 [`curl`](http://linux.die.net/man/1/curl)\drnet{curl} and [`wget`](http://linux.die.net/man/1/wget)
-drnet{wget}. Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and
+\drnet{wget}. Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and
 tends to be the simplest to just "grab a file and go." You see both used often in install scripts
-that download bits from the internet and then execute them:
+that download bits from the internet and then execute them by piping them to \drcmd{bash}:
 
 \drcap{\texttt{wget} in an install script}
 ```bash

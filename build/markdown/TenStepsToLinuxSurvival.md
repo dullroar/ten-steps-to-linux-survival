@@ -272,7 +272,7 @@ In the few places where a "UNIX" command is shown in comparison to a "DOS" comma
 Acknowledgments
 ---------------
 
-Thanks to Ken Astl for reading an early draft of this book. I appreciate the detailed and thoughtful discussions I had with Margaret Devere around designing good indexes. And finally, I owe more than I can repay (as usual) to my wife Leslie for putting up with me while I obsessed over this project.
+Thanks to Ken Astl for reading an early draft of this book. I appreciate the detailed and thoughtful discussions I had with Margaret Devere around designing good indexes. My boss, Bryan Henderson, has been supportive. And finally, I owe more than I can repay (as usual) to my wife Leslie for putting up with me while I obsessed over this project.
 
 Some History
 ============
@@ -294,11 +294,17 @@ UNIX and its successors such as Linux have a long history reaching into the dept
 -   **Explosion of "UNIX"** -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) "UNIX" platforms:
 
     -   **HP HP-UX**
+
     -   **Sun SunOS** - BSD flavor.
+
     -   **Sun Solaris** - System V flavor. Now Oracle Solaris.
+
     -   **IBM AIX**
+
     -   **SGI IRIX**
+
     -   **...and many, many more!** - although mostly all that's left now is HP-UX, AIX and Solaris.
+
 -   **Linux** - 1991+, Clinton I, grunge, *Titanic*, [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) releases a project called [Linux](https://en.wikipedia.org/wiki/Linux) based on [MINIX](https://en.wikipedia.org/wiki/MINIX) (and hence why Linus says Linux is pronounced like "MINIX" and not like "Linus").
 
 -   **Proliferation of the BSDs** - mid-to-late 1990s, still Clinton I, Monicagate, Kosovo, various ports of BSD including [NetBSD](https://en.wikipedia.org/wiki/NetBSD), [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD) and [OpenBSD](https://en.wikipedia.org/wiki/OpenBSD). All happen in the same time frame as Linux. Like Linux distros, each has its own focus and prejudices, some of which are distinctly "anti-Linux." The "big three" are all still in heavy use today, especially among ISPs. The perception is still out there among a generation of sysadmins that Linux is for the desktop and BSDs for servers, but that reality shifted a long time ago.
@@ -315,7 +321,7 @@ To further muddy the waters, there have been multiple attempts to "standardize" 
 
 -   [**POSIX**](https://en.wikipedia.org/wiki/POSIX) - a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the US government started wanting systems to be "POSIX-compliant."
 
-**Note:** No system runs POSIX. All POSIX-compliant system are "similar but different." Even Windows can claim to be POSIX-compliant in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.
+**Note:** No system runs POSIX. All POSIX-compliant system are "similar but different." Even Windows can claim to be POSIX-compliant in some respects (and has an installable POSIX subsystem) but that doesn't mean POSIX-compliant code will run there unchanged.
 
 -   [**GNU Project**](https://en.wikipedia.org/wiki/GNU_Project) - [Richard Stallman](https://en.wikipedia.org/wiki/Richard_Stallman) founded the [Free Software Foundation](https://en.wikipedia.org/wiki/Free_Software_Foundation) (FSF) and GNU project in the mid-1980s, ***long*** before Linux (GNU = "GNU's Not Unix"). The GNU project delivers [a suite of programs and tools](https://www.gnu.org/software/software.html), many of which are used in both Linux and BSD variants as de facto standards.
 
@@ -376,9 +382,9 @@ In the BSD world each major port has its own approach. In the Linux world the jo
 
 -   **`apt-get`, `dpkg` and `.deb` files** - [Debian](https://en.wikipedia.org/wiki/Debian) flavors, such as [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29) and [Mint](https://en.wikipedia.org/wiki/Linux_Mint). Mint is currently my desktop Linux of choice and Debian my preferred server OS, both based on familiarity.
 
--   **`pacman`** - [Arch](https://en.wikipedia.org/wiki/Arch_Linux)  flavors.
+-   **`pacman`** - [Arch](https://en.wikipedia.org/wiki/Arch_Linux) flavors.
 
--   **`rpm` and `yum`** - Red Hat flavors,such as [Fedora](https://en.wikipedia.org/wiki/Fedora_%28operating_system%29), [Red Hat Enterprise](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux) and [CentOS](https://en.wikipedia.org/wiki/CentOS).
+-   **`rpm`, `yum` and `.rpm` files** - Red Hat flavors,such as [Fedora](https://en.wikipedia.org/wiki/Fedora_%28operating_system%29), [Red Hat Enterprise](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux) and [CentOS](https://en.wikipedia.org/wiki/CentOS).
 
 -   **Source code** - [Gentoo](https://en.wikipedia.org/wiki/Gentoo_Linux) tends to be a "compile from scratch" environment, much like [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD_Ports).
 
@@ -411,7 +417,7 @@ Examples of shells:
 
 -   [**`CMD.EXE`**](https://technet.microsoft.com/en-us/library/cc754340.aspx) - yes, Windows has a shell.
 
--   [**`PowerShell.exe`**](https://technet.microsoft.com/en-us/library/ms714469%28v=VS.85%29.aspx)  - in fact, it has at least two!
+-   [**`PowerShell.exe`**](https://technet.microsoft.com/en-us/library/ms714469%28v=VS.85%29.aspx) - in fact, it has at least two!
 
 In UNIX-land:
 
@@ -419,7 +425,7 @@ In UNIX-land:
 
     -   [**`ash`**](https://en.wikipedia.org/wiki/Almquist_shell) - Almquist shell.
 
-        -   **`dash`** - Debian Almquist shell (replaced `ash` in Debian)
+        -   **`dash`** - Debian Almquist shell (replaced `ash` in Debian).
     -   [**`bash`**](https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29) - Bourne-again shell (get it?), the "standard" Linux shell (as much as anything is standard across Linux distros).
 
     -   [**`ksh`**](https://en.wikipedia.org/wiki/Korn_shell) - Korn shell.
@@ -715,7 +721,7 @@ One place tab completion in `bash` is different than `CMD.EXE` is that in `bash`
 
 3.  Acts as an error checker, because if the tab doesn't expand, chances are you are specifying something else (the beginning part of the file name) wrong.
 
-The other thing to remember about the interactive shell is command history. Again, both `CMD.EXE` and `bash` give you command history, but `CMD.EXE` only remembers it for the session, while `bash` stores it in one of your hidden "profile" or "dot" files in your home directory called `.bash_history` , which you can display with `ls -a`:
+The other thing to remember about the interactive shell is command history. Again, both `CMD.EXE` and `bash` give you command history, but `CMD.EXE` only remembers it for the session, while `bash` stores it in one of your hidden "profile" or "dot" files in your home directory called `.bash_history`, which you can display with `ls -a`:
 
 ``` bash
 ~ $ ls -a
@@ -774,7 +780,7 @@ The root file system may be backed by a disk device, memory or even the network.
 Looking at Files
 ----------------
 
-As we've already seen, the command to *list* the contents of a directory is [`ls`](http://linux.die.net/man/1/ls) :
+As we've already seen, the command to *list* the contents of a directory is [`ls`](http://linux.die.net/man/1/ls):
 
 ``` bash
 ~ $ ls
@@ -1144,7 +1150,7 @@ Or, if we want to be self-documenting in a script, we can use those long paramet
 ~ $ cp --recursive thisdir thatdir
 ```
 
-To *move* use [`mv`](http://linux.die.net/man/1/mv) :
+To *move* use [`mv`](http://linux.die.net/man/1/mv):
 
 ``` bash
 ~ $ mv thismonth.log lastmonth.log
@@ -1155,7 +1161,7 @@ To *move* use [`mv`](http://linux.die.net/man/1/mv) :
 Making Files Disappear
 ----------------------
 
-To delete or *remove* a file you use [`rm`](http://linux.die.net/man/1/rm) :
+To delete or *remove* a file you use [`rm`](http://linux.die.net/man/1/rm):
 
 ``` bash
 ~ $ rm desktop.ini
@@ -1197,7 +1203,7 @@ Then I use the "up arrow" to bring back the `ls` command and change `ls` to `rm`
 `touch` Me
 ----------
 
-We just learned how to make a file disappear. We can also make a file magically appear, just by [`touch`](http://linux.die.net/man/1/touch) :
+We just learned how to make a file disappear. We can also make a file magically appear, just by [`touch`](http://linux.die.net/man/1/touch):
 
 ``` bash
 ~ $ touch NewEmptyDissertation.doc
@@ -1226,7 +1232,7 @@ total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Dec 24  2014 NewEmptyDissertation.doc
 ```
 
-To *make a directory* you use [`mkdir`](http://linux.die.net/man/1/mkdir) :
+To *make a directory* you use [`mkdir`](http://linux.die.net/man/1/mkdir):
 
 ``` bash
 ~ $ cd Foo
@@ -1826,7 +1832,7 @@ Finding Meaning
 
 > *"If we had bacon, we could have bacon and eggs, if we had eggs."* - old joke
 
-Different people will have different answers to "What is the single most useful "UNIX" command?" There certainly are many to consider. But I keep coming back to [`find`](http://linux.die.net/man/1/find) . It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.
+Different people will have different answers to "What is the single most useful "UNIX" command?" There certainly are many to consider. But I keep coming back to [`find`](http://linux.die.net/man/1/find). It can be intimidating to figure out from the documentation, especially at first, but once you start mastering it, you end up using it over and over again.
 
 The main concepts of `find` are simple:
 
@@ -2989,7 +2995,7 @@ You can browse the web from the command prompt using something like [`lynx`](htt
  H)elp O)ptions P)rint G)o M)ain screen Q)uit /=search [delete]=history list 
 ```
 
-There are two other commands that are used to pull down web resources and save them locally - [`curl`](http://linux.die.net/man/1/curl) and [`wget`](http://linux.die.net/man/1/wget) drnet{wget}. Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and tends to be the simplest to just "grab a file and go." You see both used often in install scripts that download bits from the internet and then execute them:
+There are two other commands that are used to pull down web resources and save them locally - [`curl`](http://linux.die.net/man/1/curl) and [`wget`](http://linux.die.net/man/1/wget) . Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and tends to be the simplest to just "grab a file and go." You see both used often in install scripts that download bits from the internet and then execute them by piping them to :
 
 ``` bash
 wget -O - http://foocorp.com/installs/install.sh | bash
@@ -3422,7 +3428,7 @@ dmesg.1.gz             pm-powersave.log.2.gz  Xorg.20.log
 
 Some, like `samba` are their own subdirectories with log files under that. Others are log files that get "rotated" from the most current (no suffix) through ever older ones (increasing suffix number, e.g., `mail.log.2`).
 
-If you are pursuing a problem with a specific subsystem (like `samba`), it is good to start in its log files. The two log files of general interest are `dmesg`, which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. The other is `messages`, which holds more general "system" messages.
+If you are pursuing a problem with a specific subsystem (like `samba`), it is good to start in its log files. The two log files of general interest are `dmesg`, which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. It can also be displayed directly with the [`dmesg`](http://linux.die.net/man/8/dmesg) command. The other is `messages`, which holds more general "system" messages.
 
 Let's look for kernel errors when booting:
 
@@ -3483,7 +3489,7 @@ DESCRIPTION
 
 Notice the `LS(1)` part. The UNIX manual was originally divided into multiple sections by AT&T. Section 1 is normal user commands. Section 5 is file formats (like for config files), and section 8 is for system administration commands. You usually don't care, and can `man ls` or `man ifconfig` to your heart's content.
 
-But sometimes there are duplicate names in the different sections. For example, there is both a `passwd` command and a `passwd` file format (for `/etc/passwd`). By default, `man passwd` will show you the documentation from the lowest numbered section with a match, in this case section 1, usually referred to as `passwd(1)` to disambiguate which thing we're talking about:
+But sometimes there are duplicate names in the different sections. For example, there is both a [`passwd`](http://linux.die.net/man/1/passwd) command and a `passwd` file format (for `/etc/passwd`). By default, `man passwd` will show you the documentation from the lowest numbered section with a match, in this case section 1, usually referred to as `passwd(1)` to disambiguate which thing we're talking about:
 
 ``` bash
 PASSWD(1)                        User Commands                       PASSWD(1)
@@ -4223,6 +4229,8 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`ln`**](http://linux.die.net/man/1/ln) - create hard or soft (shortcut) links.
 
+-   [**`locate`**](http://linux.die.net/man/1/locate) - locate files by name.
+
 -   [**`ls`**](http://linux.die.net/man/1/ls) - list directory contents.
 
 -   [**`lynx`**](http://linux.die.net/man/1/lynx) - command line web browser.
@@ -4263,6 +4271,8 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`telnet`**](http://linux.die.net/man/1/telnet) - ancient terminal program and protocol.
 
+-   [**`top`**](http://linux.die.net/man/1/top) - list processes by resource utilization (CPU).
+
 -   [**`touch`**](http://linux.die.net/man/1/touch) - create an empty file or change the last-modified time of an existing file.
 
 -   [**`true`**](http://linux.die.net/man/1/true) - do nothing, successfully.
@@ -4298,6 +4308,8 @@ These are "section 8" commands, and ***may*** require special privileges such as
 -   [**`ifconfig`**](http://linux.die.net/man/8/ifconfig) - display network (interface) configuration.
 
 -   [**`mount`**](http://linux.die.net/man/8/mount) - mount a file system to a specific location.
+
+-   [**`passwd`**](http://linux.die.net/man/1/passwd) - change password.
 
 -   [**`ping`**](http://linux.die.net/man/8/ping) - test for network connectivity to an IP address.
 

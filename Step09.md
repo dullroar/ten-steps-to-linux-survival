@@ -55,9 +55,13 @@ DESCRIPTION
  Manual page ls(1) line 1 (press h for help or q to quit)
 ```
 
-**Note:** `man` uses `less`\drcmd{less}\index{pagination!\texttt{less} command}\index{files and directories!paginate!less@\texttt{less} command} as a paginator,
-with all that means, including the same navigation and search keys, and most important to
-remember - `Q` to quit. How do I know this? Because of course you can `man man`!
+**Note:** `man` uses `less` as a paginator, with all that means, including the same navigation and
+search keys, and most important to remember - `Q` to quit. How do I know this? Because of course
+you can `man man`!
+\drdoc{man}
+\drcmd{less}
+\index{pagination!\texttt{less} command}
+\index{files and directories!paginate!less@\texttt{less} command}
 
 Notice the `LS(1)` part. The UNIX manual was originally divided into multiple sections by AT&T.
 Section 1 is normal user commands. Section 5 is file formats (like for config files), and section 8
@@ -65,7 +69,7 @@ is for system administration commands. You usually don't care, and can `man ls` 
 to your heart's content.
 
 But sometimes there are duplicate names in the different sections. For example, there is both a
-`passwd`\drcmd{passwd} command and a `passwd`\drcmd{passwd file}
+[`passwd`](http://linux.die.net/man/1/passwd)\drsys{passwd}{change password} command and a `passwd`
 \index{files and directories!special!etcpasswd@\texttt{/etc/passwd}} file format (for `/etc/passwd`). By
 default, `man passwd` will show you the documentation from the lowest numbered section with a match,
 in this case section 1, usually referred to as `passwd(1)` to disambiguate which thing we're
@@ -225,7 +229,7 @@ visudo (8)           - edit the sudoers file
 ```
 
 Or maybe you can't remember whether it's `-r`, `-R` or `--recursive` to copy subdirectories
-recursively with `cp`\drcmd{cp}:
+recursively with `cp`\drfnd{cp}{copy}:
 
 \drcap{Looking for specific parameter names in a \texttt{man} page}
 ```bash
