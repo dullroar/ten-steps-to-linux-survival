@@ -103,7 +103,7 @@
  
 <br/> <br/> By James Lehmer  
  
-<br/> <br/> v0.7  
+<br/> <br/> v0.8  
  
 <br/> <br/> ![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 International")
 *Ten Steps to Linux Survival - Bash for Windows People* by James Lehmer is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).  
@@ -225,7 +225,7 @@ It is also not a replacement for reading the real documentation and doing resear
 
 **WARNING:** ***Many of the commands in this book can alter your system and possibly damage it.***
 
-Obvious candidates include the file system commands like `rm` , the `vi` editor (obviously), and some of the "system admin" commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production.
+Obvious candidates include the file system commands like `rm`, the `vi` editor (obviously), and some of the "system admin" commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production.
 
 ***YOU HAVE BEEN WARNED!***
 
@@ -272,7 +272,7 @@ In the few places where a "UNIX" command is shown in comparison to a "DOS" comma
 Acknowledgments
 ---------------
 
-Thanks to Ken Astl for reading an early draft of this book. Thanks to my wife Leslie for putting up with me while I obsessed over it.
+Thanks to Ken Astl for reading an early draft of this book. I appreciate the detailed and thoughtful discussions I had with Margaret Devere around designing good indexes. And finally, I owe more than I can repay (as usual) to my wife Leslie for putting up with me while I obsessed over this project.
 
 Some History
 ============
@@ -287,7 +287,7 @@ UNIX and its successors such as Linux have a long history reaching into the dept
 
 -   **In the beginning** - early 1970s, Nixon drags on, Watergate, Bell Labs, [Thompson](https://en.wikipedia.org/wiki/Ken_Thompson) & [Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie), [UNIX](https://en.wikipedia.org/wiki/History_of_Unix) is born.
 
--   **More trouble from Berkeley** - late 1970s, Carter, disco, Iran hostages, UC Berkely releases the [Berkeley Software Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution) (BSD), a port based on the Bell Labs UNIX. Let the forking begin!
+-   **More trouble from Berkeley** - late 1970s, Carter, disco, Iran hostages, UC Berkeley releases the [Berkeley Software Distribution](https://en.wikipedia.org/wiki/Berkeley_Software_Distribution) (BSD), a port based on the Bell Labs UNIX. Let the forking begin!
 
 -   **UNIX goes commercial** - 1980s, Reagan, Iran Contra, *E.T.*, AT&T releases [System V](https://en.wikipedia.org/wiki/UNIX_System_V) as first commercial UNIX. From the same background as Bell Labs UNIX, System V evolved with subtle and not so subtle differences in approaches to command syntax, networking and much more. It is this release and AT&T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.
 
@@ -376,7 +376,7 @@ In the BSD world each major port has its own approach. In the Linux world the jo
 
 -   **`apt-get`, `dpkg` and `.deb` files** - [Debian](https://en.wikipedia.org/wiki/Debian) flavors, such as [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29) and [Mint](https://en.wikipedia.org/wiki/Linux_Mint). Mint is currently my desktop Linux of choice and Debian my preferred server OS, both based on familiarity.
 
--   **`pacman`** - [Arch](https://en.wikipedia.org/wiki/Arch_Linux) flavors.
+-   **`pacman`** - [Arch](https://en.wikipedia.org/wiki/Arch_Linux)  flavors.
 
 -   **`rpm` and `yum`** - Red Hat flavors,such as [Fedora](https://en.wikipedia.org/wiki/Fedora_%28operating_system%29), [Red Hat Enterprise](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux) and [CentOS](https://en.wikipedia.org/wiki/CentOS).
 
@@ -715,7 +715,7 @@ One place tab completion in `bash` is different than `CMD.EXE` is that in `bash`
 
 3.  Acts as an error checker, because if the tab doesn't expand, chances are you are specifying something else (the beginning part of the file name) wrong.
 
-The other thing to remember about the interactive shell is command history. Again, both `CMD.EXE` and `bash` give you command history, but `CMD.EXE` only remembers it for the session, while `bash` stores it in one of your hidden "profile" or "dot" files in your home directory called `.bash_history`, which you can display with `ls -a`:
+The other thing to remember about the interactive shell is command history. Again, both `CMD.EXE` and `bash` give you command history, but `CMD.EXE` only remembers it for the session, while `bash` stores it in one of your hidden "profile" or "dot" files in your home directory called `.bash_history` , which you can display with `ls -a`:
 
 ``` bash
 ~ $ ls -a
@@ -1308,9 +1308,9 @@ myuser # pwd
 
 In addition, you need to know the difference between "absolute" and "relative" paths:
 
--   **Absolute path**/index{Files and Directories!Absolute path} - ***always*** "goes through" or specifies the "root" (`/`) directory, e.g. regardless of the current working directory, `cd /etc` will change it to `/etc`.
+-   **Absolute path** - ***always*** "goes through" or specifies the "root" (`/`) directory, e.g. regardless of the current working directory, `cd /etc` will change it to `/etc`.
 
--   **Relative path**/index{Files and Directories!Relative path} - does ***not*** specify the root directory, and expects to start the navigation at the current directory with all path components traversed from there, e.g., `cd Dissertations` changes the current directory to a subdirectory called `Dissertations`.
+-   **Relative path** - does ***not*** specify the root directory, and expects to start the navigation at the current directory with all path components traversed from there, e.g., `cd Dissertations` changes the current directory to a subdirectory called `Dissertations`.
 
 Windows inherited the concept of `.` for the current directory and `..` for the parent directory directly from UNIX. Consider the following examples that combine all of the above about relative paths and see if it makes sense:
 
@@ -2989,7 +2989,7 @@ You can browse the web from the command prompt using something like [`lynx`](htt
  H)elp O)ptions P)rint G)o M)ain screen Q)uit /=search [delete]=history list 
 ```
 
-There are two other commands that are used to pull down web resources and save them locally - [`curl`](http://linux.die.net/man/1/curl) and [`wget`](http://linux.die.net/man/1/wget) drcmd{wget}. Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and tends to be the simplest to just "grab a file and go." You see both used often in install scripts that download bits from the internet and then execute them:
+There are two other commands that are used to pull down web resources and save them locally - [`curl`](http://linux.die.net/man/1/curl) and [`wget`](http://linux.die.net/man/1/wget) drnet{wget}. Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and tends to be the simplest to just "grab a file and go." You see both used often in install scripts that download bits from the internet and then execute them:
 
 ``` bash
 wget -O - http://foocorp.com/installs/install.sh | bash
@@ -3422,7 +3422,7 @@ dmesg.1.gz             pm-powersave.log.2.gz  Xorg.20.log
 
 Some, like `samba` are their own subdirectories with log files under that. Others are log files that get "rotated" from the most current (no suffix) through ever older ones (increasing suffix number, e.g., `mail.log.2`).
 
-If you are pursuing a problem with a specific subsystem (like `samba`), it is good to start in its log files. The two log files of general interest are `dmesg` , which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. The other is `messages`, which holds more general "system" messages.
+If you are pursuing a problem with a specific subsystem (like `samba`), it is good to start in its log files. The two log files of general interest are `dmesg`, which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. The other is `messages`, which holds more general "system" messages.
 
 Let's look for kernel errors when booting:
 
@@ -3448,7 +3448,7 @@ The biggest issue with bootstrapping into "UNIX" is not the lack of documentatio
 `man`, is that `info` `apropos`?
 --------------------------------
 
-There are three commands that are the basis for reading "UNIX" documentation within "UNIX" itself - [`man`](http://linux.die.net/man/1/man), [`info`](http://linux.die.net/man/1/info) and [`apropos`](http://linux.die.net/man/1/apropos) .
+There are three commands that are the basis for reading "UNIX" documentation within "UNIX" itself - [`man`](http://linux.die.net/man/1/man), [`info`](http://linux.die.net/man/1/info) and [`apropos`](http://linux.die.net/man/1/apropos).
 
 `man` is short for *manual pages*, and is used to display the main help for most "UNIX" commands. For example, `man ls` shows:
 
@@ -3646,7 +3646,7 @@ There are several consistently high-quality free sources of information on vario
 
 -   [**Arch Linux Wiki**](https://wiki.archlinux.org/) - you may not think this would be useful if you are running Debian or Fedora or something else, but remember most "UNIX" systems are all very similar, and often the best documentation on a package or setting something up in Linux is in the Arch wiki.
 
--   [**Debian documentation**](https://www.debian.org/doc/) - again, even if you are not running a Debian-based distro, this can be handy because it describes how to administer Linux in a way that often transcends distro specifics (and at least explains how Debian approaches the differences). The best books in the series are [*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/) and the [*Debian Reference*](https://www.debian.org/doc/manuals/debian-reference/) , which is a lot more formal attempt at the same type of territory this guide covers.
+-   [**Debian documentation**](https://www.debian.org/doc/) - again, even if you are not running a Debian-based distro, this can be handy because it describes how to administer Linux in a way that often transcends distro specifics (and at least explains how Debian approaches the differences). The best books in the series are [*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/) and the [*Debian Reference*](https://www.debian.org/doc/manuals/debian-reference/), which is a lot more formal attempt at the same type of territory this guide covers.
 
 Ubuntu, Mint and some other distros have quite active message fora, and of course StackOverflow and its family are also very useful.
 
@@ -4083,7 +4083,7 @@ foo
 
 **Note:** There is actually a [`true`](http://linux.die.net/man/1/true) command whose purpose is to, "do nothing, successfully." All it does is return a `0` (success) exit code. This can be useful in scripting and also sometimes when building "and" and "or" clauses like above.
 
-And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false)false} command to "do nothing, unsuccessfully!"
+And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false) command to "do nothing, unsuccessfully!"
 
 ``` bash
 ~ $ true
@@ -4225,9 +4225,13 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`ls`**](http://linux.die.net/man/1/ls) - list directory contents.
 
+-   [**`lynx`**](http://linux.die.net/man/1/lynx) - command line web browser.
+
 -   [**`man`**](http://linux.die.net/man/1/man) - display manual pages. Remember `q` quits.
 
 -   [**`mkdir`**](http://linux.die.net/man/1/mkdir) - make a new directory.
+
+-   [**`more`**](http://linux.die.net/man/1/more) - display the file one page at a time on `stdout`.
 
 -   [**`mutt`**](http://linux.die.net/man/1/mutt) - email client.
 
@@ -4242,6 +4246,8 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 -   [**`rename`**](http://linux.die.net/man/1/rename) - rename files in more complex ways than `mv` can.
 
 -   [**`rm`**](http://linux.die.net/man/1/rm) - delete (remove) files or directories.
+
+-   [**`scp`**](http://linux.die.net/man/1/scp) - file copy over secure shell protocol.
 
 -   [**`set`**](http://linux.die.net/man/1/set) - set an environment variable, or display all environment variables.
 
@@ -4272,6 +4278,8 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 -   [**`whoami`**](http://linux.die.net/man/1/whoami) - the answer to life's most existential question.
 
 -   [**`whois`**](http://linux.die.net/man/1/whois) - look up DNS ownership info on an address.
+
+-   [**`xfreerdp`**](http://linux.die.net/man/1/xfreerdp) - RDP protocol client.
 
 -   [**`zip`**](http://linux.die.net/man/1/zip) - compress files and directories using the PKZip algorithm.
 

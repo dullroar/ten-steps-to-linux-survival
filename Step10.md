@@ -11,7 +11,7 @@ think needs to be known, or at least brushed up against.
 ## One-Stop Shopping{.unnumbered}
 
 In UNIX-like systems, most (not all) system configuration is stored in directories and text files
-under `/etc`\index{Files and Directories!Special!\texttt{/etc/}}.
+under `/etc`\index{files and directories!special!etc@\texttt{/etc/}}.
 
 **Note:** In Linux `/etc` is almost universally pronounced "slash-et-see," ***not*** "forward slash
 et cetera."
@@ -47,27 +47,27 @@ brlapi.key              kbd                   rc6.d
 Depending on what you are trying to configure, you may need to be in one or many files in `/etc`.
 This is a ***very short*** list of files and directories you may need to examine there:
 
-* **`fstab`**\index{Files and Directories!Special!\texttt{/etc/fstab}} - a listing of the file
+* **`fstab`**\index{files and directories!special!etcfstab@\texttt{/etc/fstab}} - a listing of the file
 systems currently mounted and their
 types.
 
-* **`group`**\index{Files and Directories!Special!\texttt{/etc/group}} - the security groups on the
+* **`group`**\index{files and directories!special!etcgroup@\texttt{/etc/group}} - the security groups on the
 system.
 
-* **`hosts`**\index{Files and Directories!Special!\texttt{/etc/hosts}} - network aliases (overrides
+* **`hosts`**\index{files and directories!special!etchosts@\texttt{/etc/hosts}} - network aliases (overrides
 DNS, takes effect immediately).
 
-* **`init.d`**\index{Files and Directories!Special!\texttt{/etc/init.d/}} - startup and shutdown
+* **`init.d`**\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}} - startup and shutdown
 scripts for "services."
 
-* **`mtab`**\index{Files and Directories!Special!\texttt{/etc/mtab}} - list of current "mounts."
+* **`mtab`**\index{files and directories!special!etcmtab@\texttt{/etc/mtab}} - list of current "mounts."
 
-* **`passwd`**\index{Files and Directories!Special!\texttt{/etc/passwd}} - "shadow" file containing
+* **`passwd`**\index{files and directories!special!etcpasswd@\texttt{/etc/passwd}} - "shadow" file containing
 all the user accounts on the system.
 
-* **`resolv.conf`**\index{Files and Directories!Special!\texttt{/etc/resolv.conf}} - DNS settings.
+* **`resolv.conf`**\index{files and directories!special!etcresolvconf@\texttt{/etc/resolv.conf}} - DNS settings.
 
-* **`samba`**\index{Files and Directories!Special!\texttt{/etc/samba/}} - file sharing settings for
+* **`samba`**\index{files and directories!special!etcsamba@\texttt{/etc/samba/}} - file sharing settings for
 CIFS-style shares.
 
 There are lots of other interesting files under `/etc`, but I keep returning to the above again and
@@ -123,9 +123,9 @@ execution using `sudo`.
 
 Almost all Linux distros have the concept of "packages" which are used to install, update and
 uninstall software. There are different package managers, including `dpkg`\drcmd{dpkg}
-\index{Package management!\texttt{dpkg} command} and `apt-get`\drcmd{apt-get}
-\index{Package management!\texttt{apt-get} command} on Debian-based distros, `rpm`\drcmd{rpm}
-\index{Package management!\texttt{rpm} command} on Fedora descendants, etc. For the rest of this
+\index{package management!dpkg@\texttt{dpkg} command} and `apt-get`\drcmd{apt-get}
+\index{package management!aptget@\texttt{apt-get} command} on Debian-based distros, `rpm`\drcmd{rpm}
+\index{package management!rpm@\texttt{rpm} command} on Fedora descendants, etc. For the rest of this
 section we will use Debian tools, but in general the concepts and problems are similar for the
 other toolsets.
 
@@ -142,7 +142,7 @@ these here.
 In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get)\drcmd{apt-get} is usually the
 tool of choice for package management. Another option is
 [`aptitude`](http://linux.die.net/man/8/aptitude)\drcmd{aptitude}
-\index{Package management!\texttt{aptitude}}.
+\index{package management!aptitude@\texttt{aptitude} command}.
 
 There are three common `apt-get` commands that get used over and over. The first downloads and
 *updates* the local metadata cache for the repositories:
@@ -241,12 +241,12 @@ of this, as are many "LTS" (long term support) releases in other distros.
 Besides the distribution's repositories, you can install packages and other software from a variety
 of places. It may be an "official" site for the package, GitHub, a "personal package archive" (PPA)
 or whatever. The package may be in a binary installable format (`.deb`
-\index{Files and Directories!\texttt{.deb} package files} files for Debian systems), in source
-format requiring it to be built, in a zipped "tarball," and more.
+\index{files and directories!debpackagefiles@\texttt{.deb} package files} files for Debian systems),
+in source format requiring it to be built, in a zipped "tarball," and more.
 
 If you want the latest and greatest version of a package you often have to go to its "official"
 site or GitHub repository. There, you may find a `.deb` file, in which case you could install it
-with `dpkg`\drcmd{dpkg}\index{Package management!\texttt{dpkg} command}:
+with `dpkg`\drcmd{dpkg}\index{package management!dpkg@\texttt{dpkg} command}:
 
 \drcap{Installing a package with \texttt{dpkg}}
 ```bash
@@ -277,7 +277,7 @@ relying on the different versions to work. Do you keep good notes? You'd better!
 
 Now that we've seen that we can have multiple versions of the same command or executable on the
 system, an interesting question arises. *Which* `foo` command am I going to call if I just type
-`foo` at the command prompt? In other words, after taking the `$PATH`\drenv{PATH} variable into
+`foo` at the command prompt? In other words, after taking the `$PATH`\drenv{PATH}{execution search path} variable into
 consideration and searching for the program through that from left to right, which version in which
 directory is going to be called?
 
@@ -367,10 +367,11 @@ Or you can prepend the `./` relative path to it, to indicate "the `foo` in the c
 
 The function of scheduled tasks in Windows is performed by
 [`cron`](http://linux.die.net/man/8/cron)\drcmd{cron} in Linux. It reads in the various
-[`crontab(5)`](http://linux.die.net/man/5/crontab)\index{crontab} files on the system and executes
-the commands in them at the specified times. You use the
+[`crontab(5)`](http://linux.die.net/man/5/crontab)
+\index{crontab@\texttt{crontab} (file)}
+files on the system and executes the commands in them at the specified times. You use the
 [`crontab(1)`](http://linux.die.net/man/1/crontab)\drcmd{crontab} command to view and edit the
-`crontab`\index{Files and Directories!Special!\texttt{crontab}} files for your user (and other
+`crontab`\index{files and directories!special!crontab@\texttt{crontab}} files for your user (and other
 users if you have admin privileges).
 
 The sample given in the comments of the `crontab` when initially opened using `crontab -e` give a
@@ -416,7 +417,7 @@ definition.
 The only other thing I have to add about `cron` is when it runs the commands from each `crontab`,
 they are typically not invoked with that particular user's environment settings, so it is best to
 fully specify the paths to files both in the `crontab` file itself and in any scripts or parameters
-to scripts it calls. Depending on the system and whether `$PATH`\drenv{PATH} is set at all when a
+to scripts it calls. Depending on the system and whether `$PATH`\drenv{PATH}{execution search path} is set at all when a
 "`cron` job" runs, you may have to specify the full paths to binaries in installed packages or even
 what you would consider "system" libraries! The `which` command comes in handy here for finding out
 where each command is installed.
@@ -443,7 +444,7 @@ $ sudo shutdown -h now
 ## Turn on Your Signals{.unnumbered}
 
 One of the basic concepts in UNIX program is that of
-["signals"](https://en.wikipedia.org/wiki/Unix_signal)\index{Signals}. You are probably already
+["signals"](https://en.wikipedia.org/wiki/Unix_signal)\index{signals}. You are probably already
 familiar with one way to send signals to a program, which is via `Ctrl-C` at the command prompt,
 which sends the `SIGINT` ("interrupt") signal to the program. Typically this will cause a program
 to terminate.
@@ -485,8 +486,8 @@ Sometimes a command runs and there isn't a good way to tell if it worked or not.
 supposed to set an "exit status" when they end that by convention is `0` if the program exited
 successfully and a non-zero, (typically) positive number if there was an error. The exit status for
 the last executed command or program can be shown at the command line using the `$?`
-\index{Environment variables!\?@\texttt{?}}
-\index{0@Symbols!\texttt{?} (exit status environment variable)} environment variable. Consider if
+\index{environment variables!\?@\texttt{\$}\texttt{?} (exit status code)}
+\index{*@\texttt{?} (exit status environment variable)} environment variable. Consider if
 the file `foo` exists and `bar` does not:
 
 \drcap{Examining exit codes}
@@ -507,8 +508,8 @@ scripts, but we're not going to go into script logic here.
 
 However, sometimes even at the command line we want to be able to conditionally control a sequence
 of commands, and continue (or not) based on the success (or failure) of a previous command. In
-`bash` we have `&&`\index{0@Symbols!\texttt{\&}\texttt{\&} (logical "and" operator)} and `||`
-\index{0@Symbols!\texttt{"|"|} (logical "or" operator)} to the rescue!
+`bash` we have `&&`\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)} and `||`
+\index{*@\texttt{"|"|} (logical "or" operator)} to the rescue!
 
 * **`a && b`** - execute `a` ***and*** `b`, i.e., execute `b` only if `a` is successful.
 
@@ -567,8 +568,9 @@ foo
 purpose is to, "do nothing, successfully." All it does is return a `0` (success) exit code. This
 can be useful in scripting and also sometimes when building "and" and "or" clauses like above.
 
-And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false)\drcmd
-false} command to "do nothing, unsuccessfully!"
+And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false)
+\drcmd{false}
+command to "do nothing, unsuccessfully!"
 
 \drcap{\texttt{true} and \texttt{false} commands}
 ```bash

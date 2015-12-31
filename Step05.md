@@ -14,13 +14,13 @@ until it is finally emitted on the console or saved to a file or sent over the I
 The first thing to note is there are three "file I/O streams" that are open by default in every
 "UNIX" process:
 
-* **stdin**\index{I/O!Streams!stdin@\textit{stdin}} - input, typically from the console in an
+* **stdin**\index{I/O!streams!stdin@\textit{stdin}} - input, typically from the console in an
 interactive session. In the underlying C file system APIs, this is file descriptor 0.
 
-* **stdout**\index{I/O!Streams!stdin@\textit{stdout}} - "normal" output, typically to the console in
+* **stdout**\index{I/O!streams!stdin@\textit{stdout}} - "normal" output, typically to the console in
 an interactive session. This is file descriptor 1.
 
-* **stderr**\index{I/O!Streams!stdin@\textit{stderr}} - "error" output, typically to the console in
+* **stderr**\index{I/O!streams!stdin@\textit{stderr}} - "error" output, typically to the console in
 an interactive session (so it can be hard to distinguish when intermingled with `stdout` output).
 This is file descriptor 2.
 
@@ -48,7 +48,7 @@ and writing to stdout.
 
 So in the above I typed in "This shows reading from stdin" and hit `Enter` (which send a linefeed
 and hence marks the "end of the line") and `cat` echoed that line to
-`stdout`\index{I/O!Streams!stdin@\textit{stdout}}. Then I typed "and writing to stdout." and hit
+`stdout`\index{I/O!streams!stdin@\textit{stdout}}. Then I typed "and writing to stdout." and hit
 `Enter` and that line was echoed to `stdout` as well. Finally I hit `Ctrl-D`, which ended the process.
 
 ## All Magic is Redirection{.unnumbered}
@@ -57,7 +57,7 @@ So one way to string things together in "the UNIX way" is with file redirection.
 that also works in `CMD.EXE`\drshl{CMD.EXE} and even with the same syntax.
 
 Let's create a file with a single line of text in it. One way would be to `vi newfilename`, edit
-the file, save it, and exit `vi`\drcmd{vi}. A quicker way is to simply use file redirection:
+the file, save it, and exit `vi`\dreds{vi}. A quicker way is to simply use file redirection:
 
 \drcap{Hello, world}
 ```bash
@@ -69,15 +69,15 @@ total 1
 Hello, world
 ```
 
-In this case the `> hw`\index{0@Symbols!\texttt{>} (output redirection)}
-\index{I/O!Redirection!Output (\texttt{>})} tells `bash` to take the output that `echo` sends to
-`stdout`\index{I/O!Streams!stdin@\textit{stdout}} and send it to the file `hw` instead.
+In this case the `> hw`\index{*@\texttt{>} (output redirection)}
+\index{I/O!redirection!output (\texttt{>})} tells `bash` to take the output that `echo` sends to
+`stdout`\index{I/O!streams!stdin@\textit{stdout}} and send it to the file `hw` instead.
 
 As mentioned above many "UNIX" commands are set up to take one or more file names from the command
 line as parameters, and if there aren't any, to read from
-`stdin`\index{I/O!Streams!stdin@\textit{stdin}}. The `cat` command does that. While it doesn't save
+`stdin`\index{I/O!streams!stdin@\textit{stdin}}. The `cat` command does that. While it doesn't save
 us anything over the above example, the following example using `<`
-\index{0@Symbols!\texttt{<} (input redirection)}\index{I/O!Redirection!Input (\texttt{<})}
+\index{*@\texttt{<} (input redirection)}\index{I/O!redirection!input (\texttt{<})}
 is illustrative of redirecting a file to `stdin` for a command or program:
 
 \drcap{Redundant redirection}
@@ -86,7 +86,7 @@ is illustrative of redirecting a file to `stdin` for a command or program:
 Hello, world
 ```
 
-Finally, we need to deal with `stderr`.\index{I/O!Streams!stdin@\textit{stderr}} By convention it
+Finally, we need to deal with `stderr`.\index{I/O!streams!stdin@\textit{stderr}} By convention it
 is sent to the console just like `stdout`, and that can make output confusing:
 
 \drcap{Default \textit{stderr} behavior}
@@ -123,7 +123,7 @@ But let's say the example is not so trivial, and we want to capture and log the 
 separately for later analysis. While we've seen `<` used to represent redirecting `stdin` and `>`
 used for redirecting `stdout`, how do we tell the shell we want to redirect `stderr`? Remember
 the discussion about file handles above? That's where those esoteric numbers come in handy! To
-redirect `stderr`\index{I/O!Streams!stdin@\textit{stderr}} we recall it is ***always*** file
+redirect `stderr`\index{I/O!streams!stdin@\textit{stderr}} we recall it is ***always*** file
 descriptor 2, and then we can use:
 
 \drcap{Redirecting \textit{stderr}}
@@ -138,11 +138,11 @@ cat: .: Is a directory
 cat: ./d: Is a directory
 ```
 
-The `2>/tmp/finderrors.log`\index{0@Symbols!\texttt{2>} (\textit{stderr} redirection)}
-\index{I/O!Redirection!Error (\texttt{2>})} is the magic that is redirecting file descriptor 2
+The `2>/tmp/finderrors.log`\index{*@\texttt{2>} (\textit{stderr} redirection)}
+\index{I/O!redirection!error (\texttt{2>})} is the magic that is redirecting file descriptor 2
 (`stderr`) to the log file `/tmp/finderrors.log`.
 
-A very common paradigm is to capture both `stdout`\index{I/O!Streams!stdin@\textit{stdout}} and
+A very common paradigm is to capture both `stdout`\index{I/O!streams!stdin@\textit{stdout}} and
 `stderr` to the same file. Here is how that is done, again using file descriptors:
 
 \drcap{Redirecting both \textit{stdout} and \textit{stderr} to a file}
@@ -185,8 +185,8 @@ to `rm` it first):
 ~ $ find . -exec cat \{\} \; >/tmp/find.log
 ```
 
-However, the next sample using `>>`\index{0@Symbols!\texttt{>>} (output redirection, appending)}
-\index{I/O!Redirection!Output, appending (\texttt{>>})} creates a new `/tmp/find.log` file if it
+However, the next sample using `>>`\index{*@\texttt{>>} (output redirection, appending)}
+\index{I/O!redirection!output, appending (\texttt{>>})} creates a new `/tmp/find.log` file if it
 doesn't exist, but otherwise appends to it:
 
 \drcap{Appending to a file with redirection}
@@ -200,11 +200,11 @@ scripting and is outside the scope of this book.
 ## Everyone Line Up{.unnumbered}
 
 So we can see that we could pass things between programs by redirecting
-`stdout`\index{I/O!Streams!stdin@\textit{stdout}} to a file and then redirecting that file to
-`stdin`\index{I/O!Streams!stdin@\textit{stdin}} on the next program, and so on. But "UNIX"
+`stdout`\index{I/O!streams!stdin@\textit{stdout}} to a file and then redirecting that file to
+`stdin`\index{I/O!streams!stdin@\textit{stdin}} on the next program, and so on. But "UNIX"
 environments take it a bit further with the concept of a command "pipeline" that allows directly
 sending `stdout` from one program into `stdin` of another using the "pipe" (`|`):
-\index{0@Symbols!\texttt{"|} (pipe)}\index{I/O!Redirection!pipe (\texttt{"|})}
+\index{*@\texttt{"|} (pipe)}\index{I/O!redirection!pipe (\texttt{"|})}
 
 \drcap{Piping output between programs}
 ```bash

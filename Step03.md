@@ -9,7 +9,7 @@ think)***
 Different people will have different answers to "What is the single most useful "UNIX" command?"
 There certainly are many to consider. But I keep coming back to
 [`find`](http://linux.die.net/man/1/find)\drcmd{find}
-\index{Files and Directories!Finding (\texttt{find} command)}. It can be intimidating to figure out
+\index{files and directories!finding (\texttt{find} command)}. It can be intimidating to figure out
 from the documentation, especially at first, but once you start mastering it, you end up using it
 over and over again.
 
@@ -90,11 +90,11 @@ Reconsider this example:
     -exec /home/myuser/Sandbox/FileCheckers/logchecker \{\} \;
 ```
           
-There are five (5) backslash (`\`)\index{0@Symbols!\texttt{\textbackslash} (escape character)}
+There are five (5) backslash (`\`)\index{*@\texttt{\textbackslash{}} (escape character)}
 characters in the above. In each case, the backslash is preventing [shell
 expansion](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html):
 
-1. **`\*.dat`** - preserves the `*`\index{0@Symbols!\texttt{*} (wildcard)} for `find` to use as it
+1. **`\*.dat`** - preserves the `*`\index{*@\texttt{*} (wildcard)} for `find` to use as it
 recursively searches through directories, instead of the shell expanding it to all files that end
 in `.dat` in the current directory.
 
@@ -103,7 +103,7 @@ next line.
 
 3. **`\{\} \;`** - these three prevent the shell from trying to expand the braces into an
 environment variable or the semicolon (which is meant to tell `find` when the command being ran via
-`-exec` and its parameters end), otherwise `;`\index{0@Symbols!\texttt{;} (command separator)} is
+`-exec` and its parameters end), otherwise `;`\index{*@\texttt{;} (command separator)} is
 normally used to separate independent commands on the same line in the shell.
 
 That last point bears repeating. Any time you `-exec` in a `find` command (which will be a lot),
@@ -182,7 +182,7 @@ myuser
 2015-10-21T11:02:51.7048997000
 ```
 
-That `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`\index{0@Symbols!\texttt{\%} (format)}
+That `-printf` format string `"%p\n%u\n%TY-%Tm-%TdT%TT\n\n"`\index{*@\texttt{\%} (format)}
 breaks down into:
 
 * **`"`** - prevent shell expansion on the format string.

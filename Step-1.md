@@ -12,7 +12,7 @@ By James Lehmer
 \ \
 <br/>
 <br/>
-v0.7
+v0.8
 \ \
 \ \
 <br/>
@@ -216,12 +216,15 @@ Way."
 
 **WARNING:** ***Many of the commands in this book can alter your system and possibly damage it.***
 
-Obvious candidates include the file system commands like `rm`\drcmd{rm}
-\index{Files and Directories!Delete (\texttt{rm} command)}, the
-`vi`\drcmd{vi}\index{Editors!vi@\texttt{vi}} editor (obviously), and some of the "system admin"
-commands mentioned later, including system and service restarts. Use your common sense plus the
-various resources for documentation mentioned in this book to make sure you aren't doing anything
-destructive to your system, especially in production.
+Obvious candidates include the file system commands like `rm`,
+\drcmd{rm}
+\index{files and directories!delete (\texttt{rm} command)}
+the `vi`
+\dreds{vi}
+editor (obviously), and some of the "system admin" commands mentioned later, including system and
+service restarts. Use your common sense plus the various resources for documentation mentioned in
+this book to make sure you aren't doing anything destructive to your system, especially in
+production.
 
 ***YOU HAVE BEEN WARNED!***
 
@@ -262,23 +265,34 @@ this:
 ```
 
 All such blocks have been normalized to only show a maximum of 80x24 characters. This is
-intentional. While most modern "UNIX" systems and terminal windows like `ssh`\drcmd{ssh} can handle
-any geometry, there are still systems and situations where you get the same terminal size that your
-grandfather would've used. It is best to learn how to deal with these by using `less`\drcmd{less},
+intentional. While most modern "UNIX" systems and terminal windows like `ssh`
+\drnet{ssh}
+can handle any geometry, there are still systems and situations where you get the same terminal
+size that your grandfather would've used. It is best to learn how to deal with these by using
+`less`,
+\drcmd{less}
 redirection and the like.
 
 The examples in this book typically show something like `~ $` before the command, or `~ #` (when
-logged in as root) or `%` (when running under `csh`\drshl{csh}). These "command prompts" are set in
-`bash`\drshl{bash} via the [`PS1` environment
-variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)\drenv{PS1}
+logged in as root) or `%` (when running under `csh`).
+\drshl{csh}
+These "command prompts" are set in `bash`
+\drshl{bash}
+via the [`PS1` environment
+variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)
+\drenv{PS1}{command prompt string}
 and are not meant to be typed in as part of the command.
 
 In the few places where a "UNIX" command is shown in comparison to a "DOS" command run under
-`CMD.EXE`\drshl{CMD.EXE}, the latter is shown in all uppercase to help distinguish it from the
-"UNIX" equivalent, even though `CMD.EXE` is case-insensitive. In other words, `set` will be shown
-for `bash` and `SET` for `CMD.EXE`.
+`CMD.EXE`,
+\drshl{CMD.EXE}
+the latter is shown in all uppercase to help distinguish it from the "UNIX" equivalent, even though
+`CMD.EXE` is case-insensitive. In other words, `set` will be shown for `bash` and `SET` for
+`CMD.EXE`.
 
 ## Acknowledgments{.unnumbered}
 
-Thanks to Ken Astl for reading an early draft of this book. Thanks to my wife Leslie for putting up
-with me while I obsessed over it.
+Thanks to Ken Astl for reading an early draft of this book. I appreciate the detailed and
+thoughtful discussions I had with Margaret Devere around designing good indexes. And finally, I owe
+more than I can repay (as usual) to my wife Leslie for putting up with me while I obsessed over
+this project.

@@ -34,11 +34,16 @@
 \overfullrule=2cm   % Black bars to show overfull boxes
 \numberwithin{figure}{chapter}
 \DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
-\DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1@\texttt{#1}}}
-\DeclareRobustCommand{\drenv}[1]{\index{Environment variables!#1@\texttt{#1}}}
-\DeclareRobustCommand{\drios}[1]{\index{OS and OS-Like Substances!#1}}
-\DeclareRobustCommand{\drshl}[1]{\index{Shells!#1@\texttt{#1}}}
-\DeclareRobustCommand{\drvic}[2]{\index{vi Commands@\texttt{vi} Commands!#1@\texttt{#1} (#2)}}
+\DeclareRobustCommand{\drcmd}[1]{\index{commands!#1@\texttt{#1}}}
+\DeclareRobustCommand{\drdis}[1]{\index{Linux distros!#1}\index{#1 (Linux distro)}}
+\DeclareRobustCommand{\drdoc}[1]{\index{documentation!#1@\texttt{#1} command}\index{#1@\texttt{#1} (documentation command)}\index{commands!#1@\texttt{#1} (documentation)}}
+\DeclareRobustCommand{\dreds}[1]{\index{editors!#1@\texttt{#1}}\index{#1@\texttt{#1} (editor)}\index{commands!#1@\texttt{#1} (editor)}}
+\DeclareRobustCommand{\drenv}[2]{\index{environment variables!#1@\texttt{\$}\texttt{#1} (#2)}}
+\DeclareRobustCommand{\drios}[1]{\index{operating systems!#1}\index{#1 (operating system)}}
+\DeclareRobustCommand{\drnet}[1]{\index{network commands!#1@\texttt{#1}}\index{#1@\texttt{#1} (network command)}\index{commands!#1@\texttt{#1} (network)}}
+\DeclareRobustCommand{\drshl}[1]{\index{shells!#1@\texttt{#1}}\index{#1 (shell)}}
+\DeclareRobustCommand{\drunx}[1]{\index{UNIX-like environments!#1}\index{#1 (UNIX-like environment)}}
+\DeclareRobustCommand{\drvic}[2]{\index{vicommands@\texttt{vi} commands!#1@\texttt{#1} (#2)}}
 \renewcommand{\KeywordTok}[1]{{#1}}
 \renewcommand{\DataTypeTok}[1]{{#1}}
 \renewcommand{\DecValTok}[1]{{#1}}

@@ -53,9 +53,10 @@ $(BUILD)/markdown/$(BOOKNAME).md: $(CHAPTERS)
 
 $(BUILD)/pdf/$(BOOKNAME).pdf: $(CHAPTERS)
 	mkdir -p $(BUILD)/pdf
+	cp indexstyle.ist $(BUILD)/pdf/.
 	pandoc $(TOC) --highlight-style="tango" --latex-engine=xelatex -H header.tex -B before.tex -A after.tex --no-tex-ligatures -V linkcolor=black -V toccolor=black -V urlcolor=black -V citecolor=black -V hidelinks=true -V links-as-notes=true -V documentclass=$(LATEX_CLASS) -V fontsize=10pt -V geometry:"margin=1in, paperwidth=7in, paperheight=9in" -V mainfont="DejaVu Serif" -V sansfont="DejaVu Sans" -V monofont="Ubuntu Mono" --to=latex -o $(BUILD)/pdf/$(BOOKNAME).tex $^
 	xelatex -output-directory=$(BUILD)/pdf $(BUILD)/pdf/$(BOOKNAME).tex
-	makeindex $(BUILD)/pdf/$(BOOKNAME)
+	makeindex -s indexstyle.ist $(BUILD)/pdf/$(BOOKNAME)
 	xelatex -output-directory=$(BUILD)/pdf $(BUILD)/pdf/$(BOOKNAME)
 
 $(BUILD)/slides/beamer/$(SLIDESNAME).pdf: $(SLIDES)

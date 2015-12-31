@@ -146,7 +146,7 @@
  <br />
 <br/> <br/> By James Lehmer  <br />
  <br />
-<br/> <br/> v0.7  <br />
+<br/> <br/> v0.8  <br />
  <br />
 <br/> <br/> <img src="./images/cc-by-sa.png" title="Creative Commons Attribution-ShareAlike 4.0 International" alt="" /><br />
 <em>Ten Steps to Linux Survival - Bash for Windows People</em> by James Lehmer is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.  <br />
@@ -222,7 +222,7 @@
 <p>This book is not meant to be an authoritative source, but instead a <a href="https://en.wikipedia.org/wiki/Fake_book">&quot;fake book&quot;</a> for getting up and running <strong><em>quickly</em></strong> with the sheer basics, plus knowing where to go for help. I modeled it explicitly after &quot;short and opinionated&quot; tech books such as Douglas Crockford's <a href="http://shop.oreilly.com/product/9780596517748.do"><em>Javascript: The Good Parts</em></a> and especially those licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons</a>, such as the books from <a href="http://greenteapress.com/">Green Tea Press</a>. If you like those big tech books that are priced by the kilogram, this is not the book for you.</p>
 <p>It is also not a replacement for reading the real documentation and doing research and testing, especially in production! But hopefully it will help get you through that &quot;Can you get in and poke around and see if you can figure it out?&quot; scenario above. And if Linux should start becoming more of your job, maybe this will help as a gentle push toward &quot;RTFM&quot; along with thinking in &quot;The UNIX Way.&quot;</p>
 <p><strong>WARNING:</strong> <strong><em>Many of the commands in this book can alter your system and possibly damage it.</em></strong></p>
-<p>Obvious candidates include the file system commands like <code>rm</code> , the <code>vi</code> editor (obviously), and some of the &quot;system admin&quot; commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production.</p>
+<p>Obvious candidates include the file system commands like <code>rm</code>,   the <code>vi</code>  editor (obviously), and some of the &quot;system admin&quot; commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production.</p>
 <p><strong><em>YOU HAVE BEEN WARNED!</em></strong></p>
 <h2 id="conventions" class="unnumbered">Conventions</h2>
 <p>If a command, file name or other &quot;computer code&quot; is shown in-line in a sentence, it will appear in a fixed-width font, e.g., <code>ls --recursive *.txt</code>.</p>
@@ -252,11 +252,11 @@
    23 ?        00:00:00   rcuob/6
    24 ?        00:00:00   rcuob/7
 ...and so on...</code></pre>
-<p>All such blocks have been normalized to only show a maximum of 80x24 characters. This is intentional. While most modern &quot;UNIX&quot; systems and terminal windows like <code>ssh</code> can handle any geometry, there are still systems and situations where you get the same terminal size that your grandfather would've used. It is best to learn how to deal with these by using <code>less</code>, redirection and the like.</p>
-<p>The examples in this book typically show something like <code>~ $</code> before the command, or <code>~ #</code> (when logged in as root) or <code>%</code> (when running under <code>csh</code>). These &quot;command prompts&quot; are set in <code>bash</code> via the <a href="https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto"><code>PS1</code> environment variable</a> and are not meant to be typed in as part of the command.</p>
-<p>In the few places where a &quot;UNIX&quot; command is shown in comparison to a &quot;DOS&quot; command run under <code>CMD.EXE</code>, the latter is shown in all uppercase to help distinguish it from the &quot;UNIX&quot; equivalent, even though <code>CMD.EXE</code> is case-insensitive. In other words, <code>set</code> will be shown for <code>bash</code> and <code>SET</code> for <code>CMD.EXE</code>.</p>
+<p>All such blocks have been normalized to only show a maximum of 80x24 characters. This is intentional. While most modern &quot;UNIX&quot; systems and terminal windows like <code>ssh</code>  can handle any geometry, there are still systems and situations where you get the same terminal size that your grandfather would've used. It is best to learn how to deal with these by using <code>less</code>,  redirection and the like.</p>
+<p>The examples in this book typically show something like <code>~ $</code> before the command, or <code>~ #</code> (when logged in as root) or <code>%</code> (when running under <code>csh</code>).  These &quot;command prompts&quot; are set in <code>bash</code>  via the <a href="https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto"><code>PS1</code> environment variable</a>  and are not meant to be typed in as part of the command.</p>
+<p>In the few places where a &quot;UNIX&quot; command is shown in comparison to a &quot;DOS&quot; command run under <code>CMD.EXE</code>,  the latter is shown in all uppercase to help distinguish it from the &quot;UNIX&quot; equivalent, even though <code>CMD.EXE</code> is case-insensitive. In other words, <code>set</code> will be shown for <code>bash</code> and <code>SET</code> for <code>CMD.EXE</code>.</p>
 <h2 id="acknowledgments" class="unnumbered">Acknowledgments</h2>
-<p>Thanks to Ken Astl for reading an early draft of this book. Thanks to my wife Leslie for putting up with me while I obsessed over it.</p>
+<p>Thanks to Ken Astl for reading an early draft of this book. I appreciate the detailed and thoughtful discussions I had with Margaret Devere around designing good indexes. And finally, I owe more than I can repay (as usual) to my wife Leslie for putting up with me while I obsessed over this project.</p>
 <h1 id="some-history"><span class="header-section-number">0</span> Some History</h1>
 <p><strong><em>UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,” Cygwin, and why any of this matters now. “Why does this script off the internet work on this system and not on that one?”</em></strong></p>
 <blockquote>
@@ -264,10 +264,10 @@
 </blockquote>
 <p>UNIX and its successors such as Linux have a long history reaching into the depths of time:</p>
 <ul>
-<li><p><strong>Prehistory</strong> - late 1960s, Nixon, Vietnam, Woodstock, Moon landing, <a href="https://en.wikipedia.org/wiki/Multics">Multics</a> at MIT, GE and Bell Labs.</p></li>
-<li><p><strong>In the beginning</strong> - early 1970s, Nixon drags on, Watergate, Bell Labs, <a href="https://en.wikipedia.org/wiki/Ken_Thompson">Thompson</a> &amp; <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie">Ritchie</a>, <a href="https://en.wikipedia.org/wiki/History_of_Unix">UNIX</a> is born.</p></li>
-<li><p><strong>More trouble from Berkeley</strong> - late 1970s, Carter, disco, Iran hostages, UC Berkely releases the <a href="https://en.wikipedia.org/wiki/Berkeley_Software_Distribution">Berkeley Software Distribution</a> (BSD), a port based on the Bell Labs UNIX. Let the forking begin!</p></li>
-<li><p><strong>UNIX goes commercial</strong> - 1980s, Reagan, Iran Contra, <em>E.T.</em>, AT&amp;T releases <a href="https://en.wikipedia.org/wiki/UNIX_System_V">System V</a> as first commercial UNIX. From the same background as Bell Labs UNIX, System V evolved with subtle and not so subtle differences in approaches to command syntax, networking and much more. It is this release and AT&amp;T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.</p></li>
+<li><p><strong>Prehistory</strong> - late 1960s, Nixon, Vietnam, Woodstock, Moon landing, <a href="https://en.wikipedia.org/wiki/Multics">Multics</a>  at MIT, GE and Bell Labs.</p></li>
+<li><p><strong>In the beginning</strong> - early 1970s, Nixon drags on, Watergate, Bell Labs, <a href="https://en.wikipedia.org/wiki/Ken_Thompson">Thompson</a> &amp; <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie">Ritchie</a>, <a href="https://en.wikipedia.org/wiki/History_of_Unix">UNIX</a>  is born.</p></li>
+<li><p><strong>More trouble from Berkeley</strong> - late 1970s, Carter, disco, Iran hostages, UC Berkeley releases the <a href="https://en.wikipedia.org/wiki/Berkeley_Software_Distribution">Berkeley Software Distribution</a> (BSD),  a port based on the Bell Labs UNIX. Let the forking begin!</p></li>
+<li><p><strong>UNIX goes commercial</strong> - 1980s, Reagan, Iran Contra, <em>E.T.</em>, AT&amp;T releases <a href="https://en.wikipedia.org/wiki/UNIX_System_V">System V</a>  as first commercial UNIX. From the same background as Bell Labs UNIX, System V evolved with subtle and not so subtle differences in approaches to command syntax, networking and much more. It is this release and AT&amp;T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.</p></li>
 <li><p><strong>Explosion of &quot;UNIX&quot;</strong> -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) &quot;UNIX&quot; platforms:</p>
 <ul>
 <li><strong>HP HP-UX</strong></li>
@@ -277,8 +277,8 @@
 <li><strong>SGI IRIX</strong></li>
 <li><strong>...and many, many more!</strong> - although mostly all that's left now is HP-UX, AIX and Solaris.</li>
 </ul></li>
-<li><p><strong>Linux</strong> - 1991+, Clinton I, grunge, <em>Titanic</em>, <a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a> releases a project called <a href="https://en.wikipedia.org/wiki/Linux">Linux</a> based on <a href="https://en.wikipedia.org/wiki/MINIX">MINIX</a> (and hence why Linus says Linux is pronounced like &quot;MINIX&quot; and not like &quot;Linus&quot;).</p></li>
-<li><p><strong>Proliferation of the BSDs</strong> - mid-to-late 1990s, still Clinton I, Monicagate, Kosovo, various ports of BSD including <a href="https://en.wikipedia.org/wiki/NetBSD">NetBSD</a>, <a href="https://en.wikipedia.org/wiki/FreeBSD">FreeBSD</a> and <a href="https://en.wikipedia.org/wiki/OpenBSD">OpenBSD</a>. All happen in the same time frame as Linux. Like Linux distros, each has its own focus and prejudices, some of which are distinctly &quot;anti-Linux.&quot; The &quot;big three&quot; are all still in heavy use today, especially among ISPs. The perception is still out there among a generation of sysadmins that Linux is for the desktop and BSDs for servers, but that reality shifted a long time ago.</p></li>
+<li><p><strong>Linux</strong> - 1991+, Clinton I, grunge, <em>Titanic</em>, <a href="https://en.wikipedia.org/wiki/Linus_Torvalds">Linus Torvalds</a> releases a project called <a href="https://en.wikipedia.org/wiki/Linux">Linux</a>  based on <a href="https://en.wikipedia.org/wiki/MINIX">MINIX</a>  (and hence why Linus says Linux is pronounced like &quot;MINIX&quot; and not like &quot;Linus&quot;).</p></li>
+<li><p><strong>Proliferation of the BSDs</strong> - mid-to-late 1990s, still Clinton I, Monicagate, Kosovo, various ports of BSD including <a href="https://en.wikipedia.org/wiki/NetBSD">NetBSD</a>,  <a href="https://en.wikipedia.org/wiki/FreeBSD">FreeBSD</a>  and <a href="https://en.wikipedia.org/wiki/OpenBSD">OpenBSD</a>.  All happen in the same time frame as Linux. Like Linux distros, each has its own focus and prejudices, some of which are distinctly &quot;anti-Linux.&quot; The &quot;big three&quot; are all still in heavy use today, especially among ISPs. The perception is still out there among a generation of sysadmins that Linux is for the desktop and BSDs for servers, but that reality shifted a long time ago.</p></li>
 <li><p><strong>Ports of call</strong> - 2000+, Bush II &amp; Obama, Afghanistan &amp; Gulf War II, lots of cross-porting of everything open source. However, <a href="https://en.wikipedia.org/wiki/Open-source_license">licenses matter</a>, and <a href="https://en.wikipedia.org/wiki/Comparison_of_free_and_open-source_software_licenses">there sure are a lot of them</a>. While things have settled down some with the dismissal of the SCO lawsuit, intellectual property remains a problem area in open source, even as the use of open source software (OSS) has exploded.</p></li>
 </ul>
 <p><strong>Q:</strong> So, what's Linux? Or BSD? Or even UNIX?</p>
@@ -286,16 +286,16 @@
 <p>Hence, for the rest of this text I will tend to talk somewhat interchangeably about &quot;Linux&quot; and &quot;UNIX&quot; and the like. When it matters, I will mention which OS I am discussing by name, but often I will use &quot;UNIX&quot; (in quotes) to mean anything in the &quot;family tree&quot; of the original Bell Labs offspring, or that &quot;acts like,&quot; well, UNIX.</p>
 <p>To further muddy the waters, there have been multiple attempts to &quot;standardize&quot; whatever it is this thing is called:</p>
 <ul>
-<li><a href="https://en.wikipedia.org/wiki/POSIX"><strong>POSIX</strong></a> - a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the US government started wanting systems to be &quot;POSIX-compliant.&quot;</li>
+<li><a href="https://en.wikipedia.org/wiki/POSIX"><strong>POSIX</strong></a> -  a de jure set of standards created in the 1980s and 1990s to try to bring order to the chaos that was commercial UNIX-flavored operating systems of the time. It worked. Sorta. Especially once the US government started wanting systems to be &quot;POSIX-compliant.&quot;</li>
 </ul>
-<p><strong>Note:</strong> No system runs POSIX. All POSIX-compliant system are &quot;similar but different.&quot; Even Windows can claim to be POSIX-compliant in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.</p>
+<p><strong>Note:</strong> No system runs POSIX. All POSIX-compliant system are &quot;similar but different.&quot; Even Windows  can claim to be POSIX-compliant in some respects (and has an installable POSIX subsystem), but that doesn't mean POSIX-compliant code will run there unchanged.</p>
 <ul>
-<li><p><a href="https://en.wikipedia.org/wiki/GNU_Project"><strong>GNU Project</strong></a> - <a href="https://en.wikipedia.org/wiki/Richard_Stallman">Richard Stallman</a> founded the <a href="https://en.wikipedia.org/wiki/Free_Software_Foundation">Free Software Foundation</a> (FSF) and GNU project in the mid-1980s, <strong><em>long</em></strong> before Linux (GNU = &quot;GNU's Not Unix&quot;). The GNU project delivers <a href="https://www.gnu.org/software/software.html">a suite of programs and tools</a>, many of which are used in both Linux and BSD variants as de facto standards.</p></li>
+<li><p><a href="https://en.wikipedia.org/wiki/GNU_Project"><strong>GNU Project</strong></a> -  <a href="https://en.wikipedia.org/wiki/Richard_Stallman">Richard Stallman</a> founded the <a href="https://en.wikipedia.org/wiki/Free_Software_Foundation">Free Software Foundation</a> (FSF) and GNU project in the mid-1980s, <strong><em>long</em></strong> before Linux (GNU = &quot;GNU's Not Unix&quot;). The GNU project delivers <a href="https://www.gnu.org/software/software.html">a suite of programs and tools</a>, many of which are used in both Linux and BSD variants as de facto standards.</p></li>
 <li><p><strong>Various Linux Efforts</strong> - there have also been various movements over the years, some more successful than others, to &quot;standardize&quot; Linux or some part of it, such as the file system layout, the <code>init</code> system, documentation, and now even what is part of the most basic &quot;core OS&quot; for things like better containerization.</p></li>
 </ul>
 <h2 id="why-does-this-matter" class="unnumbered">Why Does This Matter?</h2>
 <p>Because there are various &quot;flavors&quot; of commands and tools, based on whether you're dealing with a System V (Linux) or BSD (Free/Net/Open) descendant. Some of the OS versions are strong in security, or networking, or as a desktop. Certain things are &quot;built-in&quot; to the operating system but most are installed as packages, and depending on the source of the package it may or may not work correctly on another &quot;UNIX&quot; system without effort.</p>
-<p>It is similar to the history and relationship between <code>COMMAND.EXE</code> in DOS and <code>CMD.EXE</code> in Windows 10, where this would work in both:</p>
+<p>It is similar to the history and relationship between <code>COMMAND.EXE</code>  in DOS and <code>CMD.EXE</code>  in Windows 10, where this would work in both:</p>
 <pre class="bash"><code>COPY A.TXT B.TXT</code></pre>
 <p>But only the later, long file name and network-aware <code>CMD.EXE</code> could handle:</p>
 <pre class="bash"><code>COPY &quot;My 2015 Tax Returns.pdf&quot; \\MyServer\Finances\.</code></pre>
@@ -305,14 +305,14 @@
 <li><p><strong>BSD &amp; MIT</strong> - more focused on letting anyone do anything to the code as long as the original author is acknowledged and liability released.</p></li>
 </ul>
 <p>The best thing is to be vaguely aware of this history and licenses and if something isn't available on a certain platform or if a command isn't taking a specific parameter to search for variants.</p>
-<p>For example, note the difference in output between showing all processes with the <a href="http://linux.die.net/man/1/ps"><code>ps</code></a> (<em>process</em>) command on a Linux system, in this case Linux Mint under <code>bash</code>:</p>
+<p>For example, note the difference in output between showing all processes with the <a href="http://linux.die.net/man/1/ps"><code>ps</code></a>  (<em>process</em>) command on a Linux system, in this case Linux Mint under <code>bash</code>: </p>
 <p></p>
 <pre class="bash"><code>~ $ ps -a
   PID TTY          TIME CMD
  4508 pts/3    00:00:00 su
  4516 pts/3    00:00:00 bash
  4594 pts/3    00:00:00 ps</code></pre>
-<p>Versus the &quot;same&quot; command on a FreeBSD system at my ISP, where <code>csh</code> is the default shell:</p>
+<p>Versus the &quot;same&quot; command on a FreeBSD  system at my ISP, where <code>csh</code>  is the default shell:</p>
 <p></p>
 <pre class="bash"><code>%ps -a
   PID  TT  STAT      TIME COMMAND
@@ -321,18 +321,18 @@
 <p>To make things even more confusing, the Linux version of <code>ps</code> has been written to understand the BSD-style syntax and flags, too!</p>
 <h2 id="panic-at-the-distro" class="unnumbered">Panic at the Distro</h2>
 <p>Remember that &quot;Linux,&quot; FreeBSD, OpenBSD and NetBSD are all really just OS kernels, boot loaders, drivers and enough functionality to get a computer up and running. Most functionality comes via other &quot;packages.&quot; From almost the beginning there have been alternative approaches to both what packages should (and should not) be included, as well as how to best manage the installing, updating and removal of those packages.</p>
-<p>In the BSD world each major port has its own approach. In the Linux world the job of deciding all this and putting it all together falls to distributions or &quot;distros.&quot; These have evolved over time into a series of <a href="https://en.wikipedia.org/wiki/Linux_distribution#Popular_distributions">&quot;families&quot;</a> based in large part around the <a href="https://en.wikipedia.org/wiki/Package_manager">package management tool</a> predominantly used:</p>
+<p>In the BSD world each major port has its own approach. In the Linux world the job of deciding all this and putting it all together falls to distributions or &quot;distros.&quot;  These have evolved over time into a series of <a href="https://en.wikipedia.org/wiki/Linux_distribution#Popular_distributions">&quot;families&quot;</a> based in large part around the <a href="https://en.wikipedia.org/wiki/Package_manager">package management tool</a> predominantly used:</p>
 <ul>
-<li><p><strong><code>apt-get</code>, <code>dpkg</code> and <code>.deb</code> files</strong> - <a href="https://en.wikipedia.org/wiki/Debian">Debian</a> flavors, such as <a href="https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a> and <a href="https://en.wikipedia.org/wiki/Linux_Mint">Mint</a>. Mint is currently my desktop Linux of choice and Debian my preferred server OS, both based on familiarity.</p></li>
-<li><p><strong><code>pacman</code></strong> - <a href="https://en.wikipedia.org/wiki/Arch_Linux">Arch</a> flavors.</p></li>
-<li><p><strong><code>rpm</code> and <code>yum</code></strong> - Red Hat flavors,such as <a href="https://en.wikipedia.org/wiki/Fedora_%28operating_system%29">Fedora</a>, <a href="https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">Red Hat Enterprise</a> and <a href="https://en.wikipedia.org/wiki/CentOS">CentOS</a>.</p></li>
-<li><p><strong>Source code</strong> - <a href="https://en.wikipedia.org/wiki/Gentoo_Linux">Gentoo</a> tends to be a &quot;compile from scratch&quot; environment, much like <a href="https://en.wikipedia.org/wiki/FreeBSD_Ports">FreeBSD</a>.</p></li>
-<li><p><strong>&quot;Tar balls&quot;</strong> - source code or binaries delivered via archived and zipped directories. Common on <a href="https://en.wikipedia.org/wiki/Slackware">Slackware</a>, some others.</p></li>
+<li><p><strong><code>apt-get</code>, <code>dpkg</code> and <code>.deb</code> files</strong> -      <a href="https://en.wikipedia.org/wiki/Debian">Debian</a>  flavors, such as <a href="https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a>  and <a href="https://en.wikipedia.org/wiki/Linux_Mint">Mint</a>.  Mint is currently my desktop Linux of choice and Debian my preferred server OS, both based on familiarity.</p></li>
+<li><p><strong><code>pacman</code></strong> -   <a href="https://en.wikipedia.org/wiki/Arch_Linux">Arch</a>  flavors.</p></li>
+<li><p><strong><code>rpm</code> and <code>yum</code></strong> -     Red Hat  flavors,such as <a href="https://en.wikipedia.org/wiki/Fedora_%28operating_system%29">Fedora</a>,  <a href="https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">Red Hat Enterprise</a>  and <a href="https://en.wikipedia.org/wiki/CentOS">CentOS</a>. </p></li>
+<li><p><strong>Source code</strong> - <a href="https://en.wikipedia.org/wiki/Gentoo_Linux">Gentoo</a>  tends to be a &quot;compile from scratch&quot; environment, much like <a href="https://en.wikipedia.org/wiki/FreeBSD_Ports">FreeBSD</a>. </p></li>
+<li><p><strong>&quot;Tar balls&quot;</strong> - source code or binaries delivered via archived and zipped directories. Common on <a href="https://en.wikipedia.org/wiki/Slackware">Slackware</a>,  some others.</p></li>
 </ul>
 <h2 id="get-embed-with-me" class="unnumbered">Get Embed With Me</h2>
-<p>A lot of firmware in embedded devices is based on some sort of &quot;UNIX&quot; flavor. Networking gear at both the consumer and enterprise level, storage devices and so on all tend to run something that &quot;looks like&quot; UNIX at some level. <a href="https://en.wikipedia.org/wiki/BusyBox">BusyBox</a> is a good example of a &quot;UNIX-like&quot; shell (command prompt) used by many embedded systems. Of course, as to what's actually available, who knows? If you can get shell open, the best thing to do is see what works.</p>
+<p>A lot of firmware in embedded devices is based on some sort of &quot;UNIX&quot; flavor. Networking gear at both the consumer and enterprise level, storage devices and so on all tend to run something that &quot;looks like&quot; UNIX at some level. <a href="https://en.wikipedia.org/wiki/BusyBox">BusyBox</a>   is a good example of a &quot;UNIX-like&quot; shell (command prompt) used by many embedded systems. Of course, as to what's actually available, who knows? If you can get shell open, the best thing to do is see what works.</p>
 <h2 id="cygwin" class="unnumbered">Cygwin</h2>
-<p><a href="http://cygwin.com/">Cygwin</a> is an interesting beast. It is a DLL for Windows that implements most of the POSIX and related UNIX-like &quot;system API calls&quot; for programming, and then is also a series of ported open source packages, including shells, utilities and even desktop environments, all <strong><em>recompiled</em></strong> to run on Windows as long as the Cygwin DLL is accessible. Like a Linux distro it has an installer that is a &quot;package manager,&quot; and if a package isn't available, you can usually recompile the source code using Cygwin.</p>
+<p><a href="http://cygwin.com/">Cygwin</a>  is an interesting beast. It is a DLL for Windows that implements most of the POSIX and related UNIX-like &quot;system API calls&quot; for programming, and then is also a series of ported open source packages, including shells, utilities and even desktop environments, all <strong><em>recompiled</em></strong> to run on Windows as long as the Cygwin DLL is accessible. Like a Linux distro it has an installer that is a &quot;package manager,&quot; and if a package isn't available, you can usually recompile the source code using Cygwin.</p>
 <p>You cannot run Linux or BSD binaries on Cygwin without recompiling them first. <strong>However</strong>, you can often run <strong><em>scripts</em></strong> from a Linux environment on Cygwin with little or no tweaking. Which means you can then take advantage of a lot of excellent open source tools simply by installing their packages in Cygwin and running scripts against them.</p>
 <p>Ultimately, though, Cygwin is of limited use, basically for getting to some open source tools on Windows without having to set up a Linux box. You can do a lot of amazing things with Cygwin with enough effort (including running X and a desktop environment like GNOME!), but at some point why not expend that effort in standing up a &quot;real&quot; Linux (virtual) machine anyway?</p>
 <h1 id="come-out-of-your-shell"><span class="header-section-number">1</span> Come Out of Your Shell</h1>
@@ -343,7 +343,7 @@
 <p>To avoid getting all pedantic, I am just going to define a shell as an environment in which you can execute commands. People tend to think of a shell as a &quot;command prompt,&quot; but you can run a shell without running a command prompt, but not vice versa - an interactive command prompt is an instance of a shell environment almost by definition.</p>
 <p>Examples of shells:</p>
 <ul>
-<li><p><a href="https://technet.microsoft.com/en-us/library/cc754340.aspx"><strong><code>CMD.EXE</code></strong></a> - yes, Windows has a shell.</p></li>
+<li><p><a href="https://technet.microsoft.com/en-us/library/cc754340.aspx"><strong><code>CMD.EXE</code></strong></a> - yes, Windows  has a shell.</p></li>
 <li><p><a href="https://technet.microsoft.com/en-us/library/ms714469%28v=VS.85%29.aspx"><strong><code>PowerShell.exe</code></strong></a>  - in fact, it has at least two!</p></li>
 </ul>
 <p>In UNIX-land:</p>
@@ -352,7 +352,7 @@
 <ul>
 <li><p><a href="https://en.wikipedia.org/wiki/Almquist_shell"><strong><code>ash</code></strong></a> - Almquist shell.</p>
 <ul>
-<li><strong><code>dash</code></strong> - Debian Almquist shell (replaced <code>ash</code> in Debian)</li>
+<li><strong><code>dash</code></strong> -  Debian Almquist shell (replaced <code>ash</code> in Debian)</li>
 </ul></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29"><strong><code>bash</code></strong></a> - Bourne-again shell (get it?), the &quot;standard&quot; Linux shell (as much as anything is standard across Linux distros).</p></li>
 <li><p><a href="https://en.wikipedia.org/wiki/Korn_shell"><strong><code>ksh</code></strong></a> - Korn shell.</p></li>
@@ -555,7 +555,7 @@ Disabled User Accounts.csv  elsewhere  LOLcatz.jpg  MyResume.md</code></pre>
 <li><p>Helps eliminate misspellings in a long file or command name.</p></li>
 <li><p>Acts as an error checker, because if the tab doesn't expand, chances are you are specifying something else (the beginning part of the file name) wrong.</p></li>
 </ol>
-<p>The other thing to remember about the interactive shell is command history. Again, both <code>CMD.EXE</code> and <code>bash</code> give you command history, but <code>CMD.EXE</code> only remembers it for the session, while <code>bash</code> stores it in one of your hidden &quot;profile&quot; or &quot;dot&quot; files in your home directory called <code>.bash_history</code>, which you can display with <code>ls -a</code>:</p>
+<p>The other thing to remember about the interactive shell is command history. Again, both <code>CMD.EXE</code> and <code>bash</code> give you command history, but <code>CMD.EXE</code> only remembers it for the session, while <code>bash</code> stores it in one of your hidden &quot;profile&quot; or &quot;dot&quot; files in your home directory called <code>.bash_history</code> , which you can display with <code>ls -a</code>:</p>
 <p></p>
 <pre class="bash"><code>~ $ ls -a
 .              .config    .gconf           .mozilla  Templates
@@ -583,7 +583,7 @@ Disabled User Accounts.csv  elsewhere  LOLcatz.jpg  MyResume.md</code></pre>
 <li><p><strong>...and so many more!</strong> - NTFS, FAT, CDFS, etc.</p></li>
 </ul>
 <p>Each has its strengths and weaknesses. While Linux tends to treat the ext* file systems as preferred, it can write to a lot of file systems and can read even more.</p>
-<p>As mentioned before, the biggest differences between Linux and Windows is that the Linux environments do not have a concept of &quot;drive letters.&quot; Instead everything is &quot;mounted&quot; under a single hierarchy that starts at the &quot;root directory&quot; or <code>/</code>:</p>
+<p>As mentioned before, the biggest differences between Linux and Windows  is that the Linux environments do not have a concept of &quot;drive letters.&quot; Instead everything is &quot;mounted&quot; under a single hierarchy that starts at the &quot;root directory&quot; or <code>/</code>: </p>
 <p></p>
 <pre class="bash"><code>~ $ ls /
 bin    dev   home        lib64       mnt    Other  run   sys  var
@@ -693,7 +693,7 @@ xfreerdp --version</code></pre>
 </ol>
 <p>A better way to display a longer file is to use the <a href="http://linux.die.net/man/1/less"><code>less</code></a>  command (which is a derivative of the original <a href="http://linux.die.net/man/1/more"><code>more</code></a> , hence the name). <code>less</code> is a paginator, where the <code>Space</code>, <code>Page Down</code> or down arrow keys scroll down and the <code>Page Up</code> or up arrow keys scrolls up. <code>Q</code> quits.</p>
 <p><strong>Note:</strong> The <code>vi</code> search (<code>/</code>, <code>?</code>, <code>n</code> and <code>p</code>) and navigation (<code>G</code>, <code>0</code>) keys work within <code>less</code>, too. In general <code>less</code> is a great lightweight way to motor around in a text file without editing it.</p>
-<p>We can also look at just the end or <em>tail</em> of a file (often the most interesting when looking at log files and troubleshooting a current problem) with the <a href="http://linux.die.net/man/1/tail"><code>tail</code></a>  command. The next example shows the last 10 lines of the kernel <code>dmesg</code> log:</p>
+<p>We can also look at just the end or <em>tail</em> of a file (often the most interesting when looking at log files and troubleshooting a current problem) with the <a href="http://linux.die.net/man/1/tail"><code>tail</code></a>  command. The next example shows the last 10 lines of the kernel <code>dmesg</code>   log:</p>
 <p></p>
 <pre class="bash"><code>/var/log $ tail dmesg
 [    3.913318] Bluetooth: BNEP socket layer initialized
@@ -977,8 +977,8 @@ myuser # pwd
 <p><strong>Note:</strong> The above assumes you have permissions to <code>cd</code> into <code>/home/myuser</code>. See the upcoming section on file permissions for more info.</p>
 <p>In addition, you need to know the difference between &quot;absolute&quot; and &quot;relative&quot; paths:</p>
 <ul>
-<li><p><strong>Absolute path</strong>/index{Files and Directories!Absolute path} - <strong><em>always</em></strong> &quot;goes through&quot; or specifies the &quot;root&quot; (<code>/</code>) directory, e.g. regardless of the current working directory, <code>cd /etc</code> will change it to <code>/etc</code>.</p></li>
-<li><p><strong>Relative path</strong>/index{Files and Directories!Relative path} - does <strong><em>not</em></strong> specify the root directory, and expects to start the navigation at the current directory with all path components traversed from there, e.g., <code>cd Dissertations</code> changes the current directory to a subdirectory called <code>Dissertations</code>.</p></li>
+<li><p><strong>Absolute path</strong> - <strong><em>always</em></strong> &quot;goes through&quot; or specifies the &quot;root&quot; (<code>/</code>) directory, e.g. regardless of the current working directory, <code>cd /etc</code> will change it to <code>/etc</code>.</p></li>
+<li><p><strong>Relative path</strong> - does <strong><em>not</em></strong> specify the root directory, and expects to start the navigation at the current directory with all path components traversed from there, e.g., <code>cd Dissertations</code> changes the current directory to a subdirectory called <code>Dissertations</code>.</p></li>
 </ul>
 <p>Windows inherited the concept of <code>.</code>  for the current directory and <code>..</code>  for the parent directory directly from UNIX. Consider the following examples that combine all of the above about relative paths and see if it makes sense:</p>
 <p></p>
@@ -1000,7 +1000,7 @@ Bar  Baz
 a  b  c</code></pre>
 <p>Did you notice how both <code>mkdir</code> and <code>touch</code> allow for specifying multiple directory and file names in the same command?</p>
 <h2 id="may-i" class="unnumbered">May I?</h2>
-<p>Most &quot;UNIX&quot; file systems come with a set of nine permissions that can be thought of as a &quot;grid&quot; of 3x3 showing &quot;who has what?&quot; The &quot;who&quot; is known as &quot;UGO&quot;:</p>
+<p>Most &quot;UNIX&quot; file systems come with a set of nine permissions  that can be thought of as a &quot;grid&quot; of 3x3 showing &quot;who has what?&quot; The &quot;who&quot; is known as &quot;UGO&quot;:</p>
 <ul>
 <li><p><strong>User</strong> - the user that is the &quot;owner&quot; of the file or directory.</p></li>
 <li><p><strong>Group</strong> - the group that is the &quot;owner&quot; of the file or directory.</p></li>
@@ -1754,8 +1754,8 @@ cat: ./d: Is a directory</code></pre>
 <blockquote>
 <p><em>&quot;You're too young to know.&quot;</em> - Vi (<em>Grease</em>)</p>
 </blockquote>
-<p><a href="http://linux.die.net/man/1/vi"><code>vi</code></a>  stands for <em>visual editor</em> (as well as the Roman numeral for 6, which is why it is this chapter), and once you use it you will understand what editing from the command line must've been like for <code>vi</code> to seem both &quot;visual&quot; and a step forward.</p>
-<p>Many Linux clones don't use <code>vi</code> proper, but a port called <a href="http://www.vim.org/"><code>vim</code></a> (&quot;<strong>vi</strong> i<strong>m</strong>proved&quot;), that is then accessed via the alias <code>vi</code>. The differences tend to be minor, with <code>vim</code> being more customizable.</p>
+<p><a href="http://linux.die.net/man/1/vi"><code>vi</code></a>   stands for <em>visual editor</em> (as well as the Roman numeral for 6, which is why it is this chapter), and once you use it you will understand what editing from the command line must've been like for <code>vi</code> to seem both &quot;visual&quot; and a step forward.</p>
+<p>Many Linux clones don't use <code>vi</code> proper, but a port called <a href="http://www.vim.org/"><code>vim</code></a> (&quot;<strong>vi</strong> i<strong>m</strong>proved&quot;),  that is then accessed via the alias <code>vi</code>. The differences tend to be minor, with <code>vim</code> being more customizable.</p>
 <p><code>vi</code> and a similar editor, <a href="http://linux.die.net/man/1/emacs"><code>emacs</code></a>,  both tend to trip up users from GUI operating systems such as Windows or OS X that have editors like Notepad that are always ready for user input.</p>
 <p>Instead, <code>vi</code> typically starts in &quot;command mode,&quot; where keystrokes execute various navigation and editing commands. To actually insert text requires a keystroke such as <code>i</code> while in command mode, which then causes <code>vi</code> to go into &quot;insert mode.&quot; Insert mode is what most Windows users expect from an editor, i.e., when you type the line changes. The <code>ESC</code> Exit insert mode} key exits insert mode.</p>
 <p>It is as hard to get used to as it sounds, and you <strong><em>will</em></strong> execute text you were meaning to insert as commands, and commands that you were meaning to execute you <strong><em>will</em></strong> insert as text, and sooner or later you <strong><em>will</em></strong> enter <code>vi</code> commands into Notepad. I guarantee it. That will be the day you know you've become truly tainted.</p>
@@ -2170,7 +2170,7 @@ Hit http://archive.canonical.com trusty Release.gpg
 (NORMAL LINK) Use right-arrow or &lt;return&gt; to activate.
   Arrow keys: Up and Down to move.  Right to follow a link; Left to go back.
  H)elp O)ptions P)rint G)o M)ain screen Q)uit /=search [delete]=history list </code></pre>
-<p>There are two other commands that are used to pull down web resources and save them locally - <a href="http://linux.die.net/man/1/curl"><code>curl</code></a> and <a href="http://linux.die.net/man/1/wget"><code>wget</code></a> drcmd{wget}. Both support HTTP(S) and FTP, but <code>curl</code> supports even more protocols and options and tends to be the simplest to just &quot;grab a file and go.&quot; You see both used often in install scripts that download bits from the internet and then execute them:</p>
+<p>There are two other commands that are used to pull down web resources and save them locally - <a href="http://linux.die.net/man/1/curl"><code>curl</code></a> and <a href="http://linux.die.net/man/1/wget"><code>wget</code></a> drnet{wget}. Both support HTTP(S) and FTP, but <code>curl</code> supports even more protocols and options and tends to be the simplest to just &quot;grab a file and go.&quot; You see both used often in install scripts that download bits from the internet and then execute them:</p>
 <p></p>
 <pre class="bash"><code>wget -O - http://foocorp.com/installs/install.sh | bash</code></pre>
 <p>Or:</p>
@@ -2508,7 +2508,7 @@ dmesg.0                pm-powersave.log.1     Xorg.0.log.old
 dmesg.1.gz             pm-powersave.log.2.gz  Xorg.20.log
 ...and so on...</code></pre>
 <p>Some, like <code>samba</code> are their own subdirectories with log files under that. Others are log files that get &quot;rotated&quot; from the most current (no suffix) through ever older ones (increasing suffix number, e.g., <code>mail.log.2</code>).</p>
-<p>If you are pursuing a problem with a specific subsystem (like <code>samba</code>), it is good to start in its log files. The two log files of general interest are <code>dmesg</code> , which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. The other is <code>messages</code>, which holds more general &quot;system&quot; messages.</p>
+<p>If you are pursuing a problem with a specific subsystem (like <code>samba</code>), it is good to start in its log files. The two log files of general interest are <code>dmesg</code>,   which holds kernel-level debug messages and usually is useful for debugging things like device driver issues. The other is <code>messages</code>,   which holds more general &quot;system&quot; messages.</p>
 <p>Let's look for kernel errors when booting:</p>
 <p></p>
 <pre class="bash"><code>~ # cat /var/log/dmesg | grep -i error
@@ -2522,7 +2522,7 @@ dmesg.1.gz             pm-powersave.log.2.gz  Xorg.20.log
 </blockquote>
 <p>The biggest issue with bootstrapping into &quot;UNIX&quot; is not the lack of documentation but almost the surplus of it, coupled with a severe &quot;RTFM&quot; attitude by most old-timers toward newbies. Besides the typical &quot;Google&quot; and <a href="http://unix.stackexchange.com/">&quot;StackOverflow&quot;</a>  answers, there are actually lots of very reliable places to turn to for information</p>
 <h2 id="man-is-that-info-apropos" class="unnumbered"><code>man</code>, is that <code>info</code> <code>apropos</code>?</h2>
-<p>There are three commands that are the basis for reading &quot;UNIX&quot; documentation within &quot;UNIX&quot; itself - <a href="http://linux.die.net/man/1/man"><code>man</code></a>, <a href="http://linux.die.net/man/1/info"><code>info</code></a>  and <a href="http://linux.die.net/man/1/apropos"><code>apropos</code></a> .</p>
+<p>There are three commands that are the basis for reading &quot;UNIX&quot; documentation within &quot;UNIX&quot; itself - <a href="http://linux.die.net/man/1/man"><code>man</code></a>,  <a href="http://linux.die.net/man/1/info"><code>info</code></a>  and <a href="http://linux.die.net/man/1/apropos"><code>apropos</code></a>. </p>
 <p><code>man</code> is short for <em>manual pages</em>, and is used to display the main help for most &quot;UNIX&quot; commands. For example, <code>man ls</code> shows:</p>
 <p></p>
 <pre class="bash"><code>LS(1)                            User Commands                           LS(1)
@@ -2683,8 +2683,8 @@ visudo (8)           - edit the sudoers file</code></pre>
 <p>There are several consistently high-quality free sources of information on various parts of Linux and related systems on the internet.</p>
 <ul>
 <li><p><a href="http://www.tldp.org/guides.html"><strong>The Linux Documentation Project (LDP)</strong></a> - has fallen a bit behind over the years, but still has two of the best <code>bash</code> scripting books out there, <a href="http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html"><em>Bash Guide for Beginners</em></a>  and <a href="http://www.tldp.org/LDP/abs/html/index.html"><em>Advanced Bash-Scripting Guide</em></a> . I continue to use the latter all the time.</p></li>
-<li><p><a href="https://wiki.archlinux.org/"><strong>Arch Linux Wiki</strong></a> - you may not think this would be useful if you are running Debian or Fedora or something else, but remember most &quot;UNIX&quot; systems are all very similar, and often the best documentation on a package or setting something up in Linux is in the Arch wiki.</p></li>
-<li><p><a href="https://www.debian.org/doc/"><strong>Debian documentation</strong></a> - again, even if you are not running a Debian-based distro, this can be handy because it describes how to administer Linux in a way that often transcends distro specifics (and at least explains how Debian approaches the differences). The best books in the series are <a href="https://www.debian.org/doc/manuals/debian-handbook/"><em>The Debian Administrator's Handbook</em></a>  and the <a href="https://www.debian.org/doc/manuals/debian-reference/"><em>Debian Reference</em></a> , which is a lot more formal attempt at the same type of territory this guide covers.</p></li>
+<li><p><a href="https://wiki.archlinux.org/"><strong>Arch Linux Wiki</strong></a> -   you may not think this would be useful if you are running Debian or Fedora or something else, but remember most &quot;UNIX&quot; systems are all very similar, and often the best documentation on a package or setting something up in Linux is in the Arch wiki.</p></li>
+<li><p><a href="https://www.debian.org/doc/"><strong>Debian documentation</strong></a> -  again, even if you are not running a Debian-based distro, this can be handy because it describes how to administer Linux in a way that often transcends distro specifics (and at least explains how Debian approaches the differences). The best books in the series are <a href="https://www.debian.org/doc/manuals/debian-handbook/"><em>The Debian Administrator's Handbook</em></a>  and the <a href="https://www.debian.org/doc/manuals/debian-reference/"><em>Debian Reference</em></a>,  which is a lot more formal attempt at the same type of territory this guide covers.</p></li>
 </ul>
 <p>Ubuntu, Mint and some other distros have quite active message fora, and of course StackOverflow and its family are also very useful.</p>
 <p>Besides the above, if you are dealing with a package that is not part of the &quot;core&quot; OS, such as <a href="https://www.samba.org/samba/">Samba</a> for setting up CIFS shares on Linux, you should always look at <a href="https://www.samba.org/samba/docs/">the package site's documentation</a> as well as any specific info you can find about the distro you are running.</p>
@@ -2897,7 +2897,7 @@ foo: command not found</code></pre>
 <p></p>
 <pre class="bash"><code>~ $ ./foo</code></pre>
 <h2 id="over-and-over-and-over" class="unnumbered">Over and Over and Over</h2>
-<p>The function of scheduled tasks in Windows is performed by <a href="http://linux.die.net/man/8/cron"><code>cron</code></a> in Linux. It reads in the various <a href="http://linux.die.net/man/5/crontab"><code>crontab(5)</code></a> files on the system and executes the commands in them at the specified times. You use the <a href="http://linux.die.net/man/1/crontab"><code>crontab(1)</code></a> command to view and edit the <code>crontab</code> files for your user (and other users if you have admin privileges).</p>
+<p>The function of scheduled tasks in Windows is performed by <a href="http://linux.die.net/man/8/cron"><code>cron</code></a> in Linux. It reads in the various <a href="http://linux.die.net/man/5/crontab"><code>crontab(5)</code></a>  files on the system and executes the commands in them at the specified times. You use the <a href="http://linux.die.net/man/1/crontab"><code>crontab(1)</code></a> command to view and edit the <code>crontab</code> files for your user (and other users if you have admin privileges).</p>
 <p>The sample given in the comments of the <code>crontab</code> when initially opened using <code>crontab -e</code> give a fine example of the syntax of the <code>crontab</code> file:</p>
 <p></p>
 <pre class="bash"><code># Edit this file to introduce tasks to be run by cron.
@@ -2991,7 +2991,7 @@ foo
 ~ $ echo $?
 0</code></pre>
 <p><strong>Note:</strong> There is actually a <a href="http://linux.die.net/man/1/true"><code>true</code></a> command whose purpose is to, &quot;do nothing, successfully.&quot; All it does is return a <code>0</code> (success) exit code. This can be useful in scripting and also sometimes when building &quot;and&quot; and &quot;or&quot; clauses like above.</p>
-<p>And yes, of course, that means there is also a <a href="http://linux.die.net/man/1/false"><code>false</code></a>false} command to &quot;do nothing, unsuccessfully!&quot;</p>
+<p>And yes, of course, that means there is also a <a href="http://linux.die.net/man/1/false"><code>false</code></a>  command to &quot;do nothing, unsuccessfully!&quot;</p>
 <p></p>
 <pre class="bash"><code>~ $ true
 ~ $ echo $?
@@ -3076,8 +3076,10 @@ foo
 <li><p><a href="http://linux.die.net/man/1/less"><strong><code>less</code></strong></a> - display the file one page at a time on <code>stdout</code>.</p></li>
 <li><p><a href="http://linux.die.net/man/1/ln"><strong><code>ln</code></strong></a> - create hard or soft (shortcut) links.</p></li>
 <li><p><a href="http://linux.die.net/man/1/ls"><strong><code>ls</code></strong></a> - list directory contents.</p></li>
+<li><p><a href="http://linux.die.net/man/1/lynx"><strong><code>lynx</code></strong></a> - command line web browser.</p></li>
 <li><p><a href="http://linux.die.net/man/1/man"><strong><code>man</code></strong></a> - display manual pages. Remember <code>q</code> quits.</p></li>
 <li><p><a href="http://linux.die.net/man/1/mkdir"><strong><code>mkdir</code></strong></a> - make a new directory.</p></li>
+<li><p><a href="http://linux.die.net/man/1/more"><strong><code>more</code></strong></a> - display the file one page at a time on <code>stdout</code>.</p></li>
 <li><p><a href="http://linux.die.net/man/1/mutt"><strong><code>mutt</code></strong></a> - email client.</p></li>
 <li><p><a href="http://linux.die.net/man/1/mv"><strong><code>mv</code></strong></a> - move files or directories.</p></li>
 <li><p><a href="http://linux.die.net/man/1/pine"><strong><code>pine</code></strong></a> - email client.</p></li>
@@ -3085,6 +3087,7 @@ foo
 <li><p><a href="http://linux.die.net/man/1/pwd"><strong><code>pwd</code></strong></a> - print the current (working) directory name.</p></li>
 <li><p><a href="http://linux.die.net/man/1/rename"><strong><code>rename</code></strong></a> - rename files in more complex ways than <code>mv</code> can.</p></li>
 <li><p><a href="http://linux.die.net/man/1/rm"><strong><code>rm</code></strong></a> - delete (remove) files or directories.</p></li>
+<li><p><a href="http://linux.die.net/man/1/scp"><strong><code>scp</code></strong></a> - file copy over secure shell protocol.</p></li>
 <li><p><a href="http://linux.die.net/man/1/set"><strong><code>set</code></strong></a> - set an environment variable, or display all environment variables.</p></li>
 <li><p><a href="http://linux.die.net/man/1/sort"><strong><code>sort</code></strong></a> - sort <code>stdin</code> or a file to <code>stdout</code>.</p></li>
 <li><p><a href="http://linux.die.net/man/1/ssh"><strong><code>ssh</code></strong></a> - secure shell terminal progam and protocol.</p></li>
@@ -3100,6 +3103,7 @@ foo
 <li><p><a href="http://linux.die.net/man/1/wget"><strong><code>wget</code></strong></a> - download files from the internet.</p></li>
 <li><p><a href="http://linux.die.net/man/1/whoami"><strong><code>whoami</code></strong></a> - the answer to life's most existential question.</p></li>
 <li><p><a href="http://linux.die.net/man/1/whois"><strong><code>whois</code></strong></a> - look up DNS ownership info on an address.</p></li>
+<li><p><a href="http://linux.die.net/man/1/xfreerdp"><strong><code>xfreerdp</code></strong></a> - RDP protocol client.</p></li>
 <li><p><a href="http://linux.die.net/man/1/zip"><strong><code>zip</code></strong></a> - compress files and directories using the PKZip algorithm.</p></li>
 </ul>
 <h3 id="system-commands" class="unnumbered">System Commands</h3>

@@ -14,7 +14,9 @@ of a shell environment almost by definition.
 Examples of shells:
 
 * [**`CMD.EXE`**](https://technet.microsoft.com/en-us/library/cc754340.aspx)\drshl{CMD.EXE} -
-yes, Windows has a shell.
+yes, Windows
+\drios{Windows}
+has a shell.
 
 * [**`PowerShell.exe`**](https://technet.microsoft.com/en-us/library/ms714469%28v=VS.85%29.aspx)
 \drshl{Powershell} -
@@ -28,7 +30,9 @@ the "original" Bourne shell in UNIX, which spawned:
     * [**`ash`**](https://en.wikipedia.org/wiki/Almquist_shell)\drshl{ash} -
     Almquist shell.
 
-        * **`dash`** - Debian Almquist shell (replaced `ash` in Debian)
+        * **`dash`** - 
+        \drshl{dash}
+        Debian Almquist shell (replaced `ash` in Debian)
 
     * [**`bash`**](https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29)\drshl{bash} -
     Bourne-again shell (get it?), the "standard" Linux shell (as much as
@@ -54,8 +58,9 @@ usually run in the other members of the same tree.
 
 Every shell has some "built-in" commands that are implemented as part of the shell and not as an
 external command or program, and `bash`\drshl{bash} has its share, as shown by running the
-[`help`](http://linux.die.net/man/1/help)\drcmd{help}
-\index{Documentation!help@\texttt{help} command} command in a `bash` terminal:
+[`help`](http://linux.die.net/man/1/help)
+\drdoc{help}
+command in a `bash` terminal:
 
 \drcap{Built-in commands in \texttt{bash}}
 ```bash
@@ -93,7 +98,7 @@ variant or even something more esoteric can be key.
 
 Pay attention to the first line in script files, which will typically have a
 ["shebang"](https://en.wikipedia.org/wiki/Shebang_%28Unix%29)
-\index{0@Symbols!\texttt{\#"!} (shebang)} line that looks like this:
+\index{*@\texttt{\#"!} (shebang)} line that looks like this:
 
 \drcap{\texttt{bash} "shebang"}
 ```bash
@@ -142,7 +147,7 @@ subsystems, etc.
 But even so, there are some similarities between `CMD.EXE` and a Linux shell like
 `bash`\drshl{bash}. In both `bash` and `CMD.EXE`\drshl{CMD.EXE} the
 [`set`](http://linux.die.net/man/1/set)\drcmd{set}
-\index{Environment variables!Displaying (\texttt{set} command)} command shows you all environment
+\index{environment variables!displaying!setcommand@\texttt{set} command} command shows you all environment
 variables that have been set. Here's `bash`:
 
 \drcap{\texttt{set} command in \texttt{bash}}
@@ -205,8 +210,8 @@ PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 
 Similarly, the
 [`echo`](http://linux.die.net/man/1/echo)\drcmd{echo}
-\index{Environment variables!Displaying (\texttt{echo} command)}
-command can be used to show you the contents of an environment variable like `HOME`\drenv{HOME} on
+\index{environment variables!displaying!echocommand@\texttt{echo} command}
+command can be used to show you the contents of an environment variable like `HOME`\drenv{HOME}{current user's home directory} on
 `bash`:
 
 \drcap{\texttt{echo} the \texttt{HOME} environment variable in \texttt{bash}}
@@ -227,7 +232,7 @@ This example shows some valuable differences between shells. Even though both ha
 environment variables and displaying their contents using the "same" `echo` command, note that:
 
 1. The syntax for accessing an environment variable is
-`$variable`\index{Environment variables!Syntax} in `bash` and `%variable%` in `CMD.EXE`.
+`$variable`\index{environment variables!syntax} in `bash` and `%variable%` in `CMD.EXE`.
 
 2. `bash` is case-sensitive and so `echo $HOME` works but `echo $home` does not. `CMD.EXE` is
 ***not*** case-sensitive, so either `echo %homedrive%` or `echo %HOMEDRIVE%` (or `EcHo %hOmEdRiVe%`)
@@ -249,7 +254,7 @@ learn the native commands, because then you are instantly productive at any shel
 ## You're a Product of Your Environment (Variables){.unnumbered}
 
 It is much more common to set up environment variables to control run-time execution in Linux than
-in Windows. In fact, it is quite common to assign\index{Environment variables!Assigning} a given
+in Windows. In fact, it is quite common to assign\index{environment variables!assigning} a given
 environment variable for the single execution of a program, to the point that `bash` has built-in
 "one-line" support for it:
 
@@ -291,7 +296,7 @@ text/plain
 
 When writing scripts that can be run by any user, it may be helpful to know their user name at
 run-time. There are at least two different ways to determine that. The first is via the
-`USER`\drenv{USER} environment variable:
+`USER`\drenv{USER}{current user} environment variable:
 
 \drcap{\texttt{USER} environment variable}
 ```bash
@@ -308,7 +313,7 @@ The second is with a command with one of the best names, ever -
 myuser
 ```
 
-Some environments set the `USER` environment variable, some set a `USERNAME`\drenv{USERNAME}
+Some environments set the `USER` environment variable, some set a `USERNAME`\drenv{USERNAME}{current user}
 variable, and some like Mint set both. I think it is better to use `whoami`, which tends to be on
 almost all systems.
 
@@ -316,7 +321,7 @@ almost all systems.
 
 The concept of a "path" for finding executables is almost identical between "UNIX" and Windows, and
 Windows lifted it from UNIX (or CP/M\drios{CP/M}, which lifted it from UNIX). Look at the output of
-the `PATH`\drenv{PATH} environment variable under `bash`:
+the `PATH`\drenv{PATH}{execution search path} environment variable under `bash`:
 
 \drcap{\texttt{PATH} environment variable in \texttt{bash}}
 ```bash
@@ -324,7 +329,7 @@ the `PATH`\drenv{PATH} environment variable under `bash`:
 /usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
 ```
 
-Echoing the `PATH`\drenv{PATH} environment variable under `CMD.EXE` works, too: 
+Echoing the `PATH`\drenv{PATH}{execution search path} environment variable under `CMD.EXE` works, too: 
 
 \drcap{\texttt{PATH} environment variable in \texttt{CMD.EXE}}
 ```
@@ -341,13 +346,13 @@ l\v1.0\
 Note the differences and similarities. Both the paths are evaluated left to right. Both use
 separators between path components, a `;` for DOS and Windows, a
 `:` for Linux. Both delimit their directory names with slashes, with `\` for DOS and Windows and
-`/`\index{0@Symbols!\texttt{/} (path separator)} for Linux. But Linux has no concept of a "drive
+`/`\index{*@\texttt{/} (path separator)} for Linux. But Linux has no concept of a "drive
 letter" like `C:` in Windows, and instead everything is mounted in a single namespace hierarchy
 starting at the root `/`. We'll be talking more about directories, paths and file systems in the
 next chapter.
 
-Just to muddy the waters further, notice how Cygwin\drios{Cygwin} under Windows shows the
-`PATH`\drenv{PATH} environment variable with `bash` syntax but a combination of both Cygwin and
+Just to muddy the waters further, notice how Cygwin\drunx{Cygwin} under Windows shows the
+`PATH`\drenv{PATH}{execution search path} environment variable with `bash` syntax but a combination of both Cygwin and
 Windows directories, and Windows drive letters like `C:` mapped to `/cygdrive/c`:
 
 \drcap{\texttt{PATH} environment variable in Cygwin}
@@ -367,8 +372,8 @@ ver/120/Tools/Binn:/cygdrive/c/Program Files (x86)/Microsoft SDKs/Azure/CLI/wbin
 
 The actual "command prompt" is when you run a shell in an "interactive session" in a terminal
 window. This might be from logging into the console of a Linux VM, or starting a terminal window in
-a X window manager like GNOME or KDE, or `ssh`'ing\drcmd{ssh} into an interactive session of a
-remote machine, or even running a Cygwin\drios{Cygwin} command prompt under Windows.
+a X window manager like GNOME or KDE, or `ssh`'ing\drnet{ssh} into an interactive session of a
+remote machine, or even running a Cygwin\drunx{Cygwin} command prompt under Windows.
 
 Command prompts allow you to work in a so-called "REPL" environment (Read, Evaluate, Print, Loop).
 You can run a series of commands once, or keep refining a command or commands until you get them
@@ -433,7 +438,8 @@ something else (the beginning part of the file name) wrong.
 The other thing to remember about the interactive shell is command history. Again, both
 `CMD.EXE`\drshl{CMD.EXE} and `bash` give you command history, but `CMD.EXE` only remembers it for
 the session, while `bash` stores it in one of your hidden "profile" or "dot" files in your home
-directory called `.bash_history`\index{Files and Directories!Special!\texttt{.bash\_history}},
+directory called `.bash_history`
+\index{files and directories!special!bashhistory@\texttt{.bash\_history}},
 which you can display with `ls -a`:
 
 \drcap{\texttt{ls} command showing hidden files}

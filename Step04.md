@@ -9,11 +9,11 @@ have two problems.***
 
 If the `file` command is useful for finding file system entries based on their attributes, the
 [`grep`](http://linux.die.net/man/1/grep)\drcmd{grep}
-\index{Files and Directories!Searching(\texttt{grep} command)}
+\index{files and directories!searching (\texttt{grep} command)}
 command is good for finding files whose ***contents*** match a [regular
-expression](https://en.wikipedia.org/wiki/Regular_expression)\index{Regular expressions}.
+expression](https://en.wikipedia.org/wiki/Regular_expression)\index{regular expressions}.
 You already know at least one regular expression, the wildcard `*`
-\index{0@Symbols!\texttt{*} (match zero or more characters)}
+\index{*@\texttt{*} (match zero or more characters)}
 character from the `CMD.EXE`\drshl{CMD.EXE} prompt and Windows Explorer. It means "match zero or
 more characters." We'll cover more on regular expressions, or "regexes," in a moment.
 
@@ -33,7 +33,7 @@ d:This sequence of characters is called a "string".
 
 ## Expressing Yourself Regularly{.unnumbered}
 
-So what are "regular expressions?"\index{Regular expressions} Simply, they are patterns for
+So what are "regular expressions?"\index{regular expressions} Simply, they are patterns for
 matching "strings," which are sequences of "characters," e.g.:
 
 \drcap{A string}
@@ -152,37 +152,37 @@ Truck   winch   100
 For me, the following keep coming up when using regular expressions:
 
 * **`one|other`** - find `one` pattern or the `other`.
-\index{Regular expressions!\texttt{"|} (or)}
-\index{0@Symbols!\texttt{"|} (match zero or more characters)}
+\index{regular expressions!\texttt{"|} (or)}
+\index{*@\texttt{"|} (match zero or more characters)}
 
 * **`^`** - pattern for the beginning of a line.
-\index{Regular expressions!\texttt{\^{}} (beginning of line)}
-\index{0@Symbols!\texttt{\^{}} (beginning of line)}
+\index{regular expressions!\texttt{\^{}} (beginning of line)}
+\index{*@\texttt{\^{}} (beginning of line)}
 
 * **`$`** - pattern for the end of a line.
-\index{Regular expressions!\texttt{\$} (end of line)}
-\index{0@Symbols!\texttt{\$} (end of line)}
+\index{regular expressions!\texttt{\$} (end of line)}
+\index{*@\texttt{\$} (end of line)}
 
 * **`?`** - match exactly one character.
-\index{Regular expressions!\texttt{?} (match one character)}
-\index{0@Symbols!\texttt{?} (match one character)}
+\index{regular expressions!\texttt{?} (match one character)}
+\index{*@\texttt{?} (match one character)}
 
 * **`*`** - match zero or more characters.
-\index{Regular expressions!\texttt{*} (match zero or more characters)}
-\index{0@Symbols!\texttt{*} (match zero or more characters)}
+\index{regular expressions!\texttt{*} (match zero or more characters)}
+\index{*@\texttt{*} (match zero or more characters)}
 
 * **`+`** - match one or more characters.
-\index{Regular expressions!\texttt{+} (match one or more characters)}
-\index{0@Symbols!\texttt{+} (match one or more characters)}
+\index{regular expressions!\texttt{+} (match one or more characters)}
+\index{*@\texttt{+} (match one or more characters)}
 
 * **`[A-Z]`** - match any character in a range (in this case any uppercase Latin alphabetic
 character).
-\index{Regular expressions!\texttt{[A-Z]} (match a character in range)}
-\index{0@Symbols!\texttt{[A-Z]} (match a character in range)}
+\index{regular expressions!\texttt{[A-Z]} (match a character in range)}
+\index{*@\texttt{[A-Z]} (match a character in range)}
 
 * **`[n|y]`** - match one character or another (such as `n` or `y` here).
-\index{Regular expressions!\texttt{[n"|y]} (match one character or other)}
-\index{0@Symbols!\texttt{[n"|y]} (match one character or other)}
+\index{regular expressions!\texttt{[n"|y]} (match one character or other)}
+\index{*@\texttt{[n"|y]} (match one character or other)}
 
 For example, to find the lines that end in `400`:
 

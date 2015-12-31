@@ -8,7 +8,7 @@
 If Sun's motto "The network is the computer" is correct, then of course Linux and similar systems
 must be able to access the network from the command line and scripts.
 
-For example, our friend [`ping`](http://linux.die.net/man/8/ping)\drcmd{ping} is there:
+For example, our friend [`ping`](http://linux.die.net/man/8/ping)\drnet{ping} is there:
 
 \drcap{ping command}
 ```bash
@@ -32,10 +32,10 @@ rtt min/avg/max/mdev = 59.933/62.581/70.935/3.191 ms
 
 One difference with `ping` is that by default in Linux `ping` doesn't stop until the user presses
 `Ctrl-C` (which sends the [`SIGINT` interrupt](https://en.wikipedia.org/wiki/Unix_signal)
-\index{Signals} to the program). In this way it acts more like `ping -t` in `CMD.EXE`\drshl{CMD.EXE}
+\index{signals} to the program). In this way it acts more like `ping -t` in `CMD.EXE`\drshl{CMD.EXE}
 Also, be aware that on Cygwin `ping` is still the system (Windows) `ping`.
 
-[`traceroute`](http://linux.die.net/man/8/traceroute)\drcmd{traceroute} works, too (although
+[`traceroute`](http://linux.die.net/man/8/traceroute)\drnet{traceroute} works, too (although
 for once its name is longer than the `CMD.EXE` counterpart).
 
 \drcap{traceroute command}
@@ -54,7 +54,7 @@ traceroute to google.com (216.58.216.78), 30 hops max, 60 byte packets
 10  ord30s21-in-f78.1e100.net (216.58.216.78)  30.313 ms  33.138 ms  28.092 ms
 ```
 
-You can do some digging in DNS with [`dig`](http://linux.die.net/man/1/dig)\drcmd{dig}:
+You can do some digging in DNS with [`dig`](http://linux.die.net/man/1/dig)\drnet{dig}:
 
 \drcap{dig command}
 ```bash
@@ -82,7 +82,7 @@ yahoo.com.		605	IN	A	98.139.183.24
 ;; MSG SIZE  rcvd: 86
 ```
 
-And [`whois`](http://linux.die.net/man/1/whois)\drcmd{whois}:
+And [`whois`](http://linux.die.net/man/1/whois)\drnet{whois}:
 
 ```bash
 ~ $ whois yahoo.com
@@ -176,7 +176,7 @@ this section.
 ## Surfin' the Command Prompt{.unnumbered}
 
 You can browse the web from the command prompt using something like
-[`lynx`](http://linux.die.net/man/1/lynx)\drcmd{lynx}. A text-based browser isn't too exciting, but
+[`lynx`](http://linux.die.net/man/1/lynx)\drnet{lynx}. A text-based browser isn't too exciting, but
 it can have its purposes (like quickly testing network access from a command prompt). For example,
 `lynx http://google.com` yields:
 
@@ -209,8 +209,8 @@ it can have its purposes (like quickly testing network access from a command pro
 ```
 
 There are two other commands that are used to pull down web resources and save them locally -
-[`curl`](http://linux.die.net/man/1/curl)\drcmd{curl} and [`wget`](http://linux.die.net/man/1/wget)
-drcmd{wget}. Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and
+[`curl`](http://linux.die.net/man/1/curl)\drnet{curl} and [`wget`](http://linux.die.net/man/1/wget)
+drnet{wget}. Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and
 tends to be the simplest to just "grab a file and go." You see both used often in install scripts
 that download bits from the internet and then execute them:
 
@@ -258,12 +258,12 @@ But if the script looks right, then you can `chmod` it and run it:
 ## You've Got Mail{.unnumbered}
 
 You can send and receive email from the command prompt. Reading email will be rare, but if the
-system has [`pine`](http://linux.die.net/man/1/pine)\drcmd{pine} installed, that's probably the
+system has [`pine`](http://linux.die.net/man/1/pine)\drnet{pine} installed, that's probably the
 most intuitive from a non-UNIX perspective (although it is still obviously a terminal program).
-Otherwise look for [`mutt`](http://linux.die.net/man/1/mutt)\drcmd{mutt}.
+Otherwise look for [`mutt`](http://linux.die.net/man/1/mutt)\drnet{mutt}.
 
 Sending email is more interesting, especially from shell scripts. There are multiple ways, but
-[`email`](http://linux.die.net/man/1/email)\drcmd{email} is straightforward enough:
+[`email`](http://linux.die.net/man/1/email)\drnet{email} is straightforward enough:
 
 \drcap{Sending email from the command line}
 ```bash
@@ -275,7 +275,7 @@ email --blank-mail --subject "Possibly corrupted files found..." \
 ## Let's Connect{.unnumbered}
 
 There are two primary ways to get an interactive "shell" session on a remote machine. The first is
-the venerable [`telnet`](http://linux.die.net/man/1/telnet)\drcmd{telnet} command. It isn't used
+the venerable [`telnet`](http://linux.die.net/man/1/telnet)\drnet{telnet} command. It isn't used
 very often for actual interactive sessions any more (for one, because it sends credentials in plain
 text on the wire). However, because you can specify the port number, it is still handy for testing
 and debugging text-based protocols such as SMTP or HTTP. In the following, after opening a `telnet`
@@ -311,7 +311,7 @@ Transfer-Encoding: chunked
 ```
 
 To get a modern, secure shell to a remote machine, use [`ssh`](http://linux.die.net/man/1/ssh)
-\drcmd{ssh}, passing in the userid and server like this:
+\drnet{ssh}, passing in the userid and server like this:
 
 \drcap{\texttt{ssh} command}
 ```bash
@@ -323,7 +323,7 @@ this text's goals). Once logged in, you will be presented with a command prompt 
 system.
 
 You can also use the `SSH` protocol to securely transfer files between systems with the
-[`scp`](http://linux.die.net/man/1/scp)\drcmd{scp} command. It works like this for a recursive
+[`scp`](http://linux.die.net/man/1/scp)\drnet{scp} command. It works like this for a recursive
 directory copy:
 
 \drcap{\texttt{scp} command}
@@ -361,7 +361,7 @@ $
 ## Network Configuration{.unnumbered}
 
 We won't dive too deep into configuring a network, but there are a few things you should know about
-right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig)\drcmd{ifconfig}
+right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig)\drnet{ifconfig}
 command (in some ways is similar to `ipconfig` in `CMD.EXE`\drshl{CMD.EXE}. While you can use
 `ifconfig` to alter your networking settings, it is most commonly used to get a quick display of
 them:
@@ -389,7 +389,7 @@ lo        Link encap:Local Loopback
 ```
 
 To see what DNS servers the system is using, you can look in `/etc/resolv.conf`
-\index{Files and Directories!Special!\texttt{/etc/resolv.conf}}:
+\index{files and directories!special!etcresolvconf@\texttt{/etc/resolv.conf}}:
 
 \drcap{DNS servers in \texttt{resolv.conf}}
 ```bash
@@ -401,7 +401,7 @@ nameserver 10.0.2.2
 ```
 
 And to see any local overrides of network names or aliases, look in `/etc/hosts`
-\index{Files and Directories!Special!\texttt{/etc/hosts}}:
+\index{files and directories!special!etchosts@\texttt{/etc/hosts}}:
 
 \drcap{\texttt{hosts} file}
 ```bash

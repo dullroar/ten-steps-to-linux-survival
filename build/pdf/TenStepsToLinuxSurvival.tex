@@ -144,11 +144,16 @@
 \overfullrule=2cm   % Black bars to show overfull boxes
 \numberwithin{figure}{chapter}
 \DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
-\DeclareRobustCommand{\drcmd}[1]{\index{Commands!#1@\texttt{#1}}}
-\DeclareRobustCommand{\drenv}[1]{\index{Environment variables!#1@\texttt{#1}}}
-\DeclareRobustCommand{\drios}[1]{\index{OS and OS-Like Substances!#1}}
-\DeclareRobustCommand{\drshl}[1]{\index{Shells!#1@\texttt{#1}}}
-\DeclareRobustCommand{\drvic}[2]{\index{vi Commands@\texttt{vi} Commands!#1@\texttt{#1} (#2)}}
+\DeclareRobustCommand{\drcmd}[1]{\index{commands!#1@\texttt{#1}}}
+\DeclareRobustCommand{\drdis}[1]{\index{Linux distros!#1}\index{#1 (Linux distro)}}
+\DeclareRobustCommand{\drdoc}[1]{\index{documentation!#1@\texttt{#1} command}\index{#1@\texttt{#1} (documentation command)}\index{commands!#1@\texttt{#1} (documentation)}}
+\DeclareRobustCommand{\dreds}[1]{\index{editors!#1@\texttt{#1}}\index{#1@\texttt{#1} (editor)}\index{commands!#1@\texttt{#1} (editor)}}
+\DeclareRobustCommand{\drenv}[2]{\index{environment variables!#1@\texttt{\$}\texttt{#1} (#2)}}
+\DeclareRobustCommand{\drios}[1]{\index{operating systems!#1}\index{#1 (operating system)}}
+\DeclareRobustCommand{\drnet}[1]{\index{network commands!#1@\texttt{#1}}\index{#1@\texttt{#1} (network command)}\index{commands!#1@\texttt{#1} (network)}}
+\DeclareRobustCommand{\drshl}[1]{\index{shells!#1@\texttt{#1}}\index{#1 (shell)}}
+\DeclareRobustCommand{\drunx}[1]{\index{UNIX-like environments!#1}\index{#1 (UNIX-like environment)}}
+\DeclareRobustCommand{\drvic}[2]{\index{vicommands@\texttt{vi} commands!#1@\texttt{#1} (#2)}}
 \renewcommand{\KeywordTok}[1]{{#1}}
 \renewcommand{\DataTypeTok}[1]{{#1}}
 \renewcommand{\DecValTok}[1]{{#1}}
@@ -219,7 +224,7 @@
 \hspace*{0.333em}\\
  By James Lehmer ~\\
 \hspace*{0.333em}\\
- v0.7 ~\\
+ v0.8 ~\\
 \hspace*{0.333em}\\
  \includegraphics{./images/cc-by-sa.png}\\
 \emph{Ten Steps to Linux Survival - Bash for Windows People} by James
@@ -495,15 +500,13 @@ becoming more of your job, maybe this will help as a gentle push toward
 \textbf{WARNING:} \textbf{\emph{Many of the commands in this book can
 alter your system and possibly damage it.}}
 
-Obvious candidates include the file system commands like
-\texttt{rm}\drcmd{rm}
-\index{Files and Directories!Delete (\texttt{rm} command)}, the
-\texttt{vi}\drcmd{vi}\index{Editors!vi@\texttt{vi}} editor (obviously),
-and some of the "system admin" commands mentioned later, including
-system and service restarts. Use your common sense plus the various
-resources for documentation mentioned in this book to make sure you
-aren't doing anything destructive to your system, especially in
-production.
+Obvious candidates include the file system commands like \texttt{rm},
+\drcmd{rm} \index{files and directories!delete (\texttt{rm} command)}
+the \texttt{vi} \dreds{vi} editor (obviously), and some of the "system
+admin" commands mentioned later, including system and service restarts.
+Use your common sense plus the various resources for documentation
+mentioned in this book to make sure you aren't doing anything
+destructive to your system, especially in production.
 
 \textbf{\emph{YOU HAVE BEEN WARNED!}}
 
@@ -550,23 +553,23 @@ block, it will appear like this:
 
 All such blocks have been normalized to only show a maximum of 80x24
 characters. This is intentional. While most modern "UNIX" systems and
-terminal windows like \texttt{ssh}\drcmd{ssh} can handle any geometry,
+terminal windows like \texttt{ssh} \drnet{ssh} can handle any geometry,
 there are still systems and situations where you get the same terminal
 size that your grandfather would've used. It is best to learn how to
-deal with these by using \texttt{less}\drcmd{less}, redirection and the
+deal with these by using \texttt{less}, \drcmd{less} redirection and the
 like.
 
 The examples in this book typically show something like
 \texttt{\textasciitilde{}\ \$} before the command, or
 \texttt{\textasciitilde{}\ \#} (when logged in as root) or \texttt{\%}
-(when running under \texttt{csh}\drshl{csh}). These "command prompts"
-are set in \texttt{bash}\drshl{bash} via the
+(when running under \texttt{csh}). \drshl{csh} These "command prompts"
+are set in \texttt{bash} \drshl{bash} via the
 \href{https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto}{\texttt{PS1}
-environment variable}\drenv{PS1} and are not meant to be typed in as
-part of the command.
+environment variable} \drenv{PS1}{command prompt string} and are not
+meant to be typed in as part of the command.
 
 In the few places where a "UNIX" command is shown in comparison to a
-"DOS" command run under \texttt{CMD.EXE}\drshl{CMD.EXE}, the latter is
+"DOS" command run under \texttt{CMD.EXE}, \drshl{CMD.EXE} the latter is
 shown in all uppercase to help distinguish it from the "UNIX"
 equivalent, even though \texttt{CMD.EXE} is case-insensitive. In other
 words, \texttt{set} will be shown for \texttt{bash} and \texttt{SET} for
@@ -575,8 +578,11 @@ words, \texttt{set} will be shown for \texttt{bash} and \texttt{SET} for
 \section*{Acknowledgments}\label{acknowledgments}
 \addcontentsline{toc}{section}{Acknowledgments}
 
-Thanks to Ken Astl for reading an early draft of this book. Thanks to my
-wife Leslie for putting up with me while I obsessed over it.
+Thanks to Ken Astl for reading an early draft of this book. I appreciate
+the detailed and thoughtful discussions I had with Margaret Devere
+around designing good indexes. And finally, I owe more than I can repay
+(as usual) to my wife Leslie for putting up with me while I obsessed
+over this project.
 
 \hypertarget{some-history}{\chapter{Some History}\label{some-history}}
 
@@ -595,27 +601,26 @@ the depths of time:
 \begin{itemize}
 \item
   \textbf{Prehistory} - late 1960s, Nixon, Vietnam, Woodstock, Moon
-  landing,
-  \href{https://en.wikipedia.org/wiki/Multics}{Multics}\drios{Multics}
-  at MIT, GE and Bell Labs.
+  landing, \href{https://en.wikipedia.org/wiki/Multics}{Multics}
+  \drios{Multics} at MIT, GE and Bell Labs.
 \item
   \textbf{In the beginning} - early 1970s, Nixon drags on, Watergate,
   Bell Labs, \href{https://en.wikipedia.org/wiki/Ken_Thompson}{Thompson}
   \& \href{https://en.wikipedia.org/wiki/Dennis_Ritchie}{Ritchie},
-  \href{https://en.wikipedia.org/wiki/History_of_Unix}{UNIX}\drios{UNIX}
-  is born.
+  \href{https://en.wikipedia.org/wiki/History_of_Unix}{UNIX}
+  \drios{UNIX} is born.
 \item
   \textbf{More trouble from Berkeley} - late 1970s, Carter, disco, Iran
-  hostages, UC Berkely releases the
+  hostages, UC Berkeley releases the
   \href{https://en.wikipedia.org/wiki/Berkeley_Software_Distribution}{Berkeley
-  Software Distribution} (BSD)\drios{BSD}, a port based on the Bell Labs
-  UNIX. Let the forking begin!
+  Software Distribution} (BSD), \drios{BSD} a port based on the Bell
+  Labs UNIX. Let the forking begin!
 \item
   \textbf{UNIX goes commercial} - 1980s, Reagan, Iran Contra,
   \emph{E.T.}, AT\&T releases
-  \href{https://en.wikipedia.org/wiki/UNIX_System_V}{System
-  V}\drios{System V} as first commercial UNIX. From the same background
-  as Bell Labs UNIX, System V evolved with subtle and not so subtle
+  \href{https://en.wikipedia.org/wiki/UNIX_System_V}{System V}
+  \drios{System V} as first commercial UNIX. From the same background as
+  Bell Labs UNIX, System V evolved with subtle and not so subtle
   differences in approaches to command syntax, networking and much more.
   It is this release and AT\&T's copyrights that are the basis of all
   the SCO-vs-Linux lawsuits 2-3 decades later.
@@ -629,10 +634,10 @@ the depths of time:
   \item
     \textbf{HP HP-UX}\drios{HP-UX}
   \item
-    \textbf{Sun SunOS}\drios{SunOS} - BSD flavor.
+    \textbf{Sun SunOS} - BSD flavor.\drios{SunOS}
   \item
-    \textbf{Sun Solaris}\drios{Solaris} - System V flavor. Now Oracle
-    Solaris.
+    \textbf{Sun Solaris} - System V flavor. Now Oracle
+    Solaris.\drios{Solaris}
   \item
     \textbf{IBM AIX}\drios{AIX}
   \item
@@ -645,22 +650,21 @@ the depths of time:
   \textbf{Linux} - 1991+, Clinton I, grunge, \emph{Titanic},
   \href{https://en.wikipedia.org/wiki/Linus_Torvalds}{Linus Torvalds}
   releases a project called
-  \href{https://en.wikipedia.org/wiki/Linux}{Linux}\drios{Linux} based
-  on \href{https://en.wikipedia.org/wiki/MINIX}{MINIX}\drios{MINIX} (and
-  hence why Linus says Linux is pronounced like "MINIX" and not like
-  "Linus").
+  \href{https://en.wikipedia.org/wiki/Linux}{Linux} \drios{Linux} based
+  on \href{https://en.wikipedia.org/wiki/MINIX}{MINIX} \drios{MINIX}
+  (and hence why Linus says Linux is pronounced like "MINIX" and not
+  like "Linus").
 \item
   \textbf{Proliferation of the BSDs} - mid-to-late 1990s, still Clinton
   I, Monicagate, Kosovo, various ports of BSD including
-  \href{https://en.wikipedia.org/wiki/NetBSD}{NetBSD}\drios{NetBSD},
-  \href{https://en.wikipedia.org/wiki/FreeBSD}{FreeBSD}\drios{FreeBSD}
-  and
-  \href{https://en.wikipedia.org/wiki/OpenBSD}{OpenBSD}\drios{OpenBSD}.
-  All happen in the same time frame as Linux. Like Linux distros, each
-  has its own focus and prejudices, some of which are distinctly
-  "anti-Linux." The "big three" are all still in heavy use today,
-  especially among ISPs. The perception is still out there among a
-  generation of sysadmins that Linux is for the desktop and BSDs for
+  \href{https://en.wikipedia.org/wiki/NetBSD}{NetBSD}, \drios{NetBSD}
+  \href{https://en.wikipedia.org/wiki/FreeBSD}{FreeBSD} \drios{FreeBSD}
+  and \href{https://en.wikipedia.org/wiki/OpenBSD}{OpenBSD}.
+  \drios{OpenBSD} All happen in the same time frame as Linux. Like Linux
+  distros, each has its own focus and prejudices, some of which are
+  distinctly "anti-Linux." The "big three" are all still in heavy use
+  today, especially among ISPs. The perception is still out there among
+  a generation of sysadmins that Linux is for the desktop and BSDs for
   servers, but that reality shifted a long time ago.
 \item
   \textbf{Ports of call} - 2000+, Bush II \& Obama, Afghanistan \& Gulf
@@ -690,22 +694,24 @@ To further muddy the waters, there have been multiple attempts to
 \begin{itemize}
 \tightlist
 \item
-  \href{https://en.wikipedia.org/wiki/POSIX}{\textbf{POSIX}}\drios{POSIX}
-  - a de jure set of standards created in the 1980s and 1990s to try to
-  bring order to the chaos that was commercial UNIX-flavored operating
-  systems of the time. It worked. Sorta. Especially once the US
-  government started wanting systems to be "POSIX-compliant."
+  \href{https://en.wikipedia.org/wiki/POSIX}{\textbf{POSIX}} -
+  \drunx{POSIX} a de jure set of standards created in the 1980s and
+  1990s to try to bring order to the chaos that was commercial
+  UNIX-flavored operating systems of the time. It worked. Sorta.
+  Especially once the US government started wanting systems to be
+  "POSIX-compliant."
 \end{itemize}
 
 \textbf{Note:} No system runs POSIX. All POSIX-compliant system are
-"similar but different." Even Windows can claim to be POSIX-compliant in
-some respects (and has an installable POSIX subsystem), but that doesn't
-mean POSIX-compliant code will run there unchanged.
+"similar but different." Even Windows \drios{Windows} can claim to be
+POSIX-compliant in some respects (and has an installable POSIX
+subsystem), but that doesn't mean POSIX-compliant code will run there
+unchanged.
 
 \begin{itemize}
 \item
-  \href{https://en.wikipedia.org/wiki/GNU_Project}{\textbf{GNU
-  Project}}\drios{GNU} -
+  \href{https://en.wikipedia.org/wiki/GNU_Project}{\textbf{GNU Project}}
+  - \drunx{GNU}
   \href{https://en.wikipedia.org/wiki/Richard_Stallman}{Richard
   Stallman} founded the
   \href{https://en.wikipedia.org/wiki/Free_Software_Foundation}{Free
@@ -735,9 +741,8 @@ the source of the package it may or may not work correctly on another
 "UNIX" system without effort.
 
 It is similar to the history and relationship between
-\texttt{COMMAND.EXE}\drshl{COMMAND.EXE} in DOS and
-\texttt{CMD.EXE}\drshl{CMD.EXE} in Windows 10, where this would work in
-both:
+\texttt{COMMAND.EXE} \drshl{COMMAND.EXE} in DOS and \texttt{CMD.EXE}
+\drshl{CMD.EXE} in Windows 10, where this would work in both:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -776,9 +781,9 @@ if something isn't available on a certain platform or if a command isn't
 taking a specific parameter to search for variants.
 
 For example, note the difference in output between showing all processes
-with the \href{http://linux.die.net/man/1/ps}{\texttt{ps}}\drcmd{ps}
+with the \href{http://linux.die.net/man/1/ps}{\texttt{ps}} \drcmd{ps}
 (\emph{process}) command on a Linux system, in this case Linux Mint
-under \texttt{bash}\drshl{bash}:
+under \texttt{bash}: \drshl{bash}
 
 \drcap{\texttt{ps} on Linux in \texttt{bash}}
 
@@ -792,8 +797,8 @@ under \texttt{bash}\drshl{bash}:
 \end{Highlighting}
 \end{Shaded}
 
-Versus the "same" command on a FreeBSD\drios{FreeBSD} system at my ISP,
-where \texttt{csh}\drshl{csh} is the default shell:
+Versus the "same" command on a FreeBSD \drios{FreeBSD} system at my ISP,
+where \texttt{csh} \drshl{csh} is the default shell:
 
 \drcap{\texttt{ps} on FreeBSD in \texttt{csh}}
 
@@ -821,8 +826,8 @@ best manage the installing, updating and removal of those packages.
 
 In the BSD world each major port has its own approach. In the Linux
 world the job of deciding all this and putting it all together falls to
-distributions or "distros."\drios{Linux distros} These have evolved over
-time into a series of
+distributions or "distros." \index{Linux distros} These have evolved
+over time into a series of
 \href{https://en.wikipedia.org/wiki/Linux_distribution\#Popular_distributions}{"families"}
 based in large part around the
 \href{https://en.wikipedia.org/wiki/Package_manager}{package management
@@ -830,40 +835,44 @@ tool} predominantly used:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{apt-get}\drcmd{apt-get}\index{Package management!\texttt{apt-get} command},
-  \texttt{dpkg}\drcmd{dpkg}\index{Package management!\texttt{dpkg} command}
-  and
-  \texttt{.deb}\index{Files and Directories!\texttt{.deb} package files}
-  files} -
-  \href{https://en.wikipedia.org/wiki/Debian}{Debian}\drios{Debian}
+  \textbf{\texttt{apt-get}, \texttt{dpkg} and \texttt{.deb} files} -
+  \drcmd{apt-get}
+  \index{package management!aptget@\texttt{apt-get} command}
+  \drcmd{dpkg} \index{package management!dpkg@\texttt{dpkg} command}
+  \index{files and directories!debpackagefiles@\texttt{.deb} package files}
+  \href{https://en.wikipedia.org/wiki/Debian}{Debian} \drdis{Debian}
   flavors, such as
-  \href{https://en.wikipedia.org/wiki/Ubuntu_\%28operating_system\%29}{Ubuntu}\drios{Ubuntu}
-  and \href{https://en.wikipedia.org/wiki/Linux_Mint}{Mint}\drios{Mint}.
+  \href{https://en.wikipedia.org/wiki/Ubuntu_\%28operating_system\%29}{Ubuntu}
+  \drdis{Ubuntu} and
+  \href{https://en.wikipedia.org/wiki/Linux_Mint}{Mint}. \drdis{Mint}
   Mint is currently my desktop Linux of choice and Debian my preferred
   server OS, both based on familiarity.
 \item
-  \textbf{\texttt{pacman}}\drcmd{pacman}\index{Package management!\texttt{pacman} command}
-  - \href{https://en.wikipedia.org/wiki/Arch_Linux}{Arch}\drios{Arch}
+  \textbf{\texttt{pacman}} - \drcmd{pacman}
+  \index{package management!pacman@\texttt{pacman} command}
+  \href{https://en.wikipedia.org/wiki/Arch_Linux}{Arch} \drdis{Arch}
   flavors.
 \item
-  \textbf{\texttt{rpm}\drcmd{rpm}\index{Package management!\texttt{rpm} command}
-  and
-  \texttt{yum}\drcmd{yum}\index{Package management!\texttt{yum} command}}
-  - Red Hat\drios{Red Hat} flavors,such as
-  \href{https://en.wikipedia.org/wiki/Fedora_\%28operating_system\%29}{Fedora}\drios{Fedora},
+  \textbf{\texttt{rpm} and \texttt{yum}} - \drcmd{rpm}
+  \index{package management!rpm@\texttt{rpm} command} \drcmd{yum}
+  \index{package management!yum@\texttt{yum} command} Red Hat
+  \drdis{Red Hat} flavors,such as
+  \href{https://en.wikipedia.org/wiki/Fedora_\%28operating_system\%29}{Fedora},
+  \drdis{Fedora}
   \href{https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux}{Red Hat
-  Enterprise}\drios{Red Hat Enterprise Linux (RHEL)} and
-  \href{https://en.wikipedia.org/wiki/CentOS}{CentOS}\drios{CentOS}.
+  Enterprise} \drdis{Red Hat Enterprise Linux (RHEL)} and
+  \href{https://en.wikipedia.org/wiki/CentOS}{CentOS}. \drdis{CentOS}
 \item
   \textbf{Source code} -
-  \href{https://en.wikipedia.org/wiki/Gentoo_Linux}{Gentoo}\drios{Gentoo}
-  tends to be a "compile from scratch" environment, much like
-  \href{https://en.wikipedia.org/wiki/FreeBSD_Ports}{FreeBSD}\drios{FreeBSD}.
+  \href{https://en.wikipedia.org/wiki/Gentoo_Linux}{Gentoo}
+  \drdis{Gentoo} tends to be a "compile from scratch" environment, much
+  like \href{https://en.wikipedia.org/wiki/FreeBSD_Ports}{FreeBSD}.
+  \drios{FreeBSD}
 \item
   \textbf{"Tar balls"} - source code or binaries delivered via archived
   and zipped directories. Common on
-  \href{https://en.wikipedia.org/wiki/Slackware}{Slackware}\drios{Slackware},
-  some others.
+  \href{https://en.wikipedia.org/wiki/Slackware}{Slackware},
+  \drdis{Slackware} some others.
 \end{itemize}
 
 \section*{Get Embed With Me}\label{get-embed-with-me}
@@ -873,22 +882,23 @@ A lot of firmware in embedded devices is based on some sort of "UNIX"
 flavor. Networking gear at both the consumer and enterprise level,
 storage devices and so on all tend to run something that "looks like"
 UNIX at some level.
-\href{https://en.wikipedia.org/wiki/BusyBox}{BusyBox}\drios{BusyBox}\drshl{BusyBox}
-is a good example of a "UNIX-like" shell (command prompt) used by many
-embedded systems. Of course, as to what's actually available, who knows?
-If you can get shell open, the best thing to do is see what works.
+\href{https://en.wikipedia.org/wiki/BusyBox}{BusyBox} \drunx{BusyBox}
+\drshl{BusyBox} is a good example of a "UNIX-like" shell (command
+prompt) used by many embedded systems. Of course, as to what's actually
+available, who knows? If you can get shell open, the best thing to do is
+see what works.
 
 \section*{Cygwin}\label{cygwin}
 \addcontentsline{toc}{section}{Cygwin}
 
-\href{http://cygwin.com/}{Cygwin}\drios{Cygwin} is an interesting beast.
-It is a DLL for Windows that implements most of the POSIX and related
-UNIX-like "system API calls" for programming, and then is also a series
-of ported open source packages, including shells, utilities and even
-desktop environments, all \textbf{\emph{recompiled}} to run on Windows
-as long as the Cygwin DLL is accessible. Like a Linux distro it has an
-installer that is a "package manager," and if a package isn't available,
-you can usually recompile the source code using Cygwin.
+\href{http://cygwin.com/}{Cygwin} \drunx{Cygwin} is an interesting
+beast. It is a DLL for Windows that implements most of the POSIX and
+related UNIX-like "system API calls" for programming, and then is also a
+series of ported open source packages, including shells, utilities and
+even desktop environments, all \textbf{\emph{recompiled}} to run on
+Windows as long as the Cygwin DLL is accessible. Like a Linux distro it
+has an installer that is a "package manager," and if a package isn't
+available, you can usually recompile the source code using Cygwin.
 
 You cannot run Linux or BSD binaries on Cygwin without recompiling them
 first. \textbf{However}, you can often run \textbf{\emph{scripts}} from
@@ -926,7 +936,7 @@ Examples of shells:
 \begin{itemize}
 \item
   \href{https://technet.microsoft.com/en-us/library/cc754340.aspx}{\textbf{\texttt{CMD.EXE}}}\drshl{CMD.EXE}
-  - yes, Windows has a shell.
+  - yes, Windows \drios{Windows} has a shell.
 \item
   \href{https://technet.microsoft.com/en-us/library/ms714469\%28v=VS.85\%29.aspx}{\textbf{\texttt{PowerShell.exe}}}
   \drshl{Powershell} - in fact, it has at least two!
@@ -947,8 +957,8 @@ In UNIX-land:
     \begin{itemize}
     \tightlist
     \item
-      \textbf{\texttt{dash}} - Debian Almquist shell (replaced
-      \texttt{ash} in Debian)
+      \textbf{\texttt{dash}} - \drshl{dash} Debian Almquist shell
+      (replaced \texttt{ash} in Debian)
     \end{itemize}
   \item
     \href{https://en.wikipedia.org/wiki/Bash_\%28Unix_shell\%29}{\textbf{\texttt{bash}}}\drshl{bash}
@@ -985,9 +995,8 @@ Built-Ins}{bash Built-Ins}}\label{bash-built-ins}
 Every shell has some "built-in" commands that are implemented as part of
 the shell and not as an external command or program, and
 \texttt{bash}\drshl{bash} has its share, as shown by running the
-\href{http://linux.die.net/man/1/help}{\texttt{help}}\drcmd{help}
-\index{Documentation!help@\texttt{help} command} command in a
-\texttt{bash} terminal:
+\href{http://linux.die.net/man/1/help}{\texttt{help}} \drdoc{help}
+command in a \texttt{bash} terminal:
 
 \drcap{Built-in commands in \texttt{bash}}
 
@@ -1032,7 +1041,7 @@ key.
 Pay attention to the first line in script files, which will typically
 have a
 \href{https://en.wikipedia.org/wiki/Shebang_\%28Unix\%29}{"shebang"}
-\index{0@Symbols!\texttt{\#"!} (shebang)} line that looks like this:
+\index{*@\texttt{\#"!} (shebang)} line that looks like this:
 
 \drcap{\texttt{bash} "shebang"}
 
@@ -1102,8 +1111,8 @@ But even so, there are some similarities between \texttt{CMD.EXE} and a
 Linux shell like \texttt{bash}\drshl{bash}. In both \texttt{bash} and
 \texttt{CMD.EXE}\drshl{CMD.EXE} the
 \href{http://linux.die.net/man/1/set}{\texttt{set}}\drcmd{set}
-\index{Environment variables!Displaying (\texttt{set} command)} command
-shows you all environment variables that have been set. Here's
+\index{environment variables!displaying!setcommand@\texttt{set} command}
+command shows you all environment variables that have been set. Here's
 \texttt{bash}:
 
 \drcap{\texttt{set} command in \texttt{bash}}
@@ -1172,9 +1181,10 @@ And \texttt{CMD.EXE}:
 
 Similarly, the
 \href{http://linux.die.net/man/1/echo}{\texttt{echo}}\drcmd{echo}
-\index{Environment variables!Displaying (\texttt{echo} command)} command
-can be used to show you the contents of an environment variable like
-\texttt{HOME}\drenv{HOME} on \texttt{bash}:
+\index{environment variables!displaying!echocommand@\texttt{echo} command}
+command can be used to show you the contents of an environment variable
+like \texttt{HOME}\drenv{HOME}{current user's home directory} on
+\texttt{bash}:
 
 \drcap{\texttt{echo} the \texttt{HOME} environment variable in \texttt{bash}}
 
@@ -1204,7 +1214,7 @@ contents using the "same" \texttt{echo} command, note that:
 \def\labelenumi{\arabic{enumi}.}
 \item
   The syntax for accessing an environment variable is
-  \texttt{\$variable}\index{Environment variables!Syntax} in
+  \texttt{\$variable}\index{environment variables!syntax} in
   \texttt{bash} and \texttt{\%variable\%} in \texttt{CMD.EXE}.
 \item
   \texttt{bash} is case-sensitive and so \texttt{echo\ \$HOME} works but
@@ -1245,7 +1255,7 @@ for at least two reasons:
 
 It is much more common to set up environment variables to control
 run-time execution in Linux than in Windows. In fact, it is quite common
-to assign\index{Environment variables!Assigning} a given environment
+to assign\index{environment variables!assigning} a given environment
 variable for the single execution of a program, to the point that
 \texttt{bash} has built-in "one-line" support for it:
 
@@ -1299,8 +1309,8 @@ accents"):
 
 When writing scripts that can be run by any user, it may be helpful to
 know their user name at run-time. There are at least two different ways
-to determine that. The first is via the \texttt{USER}\drenv{USER}
-environment variable:
+to determine that. The first is via the
+\texttt{USER}\drenv{USER}{current user} environment variable:
 
 \drcap{\texttt{USER} environment variable}
 
@@ -1324,9 +1334,9 @@ The second is with a command with one of the best names, ever -
 \end{Shaded}
 
 Some environments set the \texttt{USER} environment variable, some set a
-\texttt{USERNAME}\drenv{USERNAME} variable, and some like Mint set both.
-I think it is better to use \texttt{whoami}, which tends to be on almost
-all systems.
+\texttt{USERNAME}\drenv{USERNAME}{current user} variable, and some like
+Mint set both. I think it is better to use \texttt{whoami}, which tends
+to be on almost all systems.
 
 \section*{Paths (a Part of Any Balanced
 Shrubbery)}\label{paths-a-part-of-any-balanced-shrubbery}
@@ -1335,7 +1345,8 @@ Shrubbery)}\label{paths-a-part-of-any-balanced-shrubbery}
 The concept of a "path" for finding executables is almost identical
 between "UNIX" and Windows, and Windows lifted it from UNIX (or
 CP/M\drios{CP/M}, which lifted it from UNIX). Look at the output of the
-\texttt{PATH}\drenv{PATH} environment variable under \texttt{bash}:
+\texttt{PATH}\drenv{PATH}{execution search path} environment variable
+under \texttt{bash}:
 
 \drcap{\texttt{PATH} environment variable in \texttt{bash}}
 
@@ -1346,8 +1357,8 @@ CP/M\drios{CP/M}, which lifted it from UNIX). Look at the output of the
 \end{Highlighting}
 \end{Shaded}
 
-Echoing the \texttt{PATH}\drenv{PATH} environment variable under
-\texttt{CMD.EXE} works, too:
+Echoing the \texttt{PATH}\drenv{PATH}{execution search path} environment
+variable under \texttt{CMD.EXE} works, too:
 
 \drcap{\texttt{PATH} environment variable in \texttt{CMD.EXE}}
 
@@ -1366,17 +1377,17 @@ Note the differences and similarities. Both the paths are evaluated left
 to right. Both use separators between path components, a \texttt{;} for
 DOS and Windows, a \texttt{:} for Linux. Both delimit their directory
 names with slashes, with \texttt{\textbackslash{}} for DOS and Windows
-and \texttt{/}\index{0@Symbols!\texttt{/} (path separator)} for Linux.
-But Linux has no concept of a "drive letter" like \texttt{C:} in
-Windows, and instead everything is mounted in a single namespace
-hierarchy starting at the root \texttt{/}. We'll be talking more about
-directories, paths and file systems in the next chapter.
+and \texttt{/}\index{*@\texttt{/} (path separator)} for Linux. But Linux
+has no concept of a "drive letter" like \texttt{C:} in Windows, and
+instead everything is mounted in a single namespace hierarchy starting
+at the root \texttt{/}. We'll be talking more about directories, paths
+and file systems in the next chapter.
 
-Just to muddy the waters further, notice how Cygwin\drios{Cygwin} under
-Windows shows the \texttt{PATH}\drenv{PATH} environment variable with
-\texttt{bash} syntax but a combination of both Cygwin and Windows
-directories, and Windows drive letters like \texttt{C:} mapped to
-\texttt{/cygdrive/c}:
+Just to muddy the waters further, notice how Cygwin\drunx{Cygwin} under
+Windows shows the \texttt{PATH}\drenv{PATH}{execution search path}
+environment variable with \texttt{bash} syntax but a combination of both
+Cygwin and Windows directories, and Windows drive letters like
+\texttt{C:} mapped to \texttt{/cygdrive/c}:
 
 \drcap{\texttt{PATH} environment variable in Cygwin}
 
@@ -1401,9 +1412,9 @@ Interact}\label{open-your-shell-and-interact}
 The actual "command prompt" is when you run a shell in an "interactive
 session" in a terminal window. This might be from logging into the
 console of a Linux VM, or starting a terminal window in a X window
-manager like GNOME or KDE, or \texttt{ssh}'ing\drcmd{ssh} into an
+manager like GNOME or KDE, or \texttt{ssh}'ing\drnet{ssh} into an
 interactive session of a remote machine, or even running a
-Cygwin\drios{Cygwin} command prompt under Windows.
+Cygwin\drunx{Cygwin} command prompt under Windows.
 
 Command prompts allow you to work in a so-called "REPL" environment
 (Read, Evaluate, Print, Loop). You can run a series of commands once, or
@@ -1493,8 +1504,8 @@ The other thing to remember about the interactive shell is command
 history. Again, both \texttt{CMD.EXE}\drshl{CMD.EXE} and \texttt{bash}
 give you command history, but \texttt{CMD.EXE} only remembers it for the
 session, while \texttt{bash} stores it in one of your hidden "profile"
-or "dot" files in your home directory called
-\texttt{.bash\_history}\index{Files and Directories!Special!\texttt{.bash\_history}},
+or "dot" files in your home directory called \texttt{.bash\_history}
+\index{files and directories!special!bashhistory@\texttt{.bash\_history}},
 which you can display with \texttt{ls\ -a}:
 
 \drcap{\texttt{ls} command showing hidden files}
@@ -1563,10 +1574,10 @@ ext* file systems as preferred, it can write to a lot of file systems
 and can read even more.
 
 As mentioned before, the biggest differences between Linux and Windows
-is that the Linux environments do not have a concept of "drive letters."
-Instead everything is "mounted" under a single hierarchy that starts at
-the "root directory" or
-\texttt{/}\index{0@Symbols!\texttt{/} (root directory)}\index{Files and Directories!Root (\texttt{/})}:
+\drios{Windows} is that the Linux environments do not have a concept of
+"drive letters." Instead everything is "mounted" under a single
+hierarchy that starts at the "root directory" or \texttt{/}:
+\index{*@\texttt{/} (root directory)}\index{files and directories!root (\texttt{/})}
 
 \drcap{Listing of the root directory}
 
@@ -1593,7 +1604,7 @@ often mounted automatically under either a \texttt{/mnt} or
 
 As we've already seen, the command to \emph{list} the contents of a
 directory is \href{http://linux.die.net/man/1/ls}{\texttt{ls}}\drcmd{ls}
-\index{Files and Directories!List (\texttt{ls} command)}:
+\index{files and directories!list (\texttt{ls} command)}:
 
 \drcap{Listing directory contents}
 
@@ -1607,7 +1618,7 @@ directory is \href{http://linux.die.net/man/1/ls}{\texttt{ls}}\drcmd{ls}
 Remember, "UNIX" environments think of files that start with a
 \texttt{.} as "hidden." If you want to see all these
 \href{https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory\#Unix_and_Unix-like_environments}{"dotfiles"}
-\index{Files and Directories!Hidden (dotfiles)}, you can use
+\index{files and directories!hidden (dotfiles)}, you can use
 \texttt{ls\ -a}, in this case on an average "home" directory:
 
 \drcap{Listing a home directory showing hidden "dotfiles"}
@@ -1740,7 +1751,7 @@ to use the GNU-style parameters in scripts as self-documenting code.
 
 If we suspect the file is a text file, we can echo it to the console
 with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}\drcmd{cat}
-\index{Files and Directories!Display (\texttt{cat} command)}
+\index{files and directories!display (\texttt{cat} command)}
 (\emph{concatenate}) command:
 
 \drcap{\texttt{cat} command}
@@ -1774,15 +1785,16 @@ with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}\drcmd{cat}
 \end{Shaded}
 
 In this example when we \texttt{cat\ installrdp} we can determine it is
-a \texttt{bash} shell script (because the "shebang" is pointing to
-\texttt{bash}) that looks to install and configure
-\href{https://github.com/FreeRDP/FreeRDP}{FreeRDP}\drcmd{xfreerdp} on a
+a \texttt{bash} shell script (because the
+"shebang"\index{*@\texttt{\#"!} (shebang)} is pointing to
+\texttt{bash}\drshl{bash}) that looks to install and configure
+\href{https://github.com/FreeRDP/FreeRDP}{FreeRDP}\drnet{xfreerdp} on a
 Debian-style system:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{\texttt{apt-get}}\drcmd{apt-get}\index{Package management!\texttt{apt-get} command}
+  \textbf{\texttt{apt-get}}\drcmd{apt-get}\index{package management!aptget@\texttt{apt-get} command}
   - Debian-style package manager.
 \item
   \textbf{\texttt{git\ clone}}\drcmd{git} - cloning package from
@@ -1795,15 +1807,15 @@ Debian-style system:
 
 A better way to display a longer file is to use the
 \href{http://linux.die.net/man/1/less}{\texttt{less}}\drcmd{less}
-\index{Files and Directories!Paginate (\texttt{less} command)} command
-(which is a derivative of the original
+\index{files and directories!paginate!less@\texttt{less} command}\index{pagination!\texttt{less} command}
+command (which is a derivative of the original
 \href{http://linux.die.net/man/1/more}{\texttt{more}}\drcmd{more}
-\index{Files and Directories!Paginate (\texttt{more} command)}, hence
-the name). \texttt{less} is a paginator, where the \texttt{Space},
+\index{files and directories!paginate!more@\texttt{more} command}\index{pagination!\texttt{more} command},
+hence the name). \texttt{less} is a paginator, where the \texttt{Space},
 \texttt{Page\ Down} or down arrow keys scroll down and the
 \texttt{Page\ Up} or up arrow keys scrolls up. \texttt{Q} quits.
 
-\textbf{Note:} The \texttt{vi}\drcmd{vi} search (\texttt{/}, \texttt{?},
+\textbf{Note:} The \texttt{vi}\dreds{vi} search (\texttt{/}, \texttt{?},
 \texttt{n} and \texttt{p}) and navigation (\texttt{G}, \texttt{0}) keys
 work within \texttt{less}, too. In general \texttt{less} is a great
 lightweight way to motor around in a text file without editing it.
@@ -1812,10 +1824,10 @@ We can also look at just the end or \emph{tail} of a file (often the
 most interesting when looking at log files and troubleshooting a current
 problem) with the
 \href{http://linux.die.net/man/1/tail}{\texttt{tail}}\drcmd{tail}
-\index{Files and Directories!Display (\texttt{tail} command)} command.
-The next example shows the last 10 lines of the kernel
-\texttt{dmesg}\index{Files and Directories!Special!\texttt{/var/log/dmesg}}
-log:
+\index{files and directories!display (\texttt{tail} command)} command.
+The next example shows the last 10 lines of the kernel \texttt{dmesg}
+\index{files and directories!special!varlogdmesg@\texttt{/var/log/dmesg}}
+\index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)} log:
 
 \drcap{\texttt{tail} command}
 
@@ -1894,7 +1906,8 @@ Use \texttt{Ctrl-C} to cancel following the file.
 
 If we know nothing about a \emph{file}, we can use the
 \href{http://linux.die.net/man/1/file}{\texttt{file}}\drcmd{file}
-\index{Files and Directories!Detecting type} command to help us guess:
+\index{files and directories!detecting type (\texttt{file} command)}
+command to help us guess:
 
 \drcap{\texttt{file} command}
 
@@ -1964,7 +1977,7 @@ file contents.
 \end{Shaded}
 
 The
-\href{http://linux.die.net/man/1/sort}{\texttt{sort}}\drcmd{sort}\index{Sorting!\texttt{sort} command}
+\href{http://linux.die.net/man/1/sort}{\texttt{sort}}\drcmd{sort}\index{sorting!\texttt{sort} command}
 command to the rescue! We will see that the \texttt{sort} command can be
 used to not just \emph{sort} files, but also to merge them and remove
 duplicates.
@@ -2055,7 +2068,7 @@ alphabetically. Let's fix that by telling it to sort numerically:
 
 Maybe we care about the top three most expensive items. We haven't
 talked about
-\texttt{pipes}\index{0@Symbols!\texttt{"|} (pipe)}\index{Files and Directories!Redirection}
+\texttt{pipes}\index{*@\texttt{"|} (pipe)}\index{files and directories!redirection}
 yet, but check this out:
 
 \drcap{Top three most expensive items}
@@ -2114,7 +2127,7 @@ confusion as to what it was doing.
 We can copy, move (or rename - same thing) and delete files and
 directories. To \emph{copy}, simply use the
 \href{http://linux.die.net/man/1/cp}{\texttt{cp}}\drcmd{cp}
-\index{Files and Directories!Copy (\texttt{cp} command)} command:
+\index{files and directories!copy (\texttt{cp} command)} command:
 
 \drcap{\texttt{cp} command}
 
@@ -2147,7 +2160,7 @@ parameter names again:
 
 To \emph{move} use
 \href{http://linux.die.net/man/1/mv}{\texttt{mv}}\drcmd{mv}
-\index{Files and Directories!Move (\texttt{mv} command)}:
+\index{files and directories!move (\texttt{mv} command)}:
 
 \drcap{\texttt{mv} command}
 
@@ -2169,7 +2182,7 @@ extensions from \texttt{.htm} to \texttt{.html}.
 
 To delete or \emph{remove} a file you use
 \href{http://linux.die.net/man/1/rm}{\texttt{rm}}\drcmd{rm}
-\index{Files and Directories!Delete (\texttt{rm} command)}:
+\index{files and directories!delete (\texttt{rm} command)}:
 
 \drcap{\texttt{rm} command}
 
@@ -2243,7 +2256,7 @@ change \texttt{ls} to \texttt{rm} before running it. Safer that way.
 We just learned how to make a file disappear. We can also make a file
 magically appear, just by
 \href{http://linux.die.net/man/1/touch}{\texttt{touch}}\drcmd{touch}
-\index{Files and Directories!Create empty (\texttt{touch} command)}:
+\index{files and directories!create empty (\texttt{touch} command)}:
 
 \drcap{\texttt{touch} command}
 
@@ -2261,7 +2274,7 @@ Notice the newly created file is zero bytes long.
 Interestingly enough, we can also use \texttt{touch} just to update the
 "last modified date" of an existing file, as you can see in time change
 in the following listing after running
-\texttt{touch}\index{Files and Directories!Update last modified date (\texttt{touch} command)}
+\texttt{touch}\index{files and directories!update last modified date (\texttt{touch} command)}
 on the same file again:
 
 \drcap{A second \texttt{touch}}
@@ -2278,7 +2291,7 @@ on the same file again:
 It can be useful (but also distressing from a forensics point of view)
 to set the last modified date of a file to a specific date and time,
 which
-\texttt{touch}\index{Files and Directories!Set last modified date (\texttt{touch} command)}
+\texttt{touch}\index{files and directories!set last modified date (\texttt{touch} command)}
 also allows you to do, in this case to the night before Christmas:
 
 \drcap{Set file modified date to a specific date and time}
@@ -2294,7 +2307,7 @@ also allows you to do, in this case to the night before Christmas:
 
 To \emph{make a directory} you use
 \href{http://linux.die.net/man/1/mkdir}{\texttt{mkdir}}\drcmd{mkdir}
-\index{Files and Directories!Create (\texttt{mkdir} command)}:
+\index{files and directories!create directory (\texttt{mkdir} command)}:
 
 \drcap{\texttt{mkdir} command}
 
@@ -2356,7 +2369,7 @@ the slashes.
 
 To \emph{change directories}, simply use
 \href{http://linux.die.net/man/1/cd}{\texttt{cd}}\drcmd{cd}
-\index{Files and Directories!Change (\texttt{cd} command)} much like in
+\index{files and directories!change (\texttt{cd} command)} much like in
 Windows:
 
 \drcap{\texttt{cd} command}
@@ -2370,12 +2383,13 @@ Windows:
 \end{Shaded}
 
 \href{http://linux.die.net/man/1/pwd}{\texttt{pwd}}\drcmd{pwd}
-\index{Files and Directories!Current (\texttt{pwd} command)} simply
-\emph{prints the working (current) directory}. If \texttt{whoami} tells
-you who you are, \texttt{pwd} tells you \textbf{\emph{where}} you are.
+\index{files and directories!current directory (\texttt{pwd} command)}
+simply \emph{prints the working (current) directory}. If \texttt{whoami}
+tells you who you are, \texttt{pwd} tells you \textbf{\emph{where}} you
+are.
 
 In Linux, users can have
-"home"\index{Files and Directories!Home (\texttt{\~{}})} directories
+"home"\index{files and directories!home (\texttt{\~{}})} directories
 (similar to Windows profiles), typically located under
 \texttt{/home/\textless{}username\textgreater{}} for normal users, and
 \texttt{/root} for the "root" (admin) id. To change to a user's "home"
@@ -2392,8 +2406,8 @@ directory, simply use \texttt{cd}\drcmd{cd} with no parameters:
 \end{Shaded}
 
 The tilde
-(\texttt{\textasciitilde{}})\index{0@Symbols!\texttt{\~{}} (home directory)}
-\index{Files and Directories!Home (\texttt{\~{}})} character is an alias
+(\texttt{\textasciitilde{}})\index{*@\texttt{\~{}} (home directory)}
+\index{files and directories!home (\texttt{\~{}})} character is an alias
 for the current user's home directory. The following example is
 equivalent to above:
 
@@ -2429,13 +2443,13 @@ In addition, you need to know the difference between "absolute" and
 
 \begin{itemize}
 \item
-  \textbf{Absolute path}/index\{Files and Directories!Absolute path\} -
+  \textbf{Absolute path}\index{files and directories!absolute path} -
   \textbf{\emph{always}} "goes through" or specifies the "root"
-  (\texttt{/})\index{0@Symbols!\texttt{/} (root directory)}\index{Files and Directories!Root (\texttt{/})}
+  (\texttt{/})\index{*@\texttt{/} (root directory)}\index{files and directories!root (\texttt{/})}
   directory, e.g. regardless of the current working directory,
   \texttt{cd\ /etc} will change it to \texttt{/etc}.
 \item
-  \textbf{Relative path}/index\{Files and Directories!Relative path\} -
+  \textbf{Relative path}\index{files and directories!relative path} -
   does \textbf{\emph{not}} specify the root directory, and expects to
   start the navigation at the current directory with all path components
   traversed from there, e.g., \texttt{cd\ Dissertations} changes the
@@ -2443,9 +2457,9 @@ In addition, you need to know the difference between "absolute" and
 \end{itemize}
 
 Windows inherited the concept of \texttt{.}
-\index{0@Symbols!\texttt{.} (current directory)}\index{Files and Directories!Current (\texttt{.})}
+\index{*@\texttt{.} (current directory)}\index{files and directories!current directory (\texttt{.})}
 for the current directory and \texttt{..}
-\index{0@Symbols!\texttt{..} (parent directory)}\index{Files and Directories!Parent (\texttt{..})}
+\index{*@\texttt{..} (parent directory)}\index{files and directories!parent directory (\texttt{..})}
 for the parent directory directly from UNIX. Consider the following
 examples that combine all of the above about relative paths and see if
 it makes sense:
@@ -2480,10 +2494,9 @@ file names in the same command?
 \section*{May I?}\label{may-i}
 \addcontentsline{toc}{section}{May I?}
 
-Most "UNIX" file systems come with a set of nine
-permissions\index{Files and Directories!Permissions}\index{Files and Directories!Permissions}
-that can be thought of as a "grid" of 3x3 showing "who has what?" The
-"who" is known as "UGO":
+Most "UNIX" file systems come with a set of nine permissions
+\index{files and directories!permissions} that can be thought of as a
+"grid" of 3x3 showing "who has what?" The "who" is known as "UGO":
 
 \begin{itemize}
 \item
@@ -2556,7 +2569,7 @@ can be read, written (new files created) and listed by \texttt{root}
 other ids (\texttt{r-xr-x}).
 
 Back on Linux, if we look in
-\texttt{/etc/init.d}\index{Files and Directories!Special!\texttt{/etc/init.d}}
+\texttt{/etc/init.d}\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}}
 where many services store their startup scripts we see:
 
 \drcap{Listing the \texttt{/etc/init.d} directory}
@@ -2599,7 +2612,7 @@ of a \texttt{-} in the detailed listing above).
 To \emph{change} the \emph{owning} user of a file or directory (assuming
 you have permissions to do so), use the
 \href{http://linux.die.net/man/1/chown}{\texttt{chown}}\drcmd{chown}
-\index{Files and Directories!Permissions!\texttt{chown} command}
+\index{files and directories!permissions!\texttt{chown} command}
 command:
 
 \drcap{Change file ownership}
@@ -2618,7 +2631,7 @@ command:
 
 To \emph{change} the primary \emph{group}, use the
 \href{http://linux.die.net/man/1/chgrp}{\texttt{chgrp}}\drcmd{chgrp}
-\index{Files and Directories!Permissions!\texttt{chgrp} command}
+\index{files and directories!permissions!\texttt{chgrp} command}
 command:
 
 \drcap{\texttt{chgrp} command}
@@ -2634,7 +2647,7 @@ command:
 
 To \emph{change} the various permissions or \emph{mode} bits, you use
 the \href{http://linux.die.net/man/1/chmod}{\texttt{chmod}}\drcmd{chmod}
-\index{Files and Directories!Permissions!\texttt{chmod} command}
+\index{files and directories!permissions!\texttt{chmod} command}
 command. It uses mnemonics of "ugo" for user, group and "other,"
 respectively. It also uses mnemonics of "rwx" for read, write and
 execute, and \texttt{+} to add a permission and \texttt{-} to remove it.
@@ -2752,8 +2765,8 @@ or other entries. The following should be insightful:
 
 In the Windows world, we are used to compressing and sending directories
 around as \texttt{.zip} files. In Linux you can also deal with
-\texttt{.zip}\index{Files and Directories!\texttt{.zip} files} files,
-although they don't tend to be the most common, using the
+\texttt{.zip}\index{files and directories!zipfiles@\texttt{.zip} files}
+files, although they don't tend to be the most common, using the
 \href{http://linux.die.net/man/1/zip}{\texttt{zip}}\drcmd{zip} and
 \href{http://linux.die.net/man/1/unzip}{\texttt{unzip}}\drcmd{unzip}
 commands:
@@ -2828,7 +2841,8 @@ command and the result is called a "tarball":
 In the \texttt{tar} command above, the parameters are \texttt{c} (create
 a new archive), \texttt{v} (turn on "verbose" output) and \texttt{f}
 followed by the file name of the new
-\texttt{.tar}\index{Files and Directories!\texttt{.tar} files} file.
+\texttt{.tar}\index{files and directories!tararchivefiles@\texttt{.tar} archive files}
+file.
 
 \textbf{Note:} \texttt{tar} supports POSIX-style parameters
 (\texttt{-c}), GNU-style (\texttt{-\/-create}), as well as the older
@@ -2866,8 +2880,8 @@ parameters:
 
 In this case the \texttt{z} parameter says to use
 \texttt{gzip}\drcmd{gzip} compression, and the
-\texttt{.tgz}\index{Files and Directories!\texttt{.tgz} files} file
-suffix means basically "tarred and gzipped", or the equivalent to
+\texttt{.tgz}\index{files and directories!tgzarchivefiles@\texttt{.tgz} archive files}
+file suffix means basically "tarred and gzipped", or the equivalent to
 \texttt{.tar.gz} in the first example.
 
 \texttt{tar} is used to both create and read \texttt{.tar} files. So to
@@ -2902,7 +2916,7 @@ UNIX file systems also have both these types of links (which isn't
 surprising, given that Microsoft got the ideas from UNIX). Both are
 created with the
 \href{http://linux.die.net/man/1/ln}{\texttt{ln}}\drcmd{ln} command. A
-"soft link"\index{Files and Directories!Soft links} is equivalent to a
+"soft link"\index{files and directories!soft links} is equivalent to a
 Windows shortcut, and can point to a file or a directory, and can point
 to anything on any mounted file system:
 
@@ -2951,12 +2965,12 @@ The things to notice about this example:
   will be determined after the link is traversed.
 \end{enumerate}
 
-A "hard link"\index{Files and Directories!Hard links} is a bit
+A "hard link"\index{files and directories!hard links} is a bit
 different. It can only be made between \emph{files} and the two files
 \textbf{\emph{must be on the same file system}}. That is because hard
 links are actually directory entries (as opposed to files in
 directories) that point to the same
-\href{https://en.wikipedia.org/wiki/Inode}{"inode"}\index{Files and Directories!Inodes}
+\href{https://en.wikipedia.org/wiki/Inode}{"inode"}\index{files and directories!inodes}
 on disk. From within a single directory it is impossible to tell if
 there are other directories with pointers to the same files (inodes) on
 disk.
@@ -3088,9 +3102,8 @@ With all this talk that a hard link can only be on the same file system,
 how do you know whether two directories are on the same file system? In
 Windows it's easy - that's exactly what the drive letters are telling
 you. But in Linux, where everything is "mounted" under a single
-hierarchy starting at
-\texttt{/}\index{0@Symbols!\texttt{/} (root directory)}
-\index{Files and Directories!Root (\texttt{/})}, how do I know that
+hierarchy starting at \texttt{/}\index{*@\texttt{/} (root directory)}
+\index{files and directories!root (\texttt{/})}, how do I know that
 \texttt{/var/something} and \texttt{var/or/other} are on the same file
 system?
 
@@ -3129,8 +3142,8 @@ complex so fast that I decided not to. Maybe if you ask, real nice...
 \subsection*{I'm Seeing Double}\label{im-seeing-double}
 \addcontentsline{toc}{subsection}{I'm Seeing Double}
 
-So, both hard\index{Files and Directories!Hard links} and soft
-links\index{Files and Directories!Soft links} can have some interesting
+So, both hard\index{files and directories!hard links} and soft
+links\index{files and directories!soft links} can have some interesting
 side effects if you think about them. For one, if you are backing things
 up, then you may get duplicates in your backup set. In fact, with hard
 links you will, by definition, unless the backup software is very smart
@@ -3178,7 +3191,7 @@ does not - see the next chapter for more).
 
 Most people think of
 \href{http://linux.die.net/man/1/diff}{\texttt{diff}}\drcmd{diff}
-\index{Files and Directories!Compare files (\texttt{diff} command)} as a
+\index{files and directories!compare files (\texttt{diff} command)} as a
 tool only programmers find useful, but that is short-sighted. The whole
 purpose of \texttt{diff} is to show differences between files. For
 example, I backed up this document (which is a text file) before
@@ -3283,7 +3296,7 @@ Different people will have different answers to "What is the single most
 useful "UNIX" command?" There certainly are many to consider. But I keep
 coming back to
 \href{http://linux.die.net/man/1/find}{\texttt{find}}\drcmd{find}
-\index{Files and Directories!Finding (\texttt{find} command)}. It can be
+\index{files and directories!finding (\texttt{find} command)}. It can be
 intimidating to figure out from the documentation, especially at first,
 but once you start mastering it, you end up using it over and over
 again.
@@ -3400,7 +3413,7 @@ Reconsider this example:
 \end{Shaded}
 
 There are five (5) backslash
-(\texttt{\textbackslash{}})\index{0@Symbols!\texttt{\textbackslash} (escape character)}
+(\texttt{\textbackslash{}})\index{*@\texttt{\textbackslash{}} (escape character)}
 characters in the above. In each case, the backslash is preventing
 \href{http://www.tldp.org/LDP/Bash-Beginners-Guide/html/sect_03_04.html}{shell
 expansion}:
@@ -3409,10 +3422,10 @@ expansion}:
 \def\labelenumi{\arabic{enumi}.}
 \item
   \textbf{\texttt{\textbackslash{}*.dat}} - preserves the
-  \texttt{*}\index{0@Symbols!\texttt{*} (wildcard)} for \texttt{find} to
-  use as it recursively searches through directories, instead of the
-  shell expanding it to all files that end in \texttt{.dat} in the
-  current directory.
+  \texttt{*}\index{*@\texttt{*} (wildcard)} for \texttt{find} to use as
+  it recursively searches through directories, instead of the shell
+  expanding it to all files that end in \texttt{.dat} in the current
+  directory.
 \item
   \textbf{\texttt{\textbackslash{}}} - the \texttt{\textbackslash{}} at
   the end of the first line tells the shell that the command continues
@@ -3423,8 +3436,8 @@ expansion}:
   an environment variable or the semicolon (which is meant to tell
   \texttt{find} when the command being ran via \texttt{-exec} and its
   parameters end), otherwise
-  \texttt{;}\index{0@Symbols!\texttt{;} (command separator)} is normally
-  used to separate independent commands on the same line in the shell.
+  \texttt{;}\index{*@\texttt{;} (command separator)} is normally used to
+  separate independent commands on the same line in the shell.
 \end{enumerate}
 
 That last point bears repeating. Any time you \texttt{-exec} in a
@@ -3540,7 +3553,7 @@ line, we could use the following \texttt{find} command:
 \end{Shaded}
 
 That \texttt{-printf} format string
-\texttt{"\%p\textbackslash{}n\%u\textbackslash{}n\%TY-\%Tm-\%TdT\%TT\textbackslash{}n\textbackslash{}n"}\index{0@Symbols!\texttt{\%} (format)}
+\texttt{"\%p\textbackslash{}n\%u\textbackslash{}n\%TY-\%Tm-\%TdT\%TT\textbackslash{}n\textbackslash{}n"}\index{*@\texttt{\%} (format)}
 breaks down into:
 
 \begin{itemize}
@@ -3593,14 +3606,14 @@ use regular expressions.' Now they have two problems."} - Jamie Zawinski
 If the \texttt{file} command is useful for finding file system entries
 based on their attributes, the
 \href{http://linux.die.net/man/1/grep}{\texttt{grep}}\drcmd{grep}
-\index{Files and Directories!Searching(\texttt{grep} command)} command
+\index{files and directories!searching (\texttt{grep} command)} command
 is good for finding files whose \textbf{\emph{contents}} match a
 \href{https://en.wikipedia.org/wiki/Regular_expression}{regular
-expression}\index{Regular expressions}. You already know at least one
+expression}\index{regular expressions}. You already know at least one
 regular expression, the wildcard \texttt{*}
-\index{0@Symbols!\texttt{*} (match zero or more characters)} character
-from the \texttt{CMD.EXE}\drshl{CMD.EXE} prompt and Windows Explorer. It
-means "match zero or more characters." We'll cover more on regular
+\index{*@\texttt{*} (match zero or more characters)} character from the
+\texttt{CMD.EXE}\drshl{CMD.EXE} prompt and Windows Explorer. It means
+"match zero or more characters." We'll cover more on regular
 expressions, or "regexes," in a moment.
 
 First, an example of \texttt{grep}, showing all files in a directory
@@ -3625,7 +3638,7 @@ with the pattern "is" in them:
 Regularly}\label{expressing-yourself-regularly}
 \addcontentsline{toc}{section}{Expressing Yourself Regularly}
 
-So what are "regular expressions?"\index{Regular expressions} Simply,
+So what are "regular expressions?"\index{regular expressions} Simply,
 they are patterns for matching "strings," which are sequences of
 "characters," e.g.:
 
@@ -3784,38 +3797,38 @@ For me, the following keep coming up when using regular expressions:
 \begin{itemize}
 \item
   \textbf{\texttt{one\textbar{}other}} - find \texttt{one} pattern or
-  the \texttt{other}. \index{Regular expressions!\texttt{"|} (or)}
-  \index{0@Symbols!\texttt{"|} (match zero or more characters)}
+  the \texttt{other}. \index{regular expressions!\texttt{"|} (or)}
+  \index{*@\texttt{"|} (match zero or more characters)}
 \item
   \textbf{\texttt{\^{}}} - pattern for the beginning of a line.
-  \index{Regular expressions!\texttt{\^{}} (beginning of line)}
-  \index{0@Symbols!\texttt{\^{}} (beginning of line)}
+  \index{regular expressions!\texttt{\^{}} (beginning of line)}
+  \index{*@\texttt{\^{}} (beginning of line)}
 \item
   \textbf{\texttt{\$}} - pattern for the end of a line.
-  \index{Regular expressions!\texttt{\$} (end of line)}
-  \index{0@Symbols!\texttt{\$} (end of line)}
+  \index{regular expressions!\texttt{\$} (end of line)}
+  \index{*@\texttt{\$} (end of line)}
 \item
   \textbf{\texttt{?}} - match exactly one character.
-  \index{Regular expressions!\texttt{?} (match one character)}
-  \index{0@Symbols!\texttt{?} (match one character)}
+  \index{regular expressions!\texttt{?} (match one character)}
+  \index{*@\texttt{?} (match one character)}
 \item
   \textbf{\texttt{*}} - match zero or more characters.
-  \index{Regular expressions!\texttt{*} (match zero or more characters)}
-  \index{0@Symbols!\texttt{*} (match zero or more characters)}
+  \index{regular expressions!\texttt{*} (match zero or more characters)}
+  \index{*@\texttt{*} (match zero or more characters)}
 \item
   \textbf{\texttt{+}} - match one or more characters.
-  \index{Regular expressions!\texttt{+} (match one or more characters)}
-  \index{0@Symbols!\texttt{+} (match one or more characters)}
+  \index{regular expressions!\texttt{+} (match one or more characters)}
+  \index{*@\texttt{+} (match one or more characters)}
 \item
   \textbf{\texttt{{[}A-Z{]}}} - match any character in a range (in this
   case any uppercase Latin alphabetic character).
-  \index{Regular expressions!\texttt{[A-Z]} (match a character in range)}
-  \index{0@Symbols!\texttt{[A-Z]} (match a character in range)}
+  \index{regular expressions!\texttt{[A-Z]} (match a character in range)}
+  \index{*@\texttt{[A-Z]} (match a character in range)}
 \item
   \textbf{\texttt{{[}n\textbar{}y{]}}} - match one character or another
   (such as \texttt{n} or \texttt{y} here).
-  \index{Regular expressions!\texttt{[n"|y]} (match one character or other)}
-  \index{0@Symbols!\texttt{[n"|y]} (match one character or other)}
+  \index{regular expressions!\texttt{[n"|y]} (match one character or other)}
+  \index{*@\texttt{[n"|y]} (match one character or other)}
 \end{itemize}
 
 For example, to find the lines that end in \texttt{400}:
@@ -3978,15 +3991,15 @@ open by default in every "UNIX" process:
 
 \begin{itemize}
 \item
-  \textbf{stdin}\index{I/O!Streams!stdin@\textit{stdin}} - input,
+  \textbf{stdin}\index{I/O!streams!stdin@\textit{stdin}} - input,
   typically from the console in an interactive session. In the
   underlying C file system APIs, this is file descriptor 0.
 \item
-  \textbf{stdout}\index{I/O!Streams!stdin@\textit{stdout}} - "normal"
+  \textbf{stdout}\index{I/O!streams!stdin@\textit{stdout}} - "normal"
   output, typically to the console in an interactive session. This is
   file descriptor 1.
 \item
-  \textbf{stderr}\index{I/O!Streams!stdin@\textit{stderr}} - "error"
+  \textbf{stderr}\index{I/O!streams!stdin@\textit{stderr}} - "error"
   output, typically to the console in an interactive session (so it can
   be hard to distinguish when intermingled with \texttt{stdout} output).
   This is file descriptor 2.
@@ -4025,7 +4038,7 @@ not seen on the console in real life:
 So in the above I typed in "This shows reading from stdin" and hit
 \texttt{Enter} (which send a linefeed and hence marks the "end of the
 line") and \texttt{cat} echoed that line to
-\texttt{stdout}\index{I/O!Streams!stdin@\textit{stdout}}. Then I typed
+\texttt{stdout}\index{I/O!streams!stdin@\textit{stdout}}. Then I typed
 "and writing to stdout." and hit \texttt{Enter} and that line was echoed
 to \texttt{stdout} as well. Finally I hit \texttt{Ctrl-D}, which ended
 the process.
@@ -4039,7 +4052,7 @@ redirection. This is a concept that also works in
 
 Let's create a file with a single line of text in it. One way would be
 to \texttt{vi\ newfilename}, edit the file, save it, and exit
-\texttt{vi}\drcmd{vi}. A quicker way is to simply use file redirection:
+\texttt{vi}\dreds{vi}. A quicker way is to simply use file redirection:
 
 \drcap{Hello, world}
 
@@ -4055,18 +4068,18 @@ to \texttt{vi\ newfilename}, edit the file, save it, and exit
 \end{Shaded}
 
 In this case the
-\texttt{\textgreater{}\ hw}\index{0@Symbols!\texttt{>} (output redirection)}
-\index{I/O!Redirection!Output (\texttt{>})} tells \texttt{bash} to take
+\texttt{\textgreater{}\ hw}\index{*@\texttt{>} (output redirection)}
+\index{I/O!redirection!output (\texttt{>})} tells \texttt{bash} to take
 the output that \texttt{echo} sends to
-\texttt{stdout}\index{I/O!Streams!stdin@\textit{stdout}} and send it to
+\texttt{stdout}\index{I/O!streams!stdin@\textit{stdout}} and send it to
 the file \texttt{hw} instead.
 
 As mentioned above many "UNIX" commands are set up to take one or more
 file names from the command line as parameters, and if there aren't any,
-to read from \texttt{stdin}\index{I/O!Streams!stdin@\textit{stdin}}. The
+to read from \texttt{stdin}\index{I/O!streams!stdin@\textit{stdin}}. The
 \texttt{cat} command does that. While it doesn't save us anything over
 the above example, the following example using \texttt{\textless{}}
-\index{0@Symbols!\texttt{<} (input redirection)}\index{I/O!Redirection!Input (\texttt{<})}
+\index{*@\texttt{<} (input redirection)}\index{I/O!redirection!input (\texttt{<})}
 is illustrative of redirecting a file to \texttt{stdin} for a command or
 program:
 
@@ -4080,7 +4093,7 @@ program:
 \end{Shaded}
 
 Finally, we need to deal with
-\texttt{stderr}.\index{I/O!Streams!stdin@\textit{stderr}} By convention
+\texttt{stderr}.\index{I/O!streams!stdin@\textit{stderr}} By convention
 it is sent to the console just like \texttt{stdout}, and that can make
 output confusing:
 
@@ -4129,7 +4142,7 @@ log the error messages separately for later analysis. While we've seen
 tell the shell we want to redirect \texttt{stderr}? Remember the
 discussion about file handles above? That's where those esoteric numbers
 come in handy! To redirect
-\texttt{stderr}\index{I/O!Streams!stdin@\textit{stderr}} we recall it is
+\texttt{stderr}\index{I/O!streams!stdin@\textit{stderr}} we recall it is
 \textbf{\emph{always}} file descriptor 2, and then we can use:
 
 \drcap{Redirecting \textit{stderr}}
@@ -4148,13 +4161,13 @@ come in handy! To redirect
 \end{Shaded}
 
 The
-\texttt{2\textgreater{}/tmp/finderrors.log}\index{0@Symbols!\texttt{2>} (\textit{stderr} redirection)}
-\index{I/O!Redirection!Error (\texttt{2>})} is the magic that is
+\texttt{2\textgreater{}/tmp/finderrors.log}\index{*@\texttt{2>} (\textit{stderr} redirection)}
+\index{I/O!redirection!error (\texttt{2>})} is the magic that is
 redirecting file descriptor 2 (\texttt{stderr}) to the log file
 \texttt{/tmp/finderrors.log}.
 
 A very common paradigm is to capture both
-\texttt{stdout}\index{I/O!Streams!stdin@\textit{stdout}} and
+\texttt{stdout}\index{I/O!streams!stdin@\textit{stdout}} and
 \texttt{stderr} to the same file. Here is how that is done, again using
 file descriptors:
 
@@ -4210,8 +4223,8 @@ re-writing a file versus appending. The following creates a new
 \end{Shaded}
 
 However, the next sample using
-\texttt{\textgreater{}\textgreater{}}\index{0@Symbols!\texttt{>>} (output redirection, appending)}
-\index{I/O!Redirection!Output, appending (\texttt{>>})} creates a new
+\texttt{\textgreater{}\textgreater{}}\index{*@\texttt{>>} (output redirection, appending)}
+\index{I/O!redirection!output, appending (\texttt{>>})} creates a new
 \texttt{/tmp/find.log} file if it doesn't exist, but otherwise appends
 to it:
 
@@ -4231,14 +4244,14 @@ is outside the scope of this book.
 \addcontentsline{toc}{section}{Everyone Line Up}
 
 So we can see that we could pass things between programs by redirecting
-\texttt{stdout}\index{I/O!Streams!stdin@\textit{stdout}} to a file and
+\texttt{stdout}\index{I/O!streams!stdin@\textit{stdout}} to a file and
 then redirecting that file to
-\texttt{stdin}\index{I/O!Streams!stdin@\textit{stdin}} on the next
+\texttt{stdin}\index{I/O!streams!stdin@\textit{stdin}} on the next
 program, and so on. But "UNIX" environments take it a bit further with
 the concept of a command "pipeline" that allows directly sending
 \texttt{stdout} from one program into \texttt{stdin} of another using
 the "pipe" (\texttt{\textbar{}}):
-\index{0@Symbols!\texttt{"|} (pipe)}\index{I/O!Redirection!pipe (\texttt{"|})}
+\index{*@\texttt{"|} (pipe)}\index{I/O!redirection!pipe (\texttt{"|})}
 
 \drcap{Piping output between programs}
 
@@ -4317,29 +4330,29 @@ why \texttt{vi} still matters.}}
 \emph{"You're too young to know."} - Vi (\emph{Grease})
 \end{quote}
 
-\href{http://linux.die.net/man/1/vi}{\texttt{vi}}\drcmd{vi}
-\index{Commands!vi@\texttt{vi}|seealso{\texttt{vi} Commands}} stands for
-\emph{visual editor} (as well as the Roman numeral for 6, which is why
-it is this chapter), and once you use it you will understand what
-editing from the command line must've been like for \texttt{vi} to seem
-both "visual" and a step forward.
+\href{http://linux.die.net/man/1/vi}{\texttt{vi}}
+\index{commands!vi@\texttt{vi}|seealso{\texttt{vi} Commands}} \dreds{vi}
+stands for \emph{visual editor} (as well as the Roman numeral for 6,
+which is why it is this chapter), and once you use it you will
+understand what editing from the command line must've been like for
+\texttt{vi} to seem both "visual" and a step forward.
 
 Many Linux clones don't use \texttt{vi} proper, but a port called
 \href{http://www.vim.org/}{\texttt{vim}} ("\textbf{vi}
-i\textbf{m}proved"),\index{Editors!vim@\texttt{vim}} that is then
-accessed via the alias \texttt{vi}. The differences tend to be minor,
-with \texttt{vim}\drcmd{vim} being more customizable.
+i\textbf{m}proved"), \dreds{vim} that is then accessed via the alias
+\texttt{vi}. The differences tend to be minor, with \texttt{vim} being
+more customizable.
 
 \texttt{vi} and a similar editor,
-\href{http://linux.die.net/man/1/emacs}{\texttt{emacs}}\drcmd{emacs},
-\index{Editors!emacs@\texttt{emacs}} both tend to trip up users from GUI
-operating systems such as Windows or OS X that have editors like Notepad
-that are always ready for user input.
+\href{http://linux.die.net/man/1/emacs}{\texttt{emacs}}, \dreds{emacs}
+both tend to trip up users from GUI operating systems such as Windows or
+OS X that have editors like Notepad that are always ready for user
+input.
 
 Instead, \texttt{vi} typically starts in "command mode," where
 keystrokes execute various navigation and editing commands. To actually
 insert text requires a keystroke such as
-\texttt{i}\drvic{i}{Insert mode} while in command mode, which then
+\texttt{i}\drvic{i}{insert mode} while in command mode, which then
 causes \texttt{vi} to go into "insert mode." Insert mode is what most
 Windows users expect from an editor, i.e., when you type the line
 changes. The \texttt{ESC}\drvic{ESC} Exit insert mode\} key exits insert
@@ -4367,16 +4380,16 @@ be done may be navigating around the file, inserting, deleting or
 changing text, manipulating lines, "undoing" or "redoing," writing the
 changes to disk and the like.
 
-What are commands? Well, for example \texttt{d}\drvic{d}{Delete} means
+What are commands? Well, for example \texttt{d}\drvic{d}{delete} means
 "delete." We'll talk about how to specify \textbf{\emph{what}} to delete
-next. \texttt{i}\drvic{i}{Insert mode} tells \texttt{vi} to enter
+next. \texttt{i}\drvic{i}{insert mode} tells \texttt{vi} to enter
 "insert mode" at the point where the cursor is.
-\texttt{0}\drvic{0}{Jump to beginning of line} (zero) navigates to the
+\texttt{0}\drvic{0}{jump to beginning of line} (zero) navigates to the
 start of the current line, and so on.
 
 Commands can have \textbf{\emph{modifiers}} preceding and following
 them. Consider the "delete" command, \texttt{d}. If we follow with
-\texttt{w} as in \texttt{dw}\drvic{dw}{Delete word} while in command
+\texttt{w} as in \texttt{dw}\drvic{dw}{delete word} while in command
 mode, it will delete a whitespace-delimited "word" starting at where the
 cursor is through (including) the next whitespace character.
 
@@ -4418,15 +4431,15 @@ Again, in all these examples the \texttt{\textbar{}} represents the
 cursor.
 
 There is a little bit of nuance in using command modifiers. Consider the
-\texttt{r}\drvic{r}{Replace
+\texttt{r}\drvic{r}{replace
 character} (\emph{replace}) command. It is typically used to change the
 single \textbf{\emph{character}} under the cursor. You may be tempted to
 think you can do something like \texttt{rw} for "replace word," but it
 is actually going to simply replace the current character with a
 \texttt{w}, whereas the real command for doing that is
-\texttt{cw}\drvic{c}{Change}\drvic{cw}{Change word} ("change word"). In
+\texttt{cw}\drvic{c}{change}\drvic{cw}{change word} ("change word"). In
 addition, you can use repeaters as above, just be sure you understand
-\texttt{r}\drvic{r}{Replace character} means "replace a single
+\texttt{r}\drvic{r}{replace character} means "replace a single
 character," so \texttt{3rx} executed on:
 
 \drcap{Replace three characters with "x"}
@@ -4447,27 +4460,27 @@ character," so \texttt{3rx} executed on:
 \end{Highlighting}
 \end{Shaded}
 
-To quit without saving enter \texttt{:q}\drvic{:q}{Quit without saving}.
+To quit without saving enter \texttt{:q}\drvic{:q}{quit without saving}.
 To write any file changes to disk use
-\texttt{:w}\drvic{:w}{Write to disk}. To save \textbf{\emph{and}} quit,
-type \texttt{:wq}\drvic{:wq}{Write to disk and
+\texttt{:w}\drvic{:w}{write to disk}. To save \textbf{\emph{and}} quit,
+type \texttt{:wq}\drvic{:wq}{write to disk and
 quit}.
 
 \section*{Undo Me}\label{undo-me}
 \addcontentsline{toc}{section}{Undo Me}
 
-\texttt{u}\drvic{u}{Undo} is the "undo" command. It "undoes" or reverts
+\texttt{u}\drvic{u}{undo} is the "undo" command. It "undoes" or reverts
 the last change. You can undo the last \emph{n} changes just as you'd
 expect, e.g., \texttt{3u} undoes the last three changes.
 
 If you want to just cancel out of the file without writing any changes
-to disk, use \texttt{:q!}\drvic{:q"!}{Quit without saving (force)} (the
+to disk, use \texttt{:q!}\drvic{:q"!}{quit without saving (force)} (the
 \texttt{!} means to force the quit without saving).
 
 If you want to protect yourself from inadvertent changes to a file you
 can always open it using
-\texttt{view}{]}(http://linux.die.net/man/1/view)\drcmd{view}\index{Editors!view@\texttt{view}},
-the alias for \texttt{vi} invoked in read-only mode.
+\texttt{view}{]}(http://linux.die.net/man/1/view)\dreds{view}, the alias
+for \texttt{vi} invoked in read-only mode.
 
 \section{\texorpdfstring{Circumnavigating
 \texttt{vi}}{Circumnavigating vi}}\label{circumnavigating-vi}
@@ -4479,7 +4492,7 @@ in insert mode, while the left and right arrows may work for navigation,
 often the up and down arrows can introduce "garbage" characters into the
 file (since you are in insert mode). This is because the keymappings for
 those keys aren't being interpreted correctly. I usually just swear,
-exit insert mode, hit \texttt{u}\drvic{u}{Undo} and try again.
+exit insert mode, hit \texttt{u}\drvic{u}{undo} and try again.
 
 As an example, under Cygwin I went into \texttt{vi}, went into insert
 mode after the first line, typed in "This is a new line" and then hit
@@ -4504,35 +4517,35 @@ besides using the arrow and page keys:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{0}} \drvic{0}{Jump to beginning of line} - jumps to
+  \textbf{\texttt{0}} \drvic{0}{jump to beginning of line} - jumps to
   the beginning of the current line.
 \item
-  \textbf{\texttt{\$}}\drvic{\$}{Jump to end of line}
-  \index{0@Symbols!\texttt{\$} (\texttt{vi} jump to end of line)} -jumps
-  to the end of the current line.
+  \textbf{\texttt{\$}}\drvic{\$}{jump to end of line}
+  \index{*@\texttt{\$} (\texttt{vi} jump to end of line)} -jumps to the
+  end of the current line.
 \item
-  \textbf{\texttt{w}}\drvic{w}{Jump forward a word} - jumps forward a
+  \textbf{\texttt{w}}\drvic{w}{jump forward a word} - jumps forward a
   whitespace-delimited "word" on the current line (and of course
   \texttt{3w} would jump forward three "words").
 \item
-  \textbf{\texttt{b}}\drvic{b}{Jump back a word} - jumps back a
+  \textbf{\texttt{b}}\drvic{b}{jump back a word} - jumps back a
   whitespace-delimited "word" on the current line.
 \item
-  \textbf{\texttt{G}}\drvic{G}{Jump to end of file} - jumps to end of
+  \textbf{\texttt{G}}\drvic{G}{jump to end of file} - jumps to end of
   the file.
 \item
-  \textbf{\texttt{:0}}\drvic{:0}{Jump to beginning of file} - jumps to
+  \textbf{\texttt{:0}}\drvic{:0}{jump to beginning of file} - jumps to
   start of the file (note the preceding \texttt{:}).
 \item
-  \textbf{\texttt{/foo}}\index{vi Commands@\texttt  {vi} Commands!\/@\texttt{/} (Find forward)}
-  \index{0@Symbols!\texttt{/} (\texttt{vi} find forward)} - find "foo"
-  going forward toward the end of the file.
+  \textbf{\texttt{/foo}}\index{vicommands@\texttt  {vi} commands!\/@\texttt{/} (find forward)}
+  \index{*@\texttt{/} (\texttt{vi} find forward)} - find "foo" going
+  forward toward the end of the file.
 \item
-  \textbf{\texttt{?foo}}\index{vi Commands@\texttt  {vi} Commands!\?@\texttt{?} (Find backward)}
-  \index{0@Symbols!\texttt{?} (\texttt{vi} find backward)} - find "foo"
-  going backward toward the front of the file.
+  \textbf{\texttt{?foo}}\index{vicommands@\texttt  {vi} commands!\?@\texttt{?} (find backward)}
+  \index{*@\texttt{?} (\texttt{vi} find backward)} - find "foo" going
+  backward toward the front of the file.
 \item
-  \textbf{\texttt{n}} \drvic{n}{Find next} - find the next instance of
+  \textbf{\texttt{n}} \drvic{n}{find next} - find the next instance of
   the search text specified by the last \texttt{/} or \texttt{?}.
 \end{itemize}
 
@@ -4544,20 +4557,20 @@ it (pun intended - \texttt{ESC}, get it?)
 
 \begin{itemize}
 \item
-  \textbf{\texttt{i}} \drvic{i}{Insert mode} - enters insert mode at the
+  \textbf{\texttt{i}} \drvic{i}{insert mode} - enters insert mode at the
   current cursor position.
 \item
-  \textbf{\texttt{I}} \drvic{I}{Insert mode at beginning of line} -
+  \textbf{\texttt{I}} \drvic{I}{insert mode at beginning of line} -
   enters insert mode at the beginning of the current line.
 \item
-  \textbf{\texttt{A}} \drvic{A}{Append at end of line} - enters insert
+  \textbf{\texttt{A}} \drvic{A}{append at end of line} - enters insert
   mode (appends) at the end of the current line.
 \item
-  \textbf{\texttt{o}} \drvic{o}{Insert new line under current line} -
+  \textbf{\texttt{o}} \drvic{o}{insert new line under current line} -
   inserts a new line under (lowercase \texttt{o} = "lower" or "below")
   the current line and puts the cursor on it in insert mode.
 \item
-  \textbf{\texttt{O}} \drvic{O}{Insert new line above current line} -
+  \textbf{\texttt{O}} \drvic{O}{insert new line above current line} -
   inserts a new line over (uppercase \texttt{O} = "upper" or "above")
   the current line and puts the cursor on it in insert mode.
 \end{itemize}
@@ -4573,7 +4586,7 @@ the deleted text in the buffer.
 
 Another thing to understand is that a command "doubled" or repeated
 typically means "the whole line." So
-\texttt{dd}\drvic{dd}{Delete entire line} means "delete the whole line
+\texttt{dd}\drvic{dd}{delete entire line} means "delete the whole line
 the cursor is currently on."
 
 So if deleting is synonymous with cutting, and the cursor is on the
@@ -4600,7 +4613,7 @@ Then executing \texttt{dd} leaves:
 
 We know "This is a new line." went into the buffer. We can paste it back
 above the current line with
-\texttt{P}\drvic{P}{Paste above current line}(uppercase \texttt{P} =
+\texttt{P}\drvic{P}{paste above current line}(uppercase \texttt{P} =
 "upper" or "above"), which would result in:
 
 \drcap{After pasting the line above the current line}
@@ -4616,12 +4629,12 @@ Here are some more examples:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{p}}\drvic{p}{Paste after cursor} - paste the buffer
+  \textbf{\texttt{p}}\drvic{p}{paste after cursor} - paste the buffer
   into the current line starting after the cursor location.
 \item
   \textbf{\texttt{3dd}} - delete (cut) three lines into the buffer.
 \item
-  \textbf{\texttt{5yw}}\drvic{y}{Copy} - "yank" (copy) five words
+  \textbf{\texttt{5yw}}\drvic{y}{copy} - "yank" (copy) five words
   starting at the current cursor position into the buffer.
 \end{itemize}
 
@@ -4629,7 +4642,7 @@ Here are some more examples:
 \addcontentsline{toc}{section}{Change Machine}
 
 The hardest thing to get down in \texttt{vi} is the \emph{substitute}
-(change or replace) command, \texttt{:s}\drvic{:s}{Change}. Its syntax
+(change or replace) command, \texttt{:s}\drvic{:s}{change}. Its syntax
 is esoteric, but once you've memorized it, it becomes intuitive.
 
 The most common scenario is the "change all" command. Given the
@@ -4685,7 +4698,7 @@ It only changed the "that" at the end of the third line, and the middle
   it to change \emph{globally}.
 \end{enumerate}
 
-So let's hit \texttt{u}\drvic{u}{Undo} to reset (undo) the change, and
+So let's hit \texttt{u}\drvic{u}{undo} to reset (undo) the change, and
 try again with this:
 
 \drcap{Changing "this" to "that", redux}
@@ -4775,7 +4788,7 @@ Picking that apart, we have:
   means (case) "insensitive."
 \end{itemize}
 
-Regular expressions\index{Regular expressions} you say! "Now we have two
+Regular expressions\index{regular expressions} you say! "Now we have two
 problems." But consider where we left off:
 
 \drcap{But what about capitalization?}
@@ -4897,7 +4910,7 @@ error prone. Instead, we can "mark" a range.
 \def\labelenumi{\arabic{enumi}.}
 \item
   Place the cursor on the first line and use the
-  \texttt{m}\drvic{m}{Mark} command followed by a one-character "label"
+  \texttt{m}\drvic{m}{mark} command followed by a one-character "label"
   like \texttt{x} (I typically use \texttt{m} so I don't have to move my
   fingers, e.g., \texttt{mm}).
 \item
@@ -4907,7 +4920,7 @@ error prone. Instead, we can "mark" a range.
   \texttt{mn}).
 \item
   Now you can use the
-  \texttt{\textquotesingle{}}\drvic{'}{Reference a mark} character
+  \texttt{\textquotesingle{}}\drvic{'}{reference a mark} character
   followed by a label to denote the beginning and end of the range in
   all kinds of \texttt{vi} commands. In our case we want to change
   "This" on the first three lines, so:
@@ -4934,9 +4947,9 @@ Sometimes in \texttt{vi} it would be great to run the contents of the
 file through an external command (\texttt{sort}\drcmd{sort} is a
 favorite) without saving and exiting the file, sorting it, and then
 re-editing it. We can do that with
-\texttt{!}\drvic{"!}{Invoke external command}
-\index{0@Symbols!\texttt{"!} (\texttt{vi} invoke external command)},
-which works a lot like the "substitute" (change) command.
+\texttt{!}\drvic{"!}{invoke external command}
+\index{*@\texttt{"!} (\texttt{vi} invoke external command)}, which works
+a lot like the "substitute" (change) command.
 
 To sort the whole file in place:
 
@@ -5030,10 +5043,9 @@ tab characters to four spaces:
 
 So, \texttt{vi} is the best we can do? No. On many Linux systems an
 alternative terminal-based editor will be installed, often several.
-There may be
-\href{http://linux.die.net/man/1/emacs}{\texttt{emacs}}\drcmd{emacs}
-\index{Editors!emacs@\texttt{emacs}}, which \textbf{\emph{will}} make
-you yearn for the simplicity of \texttt{vi}.
+There may be \href{http://linux.die.net/man/1/emacs}{\texttt{emacs}}
+\dreds{emacs}, which \textbf{\emph{will}} make you yearn for the
+simplicity of \texttt{vi}.
 
 Here are two jokes that are only funny once you've used \texttt{emacs}:
 
@@ -5049,12 +5061,11 @@ If those are funny to you, then you have already been infected by
 \texttt{emacs}. The prognosis is grim.
 
 But there may also others, notably
-\href{http://linux.die.net/man/1/pico}{\texttt{pico}}\drcmd{pico}\index{Editors!pico@\texttt{pico}}
-and its successor,
-\href{http://linux.die.net/man/1/nano}{\texttt{nano}}\drcmd{nano}
-\index{Editors!nano@\texttt{nano}}. You can see the difference the
-second you see a file open in \texttt{nano} - in this case, the
-generated Github-flavored Markdown of this document:
+\href{http://linux.die.net/man/1/pico}{\texttt{pico}}\dreds{pico} and
+its successor, \href{http://linux.die.net/man/1/nano}{\texttt{nano}}
+\dreds{nano}. You can see the difference the second you see a file open
+in \texttt{nano} - in this case, the generated Github-flavored Markdown
+of this document:
 
 \drcap{Editing a file in \texttt{nano}}
 
@@ -5135,7 +5146,7 @@ Linux and similar systems must be able to access the network from the
 command line and scripts.
 
 For example, our friend
-\href{http://linux.die.net/man/8/ping}{\texttt{ping}}\drcmd{ping} is
+\href{http://linux.die.net/man/8/ping}{\texttt{ping}}\drnet{ping} is
 there:
 
 \drcap{ping command}
@@ -5165,12 +5176,12 @@ One difference with \texttt{ping} is that by default in Linux
 \texttt{ping} doesn't stop until the user presses \texttt{Ctrl-C} (which
 sends the
 \href{https://en.wikipedia.org/wiki/Unix_signal}{\texttt{SIGINT}
-interrupt} \index{Signals} to the program). In this way it acts more
+interrupt} \index{signals} to the program). In this way it acts more
 like \texttt{ping\ -t} in \texttt{CMD.EXE}\drshl{CMD.EXE} Also, be aware
 that on Cygwin \texttt{ping} is still the system (Windows)
 \texttt{ping}.
 
-\href{http://linux.die.net/man/8/traceroute}{\texttt{traceroute}}\drcmd{traceroute}
+\href{http://linux.die.net/man/8/traceroute}{\texttt{traceroute}}\drnet{traceroute}
 works, too (although for once its name is longer than the
 \texttt{CMD.EXE} counterpart).
 
@@ -5194,7 +5205,7 @@ works, too (although for once its name is longer than the
 \end{Shaded}
 
 You can do some digging in DNS with
-\href{http://linux.die.net/man/1/dig}{\texttt{dig}}\drcmd{dig}:
+\href{http://linux.die.net/man/1/dig}{\texttt{dig}}\drnet{dig}:
 
 \drcap{dig command}
 
@@ -5226,7 +5237,7 @@ You can do some digging in DNS with
 \end{Shaded}
 
 And
-\href{http://linux.die.net/man/1/whois}{\texttt{whois}}\drcmd{whois}:
+\href{http://linux.die.net/man/1/whois}{\texttt{whois}}\drnet{whois}:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5336,7 +5347,7 @@ comic}, and hence the title of this section.
 \addcontentsline{toc}{section}{Surfin' the Command Prompt}
 
 You can browse the web from the command prompt using something like
-\href{http://linux.die.net/man/1/lynx}{\texttt{lynx}}\drcmd{lynx}. A
+\href{http://linux.die.net/man/1/lynx}{\texttt{lynx}}\drnet{lynx}. A
 text-based browser isn't too exciting, but it can have its purposes
 (like quickly testing network access from a command prompt). For
 example, \texttt{lynx\ http://google.com} yields:
@@ -5374,8 +5385,8 @@ example, \texttt{lynx\ http://google.com} yields:
 
 There are two other commands that are used to pull down web resources
 and save them locally -
-\href{http://linux.die.net/man/1/curl}{\texttt{curl}}\drcmd{curl} and
-\href{http://linux.die.net/man/1/wget}{\texttt{wget}} drcmd\{wget\}.
+\href{http://linux.die.net/man/1/curl}{\texttt{curl}}\drnet{curl} and
+\href{http://linux.die.net/man/1/wget}{\texttt{wget}} drnet\{wget\}.
 Both support HTTP(S) and FTP, but \texttt{curl} supports even more
 protocols and options and tends to be the simplest to just "grab a file
 and go." You see both used often in install scripts that download bits
@@ -5442,15 +5453,15 @@ it:
 
 You can send and receive email from the command prompt. Reading email
 will be rare, but if the system has
-\href{http://linux.die.net/man/1/pine}{\texttt{pine}}\drcmd{pine}
+\href{http://linux.die.net/man/1/pine}{\texttt{pine}}\drnet{pine}
 installed, that's probably the most intuitive from a non-UNIX
 perspective (although it is still obviously a terminal program).
 Otherwise look for
-\href{http://linux.die.net/man/1/mutt}{\texttt{mutt}}\drcmd{mutt}.
+\href{http://linux.die.net/man/1/mutt}{\texttt{mutt}}\drnet{mutt}.
 
 Sending email is more interesting, especially from shell scripts. There
 are multiple ways, but
-\href{http://linux.die.net/man/1/email}{\texttt{email}}\drcmd{email} is
+\href{http://linux.die.net/man/1/email}{\texttt{email}}\drnet{email} is
 straightforward enough:
 
 \drcap{Sending email from the command line}
@@ -5468,7 +5479,7 @@ straightforward enough:
 
 There are two primary ways to get an interactive "shell" session on a
 remote machine. The first is the venerable
-\href{http://linux.die.net/man/1/telnet}{\texttt{telnet}}\drcmd{telnet}
+\href{http://linux.die.net/man/1/telnet}{\texttt{telnet}}\drnet{telnet}
 command. It isn't used very often for actual interactive sessions any
 more (for one, because it sends credentials in plain text on the wire).
 However, because you can specify the port number, it is still handy for
@@ -5510,7 +5521,7 @@ return its home page:
 \end{Shaded}
 
 To get a modern, secure shell to a remote machine, use
-\href{http://linux.die.net/man/1/ssh}{\texttt{ssh}} \drcmd{ssh}, passing
+\href{http://linux.die.net/man/1/ssh}{\texttt{ssh}} \drnet{ssh}, passing
 in the userid and server like this:
 
 \drcap{\texttt{ssh} command}
@@ -5527,7 +5538,7 @@ you will be presented with a command prompt to the remote system.
 
 You can also use the \texttt{SSH} protocol to securely transfer files
 between systems with the
-\href{http://linux.die.net/man/1/scp}{\texttt{scp}}\drcmd{scp} command.
+\href{http://linux.die.net/man/1/scp}{\texttt{scp}}\drnet{scp} command.
 It works like this for a recursive directory copy:
 
 \drcap{\texttt{scp} command}
@@ -5575,7 +5586,7 @@ server's "fingerprint." You can usually just say "yes":
 
 We won't dive too deep into configuring a network, but there are a few
 things you should know about right away. The first is the
-\href{http://linux.die.net/man/8/ifconfig}{\texttt{ifconfig}}\drcmd{ifconfig}
+\href{http://linux.die.net/man/8/ifconfig}{\texttt{ifconfig}}\drnet{ifconfig}
 command (in some ways is similar to \texttt{ipconfig} in
 \texttt{CMD.EXE}\drshl{CMD.EXE}. While you can use \texttt{ifconfig} to
 alter your networking settings, it is most commonly used to get a quick
@@ -5608,7 +5619,7 @@ display of them:
 
 To see what DNS servers the system is using, you can look in
 \texttt{/etc/resolv.conf}
-\index{Files and Directories!Special!\texttt{/etc/resolv.conf}}:
+\index{files and directories!special!etcresolvconf@\texttt{/etc/resolv.conf}}:
 
 \drcap{DNS servers in \texttt{resolv.conf}}
 
@@ -5624,7 +5635,7 @@ To see what DNS servers the system is using, you can look in
 
 And to see any local overrides of network names or aliases, look in
 \texttt{/etc/hosts}
-\index{Files and Directories!Special!\texttt{/etc/hosts}}:
+\index{files and directories!special!etchosts@\texttt{/etc/hosts}}:
 
 \drcap{\texttt{hosts} file}
 
@@ -5711,7 +5722,7 @@ To show processes from \emph{all} users in a process \emph{hierarchy}
 You can \emph{kill} a process using the
 \href{http://linux.die.net/man/1/kill}{\texttt{kill}}\drcmd{kill}
 command, which takes a process id and optionally a
-"signal"\index{Signals}. Here is an example looking for any running
+"signal"\index{signals}. Here is an example looking for any running
 instance of \texttt{vi} and sending it a \texttt{kill} command:
 
 \drcap{Hunting down and killing \texttt{vi} sessions}
@@ -5738,7 +5749,7 @@ That's:
   \textbf{\texttt{\textbar{}}} - pipe \texttt{stdout} from
   \texttt{grep}\drcmd{grep} to next command.
 \item
-  \textbf{\texttt{kill}} - send a \texttt{SIGINT} signal\index{Signals}
+  \textbf{\texttt{kill}} - send a \texttt{SIGINT} signal\index{signals}
   to a process specified by:
 \item
   \textbf{\texttt{`cut\ -f2\ -d"\ "`}} - execute the
@@ -5796,9 +5807,9 @@ idea}} what they are working on, as long as it "looks like" a file (or
 stream of text).
 
 One of the places this has become really handy is in the \texttt{/proc}
-\index{Files and Directories!Special!\texttt{/proc/}} "file system." On
-modern Linux systems, there is typically a \texttt{/proc} directory that
-looks like directories and files:
+\index{files and directories!special!proc@\texttt{/proc/}} "file
+system." On modern Linux systems, there is typically a \texttt{/proc}
+directory that looks like directories and files:
 
 \drcap{\texttt{/proc} file system}
 
@@ -5960,8 +5971,8 @@ In addition, there are system-wide statistics, such as
 \addcontentsline{toc}{section}{Sawing Logs}
 
 Many Linux components and subsystems log to \texttt{/var/log}.
-\index{Files and Directories!Special!\texttt{/var/log/}} Here is a
-pretty standard directory listing for it on a Linux Mint system:
+\index{files and directories!special!varlog@\texttt{/var/log/}} Here is
+a pretty standard directory listing for it on a Linux Mint system:
 
 \drcap{Looking at logs}
 
@@ -6001,12 +6012,14 @@ e.g., \texttt{mail.log.2}).
 
 If you are pursuing a problem with a specific subsystem (like
 \texttt{samba}), it is good to start in its log files. The two log files
-of general interest are \texttt{dmesg}\index{dmesg}
-\index{Files and Directories!Special!\texttt{/var/log/dmesg}}, which
-holds kernel-level debug messages and usually is useful for debugging
-things like device driver issues. The other is
-\texttt{messages}\index{Files and Directories!Special!\texttt{/var/log/messages}},
-which holds more general "system" messages.
+of general interest are \texttt{dmesg},
+\index{files and directories!special!varlogdmesg@\texttt{/var/log/dmesg}}
+\index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)} which holds
+kernel-level debug messages and usually is useful for debugging things
+like device driver issues. The other is \texttt{messages},
+\index{files and directories!special!varlogmessages@\texttt{/var/log/messages}}
+\index{varlogmessages@\texttt{/var/log/messages} (general log)} which
+holds more general "system" messages.
 
 Let's look for kernel errors when booting:
 
@@ -6023,10 +6036,11 @@ Let's look for kernel errors when booting:
 \addcontentsline{toc}{section}{It's All Temporary}
 
 By convention, temporary files are written to \texttt{/tmp}
-\index{Files and Directories!Special!\texttt{/tmp/}}. You can place your
-own temporary or "work" files there, too. It's a great place to unzip
-install bits, for example. Just note that the temporariness is enforced
-in that when the system reboots, \texttt{/tmp} is reset to empty.
+\index{files and directories!special!tmp@\texttt{/tmp/}}. You can place
+your own temporary or "work" files there, too. It's a great place to
+unzip install bits, for example. Just note that the temporariness is
+enforced in that when the system reboots, \texttt{/tmp} is reset to
+empty.
 
 \hypertarget{how-do-you-know-what-you-dont-know-man}{\chapter{\texorpdfstring{How
 Do You Know What You Don’t Know,
@@ -6045,7 +6059,7 @@ The biggest issue with bootstrapping into "UNIX" is not the lack of
 documentation but almost the surplus of it, coupled with a severe "RTFM"
 attitude by most old-timers toward newbies. Besides the typical "Google"
 and \href{http://unix.stackexchange.com/}{"StackOverflow"}
-\index{Documentation!http://unix.stackexchange.com/@\textit{http://unix.stackexchange.com/}}
+\index{documentation!http://unix.stackexchange.com/@\textit{http://unix.stackexchange.com/}}
 answers, there are actually lots of very reliable places to turn to for
 information
 
@@ -6056,11 +6070,10 @@ information
 
 There are three commands that are the basis for reading "UNIX"
 documentation within "UNIX" itself -
-\href{http://linux.die.net/man/1/man}{\texttt{man}}\drcmd{man}\index{Documentation!man@\texttt{man} command},
-\href{http://linux.die.net/man/1/info}{\texttt{info}}\drcmd{info}
-\index{Documentation!info@\texttt{info} command} and
-\href{http://linux.die.net/man/1/apropos}{\texttt{apropos}}\drcmd{apropos}
-\index{Documentation!apropos@\texttt{apropos} command}.
+\href{http://linux.die.net/man/1/man}{\texttt{man}}, \drdoc{man}
+\href{http://linux.die.net/man/1/info}{\texttt{info}} \drdoc{info} and
+\href{http://linux.die.net/man/1/apropos}{\texttt{apropos}}.
+\drdoc{apropos}
 
 \texttt{man} is short for \emph{manual pages}, and is used to display
 the main help for most "UNIX" commands. For example, \texttt{man\ ls}
@@ -6098,10 +6111,10 @@ shows:
 \end{Shaded}
 
 \textbf{Note:} \texttt{man} uses
-\texttt{less}\drcmd{less}\index{Pagination!\texttt{less} command} as a
-paginator, with all that means, including the same navigation and search
-keys, and most important to remember - \texttt{Q} to quit. How do I know
-this? Because of course you can \texttt{man\ man}!
+\texttt{less}\drcmd{less}\index{pagination!\texttt{less} command}\index{files and directories!paginate!less@\texttt{less} command}
+as a paginator, with all that means, including the same navigation and
+search keys, and most important to remember - \texttt{Q} to quit. How do
+I know this? Because of course you can \texttt{man\ man}!
 
 Notice the \texttt{LS(1)} part. The UNIX manual was originally divided
 into multiple sections by AT\&T. Section 1 is normal user commands.
@@ -6112,11 +6125,11 @@ system administration commands. You usually don't care, and can
 But sometimes there are duplicate names in the different sections. For
 example, there is both a \texttt{passwd}\drcmd{passwd} command and a
 \texttt{passwd}\drcmd{passwd file}
-\index{Files and Directories!Special!\texttt{/etc/passwd}} file format
-(for \texttt{/etc/passwd}). By default, \texttt{man\ passwd} will show
-you the documentation from the lowest numbered section with a match, in
-this case section 1, usually referred to as \texttt{passwd(1)} to
-disambiguate which thing we're talking about:
+\index{files and directories!special!etcpasswd@\texttt{/etc/passwd}}
+file format (for \texttt{/etc/passwd}). By default, \texttt{man\ passwd}
+will show you the documentation from the lowest numbered section with a
+match, in this case section 1, usually referred to as \texttt{passwd(1)}
+to disambiguate which thing we're talking about:
 
 \drcap{Ambiguous \texttt{man passwd} command default to lowest documentation section}
 
@@ -6184,11 +6197,9 @@ have to explicitly specify the section, in this case by using
 \end{Highlighting}
 \end{Shaded}
 
-Besides \texttt{man}, many GNU tools come with help in
-\texttt{info}\drcmd{info}
-\index{Documentation!info@\texttt{info} command} format, which is
-originally from \texttt{emacs}. Here are the results of
-\texttt{info\ find}:
+Besides \texttt{man}, many GNU tools come with help in \texttt{info}
+\drdoc{info} format, which is originally from \texttt{emacs}. Here are
+the results of \texttt{info\ find}:
 
 \drcap{Running \texttt{info find} command}
 
@@ -6228,11 +6239,9 @@ in my head. The biggest thing to remember if you do something like
 
 Finally, what if you don't know the name of the command? Well, each "man
 page" has a title and brief description, e.g., "passwd - change user
-password" in the \texttt{man\ passwd} output above. The
-\texttt{apropos}\drcmd{apropos}
-\index{Documentation!apropos@\texttt{apropos} command} command can
-simply search those titles and descriptions for a word or phrase and
-show you all the results:
+password" in the \texttt{man\ passwd} output above. The \texttt{apropos}
+\drdoc{apropos} command can simply search those titles and descriptions
+for a word or phrase and show you all the results:
 
 \drcap{\texttt{apropos} command}
 
@@ -6322,7 +6331,7 @@ And yes, you can \texttt{man\ man}, \texttt{man\ info},
 You can often search the internet for "UNIX" documentation, and the
 \texttt{man} pages have long been online. A site I like (and link to a
 lot here) is \url{http://linux.die.net/man/}
-\index{Documentation!http://linux.die.net/man/@\textit{http://linux.die.net/man/}}.
+\index{documentation!http://linux.die.net/man/@\textit{http://linux.die.net/man/}}.
 Often, though, you can just google
 \href{https://www.google.com/\#q=man+ls}{"man ls"} and the top hits will
 be what you want.
@@ -6343,38 +6352,39 @@ on various parts of Linux and related systems on the internet.
 \begin{itemize}
 \item
   \href{http://www.tldp.org/guides.html}{\textbf{The Linux Documentation
-  Project (LDP)}}\index{Documentation!Linux Documentation Project} - has
+  Project (LDP)}}\index{documentation!Linux Documentation Project} - has
   fallen a bit behind over the years, but still has two of the best
   \texttt{bash} scripting books out there,
   \href{http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html}{\emph{Bash
   Guide for Beginners}}
-  \index{Documentation!Bash Guide for Beginners@\textit{Bash Guide for Beginners}}\drios{bash}
+  \index{documentation!Bash Guide for Beginners@\textit{Bash Guide for Beginners}}\drshl{bash}
   and \href{http://www.tldp.org/LDP/abs/html/index.html}{\emph{Advanced
   Bash-Scripting Guide}}
-  \index{Documentation!Advanced Bash-Scripting Guide@\textit{Advanced Bash-Scripting Guide}}.
+  \index{documentation!Advanced Bash-Scripting Guide@\textit{Advanced Bash-Scripting Guide}}.
   I continue to use the latter all the time.
 \item
-  \href{https://wiki.archlinux.org/}{\textbf{Arch Linux
-  Wiki}}\index{Documentation!Arch wiki} - you may not think this would
-  be useful if you are running Debian or Fedora or something else, but
-  remember most "UNIX" systems are all very similar, and often the best
-  documentation on a package or setting something up in Linux is in the
-  Arch wiki.
+  \href{https://wiki.archlinux.org/}{\textbf{Arch Linux Wiki}} -
+  \index{documentation!Arch wiki} \drdis{Arch} you may not think this
+  would be useful if you are running Debian or Fedora or something else,
+  but remember most "UNIX" systems are all very similar, and often the
+  best documentation on a package or setting something up in Linux is in
+  the Arch wiki.
 \item
   \href{https://www.debian.org/doc/}{\textbf{Debian documentation}} -
-  again, even if you are not running a Debian-based distro, this can be
-  handy because it describes how to administer Linux in a way that often
-  transcends distro specifics (and at least explains how Debian
-  approaches the differences). The best books in the series are
+  \drdis{Debian} again, even if you are not running a Debian-based
+  distro, this can be handy because it describes how to administer Linux
+  in a way that often transcends distro specifics (and at least explains
+  how Debian approaches the differences). The best books in the series
+  are
   \href{https://www.debian.org/doc/manuals/debian-handbook/}{\emph{The
   Debian Administrator's Handbook}}
-  \index{Documentation!Debian Administrator's Handbook@\textit{Debian Administrator's Handbook}}
+  \index{documentation!Debian Administrator's Handbook@\textit{Debian Administrator's Handbook}}
   and the
   \href{https://www.debian.org/doc/manuals/debian-reference/}{\emph{Debian
-  Reference}}
-  \index{Documentation!Debian Reference@\textit{Debian Reference}},
-  which is a lot more formal attempt at the same type of territory this
-  guide covers.
+  Reference}},
+  \index{documentation!Debian Reference@\textit{Debian Reference}} which
+  is a lot more formal attempt at the same type of territory this guide
+  covers.
 \end{itemize}
 
 Ubuntu, Mint and some other distros have quite active message fora, and
@@ -6406,7 +6416,7 @@ up against.
 
 In UNIX-like systems, most (not all) system configuration is stored in
 directories and text files under
-\texttt{/etc}\index{Files and Directories!Special!\texttt{/etc/}}.
+\texttt{/etc}\index{files and directories!special!etc@\texttt{/etc/}}.
 
 \textbf{Note:} In Linux \texttt{/etc} is almost universally pronounced
 "slash-et-see," \textbf{\emph{not}} "forward slash et cetera."
@@ -6448,28 +6458,28 @@ list of files and directories you may need to examine there:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{fstab}}\index{Files and Directories!Special!\texttt{/etc/fstab}}
+  \textbf{\texttt{fstab}}\index{files and directories!special!etcfstab@\texttt{/etc/fstab}}
   - a listing of the file systems currently mounted and their types.
 \item
-  \textbf{\texttt{group}}\index{Files and Directories!Special!\texttt{/etc/group}}
+  \textbf{\texttt{group}}\index{files and directories!special!etcgroup@\texttt{/etc/group}}
   - the security groups on the system.
 \item
-  \textbf{\texttt{hosts}}\index{Files and Directories!Special!\texttt{/etc/hosts}}
+  \textbf{\texttt{hosts}}\index{files and directories!special!etchosts@\texttt{/etc/hosts}}
   - network aliases (overrides DNS, takes effect immediately).
 \item
-  \textbf{\texttt{init.d}}\index{Files and Directories!Special!\texttt{/etc/init.d/}}
+  \textbf{\texttt{init.d}}\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}}
   - startup and shutdown scripts for "services."
 \item
-  \textbf{\texttt{mtab}}\index{Files and Directories!Special!\texttt{/etc/mtab}}
+  \textbf{\texttt{mtab}}\index{files and directories!special!etcmtab@\texttt{/etc/mtab}}
   - list of current "mounts."
 \item
-  \textbf{\texttt{passwd}}\index{Files and Directories!Special!\texttt{/etc/passwd}}
+  \textbf{\texttt{passwd}}\index{files and directories!special!etcpasswd@\texttt{/etc/passwd}}
   - "shadow" file containing all the user accounts on the system.
 \item
-  \textbf{\texttt{resolv.conf}}\index{Files and Directories!Special!\texttt{/etc/resolv.conf}}
+  \textbf{\texttt{resolv.conf}}\index{files and directories!special!etcresolvconf@\texttt{/etc/resolv.conf}}
   - DNS settings.
 \item
-  \textbf{\texttt{samba}}\index{Files and Directories!Special!\texttt{/etc/samba/}}
+  \textbf{\texttt{samba}}\index{files and directories!special!etcsamba@\texttt{/etc/samba/}}
   - file sharing settings for CIFS-style shares.
 \end{itemize}
 
@@ -6538,13 +6548,14 @@ they would probably have required execution using \texttt{sudo}.
 Almost all Linux distros have the concept of "packages" which are used
 to install, update and uninstall software. There are different package
 managers, including \texttt{dpkg}\drcmd{dpkg}
-\index{Package management!\texttt{dpkg} command} and
+\index{package management!dpkg@\texttt{dpkg} command} and
 \texttt{apt-get}\drcmd{apt-get}
-\index{Package management!\texttt{apt-get} command} on Debian-based
-distros, \texttt{rpm}\drcmd{rpm}
-\index{Package management!\texttt{rpm} command} on Fedora descendants,
-etc. For the rest of this section we will use Debian tools, but in
-general the concepts and problems are similar for the other toolsets.
+\index{package management!aptget@\texttt{apt-get} command} on
+Debian-based distros, \texttt{rpm}\drcmd{rpm}
+\index{package management!rpm@\texttt{rpm} command} on Fedora
+descendants, etc. For the rest of this section we will use Debian tools,
+but in general the concepts and problems are similar for the other
+toolsets.
 
 One of the nicest things about Linux-style package managers (as opposed
 to traditional Windows installers) is that they can satisfy all a
@@ -6563,7 +6574,7 @@ In Debian flavors,
 \href{http://linux.die.net/man/8/apt-get}{\texttt{apt-get}}\drcmd{apt-get}
 is usually the tool of choice for package management. Another option is
 \href{http://linux.die.net/man/8/aptitude}{\texttt{aptitude}}\drcmd{aptitude}
-\index{Package management!\texttt{aptitude}}.
+\index{package management!aptitude@\texttt{aptitude} command}.
 
 There are three common \texttt{apt-get} commands that get used over and
 over. The first downloads and \emph{updates} the local metadata cache
@@ -6683,14 +6694,14 @@ Besides the distribution's repositories, you can install packages and
 other software from a variety of places. It may be an "official" site
 for the package, GitHub, a "personal package archive" (PPA) or whatever.
 The package may be in a binary installable format (\texttt{.deb}
-\index{Files and Directories!\texttt{.deb} package files} files for
-Debian systems), in source format requiring it to be built, in a zipped
-"tarball," and more.
+\index{files and directories!debpackagefiles@\texttt{.deb} package files}
+files for Debian systems), in source format requiring it to be built, in
+a zipped "tarball," and more.
 
 If you want the latest and greatest version of a package you often have
 to go to its "official" site or GitHub repository. There, you may find a
 \texttt{.deb} file, in which case you could install it with
-\texttt{dpkg}\drcmd{dpkg}\index{Package management!\texttt{dpkg} command}:
+\texttt{dpkg}\drcmd{dpkg}\index{package management!dpkg@\texttt{dpkg} command}:
 
 \drcap{Installing a package with \texttt{dpkg}}
 
@@ -6736,9 +6747,9 @@ Now that we've seen that we can have multiple versions of the same
 command or executable on the system, an interesting question arises.
 \emph{Which} \texttt{foo} command am I going to call if I just type
 \texttt{foo} at the command prompt? In other words, after taking the
-\texttt{\$PATH}\drenv{PATH} variable into consideration and searching
-for the program through that from left to right, which version in which
-directory is going to be called?
+\texttt{\$PATH}\drenv{PATH}{execution search path} variable into
+consideration and searching for the program through that from left to
+right, which version in which directory is going to be called?
 
 Luckily we have the
 \href{http://linux.die.net/man/1/which}{\texttt{which}}\drcmd{which}
@@ -6852,12 +6863,12 @@ Or you can prepend the \texttt{./} relative path to it, to indicate "the
 The function of scheduled tasks in Windows is performed by
 \href{http://linux.die.net/man/8/cron}{\texttt{cron}}\drcmd{cron} in
 Linux. It reads in the various
-\href{http://linux.die.net/man/5/crontab}{\texttt{crontab(5)}}\index{crontab}
-files on the system and executes the commands in them at the specified
-times. You use the
+\href{http://linux.die.net/man/5/crontab}{\texttt{crontab(5)}}
+\index{crontab@\texttt{crontab} (file)} files on the system and executes
+the commands in them at the specified times. You use the
 \href{http://linux.die.net/man/1/crontab}{\texttt{crontab(1)}}\drcmd{crontab}
 command to view and edit the
-\texttt{crontab}\index{Files and Directories!Special!\texttt{crontab}}
+\texttt{crontab}\index{files and directories!special!crontab@\texttt{crontab}}
 files for your user (and other users if you have admin privileges).
 
 The sample given in the comments of the \texttt{crontab} when initially
@@ -6913,11 +6924,11 @@ the commands from each \texttt{crontab}, they are typically not invoked
 with that particular user's environment settings, so it is best to fully
 specify the paths to files both in the \texttt{crontab} file itself and
 in any scripts or parameters to scripts it calls. Depending on the
-system and whether \texttt{\$PATH}\drenv{PATH} is set at all when a
-"\texttt{cron} job" runs, you may have to specify the full paths to
-binaries in installed packages or even what you would consider "system"
-libraries! The \texttt{which} command comes in handy here for finding
-out where each command is installed.
+system and whether \texttt{\$PATH}\drenv{PATH}{execution search path} is
+set at all when a "\texttt{cron} job" runs, you may have to specify the
+full paths to binaries in installed packages or even what you would
+consider "system" libraries! The \texttt{which} command comes in handy
+here for finding out where each command is installed.
 
 \section*{Start Me Up}\label{start-me-up}
 \addcontentsline{toc}{section}{Start Me Up}
@@ -6952,7 +6963,7 @@ shutting down:
 \addcontentsline{toc}{section}{Turn on Your Signals}
 
 One of the basic concepts in UNIX program is that of
-\href{https://en.wikipedia.org/wiki/Unix_signal}{"signals"}\index{Signals}.
+\href{https://en.wikipedia.org/wiki/Unix_signal}{"signals"}\index{signals}.
 You are probably already familiar with one way to send signals to a
 program, which is via \texttt{Ctrl-C} at the command prompt, which sends
 the \texttt{SIGINT} ("interrupt") signal to the program. Typically this
@@ -7011,10 +7022,10 @@ end that by convention is \texttt{0} if the program exited successfully
 and a non-zero, (typically) positive number if there was an error. The
 exit status for the last executed command or program can be shown at the
 command line using the \texttt{\$?}
-\index{Environment variables!\?@\texttt{?}}
-\index{0@Symbols!\texttt{?} (exit status environment variable)}
-environment variable. Consider if the file \texttt{foo} exists and
-\texttt{bar} does not:
+\index{environment variables!\?@\texttt{\$}\texttt{?} (exit status code)}
+\index{*@\texttt{?} (exit status environment variable)} environment
+variable. Consider if the file \texttt{foo} exists and \texttt{bar} does
+not:
 
 \drcap{Examining exit codes}
 
@@ -7040,9 +7051,9 @@ However, sometimes even at the command line we want to be able to
 conditionally control a sequence of commands, and continue (or not)
 based on the success (or failure) of a previous command. In
 \texttt{bash} we have
-\texttt{\&\&}\index{0@Symbols!\texttt{\&}\texttt{\&} (logical "and" operator)}
+\texttt{\&\&}\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
 and \texttt{\textbar{}\textbar{}}
-\index{0@Symbols!\texttt{"|"|} (logical "or" operator)} to the rescue!
+\index{*@\texttt{"|"|} (logical "or" operator)} to the rescue!
 
 \begin{itemize}
 \item
@@ -7125,8 +7136,8 @@ return a \texttt{0} (success) exit code. This can be useful in scripting
 and also sometimes when building "and" and "or" clauses like above.
 
 And yes, of course, that means there is also a
-\href{http://linux.die.net/man/1/false}{\texttt{false}}\drcmd
-false\} command to "do nothing, unsuccessfully!"
+\href{http://linux.die.net/man/1/false}{\texttt{false}} \drcmd{false}
+command to "do nothing, unsuccessfully!"
 
 \drcap{\texttt{true} and \texttt{false} commands}
 
@@ -7173,11 +7184,11 @@ outlined in the book to find more information on them.
 \begin{itemize}
 \item
   \href{http://linux.die.net/abs-guide/exit-status.html}{\textbf{\texttt{\$?}}}
-  \index{Environment variables!\?@\texttt{?}}
-  \index{0@Symbols!\texttt{?} (exit status environment variable)} - the
-  exit code for the last command or program executed.
+  \index{environment variables!\?@\texttt{\$}\texttt{?} (exit status code)}
+  \index{*@\texttt{?} (exit status environment variable)} - the exit
+  code for the last command or program executed.
 \item
-  \href{http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html}{\textbf{\texttt{\$PATH}}}\drenv{PATH}
+  \href{http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html}{\textbf{\texttt{\$PATH}}}\drenv{PATH}{execution search path}
   - the execution search path.
 \end{itemize}
 
@@ -7188,10 +7199,10 @@ See \href{http://linux.die.net/abs-guide/ops.html}{"logical operators"}.
 
 \begin{itemize}
 \item
-  \textbf{\texttt{\&\&}}\index{0@Symbols!\texttt{\&}\texttt{\&} (logical "and" operator)}
+  \textbf{\texttt{\&\&}}\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
   - execute the second command only if the first command succeeds.
 \item
-  \textbf{\texttt{\textbar{}\textbar{}}}\index{0@Symbols!\texttt{"|"|} (logical "or" operator)}
+  \textbf{\texttt{\textbar{}\textbar{}}}\index{*@\texttt{"|"|} (logical "or" operator)}
   - execute the second command even if the first command fails.
 \end{itemize}
 
@@ -7203,31 +7214,31 @@ Redirection"}.
 
 \begin{itemize}
 \item
-  \textbf{\texttt{stderr}}\index{I/O!Streams!stdin@\textit{stderr}} -
+  \textbf{\texttt{stderr}}\index{I/O!streams!stdin@\textit{stderr}} -
   file descriptor 2, always open for writing from a process, defaults to
   the screen on a terminal session.
 \item
-  \textbf{\texttt{stdin}}\index{I/O!Streams!stdin@\textit{stdin}} - file
+  \textbf{\texttt{stdin}}\index{I/O!streams!stdin@\textit{stdin}} - file
   descriptor 0, always open for reading in a process, defaults to the
   keyboard input on a terminal session.
 \item
-  \textbf{\texttt{stdout}}\index{I/O!Streams!stdin@\textit{stdout}} -
+  \textbf{\texttt{stdout}}\index{I/O!streams!stdin@\textit{stdout}} -
   file descriptor 1, always open for writing from a process, defaults to
   the screen on a terminal session.
 \item
-  \textbf{\texttt{\textless{}}}\index{0@Symbols!\texttt{<} (input redirection)}
-  \index{I/O!Redirection!Input (\texttt{<})} - redirect a file to
+  \textbf{\texttt{\textless{}}}\index{*@\texttt{<} (input redirection)}
+  \index{I/O!redirection!input (\texttt{<})} - redirect a file to
   \texttt{stdin}.
 \item
-  \textbf{\texttt{\textgreater{}}}\index{0@Symbols!\texttt{>} (output redirection)}
-  \index{I/O!Redirection!Output (\texttt{>})} - redirect \texttt{stdout}
+  \textbf{\texttt{\textgreater{}}}\index{*@\texttt{>} (output redirection)}
+  \index{I/O!redirection!output (\texttt{>})} - redirect \texttt{stdout}
   to a file.
 \item
-  \textbf{\texttt{2\textgreater{}}}\index{0@Symbols!\texttt{2>} (\textit{stderr} redirection)}
-  \index{I/O!Redirection!Error (\texttt{2>})} - redirect \texttt{stderr}
+  \textbf{\texttt{2\textgreater{}}}\index{*@\texttt{2>} (\textit{stderr} redirection)}
+  \index{I/O!redirection!error (\texttt{2>})} - redirect \texttt{stderr}
   to a file.
 \item
-  \textbf{\texttt{\textbar{}}}\index{0@Symbols!\texttt{"|} (pipe)}\index{I/O!Redirection!pipe (\texttt{"|})}
+  \textbf{\texttt{\textbar{}}}\index{*@\texttt{"|} (pipe)}\index{I/O!redirection!pipe (\texttt{"|})}
   - pipe \texttt{stdout} from one process into \texttt{stdin} in another
   process.
 \end{itemize}
@@ -7239,10 +7250,10 @@ Directories}\label{special-files-and-directories}
 \begin{itemize}
 \item
   \href{http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html}{\textbf{\texttt{\textasciitilde{}}}}
-  \index{Files and Directories!Home (\texttt{\~{}})} - shortcut for
+  \index{files and directories!home (\texttt{\~{}})} - shortcut for
   current user's home directory.
 \item
-  \textbf{\texttt{.bash\_history}}\index{Files and Directories!Special!\texttt{.bash\_history}}
+  \textbf{\texttt{.bash\_history}}\index{files and directories!special!bashhistory@\texttt{.bash\_history}}
   - history of commands entered at the command prompt (also a nice
   example of a hidden "dotfile").
 \end{itemize}
@@ -7255,22 +7266,22 @@ System Directories}.
 
 \begin{itemize}
 \item
-  \textbf{\texttt{/etc}}\index{Files and Directories!Special!\texttt{/etc/}}
+  \textbf{\texttt{/etc}}\index{files and directories!special!etc@\texttt{/etc/}}
   - configuration files location.
 \item
-  \textbf{\texttt{/home}}\index{Files and Directories!Home (\texttt{/home/})}
+  \textbf{\texttt{/home}}\index{files and directories!home (\texttt{/home/})}
   - "home" or user profile directories.
 \item
-  \textbf{\texttt{/proc}}\index{Files and Directories!Special!\texttt{/proc/}}
+  \textbf{\texttt{/proc}}\index{files and directories!special!proc@\texttt{/proc/}}
   - system run-time information.
 \item
-  \textbf{\texttt{/root}}\index{Files and Directories!Root "home" (\texttt{/root/})}
+  \textbf{\texttt{/root}}\index{files and directories!root "home" (\texttt{/root/})}
   - "home" directory for "root" user (system admin).
 \item
-  \textbf{\texttt{/tmp}}\index{Files and Directories!Special!\texttt{/tmp/}}
+  \textbf{\texttt{/tmp}}\index{files and directories!special!tmp@\texttt{/tmp/}}
   - temporary files location.
 \item
-  \textbf{\texttt{/var/log}}\index{Files and Directories!Special!\texttt{/var/log/}}
+  \textbf{\texttt{/var/log}}\index{files and directories!special!varlog@\texttt{/var/log/}}
   - log files location.
 \end{itemize}
 
@@ -7287,7 +7298,7 @@ access files and the like.
   compress and uncompress files and directories using the 7-zip
   algorithm.
 \item
-  \href{http://linux.die.net/man/1/apropos}{\textbf{\texttt{apropos}}}\drcmd{apropos}
+  \href{http://linux.die.net/man/1/apropos}{\textbf{\texttt{apropos}}}\drdoc{apropos}
   - search for help on commands by pattern.
 \item
   \href{http://linux.die.net/man/1/awk}{\textbf{\texttt{awk}}}\drcmd{awk}
@@ -7320,7 +7331,7 @@ access files and the like.
   \href{http://linux.die.net/man/1/crontab}{\textbf{\texttt{crontab}}}\drcmd{crontab}
   - display or edit tasks to be run by \texttt{cron}.
 \item
-  \href{http://linux.die.net/man/1/curl}{\textbf{\texttt{curl}}}\drcmd{curl}
+  \href{http://linux.die.net/man/1/curl}{\textbf{\texttt{curl}}}\drnet{curl}
   - download files from the internet.
 \item
   \href{http://linux.die.net/man/1/df}{\textbf{\texttt{df}}}\drcmd{df} -
@@ -7329,7 +7340,7 @@ access files and the like.
   \href{http://linux.die.net/man/1/diff}{\textbf{\texttt{diff}}}\drcmd{diff}
   - show the differences between files.
 \item
-  \href{http://linux.die.net/man/1/dig}{\textbf{\texttt{dig}}}\drcmd{dig}
+  \href{http://linux.die.net/man/1/dig}{\textbf{\texttt{dig}}}\drnet{dig}
   - look up DNS info on an address.
 \item
   \href{http://linux.die.net/man/1/dpkg}{\textbf{\texttt{dpkg}}}\drcmd{dpkg}
@@ -7338,7 +7349,7 @@ access files and the like.
   \href{http://linux.die.net/man/1/echo}{\textbf{\texttt{echo}}}\drcmd{echo}
   - display passed parameters to \texttt{stdout}.
 \item
-  \href{http://linux.die.net/man/1/email}{\textbf{\texttt{email}}}\drcmd{email}
+  \href{http://linux.die.net/man/1/email}{\textbf{\texttt{email}}}\drnet{email}
   - send email.
 \item
   \href{http://linux.die.net/man/1/false}{\textbf{\texttt{false}}}\drcmd{false}
@@ -7354,14 +7365,14 @@ access files and the like.
   \href{http://linux.die.net/man/1/grep}{\textbf{\texttt{grep}}}\drcmd{grep}
   - search for a pattern (regular expression) in files.
 \item
-  \href{http://linux.die.net/man/1/help}{\textbf{\texttt{help}}}\drcmd{help}
+  \href{http://linux.die.net/man/1/help}{\textbf{\texttt{help}}}\drdoc{help}
   - help for built-in commands in \texttt{bash}.
 \item
-  \href{http://linux.die.net/man/1/info}{\textbf{\texttt{info}}}\drcmd{info}
+  \href{http://linux.die.net/man/1/info}{\textbf{\texttt{info}}}\drdoc{info}
   - an alternative for \texttt{man}, especially for GNU programs.
   Remember \texttt{q} quits.
 \item
-  \href{http://linux.die.net/man/1/less}{\textbf{\texttt{less}}}\drcmd{less}
+  \href{http://linux.die.net/man/1/less}{\textbf{\texttt{less}}}\drcmd{less}\index{files and directories!paginate!less@\texttt{less} command}\drcmd{less}\index{pagination!\texttt{less} command}
   - display the file one page at a time on \texttt{stdout}.
 \item
   \href{http://linux.die.net/man/1/ln}{\textbf{\texttt{ln}}}\drcmd{ln} -
@@ -7370,19 +7381,25 @@ access files and the like.
   \href{http://linux.die.net/man/1/ls}{\textbf{\texttt{ls}}}\drcmd{ls} -
   list directory contents.
 \item
-  \href{http://linux.die.net/man/1/man}{\textbf{\texttt{man}}}\drcmd{man}
+  \href{http://linux.die.net/man/1/lynx}{\textbf{\texttt{lynx}}}\drnet{lynx}
+  - command line web browser.
+\item
+  \href{http://linux.die.net/man/1/man}{\textbf{\texttt{man}}}\drdoc{man}
   - display manual pages. Remember \texttt{q} quits.
 \item
   \href{http://linux.die.net/man/1/mkdir}{\textbf{\texttt{mkdir}}}\drcmd{mkdir}
   - make a new directory.
 \item
-  \href{http://linux.die.net/man/1/mutt}{\textbf{\texttt{mutt}}}\drcmd{mutt}
+  \href{http://linux.die.net/man/1/more}{\textbf{\texttt{more}}}\drcmd{more}\index{files and directories!paginate!more@\texttt{more} command}\index{pagination!\texttt{more} command}
+  - display the file one page at a time on \texttt{stdout}.
+\item
+  \href{http://linux.die.net/man/1/mutt}{\textbf{\texttt{mutt}}}\drnet{mutt}
   - email client.
 \item
   \href{http://linux.die.net/man/1/mv}{\textbf{\texttt{mv}}}\drcmd{mv} -
   move files or directories.
 \item
-  \href{http://linux.die.net/man/1/pine}{\textbf{\texttt{pine}}}\drcmd{pine}
+  \href{http://linux.die.net/man/1/pine}{\textbf{\texttt{pine}}}\drnet{pine}
   - email client.
 \item
   \href{http://linux.die.net/man/1/ps}{\textbf{\texttt{ps}}}\drcmd{ps} -
@@ -7397,13 +7414,16 @@ access files and the like.
   \href{http://linux.die.net/man/1/rm}{\textbf{\texttt{rm}}}\drcmd{rm} -
   delete (remove) files or directories.
 \item
+  \href{http://linux.die.net/man/1/scp}{\textbf{\texttt{scp}}}\drnet{scp}
+  - file copy over secure shell protocol.
+\item
   \href{http://linux.die.net/man/1/set}{\textbf{\texttt{set}}}\drcmd{set}
   - set an environment variable, or display all environment variables.
 \item
   \href{http://linux.die.net/man/1/sort}{\textbf{\texttt{sort}}}\drcmd{sort}
   - sort \texttt{stdin} or a file to \texttt{stdout}.
 \item
-  \href{http://linux.die.net/man/1/ssh}{\textbf{\texttt{ssh}}}\drcmd{ssh}
+  \href{http://linux.die.net/man/1/ssh}{\textbf{\texttt{ssh}}}\drnet{ssh}
   - secure shell terminal progam and protocol.
 \item
   \href{http://linux.die.net/man/1/tail}{\textbf{\texttt{tail}}}\drcmd{tail}
@@ -7416,7 +7436,7 @@ access files and the like.
   \href{http://linux.die.net/man/1/tee}{\textbf{\texttt{tee}}}\drcmd{tee}
   - write to a file and \texttt{stdout} at the same time.
 \item
-  \href{http://linux.die.net/man/1/telnet}{\textbf{\texttt{telnet}}}\drcmd{telnet}
+  \href{http://linux.die.net/man/1/telnet}{\textbf{\texttt{telnet}}}\drnet{telnet}
   - ancient terminal program and protocol.
 \item
   \href{http://linux.die.net/man/1/touch}{\textbf{\texttt{touch}}}\drcmd{touch}
@@ -7432,17 +7452,20 @@ access files and the like.
   \href{http://linux.die.net/man/1/unzip}{\textbf{\texttt{unzip}}}\drcmd{unzip}
   - uncompress \texttt{.zip} files.
 \item
-  \href{http://linux.die.net/man/1/vi}{\textbf{\texttt{vi}}}\drcmd{vi} -
+  \href{http://linux.die.net/man/1/vi}{\textbf{\texttt{vi}}}\dreds{vi} -
   "visual" editor, a file editor.
 \item
-  \href{http://linux.die.net/man/1/wget}{\textbf{\texttt{wget}}}\drcmd{wget}
+  \href{http://linux.die.net/man/1/wget}{\textbf{\texttt{wget}}}\drnet{wget}
   - download files from the internet.
 \item
   \href{http://linux.die.net/man/1/whoami}{\textbf{\texttt{whoami}}}\drcmd{whoami}
   - the answer to life's most existential question.
 \item
-  \href{http://linux.die.net/man/1/whois}{\textbf{\texttt{whois}}}\drcmd{whois}
+  \href{http://linux.die.net/man/1/whois}{\textbf{\texttt{whois}}}\drnet{whois}
   - look up DNS ownership info on an address.
+\item
+  \href{http://linux.die.net/man/1/xfreerdp}{\textbf{\texttt{xfreerdp}}}\drnet{xfreerdp}
+  - RDP protocol client.
 \item
   \href{http://linux.die.net/man/1/zip}{\textbf{\texttt{zip}}}\drcmd{zip}
   - compress files and directories using the PKZip algorithm.
@@ -7469,13 +7492,13 @@ some systems restrict the use of \texttt{ping}!
   \href{http://linux.die.net/man/8/dmesg}{\textbf{\texttt{dmesg}}}\drcmd{dmesg}
   - display kernel log messages.
 \item
-  \href{http://linux.die.net/man/8/ifconfig}{\textbf{\texttt{ifconfig}}}\drcmd{ifconfig}
+  \href{http://linux.die.net/man/8/ifconfig}{\textbf{\texttt{ifconfig}}}\drnet{ifconfig}
   - display network (interface) configuration.
 \item
   \href{http://linux.die.net/man/8/mount}{\textbf{\texttt{mount}}}\drcmd{mount}
   - mount a file system to a specific location.
 \item
-  \href{http://linux.die.net/man/8/ping}{\textbf{\texttt{ping}}}\drcmd{ping}
+  \href{http://linux.die.net/man/8/ping}{\textbf{\texttt{ping}}}\drnet{ping}
   - test for network connectivity to an IP address.
 \item
   \href{http://linux.die.net/man/8/reboot}{\textbf{\texttt{reboot}}}\drcmd{reboot}
@@ -7490,7 +7513,7 @@ some systems restrict the use of \texttt{ping}!
   \href{http://linux.die.net/man/8/sudo}{\textbf{\texttt{sudo}}}\drcmd{sudo}
   - execute a command with elevated privileges.
 \item
-  \href{http://linux.die.net/man/8/traceroute}{\textbf{\texttt{traceroute}}}\drcmd{traceroute}
+  \href{http://linux.die.net/man/8/traceroute}{\textbf{\texttt{traceroute}}}\drnet{traceroute}
   - trace the route to an IP address.
 \end{itemize}
 
@@ -7550,7 +7573,7 @@ inverting the match logic (\texttt{-v}) on \texttt{{]}}.
 \addcontentsline{toc}{subsection}{Chain Gangs}
 
 Remembering that
-\texttt{\&\&}\index{0@Symbols!\texttt{\&}\texttt{\&} (logical "and" operator)}
+\texttt{\&\&}\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
 only executes the next command if the prior one is successful, we can do
 things like set up a sample directory and (empty) files for playing
 around with files and directories in one fell swoop:
@@ -7588,7 +7611,7 @@ I said I wasn't going to cover scripting, especially logical constructs
 like \texttt{if}/\texttt{fi}\drcmd{if}. But simple scripts that just "do
 things" in a certain order are within scope, and the following, which
 installs
-\href{https://github.com/freerdp/freerdp}{\texttt{freerdp}}\drcmd{freerdp},
+\href{https://github.com/freerdp/freerdp}{\texttt{freerdp}}\drnet{xfreerdp},
 is a good example of simply taking the guesswork out of doing something
 repetitive across multiple machines. I keep this \texttt{installrdp}
 script in Dropbox so I can run it quickly and easily on any new machine
@@ -7655,16 +7678,16 @@ results):
 
 \begin{itemize}
 \item
-  \href{https://cygwin.com/}{\textbf{Cygwin}}\drios{Cygwin} -
+  \href{https://cygwin.com/}{\textbf{Cygwin}}\drunx{Cygwin} -
   \texttt{2.2.1(0.289/5/3)\ 2015-08-20\ 11:42}
 \item
-  \href{http://www.debian.org/}{\textbf{Debian}}\drios{Debian} -
+  \href{http://www.debian.org/}{\textbf{Debian}}\drdis{Debian} -
   \texttt{3.2.0-4-amd64\ \#1\ SMP\ Debian\ 3.2.65-1+deb7u2}
 \item
   \href{http://www.freebsd.org/}{\textbf{FreeBSD}}\drios{FreeBSD} -
   \texttt{7.3-RELEASE-p2\ FreeBSD\ 7.3-RELEASE-p2\ \#0:\ Tue\ Nov\ \ 4\ 22:08:52\ EST\ 2014}
 \item
-  \href{http://linuxmint.com/}{\textbf{Linux Mint}}\drios{Mint} -
+  \href{http://linuxmint.com/}{\textbf{Linux Mint}}\drdis{Mint} -
   \texttt{3.16.0-38-generic\ \#52\textasciitilde{}14.04.1-Ubuntu\ SMP\ Fri\ May\ 8\ 09:43:57\ UTC\ 2015}
 \end{itemize}
 
@@ -7674,7 +7697,7 @@ just be showing off.
 Written in
 \href{http://pandoc.org/README.html\#pandocs-markdown}{\texttt{pandoc}-flavored
 Markdown} using
-\href{http://linux.die.net/man/1/vi}{\texttt{vi}}\drcmd{vi} and
+\href{http://linux.die.net/man/1/vi}{\texttt{vi}}\dreds{vi} and
 \href{https://github.com/Microsoft/vscode}{Visual Studio Code}, among
 others.
 

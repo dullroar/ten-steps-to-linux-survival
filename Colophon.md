@@ -9,20 +9,20 @@
 This document was produced in the environments it discusses, including (with their
 [`uname -rv`](http://linux.die.net/man/1/uname)\drcmd{uname} results):
 
-* [**Cygwin**](https://cygwin.com/)\drios{Cygwin} - `2.2.1(0.289/5/3) 2015-08-20 11:42`
+* [**Cygwin**](https://cygwin.com/)\drunx{Cygwin} - `2.2.1(0.289/5/3) 2015-08-20 11:42`
 
-* [**Debian**](http://www.debian.org/)\drios{Debian} - `3.2.0-4-amd64 #1 SMP Debian 3.2.65-1+deb7u2`
+* [**Debian**](http://www.debian.org/)\drdis{Debian} - `3.2.0-4-amd64 #1 SMP Debian 3.2.65-1+deb7u2`
 
 * [**FreeBSD**](http://www.freebsd.org/)\drios{FreeBSD} -
 `7.3-RELEASE-p2 FreeBSD 7.3-RELEASE-p2 #0: Tue Nov  4 22:08:52 EST 2014`
 
-* [**Linux Mint**](http://linuxmint.com/)\drios{Mint} -
+* [**Linux Mint**](http://linuxmint.com/)\drdis{Mint} -
 `3.16.0-38-generic #52~14.04.1-Ubuntu SMP Fri May 8 09:43:57 UTC 2015`
 
 I could have done something with my Raspberry Pi, too, but that would just be showing off.
 
 Written in [`pandoc`-flavored Markdown](http://pandoc.org/README.html#pandocs-markdown) using
-[`vi`](http://linux.die.net/man/1/vi)\drcmd{vi} and [Visual Studio
+[`vi`](http://linux.die.net/man/1/vi)\dreds{vi} and [Visual Studio
 Code](https://github.com/Microsoft/vscode), among others.
 
 Output produced using [`pandoc`](http://pandoc.org/)\drcmd{pandoc}, [TeX
