@@ -1629,9 +1629,9 @@ ext* file systems as preferred, it can write to a lot of file systems
 and can read even more.
 
 As mentioned before, the biggest differences between Linux and Windows
-\drios{Windows} is that the Linux environments do not have a concept of
-"drive letters." Instead everything is "mounted" under a single
-hierarchy that starts at the "root directory" or \texttt{/}:
+is that the Linux environments do not have a concept of "drive letters."
+Instead everything is "mounted" under a single hierarchy that starts at
+the "root directory" or \texttt{/}: \drios{Windows}
 \index{*@\texttt{/} (root directory)}\index{files and directories!root (\texttt{/})}
 
 \drcap{Listing of the root directory}
@@ -1658,8 +1658,8 @@ often mounted automatically under either a \texttt{/mnt} or
 \addcontentsline{toc}{section}{Looking at Files}
 
 As we've already seen, the command to \emph{list} the contents of a
-directory is
-\href{http://linux.die.net/man/1/ls}{\texttt{ls}}:\drfnd{ls}{list directory contents}
+directory is \href{http://linux.die.net/man/1/ls}{\texttt{ls}}:
+\drfnd{ls}{list directory contents}
 
 \drcap{Listing directory contents}
 
@@ -1672,9 +1672,9 @@ directory is
 
 Remember, "UNIX" environments think of files that start with a
 \texttt{.} as "hidden." If you want to see all these
-\href{https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory\#Unix_and_Unix-like_environments}{"dotfiles"}
-\index{files and directories!hidden (dotfiles)}, you can use
-\texttt{ls\ -a}, in this case on an average "home" directory:
+\href{https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory\#Unix_and_Unix-like_environments}{"dotfiles"},
+you can use \texttt{ls\ -a}, in this case on an average "home"
+directory: \index{files and directories!hidden (dotfiles)}
 
 \drcap{Listing a home directory showing hidden "dotfiles"}
 
@@ -1754,9 +1754,10 @@ longer, descriptive parameter names like \texttt{ls\ -\/-all} that mean
 the same thing. It is typically good to use the shorter version during
 interactive sessions and testing, but I prefer long parameter names in
 scripts, because when I come back and look at it in two years, I may not
-remember what \texttt{rm\ -rf\ *}\drfnd{rm}{remove file} means (in the
-"UNIX" world it means you're toast if you run it by mistake), thus
+remember what \texttt{rm\ -rf\ *} means (in the "UNIX" world it means
+you're toast if you run it by mistake), thus
 \texttt{rm\ -\/-recursive\ -\/-force\ *} seems a bit more "intuitive."
+\drfnd{rm}{remove file}
 
 \begin{quote}
 \textbf{\emph{The behind you save in the future by describing things
@@ -1776,8 +1777,8 @@ The older style parameters are typically preceded by a single hyphen or
 
 Some commands support parameters with no "switch" character at all, as
 with \texttt{xvf} (e\textbf{\emph{X}}tract, \textbf{\emph{V}}erbose,
-input \textbf{\emph{F}}ile name) in the following
-\texttt{tar}\drcmd{tar} example:
+input \textbf{\emph{F}}ile name) in the following \texttt{tar} example:
+\drcmd{tar}
 
 \drcap{Alternate short parameter syntax}
 
@@ -1805,9 +1806,9 @@ to use the GNU-style parameters in scripts as self-documenting code.
 \addcontentsline{toc}{section}{More Poking at Files}
 
 If we suspect the file is a text file, we can echo it to the console
-with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}\drcmd{cat}
+with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}
+(\emph{concatenate}) command: \drcmd{cat}
 \index{files and directories!display (\texttt{cat} command)}
-(\emph{concatenate}) command:
 
 \drcap{\texttt{cat} command}
 
@@ -1840,49 +1841,52 @@ with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}\drcmd{cat}
 \end{Shaded}
 
 In this example when we \texttt{cat\ installrdp} we can determine it is
-a \texttt{bash} shell script (because the
-"shebang"\index{*@\texttt{\#"!} (shebang)} is pointing to
+a \texttt{bash} shell script (because the "shebang" is pointing to
 \texttt{bash}\drshl{bash}) that looks to install and configure
-\href{https://github.com/FreeRDP/FreeRDP}{FreeRDP}\drnet{xfreerdp} on a
-Debian-style system:
+\href{https://github.com/FreeRDP/FreeRDP}{FreeRDP} on a Debian-style
+system: \drnet{xfreerdp} \index{*@\texttt{\#"!} (shebang)}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{\texttt{apt-get}}\drpkg{apt-get} - Debian-style package
-  manager.
+  \textbf{\texttt{apt-get}} - Debian-style package manager.
+  \drpkg{apt-get}
 \item
-  \textbf{\texttt{git\ clone}}\drcmd{git} - cloning package from
-  \href{http://github.com}{GitHub}.
+  \textbf{\texttt{git\ clone}} - cloning package from
+  \href{http://github.com}{GitHub}. \drcmd{git}
 \item
-  \textbf{\texttt{cmake}}\drcmd{cmake} and
-  \textbf{\texttt{make}}\drcmd{make} - configuring and building software
-  from source.
+  \textbf{\texttt{cmake}} and \textbf{\texttt{make}} - configuring and
+  building software from source. \drcmd{cmake} \drcmd{make}
 \end{enumerate}
 
 A better way to display a longer file is to use the
-\href{http://linux.die.net/man/1/less}{\texttt{less}}\drcmd{less}
-\index{files and directories!paginate!less@\texttt{less} command}\index{pagination!\texttt{less} command}
+\href{http://linux.die.net/man/1/less}{\texttt{less}}
+
 command (which is a derivative of the original
-\href{http://linux.die.net/man/1/more}{\texttt{more}}\drcmd{more}
-\index{files and directories!paginate!more@\texttt{more} command}\index{pagination!\texttt{more} command},
-hence the name). \texttt{less} is a paginator, where the \texttt{Space},
+\href{http://linux.die.net/man/1/more}{\texttt{more}}, hence the name).
+\texttt{less} is a paginator, where the \texttt{Space},
 \texttt{Page\ Down} or down arrow keys scroll down and the
 \texttt{Page\ Up} or up arrow keys scrolls up. \texttt{Q} quits.
+\drcmd{less} \drcmd{more}
+\index{files and directories!paginate!less@\texttt{less} command}
+\index{files and directories!paginate!more@\texttt{more} command}
+\index{pagination!\texttt{less} command}
+\index{pagination!\texttt{more} command}
 
-\textbf{Note:} The \texttt{vi}\dreds{vi} search (\texttt{/}, \texttt{?},
+\textbf{Note:} The \texttt{vi} search (\texttt{/}, \texttt{?},
 \texttt{n} and \texttt{p}) and navigation (\texttt{G}, \texttt{0}) keys
 work within \texttt{less}, too. In general \texttt{less} is a great
 lightweight way to motor around in a text file without editing it.
+\dreds{vi}
 
 We can also look at just the end or \emph{tail} of a file (often the
 most interesting when looking at log files and troubleshooting a current
-problem) with the
-\href{http://linux.die.net/man/1/tail}{\texttt{tail}}\drcmd{tail}
-\index{files and directories!display (\texttt{tail} command)} command.
-The next example shows the last 10 lines of the kernel \texttt{dmesg}
+problem) with the \href{http://linux.die.net/man/1/tail}{\texttt{tail}}
+command. The next example shows the last 10 lines of the kernel
+\texttt{dmesg} log: \drcmd{tail}
+\index{files and directories!display (\texttt{tail} command)}
 \index{files and directories!special!varlogdmesg@\texttt{/var/log/dmesg}}
-\index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)} log:
+\index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)}
 
 \drcap{\texttt{tail} command}
 
@@ -1960,8 +1964,8 @@ the end, which is useful for monitoring log files in real time:
 Use \texttt{Ctrl-C} to cancel following the file.
 
 If we know nothing about a \emph{file}, we can use the
-\href{http://linux.die.net/man/1/file}{\texttt{file}}\drfnd{file}{detect file type}
-command to help us guess:
+\href{http://linux.die.net/man/1/file}{\texttt{file}} command to help us
+guess: \drfnd{file}{detect file type}
 
 \drcap{\texttt{file} command}
 
@@ -1987,7 +1991,7 @@ Hence the utility of the \texttt{file} command.
 \addcontentsline{toc}{section}{Sorting Things Out}
 
 Let's say we have three files, and want to display the contents of one
-of them. We know we can do that with \texttt{cat}\drcmd{cat}:
+of them. We know we can do that with \texttt{cat}: \drcmd{cat}
 
 \drcap{Show contents of one file}
 
@@ -2030,11 +2034,10 @@ file contents.
 \end{Highlighting}
 \end{Shaded}
 
-The
-\href{http://linux.die.net/man/1/sort}{\texttt{sort}}\drcmd{sort}\index{sorting!\texttt{sort} command}
-command to the rescue! We will see that the \texttt{sort} command can be
-used to not just \emph{sort} files, but also to merge them and remove
-duplicates.
+The \href{http://linux.die.net/man/1/sort}{\texttt{sort}} command to the
+rescue! We will see that the \texttt{sort} command can be used to not
+just \emph{sort} files, but also to merge them and remove duplicates.
+\drcmd{sort}\index{sorting!\texttt{sort} command}
 
 \drcap{\texttt{sort} command}
 
@@ -2121,9 +2124,8 @@ alphabetically. Let's fix that by telling it to sort numerically:
 \end{Shaded}
 
 Maybe we care about the top three most expensive items. We haven't
-talked about
-\texttt{pipes}\index{*@\texttt{"|} (pipe)}\index{files and directories!redirection}
-yet, but check this out:
+talked about \texttt{pipes} yet, but check this out:
+\index{*@\texttt{"|} (pipe)}\index{files and directories!redirection}
 
 \drcap{Top three most expensive items}
 
@@ -2180,8 +2182,8 @@ confusion as to what it was doing.
 
 We can copy, move (or rename - same thing) and delete files and
 directories. To \emph{copy}, simply use the
-\href{http://linux.die.net/man/1/cp}{\texttt{cp}}\drfnd{cp}{copy}
-command:
+\href{http://linux.die.net/man/1/cp}{\texttt{cp}} command:
+\drfnd{cp}{copy}
 
 \drcap{\texttt{cp} command}
 
@@ -2212,8 +2214,8 @@ parameter names again:
 \end{Highlighting}
 \end{Shaded}
 
-To \emph{move} use
-\href{http://linux.die.net/man/1/mv}{\texttt{mv}}:\drfnd{mv}{move files}
+To \emph{move} use \href{http://linux.die.net/man/1/mv}{\texttt{mv}}:
+\drfnd{mv}{move files}
 
 \drcap{\texttt{mv} command}
 
@@ -2225,16 +2227,16 @@ To \emph{move} use
 
 \textbf{Note:} There is no semantic difference between "move" and
 "rename." However, there are some really cool renaming scenarios that
-the
-\href{http://linux.die.net/man/1/rename}{\texttt{rename}}\drfnd{rename}{rename file}
-command can take care of beyond \texttt{mv}, like renaming all file
-extensions from \texttt{.htm} to \texttt{.html}.
+the \href{http://linux.die.net/man/1/rename}{\texttt{rename}} command
+can take care of beyond \texttt{mv}, like renaming all file extensions
+from \texttt{.htm} to \texttt{.html}. \drfnd{rename}{rename file}
 
 \section*{Making Files Disappear}\label{making-files-disappear}
 \addcontentsline{toc}{section}{Making Files Disappear}
 
 To delete or \emph{remove} a file you use
-\href{http://linux.die.net/man/1/rm}{\texttt{rm}}:\drfnd{rm}{remove file}
+\href{http://linux.die.net/man/1/rm}{\texttt{rm}}:
+\drfnd{rm}{remove file}
 
 \drcap{\texttt{rm} command}
 
@@ -2307,7 +2309,8 @@ change \texttt{ls} to \texttt{rm} before running it. Safer that way.
 
 We just learned how to make a file disappear. We can also make a file
 magically appear, just by
-\href{http://linux.die.net/man/1/touch}{\texttt{touch}}:\drfnd{touch}{change modified date or create file}
+\href{http://linux.die.net/man/1/touch}{\texttt{touch}}:
+\drfnd{touch}{change modified date or create file}
 
 \drcap{\texttt{touch} command}
 
@@ -2324,9 +2327,8 @@ Notice the newly created file is zero bytes long.
 
 Interestingly enough, we can also use \texttt{touch} just to update the
 "last modified date" of an existing file, as you can see in time change
-in the following listing after running
-\texttt{touch}\drfnd{touch}{change modified date or create file} on the
-same file again:
+in the following listing after running \texttt{touch} on the same file
+again: \drfnd{touch}{change modified date or create file}
 
 \drcap{A second \texttt{touch}}
 
@@ -2341,9 +2343,8 @@ same file again:
 
 It can be useful (but also distressing from a forensics point of view)
 to set the last modified date of a file to a specific date and time,
-which
-\texttt{touch}\index{files and directories!set last modified date (\texttt{touch} command)}
-also allows you to do, in this case to the night before Christmas:
+which \texttt{touch} also allows you to do, in this case to the night
+before Christmas:
 
 \drcap{Set file modified date to a specific date and time}
 
@@ -2357,7 +2358,8 @@ also allows you to do, in this case to the night before Christmas:
 \end{Shaded}
 
 To \emph{make a directory} you use
-\href{http://linux.die.net/man/1/mkdir}{\texttt{mkdir}}:\drfnd{mkdir}{make directory}
+\href{http://linux.die.net/man/1/mkdir}{\texttt{mkdir}}:
+\drfnd{mkdir}{make directory}
 
 \drcap{\texttt{mkdir} command}
 
@@ -2413,13 +2415,13 @@ But of course you can override that behavior:
 Ever notice that "life" is an anagram for "file"? Spooky, eh?
 
 Given that the UNIX-style file systems are hierarchical in nature they
-are similar to navigate as with \texttt{CMD.EXE}\drshl{CMD.EXE}. The
-biggest difference is the absense of drive letters and the direction of
-the slashes.
+are similar to navigate as with \texttt{CMD.EXE}. The biggest difference
+is the absense of drive letters and the direction of the slashes.
+\drshl{CMD.EXE}
 
 To \emph{change directories}, simply use
-\href{http://linux.die.net/man/1/cd}{\texttt{cd}}\drfnd{cd}{change directory}
-much like in Windows:
+\href{http://linux.die.net/man/1/cd}{\texttt{cd}} much like in Windows:
+\drfnd{cd}{change directory}
 
 \drcap{\texttt{cd} command}
 
@@ -2431,18 +2433,18 @@ much like in Windows:
 \end{Highlighting}
 \end{Shaded}
 
-\href{http://linux.die.net/man/1/pwd}{\texttt{pwd}}\drfnd{pwd}{print working directory}
-simply \emph{prints the working (current) directory}. If \texttt{whoami}
-tells you who you are, \texttt{pwd} tells you \textbf{\emph{where}} you
-are.
+\href{http://linux.die.net/man/1/pwd}{\texttt{pwd}} simply \emph{prints
+the working (current) directory}. If \texttt{whoami} tells you who you
+are, \texttt{pwd} tells you \textbf{\emph{where}} you are.
+\drfnd{pwd}{print working directory}
 
-In Linux, users can have
-"home"\index{files and directories!home (\texttt{\~{}})} directories
-(similar to Windows profiles), typically located under
+In Linux, users can have "home" directories (similar to Windows
+profiles), typically located under
 \texttt{/home/\textless{}username\textgreater{}} for normal users, and
 \texttt{/root} for the "root" (admin) id. To change to a user's "home"
-directory, simply use \texttt{cd}\drfnd{cd}{change directory} with no
-parameters:
+directory, simply use \texttt{cd} with no parameters:
+\drfnd{cd}{change directory}
+\index{files and directories!home (\texttt{\~{}})}
 
 \drcap{Change to home directory}
 
@@ -2454,11 +2456,10 @@ parameters:
 \end{Highlighting}
 \end{Shaded}
 
-The tilde
-(\texttt{\textasciitilde{}})\index{*@\texttt{\~{}} (home directory)}
-\index{files and directories!home (\texttt{\~{}})} character is an alias
-for the current user's home directory. The following example is
-equivalent to above:
+The tilde (\texttt{\textasciitilde{}}) character is an alias for the
+current user's home directory. The following example is equivalent to
+above: \index{*@\texttt{\~{}} (home directory)}
+\index{files and directories!home (\texttt{\~{}})}
 
 \drcap{Alternative way to change to home directory}
 
@@ -2483,35 +2484,38 @@ specify the home directory of \textbf{\emph{another}} user:
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Note:} The above assumes you have permissions to
-\texttt{cd}\drfnd{cd}{change directory} into \texttt{/home/myuser}. See
-the upcoming section on file permissions for more info.
+\textbf{Note:} The above assumes you have permissions to \texttt{cd}
+into \texttt{/home/myuser}. See the upcoming section on file permissions
+for more info. \drfnd{cd}{change directory}
 
 In addition, you need to know the difference between "absolute" and
 "relative" paths:
 
 \begin{itemize}
 \item
-  \textbf{Absolute path}\index{files and directories!absolute path} -
-  \textbf{\emph{always}} "goes through" or specifies the "root"
-  (\texttt{/})\index{*@\texttt{/} (root directory)}\index{files and directories!root (\texttt{/})}
-  directory, e.g. regardless of the current working directory,
-  \texttt{cd\ /etc} will change it to \texttt{/etc}.
+  \textbf{Absolute path} - \textbf{\emph{always}} "goes through" or
+  specifies the "root" (\texttt{/}) directory, e.g. regardless of the
+  current working directory, \texttt{cd\ /etc} will change it to
+  \texttt{/etc}. \index{*@\texttt{/} (root directory)}
+  \index{files and directories!absolute path}
+  \index{files and directories!root (\texttt{/})}
 \item
-  \textbf{Relative path}\index{files and directories!relative path} -
-  does \textbf{\emph{not}} specify the root directory, and expects to
-  start the navigation at the current directory with all path components
-  traversed from there, e.g., \texttt{cd\ Dissertations} changes the
-  current directory to a subdirectory called \texttt{Dissertations}.
+  \textbf{Relative path} - does \textbf{\emph{not}} specify the root
+  directory, and expects to start the navigation at the current
+  directory with all path components traversed from there, e.g.,
+  \texttt{cd\ Dissertations} changes the current directory to a
+  subdirectory called \texttt{Dissertations}.
+  \index{files and directories!relative path}
 \end{itemize}
 
-Windows inherited the concept of \texttt{.}
-\index{*@\texttt{.} (current directory)}\index{files and directories!current directory (\texttt{.})}
-for the current directory and \texttt{..}
-\index{*@\texttt{..} (parent directory)}\index{files and directories!parent directory (\texttt{..})}
-for the parent directory directly from UNIX. Consider the following
-examples that combine all of the above about relative paths and see if
-it makes sense:
+Windows inherited the concept of \texttt{.} for the current directory
+and \texttt{..} for the parent directory directly from UNIX. Consider
+the following examples that combine all of the above about relative
+paths and see if it makes sense:
+\index{*@\texttt{.} (current directory)}
+\index{*@\texttt{..} (parent directory)}
+\index{files and directories!current directory (\texttt{.})}
+\index{files and directories!parent directory (\texttt{..})}
 
 \drcap{Relative paths exercise}
 
@@ -2536,16 +2540,17 @@ it makes sense:
 \end{Highlighting}
 \end{Shaded}
 
-Did you notice how both \texttt{mkdir}\drfnd{mkdir}{make directory} and
-\texttt{touch}\drfnd{touch}{change modified date or create file} allow
-for specifying multiple directory and file names in the same command?
+Did you notice how both \texttt{mkdir} and \texttt{touch} allow for
+specifying multiple directory and file names in the same command?
+\drfnd{mkdir}{make directory}
+\drfnd{touch}{change modified date or create file}
 
 \section*{May I?}\label{may-i}
 \addcontentsline{toc}{section}{May I?}
 
-Most "UNIX" file systems come with a set of nine permissions
-\index{files and directories!permissions} that can be thought of as a
-"grid" of 3x3 showing "who has what?" The "who" is known as "UGO":
+Most "UNIX" file systems come with a set of nine permissions that can be
+thought of as a "grid" of 3x3 showing "who has what?" The "who" is known
+as "UGO": \index{files and directories!permissions}
 
 \begin{itemize}
 \item
@@ -2617,9 +2622,9 @@ can be read, written (new files created) and listed by \texttt{root}
 (\texttt{rwx}), and read and listed by the group \texttt{wheel} and all
 other ids (\texttt{r-xr-x}).
 
-Back on Linux, if we look in
-\texttt{/etc/init.d}\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}}
-where many services store their startup scripts we see:
+Back on Linux, if we look in \texttt{/etc/init.d} where many services
+store their startup scripts we see:
+\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}}
 
 \drcap{Listing the \texttt{/etc/init.d} directory}
 
@@ -2660,9 +2665,9 @@ of a \texttt{-} in the detailed listing above).
 
 To \emph{change} the \emph{owning} user of a file or directory (assuming
 you have permissions to do so), use the
-\href{http://linux.die.net/man/1/chown}{\texttt{chown}}\drcmd{chown}
+\href{http://linux.die.net/man/1/chown}{\texttt{chown}} command:
+\drcmd{chown}
 \index{files and directories!permissions!\texttt{chown} command}
-command:
 
 \drcap{Change file ownership}
 
@@ -2679,9 +2684,9 @@ command:
 \end{Shaded}
 
 To \emph{change} the primary \emph{group}, use the
-\href{http://linux.die.net/man/1/chgrp}{\texttt{chgrp}}\drcmd{chgrp}
+\href{http://linux.die.net/man/1/chgrp}{\texttt{chgrp}} command:
+\drcmd{chgrp}
 \index{files and directories!permissions!\texttt{chgrp} command}
-command:
 
 \drcap{\texttt{chgrp} command}
 
@@ -2695,13 +2700,13 @@ command:
 \end{Shaded}
 
 To \emph{change} the various permissions or \emph{mode} bits, you use
-the \href{http://linux.die.net/man/1/chmod}{\texttt{chmod}}\drcmd{chmod}
+the \href{http://linux.die.net/man/1/chmod}{\texttt{chmod}} command. It
+uses mnemonics of "ugo" for user, group and "other," respectively. It
+also uses mnemonics of "rwx" for read, write and execute, and \texttt{+}
+to add a permission and \texttt{-} to remove it. For example, to add the
+execute permission for the group and remove read permission for "other":
+\drcmd{chmod}
 \index{files and directories!permissions!\texttt{chmod} command}
-command. It uses mnemonics of "ugo" for user, group and "other,"
-respectively. It also uses mnemonics of "rwx" for read, write and
-execute, and \texttt{+} to add a permission and \texttt{-} to remove it.
-For example, to add the execute permission for the group and remove read
-permission for "other":
 
 \drcap{\texttt{chmod} command}
 
@@ -2814,12 +2819,12 @@ or other entries. The following should be insightful:
 
 In the Windows world, we are used to compressing and sending directories
 around as \texttt{.zip} files. In Linux you can also deal with
-\texttt{.zip}\index{files and directories!zipfiles@\texttt{.zip} files}
-\index{compression!zipfiles@\texttt{.zip} files} files, although they
-don't tend to be the most common, using the
-\href{http://linux.die.net/man/1/zip}{\texttt{zip}}\drcom{zip} and
-\href{http://linux.die.net/man/1/unzip}{\texttt{unzip}}\drcom{unzip}
-commands:
+\texttt{.zip} files, although they don't tend to be the most common,
+using the \href{http://linux.die.net/man/1/zip}{\texttt{zip}} and
+\href{http://linux.die.net/man/1/unzip}{\texttt{unzip}} commands:
+\drcom{unzip} \drcom{zip}
+\index{compression!zipfiles@\texttt{.zip} files}
+\index{files and directories!zipfiles@\texttt{.zip} files}
 
 \drcap{\texttt{zip} command}
 
@@ -2858,17 +2863,17 @@ commands:
 
 Not too exciting, but you get the drift. There is typically support for
 other compression algorithms, such as the
-\href{http://linux.die.net/man/1/gzip}{\texttt{gzip}}\drcom{gzip},
-\href{http://linux.die.net/man/1/bzip2}{\texttt{bzip2}}\drcom{bzip2} and
-\href{http://linux.die.net/man/1/7z}{\texttt{7z}}\drcom{7z} (7-zip)
-commands.
+\href{http://linux.die.net/man/1/gzip}{\texttt{gzip}},
+\href{http://linux.die.net/man/1/bzip2}{\texttt{bzip2}} and
+\href{http://linux.die.net/man/1/7z}{\texttt{7z}} (7-zip) commands.
+\drcom{7z} \drcom{bzip2} \drcom{gzip}
 
 However, the "native" way to "archive" a directory's contents in "UNIX"
-is with \href{http://linux.die.net/man/1/tar}{\texttt{tar}}\drcmd{tar},
-which is so old that \texttt{tar} stands for "tape archive." Its purpose
-is to take virtually any directory structure and create a single output
-"stream" or file of it. That is then typically ran through a compression
-command and the result is called a "tarball":
+is with \href{http://linux.die.net/man/1/tar}{\texttt{tar}}, which is so
+old that \texttt{tar} stands for "tape archive." Its purpose is to take
+virtually any directory structure and create a single output "stream" or
+file of it. That is then typically ran through a compression command and
+the result is called a "tarball": \drcmd{tar}
 
 \drcap{Creating a tarball}
 
@@ -2890,9 +2895,8 @@ command and the result is called a "tarball":
 
 In the \texttt{tar} command above, the parameters are \texttt{c} (create
 a new archive), \texttt{v} (turn on "verbose" output) and \texttt{f}
-followed by the file name of the new
-\texttt{.tar}\index{files and directories!tararchivefiles@\texttt{.tar} archive files}
-file.
+followed by the file name of the new \texttt{.tar} file.
+\index{files and directories!tararchivefiles@\texttt{.tar} archive files}
 
 \textbf{Note:} \texttt{tar} supports POSIX-style parameters
 (\texttt{-c}), GNU-style (\texttt{-\/-create}), as well as the older
@@ -2928,12 +2932,11 @@ parameters:
 \end{Highlighting}
 \end{Shaded}
 
-In this case the \texttt{z} parameter says to use
-\texttt{gzip}\drcom{gzip} compression, and the
-\texttt{.tgz}\index{files and directories!tgzarchivefiles@\texttt{.tgz} archive files}
-\index{compression!tgzfiles@\texttt{.tgz} files} file suffix means
-basically "tarred and gzipped", or the equivalent to \texttt{.tar.gz} in
-the first example.
+In this case the \texttt{z} parameter says to use \texttt{gzip}
+compression, and the \texttt{.tgz} file suffix means basically "tarred
+and gzipped", or the equivalent to \texttt{.tar.gz} in the first
+example. \drcom{gzip} \index{compression!tgzfiles@\texttt{.tgz} files}
+\index{files and directories!tgzarchivefiles@\texttt{.tgz} archive files}
 
 \texttt{tar} is used to both create and read \texttt{.tar} files. So to
 extract something like the above, you can change the create (\texttt{c})
@@ -2965,11 +2968,10 @@ file.
 
 UNIX file systems also have both these types of links (which isn't
 surprising, given that Microsoft got the ideas from UNIX). Both are
-created with the
-\href{http://linux.die.net/man/1/ln}{\texttt{ln}}\drfnd{ln}{link}
-command. A "soft link"\index{files and directories!soft links} is
-equivalent to a Windows shortcut, and can point to a file or a
-directory, and can point to anything on any mounted file system:
+created with the \href{http://linux.die.net/man/1/ln}{\texttt{ln}}
+command. A "soft link" is equivalent to a Windows shortcut, and can
+point to a file or a directory, and can point to anything on any mounted
+file system: \drfnd{ln}{link} \index{files and directories!soft links}
 
 \drcap{Soft links example}
 
@@ -3016,15 +3018,15 @@ The things to notice about this example:
   will be determined after the link is traversed.
 \end{enumerate}
 
-A "hard link"\index{files and directories!hard links} is a bit
-different. It can only be made between \emph{files} and the two files
-\textbf{\emph{must be on the same file system}}. That is because hard
-links are actually directory entries (as opposed to files in
-directories) that point to the same
-\href{https://en.wikipedia.org/wiki/Inode}{"inode"}\index{files and directories!inodes}
-on disk. From within a single directory it is impossible to tell if
-there are other directories with pointers to the same files (inodes) on
-disk.
+A "hard link" is a bit different. It can only be made between
+\emph{files} and the two files \textbf{\emph{must be on the same file
+system}}. That is because hard links are actually directory entries (as
+opposed to files in directories) that point to the same
+\href{https://en.wikipedia.org/wiki/Inode}{"inode"} on disk. From within
+a single directory it is impossible to tell if there are other
+directories with pointers to the same files (inodes) on disk.
+\index{files and directories!hard links}
+\index{files and directories!inodes}
 
 \drcap{Hard links example}
 
@@ -3120,8 +3122,8 @@ So, that makes sense. We created an original file \texttt{b} by placing
 and \texttt{d/b}. We see that it has the same contents no matter how we
 access it, because it is pointing to the same inode.
 
-Can you guess how many \texttt{rm}\drfnd{rm}{remove file} commands it
-will take to delete the file containing "This is b."?
+Can you guess how many \texttt{rm} commands it will take to delete the
+file containing "This is b."? \drfnd{rm}{remove file}
 
 \drcap{Deleting a file with many hard links}
 
@@ -3153,14 +3155,14 @@ With all this talk that a hard link can only be on the same file system,
 how do you know whether two directories are on the same file system? In
 Windows it's easy - that's exactly what the drive letters are telling
 you. But in Linux, where everything is "mounted" under a single
-hierarchy starting at \texttt{/}\index{*@\texttt{/} (root directory)}
-\index{files and directories!root (\texttt{/})}, how do I know that
+hierarchy starting at \texttt{/}, how do I know that
 \texttt{/var/something} and \texttt{var/or/other} are on the same file
-system?
+system? \index{*@\texttt{/} (root directory)}
+\index{files and directories!root (\texttt{/})}
 
 There are multiple ways to tell, actually. The easiest is with the
-\href{http://linux.die.net/man/1/df}{\texttt{df}}\drfnd{df}{display file system disk space}
-command:
+\href{http://linux.die.net/man/1/df}{\texttt{df}} command:
+\drfnd{df}{display file system disk space}
 
 \drcap{\texttt{df} command}
 
@@ -3186,31 +3188,30 @@ So outside of \texttt{/boot}, on this system we could hard link away to
 our heart's content.
 
 \textbf{Note:} - It is (barely) beyond the scope of this book to cover
-the
-\href{http://linux.die.net/man/8/mount}{\texttt{mount}}\drsys{mount}{mount file system}
-command. I wanted to, really bad, but with all the different file
-systems and device types and all the options for both it can get so
-complex so fast that I decided not to. Maybe if you ask, real nice...
+the \href{http://linux.die.net/man/8/mount}{\texttt{mount}} command. I
+wanted to, really bad, but with all the different file systems and
+device types and all the options for both it can get so complex so fast
+that I decided not to. Maybe if you ask, real nice...
+\drsys{mount}{mount file system}
 
 \subsection*{I'm Seeing Double}\label{im-seeing-double}
 \addcontentsline{toc}{subsection}{I'm Seeing Double}
 
-So, both hard\index{files and directories!hard links} and soft
-links\index{files and directories!soft links} can have some interesting
-side effects if you think about them. For one, if you are backing things
-up, then you may get duplicates in your backup set. In fact, with hard
-links you will, by definition, unless the backup software is very smart
-and doing things like de-duplication.
+So, both hard and soft links can have some interesting side effects if
+you think about them. For one, if you are backing things up, then you
+may get duplicates in your backup set. In fact, with hard links you
+will, by definition, unless the backup software is very smart and doing
+things like de-duplication. \index{files and directories!hard links}
+\index{files and directories!soft links}
 
 But even with soft links if everything just blindly followed them you
 could also get duplicates where you didn't want them, or even circular
 references. Also, the pointers in the soft link files are not evaluated
 until a command references them. Note that the following is perfectly
 legal with soft links, but may not give the results you expect - think
-about the current working directory shown by
-\texttt{pwd}\drfnd{pwd}{print working directory} in the following, and
-the effects of the \textbf{\emph{relative paths}} as the sample
-progresses:
+about the current working directory shown by \texttt{pwd} in the
+following, and the effects of the \textbf{\emph{relative paths}} as the
+sample progresses: \drfnd{pwd}{print working directory}
 
 \drcap{Soft links and relative paths}
 
@@ -3234,23 +3235,24 @@ progresses:
 \end{Highlighting}
 \end{Shaded}
 
-Many commands that deal with files and file systems, like
-\texttt{find}\drfnd{find}{find files}, have parameters specifically
-telling the command whether to follow soft links or not (by default,
-\texttt{find} does not - see the next chapter for more).
+Many commands that deal with files and file systems, like \texttt{find},
+have parameters specifically telling the command whether to follow soft
+links or not (by default, \texttt{find} does not - see the next chapter
+for more). \drfnd{find}{find files}
 
 \section*{\texorpdfstring{What's the
 \texttt{diff}?}{What's the diff?}}\label{whats-the-diff}
 \addcontentsline{toc}{section}{What's the \texttt{diff}?}
 
 Most people think of
-\href{http://linux.die.net/man/1/diff}{\texttt{diff}}\drfnd{diff}{show differences between files}
-\index{files and directories!compare files (\texttt{diff} command)} as a
-tool only programmers find useful, but that is short-sighted. The whole
-purpose of \texttt{diff} is to show differences between files. For
-example, I backed up this document (which is a text file) before
-starting this section, then typed this introduction to \texttt{diff}.
-This is what \texttt{diff} showed after I added the new paragraph:
+\href{http://linux.die.net/man/1/diff}{\texttt{diff}} as a tool only
+programmers find useful, but that is short-sighted. The whole purpose of
+\texttt{diff} is to show differences between files. For example, I
+backed up this document (which is a text file) before starting this
+section, then typed this introduction to \texttt{diff}. This is what
+\texttt{diff} showed after I added the new paragraph:
+\drfnd{diff}{show differences between files}
+\index{files and directories!compare files (\texttt{diff} command)}
 
 \drcap{\texttt{diff} example}
 
@@ -3331,9 +3333,8 @@ prior version either in a backup file or version control system to
 compare against.
 
 \texttt{diff} is your friend. It really comes into play with a version
-control system like
-\href{http://linux.die.net/man/1/git}{\texttt{git}}\drcmd{git}, but
-again, that is beyond the scope of this book.
+control system like \href{http://linux.die.net/man/1/git}{\texttt{git}},
+but again, that is beyond the scope of this book. \drcmd{git}
 
 \hypertarget{finding-meaning}{\chapter{Finding
 Meaning}\label{finding-meaning}}

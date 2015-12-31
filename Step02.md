@@ -26,11 +26,10 @@ covers may be one of any number of supported formats, including:
 Each has its strengths and weaknesses. While Linux tends to treat the ext* file systems as
 preferred, it can write to a lot of file systems and can read even more.
 
-As mentioned before, the biggest differences between Linux and Windows
+As mentioned before, the biggest differences between Linux and Windows is that the Linux
+environments do not have a concept of "drive letters." Instead everything is "mounted" under a
+single hierarchy that starts at the "root directory" or `/`:
 \drios{Windows}
-is that the Linux environments do not have a concept of "drive letters." Instead everything is
-"mounted" under a single hierarchy that starts at the "root directory" or
-`/`:
 \index{*@\texttt{/} (root directory)}\index{files and directories!root (\texttt{/})}
 
 \drcap{Listing of the root directory}
@@ -51,8 +50,8 @@ under either a `/mnt` or `/media` directory.
 ## Looking at Files{.unnumbered}
 
 As we've already seen, the command to *list* the contents of a directory is
-[`ls`](http://linux.die.net/man/1/ls):\drfnd{ls}{list directory contents}
-
+[`ls`](http://linux.die.net/man/1/ls):
+\drfnd{ls}{list directory contents}
 
 \drcap{Listing directory contents}
 ```bash
@@ -62,9 +61,9 @@ Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
 
 Remember, "UNIX" environments think of files that start with a `.` as "hidden." If you want to see
 all these
-["dotfiles"](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments)
-\index{files and directories!hidden (dotfiles)},
+["dotfiles"](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments),
 you can use `ls -a`, in this case on an average "home" directory:
+\index{files and directories!hidden (dotfiles)}
 
 \drcap{Listing a home directory showing hidden "dotfiles"}
 ```bash
@@ -131,8 +130,9 @@ In `bash` and many Linux commands in general, there are old, "short" (terse) par
 `ls -a`, and newer, longer, descriptive parameter names like `ls --all` that mean the same thing.
 It is typically good to use the shorter version during interactive sessions and testing, but I
 prefer long parameter names in scripts, because when I come back and look at it in two years, I may
-not remember what `rm -rf *`\drfnd{rm}{remove file} means (in the "UNIX" world it means you're toast if you run
-it by mistake), thus `rm --recursive --force *` seems a bit more "intuitive."
+not remember what `rm -rf *` means (in the "UNIX" world it means you're toast if you run it by
+mistake), thus `rm --recursive --force *` seems a bit more "intuitive."
+\drfnd{rm}{remove file}
 
 > ***The behind you save in the future by describing things well today may well be your own.*** -
 > me
@@ -145,7 +145,8 @@ The older style parameters are typically preceded by a single hyphen or "switch"
 ```
 
 Some commands support parameters with no "switch" character at all, as with `xvf` (e***X***tract,
-***V***erbose, input ***F***ile name) in the following `tar`\drcmd{tar} example:
+***V***erbose, input ***F***ile name) in the following `tar` example:
+\drcmd{tar}
 
 \drcap{Alternate short parameter syntax}
 ```bash
@@ -165,9 +166,9 @@ scripts as self-documenting code.
 ## More Poking at Files{.unnumbered}
 
 If we suspect the file is a text file, we can echo it to the console with the
-[`cat`](http://linux.die.net/man/1/cat)\drcmd{cat}
+[`cat`](http://linux.die.net/man/1/cat) (*concatenate*) command:
+\drcmd{cat}
 \index{files and directories!display (\texttt{cat} command)}
-(*concatenate*) command:
 
 \drcap{\texttt{cat} command}
 ```bash
@@ -197,39 +198,45 @@ xfreerdp --version
 ```
 
 In this example when we `cat installrdp` we can determine it is a `bash` shell script (because the
-"shebang"\index{*@\texttt{\#"!} (shebang)} is pointing to `bash`\drshl{bash}) that looks to install and configure
-[FreeRDP](https://github.com/FreeRDP/FreeRDP)\drnet{xfreerdp} on a Debian-style system:
+"shebang" is pointing to `bash`\drshl{bash}) that looks to install and configure
+[FreeRDP](https://github.com/FreeRDP/FreeRDP) on a Debian-style system:
+\drnet{xfreerdp}
+\index{*@\texttt{\#"!} (shebang)}
 
-1. **`apt-get`**\drpkg{apt-get} -
-Debian-style package manager.
+1. **`apt-get`** - Debian-style package manager.
+\drpkg{apt-get}
 
-2. **`git clone`**\drcmd{git} - cloning package from [GitHub](http://github.com).
+2. **`git clone`** - cloning package from [GitHub](http://github.com).
+\drcmd{git}
 
-3. **`cmake`**\drcmd{cmake} and **`make`**\drcmd{make} - configuring and building software from
-source.
+3. **`cmake`** and **`make`** - configuring and building software from source.
+\drcmd{cmake}
+\drcmd{make}
 
 A better way to display a longer file is to use the
-[`less`](http://linux.die.net/man/1/less)\drcmd{less}
-\index{files and directories!paginate!less@\texttt{less} command}\index{pagination!\texttt{less} command}
-command (which is a derivative of the original
-[`more`](http://linux.die.net/man/1/more)\drcmd{more}
-\index{files and directories!paginate!more@\texttt{more} command}\index{pagination!\texttt{more} command},
-hence the name). `less` is a paginator, where the `Space`, `Page Down` or down arrow keys scroll
-down and the `Page Up` or up arrow keys scrolls up. `Q` quits.
+[`less`](http://linux.die.net/man/1/less)
 
-**Note:** The `vi`\dreds{vi} search (`/`, `?`, `n` and `p`) and navigation (`G`, `0`) keys work
-within `less`, too. In general `less` is a great lightweight way to motor around in a text file
-without editing it.
+command (which is a derivative of the original [`more`](http://linux.die.net/man/1/more), hence the
+name). `less` is a paginator, where the `Space`, `Page Down` or down arrow keys scroll down and the
+`Page Up` or up arrow keys scrolls up. `Q` quits.
+\drcmd{less}
+\drcmd{more}
+\index{files and directories!paginate!less@\texttt{less} command}
+\index{files and directories!paginate!more@\texttt{more} command}
+\index{pagination!\texttt{less} command}
+\index{pagination!\texttt{more} command}
+
+**Note:** The `vi` search (`/`, `?`, `n` and `p`) and navigation (`G`, `0`) keys work within `less`,
+too. In general `less` is a great lightweight way to motor around in a text file without editing it.
+\dreds{vi}
 
 We can also look at just the end or *tail* of a file (often the most interesting when looking at
-log files and troubleshooting a current problem) with the
-[`tail`](http://linux.die.net/man/1/tail)\drcmd{tail}
+log files and troubleshooting a current problem) with the [`tail`](http://linux.die.net/man/1/tail)
+command. The next example shows the last 10 lines of the kernel `dmesg` log:
+\drcmd{tail}
 \index{files and directories!display (\texttt{tail} command)}
-command. The next example shows the last 10 lines of the kernel
-`dmesg`
 \index{files and directories!special!varlogdmesg@\texttt{/var/log/dmesg}}
 \index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)}
-log:
 
 \drcap{\texttt{tail} command}
 ```bash
@@ -295,10 +302,9 @@ g.freedesktop.nm_dispatcher'
 
 Use `Ctrl-C` to cancel following the file.
 
-If we know nothing about a *file*, we can use the
-[`file`](http://linux.die.net/man/1/file)\drfnd{file}{detect file type}
-command to help
-us guess:
+If we know nothing about a *file*, we can use the [`file`](http://linux.die.net/man/1/file) command
+to help us guess:
+\drfnd{file}{detect file type}
 
 \drcap{\texttt{file} command}
 ```bash
@@ -318,7 +324,8 @@ perfectly valid. Hence the utility of the `file` command.
 ## Sorting Things Out{.unnumbered}
 
 Let's say we have three files, and want to display the contents of one of them. We know we can do
-that with `cat`\drcmd{cat}:
+that with `cat`:
+\drcmd{cat}
 
 \drcap{Show contents of one file}
 ```bash
@@ -354,9 +361,9 @@ Tractor brakes  300
 Tractor tires   2000
 ```
 
-The [`sort`](http://linux.die.net/man/1/sort)\drcmd{sort}\index{sorting!\texttt{sort} command}
-command to the rescue! We will see that the `sort` command can be used to not just *sort* files,
-but also to merge them and remove duplicates.
+The [`sort`](http://linux.die.net/man/1/sort) command to the rescue! We will see that the `sort`
+command can be used to not just *sort* files, but also to merge them and remove duplicates.
+\drcmd{sort}\index{sorting!\texttt{sort} command}
 
 \drcap{\texttt{sort} command}
 ```bash
@@ -430,9 +437,9 @@ Tractor tires   2000
 Combine tires   2500
 ```
 
-Maybe we care about the top three most expensive items. We haven't talked about
-`pipes`\index{*@\texttt{"|} (pipe)}\index{files and directories!redirection} yet, but check
-this out:
+Maybe we care about the top three most expensive items. We haven't talked about `pipes` yet, but
+check this out:
+\index{*@\texttt{"|} (pipe)}\index{files and directories!redirection}
 
 \drcap{Top three most expensive items}
 ```bash
@@ -477,8 +484,8 @@ If you read that command in a script file, there would be little confusion as to
 ## Rearranging Deck Chairs{.unnumbered}
 
 We can copy, move (or rename - same thing) and delete files and directories. To *copy*, simply use
-the [`cp`](http://linux.die.net/man/1/cp)\drfnd{cp}{copy}
-command:
+the [`cp`](http://linux.die.net/man/1/cp) command:
+\drfnd{cp}{copy}
 
 \drcap{\texttt{cp} command}
 ```bash
@@ -499,8 +506,8 @@ Or, if we want to be self-documenting in a script, we can use those long paramet
 ~ $ cp --recursive thisdir thatdir
 ```
 
-To *move* use
-[`mv`](http://linux.die.net/man/1/mv):\drfnd{mv}{move files}
+To *move* use [`mv`](http://linux.die.net/man/1/mv):
+\drfnd{mv}{move files}
 
 \drcap{\texttt{mv} command}
 ```bash
@@ -508,13 +515,14 @@ To *move* use
 ```
 
 **Note:** There is no semantic difference between "move" and "rename." However, there are some
-really cool renaming scenarios that the [`rename`](http://linux.die.net/man/1/rename)\drfnd{rename}{rename file}
-command can take care of beyond `mv`, like renaming all file extensions from `.htm` to `.html`.
+really cool renaming scenarios that the [`rename`](http://linux.die.net/man/1/rename) command can
+take care of beyond `mv`, like renaming all file extensions from `.htm` to `.html`.
+\drfnd{rename}{rename file}
 
 ## Making Files Disappear{.unnumbered}
 
-To delete or *remove* a file you use
-[`rm`](http://linux.die.net/man/1/rm):\drfnd{rm}{remove file}
+To delete or *remove* a file you use [`rm`](http://linux.die.net/man/1/rm):
+\drfnd{rm}{remove file}
 
 \drcap{\texttt{rm} command}
 ```bash
@@ -567,7 +575,8 @@ Safer that way.
 ## `touch` Me{.unnumbered}
 
 We just learned how to make a file disappear. We can also make a file magically appear, just by
-[`touch`](http://linux.die.net/man/1/touch):\drfnd{touch}{change modified date or create file}
+[`touch`](http://linux.die.net/man/1/touch):
+\drfnd{touch}{change modified date or create file}
 
 \drcap{\texttt{touch} command}
 ```bash
@@ -580,9 +589,9 @@ total 0
 Notice the newly created file is zero bytes long.
 
 Interestingly enough, we can also use `touch` just to update the "last modified date" of an
-existing file, as you can see in time change in the following listing after running
-`touch`\drfnd{touch}{change modified date or create file} on the same
-file again:
+existing file, as you can see in time change in the following listing after running `touch` on the
+same file again:
+\drfnd{touch}{change modified date or create file}
 
 \drcap{A second \texttt{touch}}
 ```bash
@@ -593,9 +602,8 @@ total 0
 ```
 
 It can be useful (but also distressing from a forensics point of view) to set the last modified
-date of a file to a specific date and time, which
-`touch`\index{files and directories!set last modified date (\texttt{touch} command)} also allows
-you to do, in this case to the night before Christmas:
+date of a file to a specific date and time, which `touch` also allows you to do, in this case to
+the night before Christmas:
 
 \drcap{Set file modified date to a specific date and time}
 ```bash
@@ -605,8 +613,8 @@ total 0
 -rw-rwxr--+ 1 myuser mygroup 0 Dec 24  2014 NewEmptyDissertation.doc
 ```
 
-To *make a directory* you use
-[`mkdir`](http://linux.die.net/man/1/mkdir):\drfnd{mkdir}{make directory}
+To *make a directory* you use [`mkdir`](http://linux.die.net/man/1/mkdir):
+\drfnd{mkdir}{make directory}
 
 \drcap{\texttt{mkdir} command}
 ```bash
@@ -651,12 +659,12 @@ Something
 Ever notice that "life" is an anagram for "file"? Spooky, eh?
 
 Given that the UNIX-style file systems are hierarchical in nature they are similar to navigate as
-with `CMD.EXE`\drshl{CMD.EXE}. The biggest difference is the absense of drive letters and the
-direction of the slashes.
+with `CMD.EXE`. The biggest difference is the absense of drive letters and the direction of the
+slashes.
+\drshl{CMD.EXE}
 
-To *change directories*, simply use
-[`cd`](http://linux.die.net/man/1/cd)\drfnd{cd}{change directory}
-much like in Windows:
+To *change directories*, simply use [`cd`](http://linux.die.net/man/1/cd) much like in Windows:
+\drfnd{cd}{change directory}
 
 \drcap{\texttt{cd} command}
 ```bash
@@ -665,14 +673,15 @@ much like in Windows:
 /etc
 ```
 
-[`pwd`](http://linux.die.net/man/1/pwd)\drfnd{pwd}{print working directory}
-simply *prints the working (current) directory*. If `whoami` tells you who you are, `pwd` tells you
-***where*** you are.
+[`pwd`](http://linux.die.net/man/1/pwd) simply *prints the working (current) directory*. If
+`whoami` tells you who you are, `pwd` tells you ***where*** you are.
+\drfnd{pwd}{print working directory}
 
-In Linux, users can have "home"\index{files and directories!home (\texttt{\~{}})}
-directories (similar to Windows profiles), typically located under `/home/<username>` for normal
-users, and `/root` for the "root" (admin) id. To change to a user's "home" directory, simply use
-`cd`\drfnd{cd}{change directory} with no parameters:
+In Linux, users can have "home" directories (similar to Windows profiles), typically located under
+`/home/<username>` for normal users, and `/root` for the "root" (admin) id. To change to a user's
+"home" directory, simply use `cd` with no parameters:
+\drfnd{cd}{change directory}
+\index{files and directories!home (\texttt{\~{}})}
 
 \drcap{Change to home directory}
 ```bash
@@ -681,11 +690,10 @@ users, and `/root` for the "root" (admin) id. To change to a user's "home" direc
 /home/myuser
 ```
 
-The tilde
-(`~`)\index{*@\texttt{\~{}} (home directory)}
+The tilde (`~`) character is an alias for the current user's home directory. The following example
+is equivalent to above:
+\index{*@\texttt{\~{}} (home directory)}
 \index{files and directories!home (\texttt{\~{}})}
-character is an alias for the current user's home directory. The following example is equivalent to
-above:
 
 \drcap{Alternative way to change to home directory}
 ```bash
@@ -704,28 +712,30 @@ myuser # pwd
 /home/myuser
 ```
 
-**Note:** The above assumes you have permissions to `cd`\drfnd{cd}{change directory} into `/home/myuser`. See the upcoming
+**Note:** The above assumes you have permissions to `cd` into `/home/myuser`. See the upcoming
 section on file permissions for more info.
+\drfnd{cd}{change directory}
 
-In addition, you need to know the difference between "absolute" and
-"relative" paths:
+In addition, you need to know the difference between "absolute" and "relative" paths:
 
-* **Absolute path**\index{files and directories!absolute path} - ***always*** "goes through" or
-specifies the "root"
-(`/`)\index{*@\texttt{/} (root directory)}\index{files and directories!root (\texttt{/})}
-directory, e.g. regardless of the current working directory, `cd /etc` will change it to `/etc`.
+* **Absolute path** - ***always*** "goes through" or specifies the "root" (`/`) directory, e.g.
+regardless of the current working directory, `cd /etc` will change it to `/etc`.
+\index{*@\texttt{/} (root directory)}
+\index{files and directories!absolute path}
+\index{files and directories!root (\texttt{/})}
 
-* **Relative path**\index{files and directories!relative path} - does ***not*** specify the root
-directory, and expects to start the navigation at the current directory with all path components
-traversed from there, e.g., `cd Dissertations` changes the current directory to a subdirectory
-called `Dissertations`.
+* **Relative path** - does ***not*** specify the root directory, and expects to start the
+navigation at the current directory with all path components traversed from there, e.g., `cd
+Dissertations` changes the current directory to a subdirectory called `Dissertations`.
+\index{files and directories!relative path}
 
-Windows inherited the concept of `.`
-\index{*@\texttt{.} (current directory)}\index{files and directories!current directory (\texttt{.})}
-for the current directory and `..`
-\index{*@\texttt{..} (parent directory)}\index{files and directories!parent directory (\texttt{..})}
-for the parent directory directly from UNIX. Consider the following examples that combine all of
-the above about relative paths and see if it makes sense:
+Windows inherited the concept of `.` for the current directory and `..` for the parent directory
+directly from UNIX. Consider the following examples that combine all of the above about relative
+paths and see if it makes sense:
+\index{*@\texttt{.} (current directory)}
+\index{*@\texttt{..} (parent directory)}
+\index{files and directories!current directory (\texttt{.})}
+\index{files and directories!parent directory (\texttt{..})}
 
 \drcap{Relative paths exercise}
 ```bash
@@ -747,15 +757,16 @@ Bar  Baz
 a  b  c
 ```
 
-Did you notice how both `mkdir`\drfnd{mkdir}{make directory} and `touch`\drfnd{touch}{change modified date or create file} allow for specifying multiple
-directory and file names in the same command?
+Did you notice how both `mkdir` and `touch` allow for specifying multiple directory and file names
+in the same command?
+\drfnd{mkdir}{make directory}
+\drfnd{touch}{change modified date or create file}
 
 ## May I?{.unnumbered}
 
-Most "UNIX" file systems come with a set of nine
-permissions
+Most "UNIX" file systems come with a set of nine permissions that can be thought of as a "grid" of
+3x3 showing "who has what?" The "who" is known as "UGO":
 \index{files and directories!permissions}
-that can be thought of as a "grid" of 3x3 showing "who has what?" The "who" is known as "UGO":
 
 * **User** - the user that is the "owner" of the file or directory.
 
@@ -771,9 +782,8 @@ The "what" is:
 
 * **Execute** - for files, for directories this means "navigate" or "list contents".
 
-The combination of "who has what?" is usually shown in detailed directory
-listings by a set of ten characters, with the first one determining
-whether an entry is a directory (`d`) or a file (`-`):
+The combination of "who has what?" is usually shown in detailed directory listings by a set of ten
+characters, with the first one determining whether an entry is a directory (`d`) or a file (`-`):
 \drbsd{FreeBSD}
 
 \drcap{Another \texttt{ls -l} example, this time on FreeBSD}
@@ -812,8 +822,8 @@ any user in the `wheel` group can only read it (`r--`). Any other id will also h
 Similarly we see that `defaults` is a directory (`d`) that can be read, written (new files created)
 and listed by `root` (`rwx`), and read and listed by the group `wheel` and all other ids (`r-xr-x`).
 
-Back on Linux, if we look in `/etc/init.d`\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}}
-where many services store their startup scripts we see:
+Back on Linux, if we look in `/etc/init.d` where many services store their startup scripts we see:
+\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}}
 
 \drcap{Listing the \texttt{/etc/init.d} directory}
 ```bash
@@ -848,8 +858,9 @@ readable and executable by the `root` group and all other users (`r-xr-x`). Late
 linked files (those that start with an `l` instead of a `-` in the detailed listing above).
 
 To *change* the *owning* user of a file or directory (assuming you have permissions to do so), use
-the [`chown`](http://linux.die.net/man/1/chown)\drcmd{chown}
-\index{files and directories!permissions!\texttt{chown} command} command:
+the [`chown`](http://linux.die.net/man/1/chown) command:
+\drcmd{chown}
+\index{files and directories!permissions!\texttt{chown} command}
 
 \drcap{Change file ownership}
 ```bash
@@ -862,9 +873,9 @@ total 4
 -rwxr--r-- 1 git root 17 Oct 20 10:07 foo
 ```
 
-To *change* the primary *group*, use the
-[`chgrp`](http://linux.die.net/man/1/chgrp)\drcmd{chgrp}
-\index{files and directories!permissions!\texttt{chgrp} command} command:
+To *change* the primary *group*, use the [`chgrp`](http://linux.die.net/man/1/chgrp) command:
+\drcmd{chgrp}
+\index{files and directories!permissions!\texttt{chgrp} command}
 
 \drcap{\texttt{chgrp} command}
 ```bash
@@ -875,11 +886,12 @@ total 4
 ```
 
 To *change* the various permissions or *mode* bits, you use the
-[`chmod`](http://linux.die.net/man/1/chmod)\drcmd{chmod}
-\index{files and directories!permissions!\texttt{chmod} command} command. It uses mnemonics of
-"ugo" for user, group and "other," respectively. It also uses mnemonics of "rwx" for read, write
-and execute, and `+` to add a permission and `-` to remove it. For example, to add the execute
-permission for the group and remove read permission for "other":
+[`chmod`](http://linux.die.net/man/1/chmod) command. It uses mnemonics of "ugo" for user, group and
+"other," respectively. It also uses mnemonics of "rwx" for read, write and execute, and `+` to add
+a permission and `-` to remove it. For example, to add the execute permission for the group and
+remove read permission for "other":
+\drcmd{chmod}
+\index{files and directories!permissions!\texttt{chmod} command}
 
 \drcap{\texttt{chmod} command}
 ```bash
@@ -953,11 +965,12 @@ Hello world
 ## "I'll Send You a Tar Ball"{.unnumbered}
 
 In the Windows world, we are used to compressing and sending directories around as `.zip` files. In
-Linux you can also deal with `.zip`\index{files and directories!zipfiles@\texttt{.zip} files}
-\index{compression!zipfiles@\texttt{.zip} files} files,
-although they don't tend to be the most common, using the
-[`zip`](http://linux.die.net/man/1/zip)\drcom{zip} and
-[`unzip`](http://linux.die.net/man/1/unzip)\drcom{unzip} commands:
+Linux you can also deal with `.zip` files, although they don't tend to be the most common, using the
+[`zip`](http://linux.die.net/man/1/zip) and [`unzip`](http://linux.die.net/man/1/unzip) commands:
+\drcom{unzip}
+\drcom{zip}
+\index{compression!zipfiles@\texttt{.zip} files}
+\index{files and directories!zipfiles@\texttt{.zip} files}
 
 \drcap{\texttt{zip} command}
 ```bash
@@ -989,15 +1002,18 @@ replace Foo/c? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
 ```
 
 Not too exciting, but you get the drift. There is typically support for other compression
-algorithms, such as the [`gzip`](http://linux.die.net/man/1/gzip)\drcom{gzip},
-[`bzip2`](http://linux.die.net/man/1/bzip2)\drcom{bzip2} and
-[`7z`](http://linux.die.net/man/1/7z)\drcom{7z} (7-zip) commands.
+algorithms, such as the [`gzip`](http://linux.die.net/man/1/gzip),
+[`bzip2`](http://linux.die.net/man/1/bzip2) and [`7z`](http://linux.die.net/man/1/7z) (7-zip)
+commands.
+\drcom{7z}
+\drcom{bzip2}
+\drcom{gzip}
 
 However, the "native" way to "archive" a directory's contents in "UNIX" is with
-[`tar`](http://linux.die.net/man/1/tar)\drcmd{tar}, which is so old that `tar` stands for "tape
-archive." Its purpose is to take virtually any directory structure and create a single output
-"stream" or file of it. That is then typically ran through a compression command and the result is
-called a "tarball":
+[`tar`](http://linux.die.net/man/1/tar), which is so old that `tar` stands for "tape archive." Its
+purpose is to take virtually any directory structure and create a single output "stream" or file of
+it. That is then typically ran through a compression command and the result is called a "tarball":
+\drcmd{tar}
 
 \drcap{Creating a tarball}
 ```bash
@@ -1015,8 +1031,8 @@ Foo/d/e
 ```
 
 In the `tar` command above, the parameters are `c` (create a new archive), `v` (turn on "verbose"
-output) and `f` followed by the file name of the new
-`.tar`\index{files and directories!tararchivefiles@\texttt{.tar} archive files} file.
+output) and `f` followed by the file name of the new `.tar` file.
+\index{files and directories!tararchivefiles@\texttt{.tar} archive files}
 
 **Note:** `tar` supports POSIX-style parameters (`-c`), GNU-style (`--create`), as well as the
 older style (`c` with no hyphens at all), as shown in these examples. So both of the following are
@@ -1044,10 +1060,11 @@ Foo/a
 -rw-r--r-- 1 myuser mygroup 197 Dec 19 07:54 Foo.tgz
 ```
 
-In this case the `z` parameter says to use `gzip`\drcom{gzip} compression, and the
-`.tgz`\index{files and directories!tgzarchivefiles@\texttt{.tgz} archive files}
-\index{compression!tgzfiles@\texttt{.tgz} files} file suffix means
+In this case the `z` parameter says to use `gzip` compression, and the `.tgz` file suffix means
 basically "tarred and gzipped", or the equivalent to `.tar.gz` in the first example.
+\drcom{gzip}
+\index{compression!tgzfiles@\texttt{.tgz} files}
+\index{files and directories!tgzarchivefiles@\texttt{.tgz} archive files}
 
 `tar` is used to both create and read `.tar` files. So to extract something like the above, you can
 change the create (`c`) parameter to extract (`x`), like this:
@@ -1070,10 +1087,11 @@ In Windows there are "shortcuts," which are simply special files that the OS kno
 directory entries ***in the same file system*** to point to the same physical file.
 
 UNIX file systems also have both these types of links (which isn't surprising, given that Microsoft
-got the ideas from UNIX). Both are created with the
-[`ln`](http://linux.die.net/man/1/ln)\drfnd{ln}{link} command. A "soft
-link"\index{files and directories!soft links} is equivalent to a Windows shortcut, and can point
-to a file or a directory, and can point to anything on any mounted file system:
+got the ideas from UNIX). Both are created with the [`ln`](http://linux.die.net/man/1/ln) command.
+A "soft link" is equivalent to a Windows shortcut, and can point to a file or a directory, and can
+point to anything on any mounted file system:
+\drfnd{ln}{link}
+\index{files and directories!soft links}
 
 \drcap{Soft links example}
 ```bash
@@ -1111,12 +1129,13 @@ target is a file or directory. This is because a soft link doesn't "know" ***wha
 is - it is just a file in a directory pointing to another location. ***What*** that location is
 will be determined after the link is traversed.
 
-A "hard link"\index{files and directories!hard links} is a bit different. It can only be made
-between *files* and the two files ***must be on the same file system***. That is because hard links
-are actually directory entries (as opposed to files in directories) that point to the same
-["inode"](https://en.wikipedia.org/wiki/Inode)\index{files and directories!inodes} on disk. From
-within a single directory it is impossible to tell if there are other directories with pointers to
-the same files (inodes) on disk.
+A "hard link" is a bit different. It can only be made between *files* and the two files ***must be
+on the same file system***. That is because hard links are actually directory entries (as opposed
+to files in directories) that point to the same ["inode"](https://en.wikipedia.org/wiki/Inode) on
+disk. From within a single directory it is impossible to tell if there are other directories with
+pointers to the same files (inodes) on disk.
+\index{files and directories!hard links}
+\index{files and directories!inodes}
 
 \drcap{Hard links example}
 ```bash
@@ -1197,8 +1216,8 @@ So, that makes sense. We created an original file `b` by placing "This is b." in
 created two hard links to it, `B` and `d/b`. We see that it has the same contents no matter how we
 access it, because it is pointing to the same inode.
 
-Can you guess how many `rm`\drfnd{rm}{remove file} commands it will take to delete the file containing "This is
-b."?
+Can you guess how many `rm` commands it will take to delete the file containing "This is b."?
+\drfnd{rm}{remove file}
 
 \drcap{Deleting a file with many hard links}
 ```bash
@@ -1222,12 +1241,13 @@ Ultimately, it takes a `rm` for every hard link to permanently delete a file.
 With all this talk that a hard link can only be on the same file system, how do you know whether
 two directories are on the same file system? In Windows it's easy - that's exactly what the drive
 letters are telling you. But in Linux, where everything is "mounted" under a single hierarchy
-starting at `/`\index{*@\texttt{/} (root directory)}
-\index{files and directories!root (\texttt{/})}, how do I know that `/var/something` and
-`var/or/other` are on the same file system?
+starting at `/`, how do I know that `/var/something` and `var/or/other` are on the same file system?
+\index{*@\texttt{/} (root directory)}
+\index{files and directories!root (\texttt{/})}
 
 There are multiple ways to tell, actually. The easiest is with the
-[`df`](http://linux.die.net/man/1/df)\drfnd{df}{display file system disk space} command:
+[`df`](http://linux.die.net/man/1/df) command:
+\drfnd{df}{display file system disk space}
 
 \drcap{\texttt{df} command}
 ```bash
@@ -1248,24 +1268,27 @@ file system, except for whatever happens to be on the file system mounted under 
 of `/boot`, on this system we could hard link away to our heart's content.
 
 **Note:** - It is (barely) beyond the scope of this book to cover the
-[`mount`](http://linux.die.net/man/8/mount)\drsys{mount}{mount file system} command. I wanted to, really bad, but with
-all the different file systems and device types and all the options for both it can get so complex
-so fast that I decided not to. Maybe if you ask, real nice...
+[`mount`](http://linux.die.net/man/8/mount) command. I wanted to, really bad, but with all the
+different file systems and device types and all the options for both it can get so complex so fast
+that I decided not to. Maybe if you ask, real nice...
+\drsys{mount}{mount file system}
 
 ### I'm Seeing Double{.unnumbered}
 
-So, both hard\index{files and directories!hard links} and soft
-links\index{files and directories!soft links} can have some interesting side effects if you think
-about them. For one, if you are backing things up, then you may get duplicates in your backup set.
-In fact, with hard links you will, by definition, unless the backup software is very smart and
-doing things like de-duplication.
+So, both hard and soft links can have some interesting side effects if you think about them. For
+one, if you are backing things up, then you may get duplicates in your backup set. In fact, with
+hard links you will, by definition, unless the backup software is very smart and doing things like
+de-duplication.
+\index{files and directories!hard links}
+\index{files and directories!soft links}
 
 But even with soft links if everything just blindly followed them you could also get duplicates
 where you didn't want them, or even circular references. Also, the pointers in the soft link files
 are not evaluated until a command references them. Note that the following is perfectly legal with
 soft links, but may not give the results you expect - think about the current working directory
-shown by `pwd`\drfnd{pwd}{print working directory} in the following, and the effects of the ***relative paths*** as the
-sample progresses:
+shown by `pwd` in the following, and the effects of the ***relative paths*** as the sample
+progresses:
+\drfnd{pwd}{print working directory}
 
 \drcap{Soft links and relative paths}
 ```bash
@@ -1286,17 +1309,19 @@ e  f
 a  b  c  d
 ```
 
-Many commands that deal with files and file systems, like `find`\drfnd{find}{find files}, have parameters
-specifically telling the command whether to follow soft links or not (by default, `find` does
-not - see the next chapter for more).
+Many commands that deal with files and file systems, like `find`, have parameters specifically
+telling the command whether to follow soft links or not (by default, `find` does not - see the next
+chapter for more).
+\drfnd{find}{find files}
 
 ## What's the `diff`?{.unnumbered}
 
-Most people think of [`diff`](http://linux.die.net/man/1/diff)\drfnd{diff}{show differences between files}
-\index{files and directories!compare files (\texttt{diff} command)} as a tool only programmers find
+Most people think of [`diff`](http://linux.die.net/man/1/diff) as a tool only programmers find
 useful, but that is short-sighted. The whole purpose of `diff` is to show differences between
 files. For example, I backed up this document (which is a text file) before starting this section,
 then typed this introduction to `diff`. This is what `diff` showed after I added the new paragraph:
+\drfnd{diff}{show differences between files}
+\index{files and directories!compare files (\texttt{diff} command)}
 
 \drcap{\texttt{diff} example}
 ```bash
@@ -1361,5 +1386,5 @@ Now you can see why `diff` can be handy, as long as you keep around a prior vers
 backup file or version control system to compare against.
 
 `diff` is your friend. It really comes into play with a version control system like
-[`git`](http://linux.die.net/man/1/git)\drcmd{git}, but again, that is beyond the scope of this
-book.
+[`git`](http://linux.die.net/man/1/git), but again, that is beyond the scope of this book.
+\drcmd{git}

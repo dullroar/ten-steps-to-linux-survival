@@ -787,7 +787,7 @@ As we've already seen, the command to *list* the contents of a directory is [`ls
 Desktop  Documents  Downloads  Music  Pictures  Public  Templates  Videos
 ```
 
-Remember, "UNIX" environments think of files that start with a `.` as "hidden." If you want to see all these ["dotfiles"](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments) , you can use `ls -a`, in this case on an average "home" directory:
+Remember, "UNIX" environments think of files that start with a `.` as "hidden." If you want to see all these ["dotfiles"](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments), you can use `ls -a`, in this case on an average "home" directory:
 
 ``` bash
 ~ $ ls -a
@@ -911,7 +911,9 @@ In this example when we `cat installrdp` we can determine it is a `bash` shell s
 
 3.  **`cmake`** and **`make`** - configuring and building software from source.
 
-A better way to display a longer file is to use the [`less`](http://linux.die.net/man/1/less) command (which is a derivative of the original [`more`](http://linux.die.net/man/1/more) , hence the name). `less` is a paginator, where the `Space`, `Page Down` or down arrow keys scroll down and the `Page Up` or up arrow keys scrolls up. `Q` quits.
+A better way to display a longer file is to use the [`less`](http://linux.die.net/man/1/less)
+
+command (which is a derivative of the original [`more`](http://linux.die.net/man/1/more), hence the name). `less` is a paginator, where the `Space`, `Page Down` or down arrow keys scroll down and the `Page Up` or up arrow keys scrolls up. `Q` quits.
 
 **Note:** The `vi` search (`/`, `?`, `n` and `p`) and navigation (`G`, `0`) keys work within `less`, too. In general `less` is a great lightweight way to motor around in a text file without editing it.
 
@@ -1721,7 +1723,7 @@ Ultimately, it takes a `rm` for every hard link to permanently delete a file.
 
 ### `mount` It? I Don't Even Know It's Name!
 
-With all this talk that a hard link can only be on the same file system, how do you know whether two directories are on the same file system? In Windows it's easy - that's exactly what the drive letters are telling you. But in Linux, where everything is "mounted" under a single hierarchy starting at `/` , how do I know that `/var/something` and `var/or/other` are on the same file system?
+With all this talk that a hard link can only be on the same file system, how do you know whether two directories are on the same file system? In Windows it's easy - that's exactly what the drive letters are telling you. But in Linux, where everything is "mounted" under a single hierarchy starting at `/`, how do I know that `/var/something` and `var/or/other` are on the same file system?
 
 There are multiple ways to tell, actually. The easiest is with the [`df`](http://linux.die.net/man/1/df) command:
 
