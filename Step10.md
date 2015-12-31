@@ -122,10 +122,10 @@ execution using `sudo`.
 ## Package Management{.unnumbered}
 
 Almost all Linux distros have the concept of "packages" which are used to install, update and
-uninstall software. There are different package managers, including `dpkg`\drcmd{dpkg}
-\index{package management!dpkg@\texttt{dpkg} command} and `apt-get`\drcmd{apt-get}
-\index{package management!aptget@\texttt{apt-get} command} on Debian-based distros, `rpm`\drcmd{rpm}
-\index{package management!rpm@\texttt{rpm} command} on Fedora descendants, etc. For the rest of this
+uninstall software. There are different package managers, including `dpkg`\drpkg{dpkg}
+and `apt-get`\drpkg{apt-get}
+on Debian-based distros, `rpm`\drpkg{rpm}
+on Fedora descendants, etc. For the rest of this
 section we will use Debian tools, but in general the concepts and problems are similar for the
 other toolsets.
 
@@ -139,10 +139,9 @@ the various packages. In addition, there are usually multiple versions of packag
 matching different releases of the distro. We won't go into setting up a system to point to
 these here.
 
-In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get)\drcmd{apt-get} is usually the
+In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get)\drpkg{apt-get} is usually the
 tool of choice for package management. Another option is
-[`aptitude`](http://linux.die.net/man/8/aptitude)\drcmd{aptitude}
-\index{package management!aptitude@\texttt{aptitude} command}.
+[`aptitude`](http://linux.die.net/man/8/aptitude)\drpkg{aptitude}.
 
 There are three common `apt-get` commands that get used over and over. The first downloads and
 *updates* the local metadata cache for the repositories:
@@ -192,7 +191,7 @@ Calculating upgrade... Done
 
 In this case there was nothing to upgrade.
 
-**Note:** In the example above I used `apt-get dist-upgrade`. There is also an `apt-get upgrade`
+**Note:** In the example above I used `apt-get dist-upgrade`\drpkg{apt-get}. There is also an `apt-get upgrade`
 command. `apt-get dist-upgrade` will resolve any new dependencies and download new packages if
 needed, but ***it may also remove packages it considers no longer needed.*** `apt-get upgrade`
 simply performs an in-place upgrade of already-installed packages and in no case will install new
@@ -229,7 +228,7 @@ update-alternatives: using /usr/sbin/tcptraceroute.db to provide /usr/sbin/tcptr
 aceroute (tcptraceroute) in auto mode
 ```
 
-You can also `apt-get remove` or `apt-get purge` packages. See the `apt-get` `man` page for details.
+You can also `apt-get remove`\drpkg{apt-get} or `apt-get purge` packages. See the `apt-get` `man` page for details.
 
 This all looks very convenient, and it is. The problems arise because some distros are better at
 tracking current versions of packages in their repositories than others. In fact, some distros
@@ -246,7 +245,7 @@ in source format requiring it to be built, in a zipped "tarball," and more.
 
 If you want the latest and greatest version of a package you often have to go to its "official"
 site or GitHub repository. There, you may find a `.deb` file, in which case you could install it
-with `dpkg`\drcmd{dpkg}\index{package management!dpkg@\texttt{dpkg} command}:
+with `dpkg`\drpkg{dpkg}:
 
 \drcap{Installing a package with \texttt{dpkg}}
 ```bash
@@ -254,7 +253,7 @@ sudo dpkg -i somesoftware.deb
 ```
 
 There is, however, a problem. You now have to remember that you installed that package by hand and
-keep it up to date by hand (or not). `apt-get upgrade` isn't going to help you here. This is true
+keep it up to date by hand (or not). `apt-get upgrade`\drpkg{apt-get} isn't going to help you here. This is true
 no matter what way you get the alternative package - `.deb` file, tarball, source code, or 
 whatever (although `apt-get` can work with PPAs in a more automated manner).
 

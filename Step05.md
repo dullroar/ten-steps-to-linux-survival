@@ -14,25 +14,27 @@ until it is finally emitted on the console or saved to a file or sent over the I
 The first thing to note is there are three "file I/O streams" that are open by default in every
 "UNIX" process:
 
-* **stdin**\index{I/O!streams!stdin@\textit{stdin}} - input, typically from the console in an
-interactive session. In the underlying C file system APIs, this is file descriptor 0.
+* ***stdin*** - input, typically from the console in an interactive session. In the underlying C file
+system APIs, this is file descriptor 0.
+\drstd{stdin}
 
-* **stdout**\index{I/O!streams!stdin@\textit{stdout}} - "normal" output, typically to the console in
-an interactive session. This is file descriptor 1.
+* ***stdout*** - "normal" output, typically to the console in an interactive session. This is file
+descriptor 1.
+\drstd{stdout}
 
-* **stderr**\index{I/O!streams!stdin@\textit{stderr}} - "error" output, typically to the console in
-an interactive session (so it can be hard to distinguish when intermingled with `stdout` output).
-This is file descriptor 2.
+* ***stderr*** - "error" output, typically to the console in an interactive session (so it can be
+ard to distinguish when intermingled with *stdout* output). This is file descriptor 2.
+\drstd{stderr}
 
 **Note:** Those numeric file descriptors will go from being trivia to important in just a bit.
 
-When a program written in C calls `printf`, it is writing to `stdout`. When a `bash` script calls
-`echo`\drcmd{echo}, it too is writing to `stdout`. When a command writes an error message, it is
-writing to `stderr`. If a command or program accepts input from the console, it is reading from
-`stdin`.
+When a program written in C calls `printf`, it is writing to *stdout*. When a `bash` script calls
+`echo`\drcmd{echo}, it too is writing to *stdout*. When a command writes an error message, it is
+writing to *stderr*. If a command or program accepts input from the console, it is reading from
+*stdin*.
 
-In this example, `cat`\drcmd{cat} is started with no file name, so it will read from `stdin` (a
-quite common "UNIX" command convention), and echo each line typed by the user to `stdout` until the
+In this example, `cat`\drcmd{cat} is started with no file name, so it will read from *stdin* (a
+quite common "UNIX" command convention), and echo each line typed by the user to *stdout* until the
 "end of file," which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the
 example below but not seen on the console in real life:
 
@@ -47,9 +49,10 @@ and writing to stdout.
 ```
 
 So in the above I typed in "This shows reading from stdin" and hit `Enter` (which send a linefeed
-and hence marks the "end of the line") and `cat` echoed that line to
-`stdout`\index{I/O!streams!stdin@\textit{stdout}}. Then I typed "and writing to stdout." and hit
-`Enter` and that line was echoed to `stdout` as well. Finally I hit `Ctrl-D`, which ended the process.
+and hence marks the "end of the line") and `cat` echoed that line to *stdout*. Then I typed "and
+writing to stdout." and hit `Enter` and that line was echoed to *stdout* as well. Finally I hit
+`Ctrl-D`, which ended the process.
+\drstd{stdout}
 
 ## All Magic is Redirection{.unnumbered}
 
@@ -71,14 +74,15 @@ Hello, world
 
 In this case the `> hw`\index{*@\texttt{>} (output redirection)}
 \index{I/O!redirection!output (\texttt{>})} tells `bash` to take the output that `echo` sends to
-`stdout`\index{I/O!streams!stdin@\textit{stdout}} and send it to the file `hw` instead.
+*stdout* and send it to the file `hw` instead.
+\drstd{stdout}
 
 As mentioned above many "UNIX" commands are set up to take one or more file names from the command
-line as parameters, and if there aren't any, to read from
-`stdin`\index{I/O!streams!stdin@\textit{stdin}}. The `cat` command does that. While it doesn't save
-us anything over the above example, the following example using `<`
-\index{*@\texttt{<} (input redirection)}\index{I/O!redirection!input (\texttt{<})}
-is illustrative of redirecting a file to `stdin` for a command or program:
+line as parameters, and if there aren't any, to read from *stdin*. The `cat` command does that.
+While it doesn't save us anything over the above example, the following example using `<`
+\index{*@\texttt{<} (input redirection)}\index{I/O!redirection!input (\texttt{<})} is illustrative
+of redirecting a file to *stdin* for a command or program:
+\drstd{stdin}
 
 \drcap{Redundant redirection}
 ```bash
@@ -86,8 +90,9 @@ is illustrative of redirecting a file to `stdin` for a command or program:
 Hello, world
 ```
 
-Finally, we need to deal with `stderr`.\index{I/O!streams!stdin@\textit{stderr}} By convention it
-is sent to the console just like `stdout`, and that can make output confusing:
+Finally, we need to deal with *stderr*. By convention it is sent to the console just like *stdout*,
+and that can make output confusing:
+\drstd{stderr}
 
 \drcap{Default \textit{stderr} behavior}
 ```bash
@@ -107,7 +112,7 @@ This is e
 
 In the above, between echoing the contents of the `a`, `b`, `c` and `e` files, we see two error
 messages from `cat` complaining that `.` and `d` are directories. These are being emitted on
-`stderr`, but there is no good way of visually telling that. One way to get rid of them would be to
+*stderr*, but there is no good way of visually telling that. One way to get rid of them would be to
 change `find` to filter for only files:
 
 \drcap{Get rid of the errors in the first place}
@@ -120,11 +125,11 @@ This is e
 ```
 
 But let's say the example is not so trivial, and we want to capture and log the error messages
-separately for later analysis. While we've seen `<` used to represent redirecting `stdin` and `>`
-used for redirecting `stdout`, how do we tell the shell we want to redirect `stderr`? Remember
+separately for later analysis. While we've seen `<` used to represent redirecting *stdin* and `>`
+used for redirecting *stdout*, how do we tell the shell we want to redirect *stderr*? Remember
 the discussion about file handles above? That's where those esoteric numbers come in handy! To
-redirect `stderr`\index{I/O!streams!stdin@\textit{stderr}} we recall it is ***always*** file
-descriptor 2, and then we can use:
+redirect *stderr* we recall it is ***always*** file descriptor 2, and then we can use:
+\drstd{stderr}
 
 \drcap{Redirecting \textit{stderr}}
 ```bash
@@ -140,10 +145,12 @@ cat: ./d: Is a directory
 
 The `2>/tmp/finderrors.log`\index{*@\texttt{2>} (\textit{stderr} redirection)}
 \index{I/O!redirection!error (\texttt{2>})} is the magic that is redirecting file descriptor 2
-(`stderr`) to the log file `/tmp/finderrors.log`.
+(*stderr*) to the log file `/tmp/finderrors.log`.
 
-A very common paradigm is to capture both `stdout`\index{I/O!streams!stdin@\textit{stdout}} and
-`stderr` to the same file. Here is how that is done, again using file descriptors:
+A very common paradigm is to capture both *stdout* and *stderr* to the same file. Here is how that
+is done, again using file descriptors:
+\drstd{stdout}
+\drstd{stderr}
 
 \drcap{Redirecting both \textit{stdout} and \textit{stderr} to a file}
 ```bash
@@ -157,11 +164,11 @@ cat: ./d: Is a directory
 This is e
 ```
 
-Now we see `stdout` being redirected to `/tmp/find.log` with `>/tmp/find.log`, and `stderr` (file
-descriptor 2) being sent to the same place as `stdout` (file descriptor 1) with `2>&1`. Note that
+Now we see *stdout* being redirected to `/tmp/find.log` with `>/tmp/find.log`, and *stderr* (file
+descriptor 2) being sent to the same place as *stdout* (file descriptor 1) with `2>&1`. Note that
 this works in `CMD.EXE`]drshl{CMD.EXE}, too!
 
-If we want to send `stdout` to one file and `stderr` to another, you can do it like this:
+If we want to send *stdout* to one file and *stderr* to another, you can do it like this:
 
 \drcap{Redirecting \textit{stdout} one way \textit{stderr} another}
 ```
@@ -199,12 +206,13 @@ scripting and is outside the scope of this book.
 
 ## Everyone Line Up{.unnumbered}
 
-So we can see that we could pass things between programs by redirecting
-`stdout`\index{I/O!streams!stdin@\textit{stdout}} to a file and then redirecting that file to
-`stdin`\index{I/O!streams!stdin@\textit{stdin}} on the next program, and so on. But "UNIX"
-environments take it a bit further with the concept of a command "pipeline" that allows directly
-sending `stdout` from one program into `stdin` of another using the "pipe" (`|`):
+So we can see that we could pass things between programs by redirecting *stdout* to a file and then
+redirecting that file to *stdin* on the next program, and so on. But "UNIX" environments take it a
+bit further with the concept of a command "pipeline" that allows directly sending *stdout* from one
+program into *stdin* of another using the "pipe" (`|`):
 \index{*@\texttt{"|} (pipe)}\index{I/O!redirection!pipe (\texttt{"|})}
+\drstd{stdout}
+\drstd{stdin}
 
 \drcap{Piping output between programs}
 ```bash
@@ -215,7 +223,7 @@ This little one-liner starts showing off the usefulness of chaining several smal
 each doing one thing. In this case:
 
 1. `cat` echos the contents of all `.txt` files in alphabetical order by their file name to
-`stdout`, which is piped to...
+*stdout*, which is piped to...
 
 2. [`tr`](http://linux.die.net/man/1/tr)\drcmd{tr} "translates" (replaces) any backslash characters
 (here "escaped" as `'\\'` because the backslash character is a special character) to forward
@@ -227,7 +235,7 @@ slashes (`/`), before sending it into...
 
 Think about the power of that. `cat` didn't know there were multiple `.txt` files or not - the
 shell expansion of the `*.txt` wildcard did that. It read all those files and echoed them to
-`stdout` which in this case was a pipeline sending each line in order to another command to
+*stdout* which in this case was a pipeline sending each line in order to another command to
 transform the data, before sending each line to the custom code in `mycmd`, that only expects a
 single line or value each time it is run. It has no idea about the `.txt` files or the
 ransformation or the pipeline!

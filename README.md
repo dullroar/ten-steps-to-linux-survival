@@ -139,7 +139,7 @@ Here is what we'll cover in the rest of this book:
 
 5.  [**Grokking `grep`**](#grokking-grep) – and probably gawking at `awk` while we are at it, which means regular expressions, too. Now we have two problems.
 
-6.  [**“Just a Series of Pipes”**](#just-a-series-of-pipes) – `stdin`/`stdout`/`stderr`, redirects, piping between commands.
+6.  [**“Just a Series of Pipes”**](#just-a-series-of-pipes) – *stdin*/*stdout*/*stderr*, redirects, piping between commands.
 
 7.  [**`vi`**](#vi) (had to be \#6, if you think about it) – how to stay sane for 10 minutes in `vi`. Navigation, basic editing, find, change/change-all, cut and paste, undo, saving and canceling. Plus easier alternatives like `nano`, and why `vi` still matters.
 
@@ -2201,17 +2201,17 @@ The ["UNIX philosophy"](https://en.wikipedia.org/wiki/Unix_philosophy) tends to 
 
 The first thing to note is there are three "file I/O streams" that are open by default in every "UNIX" process:
 
--   **stdin** - input, typically from the console in an interactive session. In the underlying C file system APIs, this is file descriptor 0.
+-   ***stdin*** - input, typically from the console in an interactive session. In the underlying C file system APIs, this is file descriptor 0.
 
--   **stdout** - "normal" output, typically to the console in an interactive session. This is file descriptor 1.
+-   ***stdout*** - "normal" output, typically to the console in an interactive session. This is file descriptor 1.
 
--   **stderr** - "error" output, typically to the console in an interactive session (so it can be hard to distinguish when intermingled with `stdout` output). This is file descriptor 2.
+-   ***stderr*** - "error" output, typically to the console in an interactive session (so it can be ard to distinguish when intermingled with *stdout* output). This is file descriptor 2.
 
 **Note:** Those numeric file descriptors will go from being trivia to important in just a bit.
 
-When a program written in C calls `printf`, it is writing to `stdout`. When a `bash` script calls `echo`, it too is writing to `stdout`. When a command writes an error message, it is writing to `stderr`. If a command or program accepts input from the console, it is reading from `stdin`.
+When a program written in C calls `printf`, it is writing to *stdout*. When a `bash` script calls `echo`, it too is writing to *stdout*. When a command writes an error message, it is writing to *stderr*. If a command or program accepts input from the console, it is reading from *stdin*.
 
-In this example, `cat` is started with no file name, so it will read from `stdin` (a quite common "UNIX" command convention), and echo each line typed by the user to `stdout` until the "end of file," which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below but not seen on the console in real life:
+In this example, `cat` is started with no file name, so it will read from *stdin* (a quite common "UNIX" command convention), and echo each line typed by the user to *stdout* until the "end of file," which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below but not seen on the console in real life:
 
 ``` bash
 ~ $ cat
@@ -2222,7 +2222,7 @@ and writing to stdout.
 ^D
 ```
 
-So in the above I typed in "This shows reading from stdin" and hit `Enter` (which send a linefeed and hence marks the "end of the line") and `cat` echoed that line to `stdout`. Then I typed "and writing to stdout." and hit `Enter` and that line was echoed to `stdout` as well. Finally I hit `Ctrl-D`, which ended the process.
+So in the above I typed in "This shows reading from stdin" and hit `Enter` (which send a linefeed and hence marks the "end of the line") and `cat` echoed that line to *stdout*. Then I typed "and writing to stdout." and hit `Enter` and that line was echoed to *stdout* as well. Finally I hit `Ctrl-D`, which ended the process.
 
 All Magic is Redirection
 ------------------------
@@ -2240,16 +2240,16 @@ total 1
 Hello, world
 ```
 
-In this case the `> hw` tells `bash` to take the output that `echo` sends to `stdout` and send it to the file `hw` instead.
+In this case the `> hw` tells `bash` to take the output that `echo` sends to *stdout* and send it to the file `hw` instead.
 
-As mentioned above many "UNIX" commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from `stdin`. The `cat` command does that. While it doesn't save us anything over the above example, the following example using `<` is illustrative of redirecting a file to `stdin` for a command or program:
+As mentioned above many "UNIX" commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from *stdin*. The `cat` command does that. While it doesn't save us anything over the above example, the following example using `<` is illustrative of redirecting a file to *stdin* for a command or program:
 
 ``` bash
 ~ $ cat < hw
 Hello, world
 ```
 
-Finally, we need to deal with `stderr`. By convention it is sent to the console just like `stdout`, and that can make output confusing:
+Finally, we need to deal with *stderr*. By convention it is sent to the console just like *stdout*, and that can make output confusing:
 
 ``` bash
 ~ $ echo This is a > a
@@ -2266,7 +2266,7 @@ cat: ./d: Is a directory
 This is e
 ```
 
-In the above, between echoing the contents of the `a`, `b`, `c` and `e` files, we see two error messages from `cat` complaining that `.` and `d` are directories. These are being emitted on `stderr`, but there is no good way of visually telling that. One way to get rid of them would be to change `find` to filter for only files:
+In the above, between echoing the contents of the `a`, `b`, `c` and `e` files, we see two error messages from `cat` complaining that `.` and `d` are directories. These are being emitted on *stderr*, but there is no good way of visually telling that. One way to get rid of them would be to change `find` to filter for only files:
 
 ``` bash
 ~ $ find . -type f -exec cat \{\} \;
@@ -2276,7 +2276,7 @@ This is c
 This is e
 ```
 
-But let's say the example is not so trivial, and we want to capture and log the error messages separately for later analysis. While we've seen `<` used to represent redirecting `stdin` and `>` used for redirecting `stdout`, how do we tell the shell we want to redirect `stderr`? Remember the discussion about file handles above? That's where those esoteric numbers come in handy! To redirect `stderr` we recall it is ***always*** file descriptor 2, and then we can use:
+But let's say the example is not so trivial, and we want to capture and log the error messages separately for later analysis. While we've seen `<` used to represent redirecting *stdin* and `>` used for redirecting *stdout*, how do we tell the shell we want to redirect *stderr*? Remember the discussion about file handles above? That's where those esoteric numbers come in handy! To redirect *stderr* we recall it is ***always*** file descriptor 2, and then we can use:
 
 ``` bash
 ~ $ find . -exec cat \{\} \; 2>/tmp/finderrors.log
@@ -2289,9 +2289,9 @@ cat: .: Is a directory
 cat: ./d: Is a directory
 ```
 
-The `2>/tmp/finderrors.log` is the magic that is redirecting file descriptor 2 (`stderr`) to the log file `/tmp/finderrors.log`.
+The `2>/tmp/finderrors.log` is the magic that is redirecting file descriptor 2 (*stderr*) to the log file `/tmp/finderrors.log`.
 
-A very common paradigm is to capture both `stdout` and `stderr` to the same file. Here is how that is done, again using file descriptors:
+A very common paradigm is to capture both *stdout* and *stderr* to the same file. Here is how that is done, again using file descriptors:
 
 ``` bash
 ~ $ find . -exec cat \{\} \; >/tmp/find.log 2>&1
@@ -2304,9 +2304,9 @@ cat: ./d: Is a directory
 This is e
 ```
 
-Now we see `stdout` being redirected to `/tmp/find.log` with `>/tmp/find.log`, and `stderr` (file descriptor 2) being sent to the same place as `stdout` (file descriptor 1) with `2>&1`. Note that this works in `CMD.EXE`\]drshl{CMD.EXE}, too!
+Now we see *stdout* being redirected to `/tmp/find.log` with `>/tmp/find.log`, and *stderr* (file descriptor 2) being sent to the same place as *stdout* (file descriptor 1) with `2>&1`. Note that this works in `CMD.EXE`\]drshl{CMD.EXE}, too!
 
-If we want to send `stdout` to one file and `stderr` to another, you can do it like this:
+If we want to send *stdout* to one file and *stderr* to another, you can do it like this:
 
     ~ $ find . -exec cat \{\} \; >/tmp/find.log 2>/tmp/finderrors.log
     ~ $ cat /tmp/find.log
@@ -2335,7 +2335,7 @@ However, the next sample using `>>` creates a new `/tmp/find.log` file if it doe
 Everyone Line Up
 ----------------
 
-So we can see that we could pass things between programs by redirecting `stdout` to a file and then redirecting that file to `stdin` on the next program, and so on. But "UNIX" environments take it a bit further with the concept of a command "pipeline" that allows directly sending `stdout` from one program into `stdin` of another using the "pipe" (`|`):
+So we can see that we could pass things between programs by redirecting *stdout* to a file and then redirecting that file to *stdin* on the next program, and so on. But "UNIX" environments take it a bit further with the concept of a command "pipeline" that allows directly sending *stdout* from one program into *stdin* of another using the "pipe" (`|`):
 
 ``` bash
 ~ $ cat *.txt | tr '\\' '/' | while read line ; do ./mycmd "$line" ; done
@@ -2343,7 +2343,7 @@ So we can see that we could pass things between programs by redirecting `stdout`
 
 This little one-liner starts showing off the usefulness of chaining several small programs, each doing one thing. In this case:
 
-1.  `cat` echos the contents of all `.txt` files in alphabetical order by their file name to `stdout`, which is piped to...
+1.  `cat` echos the contents of all `.txt` files in alphabetical order by their file name to *stdout*, which is piped to...
 
 2.  [`tr`](http://linux.die.net/man/1/tr) "translates" (replaces) any backslash characters (here "escaped" as `'\\'` because the backslash character is a special character) to forward slashes (`/`), before sending it into...
 
@@ -2351,7 +2351,7 @@ This little one-liner starts showing off the usefulness of chaining several smal
 
 4.  Some custom script or program called `./mycmd` passing in the value of each `$line`.
 
-Think about the power of that. `cat` didn't know there were multiple `.txt` files or not - the shell expansion of the `*.txt` wildcard did that. It read all those files and echoed them to `stdout` which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in `mycmd`, that only expects a single line or value each time it is run. It has no idea about the `.txt` files or the ransformation or the pipeline!
+Think about the power of that. `cat` didn't know there were multiple `.txt` files or not - the shell expansion of the `*.txt` wildcard did that. It read all those files and echoed them to *stdout* which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in `mycmd`, that only expects a single line or value each time it is run. It has no idea about the `.txt` files or the ransformation or the pipeline!
 
 ***That*** is the "UNIX philosophy" at work.
 
@@ -3213,11 +3213,11 @@ That's:
 
 -   **`ps -A`** - list all running processes.
 
--   **`|`** - pipe `stdout` from `ps` to next command.
+-   **`|`** - pipe *stdout* from `ps` to next command.
 
 -   **`grep vi`** - find all instances of `vi` (be careful, because that would include `view` and anything else containing the string `vi`, too).
 
--   **`|`** - pipe `stdout` from `grep` to next command.
+-   **`|`** - pipe *stdout* from `grep` to next command.
 
 -   **`kill`** - send a `SIGINT` signal to a process specified by:
 
@@ -3763,7 +3763,7 @@ One of the nicest things about Linux-style package managers (as opposed to tradi
 
 One thing Linux distros do is define the "repositories" (servers and file structures) that serve the various packages. In addition, there are usually multiple versions of packages, typically matching different releases of the distro. We won't go into setting up a system to point to these here.
 
-In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get) is usually the tool of choice for package management. Another option is [`aptitude`](http://linux.die.net/man/8/aptitude) .
+In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get) is usually the tool of choice for package management. Another option is [`aptitude`](http://linux.die.net/man/8/aptitude).
 
 There are three common `apt-get` commands that get used over and over. The first downloads and *updates* the local metadata cache for the repositories:
 
@@ -4129,19 +4129,19 @@ See ["logical operators"](http://linux.die.net/abs-guide/ops.html).
 
 See ["I/O Redirection"](http://linux.die.net/abs-guide/io-redirection.html).
 
--   **`stderr`** - file descriptor 2, always open for writing from a process, defaults to the screen on a terminal session.
+-   ***stderr*** - file descriptor 2, always open for writing from a process, defaults to the screen on a terminal session.
 
--   **`stdin`** - file descriptor 0, always open for reading in a process, defaults to the keyboard input on a terminal session.
+-   ***stdin*** - file descriptor 0, always open for reading in a process, defaults to the keyboard input on a terminal session.
 
--   **`stdout`** - file descriptor 1, always open for writing from a process, defaults to the screen on a terminal session.
+-   ***stdout*** - file descriptor 1, always open for writing from a process, defaults to the screen on a terminal session.
 
--   **`<`**  - redirect a file to `stdin`.
+-   **`<`**  - redirect a file to *stdin*.
 
--   **`>`**  - redirect `stdout` to a file.
+-   **`>`**  - redirect *stdout* to a file.
 
--   **`2>`**  - redirect `stderr` to a file.
+-   **`2>`**  - redirect *stderr* to a file.
 
--   **`|`** - pipe `stdout` from one process into `stdin` in another process.
+-   **`|`** - pipe *stdout* from one process into *stdin* in another process.
 
 ### Special Files and Directories
 
@@ -4179,7 +4179,7 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`bzip2`**](http://linux.die.net/man/1/bzip2) - compress and uncompress files using the `bzip2` algorithm.
 
--   [**`cat`**](http://linux.die.net/man/1/cat) - concatenate the input files to `stdout`.
+-   [**`cat`**](http://linux.die.net/man/1/cat) - concatenate the input files to *stdout*.
 
 -   [**`cd`**](http://linux.die.net/man/1/cd) - change the current directory.
 
@@ -4203,7 +4203,7 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`dpkg`**](http://linux.die.net/man/1/dpkg) - package manager for Debian flavors.
 
--   [**`echo`**](http://linux.die.net/man/1/echo) - display passed parameters to `stdout`.
+-   [**`echo`**](http://linux.die.net/man/1/echo) - display passed parameters to *stdout*.
 
 -   [**`email`**](http://linux.die.net/man/1/email) - send email.
 
@@ -4219,7 +4219,7 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`info`**](http://linux.die.net/man/1/info) - an alternative for `man`, especially for GNU programs. Remember `q` quits.
 
--   [**`less`**](http://linux.die.net/man/1/less) - display the file one page at a time on `stdout`.
+-   [**`less`**](http://linux.die.net/man/1/less) - display the file one page at a time on *stdout*.
 
 -   [**`ln`**](http://linux.die.net/man/1/ln) - create hard or soft (shortcut) links.
 
@@ -4231,7 +4231,7 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`mkdir`**](http://linux.die.net/man/1/mkdir) - make a new directory.
 
--   [**`more`**](http://linux.die.net/man/1/more) - display the file one page at a time on `stdout`.
+-   [**`more`**](http://linux.die.net/man/1/more) - display the file one page at a time on *stdout*.
 
 -   [**`mutt`**](http://linux.die.net/man/1/mutt) - email client.
 
@@ -4251,7 +4251,7 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`set`**](http://linux.die.net/man/1/set) - set an environment variable, or display all environment variables.
 
--   [**`sort`**](http://linux.die.net/man/1/sort) - sort `stdin` or a file to `stdout`.
+-   [**`sort`**](http://linux.die.net/man/1/sort) - sort *stdin* or a file to *stdout*.
 
 -   [**`ssh`**](http://linux.die.net/man/1/ssh) - secure shell terminal progam and protocol.
 
@@ -4259,7 +4259,7 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`tar`**](http://linux.die.net/man/1/tar) - "tape archive", a way to combine directories into a single flat file.
 
--   [**`tee`**](http://linux.die.net/man/1/tee) - write to a file and `stdout` at the same time.
+-   [**`tee`**](http://linux.die.net/man/1/tee) - write to a file and *stdout* at the same time.
 
 -   [**`telnet`**](http://linux.die.net/man/1/telnet) - ancient terminal program and protocol.
 

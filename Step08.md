@@ -66,12 +66,13 @@ That's:
 
 * **`ps -A`** - list all running processes.
 
-* **`|`** - pipe `stdout`\index{stdout} from `ps` to next command.
+* **`|`** - pipe *stdout* from `ps` to next command.
+\drstd{stdout}
 
 * **`grep vi`** - find all instances of `vi` (be careful, because that would include `view` and
 anything else containing the string `vi`, too).
 
-* **`|`** - pipe `stdout` from `grep`\drcmd{grep} to next command.
+* **`|`** - pipe *stdout* from `grep`\drcmd{grep} to next command.
 
 * **`kill`** - send a `SIGINT` signal\index{signals} to a process specified by:
 

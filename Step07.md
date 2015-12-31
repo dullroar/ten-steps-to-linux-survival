@@ -128,7 +128,7 @@ in control, in the case of `sudo` by prompting for the user's password. If multi
 invoked by `sudo` within a short time period, you will not be reprompted for a password each time,
 (unlike UAC).
 
-Here is a really common example on Debian-based systems:
+Here is a really common example on Debian-based systems\drpkg{apt-get}:
 
 \drcap{Make me a sandwich}
 ```bash

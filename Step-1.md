@@ -74,7 +74,7 @@ single most useful command in "UNIX" (I think).
 4. [**Grokking `grep`**](#grokking-grep) – and probably gawking at `awk` while we are at it, which
 means regular expressions, too. Now we have two problems.
 
-5. [**“Just a Series of Pipes”**](#just-a-series-of-pipes) – `stdin`/`stdout`/`stderr`, redirects,
+5. [**“Just a Series of Pipes”**](#just-a-series-of-pipes) – *stdin*/*stdout*/*stderr*, redirects,
 piping between commands.
 
 6. [**`vi`**](#vi) (had to be #6, if you think about it) – how to stay sane for 10 minutes in `vi`.
@@ -142,12 +142,24 @@ the years, including:
 * **AIX**
 
 * **FreeBSD**
+\drbsd{FreeBSD}
 
 * **HP/UX**
 
 * **Linux** - literally more distros than I can count or remember, but at least Debian, Fedora,
 Yellow Dog, Ubuntu/Kubuntu/Xubuntu, Mint, Raspbian, Gentoo, Red Hat and of course the venerable
 Slackware.
+\drdis{Debian}
+\drdis{Fedora}
+\drdis{Yellow Dog}
+\drdis{Ubuntu}
+\drdis{Kubuntu}
+\drdis{Xubuntu}
+\drdis{Mint}
+\drdis{Raspbian}
+\drdis{Gentoo}
+\drdis{Red Hat}
+\drdis{Slackware}
 
 * **Solaris**
 
@@ -156,6 +168,7 @@ Slackware.
 All on various machines and machine architectures from mighty Sun servers to generic "Intel" VMs
 down to Raspberry Pis, plus an original "wedge" iMac running as a kitchen kiosk long after its
 "Best by" date and OS/9's demise, thanks to Yellow Dog Linux.
+\drdis{Yellow Dog}
 
 All that while also working on MVS, VSE, OS/2, DOS since 3.x, Windows since 1.x, etc., etc. I don't
 think I am special when I list all that - there are lots of people with my level of experience
@@ -216,15 +229,13 @@ Way."
 
 **WARNING:** ***Many of the commands in this book can alter your system and possibly damage it.***
 
-Obvious candidates include the file system commands like `rm`,
+Obvious candidates include the file system commands like `rm`, the `vi` editor (obviously), and
+some of the "system admin" commands mentioned later, including system and service restarts. Use
+your common sense plus the various resources for documentation mentioned in this book to make sure
+you aren't doing anything destructive to your system, especially in production.
 \drcmd{rm}
 \index{files and directories!delete (\texttt{rm} command)}
-the `vi`
 \dreds{vi}
-editor (obviously), and some of the "system admin" commands mentioned later, including system and
-service restarts. Use your common sense plus the various resources for documentation mentioned in
-this book to make sure you aren't doing anything destructive to your system, especially in
-production.
 
 ***YOU HAVE BEEN WARNED!***
 
@@ -265,30 +276,28 @@ this:
 ```
 
 All such blocks have been normalized to only show a maximum of 80x24 characters. This is
-intentional. While most modern "UNIX" systems and terminal windows like `ssh`
+intentional. While most modern "UNIX" systems and terminal windows like `ssh` can handle any
+geometry, there are still systems and situations where you get the same terminal size that your
+grandfather would've used. It is best to learn how to deal with these by using `less`, redirection
+and the like.
 \drnet{ssh}
-can handle any geometry, there are still systems and situations where you get the same terminal
-size that your grandfather would've used. It is best to learn how to deal with these by using
-`less`,
 \drcmd{less}
-redirection and the like.
+\index{files and directories!paginate!less@\texttt{less} command}
+\index{pagination!\texttt{less} command}
 
 The examples in this book typically show something like `~ $` before the command, or `~ #` (when
-logged in as root) or `%` (when running under `csh`).
-\drshl{csh}
-These "command prompts" are set in `bash`
-\drshl{bash}
-via the [`PS1` environment
-variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)
-\drenv{PS1}{command prompt string}
+logged in as root) or `%` (when running under `csh`). These "command prompts" are set in `bash`
+via the [`PS1` environment variable](https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto)
 and are not meant to be typed in as part of the command.
+\drshl{csh}
+\drshl{bash}
+\drenv{PS1}{command prompt string}
 
 In the few places where a "UNIX" command is shown in comparison to a "DOS" command run under
-`CMD.EXE`,
+`CMD.EXE`, the latter is shown in all uppercase to help distinguish it from the "UNIX" equivalent,
+even though `CMD.EXE` is case-insensitive. In other words, `set` will be shown for `bash` and `SET`
+for `CMD.EXE`.
 \drshl{CMD.EXE}
-the latter is shown in all uppercase to help distinguish it from the "UNIX" equivalent, even though
-`CMD.EXE` is case-insensitive. In other words, `set` will be shown for `bash` and `SET` for
-`CMD.EXE`.
 
 ## Acknowledgments{.unnumbered}
 

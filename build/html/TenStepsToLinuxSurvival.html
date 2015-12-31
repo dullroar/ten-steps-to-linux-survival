@@ -172,7 +172,7 @@
 <li><p><a href="#file-under-directories"><strong>File Under &quot;Directories&quot;</strong></a> – <code>ls</code>, <code>mv</code>, <code>cp</code>, <code>rm</code> (<code>-rf *</code>), <code>cat</code>, <code>chmod</code>/<code>chgrp</code>/<code>chown</code> and everyone's favorite, <code>touch</code>.</p></li>
 <li><p><a href="#finding-meaning"><strong>Finding Meaning</strong></a> – the <code>find</code> command in all its glory. Probably the single most useful command in &quot;UNIX&quot; (I think).</p></li>
 <li><p><a href="#grokking-grep"><strong>Grokking <code>grep</code></strong></a> – and probably gawking at <code>awk</code> while we are at it, which means regular expressions, too. Now we have two problems.</p></li>
-<li><p><a href="#just-a-series-of-pipes"><strong>“Just a Series of Pipes”</strong></a> – <code>stdin</code>/<code>stdout</code>/<code>stderr</code>, redirects, piping between commands.</p></li>
+<li><p><a href="#just-a-series-of-pipes"><strong>“Just a Series of Pipes”</strong></a> – <em>stdin</em>/<em>stdout</em>/<em>stderr</em>, redirects, piping between commands.</p></li>
 <li><p><a href="#vi"><strong><code>vi</code></strong></a> (had to be #6, if you think about it) – how to stay sane for 10 minutes in <code>vi</code>. Navigation, basic editing, find, change/change-all, cut and paste, undo, saving and canceling. Plus easier alternatives like <code>nano</code>, and why <code>vi</code> still matters.</p></li>
 <li><p><a href="#the-whole-wide-world"><strong>The Whole Wide World</strong></a> – <code>curl</code>, <code>wget</code>, <code>ifconfig</code>, <code>ping</code>, <code>ssh</code>, <code>telnet</code>, <code>/etc/hosts</code> and email before Outlook.</p></li>
 <li><p><a href="#the-man-behind-the-curtain"><strong>The Man Behind the Curtain</strong></a> - <code>/proc</code>, <code>/dev</code>, <code>ps</code>, <code>/var/log</code>, <code>/tmp</code> and other things under the covers.</p></li>
@@ -197,13 +197,13 @@
 <p>Because I work in a primarily Windows-oriented shop, and I seem to be &quot;the guy&quot; that everyone comes to when they need help on a Linux or related system. I don't count myself a Linux guru (<strong><em>at all</em></strong>), but I have been running it since 1996 (Slackware on a laptop with 8MB of memory!), and have worked on or run at home various ports and flavors and and versions and distros of &quot;UNIX&quot; over the years, including:</p>
 <ul>
 <li><p><strong>AIX</strong></p></li>
-<li><p><strong>FreeBSD</strong></p></li>
+<li><p><strong>FreeBSD</strong> </p></li>
 <li><p><strong>HP/UX</strong></p></li>
-<li><p><strong>Linux</strong> - literally more distros than I can count or remember, but at least Debian, Fedora, Yellow Dog, Ubuntu/Kubuntu/Xubuntu, Mint, Raspbian, Gentoo, Red Hat and of course the venerable Slackware.</p></li>
+<li><p><strong>Linux</strong> - literally more distros than I can count or remember, but at least Debian, Fedora, Yellow Dog, Ubuntu/Kubuntu/Xubuntu, Mint, Raspbian, Gentoo, Red Hat and of course the venerable Slackware.           </p></li>
 <li><p><strong>Solaris</strong></p></li>
 <li><p><strong>SunOS</strong></p></li>
 </ul>
-<p>All on various machines and machine architectures from mighty Sun servers to generic &quot;Intel&quot; VMs down to Raspberry Pis, plus an original &quot;wedge&quot; iMac running as a kitchen kiosk long after its &quot;Best by&quot; date and OS/9's demise, thanks to Yellow Dog Linux.</p>
+<p>All on various machines and machine architectures from mighty Sun servers to generic &quot;Intel&quot; VMs down to Raspberry Pis, plus an original &quot;wedge&quot; iMac running as a kitchen kiosk long after its &quot;Best by&quot; date and OS/9's demise, thanks to Yellow Dog Linux. </p>
 <p>All that while also working on MVS, VSE, OS/2, DOS since 3.x, Windows since 1.x, etc., etc. I don't think I am special when I list all that - there are lots of people with my level of experience <strong><em>and better</em></strong>, especially in commercial software engineering. I am just one of them.</p>
 <p>But for some reason there are many places, especially in small and medium business (SMB) environments, where the &quot;stack&quot; tends to be more purely Microsoft because it keeps things simpler and cheaper for the smaller staff. I work in such a place. The technical staff is quite competent, but when they bump up against systems whose primary &quot;user interface&quot; for system administration is a <code>bash</code> command prompt and some scripts, they panic.</p>
 <p>This is my attempt to help my co-workers by saying:</p>
@@ -222,7 +222,7 @@
 <p>This book is not meant to be an authoritative source, but instead a <a href="https://en.wikipedia.org/wiki/Fake_book">&quot;fake book&quot;</a> for getting up and running <strong><em>quickly</em></strong> with the sheer basics, plus knowing where to go for help. I modeled it explicitly after &quot;short and opinionated&quot; tech books such as Douglas Crockford's <a href="http://shop.oreilly.com/product/9780596517748.do"><em>Javascript: The Good Parts</em></a> and especially those licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons</a>, such as the books from <a href="http://greenteapress.com/">Green Tea Press</a>. If you like those big tech books that are priced by the kilogram, this is not the book for you.</p>
 <p>It is also not a replacement for reading the real documentation and doing research and testing, especially in production! But hopefully it will help get you through that &quot;Can you get in and poke around and see if you can figure it out?&quot; scenario above. And if Linux should start becoming more of your job, maybe this will help as a gentle push toward &quot;RTFM&quot; along with thinking in &quot;The UNIX Way.&quot;</p>
 <p><strong>WARNING:</strong> <strong><em>Many of the commands in this book can alter your system and possibly damage it.</em></strong></p>
-<p>Obvious candidates include the file system commands like <code>rm</code>,   the <code>vi</code>  editor (obviously), and some of the &quot;system admin&quot; commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production.</p>
+<p>Obvious candidates include the file system commands like <code>rm</code>, the <code>vi</code> editor (obviously), and some of the &quot;system admin&quot; commands mentioned later, including system and service restarts. Use your common sense plus the various resources for documentation mentioned in this book to make sure you aren't doing anything destructive to your system, especially in production.   </p>
 <p><strong><em>YOU HAVE BEEN WARNED!</em></strong></p>
 <h2 id="conventions" class="unnumbered">Conventions</h2>
 <p>If a command, file name or other &quot;computer code&quot; is shown in-line in a sentence, it will appear in a fixed-width font, e.g., <code>ls --recursive *.txt</code>.</p>
@@ -252,9 +252,9 @@
    23 ?        00:00:00   rcuob/6
    24 ?        00:00:00   rcuob/7
 ...and so on...</code></pre>
-<p>All such blocks have been normalized to only show a maximum of 80x24 characters. This is intentional. While most modern &quot;UNIX&quot; systems and terminal windows like <code>ssh</code>  can handle any geometry, there are still systems and situations where you get the same terminal size that your grandfather would've used. It is best to learn how to deal with these by using <code>less</code>,  redirection and the like.</p>
-<p>The examples in this book typically show something like <code>~ $</code> before the command, or <code>~ #</code> (when logged in as root) or <code>%</code> (when running under <code>csh</code>).  These &quot;command prompts&quot; are set in <code>bash</code>  via the <a href="https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto"><code>PS1</code> environment variable</a>  and are not meant to be typed in as part of the command.</p>
-<p>In the few places where a &quot;UNIX&quot; command is shown in comparison to a &quot;DOS&quot; command run under <code>CMD.EXE</code>,  the latter is shown in all uppercase to help distinguish it from the &quot;UNIX&quot; equivalent, even though <code>CMD.EXE</code> is case-insensitive. In other words, <code>set</code> will be shown for <code>bash</code> and <code>SET</code> for <code>CMD.EXE</code>.</p>
+<p>All such blocks have been normalized to only show a maximum of 80x24 characters. This is intentional. While most modern &quot;UNIX&quot; systems and terminal windows like <code>ssh</code> can handle any geometry, there are still systems and situations where you get the same terminal size that your grandfather would've used. It is best to learn how to deal with these by using <code>less</code>, redirection and the like.    </p>
+<p>The examples in this book typically show something like <code>~ $</code> before the command, or <code>~ #</code> (when logged in as root) or <code>%</code> (when running under <code>csh</code>). These &quot;command prompts&quot; are set in <code>bash</code> via the <a href="https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto"><code>PS1</code> environment variable</a> and are not meant to be typed in as part of the command.   </p>
+<p>In the few places where a &quot;UNIX&quot; command is shown in comparison to a &quot;DOS&quot; command run under <code>CMD.EXE</code>, the latter is shown in all uppercase to help distinguish it from the &quot;UNIX&quot; equivalent, even though <code>CMD.EXE</code> is case-insensitive. In other words, <code>set</code> will be shown for <code>bash</code> and <code>SET</code> for <code>CMD.EXE</code>. </p>
 <h2 id="acknowledgments" class="unnumbered">Acknowledgments</h2>
 <p>Thanks to Ken Astl for reading an early draft of this book. I appreciate the detailed and thoughtful discussions I had with Margaret Devere around designing good indexes. And finally, I owe more than I can repay (as usual) to my wife Leslie for putting up with me while I obsessed over this project.</p>
 <h1 id="some-history"><span class="header-section-number">0</span> Some History</h1>
@@ -320,12 +320,12 @@
  5115  p0  RN+    0:00.00 ps -a</code></pre>
 <p>To make things even more confusing, the Linux version of <code>ps</code> has been written to understand the BSD-style syntax and flags, too!</p>
 <h2 id="panic-at-the-distro" class="unnumbered">Panic at the Distro</h2>
-<p>Remember that &quot;Linux,&quot; FreeBSD, OpenBSD and NetBSD are all really just OS kernels, boot loaders, drivers and enough functionality to get a computer up and running. Most functionality comes via other &quot;packages.&quot; From almost the beginning there have been alternative approaches to both what packages should (and should not) be included, as well as how to best manage the installing, updating and removal of those packages.</p>
+<p>Remember that &quot;Linux,&quot; FreeBSD, OpenBSD and NetBSD are all really just OS kernels, boot loaders, drivers and enough functionality to get a computer up and running. Most functionality comes via other &quot;packages.&quot; From almost the beginning there have been alternative approaches to both what packages should (and should not) be included, as well as how to best manage the installing, updating and removal of those packages.    </p>
 <p>In the BSD world each major port has its own approach. In the Linux world the job of deciding all this and putting it all together falls to distributions or &quot;distros.&quot;  These have evolved over time into a series of <a href="https://en.wikipedia.org/wiki/Linux_distribution#Popular_distributions">&quot;families&quot;</a> based in large part around the <a href="https://en.wikipedia.org/wiki/Package_manager">package management tool</a> predominantly used:</p>
 <ul>
-<li><p><strong><code>apt-get</code>, <code>dpkg</code> and <code>.deb</code> files</strong> -      <a href="https://en.wikipedia.org/wiki/Debian">Debian</a>  flavors, such as <a href="https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a>  and <a href="https://en.wikipedia.org/wiki/Linux_Mint">Mint</a>.  Mint is currently my desktop Linux of choice and Debian my preferred server OS, both based on familiarity.</p></li>
-<li><p><strong><code>pacman</code></strong> -   <a href="https://en.wikipedia.org/wiki/Arch_Linux">Arch</a>  flavors.</p></li>
-<li><p><strong><code>rpm</code> and <code>yum</code></strong> -     Red Hat  flavors,such as <a href="https://en.wikipedia.org/wiki/Fedora_%28operating_system%29">Fedora</a>,  <a href="https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">Red Hat Enterprise</a>  and <a href="https://en.wikipedia.org/wiki/CentOS">CentOS</a>. </p></li>
+<li><p><strong><code>apt-get</code>, <code>dpkg</code> and <code>.deb</code> files</strong> -    <a href="https://en.wikipedia.org/wiki/Debian">Debian</a>  flavors, such as <a href="https://en.wikipedia.org/wiki/Ubuntu_%28operating_system%29">Ubuntu</a>  and <a href="https://en.wikipedia.org/wiki/Linux_Mint">Mint</a>.  Mint is currently my desktop Linux of choice and Debian my preferred server OS, both based on familiarity.</p></li>
+<li><p><strong><code>pacman</code></strong> -  <a href="https://en.wikipedia.org/wiki/Arch_Linux">Arch</a>  flavors.</p></li>
+<li><p><strong><code>rpm</code> and <code>yum</code></strong> -   Red Hat  flavors,such as <a href="https://en.wikipedia.org/wiki/Fedora_%28operating_system%29">Fedora</a>,  <a href="https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">Red Hat Enterprise</a>  and <a href="https://en.wikipedia.org/wiki/CentOS">CentOS</a>. </p></li>
 <li><p><strong>Source code</strong> - <a href="https://en.wikipedia.org/wiki/Gentoo_Linux">Gentoo</a>  tends to be a &quot;compile from scratch&quot; environment, much like <a href="https://en.wikipedia.org/wiki/FreeBSD_Ports">FreeBSD</a>. </p></li>
 <li><p><strong>&quot;Tar balls&quot;</strong> - source code or binaries delivered via archived and zipped directories. Common on <a href="https://en.wikipedia.org/wiki/Slackware">Slackware</a>,  some others.</p></li>
 </ul>
@@ -393,7 +393,7 @@ A star (*) next to a name means that the command is disabled.
 <p>Pay attention to the first line in script files, which will typically have a <a href="https://en.wikipedia.org/wiki/Shebang_%28Unix%29">&quot;shebang&quot;</a>  line that looks like this:</p>
 <p></p>
 <pre class="bash"><code>#!/bin/bash</code></pre>
-<p>In this case we know the script is expecting to be executed by <code>bash</code>, and in fact should throw an error if <code>/bin/bash</code> doesn't exist. For example, on the FreeBSD system I have access to, <code>dash</code> is not installed. So consider the following <code>hello.sh</code> script:</p>
+<p>In this case we know the script is expecting to be executed by <code>bash</code>, and in fact should throw an error if <code>/bin/bash</code> doesn't exist. For example, on the FreeBSD system I have access to, <code>dash</code> is not installed. So consider the following <code>hello.sh</code> script: </p>
 <p></p>
 <pre class="bash"><code>#!/bin/dash
 echo Hello, World!</code></pre>
@@ -1012,7 +1012,7 @@ a  b  c</code></pre>
 <li><p><strong>Write</strong></p></li>
 <li><p><strong>Execute</strong> - for files, for directories this means &quot;navigate&quot; or &quot;list contents&quot;.</p></li>
 </ul>
-<p>The combination of &quot;who has what?&quot; is usually shown in detailed directory listings by a set of ten characters, with the first one determining whether an entry is a directory (<code>d</code>) or a file (<code>-</code>):</p>
+<p>The combination of &quot;who has what?&quot; is usually shown in detailed directory listings by a set of ten characters, with the first one determining whether an entry is a directory (<code>d</code>) or a file (<code>-</code>): </p>
 <p></p>
 <pre class="bash"><code>% ls -l /etc
 total 1876
@@ -1641,13 +1641,13 @@ username: uucp      uid:10
 <p>The <a href="https://en.wikipedia.org/wiki/Unix_philosophy">&quot;UNIX philosophy&quot;</a> tends to be to have a bunch of small programs that each do one thing very well, and then to combine them together in interesting ways. The &quot;glue&quot; for combining them together is often the &quot;piping&quot; or redirection of &quot;streams&quot; of data (typically text) between programs, each doing one small change to the stream until it is finally emitted on the console or saved to a file or sent over the Internet.</p>
 <p>The first thing to note is there are three &quot;file I/O streams&quot; that are open by default in every &quot;UNIX&quot; process:</p>
 <ul>
-<li><p><strong>stdin</strong> - input, typically from the console in an interactive session. In the underlying C file system APIs, this is file descriptor 0.</p></li>
-<li><p><strong>stdout</strong> - &quot;normal&quot; output, typically to the console in an interactive session. This is file descriptor 1.</p></li>
-<li><p><strong>stderr</strong> - &quot;error&quot; output, typically to the console in an interactive session (so it can be hard to distinguish when intermingled with <code>stdout</code> output). This is file descriptor 2.</p></li>
+<li><p><strong><em>stdin</em></strong> - input, typically from the console in an interactive session. In the underlying C file system APIs, this is file descriptor 0. </p></li>
+<li><p><strong><em>stdout</em></strong> - &quot;normal&quot; output, typically to the console in an interactive session. This is file descriptor 1. </p></li>
+<li><p><strong><em>stderr</em></strong> - &quot;error&quot; output, typically to the console in an interactive session (so it can be ard to distinguish when intermingled with <em>stdout</em> output). This is file descriptor 2. </p></li>
 </ul>
 <p><strong>Note:</strong> Those numeric file descriptors will go from being trivia to important in just a bit.</p>
-<p>When a program written in C calls <code>printf</code>, it is writing to <code>stdout</code>. When a <code>bash</code> script calls <code>echo</code>, it too is writing to <code>stdout</code>. When a command writes an error message, it is writing to <code>stderr</code>. If a command or program accepts input from the console, it is reading from <code>stdin</code>.</p>
-<p>In this example, <code>cat</code> is started with no file name, so it will read from <code>stdin</code> (a quite common &quot;UNIX&quot; command convention), and echo each line typed by the user to <code>stdout</code> until the &quot;end of file,&quot; which in an interactive session can be emulated with <code>Ctrl-D</code>, shown as <code>^D</code> in the example below but not seen on the console in real life:</p>
+<p>When a program written in C calls <code>printf</code>, it is writing to <em>stdout</em>. When a <code>bash</code> script calls <code>echo</code>, it too is writing to <em>stdout</em>. When a command writes an error message, it is writing to <em>stderr</em>. If a command or program accepts input from the console, it is reading from <em>stdin</em>.</p>
+<p>In this example, <code>cat</code> is started with no file name, so it will read from <em>stdin</em> (a quite common &quot;UNIX&quot; command convention), and echo each line typed by the user to <em>stdout</em> until the &quot;end of file,&quot; which in an interactive session can be emulated with <code>Ctrl-D</code>, shown as <code>^D</code> in the example below but not seen on the console in real life:</p>
 <p></p>
 <pre class="bash"><code>~ $ cat
 This shows reading from stdin
@@ -1655,7 +1655,7 @@ This shows reading from stdin
 and writing to stdout.
 and writing to stdout.
 ^D</code></pre>
-<p>So in the above I typed in &quot;This shows reading from stdin&quot; and hit <code>Enter</code> (which send a linefeed and hence marks the &quot;end of the line&quot;) and <code>cat</code> echoed that line to <code>stdout</code>. Then I typed &quot;and writing to stdout.&quot; and hit <code>Enter</code> and that line was echoed to <code>stdout</code> as well. Finally I hit <code>Ctrl-D</code>, which ended the process.</p>
+<p>So in the above I typed in &quot;This shows reading from stdin&quot; and hit <code>Enter</code> (which send a linefeed and hence marks the &quot;end of the line&quot;) and <code>cat</code> echoed that line to <em>stdout</em>. Then I typed &quot;and writing to stdout.&quot; and hit <code>Enter</code> and that line was echoed to <em>stdout</em> as well. Finally I hit <code>Ctrl-D</code>, which ended the process. </p>
 <h2 id="all-magic-is-redirection" class="unnumbered">All Magic is Redirection</h2>
 <p>So one way to string things together in &quot;the UNIX way&quot; is with file redirection. This is a concept that also works in <code>CMD.EXE</code> and even with the same syntax.</p>
 <p>Let's create a file with a single line of text in it. One way would be to <code>vi newfilename</code>, edit the file, save it, and exit <code>vi</code>. A quicker way is to simply use file redirection:</p>
@@ -1666,12 +1666,12 @@ total 1
 -rw-rwxr--+ 1 myuser mygroup 13 Oct 22 10:40 hw
 ~ $ cat hw
 Hello, world</code></pre>
-<p>In this case the <code>&gt; hw</code>  tells <code>bash</code> to take the output that <code>echo</code> sends to <code>stdout</code> and send it to the file <code>hw</code> instead.</p>
-<p>As mentioned above many &quot;UNIX&quot; commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from <code>stdin</code>. The <code>cat</code> command does that. While it doesn't save us anything over the above example, the following example using <code>&lt;</code>  is illustrative of redirecting a file to <code>stdin</code> for a command or program:</p>
+<p>In this case the <code>&gt; hw</code>  tells <code>bash</code> to take the output that <code>echo</code> sends to <em>stdout</em> and send it to the file <code>hw</code> instead. </p>
+<p>As mentioned above many &quot;UNIX&quot; commands are set up to take one or more file names from the command line as parameters, and if there aren't any, to read from <em>stdin</em>. The <code>cat</code> command does that. While it doesn't save us anything over the above example, the following example using <code>&lt;</code>  is illustrative of redirecting a file to <em>stdin</em> for a command or program: </p>
 <p></p>
 <pre class="bash"><code>~ $ cat &lt; hw
 Hello, world</code></pre>
-<p>Finally, we need to deal with <code>stderr</code>. By convention it is sent to the console just like <code>stdout</code>, and that can make output confusing:</p>
+<p>Finally, we need to deal with <em>stderr</em>. By convention it is sent to the console just like <em>stdout</em>, and that can make output confusing: </p>
 <p></p>
 <pre class="bash"><code>~ $ echo This is a &gt; a
 ~ $ echo This is b &gt; b
@@ -1685,14 +1685,14 @@ This is b
 This is c
 cat: ./d: Is a directory
 This is e</code></pre>
-<p>In the above, between echoing the contents of the <code>a</code>, <code>b</code>, <code>c</code> and <code>e</code> files, we see two error messages from <code>cat</code> complaining that <code>.</code> and <code>d</code> are directories. These are being emitted on <code>stderr</code>, but there is no good way of visually telling that. One way to get rid of them would be to change <code>find</code> to filter for only files:</p>
+<p>In the above, between echoing the contents of the <code>a</code>, <code>b</code>, <code>c</code> and <code>e</code> files, we see two error messages from <code>cat</code> complaining that <code>.</code> and <code>d</code> are directories. These are being emitted on <em>stderr</em>, but there is no good way of visually telling that. One way to get rid of them would be to change <code>find</code> to filter for only files:</p>
 <p></p>
 <pre class="bash"><code>~ $ find . -type f -exec cat \{\} \;
 This is a
 This is b
 This is c
 This is e</code></pre>
-<p>But let's say the example is not so trivial, and we want to capture and log the error messages separately for later analysis. While we've seen <code>&lt;</code> used to represent redirecting <code>stdin</code> and <code>&gt;</code> used for redirecting <code>stdout</code>, how do we tell the shell we want to redirect <code>stderr</code>? Remember the discussion about file handles above? That's where those esoteric numbers come in handy! To redirect <code>stderr</code> we recall it is <strong><em>always</em></strong> file descriptor 2, and then we can use:</p>
+<p>But let's say the example is not so trivial, and we want to capture and log the error messages separately for later analysis. While we've seen <code>&lt;</code> used to represent redirecting <em>stdin</em> and <code>&gt;</code> used for redirecting <em>stdout</em>, how do we tell the shell we want to redirect <em>stderr</em>? Remember the discussion about file handles above? That's where those esoteric numbers come in handy! To redirect <em>stderr</em> we recall it is <strong><em>always</em></strong> file descriptor 2, and then we can use: </p>
 <p></p>
 <pre class="bash"><code>~ $ find . -exec cat \{\} \; 2&gt;/tmp/finderrors.log
 This is a
@@ -1702,8 +1702,8 @@ This is e
 ~ $ cat /tmp/finderrors.log
 cat: .: Is a directory
 cat: ./d: Is a directory</code></pre>
-<p>The <code>2&gt;/tmp/finderrors.log</code>  is the magic that is redirecting file descriptor 2 (<code>stderr</code>) to the log file <code>/tmp/finderrors.log</code>.</p>
-<p>A very common paradigm is to capture both <code>stdout</code> and <code>stderr</code> to the same file. Here is how that is done, again using file descriptors:</p>
+<p>The <code>2&gt;/tmp/finderrors.log</code>  is the magic that is redirecting file descriptor 2 (<em>stderr</em>) to the log file <code>/tmp/finderrors.log</code>.</p>
+<p>A very common paradigm is to capture both <em>stdout</em> and <em>stderr</em> to the same file. Here is how that is done, again using file descriptors:  </p>
 <p></p>
 <pre class="bash"><code>~ $ find . -exec cat \{\} \; &gt;/tmp/find.log 2&gt;&amp;1
 ~ $ cat /tmp/find.log
@@ -1713,8 +1713,8 @@ This is b
 This is c
 cat: ./d: Is a directory
 This is e</code></pre>
-<p>Now we see <code>stdout</code> being redirected to <code>/tmp/find.log</code> with <code>&gt;/tmp/find.log</code>, and <code>stderr</code> (file descriptor 2) being sent to the same place as <code>stdout</code> (file descriptor 1) with <code>2&gt;&amp;1</code>. Note that this works in <code>CMD.EXE</code>]drshl{CMD.EXE}, too!</p>
-<p>If we want to send <code>stdout</code> to one file and <code>stderr</code> to another, you can do it like this:</p>
+<p>Now we see <em>stdout</em> being redirected to <code>/tmp/find.log</code> with <code>&gt;/tmp/find.log</code>, and <em>stderr</em> (file descriptor 2) being sent to the same place as <em>stdout</em> (file descriptor 1) with <code>2&gt;&amp;1</code>. Note that this works in <code>CMD.EXE</code>]drshl{CMD.EXE}, too!</p>
+<p>If we want to send <em>stdout</em> to one file and <em>stderr</em> to another, you can do it like this:</p>
 <p></p>
 <pre><code>~ $ find . -exec cat \{\} \; &gt;/tmp/find.log 2&gt;/tmp/finderrors.log
 ~ $ cat /tmp/find.log
@@ -1733,17 +1733,17 @@ cat: ./d: Is a directory</code></pre>
 <pre class="bash"><code>~ $ find . -exec cat \{\} \; &gt;&gt;/tmp/find.log</code></pre>
 <p><strong>Note:</strong> There is also a variation on input redirection using <code>&lt;&lt;</code>, but it is used mostly in scripting and is outside the scope of this book.</p>
 <h2 id="everyone-line-up" class="unnumbered">Everyone Line Up</h2>
-<p>So we can see that we could pass things between programs by redirecting <code>stdout</code> to a file and then redirecting that file to <code>stdin</code> on the next program, and so on. But &quot;UNIX&quot; environments take it a bit further with the concept of a command &quot;pipeline&quot; that allows directly sending <code>stdout</code> from one program into <code>stdin</code> of another using the &quot;pipe&quot; (<code>|</code>): </p>
+<p>So we can see that we could pass things between programs by redirecting <em>stdout</em> to a file and then redirecting that file to <em>stdin</em> on the next program, and so on. But &quot;UNIX&quot; environments take it a bit further with the concept of a command &quot;pipeline&quot; that allows directly sending <em>stdout</em> from one program into <em>stdin</em> of another using the &quot;pipe&quot; (<code>|</code>):   </p>
 <p></p>
 <pre class="bash"><code>~ $ cat *.txt | tr &#39;\\&#39; &#39;/&#39; | while read line ; do ./mycmd &quot;$line&quot; ; done</code></pre>
 <p>This little one-liner starts showing off the usefulness of chaining several small programs, each doing one thing. In this case:</p>
 <ol type="1">
-<li><p><code>cat</code> echos the contents of all <code>.txt</code> files in alphabetical order by their file name to <code>stdout</code>, which is piped to...</p></li>
+<li><p><code>cat</code> echos the contents of all <code>.txt</code> files in alphabetical order by their file name to <em>stdout</em>, which is piped to...</p></li>
 <li><p><a href="http://linux.die.net/man/1/tr"><code>tr</code></a> &quot;translates&quot; (replaces) any backslash characters (here &quot;escaped&quot; as <code>'\\'</code> because the backslash character is a special character) to forward slashes (<code>/</code>), before sending it into...</p></li>
 <li><p>A <code>while</code> loop that reads each line into a variable called <code>$line</code> and then calls...</p></li>
 <li><p>Some custom script or program called <code>./mycmd</code> passing in the value of each <code>$line</code>.</p></li>
 </ol>
-<p>Think about the power of that. <code>cat</code> didn't know there were multiple <code>.txt</code> files or not - the shell expansion of the <code>*.txt</code> wildcard did that. It read all those files and echoed them to <code>stdout</code> which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in <code>mycmd</code>, that only expects a single line or value each time it is run. It has no idea about the <code>.txt</code> files or the ransformation or the pipeline!</p>
+<p>Think about the power of that. <code>cat</code> didn't know there were multiple <code>.txt</code> files or not - the shell expansion of the <code>*.txt</code> wildcard did that. It read all those files and echoed them to <em>stdout</em> which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in <code>mycmd</code>, that only expects a single line or value each time it is run. It has no idea about the <code>.txt</code> files or the ransformation or the pipeline!</p>
 <p><strong><em>That</em></strong> is the &quot;UNIX philosophy&quot; at work.</p>
 <p>There are some nice performance benefits for this approach, too. In general Linux &amp; Co. will overlap the processing by starting all the commands in the pipeline, with the ones on the right getting data from the ones further &quot;upstream&quot; to the left as soon as it is written, instead of using file redirection where one program would have to finish completely running and writing out to a file before the next program could start and read in that file as input.</p>
 <p>Finally, if you want to capture something to a file <strong><em>and</em></strong> see it on the console at the same time, that is where the <a href="http://linux.die.net/man/1/tee"><code>tee</code></a> command comes in:</p>
@@ -2332,9 +2332,9 @@ nameserver 10.0.2.2</code></pre>
 <p>That's:</p>
 <ul>
 <li><p><strong><code>ps -A</code></strong> - list all running processes.</p></li>
-<li><p><strong><code>|</code></strong> - pipe <code>stdout</code> from <code>ps</code> to next command.</p></li>
+<li><p><strong><code>|</code></strong> - pipe <em>stdout</em> from <code>ps</code> to next command. </p></li>
 <li><p><strong><code>grep vi</code></strong> - find all instances of <code>vi</code> (be careful, because that would include <code>view</code> and anything else containing the string <code>vi</code>, too).</p></li>
-<li><p><strong><code>|</code></strong> - pipe <code>stdout</code> from <code>grep</code> to next command.</p></li>
+<li><p><strong><code>|</code></strong> - pipe <em>stdout</em> from <code>grep</code> to next command.</p></li>
 <li><p><strong><code>kill</code></strong> - send a <code>SIGINT</code> signal to a process specified by:</p></li>
 <li><p><strong><code>`cut -f2 -d&quot; &quot;`</code></strong> - execute the <a href="http://linux.die.net/man/1/cut"><code>cut</code></a> command and take the second space-delimited field (in this case the process id - the first &quot;field&quot; is just leading spaces), and place the results of the command execution as the parameter to the <code>kill</code> command.</p></li>
 </ul>
@@ -2765,10 +2765,10 @@ cups-browsed      nmbd               sendsigs</code></pre>
 [ ok ] Starting Samba daemons: nmbd smbd.</code></pre>
 <p><strong>Note:</strong> The above examples were run as <code>root</code>, otherwise they would probably have required execution using <code>sudo</code>.</p>
 <h2 id="package-management" class="unnumbered">Package Management</h2>
-<p>Almost all Linux distros have the concept of &quot;packages&quot; which are used to install, update and uninstall software. There are different package managers, including <code>dpkg</code>  and <code>apt-get</code>  on Debian-based distros, <code>rpm</code>  on Fedora descendants, etc. For the rest of this section we will use Debian tools, but in general the concepts and problems are similar for the other toolsets.</p>
+<p>Almost all Linux distros have the concept of &quot;packages&quot; which are used to install, update and uninstall software. There are different package managers, including <code>dpkg</code> and <code>apt-get</code> on Debian-based distros, <code>rpm</code> on Fedora descendants, etc. For the rest of this section we will use Debian tools, but in general the concepts and problems are similar for the other toolsets.</p>
 <p>One of the nicest things about Linux-style package managers (as opposed to traditional Windows installers) is that they can satisfy all a packages &quot;dependencies&quot; (other packages that are required for a package to run) and automatically detect and install those, too. See <a href="https://chocolatey.org/">Chocolately</a> for an attempt to build a similar ecosystem in Windows.</p>
 <p>One thing Linux distros do is define the &quot;repositories&quot; (servers and file structures) that serve the various packages. In addition, there are usually multiple versions of packages, typically matching different releases of the distro. We won't go into setting up a system to point to these here.</p>
-<p>In Debian flavors, <a href="http://linux.die.net/man/8/apt-get"><code>apt-get</code></a> is usually the tool of choice for package management. Another option is <a href="http://linux.die.net/man/8/aptitude"><code>aptitude</code></a> .</p>
+<p>In Debian flavors, <a href="http://linux.die.net/man/8/apt-get"><code>apt-get</code></a> is usually the tool of choice for package management. Another option is <a href="http://linux.die.net/man/8/aptitude"><code>aptitude</code></a>.</p>
 <p>There are three common <code>apt-get</code> commands that get used over and over. The first downloads and <em>updates</em> the local metadata cache for the repositories:</p>
 <p></p>
 <pre class="bash"><code>~ $ sudo apt-get update
@@ -3022,13 +3022,13 @@ foo
 <h3 id="redirection" class="unnumbered">Redirection</h3>
 <p>See <a href="http://linux.die.net/abs-guide/io-redirection.html">&quot;I/O Redirection&quot;</a>.</p>
 <ul>
-<li><p><strong><code>stderr</code></strong> - file descriptor 2, always open for writing from a process, defaults to the screen on a terminal session.</p></li>
-<li><p><strong><code>stdin</code></strong> - file descriptor 0, always open for reading in a process, defaults to the keyboard input on a terminal session.</p></li>
-<li><p><strong><code>stdout</code></strong> - file descriptor 1, always open for writing from a process, defaults to the screen on a terminal session.</p></li>
-<li><p><strong><code>&lt;</code></strong>  - redirect a file to <code>stdin</code>.</p></li>
-<li><p><strong><code>&gt;</code></strong>  - redirect <code>stdout</code> to a file.</p></li>
-<li><p><strong><code>2&gt;</code></strong>  - redirect <code>stderr</code> to a file.</p></li>
-<li><p><strong><code>|</code></strong> - pipe <code>stdout</code> from one process into <code>stdin</code> in another process.</p></li>
+<li><p><strong><em>stderr</em></strong> - file descriptor 2, always open for writing from a process, defaults to the screen on a terminal session.</p></li>
+<li><p><strong><em>stdin</em></strong> - file descriptor 0, always open for reading in a process, defaults to the keyboard input on a terminal session.</p></li>
+<li><p><strong><em>stdout</em></strong> - file descriptor 1, always open for writing from a process, defaults to the screen on a terminal session.</p></li>
+<li><p><strong><code>&lt;</code></strong>  - redirect a file to <em>stdin</em>. </p></li>
+<li><p><strong><code>&gt;</code></strong>  - redirect <em>stdout</em> to a file. </p></li>
+<li><p><strong><code>2&gt;</code></strong>  - redirect <em>stderr</em> to a file. </p></li>
+<li><p><strong><code>|</code></strong> - pipe <em>stdout</em> from one process into <em>stdin</em> in another process.  </p></li>
 </ul>
 <h3 id="special-files-and-directories" class="unnumbered">Special Files and Directories</h3>
 <ul>
@@ -3053,7 +3053,7 @@ foo
 <li><p><a href="http://linux.die.net/man/1/awk"><strong><code>awk</code></strong></a> - language for processing streams of data.</p></li>
 <li><p><a href="http://linux.die.net/man/1/bash"><strong><code>bash</code></strong></a> - the Bourne-again shell.</p></li>
 <li><p><a href="http://linux.die.net/man/1/bzip2"><strong><code>bzip2</code></strong></a> - compress and uncompress files using the <code>bzip2</code> algorithm.</p></li>
-<li><p><a href="http://linux.die.net/man/1/cat"><strong><code>cat</code></strong></a> - concatenate the input files to <code>stdout</code>.</p></li>
+<li><p><a href="http://linux.die.net/man/1/cat"><strong><code>cat</code></strong></a> - concatenate the input files to <em>stdout</em>. </p></li>
 <li><p><a href="http://linux.die.net/man/1/cd"><strong><code>cd</code></strong></a> - change the current directory.</p></li>
 <li><p><a href="http://linux.die.net/man/1/chgrp"><strong><code>chgrp</code></strong></a> - change the primary group of a file or directory.</p></li>
 <li><p><a href="http://linux.die.net/man/1/chmod"><strong><code>chmod</code></strong></a> - change the permissions (mode bits) of a file or directory.</p></li>
@@ -3065,7 +3065,7 @@ foo
 <li><p><a href="http://linux.die.net/man/1/diff"><strong><code>diff</code></strong></a> - show the differences between files.</p></li>
 <li><p><a href="http://linux.die.net/man/1/dig"><strong><code>dig</code></strong></a> - look up DNS info on an address.</p></li>
 <li><p><a href="http://linux.die.net/man/1/dpkg"><strong><code>dpkg</code></strong></a> - package manager for Debian flavors.</p></li>
-<li><p><a href="http://linux.die.net/man/1/echo"><strong><code>echo</code></strong></a> - display passed parameters to <code>stdout</code>.</p></li>
+<li><p><a href="http://linux.die.net/man/1/echo"><strong><code>echo</code></strong></a> - display passed parameters to <em>stdout</em>. </p></li>
 <li><p><a href="http://linux.die.net/man/1/email"><strong><code>email</code></strong></a> - send email.</p></li>
 <li><p><a href="http://linux.die.net/man/1/false"><strong><code>false</code></strong></a> - do nothing, unsuccessfully.</p></li>
 <li><p><a href="http://linux.die.net/man/1/file"><strong><code>file</code></strong></a> - give best guess as to type of file.</p></li>
@@ -3073,13 +3073,13 @@ foo
 <li><p><a href="http://linux.die.net/man/1/grep"><strong><code>grep</code></strong></a> - search for a pattern (regular expression) in files.</p></li>
 <li><p><a href="http://linux.die.net/man/1/help"><strong><code>help</code></strong></a> - help for built-in commands in <code>bash</code>.</p></li>
 <li><p><a href="http://linux.die.net/man/1/info"><strong><code>info</code></strong></a> - an alternative for <code>man</code>, especially for GNU programs. Remember <code>q</code> quits.</p></li>
-<li><p><a href="http://linux.die.net/man/1/less"><strong><code>less</code></strong></a> - display the file one page at a time on <code>stdout</code>.</p></li>
+<li><p><a href="http://linux.die.net/man/1/less"><strong><code>less</code></strong></a> - display the file one page at a time on <em>stdout</em>. </p></li>
 <li><p><a href="http://linux.die.net/man/1/ln"><strong><code>ln</code></strong></a> - create hard or soft (shortcut) links.</p></li>
 <li><p><a href="http://linux.die.net/man/1/ls"><strong><code>ls</code></strong></a> - list directory contents.</p></li>
 <li><p><a href="http://linux.die.net/man/1/lynx"><strong><code>lynx</code></strong></a> - command line web browser.</p></li>
 <li><p><a href="http://linux.die.net/man/1/man"><strong><code>man</code></strong></a> - display manual pages. Remember <code>q</code> quits.</p></li>
 <li><p><a href="http://linux.die.net/man/1/mkdir"><strong><code>mkdir</code></strong></a> - make a new directory.</p></li>
-<li><p><a href="http://linux.die.net/man/1/more"><strong><code>more</code></strong></a> - display the file one page at a time on <code>stdout</code>.</p></li>
+<li><p><a href="http://linux.die.net/man/1/more"><strong><code>more</code></strong></a> - display the file one page at a time on <em>stdout</em>. </p></li>
 <li><p><a href="http://linux.die.net/man/1/mutt"><strong><code>mutt</code></strong></a> - email client.</p></li>
 <li><p><a href="http://linux.die.net/man/1/mv"><strong><code>mv</code></strong></a> - move files or directories.</p></li>
 <li><p><a href="http://linux.die.net/man/1/pine"><strong><code>pine</code></strong></a> - email client.</p></li>
@@ -3089,11 +3089,11 @@ foo
 <li><p><a href="http://linux.die.net/man/1/rm"><strong><code>rm</code></strong></a> - delete (remove) files or directories.</p></li>
 <li><p><a href="http://linux.die.net/man/1/scp"><strong><code>scp</code></strong></a> - file copy over secure shell protocol.</p></li>
 <li><p><a href="http://linux.die.net/man/1/set"><strong><code>set</code></strong></a> - set an environment variable, or display all environment variables.</p></li>
-<li><p><a href="http://linux.die.net/man/1/sort"><strong><code>sort</code></strong></a> - sort <code>stdin</code> or a file to <code>stdout</code>.</p></li>
+<li><p><a href="http://linux.die.net/man/1/sort"><strong><code>sort</code></strong></a> - sort <em>stdin</em> or a file to <em>stdout</em>.  </p></li>
 <li><p><a href="http://linux.die.net/man/1/ssh"><strong><code>ssh</code></strong></a> - secure shell terminal progam and protocol.</p></li>
 <li><p><a href="http://linux.die.net/man/1/tail"><strong><code>tail</code></strong></a> - display the last lines of a file.</p></li>
 <li><p><a href="http://linux.die.net/man/1/tar"><strong><code>tar</code></strong></a> - &quot;tape archive&quot;, a way to combine directories into a single flat file.</p></li>
-<li><p><a href="http://linux.die.net/man/1/tee"><strong><code>tee</code></strong></a> - write to a file and <code>stdout</code> at the same time.</p></li>
+<li><p><a href="http://linux.die.net/man/1/tee"><strong><code>tee</code></strong></a> - write to a file and <em>stdout</em> at the same time. </p></li>
 <li><p><a href="http://linux.die.net/man/1/telnet"><strong><code>telnet</code></strong></a> - ancient terminal program and protocol.</p></li>
 <li><p><a href="http://linux.die.net/man/1/touch"><strong><code>touch</code></strong></a> - create an empty file or change the last-modified time of an existing file.</p></li>
 <li><p><a href="http://linux.die.net/man/1/true"><strong><code>true</code></strong></a> - do nothing, successfully.</p></li>

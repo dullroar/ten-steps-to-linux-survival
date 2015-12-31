@@ -143,6 +143,7 @@
 \setcounter{dbltopnumber}{2}        % for 2-column pages
 \overfullrule=2cm   % Black bars to show overfull boxes
 \numberwithin{figure}{chapter}
+\DeclareRobustCommand{\drbsd}[1]{\index{operating systems!#1}\index{operating systems!BSD}\index{BSD (operating system)}\index{#1 (operating system)}}
 \DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
 \DeclareRobustCommand{\drcmd}[1]{\index{commands!#1@\texttt{#1}}}
 \DeclareRobustCommand{\drdis}[1]{\index{Linux distros!#1}\index{#1 (Linux distro)}}
@@ -151,7 +152,9 @@
 \DeclareRobustCommand{\drenv}[2]{\index{environment variables!#1@\texttt{\$}\texttt{#1} (#2)}}
 \DeclareRobustCommand{\drios}[1]{\index{operating systems!#1}\index{#1 (operating system)}}
 \DeclareRobustCommand{\drnet}[1]{\index{network commands!#1@\texttt{#1}}\index{#1@\texttt{#1} (network command)}\index{commands!#1@\texttt{#1} (network)}}
-\DeclareRobustCommand{\drshl}[1]{\index{shells!#1@\texttt{#1}}\index{#1 (shell)}}
+\DeclareRobustCommand{\drpkg}[1]{\index{package management!#1@\texttt{#1}}\index{#1@\texttt{#1} (package management)}\index{commands!#1@\texttt{#1} (package management)}}
+\DeclareRobustCommand{\drshl}[1]{\index{shells!#1}\index{#1 (shell)}}
+\DeclareRobustCommand{\drstd}[1]{\index{I/O!streams!#1@\textit{#1}}\index{#1@\textit{#1} (stream)}\index{streams!#1@\textit{#1}}}
 \DeclareRobustCommand{\drunx}[1]{\index{UNIX-like environments!#1}\index{#1 (UNIX-like environment)}}
 \DeclareRobustCommand{\drvic}[2]{\index{vicommands@\texttt{vi} commands!#1@\texttt{#1} (#2)}}
 \renewcommand{\KeywordTok}[1]{{#1}}
@@ -302,8 +305,8 @@ Here is what we'll cover in the rest of this book:
   regular expressions, too. Now we have two problems.
 \item
   \protect\hyperlink{just-a-series-of-pipes}{\textbf{“Just a Series of
-  Pipes”}} – \texttt{stdin}/\texttt{stdout}/\texttt{stderr}, redirects,
-  piping between commands.
+  Pipes”}} – \emph{stdin}/\emph{stdout}/\emph{stderr}, redirects, piping
+  between commands.
 \item
   \protect\hyperlink{vi}{\textbf{\texttt{vi}}} (had to be \#6, if you
   think about it) – how to stay sane for 10 minutes in \texttt{vi}.
@@ -400,13 +403,16 @@ including:
 \item
   \textbf{AIX}
 \item
-  \textbf{FreeBSD}
+  \textbf{FreeBSD} \drbsd{FreeBSD}
 \item
   \textbf{HP/UX}
 \item
   \textbf{Linux} - literally more distros than I can count or remember,
   but at least Debian, Fedora, Yellow Dog, Ubuntu/Kubuntu/Xubuntu, Mint,
   Raspbian, Gentoo, Red Hat and of course the venerable Slackware.
+  \drdis{Debian} \drdis{Fedora} \drdis{Yellow Dog} \drdis{Ubuntu}
+  \drdis{Kubuntu} \drdis{Xubuntu} \drdis{Mint} \drdis{Raspbian}
+  \drdis{Gentoo} \drdis{Red Hat} \drdis{Slackware}
 \item
   \textbf{Solaris}
 \item
@@ -416,7 +422,7 @@ including:
 All on various machines and machine architectures from mighty Sun
 servers to generic "Intel" VMs down to Raspberry Pis, plus an original
 "wedge" iMac running as a kitchen kiosk long after its "Best by" date
-and OS/9's demise, thanks to Yellow Dog Linux.
+and OS/9's demise, thanks to Yellow Dog Linux. \drdis{Yellow Dog}
 
 All that while also working on MVS, VSE, OS/2, DOS since 3.x, Windows
 since 1.x, etc., etc. I don't think I am special when I list all that -
@@ -501,12 +507,12 @@ becoming more of your job, maybe this will help as a gentle push toward
 alter your system and possibly damage it.}}
 
 Obvious candidates include the file system commands like \texttt{rm},
-\drcmd{rm} \index{files and directories!delete (\texttt{rm} command)}
-the \texttt{vi} \dreds{vi} editor (obviously), and some of the "system
-admin" commands mentioned later, including system and service restarts.
-Use your common sense plus the various resources for documentation
-mentioned in this book to make sure you aren't doing anything
-destructive to your system, especially in production.
+the \texttt{vi} editor (obviously), and some of the "system admin"
+commands mentioned later, including system and service restarts. Use
+your common sense plus the various resources for documentation mentioned
+in this book to make sure you aren't doing anything destructive to your
+system, especially in production. \drcmd{rm}
+\index{files and directories!delete (\texttt{rm} command)} \dreds{vi}
 
 \textbf{\emph{YOU HAVE BEEN WARNED!}}
 
@@ -553,27 +559,29 @@ block, it will appear like this:
 
 All such blocks have been normalized to only show a maximum of 80x24
 characters. This is intentional. While most modern "UNIX" systems and
-terminal windows like \texttt{ssh} \drnet{ssh} can handle any geometry,
-there are still systems and situations where you get the same terminal
-size that your grandfather would've used. It is best to learn how to
-deal with these by using \texttt{less}, \drcmd{less} redirection and the
-like.
+terminal windows like \texttt{ssh} can handle any geometry, there are
+still systems and situations where you get the same terminal size that
+your grandfather would've used. It is best to learn how to deal with
+these by using \texttt{less}, redirection and the like. \drnet{ssh}
+\drcmd{less}
+\index{files and directories!paginate!less@\texttt{less} command}
+\index{pagination!\texttt{less} command}
 
 The examples in this book typically show something like
 \texttt{\textasciitilde{}\ \$} before the command, or
 \texttt{\textasciitilde{}\ \#} (when logged in as root) or \texttt{\%}
-(when running under \texttt{csh}). \drshl{csh} These "command prompts"
-are set in \texttt{bash} \drshl{bash} via the
+(when running under \texttt{csh}). These "command prompts" are set in
+\texttt{bash} via the
 \href{https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto}{\texttt{PS1}
-environment variable} \drenv{PS1}{command prompt string} and are not
-meant to be typed in as part of the command.
+environment variable} and are not meant to be typed in as part of the
+command. \drshl{csh} \drshl{bash} \drenv{PS1}{command prompt string}
 
 In the few places where a "UNIX" command is shown in comparison to a
-"DOS" command run under \texttt{CMD.EXE}, \drshl{CMD.EXE} the latter is
-shown in all uppercase to help distinguish it from the "UNIX"
-equivalent, even though \texttt{CMD.EXE} is case-insensitive. In other
-words, \texttt{set} will be shown for \texttt{bash} and \texttt{SET} for
-\texttt{CMD.EXE}.
+"DOS" command run under \texttt{CMD.EXE}, the latter is shown in all
+uppercase to help distinguish it from the "UNIX" equivalent, even though
+\texttt{CMD.EXE} is case-insensitive. In other words, \texttt{set} will
+be shown for \texttt{bash} and \texttt{SET} for \texttt{CMD.EXE}.
+\drshl{CMD.EXE}
 
 \section*{Acknowledgments}\label{acknowledgments}
 \addcontentsline{toc}{section}{Acknowledgments}
@@ -657,10 +665,10 @@ the depths of time:
 \item
   \textbf{Proliferation of the BSDs} - mid-to-late 1990s, still Clinton
   I, Monicagate, Kosovo, various ports of BSD including
-  \href{https://en.wikipedia.org/wiki/NetBSD}{NetBSD}, \drios{NetBSD}
-  \href{https://en.wikipedia.org/wiki/FreeBSD}{FreeBSD} \drios{FreeBSD}
+  \href{https://en.wikipedia.org/wiki/NetBSD}{NetBSD}, \drbsd{NetBSD}
+  \href{https://en.wikipedia.org/wiki/FreeBSD}{FreeBSD} \drbsd{FreeBSD}
   and \href{https://en.wikipedia.org/wiki/OpenBSD}{OpenBSD}.
-  \drios{OpenBSD} All happen in the same time frame as Linux. Like Linux
+  \drbsd{OpenBSD} All happen in the same time frame as Linux. Like Linux
   distros, each has its own focus and prejudices, some of which are
   distinctly "anti-Linux." The "big three" are all still in heavy use
   today, especially among ISPs. The perception is still out there among
@@ -797,7 +805,7 @@ under \texttt{bash}: \drshl{bash}
 \end{Highlighting}
 \end{Shaded}
 
-Versus the "same" command on a FreeBSD \drios{FreeBSD} system at my ISP,
+Versus the "same" command on a FreeBSD \drbsd{FreeBSD} system at my ISP,
 where \texttt{csh} \drshl{csh} is the default shell:
 
 \drcap{\texttt{ps} on FreeBSD in \texttt{csh}}
@@ -823,6 +831,7 @@ computer up and running. Most functionality comes via other "packages."
 From almost the beginning there have been alternative approaches to both
 what packages should (and should not) be included, as well as how to
 best manage the installing, updating and removal of those packages.
+\drios{Linux} \drbsd{FreeBSD} \drbsd{OpenBSD} \drbsd{NetBSD}
 
 In the BSD world each major port has its own approach. In the Linux
 world the job of deciding all this and putting it all together falls to
@@ -836,9 +845,7 @@ tool} predominantly used:
 \begin{itemize}
 \item
   \textbf{\texttt{apt-get}, \texttt{dpkg} and \texttt{.deb} files} -
-  \drcmd{apt-get}
-  \index{package management!aptget@\texttt{apt-get} command}
-  \drcmd{dpkg} \index{package management!dpkg@\texttt{dpkg} command}
+  \drpkg{apt-get} \drpkg{dpkg}
   \index{files and directories!debpackagefiles@\texttt{.deb} package files}
   \href{https://en.wikipedia.org/wiki/Debian}{Debian} \drdis{Debian}
   flavors, such as
@@ -848,15 +855,12 @@ tool} predominantly used:
   Mint is currently my desktop Linux of choice and Debian my preferred
   server OS, both based on familiarity.
 \item
-  \textbf{\texttt{pacman}} - \drcmd{pacman}
-  \index{package management!pacman@\texttt{pacman} command}
+  \textbf{\texttt{pacman}} - \drpkg{pacman}
   \href{https://en.wikipedia.org/wiki/Arch_Linux}{Arch} \drdis{Arch}
   flavors.
 \item
-  \textbf{\texttt{rpm} and \texttt{yum}} - \drcmd{rpm}
-  \index{package management!rpm@\texttt{rpm} command} \drcmd{yum}
-  \index{package management!yum@\texttt{yum} command} Red Hat
-  \drdis{Red Hat} flavors,such as
+  \textbf{\texttt{rpm} and \texttt{yum}} - \drpkg{rpm} \drpkg{yum} Red
+  Hat \drdis{Red Hat} flavors,such as
   \href{https://en.wikipedia.org/wiki/Fedora_\%28operating_system\%29}{Fedora},
   \drdis{Fedora}
   \href{https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux}{Red Hat
@@ -867,7 +871,7 @@ tool} predominantly used:
   \href{https://en.wikipedia.org/wiki/Gentoo_Linux}{Gentoo}
   \drdis{Gentoo} tends to be a "compile from scratch" environment, much
   like \href{https://en.wikipedia.org/wiki/FreeBSD_Ports}{FreeBSD}.
-  \drios{FreeBSD}
+  \drbsd{FreeBSD}
 \item
   \textbf{"Tar balls"} - source code or binaries delivered via archived
   and zipped directories. Common on
@@ -1055,7 +1059,7 @@ In this case we know the script is expecting to be executed by
 \texttt{bash}, and in fact should throw an error if \texttt{/bin/bash}
 doesn't exist. For example, on the FreeBSD system I have access to,
 \texttt{dash} is not installed. So consider the following
-\texttt{hello.sh} script:
+\texttt{hello.sh} script: \drbsd{FreeBSD}
 
 \drcap{Script with `dash` "shebang"}
 
@@ -1794,8 +1798,8 @@ Debian-style system:
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{\texttt{apt-get}}\drcmd{apt-get}\index{package management!aptget@\texttt{apt-get} command}
-  - Debian-style package manager.
+  \textbf{\texttt{apt-get}}\drpkg{apt-get} - Debian-style package
+  manager.
 \item
   \textbf{\texttt{git\ clone}}\drcmd{git} - cloning package from
   \href{http://github.com}{GitHub}.
@@ -2523,7 +2527,7 @@ The "what" is:
 The combination of "who has what?" is usually shown in detailed
 directory listings by a set of ten characters, with the first one
 determining whether an entry is a directory (\texttt{d}) or a file
-(\texttt{-}):
+(\texttt{-}): \drbsd{FreeBSD}
 
 \drcap{Another \texttt{ls -l} example, this time on FreeBSD}
 
@@ -3991,36 +3995,35 @@ open by default in every "UNIX" process:
 
 \begin{itemize}
 \item
-  \textbf{stdin}\index{I/O!streams!stdin@\textit{stdin}} - input,
-  typically from the console in an interactive session. In the
-  underlying C file system APIs, this is file descriptor 0.
+  \textbf{\emph{stdin}} - input, typically from the console in an
+  interactive session. In the underlying C file system APIs, this is
+  file descriptor 0. \drstd{stdin}
 \item
-  \textbf{stdout}\index{I/O!streams!stdin@\textit{stdout}} - "normal"
-  output, typically to the console in an interactive session. This is
-  file descriptor 1.
+  \textbf{\emph{stdout}} - "normal" output, typically to the console in
+  an interactive session. This is file descriptor 1. \drstd{stdout}
 \item
-  \textbf{stderr}\index{I/O!streams!stdin@\textit{stderr}} - "error"
-  output, typically to the console in an interactive session (so it can
-  be hard to distinguish when intermingled with \texttt{stdout} output).
-  This is file descriptor 2.
+  \textbf{\emph{stderr}} - "error" output, typically to the console in
+  an interactive session (so it can be ard to distinguish when
+  intermingled with \emph{stdout} output). This is file descriptor 2.
+  \drstd{stderr}
 \end{itemize}
 
 \textbf{Note:} Those numeric file descriptors will go from being trivia
 to important in just a bit.
 
 When a program written in C calls \texttt{printf}, it is writing to
-\texttt{stdout}. When a \texttt{bash} script calls
-\texttt{echo}\drcmd{echo}, it too is writing to \texttt{stdout}. When a
-command writes an error message, it is writing to \texttt{stderr}. If a
+\emph{stdout}. When a \texttt{bash} script calls
+\texttt{echo}\drcmd{echo}, it too is writing to \emph{stdout}. When a
+command writes an error message, it is writing to \emph{stderr}. If a
 command or program accepts input from the console, it is reading from
-\texttt{stdin}.
+\emph{stdin}.
 
 In this example, \texttt{cat}\drcmd{cat} is started with no file name,
-so it will read from \texttt{stdin} (a quite common "UNIX" command
-convention), and echo each line typed by the user to \texttt{stdout}
-until the "end of file," which in an interactive session can be emulated
-with \texttt{Ctrl-D}, shown as \texttt{\^{}D} in the example below but
-not seen on the console in real life:
+so it will read from \emph{stdin} (a quite common "UNIX" command
+convention), and echo each line typed by the user to \emph{stdout} until
+the "end of file," which in an interactive session can be emulated with
+\texttt{Ctrl-D}, shown as \texttt{\^{}D} in the example below but not
+seen on the console in real life:
 
 \drcap{\textit{stdin} and \textit{stdout}}
 
@@ -4037,11 +4040,10 @@ not seen on the console in real life:
 
 So in the above I typed in "This shows reading from stdin" and hit
 \texttt{Enter} (which send a linefeed and hence marks the "end of the
-line") and \texttt{cat} echoed that line to
-\texttt{stdout}\index{I/O!streams!stdin@\textit{stdout}}. Then I typed
+line") and \texttt{cat} echoed that line to \emph{stdout}. Then I typed
 "and writing to stdout." and hit \texttt{Enter} and that line was echoed
-to \texttt{stdout} as well. Finally I hit \texttt{Ctrl-D}, which ended
-the process.
+to \emph{stdout} as well. Finally I hit \texttt{Ctrl-D}, which ended the
+process. \drstd{stdout}
 
 \section*{All Magic is Redirection}\label{all-magic-is-redirection}
 \addcontentsline{toc}{section}{All Magic is Redirection}
@@ -4070,18 +4072,17 @@ to \texttt{vi\ newfilename}, edit the file, save it, and exit
 In this case the
 \texttt{\textgreater{}\ hw}\index{*@\texttt{>} (output redirection)}
 \index{I/O!redirection!output (\texttt{>})} tells \texttt{bash} to take
-the output that \texttt{echo} sends to
-\texttt{stdout}\index{I/O!streams!stdin@\textit{stdout}} and send it to
-the file \texttt{hw} instead.
+the output that \texttt{echo} sends to \emph{stdout} and send it to the
+file \texttt{hw} instead. \drstd{stdout}
 
 As mentioned above many "UNIX" commands are set up to take one or more
 file names from the command line as parameters, and if there aren't any,
-to read from \texttt{stdin}\index{I/O!streams!stdin@\textit{stdin}}. The
-\texttt{cat} command does that. While it doesn't save us anything over
-the above example, the following example using \texttt{\textless{}}
+to read from \emph{stdin}. The \texttt{cat} command does that. While it
+doesn't save us anything over the above example, the following example
+using \texttt{\textless{}}
 \index{*@\texttt{<} (input redirection)}\index{I/O!redirection!input (\texttt{<})}
-is illustrative of redirecting a file to \texttt{stdin} for a command or
-program:
+is illustrative of redirecting a file to \emph{stdin} for a command or
+program: \drstd{stdin}
 
 \drcap{Redundant redirection}
 
@@ -4092,10 +4093,9 @@ program:
 \end{Highlighting}
 \end{Shaded}
 
-Finally, we need to deal with
-\texttt{stderr}.\index{I/O!streams!stdin@\textit{stderr}} By convention
-it is sent to the console just like \texttt{stdout}, and that can make
-output confusing:
+Finally, we need to deal with \emph{stderr}. By convention it is sent to
+the console just like \emph{stdout}, and that can make output confusing:
+\drstd{stderr}
 
 \drcap{Default \textit{stderr} behavior}
 
@@ -4119,7 +4119,7 @@ output confusing:
 In the above, between echoing the contents of the \texttt{a},
 \texttt{b}, \texttt{c} and \texttt{e} files, we see two error messages
 from \texttt{cat} complaining that \texttt{.} and \texttt{d} are
-directories. These are being emitted on \texttt{stderr}, but there is no
+directories. These are being emitted on \emph{stderr}, but there is no
 good way of visually telling that. One way to get rid of them would be
 to change \texttt{find} to filter for only files:
 
@@ -4137,13 +4137,13 @@ to change \texttt{find} to filter for only files:
 
 But let's say the example is not so trivial, and we want to capture and
 log the error messages separately for later analysis. While we've seen
-\texttt{\textless{}} used to represent redirecting \texttt{stdin} and
-\texttt{\textgreater{}} used for redirecting \texttt{stdout}, how do we
-tell the shell we want to redirect \texttt{stderr}? Remember the
+\texttt{\textless{}} used to represent redirecting \emph{stdin} and
+\texttt{\textgreater{}} used for redirecting \emph{stdout}, how do we
+tell the shell we want to redirect \emph{stderr}? Remember the
 discussion about file handles above? That's where those esoteric numbers
-come in handy! To redirect
-\texttt{stderr}\index{I/O!streams!stdin@\textit{stderr}} we recall it is
+come in handy! To redirect \emph{stderr} we recall it is
 \textbf{\emph{always}} file descriptor 2, and then we can use:
+\drstd{stderr}
 
 \drcap{Redirecting \textit{stderr}}
 
@@ -4163,13 +4163,12 @@ come in handy! To redirect
 The
 \texttt{2\textgreater{}/tmp/finderrors.log}\index{*@\texttt{2>} (\textit{stderr} redirection)}
 \index{I/O!redirection!error (\texttt{2>})} is the magic that is
-redirecting file descriptor 2 (\texttt{stderr}) to the log file
+redirecting file descriptor 2 (\emph{stderr}) to the log file
 \texttt{/tmp/finderrors.log}.
 
-A very common paradigm is to capture both
-\texttt{stdout}\index{I/O!streams!stdin@\textit{stdout}} and
-\texttt{stderr} to the same file. Here is how that is done, again using
-file descriptors:
+A very common paradigm is to capture both \emph{stdout} and
+\emph{stderr} to the same file. Here is how that is done, again using
+file descriptors: \drstd{stdout} \drstd{stderr}
 
 \drcap{Redirecting both \textit{stdout} and \textit{stderr} to a file}
 
@@ -4186,13 +4185,13 @@ file descriptors:
 \end{Highlighting}
 \end{Shaded}
 
-Now we see \texttt{stdout} being redirected to \texttt{/tmp/find.log}
-with \texttt{\textgreater{}/tmp/find.log}, and \texttt{stderr} (file
-descriptor 2) being sent to the same place as \texttt{stdout} (file
-descriptor 1) with \texttt{2\textgreater{}\&1}. Note that this works in
+Now we see \emph{stdout} being redirected to \texttt{/tmp/find.log} with
+\texttt{\textgreater{}/tmp/find.log}, and \emph{stderr} (file descriptor
+2) being sent to the same place as \emph{stdout} (file descriptor 1)
+with \texttt{2\textgreater{}\&1}. Note that this works in
 \texttt{CMD.EXE}{]}drshl\{CMD.EXE\}, too!
 
-If we want to send \texttt{stdout} to one file and \texttt{stderr} to
+If we want to send \emph{stdout} to one file and \emph{stderr} to
 another, you can do it like this:
 
 \drcap{Redirecting \textit{stdout} one way \textit{stderr} another}
@@ -4244,14 +4243,13 @@ is outside the scope of this book.
 \addcontentsline{toc}{section}{Everyone Line Up}
 
 So we can see that we could pass things between programs by redirecting
-\texttt{stdout}\index{I/O!streams!stdin@\textit{stdout}} to a file and
-then redirecting that file to
-\texttt{stdin}\index{I/O!streams!stdin@\textit{stdin}} on the next
-program, and so on. But "UNIX" environments take it a bit further with
-the concept of a command "pipeline" that allows directly sending
-\texttt{stdout} from one program into \texttt{stdin} of another using
-the "pipe" (\texttt{\textbar{}}):
+\emph{stdout} to a file and then redirecting that file to \emph{stdin}
+on the next program, and so on. But "UNIX" environments take it a bit
+further with the concept of a command "pipeline" that allows directly
+sending \emph{stdout} from one program into \emph{stdin} of another
+using the "pipe" (\texttt{\textbar{}}):
 \index{*@\texttt{"|} (pipe)}\index{I/O!redirection!pipe (\texttt{"|})}
+\drstd{stdout} \drstd{stdin}
 
 \drcap{Piping output between programs}
 
@@ -4268,8 +4266,8 @@ several small programs, each doing one thing. In this case:
 \def\labelenumi{\arabic{enumi}.}
 \item
   \texttt{cat} echos the contents of all \texttt{.txt} files in
-  alphabetical order by their file name to \texttt{stdout}, which is
-  piped to...
+  alphabetical order by their file name to \emph{stdout}, which is piped
+  to...
 \item
   \href{http://linux.die.net/man/1/tr}{\texttt{tr}}\drcmd{tr}
   "translates" (replaces) any backslash characters (here "escaped" as
@@ -4287,7 +4285,7 @@ several small programs, each doing one thing. In this case:
 Think about the power of that. \texttt{cat} didn't know there were
 multiple \texttt{.txt} files or not - the shell expansion of the
 \texttt{*.txt} wildcard did that. It read all those files and echoed
-them to \texttt{stdout} which in this case was a pipeline sending each
+them to \emph{stdout} which in this case was a pipeline sending each
 line in order to another command to transform the data, before sending
 each line to the custom code in \texttt{mycmd}, that only expects a
 single line or value each time it is run. It has no idea about the
@@ -5291,7 +5289,7 @@ In a sense, \texttt{sudo} is similar to Windows User Access Control
 are invoked by \texttt{sudo} within a short time period, you will not be
 reprompted for a password each time, (unlike UAC).
 
-Here is a really common example on Debian-based systems:
+Here is a really common example on Debian-based systems\drpkg{apt-get}:
 
 \drcap{Make me a sandwich}
 
@@ -5739,14 +5737,14 @@ That's:
 \item
   \textbf{\texttt{ps\ -A}} - list all running processes.
 \item
-  \textbf{\texttt{\textbar{}}} - pipe \texttt{stdout}\index{stdout} from
-  \texttt{ps} to next command.
+  \textbf{\texttt{\textbar{}}} - pipe \emph{stdout} from \texttt{ps} to
+  next command. \drstd{stdout}
 \item
   \textbf{\texttt{grep\ vi}} - find all instances of \texttt{vi} (be
   careful, because that would include \texttt{view} and anything else
   containing the string \texttt{vi}, too).
 \item
-  \textbf{\texttt{\textbar{}}} - pipe \texttt{stdout} from
+  \textbf{\texttt{\textbar{}}} - pipe \emph{stdout} from
   \texttt{grep}\drcmd{grep} to next command.
 \item
   \textbf{\texttt{kill}} - send a \texttt{SIGINT} signal\index{signals}
@@ -6547,15 +6545,11 @@ they would probably have required execution using \texttt{sudo}.
 
 Almost all Linux distros have the concept of "packages" which are used
 to install, update and uninstall software. There are different package
-managers, including \texttt{dpkg}\drcmd{dpkg}
-\index{package management!dpkg@\texttt{dpkg} command} and
-\texttt{apt-get}\drcmd{apt-get}
-\index{package management!aptget@\texttt{apt-get} command} on
-Debian-based distros, \texttt{rpm}\drcmd{rpm}
-\index{package management!rpm@\texttt{rpm} command} on Fedora
-descendants, etc. For the rest of this section we will use Debian tools,
-but in general the concepts and problems are similar for the other
-toolsets.
+managers, including \texttt{dpkg}\drpkg{dpkg} and
+\texttt{apt-get}\drpkg{apt-get} on Debian-based distros,
+\texttt{rpm}\drpkg{rpm} on Fedora descendants, etc. For the rest of this
+section we will use Debian tools, but in general the concepts and
+problems are similar for the other toolsets.
 
 One of the nicest things about Linux-style package managers (as opposed
 to traditional Windows installers) is that they can satisfy all a
@@ -6571,10 +6565,9 @@ releases of the distro. We won't go into setting up a system to point to
 these here.
 
 In Debian flavors,
-\href{http://linux.die.net/man/8/apt-get}{\texttt{apt-get}}\drcmd{apt-get}
+\href{http://linux.die.net/man/8/apt-get}{\texttt{apt-get}}\drpkg{apt-get}
 is usually the tool of choice for package management. Another option is
-\href{http://linux.die.net/man/8/aptitude}{\texttt{aptitude}}\drcmd{aptitude}
-\index{package management!aptitude@\texttt{aptitude} command}.
+\href{http://linux.die.net/man/8/aptitude}{\texttt{aptitude}}\drpkg{aptitude}.
 
 There are three common \texttt{apt-get} commands that get used over and
 over. The first downloads and \emph{updates} the local metadata cache
@@ -6634,7 +6627,7 @@ greatest release of the package):
 In this case there was nothing to upgrade.
 
 \textbf{Note:} In the example above I used
-\texttt{apt-get\ dist-upgrade}. There is also an
+\texttt{apt-get\ dist-upgrade}\drpkg{apt-get}. There is also an
 \texttt{apt-get\ upgrade} command. \texttt{apt-get\ dist-upgrade} will
 resolve any new dependencies and download new packages if needed, but
 \textbf{\emph{it may also remove packages it considers no longer
@@ -6677,8 +6670,9 @@ And the final common command is obviously to install a package:
 \end{Highlighting}
 \end{Shaded}
 
-You can also \texttt{apt-get\ remove} or \texttt{apt-get\ purge}
-packages. See the \texttt{apt-get} \texttt{man} page for details.
+You can also \texttt{apt-get\ remove}\drpkg{apt-get} or
+\texttt{apt-get\ purge} packages. See the \texttt{apt-get} \texttt{man}
+page for details.
 
 This all looks very convenient, and it is. The problems arise because
 some distros are better at tracking current versions of packages in
@@ -6701,7 +6695,7 @@ a zipped "tarball," and more.
 If you want the latest and greatest version of a package you often have
 to go to its "official" site or GitHub repository. There, you may find a
 \texttt{.deb} file, in which case you could install it with
-\texttt{dpkg}\drcmd{dpkg}\index{package management!dpkg@\texttt{dpkg} command}:
+\texttt{dpkg}\drpkg{dpkg}:
 
 \drcap{Installing a package with \texttt{dpkg}}
 
@@ -6713,10 +6707,10 @@ to go to its "official" site or GitHub repository. There, you may find a
 
 There is, however, a problem. You now have to remember that you
 installed that package by hand and keep it up to date by hand (or not).
-\texttt{apt-get\ upgrade} isn't going to help you here. This is true no
-matter what way you get the alternative package - \texttt{.deb} file,
-tarball, source code, or whatever (although \texttt{apt-get} can work
-with PPAs in a more automated manner).
+\texttt{apt-get\ upgrade}\drpkg{apt-get} isn't going to help you here.
+This is true no matter what way you get the alternative package -
+\texttt{.deb} file, tarball, source code, or whatever (although
+\texttt{apt-get} can work with PPAs in a more automated manner).
 
 The second problem with third-party package sources is how do you know
 whether to trust them or not? If something is in an "official" distro
@@ -7214,33 +7208,33 @@ Redirection"}.
 
 \begin{itemize}
 \item
-  \textbf{\texttt{stderr}}\index{I/O!streams!stdin@\textit{stderr}} -
-  file descriptor 2, always open for writing from a process, defaults to
-  the screen on a terminal session.
+  \textbf{\emph{stderr}}\drstd{stderr} - file descriptor 2, always open
+  for writing from a process, defaults to the screen on a terminal
+  session.
 \item
-  \textbf{\texttt{stdin}}\index{I/O!streams!stdin@\textit{stdin}} - file
-  descriptor 0, always open for reading in a process, defaults to the
-  keyboard input on a terminal session.
+  \textbf{\emph{stdin}}\drstd{stdin} - file descriptor 0, always open
+  for reading in a process, defaults to the keyboard input on a terminal
+  session.
 \item
-  \textbf{\texttt{stdout}}\index{I/O!streams!stdin@\textit{stdout}} -
-  file descriptor 1, always open for writing from a process, defaults to
-  the screen on a terminal session.
+  \textbf{\emph{stdout}}\drstd{stdout} - file descriptor 1, always open
+  for writing from a process, defaults to the screen on a terminal
+  session.
 \item
   \textbf{\texttt{\textless{}}}\index{*@\texttt{<} (input redirection)}
   \index{I/O!redirection!input (\texttt{<})} - redirect a file to
-  \texttt{stdin}.
+  \emph{stdin}. \drstd{stdin}
 \item
   \textbf{\texttt{\textgreater{}}}\index{*@\texttt{>} (output redirection)}
-  \index{I/O!redirection!output (\texttt{>})} - redirect \texttt{stdout}
-  to a file.
+  \index{I/O!redirection!output (\texttt{>})} - redirect \emph{stdout}
+  to a file. \drstd{stdout}
 \item
   \textbf{\texttt{2\textgreater{}}}\index{*@\texttt{2>} (\textit{stderr} redirection)}
-  \index{I/O!redirection!error (\texttt{2>})} - redirect \texttt{stderr}
-  to a file.
+  \index{I/O!redirection!error (\texttt{2>})} - redirect \emph{stderr}
+  to a file. \drstd{stderr}
 \item
   \textbf{\texttt{\textbar{}}}\index{*@\texttt{"|} (pipe)}\index{I/O!redirection!pipe (\texttt{"|})}
-  - pipe \texttt{stdout} from one process into \texttt{stdin} in another
-  process.
+  - pipe \emph{stdout} from one process into \emph{stdin} in another
+  process. \drstd{stdin} \drstd{stdout}
 \end{itemize}
 
 \subsection*{Special Files and
@@ -7311,7 +7305,7 @@ access files and the like.
   - compress and uncompress files using the \texttt{bzip2} algorithm.
 \item
   \href{http://linux.die.net/man/1/cat}{\textbf{\texttt{cat}}}\drcmd{cat}
-  - concatenate the input files to \texttt{stdout}.
+  - concatenate the input files to \emph{stdout}. \drstd{stdout}
 \item
   \href{http://linux.die.net/man/1/cd}{\textbf{\texttt{cd}}}\drcmd{cd} -
   change the current directory.
@@ -7343,11 +7337,11 @@ access files and the like.
   \href{http://linux.die.net/man/1/dig}{\textbf{\texttt{dig}}}\drnet{dig}
   - look up DNS info on an address.
 \item
-  \href{http://linux.die.net/man/1/dpkg}{\textbf{\texttt{dpkg}}}\drcmd{dpkg}
+  \href{http://linux.die.net/man/1/dpkg}{\textbf{\texttt{dpkg}}}\drpkg{dpkg}
   - package manager for Debian flavors.
 \item
   \href{http://linux.die.net/man/1/echo}{\textbf{\texttt{echo}}}\drcmd{echo}
-  - display passed parameters to \texttt{stdout}.
+  - display passed parameters to \emph{stdout}. \drstd{stdout}
 \item
   \href{http://linux.die.net/man/1/email}{\textbf{\texttt{email}}}\drnet{email}
   - send email.
@@ -7372,8 +7366,8 @@ access files and the like.
   - an alternative for \texttt{man}, especially for GNU programs.
   Remember \texttt{q} quits.
 \item
-  \href{http://linux.die.net/man/1/less}{\textbf{\texttt{less}}}\drcmd{less}\index{files and directories!paginate!less@\texttt{less} command}\drcmd{less}\index{pagination!\texttt{less} command}
-  - display the file one page at a time on \texttt{stdout}.
+  \href{http://linux.die.net/man/1/less}{\textbf{\texttt{less}}}\drcmd{less}\index{files and directories!paginate!less@\texttt{less} command}\index{pagination!\texttt{less} command}
+  - display the file one page at a time on \emph{stdout}. \drstd{stdout}
 \item
   \href{http://linux.die.net/man/1/ln}{\textbf{\texttt{ln}}}\drcmd{ln} -
   create hard or soft (shortcut) links.
@@ -7391,7 +7385,7 @@ access files and the like.
   - make a new directory.
 \item
   \href{http://linux.die.net/man/1/more}{\textbf{\texttt{more}}}\drcmd{more}\index{files and directories!paginate!more@\texttt{more} command}\index{pagination!\texttt{more} command}
-  - display the file one page at a time on \texttt{stdout}.
+  - display the file one page at a time on \emph{stdout}. \drstd{stdout}
 \item
   \href{http://linux.die.net/man/1/mutt}{\textbf{\texttt{mutt}}}\drnet{mutt}
   - email client.
@@ -7421,7 +7415,8 @@ access files and the like.
   - set an environment variable, or display all environment variables.
 \item
   \href{http://linux.die.net/man/1/sort}{\textbf{\texttt{sort}}}\drcmd{sort}
-  - sort \texttt{stdin} or a file to \texttt{stdout}.
+  - sort \emph{stdin} or a file to \emph{stdout}. \drstd{stdin}
+  \drstd{stdout}
 \item
   \href{http://linux.die.net/man/1/ssh}{\textbf{\texttt{ssh}}}\drnet{ssh}
   - secure shell terminal progam and protocol.
@@ -7434,7 +7429,7 @@ access files and the like.
   file.
 \item
   \href{http://linux.die.net/man/1/tee}{\textbf{\texttt{tee}}}\drcmd{tee}
-  - write to a file and \texttt{stdout} at the same time.
+  - write to a file and \emph{stdout} at the same time. \drstd{stdout}
 \item
   \href{http://linux.die.net/man/1/telnet}{\textbf{\texttt{telnet}}}\drnet{telnet}
   - ancient terminal program and protocol.
@@ -7480,10 +7475,10 @@ some systems restrict the use of \texttt{ping}!
 
 \begin{itemize}
 \item
-  \href{http://linux.die.net/man/8/apt-get}{\textbf{\texttt{apt-get}}}\drcmd{apt-get}
+  \href{http://linux.die.net/man/8/apt-get}{\textbf{\texttt{apt-get}}}\drpkg{apt-get}
   - package manager for Debian flavors.
 \item
-  \href{http://linux.die.net/man/8/aptitude}{\textbf{\texttt{aptitude}}}\drcmd{aptitude}
+  \href{http://linux.die.net/man/8/aptitude}{\textbf{\texttt{aptitude}}}\drpkg{aptitude}
   - package manager for Debian flavors.
 \item
   \href{http://linux.die.net/man/8/cron}{\textbf{\texttt{cron}}}\drcmd{cron}
@@ -7504,7 +7499,7 @@ some systems restrict the use of \texttt{ping}!
   \href{http://linux.die.net/man/8/reboot}{\textbf{\texttt{reboot}}}\drcmd{reboot}
   - restart the system.
 \item
-  \href{http://linux.die.net/man/8/rpm}{\textbf{\texttt{rpm}}}\drcmd{rpm}
+  \href{http://linux.die.net/man/8/rpm}{\textbf{\texttt{rpm}}}\drpkg{rpm}
   - package manager for Fedora flavors.
 \item
   \href{http://linux.die.net/man/8/shutdown}{\textbf{\texttt{shutdown}}}\drcmd{shutdown}
@@ -7684,7 +7679,7 @@ results):
   \href{http://www.debian.org/}{\textbf{Debian}}\drdis{Debian} -
   \texttt{3.2.0-4-amd64\ \#1\ SMP\ Debian\ 3.2.65-1+deb7u2}
 \item
-  \href{http://www.freebsd.org/}{\textbf{FreeBSD}}\drios{FreeBSD} -
+  \href{http://www.freebsd.org/}{\textbf{FreeBSD}}\drbsd{FreeBSD} -
   \texttt{7.3-RELEASE-p2\ FreeBSD\ 7.3-RELEASE-p2\ \#0:\ Tue\ Nov\ \ 4\ 22:08:52\ EST\ 2014}
 \item
   \href{http://linuxmint.com/}{\textbf{Linux Mint}}\drdis{Mint} -

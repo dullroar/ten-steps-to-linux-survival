@@ -200,7 +200,7 @@ In this example when we `cat installrdp` we can determine it is a `bash` shell s
 "shebang"\index{*@\texttt{\#"!} (shebang)} is pointing to `bash`\drshl{bash}) that looks to install and configure
 [FreeRDP](https://github.com/FreeRDP/FreeRDP)\drnet{xfreerdp} on a Debian-style system:
 
-1. **`apt-get`**\drcmd{apt-get}\index{package management!aptget@\texttt{apt-get} command} -
+1. **`apt-get`**\drpkg{apt-get} -
 Debian-style package manager.
 
 2. **`git clone`**\drcmd{git} - cloning package from [GitHub](http://github.com).
@@ -780,6 +780,7 @@ The "what" is:
 The combination of "who has what?" is usually shown in detailed directory
 listings by a set of ten characters, with the first one determining
 whether an entry is a directory (`d`) or a file (`-`):
+\drbsd{FreeBSD}
 
 \drcap{Another \texttt{ls -l} example, this time on FreeBSD}
 ```bash

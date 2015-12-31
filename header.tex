@@ -33,6 +33,7 @@
 \setcounter{dbltopnumber}{2}        % for 2-column pages
 \overfullrule=2cm   % Black bars to show overfull boxes
 \numberwithin{figure}{chapter}
+\DeclareRobustCommand{\drbsd}[1]{\index{operating systems!#1}\index{operating systems!BSD}\index{BSD (operating system)}\index{#1 (operating system)}}
 \DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
 \DeclareRobustCommand{\drcmd}[1]{\index{commands!#1@\texttt{#1}}}
 \DeclareRobustCommand{\drdis}[1]{\index{Linux distros!#1}\index{#1 (Linux distro)}}
@@ -41,7 +42,9 @@
 \DeclareRobustCommand{\drenv}[2]{\index{environment variables!#1@\texttt{\$}\texttt{#1} (#2)}}
 \DeclareRobustCommand{\drios}[1]{\index{operating systems!#1}\index{#1 (operating system)}}
 \DeclareRobustCommand{\drnet}[1]{\index{network commands!#1@\texttt{#1}}\index{#1@\texttt{#1} (network command)}\index{commands!#1@\texttt{#1} (network)}}
-\DeclareRobustCommand{\drshl}[1]{\index{shells!#1@\texttt{#1}}\index{#1 (shell)}}
+\DeclareRobustCommand{\drpkg}[1]{\index{package management!#1@\texttt{#1}}\index{#1@\texttt{#1} (package management)}\index{commands!#1@\texttt{#1} (package management)}}
+\DeclareRobustCommand{\drshl}[1]{\index{shells!#1}\index{#1 (shell)}}
+\DeclareRobustCommand{\drstd}[1]{\index{I/O!streams!#1@\textit{#1}}\index{#1@\textit{#1} (stream)}\index{streams!#1@\textit{#1}}}
 \DeclareRobustCommand{\drunx}[1]{\index{UNIX-like environments!#1}\index{#1 (UNIX-like environment)}}
 \DeclareRobustCommand{\drvic}[2]{\index{vicommands@\texttt{vi} commands!#1@\texttt{#1} (#2)}}
 \renewcommand{\KeywordTok}[1]{{#1}}

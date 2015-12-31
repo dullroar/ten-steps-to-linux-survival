@@ -108,6 +108,7 @@ Pay attention to the first line in script files, which will typically have a
 In this case we know the script is expecting to be executed by `bash`, and in fact should throw an
 error if `/bin/bash` doesn't exist. For example, on the FreeBSD system I have access to, `dash` is
 not installed. So consider the following `hello.sh` script:
+\drbsd{FreeBSD}
 
 \drcap{Script with `dash` "shebang"}
 ```bash

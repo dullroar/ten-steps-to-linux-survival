@@ -35,26 +35,31 @@ if the first command fails.
 
 See ["I/O Redirection"](http://linux.die.net/abs-guide/io-redirection.html).
 
-* **`stderr`**\index{I/O!streams!stdin@\textit{stderr}} - file descriptor 2, always open for
+* ***stderr***\drstd{stderr} - file descriptor 2, always open for
 writing from a process, defaults to the screen on a terminal session.
 
-* **`stdin`**\index{I/O!streams!stdin@\textit{stdin}} - file descriptor 0, always open for reading
+* ***stdin***\drstd{stdin} - file descriptor 0, always open for reading
 in a process, defaults to the keyboard input on a terminal session.
 
-* **`stdout`**\index{I/O!streams!stdin@\textit{stdout}} - file descriptor 1, always open for
+* ***stdout***\drstd{stdout} - file descriptor 1, always open for
 writing from a process, defaults to the screen on a terminal session.
 
 * **`<`**\index{*@\texttt{<} (input redirection)}
-\index{I/O!redirection!input (\texttt{<})} - redirect a file to `stdin`.
+\index{I/O!redirection!input (\texttt{<})} - redirect a file to *stdin*.
+\drstd{stdin}
 
 * **`>`**\index{*@\texttt{>} (output redirection)}
-\index{I/O!redirection!output (\texttt{>})} - redirect `stdout` to a file.
+\index{I/O!redirection!output (\texttt{>})} - redirect *stdout* to a file.
+\drstd{stdout}
 
 * **`2>`**\index{*@\texttt{2>} (\textit{stderr} redirection)}
-\index{I/O!redirection!error (\texttt{2>})} - redirect `stderr` to a file.
+\index{I/O!redirection!error (\texttt{2>})} - redirect *stderr* to a file.
+\drstd{stderr}
 
 * **`|`**\index{*@\texttt{"|} (pipe)}\index{I/O!redirection!pipe (\texttt{"|})} - pipe
-`stdout` from one process into `stdin` in another process.
+*stdout* from one process into *stdin* in another process.
+\drstd{stdin}
+\drstd{stdout}
 
 ### Special Files and Directories{.unnumbered}
 
@@ -100,7 +105,8 @@ by pattern.
 * [**`bzip2`**](http://linux.die.net/man/1/bzip2)\drcmd{bzip2} - compress and uncompress files
 using the `bzip2` algorithm.
 
-* [**`cat`**](http://linux.die.net/man/1/cat)\drcmd{cat} - concatenate the input files to `stdout`.
+* [**`cat`**](http://linux.die.net/man/1/cat)\drcmd{cat} - concatenate the input files to *stdout*.
+\drstd{stdout}
 
 * [**`cd`**](http://linux.die.net/man/1/cd)\drcmd{cd} - change the current directory.
 
@@ -126,9 +132,10 @@ run by `cron`.
 
 * [**`dig`**](http://linux.die.net/man/1/dig)\drnet{dig} - look up DNS info on an address.
 
-* [**`dpkg`**](http://linux.die.net/man/1/dpkg)\drcmd{dpkg} - package manager for Debian flavors.
+* [**`dpkg`**](http://linux.die.net/man/1/dpkg)\drpkg{dpkg} - package manager for Debian flavors.
 
-* [**`echo`**](http://linux.die.net/man/1/echo)\drcmd{echo} - display passed parameters to `stdout`.
+* [**`echo`**](http://linux.die.net/man/1/echo)\drcmd{echo} - display passed parameters to *stdout*.
+\drstd{stdout}
 
 * [**`email`**](http://linux.die.net/man/1/email)\drnet{email} - send email.
 
@@ -147,8 +154,9 @@ expression) in files.
 * [**`info`**](http://linux.die.net/man/1/info)\drdoc{info} - an alternative for `man`, especially
 for GNU programs. Remember `q` quits.
 
-* [**`less`**](http://linux.die.net/man/1/less)\drcmd{less}\index{files and directories!paginate!less@\texttt{less} command}\drcmd{less}\index{pagination!\texttt{less} command} - display the file one page at a time
-on `stdout`.
+* [**`less`**](http://linux.die.net/man/1/less)\drcmd{less}\index{files and directories!paginate!less@\texttt{less} command}\index{pagination!\texttt{less} command} - display the file one page at a time
+on *stdout*.
+\drstd{stdout}
 
 * [**`ln`**](http://linux.die.net/man/1/ln)\drcmd{ln} - create hard or soft (shortcut) links.
 
@@ -161,7 +169,8 @@ on `stdout`.
 * [**`mkdir`**](http://linux.die.net/man/1/mkdir)\drcmd{mkdir} - make a new directory.
 
 * [**`more`**](http://linux.die.net/man/1/more)\drcmd{more}\index{files and directories!paginate!more@\texttt{more} command}\index{pagination!\texttt{more} command} - display the file one page at a time on
-`stdout`.
+*stdout*.
+\drstd{stdout}
 
 * [**`mutt`**](http://linux.die.net/man/1/mutt)\drnet{mutt} - email client.
 
@@ -184,7 +193,9 @@ ways than `mv` can.
 * [**`set`**](http://linux.die.net/man/1/set)\drcmd{set} - set an environment variable, or display
 all environment variables.
 
-* [**`sort`**](http://linux.die.net/man/1/sort)\drcmd{sort} - sort `stdin` or a file to `stdout`.
+* [**`sort`**](http://linux.die.net/man/1/sort)\drcmd{sort} - sort *stdin* or a file to *stdout*.
+\drstd{stdin}
+\drstd{stdout}
 
 * [**`ssh`**](http://linux.die.net/man/1/ssh)\drnet{ssh} - secure shell terminal progam and
 protocol.
@@ -194,8 +205,9 @@ protocol.
 * [**`tar`**](http://linux.die.net/man/1/tar)\drcmd{tar} - "tape archive", a way to combine
 directories into a single flat file.
 
-* [**`tee`**](http://linux.die.net/man/1/tee)\drcmd{tee} - write to a file and `stdout` at the same
+* [**`tee`**](http://linux.die.net/man/1/tee)\drcmd{tee} - write to a file and *stdout* at the same
 time.
+\drstd{stdout}
 
 * [**`telnet`**](http://linux.die.net/man/1/telnet)\drnet{telnet} - ancient terminal program and
 protocol.
@@ -229,10 +241,10 @@ PKZip algorithm.
 These are "section 8" commands, and ***may*** require special privileges such as `sudo` to run,
 depending on the system. Yes, some systems restrict the use of `ping`!
 
-* [**`apt-get`**](http://linux.die.net/man/8/apt-get)\drcmd{apt-get} - package manager for Debian
+* [**`apt-get`**](http://linux.die.net/man/8/apt-get)\drpkg{apt-get} - package manager for Debian
 flavors.
 
-* [**`aptitude`**](http://linux.die.net/man/8/aptitude)\drcmd{aptitude} - package manager for
+* [**`aptitude`**](http://linux.die.net/man/8/aptitude)\drpkg{aptitude} - package manager for
 Debian flavors.
 
 * [**`cron`**](http://linux.die.net/man/8/cron)\drcmd{cron} - system for running "scheduled tasks."
@@ -250,7 +262,7 @@ IP address.
 
 * [**`reboot`**](http://linux.die.net/man/8/reboot)\drcmd{reboot} - restart the system.
 
-* [**`rpm`**](http://linux.die.net/man/8/rpm)\drcmd{rpm} - package manager for Fedora flavors.
+* [**`rpm`**](http://linux.die.net/man/8/rpm)\drpkg{rpm} - package manager for Fedora flavors.
 
 * [**`shutdown`**](http://linux.die.net/man/8/shutdown)\drcmd{shutdown} - shutdown or restart the
 system.

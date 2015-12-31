@@ -13,7 +13,7 @@ This document was produced in the environments it discusses, including (with the
 
 * [**Debian**](http://www.debian.org/)\drdis{Debian} - `3.2.0-4-amd64 #1 SMP Debian 3.2.65-1+deb7u2`
 
-* [**FreeBSD**](http://www.freebsd.org/)\drios{FreeBSD} -
+* [**FreeBSD**](http://www.freebsd.org/)\drbsd{FreeBSD} -
 `7.3-RELEASE-p2 FreeBSD 7.3-RELEASE-p2 #0: Tue Nov  4 22:08:52 EST 2014`
 
 * [**Linux Mint**](http://linuxmint.com/)\drdis{Mint} -

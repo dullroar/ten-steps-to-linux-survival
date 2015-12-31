@@ -55,11 +55,11 @@ based on [MINIX](https://en.wikipedia.org/wiki/MINIX)
 * **Proliferation of the BSDs** - mid-to-late 1990s, still Clinton I, Monicagate, Kosovo, various
 ports of BSD including
 [NetBSD](https://en.wikipedia.org/wiki/NetBSD),
-\drios{NetBSD}
+\drbsd{NetBSD}
 [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD)
-\drios{FreeBSD}
+\drbsd{FreeBSD}
 and [OpenBSD](https://en.wikipedia.org/wiki/OpenBSD).
-\drios{OpenBSD}
+\drbsd{OpenBSD}
 All happen in the same time frame as Linux. Like Linux distros, each has its own focus and
 prejudices, some of which are distinctly "anti-Linux." The "big three" are all still in heavy use
 today, especially among ISPs. The perception is still out there among a generation of sysadmins
@@ -163,7 +163,7 @@ For example, note the difference in output between showing all processes with th
 ```
 
 Versus the "same" command on a FreeBSD
-\drios{FreeBSD}
+\drbsd{FreeBSD}
 system at my ISP, where `csh`
 \drshl{csh}
 is the default shell:
@@ -186,6 +186,10 @@ drivers and enough functionality to get a computer up and running. Most function
 other "packages." From almost the beginning there have been alternative approaches to both what
 packages should (and should not) be included, as well as how to best manage the installing,
 updating and removal of those packages.
+\drios{Linux}
+\drbsd{FreeBSD}
+\drbsd{OpenBSD}
+\drbsd{NetBSD}
 
 In the BSD world each major port has its own approach. In the Linux world the job of deciding all
 this and putting it all together falls to distributions or "distros."
@@ -196,10 +200,8 @@ based in large part around the [package management
 tool](https://en.wikipedia.org/wiki/Package_manager) predominantly used:
 
 * **`apt-get`, `dpkg` and `.deb` files** -
-\drcmd{apt-get}
-\index{package management!aptget@\texttt{apt-get} command}
-\drcmd{dpkg}
-\index{package management!dpkg@\texttt{dpkg} command}
+\drpkg{apt-get}
+\drpkg{dpkg}
 \index{files and directories!debpackagefiles@\texttt{.deb} package files}
 [Debian](https://en.wikipedia.org/wiki/Debian)
 \drdis{Debian}
@@ -212,17 +214,14 @@ Mint is currently my desktop Linux of choice and Debian my preferred server OS, 
 familiarity.
 
 * **`pacman`** -
-\drcmd{pacman}
-\index{package management!pacman@\texttt{pacman} command}
+\drpkg{pacman}
 [Arch](https://en.wikipedia.org/wiki/Arch_Linux)
 \drdis{Arch}
 flavors.
 
 * **`rpm` and `yum`** -
-\drcmd{rpm}
-\index{package management!rpm@\texttt{rpm} command}
-\drcmd{yum}
-\index{package management!yum@\texttt{yum} command}
+\drpkg{rpm}
+\drpkg{yum}
 Red Hat
 \drdis{Red Hat}
 flavors,such as
@@ -237,7 +236,7 @@ and [CentOS](https://en.wikipedia.org/wiki/CentOS).
 \drdis{Gentoo}
 tends to be a "compile from scratch" environment, much like
 [FreeBSD](https://en.wikipedia.org/wiki/FreeBSD_Ports).
-\drios{FreeBSD}
+\drbsd{FreeBSD}
 
 * **"Tar balls"** - source code or binaries delivered via archived and zipped directories. Common on
 [Slackware](https://en.wikipedia.org/wiki/Slackware),
