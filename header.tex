@@ -39,8 +39,10 @@
     \index{operating systems!BSD}
 }
 \DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
-\DeclareRobustCommand{\drcmd}[1]{
-    \index{commands!#1@\texttt{#1}}
+\DeclareRobustCommand{\drcmd}[2]{
+    \index{#1@\texttt{#1} (#2 command)}
+    \index{#2 (\texttt{#1} command)}
+    \index{commands!#1@\texttt{#1} (#2)}
 }
 \DeclareRobustCommand{\drcom}[1]{
     \index{#1@\texttt{#1} (compression command)}
@@ -83,6 +85,17 @@
     \index{commands!#1@\texttt{#1} (package management)}
     \index{package management!#1@\texttt{#1}}
 }
+\DeclareRobustCommand{\drprm}[1]{
+    \index{#1@\texttt{#1} (file permissions)}
+    \index{commands!#1@\texttt{#1} (file permissions)}
+    \index{files and directories!permissions!\texttt{#1} command}
+    \index{file permissions!#1@\texttt{#1}}
+}
+\DeclareRobustCommand{\drscr}[1]{
+    \index{#1@\texttt{#1} (scripting)}
+    \index{commands!#1@\texttt{#1} (scripting)}
+    \index{scripting!#1@\texttt{#1}}
+}
 \DeclareRobustCommand{\drshl}[1]{
     \index{#1 (shell)}
     \index{shells!#1}
@@ -96,6 +109,11 @@
     \index{#1@\texttt{#1} (#2 command)}
     \index{commands!#1@\texttt{#1} (#2)}
     \index{system commands!#2 (\texttt{#1} command)}
+}
+\DeclareRobustCommand{\drtxt}[1]{
+    \index{#1@\texttt{#1} (text processing)}
+    \index{commands!#1@\texttt{#1} (text processing)}
+    \index{text processing!#1@\texttt{#1}}
 }
 \DeclareRobustCommand{\drunx}[1]{
     \index{#1 (UNIX-like environment)}

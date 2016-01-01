@@ -114,31 +114,34 @@ the 7-zip algorithm.
 \drdoc{apropos}
 
 * [**`awk`**](http://linux.die.net/man/1/awk) - language for processing streams of data.
-\drcmd{awk}
+\drscr{awk}
 
 * [**`bash`**](http://linux.die.net/man/1/bash) - the Bourne-again shell.
-\drcmd{bash}
+\drscr{bash}
 
 * [**`bzip2`**](http://linux.die.net/man/1/bzip2) - compress and uncompress files using the `bzip2`
 algorithm.
 \drcom{bzip2}
 
 * [**`cat`**](http://linux.die.net/man/1/cat) - concatenate the input files to *stdout*.
-\drcmd{cat}
+\drtxt{cat}
 \drstd{stdout}
 
 * [**`cd`**](http://linux.die.net/man/1/cd) - change the current directory.
 \drfnd{cd}{change directory}
 
 * [**`chgrp`**](http://linux.die.net/man/1/chgrp) - change the primary group of a file or directory.
-\drcmd{chgrp}
+\drprm{chgrp}
 
 * [**`chmod`**](http://linux.die.net/man/1/chmod) - change the permissions (mode bits) of a file or
 directory.
-\drcmd{chmod}
+\drprm{chmod}
 
 * [**`chown`**](http://linux.die.net/man/1/chown) - change the owner of a file or directory.
-\drcmd{chown}
+\drprm{chown}
+
+* [**`cmake`**](http://linux.die.net/man/1/cmake) - configure makefiles.
+\drcmd{cmake}{configure makefiles}
 
 * [**`cp`**](http://linux.die.net/man/1/cp) - copy files or directories.
 \drfnd{cp}{copy}
@@ -148,6 +151,9 @@ directory.
 
 * [**`curl`**](http://linux.die.net/man/1/curl) - download files from the internet.
 \drnet{curl}
+
+* [**`cut`**](http://linux.die.net/man/1/cut) - remove (cut) sections from lines.
+\drtxt{cut}
 
 * [**`df`**](http://linux.die.net/man/1/df) - show space utilization by file system.
 \drfnd{df}{display file system disk space}
@@ -162,14 +168,18 @@ directory.
 \drpkg{dpkg}
 
 * [**`echo`**](http://linux.die.net/man/1/echo) - display passed parameters to *stdout*.
-\drcmd{echo}
+\drtxt{echo}
 \drstd{stdout}
+
+* [**`emacs`**](http://linux.die.net/man/1/emacs) - great operating system, but it could use an
+editor.
+\dreds{emacs}
 
 * [**`email`**](http://linux.die.net/man/1/email) - send email.
 \drnet{email}
 
 * [**`false`**](http://linux.die.net/man/1/false) - do nothing, unsuccessfully.
-\drcmd{false}
+\drscr{false}
 
 * [**`file`**](http://linux.die.net/man/1/file) - give best guess as to type of file.
 \drfnd{file}{detect file type}
@@ -178,19 +188,31 @@ directory.
 execute actions against the results.
 \drfnd{find}{find files}
 
+* [**`fmt`**](http://linux.die.net/man/1/fmt) - simple text formatter.
+\drtxt{fmt}
+
 * [**`grep`**](http://linux.die.net/man/1/grep) - search for a pattern (regular expression) in
 files.
 \drfnd{grep}{search files}
 
+* [**`gzip`**](http://linux.die.net/man/1/gzip) - compression program.
+\drcom{gzip}
+
 * [**`help`**](http://linux.die.net/man/1/help) - help for built-in commands in `bash`.
 \drdoc{help}
+
+* [**`if`**](http://linux.die.net/man/1/if) - conditionally execute a program.
+\drscr{if}
 
 * [**`info`**](http://linux.die.net/man/1/info) - an alternative for `man`, especially for GNU
 programs. Remember `q` quits.
 \drdoc{info}
 
+* [**`latex`**](http://linux.die.net/man/1/latex) - process LaTeX document markup.
+\drtxt{latex}
+
 * [**`less`**](http://linux.die.net/man/1/less) - display the file one page at a time on *stdout*.
-\drcmd{less}
+\drtxt{less}
 \drstd{stdout}
 \index{files and directories!paginate!less@\texttt{less} command}
 \index{pagination!\texttt{less} command}
@@ -207,6 +229,9 @@ programs. Remember `q` quits.
 * [**`lynx`**](http://linux.die.net/man/1/lynx) - command line web browser.
 \drnet{lynx}
 
+* [**`make`**](http://linux.die.net/man/1/make) - run programs according to "recipes" in makefiles.
+\drcmd{make}{build by recipes}
+
 * [**`man`**](http://linux.die.net/man/1/man) - display manual pages. Remember `q` quits.
 \drdoc{man}
 
@@ -214,7 +239,7 @@ programs. Remember `q` quits.
 \drfnd{mkdir}{make directory}
 
 * [**`more`**](http://linux.die.net/man/1/more) - display the file one page at a time on *stdout*.
-\drcmd{more}
+\drtxt{more}
 \drstd{stdout}
 \index{files and directories!paginate!more@\texttt{more} command}
 \index{pagination!\texttt{more} command}
@@ -224,6 +249,19 @@ programs. Remember `q` quits.
 
 * [**`mv`**](http://linux.die.net/man/1/mv) - move files or directories.
 \drfnd{mv}{move files}
+
+* [**`nano`**](http://linux.die.net/man/1/nano) - small, intuitive text editor.
+\dreds{nano}
+
+* [**`pandoc`**](http://pandoc.org/README.html) - markup converter. The primary tool used to create
+this book in multiple formats including PDF, EPUB, HTML and Markdown.
+\drcmd{pandoc}{markup converter}
+
+* [**`pdflatex`**](http://linux.die.net/man/1/pdflatex) - create PDF files.
+\drcmd{pdflatex}{create PDF files}
+
+* [**`pico`**](http://linux.die.net/man/1/pico) - small, intuitive text editor.
+\dreds{pico}
 
 * [**`pine`**](http://linux.die.net/man/1/pine) - email client.
 \drnet{pine}
@@ -246,10 +284,10 @@ can.
 
 * [**`set`**](http://linux.die.net/man/1/set) - set an environment variable, or display all
 environment variables.
-\drcmd{set}
+\drcmd{set}{set shell options}
 
 * [**`sort`**](http://linux.die.net/man/1/sort) - sort *stdin* or a file to *stdout*.
-\drcmd{sort}
+\drtxt{sort}
 \drstd{stdin}
 \drstd{stdout}
 
@@ -257,14 +295,14 @@ environment variables.
 \drnet{ssh}
 
 * [**`tail`**](http://linux.die.net/man/1/tail) - display the last lines of a file.
-\drcmd{tail}
+\drtxt{tail}
 
 * [**`tar`**](http://linux.die.net/man/1/tar) - "tape archive", a way to combine directories into a
 single flat file.
-\drcmd{tar}
+\drcmd{tar}{archive files}
 
-* [**`tee`**](http://linux.die.net/man/1/tee)\drcmd{tee} - write to a file and *stdout* at the same
-time.
+* [**`tee`**](http://linux.die.net/man/1/tee) - write to a file and *stdout* at the same time.
+\drtxt{tee}
 \drstd{stdout}
 
 * [**`telnet`**](http://linux.die.net/man/1/telnet) - ancient terminal program and protocol.
@@ -277,8 +315,11 @@ time.
 last-modified time of an existing file.
 \drfnd{touch}{change modified date or create file}
 
+* [**`tr`**](http://linux.die.net/man/1/tr) - translate (map, convert) characters.
+\drtxt{tr}
+
 * [**`true`**](http://linux.die.net/man/1/true) - do nothing, successfully.
-\drcmd{true}
+\drscr{true}
 
 * [**`uname`**](http://linux.die.net/man/1/uname) - print system info.
 \drsys{uname}{system info}
@@ -289,12 +330,25 @@ last-modified time of an existing file.
 * [**`vi`**](http://linux.die.net/man/1/vi) - "visual" editor, a file editor.
 \dreds{vi}
 
+* [**`view`**](http://linux.die.net/man/1/view) - read-only version of `vim`.
+\dreds{view}
+
+* [**`vim`**](http://linux.die.net/man/1/vim) - `vi` Improved, another implementation of `vi`
+allowing more customization.
+\dreds{vim}
+
 * [**`wget`**](http://linux.die.net/man/1/wget) - download files from the internet.
 \drnet{wget}
 
+* [**`which`**](http://linux.die.net/man/1/which) - determine the path of a program.
+\drcmd{which}{find program}
+
+* [**`while`**](http://linux.die.net/man/1/while) - perform a command multiple times.
+\drscr{while}
+
 * [**`whoami`**](http://linux.die.net/man/1/whoami) - the answer to life's most existential
 question.
-\drcmd{whoami}
+\drcmd{whoami}{existential question}
 
 * [**`whois`**](http://linux.die.net/man/1/whois) - look up DNS ownership info on an address.
 \drnet{whois}
@@ -308,8 +362,8 @@ algorithm.
 
 ### System Commands{.unnumbered}
 
-These are "section 8" commands, and ***may*** require special privileges such as `sudo` to run,
-depending on the system. Yes, some systems restrict the use of `ping`!
+Most of these are "section 8" commands, and ***may*** require special privileges such as `sudo` to
+run, depending on the system. Yes, some systems restrict the use of `ping`!
 
 * [**`apt-get`**](http://linux.die.net/man/8/apt-get) - package manager for Debian flavors.
 \drpkg{apt-get}
@@ -326,8 +380,15 @@ depending on the system. Yes, some systems restrict the use of `ping`!
 * [**`ifconfig`**](http://linux.die.net/man/8/ifconfig) - display network (interface) configuration.
 \drnet{ifconfig}
 
+* [**`kill`**](http://linux.die.net/man/1/kill) - terminate a process.
+\drsys{kill}{terminate process}
+
 * [**`mount`**](http://linux.die.net/man/8/mount) - mount a file system to a specific location.
 \drsys{mount}{mount file system}
+
+* [**`pacman`**](https://www.archlinux.org/pacman/pacman.8.html) - package manager for Arch Linux.
+^[Not to be confused with the game. <http://linux.die.net/man/1/pacman>]
+\drpkg{pacman}
 
 * [**`passwd`**](http://linux.die.net/man/1/passwd) - change password.
 \drsys{passwd}{change password}
@@ -339,16 +400,24 @@ depending on the system. Yes, some systems restrict the use of `ping`!
 \drsys{reboot}{reboot system}
 
 * [**`rpm`**](http://linux.die.net/man/8/rpm) - package manager for Fedora flavors.
+\drdis{Fedora}
+\drdis{Red Hat}
 \drpkg{rpm}
 
 * [**`shutdown`**](http://linux.die.net/man/8/shutdown) - shutdown or restart the system.
 \drsys{shutdown}{shutdown or reboot system}
 
 * [**`sudo`**](http://linux.die.net/man/8/sudo) - execute a command with elevated privileges.
-\drcmd{sudo}
+\drsys{sudo}{execute as another user}
 
 * [**`traceroute`**](http://linux.die.net/man/8/traceroute) - trace the route to an IP address.
 \drnet{traceroute}
+
+* [**`yum`**](https://www.centos.org/docs/4/html/yum/) - package manager for CentOS, originally
+created for Yellow Dog Linux ("Yellow dog Updater, Modified").
+\drdis{CentOS}
+\drdis{Yellow Dog}
+\drpkg{yum}
 
 ## Examples{.unnumbered}
 
@@ -423,7 +492,7 @@ scripts that just "do things" in a certain order are within scope, and the follo
 guesswork out of doing something repetitive across multiple machines. I keep this `installrdp`
 script in Dropbox so I can run it quickly and easily on any new machine I set up (once I get
 Dropbox set up on the machine!)
-\drcmd{if}
+\drscr{if}
 \drnet{xfreerdp}
 
 \drcap{A simple install script}

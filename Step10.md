@@ -290,7 +290,7 @@ directory is going to be called?
 \drenv{PATH}{execution search path}
 
 Luckily we have the [`which`](http://linux.die.net/man/1/which) command for just that!
-\drcmd{which}
+\drcmd{which}{find program}
 
 \drcap{\texttt{which} command}
 ```bash
@@ -581,11 +581,11 @@ foo
 **Note:** There is actually a [`true`](http://linux.die.net/man/1/true) command whose purpose is to
 "do nothing, successfully." All it does is return a `0` (success) exit code. This can be useful in
 scripting and also sometimes when building "and" and "or" clauses like above.
-\drcmd{true}
+\drscr{true}
 
 And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false) command
 to "do nothing, unsuccessfully!"
-\drcmd{false}
+\drscr{false}
 
 \drcap{\texttt{true} and \texttt{false} commands}
 ```bash

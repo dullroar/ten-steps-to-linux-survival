@@ -30,13 +30,14 @@ hard to distinguish when intermingled with *stdout* output). This is file descri
 When a program written in C calls `printf`, it is writing to *stdout*. When a `bash` script calls
 `echo`, it too is writing to *stdout*. When a command writes an error message, it is writing to
 *stderr*. If a command or program accepts input from the console, it is reading from *stdin*.
-\drcmd{echo}
+\drtxt{echo}
+\drstd{stdout}
 
 In this example, `cat` is started with no file name, so it will read from *stdin* (a quite common
 "UNIX" command convention), and echo each line typed by the user to *stdout* until the "end of file,
 which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below
 but not seen on the console in real life:
-\drcmd{cat}
+\drtxt{cat}
 
 \drcap{\textit{stdin} and \textit{stdout}}
 ```bash
@@ -235,10 +236,10 @@ each doing one thing. In this case:
 2. [`tr`](http://linux.die.net/man/1/tr) "translates" (replaces) any backslash characters (here
 "escaped" as `'\\'` because the backslash character is a special character) to forward slashes (`/`)
 before sending it into...
-\drcmd{tr}
+\drtxt{tr}
 
 3. A `while` loop that reads each line into a variable called `$line` and then calls...
-\drcmd{while}
+\drscr{while}
 
 4. Some custom script or program called `./mycmd` passing in the value of each `$line`.
 
@@ -259,7 +260,7 @@ a file before the next program could start and read in that file as input.
 
 Finally, if you want to capture something to a file ***and*** see it on the console at the same
 time, that is where the [`tee`](http://linux.die.net/man/1/tee) command comes in:
-\drcmd{tee}
+\drtxt{tee}
 
 ```bash
 ~ $ find . -name error.log | tee > errorlogs.txt

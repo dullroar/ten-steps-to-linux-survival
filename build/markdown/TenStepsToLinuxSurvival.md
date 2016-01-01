@@ -4197,11 +4197,15 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`chown`**](http://linux.die.net/man/1/chown) - change the owner of a file or directory.
 
+-   [**`cmake`**](http://linux.die.net/man/1/cmake) - configure makefiles.
+
 -   [**`cp`**](http://linux.die.net/man/1/cp) - copy files or directories.
 
 -   [**`crontab`**](http://linux.die.net/man/1/crontab) - display or edit tasks to be run by `cron`.
 
 -   [**`curl`**](http://linux.die.net/man/1/curl) - download files from the internet.
+
+-   [**`cut`**](http://linux.die.net/man/1/cut) - remove (cut) sections from lines.
 
 -   [**`df`**](http://linux.die.net/man/1/df) - show space utilization by file system.
 
@@ -4213,6 +4217,8 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`echo`**](http://linux.die.net/man/1/echo) - display passed parameters to *stdout*.
 
+-   [**`emacs`**](http://linux.die.net/man/1/emacs) - great operating system, but it could use an editor.
+
 -   [**`email`**](http://linux.die.net/man/1/email) - send email.
 
 -   [**`false`**](http://linux.die.net/man/1/false) - do nothing, unsuccessfully.
@@ -4221,11 +4227,19 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`find`**](http://linux.die.net/man/1/find) - find files based on various conditions and execute actions against the results.
 
+-   [**`fmt`**](http://linux.die.net/man/1/fmt) - simple text formatter.
+
 -   [**`grep`**](http://linux.die.net/man/1/grep) - search for a pattern (regular expression) in files.
+
+-   [**`gzip`**](http://linux.die.net/man/1/gzip) - compression program.
 
 -   [**`help`**](http://linux.die.net/man/1/help) - help for built-in commands in `bash`.
 
+-   [**`if`**](http://linux.die.net/man/1/if) - conditionally execute a program.
+
 -   [**`info`**](http://linux.die.net/man/1/info) - an alternative for `man`, especially for GNU programs. Remember `q` quits.
+
+-   [**`latex`**](http://linux.die.net/man/1/latex) - process LaTeX document markup.
 
 -   [**`less`**](http://linux.die.net/man/1/less) - display the file one page at a time on *stdout*.
 
@@ -4237,6 +4251,8 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`lynx`**](http://linux.die.net/man/1/lynx) - command line web browser.
 
+-   [**`make`**](http://linux.die.net/man/1/make) - run programs according to "recipes" in makefiles.
+
 -   [**`man`**](http://linux.die.net/man/1/man) - display manual pages. Remember `q` quits.
 
 -   [**`mkdir`**](http://linux.die.net/man/1/mkdir) - make a new directory.
@@ -4246,6 +4262,14 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 -   [**`mutt`**](http://linux.die.net/man/1/mutt) - email client.
 
 -   [**`mv`**](http://linux.die.net/man/1/mv) - move files or directories.
+
+-   [**`nano`**](http://linux.die.net/man/1/nano) - small, intuitive text editor.
+
+-   [**`pandoc`**](http://pandoc.org/README.html) - markup converter. The primary tool used to create this book in multiple formats including PDF, EPUB, HTML and Markdown.
+
+-   [**`pdflatex`**](http://linux.die.net/man/1/pdflatex) - create PDF files.
+
+-   [**`pico`**](http://linux.die.net/man/1/pico) - small, intuitive text editor.
 
 -   [**`pine`**](http://linux.die.net/man/1/pine) - email client.
 
@@ -4277,6 +4301,8 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`touch`**](http://linux.die.net/man/1/touch) - create an empty file or change the last-modified time of an existing file.
 
+-   [**`tr`**](http://linux.die.net/man/1/tr) - translate (map, convert) characters.
+
 -   [**`true`**](http://linux.die.net/man/1/true) - do nothing, successfully.
 
 -   [**`uname`**](http://linux.die.net/man/1/uname) - print system info.
@@ -4285,7 +4311,15 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 -   [**`vi`**](http://linux.die.net/man/1/vi) - "visual" editor, a file editor.
 
+-   [**`view`**](http://linux.die.net/man/1/view) - read-only version of `vim`.
+
+-   [**`vim`**](http://linux.die.net/man/1/vim) - `vi` Improved, another implementation of `vi` allowing more customization.
+
 -   [**`wget`**](http://linux.die.net/man/1/wget) - download files from the internet.
+
+-   [**`which`**](http://linux.die.net/man/1/which) - determine the path of a program.
+
+-   [**`while`**](http://linux.die.net/man/1/while) - perform a command multiple times.
 
 -   [**`whoami`**](http://linux.die.net/man/1/whoami) - the answer to life's most existential question.
 
@@ -4297,7 +4331,7 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 
 ### System Commands
 
-These are "section 8" commands, and ***may*** require special privileges such as `sudo` to run, depending on the system. Yes, some systems restrict the use of `ping`!
+Most of these are "section 8" commands, and ***may*** require special privileges such as `sudo` to run, depending on the system. Yes, some systems restrict the use of `ping`!
 
 -   [**`apt-get`**](http://linux.die.net/man/8/apt-get) - package manager for Debian flavors.
 
@@ -4309,7 +4343,11 @@ These are "section 8" commands, and ***may*** require special privileges such as
 
 -   [**`ifconfig`**](http://linux.die.net/man/8/ifconfig) - display network (interface) configuration.
 
+-   [**`kill`**](http://linux.die.net/man/1/kill) - terminate a process.
+
 -   [**`mount`**](http://linux.die.net/man/8/mount) - mount a file system to a specific location.
+
+-   [**`pacman`**](https://www.archlinux.org/pacman/pacman.8.html) - package manager for Arch Linux. [3]
 
 -   [**`passwd`**](http://linux.die.net/man/1/passwd) - change password.
 
@@ -4324,6 +4362,8 @@ These are "section 8" commands, and ***may*** require special privileges such as
 -   [**`sudo`**](http://linux.die.net/man/8/sudo) - execute a command with elevated privileges.
 
 -   [**`traceroute`**](http://linux.die.net/man/8/traceroute) - trace the route to an IP address.
+
+-   [**`yum`**](https://www.centos.org/docs/4/html/yum/) - package manager for CentOS, originally created for Yellow Dog Linux ("Yellow dog Updater, Modified").
 
 Examples
 --------
@@ -4444,3 +4484,5 @@ Jim is son to Barb and Lou; husband to Leslie; father to Meghann (and Jeremy), M
 [1] Stereotype intentional.
 
 [2] In fact, `find` is one of the main reasons I use Cygwin on Windows.
+
+[3] Not to be confused with the game. <http://linux.die.net/man/1/pacman>

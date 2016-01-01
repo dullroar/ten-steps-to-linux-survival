@@ -128,7 +128,7 @@ But this is frowned on, and many distros today rely on the [`sudo`](http://linux
 command to act as a way for a normal user to signal they want to escalate their privileges
 temporarily, presuming they are allowed to do so, which is usually indicated by being a member of
 the `sudo` group or similar.
-\drcmd{sudo}
+\drsys{sudo}{execute as another user}
 
 In a sense, `sudo` is similar to Windows User Access Control (UAC) prompts. They ensure a human is
 in control, in the case of `sudo` by prompting for the user's password. If multiple commands are
@@ -222,7 +222,7 @@ There are two other commands that are used to pull down web resources and save t
 support HTTP(S) and FTP, but `curl` supports even more protocols and options and tends to be the
 simplest to just "grab a file and go." You see both used often in install scripts that download
 bits from the internet and then execute them by piping them to `bash`:
-\drcmd{bash}
+\drscr{bash}
 \drnet{curl}
 \drnet{wget}
 

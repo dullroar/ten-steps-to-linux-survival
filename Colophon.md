@@ -36,14 +36,14 @@ Output produced using [`pandoc`](http://pandoc.org/), [TeX Live](http://www.tug.
 originally based on the [\@evangoer's pandoc ebook
 template](https://github.com/evangoer/pandoc-ebook-template) but long since modified so don't blame
 him.
-\drcmd{make}
-\drcmd{pandoc}
-\drcmd{pdflatex}
-\drcmd{texlive}
+\drcmd{make}{build by recipes}
+\drcmd{pandoc}{markup converter}
+\drcmd{pdflatex}{create PDF files}
+\drtxt{latex}
 
 Source code control is provided by [`git`](http://linux.die.net/man/1/git). You can view [the files
 used to create this book](https://github.com/dullroar/ten-steps-to-linux-survival) on GitHub.
-\drcmd{git}
+\drcmd{git}{distributed version control}
 
 The fonts used are [DejaVu](https://en.wikipedia.org/wiki/DejaVu_fonts) Serif for the body text,
 DejaVu Sans for headers, and [Ubuntu Mono](https://en.wikipedia.org/wiki/Ubuntu_%28typeface%29) for

@@ -778,7 +778,7 @@ Combine tires   2500
 Tractor motor   1000
 Tractor brakes  300
 Tractor tires   2000</code></pre>
-<p>The <a href="http://linux.die.net/man/1/sort"><code>sort</code></a> command to the rescue! We will see that the <code>sort</code> command can be used to not just <em>sort</em> files, but also to merge them and remove duplicates. </p>
+<p>The <a href="http://linux.die.net/man/1/sort"><code>sort</code></a> command to the rescue! We will see that the <code>sort</code> command can be used to not just <em>sort</em> files, but also to merge them and remove duplicates.  </p>
 <p></p>
 <pre class="bash"><code>~/Invoices $ sort *
 Combine brakes  400
@@ -1068,7 +1068,7 @@ job
 -rwxr-xr-x 1 root root 1105 May 13  2015 grub-common
 ...and so on...</code></pre>
 <p>In this case all the scripts are readable, writable and executable (<code>rwx</code>) by the <code>root</code> user, and readable and executable by the <code>root</code> group and all other users (<code>r-xr-x</code>). Later on I will explain linked files (those that start with an <code>l</code> instead of a <code>-</code> in the detailed listing above).</p>
-<p>To <em>change</em> the <em>owning</em> user of a file or directory (assuming you have permissions to do so), use the <a href="http://linux.die.net/man/1/chown"><code>chown</code></a> command:  </p>
+<p>To <em>change</em> the <em>owning</em> user of a file or directory (assuming you have permissions to do so), use the <a href="http://linux.die.net/man/1/chown"><code>chown</code></a> command: </p>
 <p></p>
 <pre class="bash"><code># ls -l
 total 4
@@ -1077,13 +1077,13 @@ total 4
 # ls -l
 total 4
 -rwxr--r-- 1 git root 17 Oct 20 10:07 foo</code></pre>
-<p>To <em>change</em> the primary <em>group</em>, use the <a href="http://linux.die.net/man/1/chgrp"><code>chgrp</code></a> command:  </p>
+<p>To <em>change</em> the primary <em>group</em>, use the <a href="http://linux.die.net/man/1/chgrp"><code>chgrp</code></a> command: </p>
 <p></p>
 <pre class="bash"><code># chgrp git foo
 # ls -l
 total 4
 -rwxr--r-- 1 git git 17 Oct 20 10:07 foo</code></pre>
-<p>To <em>change</em> the various permissions or <em>mode</em> bits, you use the <a href="http://linux.die.net/man/1/chmod"><code>chmod</code></a> command. It uses mnemonics of &quot;ugo&quot; for user, group and &quot;other,&quot; respectively. It also uses mnemonics of &quot;rwx&quot; for read, write and execute, and <code>+</code> to add a permission and <code>-</code> to remove it. For example, to add the execute permission for the group and remove read permission for &quot;other&quot;:  </p>
+<p>To <em>change</em> the various permissions or <em>mode</em> bits, you use the <a href="http://linux.die.net/man/1/chmod"><code>chmod</code></a> command. It uses mnemonics of &quot;ugo&quot; for user, group and &quot;other,&quot; respectively. It also uses mnemonics of &quot;rwx&quot; for read, write and execute, and <code>+</code> to add a permission and <code>-</code> to remove it. For example, to add the execute permission for the group and remove read permission for &quot;other&quot;: </p>
 <p></p>
 <pre class="bash"><code># chmod g+x,o-r foo
 # ls -l
@@ -1647,7 +1647,7 @@ username: uucp      uid:10
 <li><p><strong><em>stderr</em></strong> - &quot;error&quot; output, typically to the console in an interactive session (so it can be hard to distinguish when intermingled with <em>stdout</em> output). This is file descriptor 2. </p></li>
 </ul>
 <p><strong>Note:</strong> Those numeric file descriptors will go from being trivia to important in just a bit.</p>
-<p>When a program written in C calls <code>printf</code>, it is writing to <em>stdout</em>. When a <code>bash</code> script calls <code>echo</code>, it too is writing to <em>stdout</em>. When a command writes an error message, it is writing to <em>stderr</em>. If a command or program accepts input from the console, it is reading from <em>stdin</em>. </p>
+<p>When a program written in C calls <code>printf</code>, it is writing to <em>stdout</em>. When a <code>bash</code> script calls <code>echo</code>, it too is writing to <em>stdout</em>. When a command writes an error message, it is writing to <em>stderr</em>. If a command or program accepts input from the console, it is reading from <em>stdin</em>.  </p>
 <p>In this example, <code>cat</code> is started with no file name, so it will read from <em>stdin</em> (a quite common &quot;UNIX&quot; command convention), and echo each line typed by the user to <em>stdout</em> until the &quot;end of file, which in an interactive session can be emulated with <code>Ctrl-D</code>, shown as <code>^D</code> in the example below but not seen on the console in real life: </p>
 <p></p>
 <pre class="bash"><code>~ $ cat
@@ -3059,31 +3059,43 @@ foo
 <li><p><a href="http://linux.die.net/man/1/chgrp"><strong><code>chgrp</code></strong></a> - change the primary group of a file or directory. </p></li>
 <li><p><a href="http://linux.die.net/man/1/chmod"><strong><code>chmod</code></strong></a> - change the permissions (mode bits) of a file or directory. </p></li>
 <li><p><a href="http://linux.die.net/man/1/chown"><strong><code>chown</code></strong></a> - change the owner of a file or directory. </p></li>
+<li><p><a href="http://linux.die.net/man/1/cmake"><strong><code>cmake</code></strong></a> - configure makefiles. </p></li>
 <li><p><a href="http://linux.die.net/man/1/cp"><strong><code>cp</code></strong></a> - copy files or directories. </p></li>
 <li><p><a href="http://linux.die.net/man/1/crontab"><strong><code>crontab</code></strong></a> - display or edit tasks to be run by <code>cron</code>. </p></li>
 <li><p><a href="http://linux.die.net/man/1/curl"><strong><code>curl</code></strong></a> - download files from the internet. </p></li>
+<li><p><a href="http://linux.die.net/man/1/cut"><strong><code>cut</code></strong></a> - remove (cut) sections from lines. </p></li>
 <li><p><a href="http://linux.die.net/man/1/df"><strong><code>df</code></strong></a> - show space utilization by file system. </p></li>
 <li><p><a href="http://linux.die.net/man/1/diff"><strong><code>diff</code></strong></a> - show the differences between files. </p></li>
 <li><p><a href="http://linux.die.net/man/1/dig"><strong><code>dig</code></strong></a> - look up DNS info on an address. </p></li>
 <li><p><a href="http://linux.die.net/man/1/dpkg"><strong><code>dpkg</code></strong></a> - package manager for Debian flavors. </p></li>
 <li><p><a href="http://linux.die.net/man/1/echo"><strong><code>echo</code></strong></a> - display passed parameters to <em>stdout</em>.  </p></li>
+<li><p><a href="http://linux.die.net/man/1/emacs"><strong><code>emacs</code></strong></a> - great operating system, but it could use an editor. </p></li>
 <li><p><a href="http://linux.die.net/man/1/email"><strong><code>email</code></strong></a> - send email. </p></li>
 <li><p><a href="http://linux.die.net/man/1/false"><strong><code>false</code></strong></a> - do nothing, unsuccessfully. </p></li>
 <li><p><a href="http://linux.die.net/man/1/file"><strong><code>file</code></strong></a> - give best guess as to type of file. </p></li>
 <li><p><a href="http://linux.die.net/man/1/find"><strong><code>find</code></strong></a> - find files based on various conditions and execute actions against the results. </p></li>
+<li><p><a href="http://linux.die.net/man/1/fmt"><strong><code>fmt</code></strong></a> - simple text formatter. </p></li>
 <li><p><a href="http://linux.die.net/man/1/grep"><strong><code>grep</code></strong></a> - search for a pattern (regular expression) in files. </p></li>
+<li><p><a href="http://linux.die.net/man/1/gzip"><strong><code>gzip</code></strong></a> - compression program. </p></li>
 <li><p><a href="http://linux.die.net/man/1/help"><strong><code>help</code></strong></a> - help for built-in commands in <code>bash</code>. </p></li>
+<li><p><a href="http://linux.die.net/man/1/if"><strong><code>if</code></strong></a> - conditionally execute a program. </p></li>
 <li><p><a href="http://linux.die.net/man/1/info"><strong><code>info</code></strong></a> - an alternative for <code>man</code>, especially for GNU programs. Remember <code>q</code> quits. </p></li>
+<li><p><a href="http://linux.die.net/man/1/latex"><strong><code>latex</code></strong></a> - process LaTeX document markup. </p></li>
 <li><p><a href="http://linux.die.net/man/1/less"><strong><code>less</code></strong></a> - display the file one page at a time on <em>stdout</em>.    </p></li>
 <li><p><a href="http://linux.die.net/man/1/ln"><strong><code>ln</code></strong></a> - create hard or soft (shortcut) links. </p></li>
 <li><p><a href="http://linux.die.net/man/1/locate"><strong><code>locate</code></strong></a> - locate files by name. </p></li>
 <li><p><a href="http://linux.die.net/man/1/ls"><strong><code>ls</code></strong></a> - list directory contents. </p></li>
 <li><p><a href="http://linux.die.net/man/1/lynx"><strong><code>lynx</code></strong></a> - command line web browser. </p></li>
+<li><p><a href="http://linux.die.net/man/1/make"><strong><code>make</code></strong></a> - run programs according to &quot;recipes&quot; in makefiles. </p></li>
 <li><p><a href="http://linux.die.net/man/1/man"><strong><code>man</code></strong></a> - display manual pages. Remember <code>q</code> quits. </p></li>
 <li><p><a href="http://linux.die.net/man/1/mkdir"><strong><code>mkdir</code></strong></a> - make a new directory. </p></li>
 <li><p><a href="http://linux.die.net/man/1/more"><strong><code>more</code></strong></a> - display the file one page at a time on <em>stdout</em>.    </p></li>
 <li><p><a href="http://linux.die.net/man/1/mutt"><strong><code>mutt</code></strong></a> - email client. </p></li>
 <li><p><a href="http://linux.die.net/man/1/mv"><strong><code>mv</code></strong></a> - move files or directories. </p></li>
+<li><p><a href="http://linux.die.net/man/1/nano"><strong><code>nano</code></strong></a> - small, intuitive text editor. </p></li>
+<li><p><a href="http://pandoc.org/README.html"><strong><code>pandoc</code></strong></a> - markup converter. The primary tool used to create this book in multiple formats including PDF, EPUB, HTML and Markdown. </p></li>
+<li><p><a href="http://linux.die.net/man/1/pdflatex"><strong><code>pdflatex</code></strong></a> - create PDF files. </p></li>
+<li><p><a href="http://linux.die.net/man/1/pico"><strong><code>pico</code></strong></a> - small, intuitive text editor. </p></li>
 <li><p><a href="http://linux.die.net/man/1/pine"><strong><code>pine</code></strong></a> - email client. </p></li>
 <li><p><a href="http://linux.die.net/man/1/ps"><strong><code>ps</code></strong></a> - list running processes. </p></li>
 <li><p><a href="http://linux.die.net/man/1/pwd"><strong><code>pwd</code></strong></a> - print the current (working) directory name. </p></li>
@@ -3095,36 +3107,44 @@ foo
 <li><p><a href="http://linux.die.net/man/1/ssh"><strong><code>ssh</code></strong></a> - secure shell terminal progam and protocol. </p></li>
 <li><p><a href="http://linux.die.net/man/1/tail"><strong><code>tail</code></strong></a> - display the last lines of a file. </p></li>
 <li><p><a href="http://linux.die.net/man/1/tar"><strong><code>tar</code></strong></a> - &quot;tape archive&quot;, a way to combine directories into a single flat file. </p></li>
-<li><p><a href="http://linux.die.net/man/1/tee"><strong><code>tee</code></strong></a> - write to a file and <em>stdout</em> at the same time. </p></li>
+<li><p><a href="http://linux.die.net/man/1/tee"><strong><code>tee</code></strong></a> - write to a file and <em>stdout</em> at the same time.  </p></li>
 <li><p><a href="http://linux.die.net/man/1/telnet"><strong><code>telnet</code></strong></a> - ancient terminal program and protocol. </p></li>
 <li><p><a href="http://linux.die.net/man/1/top"><strong><code>top</code></strong></a> - list processes by resource utilization (CPU). </p></li>
 <li><p><a href="http://linux.die.net/man/1/touch"><strong><code>touch</code></strong></a> - create an empty file or change the last-modified time of an existing file. </p></li>
+<li><p><a href="http://linux.die.net/man/1/tr"><strong><code>tr</code></strong></a> - translate (map, convert) characters. </p></li>
 <li><p><a href="http://linux.die.net/man/1/true"><strong><code>true</code></strong></a> - do nothing, successfully. </p></li>
 <li><p><a href="http://linux.die.net/man/1/uname"><strong><code>uname</code></strong></a> - print system info. </p></li>
 <li><p><a href="http://linux.die.net/man/1/unzip"><strong><code>unzip</code></strong></a> - uncompress <code>.zip</code> files. </p></li>
 <li><p><a href="http://linux.die.net/man/1/vi"><strong><code>vi</code></strong></a> - &quot;visual&quot; editor, a file editor. </p></li>
+<li><p><a href="http://linux.die.net/man/1/view"><strong><code>view</code></strong></a> - read-only version of <code>vim</code>. </p></li>
+<li><p><a href="http://linux.die.net/man/1/vim"><strong><code>vim</code></strong></a> - <code>vi</code> Improved, another implementation of <code>vi</code> allowing more customization. </p></li>
 <li><p><a href="http://linux.die.net/man/1/wget"><strong><code>wget</code></strong></a> - download files from the internet. </p></li>
+<li><p><a href="http://linux.die.net/man/1/which"><strong><code>which</code></strong></a> - determine the path of a program. </p></li>
+<li><p><a href="http://linux.die.net/man/1/while"><strong><code>while</code></strong></a> - perform a command multiple times. </p></li>
 <li><p><a href="http://linux.die.net/man/1/whoami"><strong><code>whoami</code></strong></a> - the answer to life's most existential question. </p></li>
 <li><p><a href="http://linux.die.net/man/1/whois"><strong><code>whois</code></strong></a> - look up DNS ownership info on an address. </p></li>
 <li><p><a href="http://linux.die.net/man/1/xfreerdp"><strong><code>xfreerdp</code></strong></a> - RDP protocol client. </p></li>
 <li><p><a href="http://linux.die.net/man/1/zip"><strong><code>zip</code></strong></a> - compress files and directories using the PKZip algorithm. </p></li>
 </ul>
 <h3 id="system-commands" class="unnumbered">System Commands</h3>
-<p>These are &quot;section 8&quot; commands, and <strong><em>may</em></strong> require special privileges such as <code>sudo</code> to run, depending on the system. Yes, some systems restrict the use of <code>ping</code>!</p>
+<p>Most of these are &quot;section 8&quot; commands, and <strong><em>may</em></strong> require special privileges such as <code>sudo</code> to run, depending on the system. Yes, some systems restrict the use of <code>ping</code>!</p>
 <ul>
 <li><p><a href="http://linux.die.net/man/8/apt-get"><strong><code>apt-get</code></strong></a> - package manager for Debian flavors. </p></li>
 <li><p><a href="http://linux.die.net/man/8/aptitude"><strong><code>aptitude</code></strong></a> - package manager for Debian flavors. </p></li>
 <li><p><a href="http://linux.die.net/man/8/cron"><strong><code>cron</code></strong></a> - system for running &quot;scheduled tasks.&quot; </p></li>
 <li><p><a href="http://linux.die.net/man/8/dmesg"><strong><code>dmesg</code></strong></a> - display kernel log messages. </p></li>
 <li><p><a href="http://linux.die.net/man/8/ifconfig"><strong><code>ifconfig</code></strong></a> - display network (interface) configuration. </p></li>
+<li><p><a href="http://linux.die.net/man/1/kill"><strong><code>kill</code></strong></a> - terminate a process. </p></li>
 <li><p><a href="http://linux.die.net/man/8/mount"><strong><code>mount</code></strong></a> - mount a file system to a specific location. </p></li>
+<li><p><a href="https://www.archlinux.org/pacman/pacman.8.html"><strong><code>pacman</code></strong></a> - package manager for Arch Linux. <a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a> </p></li>
 <li><p><a href="http://linux.die.net/man/1/passwd"><strong><code>passwd</code></strong></a> - change password. </p></li>
 <li><p><a href="http://linux.die.net/man/8/ping"><strong><code>ping</code></strong></a> - test for network connectivity to an IP address. </p></li>
 <li><p><a href="http://linux.die.net/man/8/reboot"><strong><code>reboot</code></strong></a> - restart the system. </p></li>
-<li><p><a href="http://linux.die.net/man/8/rpm"><strong><code>rpm</code></strong></a> - package manager for Fedora flavors. </p></li>
+<li><p><a href="http://linux.die.net/man/8/rpm"><strong><code>rpm</code></strong></a> - package manager for Fedora flavors.   </p></li>
 <li><p><a href="http://linux.die.net/man/8/shutdown"><strong><code>shutdown</code></strong></a> - shutdown or restart the system. </p></li>
 <li><p><a href="http://linux.die.net/man/8/sudo"><strong><code>sudo</code></strong></a> - execute a command with elevated privileges. </p></li>
 <li><p><a href="http://linux.die.net/man/8/traceroute"><strong><code>traceroute</code></strong></a> - trace the route to an IP address. </p></li>
+<li><p><a href="https://www.centos.org/docs/4/html/yum/"><strong><code>yum</code></strong></a> - package manager for CentOS, originally created for Yellow Dog Linux (&quot;Yellow dog Updater, Modified&quot;).   </p></li>
 </ul>
 <h2 id="examples" class="unnumbered">Examples</h2>
 <p>The following are meant to be simple, mostly &quot;one-liner&quot; type samples to reinforce the concepts here and continue to show you &quot;the UNIX philosophy&quot; of approaching solutions in multiple small steps.</p>
@@ -3208,6 +3228,7 @@ xfreerdp --version</code></pre>
 <ol>
 <li id="fn1"><p>Stereotype intentional.<a href="#fnref1">↩</a></p></li>
 <li id="fn2"><p>In fact, <code>find</code> is one of the main reasons I use Cygwin on Windows.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Not to be confused with the game. <a href="http://linux.die.net/man/1/pacman" class="uri">http://linux.die.net/man/1/pacman</a><a href="#fnref3">↩</a></p></li>
 </ol>
 </section>
 </body>

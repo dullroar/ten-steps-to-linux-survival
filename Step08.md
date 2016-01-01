@@ -57,7 +57,7 @@ use `ps -AH`:
 You can *kill* a process using the [`kill`](http://linux.die.net/man/1/kill) command, which takes a
 process id and optionally a "signal"\index{signals}. Here is an example looking for any running
 instance of `vi` and sending it a `kill` command:
-\drcmd{kill}
+\drsys{kill}{terminate process}
 
 \drcap{Hunting down and killing \texttt{vi} sessions}
 ```bash
@@ -83,7 +83,7 @@ anything else containing the string `vi`, too).
 * **`` `cut -f2 -d" "` ``** - execute the [`cut`](http://linux.die.net/man/1/cut) command and take
 the second space-delimited field (in this case the process id - the first "field" is just leading
 spaces), and place the results of the command execution as the parameter to the `kill` command.
-\drcmd{cut}
+\drtxt{cut}
 
 To monitor the ongoing CPU, memory and other resource utilization of the *top* processes, you use
 the [`top`](http://linux.die.net/man/1/top) command, which unlike most in this book updates

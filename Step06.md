@@ -476,7 +476,7 @@ beginning and ending lines in a large range is a pain. It is much easier to just
 Sometimes in `vi` it would be great to run the contents of the file through an external command
 (`sort` is a favorite) without saving and exiting the file, sorting it, and then re-editing it. We
 can do that with `!`, which works a lot like the "substitute" (change) command.
-\drcmd{sort}
+\drtxt{sort}
 \drvic{"!}{invoke external command}
 \index{*@\texttt{"!} (\texttt{vi} invoke external command)}
 
@@ -496,7 +496,7 @@ To sort a marked range:
 
 Another handy command to check out for this kind of thing, especially for formatting written text,
 is the [`fmt`](http://linux.die.net/man/1/fmt) command.
-\drcmd{fmt}
+\drtxt{fmt}
 
 ## The Unseen World{.unnumbered}
 

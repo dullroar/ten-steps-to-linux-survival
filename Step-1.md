@@ -283,7 +283,7 @@ intentional. While most modern "UNIX" systems and terminal windows like `ssh` ca
 geometry, there are still systems and situations where you get the same terminal size that your
 grandfather would've used. It is best to learn how to deal with these by using `less`, redirection
 and the like.
-\drcmd{less}
+\drtxt{less}
 \drnet{ssh}
 \index{files and directories!paginate!less@\texttt{less} command}
 \index{pagination!\texttt{less} command}

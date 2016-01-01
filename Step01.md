@@ -96,7 +96,7 @@ isn't working, you may not be working in a shell that is going to act like a "`s
 general***, `sh`, `ash`, `bash`, `dash` and `ksh` all act similarly enough that you don't care, but
 sometimes you may have to care. Knowing if you are on a `csh` variant or even something more
 esoteric can be key.
-\drcmd{echo}
+\drtxt{echo}
 \drshl{csh}
 
 Pay attention to the first line in script files, which will typically have a
@@ -153,7 +153,7 @@ years as Microsoft has added more commands, PowerShell, POSIX subsystems, etc.
 But even so, there are some similarities between `CMD.EXE` and a Linux shell like `bash`. In both
 `bash` and `CMD.EXE` the [`set`](http://linux.die.net/man/1/set) command shows you all environment
 variables that have been set. Here's `bash`:
-\drcmd{set}
+\drcmd{set}{set shell options}
 \drshl{bash}
 \drshl{CMD.EXE}
 \index{environment variables!displaying!setcommand@\texttt{set} command}
@@ -218,7 +218,7 @@ PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 
 Similarly, the [`echo`](http://linux.die.net/man/1/echo) command can be used to show you the
 contents of an environment variable like `HOME` on `bash`:
-\drcmd{echo}
+\drtxt{echo}
 \drenv{HOME}{current user's home directory}
 \index{environment variables!displaying!echocommand@\texttt{echo} command}
 
@@ -317,7 +317,7 @@ myuser
 
 The second is with a command with one of the best names, ever -
 [`whoami`](http://linux.die.net/man/1/whoami):
-\drcmd{whoami}
+\drcmd{whoami}{existential question}
 
 \drcap{\texttt{whoami} command}
 ```bash

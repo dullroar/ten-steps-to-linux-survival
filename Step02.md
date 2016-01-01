@@ -146,7 +146,7 @@ The older style parameters are typically preceded by a single hyphen or "switch"
 
 Some commands support parameters with no "switch" character at all, as with `xvf` (e***X***tract,
 ***V***erbose, input ***F***ile name) in the following `tar` example:
-\drcmd{tar}
+\drcmd{tar}{archive files}
 
 \drcap{Alternate short parameter syntax}
 ```bash
@@ -167,7 +167,7 @@ scripts as self-documenting code.
 
 If we suspect the file is a text file, we can echo it to the console with the
 [`cat`](http://linux.die.net/man/1/cat) (*concatenate*) command:
-\drcmd{cat}
+\drtxt{cat}
 \index{files and directories!display (\texttt{cat} command)}
 
 \drcap{\texttt{cat} command}
@@ -207,11 +207,11 @@ In this example when we `cat installrdp` we can determine it is a `bash` shell s
 \drpkg{apt-get}
 
 2. **`git clone`** - cloning package from [GitHub](http://github.com).
-\drcmd{git}
+\drcmd{git}{distributed version control}
 
 3. **`cmake`** and **`make`** - configuring and building software from source.
-\drcmd{cmake}
-\drcmd{make}
+\drcmd{cmake}{configure makefiles}
+\drcmd{make}{build by recipes}
 
 A better way to display a longer file is to use the
 [`less`](http://linux.die.net/man/1/less)
@@ -219,8 +219,8 @@ A better way to display a longer file is to use the
 command (which is a derivative of the original [`more`](http://linux.die.net/man/1/more), hence the
 name). `less` is a paginator, where the `Space`, `Page Down` or down arrow keys scroll down and the
 `Page Up` or up arrow keys scrolls up. `Q` quits.
-\drcmd{less}
-\drcmd{more}
+\drtxt{less}
+\drtxt{more}
 \index{files and directories!paginate!less@\texttt{less} command}
 \index{files and directories!paginate!more@\texttt{more} command}
 \index{pagination!\texttt{less} command}
@@ -233,7 +233,7 @@ too. In general `less` is a great lightweight way to motor around in a text file
 We can also look at just the end or *tail* of a file (often the most interesting when looking at
 log files and troubleshooting a current problem) with the [`tail`](http://linux.die.net/man/1/tail)
 command. The next example shows the last 10 lines of the kernel `dmesg` log:
-\drcmd{tail}
+\drtxt{tail}
 \index{files and directories!display (\texttt{tail} command)}
 \index{files and directories!special!varlogdmesg@\texttt{/var/log/dmesg}}
 \index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)}
@@ -325,7 +325,7 @@ perfectly valid. Hence the utility of the `file` command.
 
 Let's say we have three files, and want to display the contents of one of them. We know we can do
 that with `cat`:
-\drcmd{cat}
+\drtxt{cat}
 
 \drcap{Show contents of one file}
 ```bash
@@ -363,7 +363,8 @@ Tractor tires   2000
 
 The [`sort`](http://linux.die.net/man/1/sort) command to the rescue! We will see that the `sort`
 command can be used to not just *sort* files, but also to merge them and remove duplicates.
-\drcmd{sort}\index{sorting!\texttt{sort} command}
+\drtxt{sort}
+\index{sorting!\texttt{sort} command}
 
 \drcap{\texttt{sort} command}
 ```bash
@@ -859,8 +860,7 @@ linked files (those that start with an `l` instead of a `-` in the detailed list
 
 To *change* the *owning* user of a file or directory (assuming you have permissions to do so), use
 the [`chown`](http://linux.die.net/man/1/chown) command:
-\drcmd{chown}
-\index{files and directories!permissions!\texttt{chown} command}
+\drprm{chown}
 
 \drcap{Change file ownership}
 ```bash
@@ -874,8 +874,7 @@ total 4
 ```
 
 To *change* the primary *group*, use the [`chgrp`](http://linux.die.net/man/1/chgrp) command:
-\drcmd{chgrp}
-\index{files and directories!permissions!\texttt{chgrp} command}
+\drprm{chgrp}
 
 \drcap{\texttt{chgrp} command}
 ```bash
@@ -890,8 +889,7 @@ To *change* the various permissions or *mode* bits, you use the
 "other," respectively. It also uses mnemonics of "rwx" for read, write and execute, and `+` to add
 a permission and `-` to remove it. For example, to add the execute permission for the group and
 remove read permission for "other":
-\drcmd{chmod}
-\index{files and directories!permissions!\texttt{chmod} command}
+\drprm{chmod}
 
 \drcap{\texttt{chmod} command}
 ```bash
@@ -1013,7 +1011,7 @@ However, the "native" way to "archive" a directory's contents in "UNIX" is with
 [`tar`](http://linux.die.net/man/1/tar), which is so old that `tar` stands for "tape archive." Its
 purpose is to take virtually any directory structure and create a single output "stream" or file of
 it. That is then typically ran through a compression command and the result is called a "tarball":
-\drcmd{tar}
+\drcmd{tar}{archive files}
 
 \drcap{Creating a tarball}
 ```bash
@@ -1387,4 +1385,4 @@ backup file or version control system to compare against.
 
 `diff` is your friend. It really comes into play with a version control system like
 [`git`](http://linux.die.net/man/1/git), but again, that is beyond the scope of this book.
-\drcmd{git}
+\drcmd{git}{distributed version control}

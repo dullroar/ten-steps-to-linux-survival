@@ -248,7 +248,7 @@ it paid to pre-filter the results with `find` before handing them to `grep`.
 ## Gawking at `awk`{.unnumbered}
 
 I don't have much to say about [`awk`](http://linux.die.net/man/1/awk) other than:
-\drcmd{awk}
+\drscr{awk}
 
 1. It is named after its three authors, [Aho, Weinberger and
 Kernighan](https://en.wikipedia.org/wiki/AWK), all three of whom are computer science greats from

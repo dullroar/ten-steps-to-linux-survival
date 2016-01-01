@@ -55,7 +55,7 @@ DESCRIPTION
 **Note:** `man` uses `less` as a paginator, with all that means, including the same navigation and
 search keys, and most important to remember - `Q` to quit. How do I know this? Because of course
 you can `man man`!
-\drcmd{less}
+\drtxt{less}
 \drdoc{man}
 \index{files and directories!paginate!less@\texttt{less} command}
 \index{pagination!\texttt{less} command}

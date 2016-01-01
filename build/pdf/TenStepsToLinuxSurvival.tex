@@ -149,8 +149,10 @@
     \index{operating systems!BSD}
 }
 \DeclareRobustCommand{\drcap}[1]{\begin{figure}[H]\caption{#1}\end{figure}}
-\DeclareRobustCommand{\drcmd}[1]{
-    \index{commands!#1@\texttt{#1}}
+\DeclareRobustCommand{\drcmd}[2]{
+    \index{#1@\texttt{#1} (#2 command)}
+    \index{#2 (\texttt{#1} command)}
+    \index{commands!#1@\texttt{#1} (#2)}
 }
 \DeclareRobustCommand{\drcom}[1]{
     \index{#1@\texttt{#1} (compression command)}
@@ -193,6 +195,17 @@
     \index{commands!#1@\texttt{#1} (package management)}
     \index{package management!#1@\texttt{#1}}
 }
+\DeclareRobustCommand{\drprm}[1]{
+    \index{#1@\texttt{#1} (file permissions)}
+    \index{commands!#1@\texttt{#1} (file permissions)}
+    \index{files and directories!permissions!\texttt{#1} command}
+    \index{file permissions!#1@\texttt{#1}}
+}
+\DeclareRobustCommand{\drscr}[1]{
+    \index{#1@\texttt{#1} (scripting)}
+    \index{commands!#1@\texttt{#1} (scripting)}
+    \index{scripting!#1@\texttt{#1}}
+}
 \DeclareRobustCommand{\drshl}[1]{
     \index{#1 (shell)}
     \index{shells!#1}
@@ -206,6 +219,11 @@
     \index{#1@\texttt{#1} (#2 command)}
     \index{commands!#1@\texttt{#1} (#2)}
     \index{system commands!#2 (\texttt{#1} command)}
+}
+\DeclareRobustCommand{\drtxt}[1]{
+    \index{#1@\texttt{#1} (text processing)}
+    \index{commands!#1@\texttt{#1} (text processing)}
+    \index{text processing!#1@\texttt{#1}}
 }
 \DeclareRobustCommand{\drunx}[1]{
     \index{#1 (UNIX-like environment)}
@@ -618,7 +636,7 @@ characters. This is intentional. While most modern "UNIX" systems and
 terminal windows like \texttt{ssh} can handle any geometry, there are
 still systems and situations where you get the same terminal size that
 your grandfather would've used. It is best to learn how to deal with
-these by using \texttt{less}, redirection and the like. \drcmd{less}
+these by using \texttt{less}, redirection and the like. \drtxt{less}
 \drnet{ssh}
 \index{files and directories!paginate!less@\texttt{less} command}
 \index{pagination!\texttt{less} command}
@@ -1092,7 +1110,7 @@ a shell that is going to act like a "\texttt{sh}" shell.
 \texttt{dash} and \texttt{ksh} all act similarly enough that you don't
 care, but sometimes you may have to care. Knowing if you are on a
 \texttt{csh} variant or even something more esoteric can be key.
-\drcmd{echo} \drshl{csh}
+\drtxt{echo} \drshl{csh}
 
 Pay attention to the first line in script files, which will typically
 have a
@@ -1167,7 +1185,8 @@ But even so, there are some similarities between \texttt{CMD.EXE} and a
 Linux shell like \texttt{bash}. In both \texttt{bash} and
 \texttt{CMD.EXE} the \href{http://linux.die.net/man/1/set}{\texttt{set}}
 command shows you all environment variables that have been set. Here's
-\texttt{bash}: \drcmd{set} \drshl{bash} \drshl{CMD.EXE}
+\texttt{bash}: \drcmd{set}{set shell options} \drshl{bash}
+\drshl{CMD.EXE}
 \index{environment variables!displaying!setcommand@\texttt{set} command}
 
 \drcap{\texttt{set} command in \texttt{bash}}
@@ -1236,7 +1255,7 @@ And \texttt{CMD.EXE}:
 
 Similarly, the \href{http://linux.die.net/man/1/echo}{\texttt{echo}}
 command can be used to show you the contents of an environment variable
-like \texttt{HOME} on \texttt{bash}: \drcmd{echo}
+like \texttt{HOME} on \texttt{bash}: \drtxt{echo}
 \drenv{HOME}{current user's home directory}
 \index{environment variables!displaying!echocommand@\texttt{echo} command}
 
@@ -1377,7 +1396,7 @@ variable: \drenv{USER}{current user}
 
 The second is with a command with one of the best names, ever -
 \href{http://linux.die.net/man/1/whoami}{\texttt{whoami}}:
-\drcmd{whoami}
+\drcmd{whoami}{existential question}
 
 \drcap{\texttt{whoami} command}
 
@@ -1778,7 +1797,7 @@ The older style parameters are typically preceded by a single hyphen or
 Some commands support parameters with no "switch" character at all, as
 with \texttt{xvf} (e\textbf{\emph{X}}tract, \textbf{\emph{V}}erbose,
 input \textbf{\emph{F}}ile name) in the following \texttt{tar} example:
-\drcmd{tar}
+\drcmd{tar}{archive files}
 
 \drcap{Alternate short parameter syntax}
 
@@ -1807,7 +1826,7 @@ to use the GNU-style parameters in scripts as self-documenting code.
 
 If we suspect the file is a text file, we can echo it to the console
 with the \href{http://linux.die.net/man/1/cat}{\texttt{cat}}
-(\emph{concatenate}) command: \drcmd{cat}
+(\emph{concatenate}) command: \drtxt{cat}
 \index{files and directories!display (\texttt{cat} command)}
 
 \drcap{\texttt{cat} command}
@@ -1853,10 +1872,12 @@ system: \drnet{xfreerdp} \index{*@\texttt{\#"!} (shebang)}
   \drpkg{apt-get}
 \item
   \textbf{\texttt{git\ clone}} - cloning package from
-  \href{http://github.com}{GitHub}. \drcmd{git}
+  \href{http://github.com}{GitHub}.
+  \drcmd{git}{distributed version control}
 \item
   \textbf{\texttt{cmake}} and \textbf{\texttt{make}} - configuring and
-  building software from source. \drcmd{cmake} \drcmd{make}
+  building software from source. \drcmd{cmake}{configure makefiles}
+  \drcmd{make}{build by recipes}
 \end{enumerate}
 
 A better way to display a longer file is to use the
@@ -1867,7 +1888,7 @@ command (which is a derivative of the original
 \texttt{less} is a paginator, where the \texttt{Space},
 \texttt{Page\ Down} or down arrow keys scroll down and the
 \texttt{Page\ Up} or up arrow keys scrolls up. \texttt{Q} quits.
-\drcmd{less} \drcmd{more}
+\drtxt{less} \drtxt{more}
 \index{files and directories!paginate!less@\texttt{less} command}
 \index{files and directories!paginate!more@\texttt{more} command}
 \index{pagination!\texttt{less} command}
@@ -1883,7 +1904,7 @@ We can also look at just the end or \emph{tail} of a file (often the
 most interesting when looking at log files and troubleshooting a current
 problem) with the \href{http://linux.die.net/man/1/tail}{\texttt{tail}}
 command. The next example shows the last 10 lines of the kernel
-\texttt{dmesg} log: \drcmd{tail}
+\texttt{dmesg} log: \drtxt{tail}
 \index{files and directories!display (\texttt{tail} command)}
 \index{files and directories!special!varlogdmesg@\texttt{/var/log/dmesg}}
 \index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)}
@@ -1991,7 +2012,7 @@ Hence the utility of the \texttt{file} command.
 \addcontentsline{toc}{section}{Sorting Things Out}
 
 Let's say we have three files, and want to display the contents of one
-of them. We know we can do that with \texttt{cat}: \drcmd{cat}
+of them. We know we can do that with \texttt{cat}: \drtxt{cat}
 
 \drcap{Show contents of one file}
 
@@ -2037,7 +2058,7 @@ file contents.
 The \href{http://linux.die.net/man/1/sort}{\texttt{sort}} command to the
 rescue! We will see that the \texttt{sort} command can be used to not
 just \emph{sort} files, but also to merge them and remove duplicates.
-\drcmd{sort}\index{sorting!\texttt{sort} command}
+\drtxt{sort} \index{sorting!\texttt{sort} command}
 
 \drcap{\texttt{sort} command}
 
@@ -2666,8 +2687,7 @@ of a \texttt{-} in the detailed listing above).
 To \emph{change} the \emph{owning} user of a file or directory (assuming
 you have permissions to do so), use the
 \href{http://linux.die.net/man/1/chown}{\texttt{chown}} command:
-\drcmd{chown}
-\index{files and directories!permissions!\texttt{chown} command}
+\drprm{chown}
 
 \drcap{Change file ownership}
 
@@ -2685,8 +2705,7 @@ you have permissions to do so), use the
 
 To \emph{change} the primary \emph{group}, use the
 \href{http://linux.die.net/man/1/chgrp}{\texttt{chgrp}} command:
-\drcmd{chgrp}
-\index{files and directories!permissions!\texttt{chgrp} command}
+\drprm{chgrp}
 
 \drcap{\texttt{chgrp} command}
 
@@ -2705,8 +2724,7 @@ uses mnemonics of "ugo" for user, group and "other," respectively. It
 also uses mnemonics of "rwx" for read, write and execute, and \texttt{+}
 to add a permission and \texttt{-} to remove it. For example, to add the
 execute permission for the group and remove read permission for "other":
-\drcmd{chmod}
-\index{files and directories!permissions!\texttt{chmod} command}
+\drprm{chmod}
 
 \drcap{\texttt{chmod} command}
 
@@ -2873,7 +2891,7 @@ is with \href{http://linux.die.net/man/1/tar}{\texttt{tar}}, which is so
 old that \texttt{tar} stands for "tape archive." Its purpose is to take
 virtually any directory structure and create a single output "stream" or
 file of it. That is then typically ran through a compression command and
-the result is called a "tarball": \drcmd{tar}
+the result is called a "tarball": \drcmd{tar}{archive files}
 
 \drcap{Creating a tarball}
 
@@ -3334,7 +3352,8 @@ compare against.
 
 \texttt{diff} is your friend. It really comes into play with a version
 control system like \href{http://linux.die.net/man/1/git}{\texttt{git}},
-but again, that is beyond the scope of this book. \drcmd{git}
+but again, that is beyond the scope of this book.
+\drcmd{git}{distributed version control}
 
 \hypertarget{finding-meaning}{\chapter{Finding
 Meaning}\label{finding-meaning}}
@@ -3970,7 +3989,7 @@ pre-filter the results with \texttt{find} before handing them to
 
 I don't have much to say about
 \href{http://linux.die.net/man/1/awk}{\texttt{awk}} other than:
-\drcmd{awk}
+\drscr{awk}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -4064,14 +4083,15 @@ When a program written in C calls \texttt{printf}, it is writing to
 \emph{stdout}. When a \texttt{bash} script calls \texttt{echo}, it too
 is writing to \emph{stdout}. When a command writes an error message, it
 is writing to \emph{stderr}. If a command or program accepts input from
-the console, it is reading from \emph{stdin}. \drcmd{echo}
+the console, it is reading from \emph{stdin}. \drtxt{echo}
+\drstd{stdout}
 
 In this example, \texttt{cat} is started with no file name, so it will
 read from \emph{stdin} (a quite common "UNIX" command convention), and
 echo each line typed by the user to \emph{stdout} until the "end of
 file, which in an interactive session can be emulated with
 \texttt{Ctrl-D}, shown as \texttt{\^{}D} in the example below but not
-seen on the console in real life: \drcmd{cat}
+seen on the console in real life: \drtxt{cat}
 
 \drcap{\textit{stdin} and \textit{stdout}}
 
@@ -4321,10 +4341,10 @@ several small programs, each doing one thing. In this case:
   (replaces) any backslash characters (here "escaped" as
   \texttt{\textquotesingle{}\textbackslash{}\textbackslash{}\textquotesingle{}}
   because the backslash character is a special character) to forward
-  slashes (\texttt{/}) before sending it into... \drcmd{tr}
+  slashes (\texttt{/}) before sending it into... \drtxt{tr}
 \item
   A \texttt{while} loop that reads each line into a variable called
-  \texttt{\$line} and then calls... \drcmd{while}
+  \texttt{\$line} and then calls... \drscr{while}
 \item
   Some custom script or program called \texttt{./mycmd} passing in the
   value of each \texttt{\$line}.
@@ -4352,7 +4372,7 @@ could start and read in that file as input.
 Finally, if you want to capture something to a file \textbf{\emph{and}}
 see it on the console at the same time, that is where the
 \href{http://linux.die.net/man/1/tee}{\texttt{tee}} command comes in:
-\drcmd{tee}
+\drtxt{tee}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -4987,7 +5007,7 @@ Sometimes in \texttt{vi} it would be great to run the contents of the
 file through an external command (\texttt{sort} is a favorite) without
 saving and exiting the file, sorting it, and then re-editing it. We can
 do that with \texttt{!}, which works a lot like the "substitute"
-(change) command. \drcmd{sort} \drvic{"!}{invoke external command}
+(change) command. \drtxt{sort} \drvic{"!}{invoke external command}
 \index{*@\texttt{"!} (\texttt{vi} invoke external command)}
 
 To sort the whole file in place:
@@ -5012,7 +5032,7 @@ To sort a marked range:
 
 Another handy command to check out for this kind of thing, especially
 for formatting written text, is the
-\href{http://linux.die.net/man/1/fmt}{\texttt{fmt}} command. \drcmd{fmt}
+\href{http://linux.die.net/man/1/fmt}{\texttt{fmt}} command. \drtxt{fmt}
 
 \section*{The Unseen World}\label{the-unseen-world}
 \addcontentsline{toc}{section}{The Unseen World}
@@ -5322,7 +5342,7 @@ distros today rely on the
 a way for a normal user to signal they want to escalate their privileges
 temporarily, presuming they are allowed to do so, which is usually
 indicated by being a member of the \texttt{sudo} group or similar.
-\drcmd{sudo}
+\drsys{sudo}{execute as another user}
 
 In a sense, \texttt{sudo} is similar to Windows User Access Control
 (UAC) prompts. They ensure a human is in control, in the case of
@@ -5430,7 +5450,7 @@ HTTP(S) and FTP, but \texttt{curl} supports even more protocols and
 options and tends to be the simplest to just "grab a file and go." You
 see both used often in install scripts that download bits from the
 internet and then execute them by piping them to \texttt{bash}:
-\drcmd{bash} \drnet{curl} \drnet{wget}
+\drscr{bash} \drnet{curl} \drnet{wget}
 
 \drcap{\texttt{wget} in an install script}
 
@@ -5764,7 +5784,7 @@ You can \emph{kill} a process using the
 \href{http://linux.die.net/man/1/kill}{\texttt{kill}} command, which
 takes a process id and optionally a "signal"\index{signals}. Here is an
 example looking for any running instance of \texttt{vi} and sending it a
-\texttt{kill} command: \drcmd{kill}
+\texttt{kill} command: \drsys{kill}{terminate process}
 
 \drcap{Hunting down and killing \texttt{vi} sessions}
 
@@ -5798,7 +5818,7 @@ That's:
   the second space-delimited field (in this case the process id - the
   first "field" is just leading spaces), and place the results of the
   command execution as the parameter to the \texttt{kill} command.
-  \drcmd{cut}
+  \drtxt{cut}
 \end{itemize}
 
 To monitor the ongoing CPU, memory and other resource utilization of the
@@ -6156,7 +6176,7 @@ shows:
 \textbf{Note:} \texttt{man} uses \texttt{less} as a paginator, with all
 that means, including the same navigation and search keys, and most
 important to remember - \texttt{Q} to quit. How do I know this? Because
-of course you can \texttt{man\ man}! \drcmd{less} \drdoc{man}
+of course you can \texttt{man\ man}! \drtxt{less} \drdoc{man}
 \index{files and directories!paginate!less@\texttt{less} command}
 \index{pagination!\texttt{less} command}
 
@@ -6796,7 +6816,7 @@ directory is going to be called? \drenv{PATH}{execution search path}
 
 Luckily we have the
 \href{http://linux.die.net/man/1/which}{\texttt{which}} command for just
-that! \drcmd{which}
+that! \drcmd{which}{find program}
 
 \drcap{\texttt{which} command}
 
@@ -7175,11 +7195,11 @@ the "or", and the whole expression returns \texttt{0}.
 \href{http://linux.die.net/man/1/true}{\texttt{true}} command whose
 purpose is to "do nothing, successfully." All it does is return a
 \texttt{0} (success) exit code. This can be useful in scripting and also
-sometimes when building "and" and "or" clauses like above. \drcmd{true}
+sometimes when building "and" and "or" clauses like above. \drscr{true}
 
 And yes, of course, that means there is also a
 \href{http://linux.die.net/man/1/false}{\texttt{false}} command to "do
-nothing, unsuccessfully!" \drcmd{false}
+nothing, unsuccessfully!" \drscr{false}
 
 \drcap{\texttt{true} and \texttt{false} commands}
 
@@ -7347,31 +7367,34 @@ access files and the like.
   search for help on commands by pattern. \drdoc{apropos}
 \item
   \href{http://linux.die.net/man/1/awk}{\textbf{\texttt{awk}}} -
-  language for processing streams of data. \drcmd{awk}
+  language for processing streams of data. \drscr{awk}
 \item
   \href{http://linux.die.net/man/1/bash}{\textbf{\texttt{bash}}} - the
-  Bourne-again shell. \drcmd{bash}
+  Bourne-again shell. \drscr{bash}
 \item
   \href{http://linux.die.net/man/1/bzip2}{\textbf{\texttt{bzip2}}} -
   compress and uncompress files using the \texttt{bzip2} algorithm.
   \drcom{bzip2}
 \item
   \href{http://linux.die.net/man/1/cat}{\textbf{\texttt{cat}}} -
-  concatenate the input files to \emph{stdout}. \drcmd{cat}
+  concatenate the input files to \emph{stdout}. \drtxt{cat}
   \drstd{stdout}
 \item
   \href{http://linux.die.net/man/1/cd}{\textbf{\texttt{cd}}} - change
   the current directory. \drfnd{cd}{change directory}
 \item
   \href{http://linux.die.net/man/1/chgrp}{\textbf{\texttt{chgrp}}} -
-  change the primary group of a file or directory. \drcmd{chgrp}
+  change the primary group of a file or directory. \drprm{chgrp}
 \item
   \href{http://linux.die.net/man/1/chmod}{\textbf{\texttt{chmod}}} -
   change the permissions (mode bits) of a file or directory.
-  \drcmd{chmod}
+  \drprm{chmod}
 \item
   \href{http://linux.die.net/man/1/chown}{\textbf{\texttt{chown}}} -
-  change the owner of a file or directory. \drcmd{chown}
+  change the owner of a file or directory. \drprm{chown}
+\item
+  \href{http://linux.die.net/man/1/cmake}{\textbf{\texttt{cmake}}} -
+  configure makefiles. \drcmd{cmake}{configure makefiles}
 \item
   \href{http://linux.die.net/man/1/cp}{\textbf{\texttt{cp}}} - copy
   files or directories. \drfnd{cp}{copy}
@@ -7382,6 +7405,9 @@ access files and the like.
 \item
   \href{http://linux.die.net/man/1/curl}{\textbf{\texttt{curl}}} -
   download files from the internet. \drnet{curl}
+\item
+  \href{http://linux.die.net/man/1/cut}{\textbf{\texttt{cut}}} - remove
+  (cut) sections from lines. \drtxt{cut}
 \item
   \href{http://linux.die.net/man/1/df}{\textbf{\texttt{df}}} - show
   space utilization by file system.
@@ -7398,14 +7424,17 @@ access files and the like.
   package manager for Debian flavors. \drpkg{dpkg}
 \item
   \href{http://linux.die.net/man/1/echo}{\textbf{\texttt{echo}}} -
-  display passed parameters to \emph{stdout}. \drcmd{echo}
+  display passed parameters to \emph{stdout}. \drtxt{echo}
   \drstd{stdout}
+\item
+  \href{http://linux.die.net/man/1/emacs}{\textbf{\texttt{emacs}}} -
+  great operating system, but it could use an editor. \dreds{emacs}
 \item
   \href{http://linux.die.net/man/1/email}{\textbf{\texttt{email}}} -
   send email. \drnet{email}
 \item
   \href{http://linux.die.net/man/1/false}{\textbf{\texttt{false}}} - do
-  nothing, unsuccessfully. \drcmd{false}
+  nothing, unsuccessfully. \drscr{false}
 \item
   \href{http://linux.die.net/man/1/file}{\textbf{\texttt{file}}} - give
   best guess as to type of file. \drfnd{file}{detect file type}
@@ -7414,19 +7443,31 @@ access files and the like.
   files based on various conditions and execute actions against the
   results. \drfnd{find}{find files}
 \item
+  \href{http://linux.die.net/man/1/fmt}{\textbf{\texttt{fmt}}} - simple
+  text formatter. \drtxt{fmt}
+\item
   \href{http://linux.die.net/man/1/grep}{\textbf{\texttt{grep}}} -
   search for a pattern (regular expression) in files.
   \drfnd{grep}{search files}
 \item
+  \href{http://linux.die.net/man/1/gzip}{\textbf{\texttt{gzip}}} -
+  compression program. \drcom{gzip}
+\item
   \href{http://linux.die.net/man/1/help}{\textbf{\texttt{help}}} - help
   for built-in commands in \texttt{bash}. \drdoc{help}
+\item
+  \href{http://linux.die.net/man/1/if}{\textbf{\texttt{if}}} -
+  conditionally execute a program. \drscr{if}
 \item
   \href{http://linux.die.net/man/1/info}{\textbf{\texttt{info}}} - an
   alternative for \texttt{man}, especially for GNU programs. Remember
   \texttt{q} quits. \drdoc{info}
 \item
+  \href{http://linux.die.net/man/1/latex}{\textbf{\texttt{latex}}} -
+  process LaTeX document markup. \drtxt{latex}
+\item
   \href{http://linux.die.net/man/1/less}{\textbf{\texttt{less}}} -
-  display the file one page at a time on \emph{stdout}. \drcmd{less}
+  display the file one page at a time on \emph{stdout}. \drtxt{less}
   \drstd{stdout}
   \index{files and directories!paginate!less@\texttt{less} command}
   \index{pagination!\texttt{less} command}
@@ -7443,6 +7484,10 @@ access files and the like.
   \href{http://linux.die.net/man/1/lynx}{\textbf{\texttt{lynx}}} -
   command line web browser. \drnet{lynx}
 \item
+  \href{http://linux.die.net/man/1/make}{\textbf{\texttt{make}}} - run
+  programs according to "recipes" in makefiles.
+  \drcmd{make}{build by recipes}
+\item
   \href{http://linux.die.net/man/1/man}{\textbf{\texttt{man}}} - display
   manual pages. Remember \texttt{q} quits. \drdoc{man}
 \item
@@ -7450,7 +7495,7 @@ access files and the like.
   make a new directory. \drfnd{mkdir}{make directory}
 \item
   \href{http://linux.die.net/man/1/more}{\textbf{\texttt{more}}} -
-  display the file one page at a time on \emph{stdout}. \drcmd{more}
+  display the file one page at a time on \emph{stdout}. \drtxt{more}
   \drstd{stdout}
   \index{files and directories!paginate!more@\texttt{more} command}
   \index{pagination!\texttt{more} command}
@@ -7460,6 +7505,20 @@ access files and the like.
 \item
   \href{http://linux.die.net/man/1/mv}{\textbf{\texttt{mv}}} - move
   files or directories. \drfnd{mv}{move files}
+\item
+  \href{http://linux.die.net/man/1/nano}{\textbf{\texttt{nano}}} -
+  small, intuitive text editor. \dreds{nano}
+\item
+  \href{http://pandoc.org/README.html}{\textbf{\texttt{pandoc}}} -
+  markup converter. The primary tool used to create this book in
+  multiple formats including PDF, EPUB, HTML and Markdown.
+  \drcmd{pandoc}{markup converter}
+\item
+  \href{http://linux.die.net/man/1/pdflatex}{\textbf{\texttt{pdflatex}}}
+  - create PDF files. \drcmd{pdflatex}{create PDF files}
+\item
+  \href{http://linux.die.net/man/1/pico}{\textbf{\texttt{pico}}} -
+  small, intuitive text editor. \dreds{pico}
 \item
   \href{http://linux.die.net/man/1/pine}{\textbf{\texttt{pine}}} - email
   client. \drnet{pine}
@@ -7483,24 +7542,25 @@ access files and the like.
 \item
   \href{http://linux.die.net/man/1/set}{\textbf{\texttt{set}}} - set an
   environment variable, or display all environment variables.
-  \drcmd{set}
+  \drcmd{set}{set shell options}
 \item
   \href{http://linux.die.net/man/1/sort}{\textbf{\texttt{sort}}} - sort
-  \emph{stdin} or a file to \emph{stdout}. \drcmd{sort} \drstd{stdin}
+  \emph{stdin} or a file to \emph{stdout}. \drtxt{sort} \drstd{stdin}
   \drstd{stdout}
 \item
   \href{http://linux.die.net/man/1/ssh}{\textbf{\texttt{ssh}}} - secure
   shell terminal progam and protocol. \drnet{ssh}
 \item
   \href{http://linux.die.net/man/1/tail}{\textbf{\texttt{tail}}} -
-  display the last lines of a file. \drcmd{tail}
+  display the last lines of a file. \drtxt{tail}
 \item
   \href{http://linux.die.net/man/1/tar}{\textbf{\texttt{tar}}} - "tape
   archive", a way to combine directories into a single flat file.
-  \drcmd{tar}
+  \drcmd{tar}{archive files}
 \item
-  \href{http://linux.die.net/man/1/tee}{\textbf{\texttt{tee}}}\drcmd{tee}
-  - write to a file and \emph{stdout} at the same time. \drstd{stdout}
+  \href{http://linux.die.net/man/1/tee}{\textbf{\texttt{tee}}} - write
+  to a file and \emph{stdout} at the same time. \drtxt{tee}
+  \drstd{stdout}
 \item
   \href{http://linux.die.net/man/1/telnet}{\textbf{\texttt{telnet}}} -
   ancient terminal program and protocol. \drnet{telnet}
@@ -7513,8 +7573,11 @@ access files and the like.
   create an empty file or change the last-modified time of an existing
   file. \drfnd{touch}{change modified date or create file}
 \item
+  \href{http://linux.die.net/man/1/tr}{\textbf{\texttt{tr}}} - translate
+  (map, convert) characters. \drtxt{tr}
+\item
   \href{http://linux.die.net/man/1/true}{\textbf{\texttt{true}}} - do
-  nothing, successfully. \drcmd{true}
+  nothing, successfully. \drscr{true}
 \item
   \href{http://linux.die.net/man/1/uname}{\textbf{\texttt{uname}}} -
   print system info. \drsys{uname}{system info}
@@ -7525,11 +7588,25 @@ access files and the like.
   \href{http://linux.die.net/man/1/vi}{\textbf{\texttt{vi}}} - "visual"
   editor, a file editor. \dreds{vi}
 \item
+  \href{http://linux.die.net/man/1/view}{\textbf{\texttt{view}}} -
+  read-only version of \texttt{vim}. \dreds{view}
+\item
+  \href{http://linux.die.net/man/1/vim}{\textbf{\texttt{vim}}} -
+  \texttt{vi} Improved, another implementation of \texttt{vi} allowing
+  more customization. \dreds{vim}
+\item
   \href{http://linux.die.net/man/1/wget}{\textbf{\texttt{wget}}} -
   download files from the internet. \drnet{wget}
 \item
+  \href{http://linux.die.net/man/1/which}{\textbf{\texttt{which}}} -
+  determine the path of a program. \drcmd{which}{find program}
+\item
+  \href{http://linux.die.net/man/1/while}{\textbf{\texttt{while}}} -
+  perform a command multiple times. \drscr{while}
+\item
   \href{http://linux.die.net/man/1/whoami}{\textbf{\texttt{whoami}}} -
-  the answer to life's most existential question. \drcmd{whoami}
+  the answer to life's most existential question.
+  \drcmd{whoami}{existential question}
 \item
   \href{http://linux.die.net/man/1/whois}{\textbf{\texttt{whois}}} -
   look up DNS ownership info on an address. \drnet{whois}
@@ -7544,9 +7621,9 @@ access files and the like.
 \subsection*{System Commands}\label{system-commands}
 \addcontentsline{toc}{subsection}{System Commands}
 
-These are "section 8" commands, and \textbf{\emph{may}} require special
-privileges such as \texttt{sudo} to run, depending on the system. Yes,
-some systems restrict the use of \texttt{ping}!
+Most of these are "section 8" commands, and \textbf{\emph{may}} require
+special privileges such as \texttt{sudo} to run, depending on the
+system. Yes, some systems restrict the use of \texttt{ping}!
 
 \begin{itemize}
 \item
@@ -7565,9 +7642,16 @@ some systems restrict the use of \texttt{ping}!
   \href{http://linux.die.net/man/8/ifconfig}{\textbf{\texttt{ifconfig}}}
   - display network (interface) configuration. \drnet{ifconfig}
 \item
+  \href{http://linux.die.net/man/1/kill}{\textbf{\texttt{kill}}} -
+  terminate a process. \drsys{kill}{terminate process}
+\item
   \href{http://linux.die.net/man/8/mount}{\textbf{\texttt{mount}}} -
   mount a file system to a specific location.
   \drsys{mount}{mount file system}
+\item
+  \href{https://www.archlinux.org/pacman/pacman.8.html}{\textbf{\texttt{pacman}}}
+  - package manager for Arch Linux. \footnote{Not to be confused with
+    the game. \url{http://linux.die.net/man/1/pacman}} \drpkg{pacman}
 \item
   \href{http://linux.die.net/man/1/passwd}{\textbf{\texttt{passwd}}} -
   change password. \drsys{passwd}{change password}
@@ -7579,17 +7663,23 @@ some systems restrict the use of \texttt{ping}!
   restart the system. \drsys{reboot}{reboot system}
 \item
   \href{http://linux.die.net/man/8/rpm}{\textbf{\texttt{rpm}}} - package
-  manager for Fedora flavors. \drpkg{rpm}
+  manager for Fedora flavors. \drdis{Fedora} \drdis{Red Hat} \drpkg{rpm}
 \item
   \href{http://linux.die.net/man/8/shutdown}{\textbf{\texttt{shutdown}}}
   - shutdown or restart the system.
   \drsys{shutdown}{shutdown or reboot system}
 \item
   \href{http://linux.die.net/man/8/sudo}{\textbf{\texttt{sudo}}} -
-  execute a command with elevated privileges. \drcmd{sudo}
+  execute a command with elevated privileges.
+  \drsys{sudo}{execute as another user}
 \item
   \href{http://linux.die.net/man/8/traceroute}{\textbf{\texttt{traceroute}}}
   - trace the route to an IP address. \drnet{traceroute}
+\item
+  \href{https://www.centos.org/docs/4/html/yum/}{\textbf{\texttt{yum}}}
+  - package manager for CentOS, originally created for Yellow Dog Linux
+  ("Yellow dog Updater, Modified"). \drdis{CentOS} \drdis{Yellow Dog}
+  \drpkg{yum}
 \end{itemize}
 
 \section*{Examples}\label{examples}
@@ -7688,7 +7778,7 @@ in a certain order are within scope, and the following, which installs
 example of simply taking the guesswork out of doing something repetitive
 across multiple machines. I keep this \texttt{installrdp} script in
 Dropbox so I can run it quickly and easily on any new machine I set up
-(once I get Dropbox set up on the machine!) \drcmd{if} \drnet{xfreerdp}
+(once I get Dropbox set up on the machine!) \drscr{if} \drnet{xfreerdp}
 
 \drcap{A simple install script}
 
@@ -7782,12 +7872,14 @@ Output produced using \href{http://pandoc.org/}{\texttt{pandoc}},
 on the
 \href{https://github.com/evangoer/pandoc-ebook-template}{@evangoer's
 pandoc ebook template} but long since modified so don't blame him.
-\drcmd{make} \drcmd{pandoc} \drcmd{pdflatex} \drcmd{texlive}
+\drcmd{make}{build by recipes} \drcmd{pandoc}{markup converter}
+\drcmd{pdflatex}{create PDF files} \drtxt{latex}
 
 Source code control is provided by
 \href{http://linux.die.net/man/1/git}{\texttt{git}}. You can view
 \href{https://github.com/dullroar/ten-steps-to-linux-survival}{the files
-used to create this book} on GitHub. \drcmd{git}
+used to create this book} on GitHub.
+\drcmd{git}{distributed version control}
 
 The fonts used are
 \href{https://en.wikipedia.org/wiki/DejaVu_fonts}{DejaVu} Serif for the
