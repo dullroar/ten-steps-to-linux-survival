@@ -2997,7 +2997,7 @@ You can browse the web from the command prompt using something like [`lynx`](htt
  H)elp O)ptions P)rint G)o M)ain screen Q)uit /=search [delete]=history list 
 ```
 
-There are two other commands that are used to pull down web resources and save them locally - [`curl`](http://linux.die.net/man/1/curl) and [`wget`](http://linux.die.net/man/1/wget) . Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and tends to be the simplest to just "grab a file and go." You see both used often in install scripts that download bits from the internet and then execute them by piping them to :
+There are two other commands that are used to pull down web resources and save them locally - [`curl`](http://linux.die.net/man/1/curl) and [`wget`](http://linux.die.net/man/1/wget). Both support HTTP(S) and FTP, but `curl` supports even more protocols and options and tends to be the simplest to just "grab a file and go." You see both used often in install scripts that download bits from the internet and then execute them by piping them to `bash`:
 
 ``` bash
 wget -O - http://foocorp.com/installs/install.sh | bash
@@ -3078,7 +3078,7 @@ Transfer-Encoding: chunked
 ...and so on...
 ```
 
-To get a modern, secure shell to a remote machine, use [`ssh`](http://linux.die.net/man/1/ssh) , passing in the userid and server like this:
+To get a modern, secure shell to a remote machine, use [`ssh`](http://linux.die.net/man/1/ssh), passing in the userid and server like this:
 
 ``` bash
 ssh myuser@remoteserver
@@ -3142,7 +3142,7 @@ lo        Link encap:Local Loopback
           RX bytes:6839306 (6.5 MiB)  TX bytes:6839306 (6.5 MiB)
 ```
 
-To see what DNS servers the system is using, you can look in `/etc/resolv.conf` :
+To see what DNS servers the system is using, you can look in `/etc/resolv.conf`:
 
 ``` bash
 # cat /etc/resolv.conf
@@ -3152,7 +3152,7 @@ nameserver 10.0.2.1
 nameserver 10.0.2.2
 ```
 
-And to see any local overrides of network names or aliases, look in `/etc/hosts` :
+And to see any local overrides of network names or aliases, look in `/etc/hosts`:
 
 ``` bash
 # cat /etc/hosts
@@ -3641,16 +3641,16 @@ And yes, you can `man man`, `man info`, `info info` and `info man`, for that mat
 How Do You Google, `man`?
 -------------------------
 
-You can often search the internet for "UNIX" documentation, and the `man` pages have long been online. A site I like (and link to a lot here) is <http://linux.die.net/man/> . Often, though, you can just google ["man ls"](https://www.google.com/#q=man+ls) and the top hits will be what you want.
+You can often search the internet for "UNIX" documentation, and the `man` pages have long been online. A site I like (and link to a lot here) is <http://linux.die.net/man/>. Often, though, you can just google ["man ls"](https://www.google.com/#q=man+ls) and the top hits will be what you want.
 
-***However***, there are times you need to be careful. Googling for either `man touch` or `man tail`, for example, will probably not give you the results you seek and may set off filters at work, so be careful out there and remember to bookmark a couple of actual `man` page sites so that you can go there directly and look up a command.
+***However***, there are times you need to be careful. Searching the internet for either `man touch` or `man tail`, for example, will probably not give you the results you seek and may set off filters at work, so be careful out there and remember to bookmark a couple of actual `man` page sites so that you can go there directly and look up a command.
 
 Books and Stuff
 ---------------
 
 There are several consistently high-quality free sources of information on various parts of Linux and related systems on the internet.
 
--   [**The Linux Documentation Project (LDP)**](http://www.tldp.org/guides.html) - has fallen a bit behind over the years, but still has two of the best `bash` scripting books out there, [*Bash Guide for Beginners*](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html) and [*Advanced Bash-Scripting Guide*](http://www.tldp.org/LDP/abs/html/index.html) . I continue to use the latter all the time.
+-   [**The Linux Documentation Project (LDP)**](http://www.tldp.org/guides.html) - has fallen a bit behind over the years, but still has two of the best `bash` scripting books out there, [*Bash Guide for Beginners*](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html) and [*Advanced Bash-Scripting Guide*](http://www.tldp.org/LDP/abs/html/index.html). I continue to use the latter all the time.
 
 -   [**Arch Linux Wiki**](https://wiki.archlinux.org/) - you may not think this would be useful if you are running Debian or Fedora or something else, but remember most "UNIX" systems are all very similar, and often the best documentation on a package or setting something up in Linux is in the Arch wiki.
 
@@ -4089,7 +4089,7 @@ foo
 0
 ```
 
-**Note:** There is actually a [`true`](http://linux.die.net/man/1/true) command whose purpose is to, "do nothing, successfully." All it does is return a `0` (success) exit code. This can be useful in scripting and also sometimes when building "and" and "or" clauses like above.
+**Note:** There is actually a [`true`](http://linux.die.net/man/1/true) command whose purpose is to "do nothing, successfully." All it does is return a `0` (success) exit code. This can be useful in scripting and also sometimes when building "and" and "or" clauses like above.
 
 And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false) command to "do nothing, unsuccessfully!"
 
@@ -4121,7 +4121,7 @@ This list outlines all the commands, files and other UNIX items of interest brou
 
 ### Environment Variables
 
--   [**`$?`**](http://linux.die.net/abs-guide/exit-status.html)  - the exit code for the last command or program executed.
+-   [**`$?`**](http://linux.die.net/abs-guide/exit-status.html) - the exit code for the last command or program executed.
 
 -   [**`$PATH`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html) - the execution search path.
 
@@ -4143,17 +4143,17 @@ See ["I/O Redirection"](http://linux.die.net/abs-guide/io-redirection.html).
 
 -   ***stdout*** - file descriptor 1, always open for writing from a process, defaults to the screen on a terminal session.
 
--   **`<`**  - redirect a file to *stdin*.
+-   **`<`** - redirect a file to *stdin*.
 
--   **`>`**  - redirect *stdout* to a file.
+-   **`>`** - redirect *stdout* to a file.
 
--   **`2>`**  - redirect *stderr* to a file.
+-   **`2>`** - redirect *stderr* to a file.
 
 -   **`|`** - pipe *stdout* from one process into *stdin* in another process.
 
 ### Special Files and Directories
 
--   [**`~`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html)  - shortcut for current user's home directory.
+-   [**`~`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html) - shortcut for current user's home directory.
 
 -   **`.bash_history`** - history of commands entered at the command prompt (also a nice example of a hidden "dotfile").
 

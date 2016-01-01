@@ -13,271 +13,342 @@ book. Use `man` or other methods outlined in the book to find more information o
 
 ### Environment Variables{.unnumbered}
 
-* [**`$?`**](http://linux.die.net/abs-guide/exit-status.html)
+* [**`$?`**](http://linux.die.net/abs-guide/exit-status.html) - the exit code for the last command
+or program executed.
+\index{*@\texttt{?} (exit status environment variable)}
 \index{environment variables!\?@\texttt{\$}\texttt{?} (exit status code)}
-\index{*@\texttt{?} (exit status environment variable)} - the exit code for the last
-command or program executed.
 
-* [**`$PATH`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html)\drenv{PATH}{execution search path} - the
-execution search path.
+* [**`$PATH`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html) - the execution search
+path.
+\drenv{PATH}{execution search path}
 
 ### Conditional Execution{.unnumbered}
 
 See ["logical operators"](http://linux.die.net/abs-guide/ops.html).
 
-* **`&&`**\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)} - execute the second
-command only if the first command succeeds.
+* **`&&`** - execute the second command only if the first command succeeds.
+\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
 
-* **`||`**\index{*@\texttt{"|"|} (logical "or" operator)} - execute the second command even
-if the first command fails.
+* **`||`** - execute the second command even if the first command fails.
+\index{*@\texttt{"|"|} (logical "or" operator)}
 
 ### Redirection{.unnumbered}
 
 See ["I/O Redirection"](http://linux.die.net/abs-guide/io-redirection.html).
 
-* ***stderr***\drstd{stderr} - file descriptor 2, always open for
-writing from a process, defaults to the screen on a terminal session.
-
-* ***stdin***\drstd{stdin} - file descriptor 0, always open for reading
-in a process, defaults to the keyboard input on a terminal session.
-
-* ***stdout***\drstd{stdout} - file descriptor 1, always open for
-writing from a process, defaults to the screen on a terminal session.
-
-* **`<`**\index{*@\texttt{<} (input redirection)}
-\index{I/O!redirection!input (\texttt{<})} - redirect a file to *stdin*.
-\drstd{stdin}
-
-* **`>`**\index{*@\texttt{>} (output redirection)}
-\index{I/O!redirection!output (\texttt{>})} - redirect *stdout* to a file.
-\drstd{stdout}
-
-* **`2>`**\index{*@\texttt{2>} (\textit{stderr} redirection)}
-\index{I/O!redirection!error (\texttt{2>})} - redirect *stderr* to a file.
+* ***stderr*** - file descriptor 2, always open for writing from a process, defaults to the screen
+on a terminal session.
 \drstd{stderr}
 
-* **`|`**\index{*@\texttt{"|} (pipe)}\index{I/O!redirection!pipe (\texttt{"|})} - pipe
-*stdout* from one process into *stdin* in another process.
+* ***stdin*** - file descriptor 0, always open for reading in a process, defaults to the keyboard
+input on a terminal session.
+\drstd{stdin}
+
+* ***stdout*** - file descriptor 1, always open for writing from a process, defaults to the screen
+on a terminal session.
+\drstd{stdout}
+
+* **`<`** - redirect a file to *stdin*.
+\drstd{stdin}
+\index{*@\texttt{<} (input redirection)}
+\index{I/O!redirection!input (\texttt{<})}
+
+* **`>`** - redirect *stdout* to a file.
+\drstd{stdout}
+\index{*@\texttt{>} (output redirection)}
+\index{I/O!redirection!output (\texttt{>})}
+
+* **`2>`** - redirect *stderr* to a file.
+\drstd{stderr}
+\index{*@\texttt{2>} (\textit{stderr} redirection)}
+\index{I/O!redirection!error (\texttt{2>})}
+
+* **`|`** - pipe *stdout* from one process into *stdin* in another process.
 \drstd{stdin}
 \drstd{stdout}
+\index{*@\texttt{"|} (pipe)}
+\index{I/O!redirection!pipe (\texttt{"|})}
 
 ### Special Files and Directories{.unnumbered}
 
-* [**`~`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html)
-\index{files and directories!home (\texttt{\~{}})} - shortcut for current user's home directory.
+* [**`~`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html) - shortcut for current
+user's home directory.
+\index{files and directories!home (\texttt{\~{}})}
 
-* **`.bash_history`**\index{files and directories!special!bashhistory@\texttt{.bash\_history}} - history of
-commands entered at the command prompt (also a nice example of a hidden "dotfile").
+* **`.bash_history`** - history of commands entered at the command prompt (also a nice example of a
+hidden "dotfile").
+\index{files and directories!special!bashhistory@\texttt{.bash\_history}}
 
 ### System Directories{.unnumbered}
 
 See [Important System Directories](http://linux.die.net/abs-guide/systemdirs.html).
 
-* **`/etc`**\index{files and directories!special!etc@\texttt{/etc/}} - configuration files location.
+* **`/etc`** - configuration files location.
+\index{files and directories!special!etc@\texttt{/etc/}}
 
-* **`/home`**\index{files and directories!home (\texttt{/home/})} - "home" or user profile
-directories.
+* **`/home`** - "home" or user profile directories.
+\index{files and directories!home (\texttt{/home/})}
 
-* **`/proc`**\index{files and directories!special!proc@\texttt{/proc/}} - system run-time information.
+* **`/proc`** - system run-time information.
+\index{files and directories!special!proc@\texttt{/proc/}}
 
-* **`/root`**\index{files and directories!root "home" (\texttt{/root/})} - "home" directory for
-"root" user (system admin).
+* **`/root`** - "home" directory for "root" user (system admin).
+\index{files and directories!root "home" (\texttt{/root/})}
 
-* **`/tmp`**\index{files and directories!special!tmp@\texttt{/tmp/}} - temporary files location.
+* **`/tmp`** - temporary files location.
+\index{files and directories!special!tmp@\texttt{/tmp/}}
 
-* **`/var/log`**\index{files and directories!special!varlog@\texttt{/var/log/}} - log files location.
+* **`/var/log`** - log files location.
+\index{files and directories!special!varlog@\texttt{/var/log/}}
 
 ### Commands{.unnumbered}
 
 These are "section 1" commands, i.e., normal user commands that typically don't require any special
 privileges beyond permissions to access files and the like.
 
-* [**`7z`**](http://linux.die.net/man/1/7z)\drcom{7z} - compress and uncompress files and
-directories using the 7-zip algorithm.
+* [**`7z`**](http://linux.die.net/man/1/7z) - compress and uncompress files and directories using
+the 7-zip algorithm.
+\drcom{7z}
 
-* [**`apropos`**](http://linux.die.net/man/1/apropos)\drdoc{apropos} - search for help on commands
-by pattern.
+* [**`apropos`**](http://linux.die.net/man/1/apropos) - search for help on commands by pattern.
+\drdoc{apropos}
 
-* [**`awk`**](http://linux.die.net/man/1/awk)\drcmd{awk} - language for processing streams of data.
+* [**`awk`**](http://linux.die.net/man/1/awk) - language for processing streams of data.
+\drcmd{awk}
 
-* [**`bash`**](http://linux.die.net/man/1/bash)\drcmd{bash} - the Bourne-again shell.
+* [**`bash`**](http://linux.die.net/man/1/bash) - the Bourne-again shell.
+\drcmd{bash}
 
-* [**`bzip2`**](http://linux.die.net/man/1/bzip2)\drcom{bzip2} - compress and uncompress files
-using the `bzip2` algorithm.
+* [**`bzip2`**](http://linux.die.net/man/1/bzip2) - compress and uncompress files using the `bzip2`
+algorithm.
+\drcom{bzip2}
 
-* [**`cat`**](http://linux.die.net/man/1/cat)\drcmd{cat} - concatenate the input files to *stdout*.
+* [**`cat`**](http://linux.die.net/man/1/cat) - concatenate the input files to *stdout*.
+\drcmd{cat}
 \drstd{stdout}
 
-* [**`cd`**](http://linux.die.net/man/1/cd)\drfnd{cd}{change directory} - change the current directory.
+* [**`cd`**](http://linux.die.net/man/1/cd) - change the current directory.
+\drfnd{cd}{change directory}
 
-* [**`chgrp`**](http://linux.die.net/man/1/chgrp)\drcmd{chgrp} - change the primary group of a file
-or directory.
+* [**`chgrp`**](http://linux.die.net/man/1/chgrp) - change the primary group of a file or directory.
+\drcmd{chgrp}
 
-* [**`chmod`**](http://linux.die.net/man/1/chmod)\drcmd{chmod} - change the permissions (mode bits)
-of a file or directory.
-
-* [**`chown`**](http://linux.die.net/man/1/chown)\drcmd{chown} - change the owner of a file or
+* [**`chmod`**](http://linux.die.net/man/1/chmod) - change the permissions (mode bits) of a file or
 directory.
+\drcmd{chmod}
 
-* [**`cp`**](http://linux.die.net/man/1/cp)\drfnd{cp}{copy} - copy files or directories.
+* [**`chown`**](http://linux.die.net/man/1/chown) - change the owner of a file or directory.
+\drcmd{chown}
 
-* [**`crontab`**](http://linux.die.net/man/1/crontab)\drsys{crontab}{edit scheduled jobs} - display or edit tasks to be
-run by `cron`.
+* [**`cp`**](http://linux.die.net/man/1/cp) - copy files or directories.
+\drfnd{cp}{copy}
 
-* [**`curl`**](http://linux.die.net/man/1/curl)\drnet{curl} - download files from the internet.
+* [**`crontab`**](http://linux.die.net/man/1/crontab) - display or edit tasks to be run by `cron`.
+\drsys{crontab}{edit scheduled jobs}
 
-* [**`df`**](http://linux.die.net/man/1/df)\drfnd{df}{display file system disk space} - show space utilization by file system.
+* [**`curl`**](http://linux.die.net/man/1/curl) - download files from the internet.
+\drnet{curl}
 
-* [**`diff`**](http://linux.die.net/man/1/diff)\drfnd{diff}{show differences between files} - show the differences between files.
+* [**`df`**](http://linux.die.net/man/1/df) - show space utilization by file system.
+\drfnd{df}{display file system disk space}
 
-* [**`dig`**](http://linux.die.net/man/1/dig)\drnet{dig} - look up DNS info on an address.
+* [**`diff`**](http://linux.die.net/man/1/diff) - show the differences between files.
+\drfnd{diff}{show differences between files}
 
-* [**`dpkg`**](http://linux.die.net/man/1/dpkg)\drpkg{dpkg} - package manager for Debian flavors.
+* [**`dig`**](http://linux.die.net/man/1/dig) - look up DNS info on an address.
+\drnet{dig}
 
-* [**`echo`**](http://linux.die.net/man/1/echo)\drcmd{echo} - display passed parameters to *stdout*.
+* [**`dpkg`**](http://linux.die.net/man/1/dpkg) - package manager for Debian flavors.
+\drpkg{dpkg}
+
+* [**`echo`**](http://linux.die.net/man/1/echo) - display passed parameters to *stdout*.
+\drcmd{echo}
 \drstd{stdout}
 
-* [**`email`**](http://linux.die.net/man/1/email)\drnet{email} - send email.
+* [**`email`**](http://linux.die.net/man/1/email) - send email.
+\drnet{email}
 
-* [**`false`**](http://linux.die.net/man/1/false)\drcmd{false} - do nothing, unsuccessfully.
+* [**`false`**](http://linux.die.net/man/1/false) - do nothing, unsuccessfully.
+\drcmd{false}
 
-* [**`file`**](http://linux.die.net/man/1/file)\drfnd{file}{detect file type} - give best guess as to type of file.
+* [**`file`**](http://linux.die.net/man/1/file) - give best guess as to type of file.
+\drfnd{file}{detect file type}
 
-* [**`find`**](http://linux.die.net/man/1/find)\drfnd{find}{find files} - find files based on various
-conditions and execute actions against the results.
+* [**`find`**](http://linux.die.net/man/1/find) - find files based on various conditions and
+execute actions against the results.
+\drfnd{find}{find files}
 
-* [**`grep`**](http://linux.die.net/man/1/grep)\drfnd{grep}{search files} - search for a pattern (regular
-expression) in files.
+* [**`grep`**](http://linux.die.net/man/1/grep) - search for a pattern (regular expression) in
+files.
+\drfnd{grep}{search files}
 
-* [**`help`**](http://linux.die.net/man/1/help)\drdoc{help} - help for built-in commands in `bash`.
+* [**`help`**](http://linux.die.net/man/1/help) - help for built-in commands in `bash`.
+\drdoc{help}
 
-* [**`info`**](http://linux.die.net/man/1/info)\drdoc{info} - an alternative for `man`, especially
-for GNU programs. Remember `q` quits.
+* [**`info`**](http://linux.die.net/man/1/info) - an alternative for `man`, especially for GNU
+programs. Remember `q` quits.
+\drdoc{info}
 
-* [**`less`**](http://linux.die.net/man/1/less)\drcmd{less}\index{files and directories!paginate!less@\texttt{less} command}\index{pagination!\texttt{less} command} - display the file one page at a time
-on *stdout*.
+* [**`less`**](http://linux.die.net/man/1/less) - display the file one page at a time on *stdout*.
+\drcmd{less}
 \drstd{stdout}
+\index{files and directories!paginate!less@\texttt{less} command}
+\index{pagination!\texttt{less} command}
 
-* [**`ln`**](http://linux.die.net/man/1/ln)\drfnd{ln}{link} - create hard or soft (shortcut) links.
+* [**`ln`**](http://linux.die.net/man/1/ln) - create hard or soft (shortcut) links.
+\drfnd{ln}{link}
 
-* [**`locate`**](http://linux.die.net/man/1/locate)\drfnd{locate}{locate files} - locate files by name.
+* [**`locate`**](http://linux.die.net/man/1/locate) - locate files by name.
+\drfnd{locate}{locate files}
 
-* [**`ls`**](http://linux.die.net/man/1/ls)\drfnd{ls}{list directory contents} - list directory contents.
+* [**`ls`**](http://linux.die.net/man/1/ls) - list directory contents.
+\drfnd{ls}{list directory contents}
 
-* [**`lynx`**](http://linux.die.net/man/1/lynx)\drnet{lynx} - command line web browser.
+* [**`lynx`**](http://linux.die.net/man/1/lynx) - command line web browser.
+\drnet{lynx}
 
-* [**`man`**](http://linux.die.net/man/1/man)\drdoc{man} - display manual pages. Remember `q` quits.
+* [**`man`**](http://linux.die.net/man/1/man) - display manual pages. Remember `q` quits.
+\drdoc{man}
 
-* [**`mkdir`**](http://linux.die.net/man/1/mkdir)\drfnd{mkdir}{make directory} - make a new directory.
+* [**`mkdir`**](http://linux.die.net/man/1/mkdir) - make a new directory.
+\drfnd{mkdir}{make directory}
 
-* [**`more`**](http://linux.die.net/man/1/more)\drcmd{more}\index{files and directories!paginate!more@\texttt{more} command}\index{pagination!\texttt{more} command} - display the file one page at a time on
-*stdout*.
+* [**`more`**](http://linux.die.net/man/1/more) - display the file one page at a time on *stdout*.
+\drcmd{more}
 \drstd{stdout}
+\index{files and directories!paginate!more@\texttt{more} command}
+\index{pagination!\texttt{more} command}
 
-* [**`mutt`**](http://linux.die.net/man/1/mutt)\drnet{mutt} - email client.
+* [**`mutt`**](http://linux.die.net/man/1/mutt) - email client.
+\drnet{mutt}
 
-* [**`mv`**](http://linux.die.net/man/1/mv)\drfnd{mv}{move files} - move files or directories.
+* [**`mv`**](http://linux.die.net/man/1/mv) - move files or directories.
+\drfnd{mv}{move files}
 
-* [**`pine`**](http://linux.die.net/man/1/pine)\drnet{pine} - email client.
+* [**`pine`**](http://linux.die.net/man/1/pine) - email client.
+\drnet{pine}
 
-* [**`ps`**](http://linux.die.net/man/1/ps)\drsys{ps}{list processes} - list running processes.
+* [**`ps`**](http://linux.die.net/man/1/ps) - list running processes.
+\drsys{ps}{list processes}
 
-* [**`pwd`**](http://linux.die.net/man/1/pwd)\drfnd{pwd}{print working directory} - print the current (working) directory
-name.
+* [**`pwd`**](http://linux.die.net/man/1/pwd) - print the current (working) directory name.
+\drfnd{pwd}{print working directory}
 
-* [**`rename`**](http://linux.die.net/man/1/rename)\drfnd{rename}{rename file} - rename files in more complex
-ways than `mv` can.
+* [**`rename`**](http://linux.die.net/man/1/rename) - rename files in more complex ways than `mv`
+can.
+\drfnd{rename}{rename file}
 
-* [**`rm`**](http://linux.die.net/man/1/rm)\drfnd{rm}{remove file} - delete (remove) files or directories.
+* [**`rm`**](http://linux.die.net/man/1/rm) - delete (remove) files or directories.
+\drfnd{rm}{remove file}
 
-* [**`scp`**](http://linux.die.net/man/1/scp)\drnet{scp} - file copy over secure shell protocol.
+* [**`scp`**](http://linux.die.net/man/1/scp) - file copy over secure shell protocol.
+\drnet{scp}
 
-* [**`set`**](http://linux.die.net/man/1/set)\drcmd{set} - set an environment variable, or display
-all environment variables.
+* [**`set`**](http://linux.die.net/man/1/set) - set an environment variable, or display all
+environment variables.
+\drcmd{set}
 
-* [**`sort`**](http://linux.die.net/man/1/sort)\drcmd{sort} - sort *stdin* or a file to *stdout*.
+* [**`sort`**](http://linux.die.net/man/1/sort) - sort *stdin* or a file to *stdout*.
+\drcmd{sort}
 \drstd{stdin}
 \drstd{stdout}
 
-* [**`ssh`**](http://linux.die.net/man/1/ssh)\drnet{ssh} - secure shell terminal progam and
-protocol.
+* [**`ssh`**](http://linux.die.net/man/1/ssh) - secure shell terminal progam and protocol.
+\drnet{ssh}
 
-* [**`tail`**](http://linux.die.net/man/1/tail)\drcmd{tail} - display the last lines of a file.
+* [**`tail`**](http://linux.die.net/man/1/tail) - display the last lines of a file.
+\drcmd{tail}
 
-* [**`tar`**](http://linux.die.net/man/1/tar)\drcmd{tar} - "tape archive", a way to combine
-directories into a single flat file.
+* [**`tar`**](http://linux.die.net/man/1/tar) - "tape archive", a way to combine directories into a
+single flat file.
+\drcmd{tar}
 
 * [**`tee`**](http://linux.die.net/man/1/tee)\drcmd{tee} - write to a file and *stdout* at the same
 time.
 \drstd{stdout}
 
-* [**`telnet`**](http://linux.die.net/man/1/telnet)\drnet{telnet} - ancient terminal program and
-protocol.
+* [**`telnet`**](http://linux.die.net/man/1/telnet) - ancient terminal program and protocol.
+\drnet{telnet}
 
-* [**`top`**](http://linux.die.net/man/1/top)\drsys{top}{list processes by resource use} - list processes by resource utilization (CPU).
+* [**`top`**](http://linux.die.net/man/1/top) - list processes by resource utilization (CPU).
+\drsys{top}{list processes by resource use}
 
-* [**`touch`**](http://linux.die.net/man/1/touch)\drfnd{touch}{change modified date or create file} - create an empty file or change the
+* [**`touch`**](http://linux.die.net/man/1/touch) - create an empty file or change the
 last-modified time of an existing file.
+\drfnd{touch}{change modified date or create file}
 
-* [**`true`**](http://linux.die.net/man/1/true)\drcmd{true} - do nothing, successfully.
+* [**`true`**](http://linux.die.net/man/1/true) - do nothing, successfully.
+\drcmd{true}
 
-* [**`uname`**](http://linux.die.net/man/1/uname)\drsys{uname}{system info} - print system info.
+* [**`uname`**](http://linux.die.net/man/1/uname) - print system info.
+\drsys{uname}{system info}
 
-* [**`unzip`**](http://linux.die.net/man/1/unzip)\drcom{unzip} - uncompress `.zip` files.
+* [**`unzip`**](http://linux.die.net/man/1/unzip) - uncompress `.zip` files.
+\drcom{unzip}
 
-* [**`vi`**](http://linux.die.net/man/1/vi)\dreds{vi} - "visual" editor, a file editor.
+* [**`vi`**](http://linux.die.net/man/1/vi) - "visual" editor, a file editor.
+\dreds{vi}
 
-* [**`wget`**](http://linux.die.net/man/1/wget)\drnet{wget} - download files from the internet.
+* [**`wget`**](http://linux.die.net/man/1/wget) - download files from the internet.
+\drnet{wget}
 
-* [**`whoami`**](http://linux.die.net/man/1/whoami)\drcmd{whoami} - the answer to life's most
-existential question.
+* [**`whoami`**](http://linux.die.net/man/1/whoami) - the answer to life's most existential
+question.
+\drcmd{whoami}
 
-* [**`whois`**](http://linux.die.net/man/1/whois)\drnet{whois} - look up DNS ownership info on an
-address.
+* [**`whois`**](http://linux.die.net/man/1/whois) - look up DNS ownership info on an address.
+\drnet{whois}
 
-* [**`xfreerdp`**](http://linux.die.net/man/1/xfreerdp)\drnet{xfreerdp} - RDP protocol client.
+* [**`xfreerdp`**](http://linux.die.net/man/1/xfreerdp) - RDP protocol client.
+\drnet{xfreerdp}
 
-* [**`zip`**](http://linux.die.net/man/1/zip)\drcom{zip} - compress files and directories using the
-PKZip algorithm.
+* [**`zip`**](http://linux.die.net/man/1/zip) - compress files and directories using the PKZip
+algorithm.
+\drcom{zip}
 
 ### System Commands{.unnumbered}
 
 These are "section 8" commands, and ***may*** require special privileges such as `sudo` to run,
 depending on the system. Yes, some systems restrict the use of `ping`!
 
-* [**`apt-get`**](http://linux.die.net/man/8/apt-get)\drpkg{apt-get} - package manager for Debian
-flavors.
+* [**`apt-get`**](http://linux.die.net/man/8/apt-get) - package manager for Debian flavors.
+\drpkg{apt-get}
 
-* [**`aptitude`**](http://linux.die.net/man/8/aptitude)\drpkg{aptitude} - package manager for
-Debian flavors.
+* [**`aptitude`**](http://linux.die.net/man/8/aptitude) - package manager for Debian flavors.
+\drpkg{aptitude}
 
-* [**`cron`**](http://linux.die.net/man/8/cron)\drsys{cron}{run scheduled jobs} - system for running "scheduled tasks."
+* [**`cron`**](http://linux.die.net/man/8/cron) - system for running "scheduled tasks."
+\drsys{cron}{run scheduled jobs}
 
-* [**`dmesg`**](http://linux.die.net/man/8/dmesg)\drsys{dmesg}{display kernel log} - display kernel log messages.
+* [**`dmesg`**](http://linux.die.net/man/8/dmesg) - display kernel log messages.
+\drsys{dmesg}{display kernel log}
 
-* [**`ifconfig`**](http://linux.die.net/man/8/ifconfig)\drnet{ifconfig} - display network
-(interface) configuration.
+* [**`ifconfig`**](http://linux.die.net/man/8/ifconfig) - display network (interface) configuration.
+\drnet{ifconfig}
 
-* [**`mount`**](http://linux.die.net/man/8/mount)\drsys{mount}{mount file system} - mount a file system to a specific
-location.
+* [**`mount`**](http://linux.die.net/man/8/mount) - mount a file system to a specific location.
+\drsys{mount}{mount file system}
 
-* [**`passwd`**](http://linux.die.net/man/1/passwd)\drsys{passwd}{change password} - change password.
+* [**`passwd`**](http://linux.die.net/man/1/passwd) - change password.
+\drsys{passwd}{change password}
 
-* [**`ping`**](http://linux.die.net/man/8/ping)\drnet{ping} - test for network connectivity to an
-IP address.
+* [**`ping`**](http://linux.die.net/man/8/ping) - test for network connectivity to an IP address.
+\drnet{ping}
 
-* [**`reboot`**](http://linux.die.net/man/8/reboot)\drsys{reboot}{reboot system} - restart the system.
+* [**`reboot`**](http://linux.die.net/man/8/reboot) - restart the system.
+\drsys{reboot}{reboot system}
 
-* [**`rpm`**](http://linux.die.net/man/8/rpm)\drpkg{rpm} - package manager for Fedora flavors.
+* [**`rpm`**](http://linux.die.net/man/8/rpm) - package manager for Fedora flavors.
+\drpkg{rpm}
 
-* [**`shutdown`**](http://linux.die.net/man/8/shutdown)\drsys{shutdown}{shutdown or reboot system} - shutdown or restart the
-system.
+* [**`shutdown`**](http://linux.die.net/man/8/shutdown) - shutdown or restart the system.
+\drsys{shutdown}{shutdown or reboot system}
 
-* [**`sudo`**](http://linux.die.net/man/8/sudo)\drcmd{sudo} - execute a command with elevated
-privileges.
+* [**`sudo`**](http://linux.die.net/man/8/sudo) - execute a command with elevated privileges.
+\drcmd{sudo}
 
-* [**`traceroute`**](http://linux.die.net/man/8/traceroute)\drnet{traceroute} - trace the route to
-an IP address.
+* [**`traceroute`**](http://linux.die.net/man/8/traceroute) - trace the route to an IP address.
+\drnet{traceroute}
 
 ## Examples{.unnumbered}
 
@@ -320,9 +391,10 @@ What makes this simple? Finding `[` with the first `grep` and then simply piping
 
 ### Chain Gangs{.unnumbered}
 
-Remembering that `&&`\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)} only
-executes the next command if the prior one is successful, we can do things like set up a sample
-directory and (empty) files for playing around with files and directories in one fell swoop:
+Remembering that `&&` only executes the next command if the prior one is successful, we can do
+things like set up a sample directory and (empty) files for playing around with files and
+directories in one fell swoop:
+\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
 
 \drcap{Make a bunch of files and directories at once}
 ```bash
@@ -346,12 +418,13 @@ a  b  c  d
 
 ### Simple Scripts{.unnumbered}
 
-I said I wasn't going to cover scripting, especially logical constructs like `if`/`fi`\drcmd{if}.
-But simple scripts that just "do things" in a certain order are within scope, and the following,
-which installs [`freerdp`](https://github.com/freerdp/freerdp)\drnet{xfreerdp}, is a good example of
-simply taking the guesswork out of doing something repetitive across multiple machines. I keep this
-`installrdp` script in Dropbox so I can run it quickly and easily on any new machine I set up (once
-I get Dropbox set up on the machine!)
+I said I wasn't going to cover scripting, especially logical constructs like `if`/`fi`. But simple
+scripts that just "do things" in a certain order are within scope, and the following, which installs [`freerdp`](https://github.com/freerdp/freerdp), is a good example of simply taking the
+guesswork out of doing something repetitive across multiple machines. I keep this `installrdp`
+script in Dropbox so I can run it quickly and easily on any new machine I set up (once I get
+Dropbox set up on the machine!)
+\drcmd{if}
+\drnet{xfreerdp}
 
 \drcap{A simple install script}
 ```bash

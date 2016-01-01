@@ -8,21 +8,18 @@ the dangers of searching for “`man find`” or “`man touch`” on the intern
 
 The biggest issue with bootstrapping into "UNIX" is not the lack of documentation but almost the
 surplus of it, coupled with a severe "RTFM" attitude by most old-timers toward newbies. Besides the
-typical "Google" and ["StackOverflow"](http://unix.stackexchange.com/)
+typical "Google" and ["StackOverflow"](http://unix.stackexchange.com/) answers, there are actually
+lots of very reliable places to turn to for information
 \index{documentation!http://unix.stackexchange.com/@\textit{http://unix.stackexchange.com/}}
-answers, there are actually lots of very reliable places to turn to for information
 
 ## `man`, is that `info` `apropos`?{.unnumbered}
 
 There are three commands that are the basis for reading "UNIX" documentation within "UNIX" itself -
-[`man`](http://linux.die.net/man/1/man),
-\drdoc{man}
-[`info`](http://linux.die.net/man/1/info)
-\drdoc{info}
-and
+[`man`](http://linux.die.net/man/1/man), [`info`](http://linux.die.net/man/1/info) and
 [`apropos`](http://linux.die.net/man/1/apropos).
 \drdoc{apropos}
-
+\drdoc{info}
+\drdoc{man}
 
 `man` is short for *manual pages*, and is used to display the main help for most "UNIX" commands.
 For example, `man ls` shows:
@@ -58,10 +55,10 @@ DESCRIPTION
 **Note:** `man` uses `less` as a paginator, with all that means, including the same navigation and
 search keys, and most important to remember - `Q` to quit. How do I know this? Because of course
 you can `man man`!
-\drdoc{man}
 \drcmd{less}
-\index{pagination!\texttt{less} command}
+\drdoc{man}
 \index{files and directories!paginate!less@\texttt{less} command}
+\index{pagination!\texttt{less} command}
 
 Notice the `LS(1)` part. The UNIX manual was originally divided into multiple sections by AT&T.
 Section 1 is normal user commands. Section 5 is file formats (like for config files), and section 8
@@ -69,11 +66,12 @@ is for system administration commands. You usually don't care, and can `man ls` 
 to your heart's content.
 
 But sometimes there are duplicate names in the different sections. For example, there is both a
-[`passwd`](http://linux.die.net/man/1/passwd)\drsys{passwd}{change password} command and a `passwd`
-\index{files and directories!special!etcpasswd@\texttt{/etc/passwd}} file format (for `/etc/passwd`). By
-default, `man passwd` will show you the documentation from the lowest numbered section with a match,
-in this case section 1, usually referred to as `passwd(1)` to disambiguate which thing we're
-talking about:
+[`passwd`](http://linux.die.net/man/1/passwd) command and a `passwd` file format (for
+`/etc/passwd`). By default, `man passwd` will show you the documentation from the lowest numbered
+section with a match, in this case section 1, usually referred to as `passwd(1)` to disambiguate
+which thing we're talking about:
+\drsys{passwd}{change password}
+\index{files and directories!special!etcpasswd@\texttt{/etc/passwd}}
 
 \drcap{Ambiguous \texttt{man passwd} command default to lowest documentation section}
 ```bash
@@ -134,9 +132,9 @@ DESCRIPTION
  Manual page passwd(5) line 1 (press h for help or q to quit)
 ```
 
-Besides `man`, many GNU tools come with help in `info`
+Besides `man`, many GNU tools come with help in `info` format, which is originally from `emacs`.
+Here are the results of `info find`:
 \drdoc{info}
-format, which is originally from `emacs`. Here are the results of `info find`:
 
 \drcap{Running \texttt{info find} command}
 ```bash
@@ -172,10 +170,9 @@ like `info find` is that `q` quits the `info` command.
 
 Finally, what if you don't know the name of the command? Well, each "man page" has a title and
 brief description, e.g., "passwd - change user password" in the `man passwd` output above. The
-`apropos`
+`apropos` command can simply search those titles and descriptions for a word or phrase and show you
+all the results:
 \drdoc{apropos}
-command can simply search those titles and descriptions for a word or phrase and show you all the
-results:
 
 \drcap{\texttt{apropos} command}
 ```bash
@@ -229,7 +226,8 @@ visudo (8)           - edit the sudoers file
 ```
 
 Or maybe you can't remember whether it's `-r`, `-R` or `--recursive` to copy subdirectories
-recursively with `cp`\drfnd{cp}{copy}:
+recursively with `cp`:
+\drfnd{cp}{copy}
 
 \drcap{Looking for specific parameter names in a \texttt{man} page}
 ```bash
@@ -247,15 +245,14 @@ And yes, you can `man man`, `man info`, `info info` and `info man`, for that mat
 
 You can often search the internet for "UNIX" documentation, and the `man` pages have long been
 online. A site I like (and link to a lot here) is
-[http://linux.die.net/man/](http://linux.die.net/man/)
-\index{documentation!http://linux.die.net/man/@\textit{http://linux.die.net/man/}}. Often, though,
-you can just google ["man ls"](https://www.google.com/#q=man+ls) and the top hits will be what you
-want.
+[http://linux.die.net/man/](http://linux.die.net/man/). Often, though, you can just google ["man
+ls"](https://www.google.com/#q=man+ls) and the top hits will be what you want.
+\index{documentation!http://linux.die.net/man/@\textit{http://linux.die.net/man/}}
 
-***However***, there are times you need to be careful. Googling for either `man touch` or `man
-tail`, for example, will probably not give you the results you seek and may set off filters at work,
-so be careful out there and remember to bookmark a couple of actual `man` page sites so that you
-can go there directly and look up a command.
+***However***, there are times you need to be careful. Searching the internet for either `man
+touch` or `man tail`, for example, will probably not give you the results you seek and may set off
+filters at work, so be careful out there and remember to bookmark a couple of actual `man` page
+sites so that you can go there directly and look up a command.
 
 ## Books and Stuff{.unnumbered}
 
@@ -263,34 +260,33 @@ There are several consistently high-quality free sources of information on vario
 and related systems on the internet.
 
 * [**The Linux Documentation Project
-(LDP)**](http://www.tldp.org/guides.html)\index{documentation!Linux Documentation Project} -
-has fallen a bit behind over the years, but still has two of the best `bash` scripting books out
-there, [*Bash Guide for
+(LDP)**](http://www.tldp.org/guides.html) - has fallen a bit behind over the years, but still has
+two of the best `bash` scripting books out there, [*Bash Guide for
 Beginners*](http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html)
-\index{documentation!Bash Guide for Beginners@\textit{Bash Guide for Beginners}}\drshl{bash}
-and [*Advanced Bash-Scripting
-Guide*](http://www.tldp.org/LDP/abs/html/index.html)
-\index{documentation!Advanced Bash-Scripting Guide@\textit{Advanced Bash-Scripting Guide}}.
-I continue to use the latter all the time.
+and [*Advanced Bash-Scripting Guide*](http://www.tldp.org/LDP/abs/html/index.html). I continue to
+use the latter all the time.
+\drshl{bash}
+\index{documentation!Advanced Bash-Scripting Guide@\textit{Advanced Bash-Scripting Guide}}
+\index{documentation!Bash Guide for Beginners@\textit{Bash Guide for Beginners}}
+\index{documentation!Linux Documentation Project}
 
-* [**Arch Linux Wiki**](https://wiki.archlinux.org/) -
-\index{documentation!Arch wiki}
+* [**Arch Linux Wiki**](https://wiki.archlinux.org/) - you may not think this would be useful if
+you are running Debian or Fedora or something else, but remember most "UNIX" systems are all very
+similar, and often the best documentation on a package or setting something up in Linux is in the
+Arch wiki.
 \drdis{Arch}
-you may not think this would be useful if you are running Debian or Fedora or something else, but
-remember most "UNIX" systems are all very similar, and often the best documentation on a package or
-setting something up in Linux is in the Arch wiki.
+\index{documentation!Arch wiki}
 
-* [**Debian documentation**](https://www.debian.org/doc/) -
-\drdis{Debian}
-again, even if you are not running a Debian-based distro, this can be handy because it describes
-how to administer Linux in a way that often transcends distro specifics (and at least explains how
-Debian approaches the differences). The best books in the series are [*The Debian Administrator's
+* [**Debian documentation**](https://www.debian.org/doc/) - again, even if you are not running a
+Debian-based distro, this can be handy because it describes how to administer Linux in a way that
+often transcends distro specifics (and at least explains how Debian approaches the differences).
+The best books in the series are [*The Debian Administrator's
 Handbook*](https://www.debian.org/doc/manuals/debian-handbook/)
+and the [*Debian Reference*](https://www.debian.org/doc/manuals/debian-reference/), which is a lot
+more formal attempt at the same type of territory this guide covers.
+\drdis{Debian}
 \index{documentation!Debian Administrator's Handbook@\textit{Debian Administrator's Handbook}}
-and the [*Debian
-Reference*](https://www.debian.org/doc/manuals/debian-reference/),
 \index{documentation!Debian Reference@\textit{Debian Reference}}
-which is a lot more formal attempt at the same type of territory this guide covers.
 
 Ubuntu, Mint and some other distros have quite active message fora, and of course StackOverflow and
 its family are also very useful. 

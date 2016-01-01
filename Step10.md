@@ -11,7 +11,8 @@ think needs to be known, or at least brushed up against.
 ## One-Stop Shopping{.unnumbered}
 
 In UNIX-like systems, most (not all) system configuration is stored in directories and text files
-under `/etc`\index{files and directories!special!etc@\texttt{/etc/}}.
+under `/etc`.
+\index{files and directories!special!etc@\texttt{/etc/}}
 
 **Note:** In Linux `/etc` is almost universally pronounced "slash-et-see," ***not*** "forward slash
 et cetera."
@@ -47,28 +48,29 @@ brlapi.key              kbd                   rc6.d
 Depending on what you are trying to configure, you may need to be in one or many files in `/etc`.
 This is a ***very short*** list of files and directories you may need to examine there:
 
-* **`fstab`**\index{files and directories!special!etcfstab@\texttt{/etc/fstab}} - a listing of the file
-systems currently mounted and their
-types.
+* **`fstab`** - a listing of the file systems currently mounted and their types.
+\index{files and directories!special!etcfstab@\texttt{/etc/fstab}}
 
-* **`group`**\index{files and directories!special!etcgroup@\texttt{/etc/group}} - the security groups on the
-system.
+* **`group`** - the security groups on the system.
+\index{files and directories!special!etcgroup@\texttt{/etc/group}}
 
-* **`hosts`**\index{files and directories!special!etchosts@\texttt{/etc/hosts}} - network aliases (overrides
-DNS, takes effect immediately).
+* **`hosts`** - network aliases (overrides DNS, takes effect immediately).
+\index{files and directories!special!etchosts@\texttt{/etc/hosts}}
 
-* **`init.d`**\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}} - startup and shutdown
-scripts for "services."
+* **`init.d`** - startup and shutdown scripts for "services."
+\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}}
 
-* **`mtab`**\index{files and directories!special!etcmtab@\texttt{/etc/mtab}} - list of current "mounts."
+* **`mtab`** - list of current "mounts."
+\index{files and directories!special!etcmtab@\texttt{/etc/mtab}}
 
-* **`passwd`**\index{files and directories!special!etcpasswd@\texttt{/etc/passwd}} - "shadow" file containing
-all the user accounts on the system.
+* **`passwd`** - "shadow" file containing all the user accounts on the system.
+\index{files and directories!special!etcpasswd@\texttt{/etc/passwd}}
 
-* **`resolv.conf`**\index{files and directories!special!etcresolvconf@\texttt{/etc/resolv.conf}} - DNS settings.
+* **`resolv.conf`** - DNS settings.
+\index{files and directories!special!etcresolvconf@\texttt{/etc/resolv.conf}}
 
-* **`samba`**\index{files and directories!special!etcsamba@\texttt{/etc/samba/}} - file sharing settings for
-CIFS-style shares.
+* **`samba`** - file sharing settings for CIFS-style shares.
+\index{files and directories!special!etcsamba@\texttt{/etc/samba/}}
 
 There are lots of other interesting files under `/etc`, but I keep returning to the above again and
 again. On most of them you can run the `man` command against section 5 to see their format and
@@ -80,6 +82,7 @@ We are going to ignore system initialization and "stages," and assume most of th
 running on a well-functioning system. Even so sometimes you want to restart a specific system
 service without rebooting the whole system, often to force re-reading changed configuration files.
 First check if the service has a script in `/etc/init.d`:
+\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}}
 
 \drcap{init.d directory}
 ```bash
@@ -122,12 +125,12 @@ execution using `sudo`.
 ## Package Management{.unnumbered}
 
 Almost all Linux distros have the concept of "packages" which are used to install, update and
-uninstall software. There are different package managers, including `dpkg`\drpkg{dpkg}
-and `apt-get`\drpkg{apt-get}
-on Debian-based distros, `rpm`\drpkg{rpm}
-on Fedora descendants, etc. For the rest of this
-section we will use Debian tools, but in general the concepts and problems are similar for the
-other toolsets.
+uninstall software. There are different package managers, including `dpkg` and `apt-get` on
+Debian-based distros, `rpm` on Fedora descendants, etc. For the rest of this section we will use
+Debian tools, but in general the concepts and problems are similar for the other toolsets.
+\drpkg{apt-get}
+\drpkg{dpkg}
+\drpkg{rpm}
 
 One of the nicest things about Linux-style package managers (as opposed to traditional Windows
 installers) is that they can satisfy all a packages "dependencies" (other packages that are
@@ -139,9 +142,10 @@ the various packages. In addition, there are usually multiple versions of packag
 matching different releases of the distro. We won't go into setting up a system to point to
 these here.
 
-In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get)\drpkg{apt-get} is usually the
-tool of choice for package management. Another option is
-[`aptitude`](http://linux.die.net/man/8/aptitude)\drpkg{aptitude}.
+In Debian flavors, [`apt-get`](http://linux.die.net/man/8/apt-get) is usually the tool of choice
+for package management. Another option is [`aptitude`](http://linux.die.net/man/8/aptitude).
+\drpkg{apt-get}
+\drpkg{aptitude}
 
 There are three common `apt-get` commands that get used over and over. The first downloads and
 *updates* the local metadata cache for the repositories:
@@ -191,13 +195,14 @@ Calculating upgrade... Done
 
 In this case there was nothing to upgrade.
 
-**Note:** In the example above I used `apt-get dist-upgrade`\drpkg{apt-get}. There is also an `apt-get upgrade`
+**Note:** In the example above I used `apt-get dist-upgrade`. There is also an `apt-get upgrade`
 command. `apt-get dist-upgrade` will resolve any new dependencies and download new packages if
 needed, but ***it may also remove packages it considers no longer needed.*** `apt-get upgrade`
 simply performs an in-place upgrade of already-installed packages and in no case will install new
 or remove unneeded packages. Which is appropriate for you will depend on your circumstances. You
 can use the `--simulate` parameter with either to have `apt-get` show you what it would do without
 actually doing it.
+\drpkg{apt-get}
 
 And the final common command is obviously to install a package:
 
@@ -228,7 +233,8 @@ update-alternatives: using /usr/sbin/tcptraceroute.db to provide /usr/sbin/tcptr
 aceroute (tcptraceroute) in auto mode
 ```
 
-You can also `apt-get remove`\drpkg{apt-get} or `apt-get purge` packages. See the `apt-get` `man` page for details.
+You can also `apt-get remove` or `apt-get purge` packages. See the `apt-get` `man` page for details.
+\drpkg{apt-get}
 
 This all looks very convenient, and it is. The problems arise because some distros are better at
 tracking current versions of packages in their repositories than others. In fact, some distros
@@ -239,13 +245,14 @@ of this, as are many "LTS" (long term support) releases in other distros.
 
 Besides the distribution's repositories, you can install packages and other software from a variety
 of places. It may be an "official" site for the package, GitHub, a "personal package archive" (PPA)
-or whatever. The package may be in a binary installable format (`.deb`
-\index{files and directories!debpackagefiles@\texttt{.deb} package files} files for Debian systems),
+or whatever. The package may be in a binary installable format (`.deb` files for Debian systems),
 in source format requiring it to be built, in a zipped "tarball," and more.
+\index{files and directories!debpackagefiles@\texttt{.deb} package files}
 
 If you want the latest and greatest version of a package you often have to go to its "official"
 site or GitHub repository. There, you may find a `.deb` file, in which case you could install it
-with `dpkg`\drpkg{dpkg}:
+with `dpkg`:
+\drpkg{dpkg}
 
 \drcap{Installing a package with \texttt{dpkg}}
 ```bash
@@ -253,9 +260,10 @@ sudo dpkg -i somesoftware.deb
 ```
 
 There is, however, a problem. You now have to remember that you installed that package by hand and
-keep it up to date by hand (or not). `apt-get upgrade`\drpkg{apt-get} isn't going to help you here. This is true
+keep it up to date by hand (or not). `apt-get upgrade` isn't going to help you here. This is true
 no matter what way you get the alternative package - `.deb` file, tarball, source code, or 
 whatever (although `apt-get` can work with PPAs in a more automated manner).
+\drpkg{apt-get}
 
 The second problem with third-party package sources is how do you know whether to trust them or
 not? If something is in an "official" distro repository, chances are it has been vetted to a
@@ -276,12 +284,13 @@ relying on the different versions to work. Do you keep good notes? You'd better!
 
 Now that we've seen that we can have multiple versions of the same command or executable on the
 system, an interesting question arises. *Which* `foo` command am I going to call if I just type
-`foo` at the command prompt? In other words, after taking the `$PATH`\drenv{PATH}{execution search path} variable into
+`foo` at the command prompt? In other words, after taking the `$PATH` variable into
 consideration and searching for the program through that from left to right, which version in which
 directory is going to be called?
+\drenv{PATH}{execution search path}
 
-Luckily we have the [`which`](http://linux.die.net/man/1/which)\drcmd{which} command
-for just that!
+Luckily we have the [`which`](http://linux.die.net/man/1/which) command for just that!
+\drcmd{which}
 
 \drcap{\texttt{which} command}
 ```bash
@@ -290,7 +299,8 @@ for just that!
 ```
 
 How can you tell if you have multiple versions of something installed? One way is with the
-[`locate`](http://linux.die.net/man/1/locate)\drfnd{locate}{locate files} command:
+[`locate`](http://linux.die.net/man/1/locate) command:
+\drfnd{locate}{locate files}
 
 \drcap{\texttt{locate} command}
 ```bash
@@ -326,9 +336,10 @@ It is a quicker way to look than `find / -name \*pattern*\`.
 
 One final note on which thing gets executed. Unlike in Windows, "UNIX" environments do not consider
 the local directory (the current directory you are sitting at the command prompt, i.e., what
-[`pwd`](http://linux.die.net/man/1/pwd)\drfnd{pwd}{print working directory} shows) as part of the path unless `.` is
-explicitly listed in `$PATH` (and that is typically a bad idea). This is for security purposes. So
-it can be a bit unnerving to try and execute `foo` in the current directory and get:
+[`pwd`](http://linux.die.net/man/1/pwd) shows) as part of the path unless `.` is explicitly listed
+in `$PATH` (and that is typically a bad idea). This is for security purposes. So it can be a bit
+unnerving to try and execute `foo` in the current directory and get:
+\drfnd{pwd}{print working directory}
 
 \drcap{Command not found - but it's right there!}
 ```bash
@@ -364,14 +375,14 @@ Or you can prepend the `./` relative path to it, to indicate "the `foo` in the c
 
 ## Over and Over and Over{.unnumbered}
 
-The function of scheduled tasks in Windows is performed by
-[`cron`](http://linux.die.net/man/8/cron)\drsys{cron}{run scheduled jobs} in Linux. It reads in the various
-[`crontab(5)`](http://linux.die.net/man/5/crontab)
+The function of scheduled tasks in Windows is performed by [`cron`](http://linux.die.net/man/8/cron)
+in Linux. It reads in the various [`crontab(5)`](http://linux.die.net/man/5/crontab) files on the
+system and executes the commands in them at the specified times. You use the
+[`crontab(1)`](http://linux.die.net/man/1/crontab) command to view and edit the `crontab` files for your user (and other users if you have admin privileges).
+\drsys{cron}{run scheduled jobs}
+\drsys{crontab}{edit scheduled jobs}
 \index{crontab@\texttt{crontab} (file)}
-files on the system and executes the commands in them at the specified times. You use the
-[`crontab(1)`](http://linux.die.net/man/1/crontab)\drsys{crontab}{edit scheduled jobs} command to view and edit the
-`crontab`\index{files and directories!special!crontab@\texttt{crontab}} files for your user (and other
-users if you have admin privileges).
+\index{files and directories!special!crontab@\texttt{crontab}}
 
 The sample given in the comments of the `crontab` when initially opened using `crontab -e` give a
 fine example of the syntax of the `crontab` file:
@@ -416,24 +427,27 @@ definition.
 The only other thing I have to add about `cron` is when it runs the commands from each `crontab`,
 they are typically not invoked with that particular user's environment settings, so it is best to
 fully specify the paths to files both in the `crontab` file itself and in any scripts or parameters
-to scripts it calls. Depending on the system and whether `$PATH`\drenv{PATH}{execution search path} is set at all when a
-"`cron` job" runs, you may have to specify the full paths to binaries in installed packages or even
-what you would consider "system" libraries! The `which` command comes in handy here for finding out
-where each command is installed.
+to scripts it calls. Depending on the system and whether `$PATH` is set at all when a "`cron` job"
+runs, you may have to specify the full paths to binaries in installed packages or even what you
+would consider "system" libraries! The `which` command comes in handy here for finding out where
+each command is installed.
+\drenv{PATH}{execution search path}
 
 ## Start Me Up{.unnumbered}
 
 If you need to reboot the system the quickest way is with the
-[`reboot`](http://linux.die.net/man/8/reboot)\drsys{reboot}{reboot system} command:
+[`reboot`](http://linux.die.net/man/8/reboot) command:
+\drsys{reboot}{reboot system}
 
 \drcap{\texttt{reboot} command}
 ```bash
 $ sudo reboot
 ```
 
-You can also use the [`shutdown`](http://linux.die.net/man/8/shutdown)\drsys{shutdown}{shutdown or reboot system} command with
-the `-r` option, but why? The handier use for `shutdown` is to tell a system to halt and power off
-after shutting down:
+You can also use the [`shutdown`](http://linux.die.net/man/8/shutdown) command with the `-r` option,
+but why? The handier use for `shutdown` is to tell a system to halt and power off after shutting
+down:
+\drsys{shutdown}{shutdown or reboot system}
 
 \drcap{Shutdown and power off}
 ```bash
@@ -443,10 +457,10 @@ $ sudo shutdown -h now
 ## Turn on Your Signals{.unnumbered}
 
 One of the basic concepts in UNIX program is that of
-["signals"](https://en.wikipedia.org/wiki/Unix_signal)\index{signals}. You are probably already
-familiar with one way to send signals to a program, which is via `Ctrl-C` at the command prompt,
-which sends the `SIGINT` ("interrupt") signal to the program. Typically this will cause a program
-to terminate.
+["signals"](https://en.wikipedia.org/wiki/Unix_signal). You are probably already familiar with one
+way to send signals to a program, which is via `Ctrl-C` at the command prompt, which sends the
+`SIGINT` ("interrupt") signal to the program. Typically this will cause a program to terminate.
+\index{signals}
 
 However, most signals can be "caught" by a program and coded around. There is one "uninterruptable"
 signal, however - `SIGKILL`. We can send `SIGKILL` to a process and cause it to terminate
@@ -484,10 +498,10 @@ stop a program with a more "normal" method, which can include sending `SIGINT` t
 Sometimes a command runs and there isn't a good way to tell if it worked or not. "UNIX" programs are
 supposed to set an "exit status" when they end that by convention is `0` if the program exited
 successfully and a non-zero, (typically) positive number if there was an error. The exit status for
-the last executed command or program can be shown at the command line using the `$?`
+the last executed command or program can be shown at the command line using the `$?` environment
+variable. Consider if the file `foo` exists and `bar` does not:
+\index{*@\texttt{?} (exit status environment variable)}
 \index{environment variables!\?@\texttt{\$}\texttt{?} (exit status code)}
-\index{*@\texttt{?} (exit status environment variable)} environment variable. Consider if
-the file `foo` exists and `bar` does not:
 
 \drcap{Examining exit codes}
 ```bash
@@ -507,8 +521,9 @@ scripts, but we're not going to go into script logic here.
 
 However, sometimes even at the command line we want to be able to conditionally control a sequence
 of commands, and continue (or not) based on the success (or failure) of a previous command. In
-`bash` we have `&&`\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)} and `||`
-\index{*@\texttt{"|"|} (logical "or" operator)} to the rescue!
+`bash` we have `&&` and `||` to the rescue!
+\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
+\index{*@\texttt{"|"|} (logical "or" operator)}
 
 * **`a && b`** - execute `a` ***and*** `b`, i.e., execute `b` only if `a` is successful.
 
@@ -563,13 +578,14 @@ foo
 0
 ```
 
-**Note:** There is actually a [`true`](http://linux.die.net/man/1/true)\drcmd{true} command whose
-purpose is to, "do nothing, successfully." All it does is return a `0` (success) exit code. This
-can be useful in scripting and also sometimes when building "and" and "or" clauses like above.
+**Note:** There is actually a [`true`](http://linux.die.net/man/1/true) command whose purpose is to
+"do nothing, successfully." All it does is return a `0` (success) exit code. This can be useful in
+scripting and also sometimes when building "and" and "or" clauses like above.
+\drcmd{true}
 
-And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false)
+And yes, of course, that means there is also a [`false`](http://linux.die.net/man/1/false) command
+to "do nothing, unsuccessfully!"
 \drcmd{false}
-command to "do nothing, unsuccessfully!"
 
 \drcap{\texttt{true} and \texttt{false} commands}
 ```bash

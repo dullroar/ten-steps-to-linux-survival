@@ -5185,8 +5185,8 @@ Linux and similar systems must be able to access the network from the
 command line and scripts.
 
 For example, our friend
-\href{http://linux.die.net/man/8/ping}{\texttt{ping}}\drnet{ping} is
-there:
+\href{http://linux.die.net/man/8/ping}{\texttt{ping}} is there:
+\drnet{ping}
 
 \drcap{ping command}
 
@@ -5215,14 +5215,14 @@ One difference with \texttt{ping} is that by default in Linux
 \texttt{ping} doesn't stop until the user presses \texttt{Ctrl-C} (which
 sends the
 \href{https://en.wikipedia.org/wiki/Unix_signal}{\texttt{SIGINT}
-interrupt} \index{signals} to the program). In this way it acts more
-like \texttt{ping\ -t} in \texttt{CMD.EXE}\drshl{CMD.EXE} Also, be aware
-that on Cygwin \texttt{ping} is still the system (Windows)
-\texttt{ping}.
+interrupt} to the program). In this way it acts more like
+\texttt{ping\ -t} in \texttt{CMD.EXE} Also, be aware that on Cygwin
+\texttt{ping} is still the system (Windows) \texttt{ping}.
+\drshl{CMD.EXE} \index{signals}
 
-\href{http://linux.die.net/man/8/traceroute}{\texttt{traceroute}}\drnet{traceroute}
-works, too (although for once its name is longer than the
-\texttt{CMD.EXE} counterpart).
+\href{http://linux.die.net/man/8/traceroute}{\texttt{traceroute}} works,
+too (although for once its name is longer than the \texttt{CMD.EXE}
+counterpart). \drnet{traceroute}
 
 \drcap{traceroute command}
 
@@ -5244,7 +5244,7 @@ works, too (although for once its name is longer than the
 \end{Shaded}
 
 You can do some digging in DNS with
-\href{http://linux.die.net/man/1/dig}{\texttt{dig}}\drnet{dig}:
+\href{http://linux.die.net/man/1/dig}{\texttt{dig}}: \drnet{dig}
 
 \drcap{dig command}
 
@@ -5275,8 +5275,8 @@ You can do some digging in DNS with
 \end{Highlighting}
 \end{Shaded}
 
-And
-\href{http://linux.die.net/man/1/whois}{\texttt{whois}}\drnet{whois}:
+And \href{http://linux.die.net/man/1/whois}{\texttt{whois}}:
+\drnet{whois}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5318,11 +5318,11 @@ commands and are restricted.
 One way to run restricted commands is to log in as a "elevated" or
 privileged user, such as \texttt{root}. But this is frowned on, and many
 distros today rely on the
-\href{http://linux.die.net/man/8/sudo}{\texttt{sudo}} \drcmd{sudo}
-command to act as a way for a normal user to signal they want to
-escalate their privileges temporarily, presuming they are allowed to do
-so, which is usually indicated by being a member of the \texttt{sudo}
-group or similar.
+\href{http://linux.die.net/man/8/sudo}{\texttt{sudo}} command to act as
+a way for a normal user to signal they want to escalate their privileges
+temporarily, presuming they are allowed to do so, which is usually
+indicated by being a member of the \texttt{sudo} group or similar.
+\drcmd{sudo}
 
 In a sense, \texttt{sudo} is similar to Windows User Access Control
 (UAC) prompts. They ensure a human is in control, in the case of
@@ -5330,7 +5330,7 @@ In a sense, \texttt{sudo} is similar to Windows User Access Control
 are invoked by \texttt{sudo} within a short time period, you will not be
 reprompted for a password each time, (unlike UAC).
 
-Here is a really common example on Debian-based systems\drpkg{apt-get}:
+Here is a really common example on Debian-based systems: \drpkg{apt-get}
 
 \drcap{Make me a sandwich}
 
@@ -5386,10 +5386,10 @@ comic}, and hence the title of this section.
 \addcontentsline{toc}{section}{Surfin' the Command Prompt}
 
 You can browse the web from the command prompt using something like
-\href{http://linux.die.net/man/1/lynx}{\texttt{lynx}}\drnet{lynx}. A
-text-based browser isn't too exciting, but it can have its purposes
-(like quickly testing network access from a command prompt). For
-example, \texttt{lynx\ http://google.com} yields:
+\href{http://linux.die.net/man/1/lynx}{\texttt{lynx}}. A text-based
+browser isn't too exciting, but it can have its purposes (like quickly
+testing network access from a command prompt). For example,
+\texttt{lynx\ http://google.com} yields: \drnet{lynx}
 
 \drcap{Browsing like it's 1994}
 
@@ -5424,12 +5424,13 @@ example, \texttt{lynx\ http://google.com} yields:
 
 There are two other commands that are used to pull down web resources
 and save them locally -
-\href{http://linux.die.net/man/1/curl}{\texttt{curl}}\drnet{curl} and
-\href{http://linux.die.net/man/1/wget}{\texttt{wget}} \drnet{wget}. Both
-support HTTP(S) and FTP, but \texttt{curl} supports even more protocols
-and options and tends to be the simplest to just "grab a file and go."
-You see both used often in install scripts that download bits from the
-internet and then execute them by piping them to \drcmd{bash}:
+\href{http://linux.die.net/man/1/curl}{\texttt{curl}} and
+\href{http://linux.die.net/man/1/wget}{\texttt{wget}}. Both support
+HTTP(S) and FTP, but \texttt{curl} supports even more protocols and
+options and tends to be the simplest to just "grab a file and go." You
+see both used often in install scripts that download bits from the
+internet and then execute them by piping them to \texttt{bash}:
+\drcmd{bash} \drnet{curl} \drnet{wget}
 
 \drcap{\texttt{wget} in an install script}
 
@@ -5492,16 +5493,16 @@ it:
 
 You can send and receive email from the command prompt. Reading email
 will be rare, but if the system has
-\href{http://linux.die.net/man/1/pine}{\texttt{pine}}\drnet{pine}
-installed, that's probably the most intuitive from a non-UNIX
-perspective (although it is still obviously a terminal program).
-Otherwise look for
-\href{http://linux.die.net/man/1/mutt}{\texttt{mutt}}\drnet{mutt}.
+\href{http://linux.die.net/man/1/pine}{\texttt{pine}} installed, that's
+probably the most intuitive from a non-UNIX perspective (although it is
+still obviously a terminal program). Otherwise look for
+\href{http://linux.die.net/man/1/mutt}{\texttt{mutt}}. \drnet{mutt}
+\drnet{pine}
 
 Sending email is more interesting, especially from shell scripts. There
 are multiple ways, but
-\href{http://linux.die.net/man/1/email}{\texttt{email}}\drnet{email} is
-straightforward enough:
+\href{http://linux.die.net/man/1/email}{\texttt{email}} is
+straightforward enough: \drnet{email}
 
 \drcap{Sending email from the command line}
 
@@ -5518,15 +5519,15 @@ straightforward enough:
 
 There are two primary ways to get an interactive "shell" session on a
 remote machine. The first is the venerable
-\href{http://linux.die.net/man/1/telnet}{\texttt{telnet}}\drnet{telnet}
-command. It isn't used very often for actual interactive sessions any
-more (for one, because it sends credentials in plain text on the wire).
-However, because you can specify the port number, it is still handy for
-testing and debugging text-based protocols such as SMTP or HTTP. In the
+\href{http://linux.die.net/man/1/telnet}{\texttt{telnet}} command. It
+isn't used very often for actual interactive sessions any more (for one,
+because it sends credentials in plain text on the wire). However,
+because you can specify the port number, it is still handy for testing
+and debugging text-based protocols such as SMTP or HTTP. In the
 following, after opening a \texttt{telnet} connection on port 80 to
 Google, I simply entered the HTTP protocol sequence
 \texttt{GET\ /\ HTTP/1.1} followed by a blank line to get Google to
-return its home page:
+return its home page: \drnet{telnet}
 
 \drcap{Using \texttt{telnet} to diagnose HTTP}
 
@@ -5560,8 +5561,8 @@ return its home page:
 \end{Shaded}
 
 To get a modern, secure shell to a remote machine, use
-\href{http://linux.die.net/man/1/ssh}{\texttt{ssh}} \drnet{ssh}, passing
-in the userid and server like this:
+\href{http://linux.die.net/man/1/ssh}{\texttt{ssh}}, passing in the
+userid and server like this: \drnet{ssh}
 
 \drcap{\texttt{ssh} command}
 
@@ -5577,8 +5578,8 @@ you will be presented with a command prompt to the remote system.
 
 You can also use the \texttt{SSH} protocol to securely transfer files
 between systems with the
-\href{http://linux.die.net/man/1/scp}{\texttt{scp}}\drnet{scp} command.
-It works like this for a recursive directory copy:
+\href{http://linux.die.net/man/1/scp}{\texttt{scp}} command. It works
+like this for a recursive directory copy: \drnet{scp}
 
 \drcap{\texttt{scp} command}
 
@@ -5625,11 +5626,11 @@ server's "fingerprint." You can usually just say "yes":
 
 We won't dive too deep into configuring a network, but there are a few
 things you should know about right away. The first is the
-\href{http://linux.die.net/man/8/ifconfig}{\texttt{ifconfig}}\drnet{ifconfig}
-command (in some ways is similar to \texttt{ipconfig} in
-\texttt{CMD.EXE}\drshl{CMD.EXE}. While you can use \texttt{ifconfig} to
-alter your networking settings, it is most commonly used to get a quick
-display of them:
+\href{http://linux.die.net/man/8/ifconfig}{\texttt{ifconfig}} command
+(in some ways is similar to \texttt{ipconfig} in \texttt{CMD.EXE}. While
+you can use \texttt{ifconfig} to alter your networking settings, it is
+most commonly used to get a quick display of them: \drnet{ifconfig}
+\drshl{CMD.EXE}
 
 \drcap{\texttt{ifconfig} command}
 
@@ -5657,8 +5658,8 @@ display of them:
 \end{Shaded}
 
 To see what DNS servers the system is using, you can look in
-\texttt{/etc/resolv.conf}
-\index{files and directories!special!etcresolvconf@\texttt{/etc/resolv.conf}}:
+\texttt{/etc/resolv.conf}:
+\index{files and directories!special!etcresolvconf@\texttt{/etc/resolv.conf}}
 
 \drcap{DNS servers in \texttt{resolv.conf}}
 
@@ -5673,8 +5674,8 @@ To see what DNS servers the system is using, you can look in
 \end{Shaded}
 
 And to see any local overrides of network names or aliases, look in
-\texttt{/etc/hosts}
-\index{files and directories!special!etchosts@\texttt{/etc/hosts}}:
+\texttt{/etc/hosts}:
+\index{files and directories!special!etchosts@\texttt{/etc/hosts}}
 
 \drcap{\texttt{hosts} file}
 
@@ -5711,7 +5712,8 @@ to you, or may require \texttt{sudo} access.
 \addcontentsline{toc}{section}{All Part of the Process}
 
 To see what \emph{processes} you are running, use
-\href{http://linux.die.net/man/1/ps}{\texttt{ps}}\drsys{ps}{list processes}:
+\href{http://linux.die.net/man/1/ps}{\texttt{ps}}:
+\drsys{ps}{list processes}
 
 \drcap{\texttt{ps} command}
 
@@ -5759,10 +5761,10 @@ To show processes from \emph{all} users in a process \emph{hierarchy}
 \end{Shaded}
 
 You can \emph{kill} a process using the
-\href{http://linux.die.net/man/1/kill}{\texttt{kill}}\drcmd{kill}
-command, which takes a process id and optionally a
-"signal"\index{signals}. Here is an example looking for any running
-instance of \texttt{vi} and sending it a \texttt{kill} command:
+\href{http://linux.die.net/man/1/kill}{\texttt{kill}} command, which
+takes a process id and optionally a "signal"\index{signals}. Here is an
+example looking for any running instance of \texttt{vi} and sending it a
+\texttt{kill} command: \drcmd{kill}
 
 \drcap{Hunting down and killing \texttt{vi} sessions}
 
@@ -5785,24 +5787,25 @@ That's:
   careful, because that would include \texttt{view} and anything else
   containing the string \texttt{vi}, too).
 \item
-  \textbf{\texttt{\textbar{}}} - pipe \emph{stdout} from
-  \texttt{grep}\drfnd{grep}{search files} to next command.
+  \textbf{\texttt{\textbar{}}} - pipe \emph{stdout} from \texttt{grep}
+  to next command. \drfnd{grep}{search files}
 \item
-  \textbf{\texttt{kill}} - send a \texttt{SIGINT} signal\index{signals}
-  to a process specified by:
+  \textbf{\texttt{kill}} - send a \texttt{SIGINT} signal to a process
+  specified by: \index{signals}
 \item
   \textbf{\texttt{`cut\ -f2\ -d"\ "`}} - execute the
-  \href{http://linux.die.net/man/1/cut}{\texttt{cut}}\drcmd{cut} command
-  and take the second space-delimited field (in this case the process id
-  - the first "field" is just leading spaces), and place the results of
-  the command execution as the parameter to the \texttt{kill} command.
+  \href{http://linux.die.net/man/1/cut}{\texttt{cut}} command and take
+  the second space-delimited field (in this case the process id - the
+  first "field" is just leading spaces), and place the results of the
+  command execution as the parameter to the \texttt{kill} command.
+  \drcmd{cut}
 \end{itemize}
 
 To monitor the ongoing CPU, memory and other resource utilization of the
 \emph{top} processes, you use the
-\href{http://linux.die.net/man/1/top}{\texttt{top}}\drsys{top}{list processes by resource use}
-command, which unlike most in this book updates dynamically every second
-by default:
+\href{http://linux.die.net/man/1/top}{\texttt{top}} command, which
+unlike most in this book updates dynamically every second by default:
+\drsys{top}{list processes by resource use}
 
 \drcap{\texttt{top} command}
 
@@ -5846,9 +5849,9 @@ idea}} what they are working on, as long as it "looks like" a file (or
 stream of text).
 
 One of the places this has become really handy is in the \texttt{/proc}
-\index{files and directories!special!proc@\texttt{/proc/}} "file
-system." On modern Linux systems, there is typically a \texttt{/proc}
-directory that looks like directories and files:
+"file system." On modern Linux systems, there is typically a
+\texttt{/proc} directory that looks like directories and files:
+\index{files and directories!special!proc@\texttt{/proc/}}
 
 \drcap{\texttt{/proc} file system}
 
@@ -6009,9 +6012,9 @@ In addition, there are system-wide statistics, such as
 \section*{Sawing Logs}\label{sawing-logs}
 \addcontentsline{toc}{section}{Sawing Logs}
 
-Many Linux components and subsystems log to \texttt{/var/log}.
-\index{files and directories!special!varlog@\texttt{/var/log/}} Here is
-a pretty standard directory listing for it on a Linux Mint system:
+Many Linux components and subsystems log to \texttt{/var/log}. Here is a
+pretty standard directory listing for it on a Linux Mint system:
+\index{files and directories!special!varlog@\texttt{/var/log/}}
 
 \drcap{Looking at logs}
 
@@ -6051,16 +6054,16 @@ e.g., \texttt{mail.log.2}).
 
 If you are pursuing a problem with a specific subsystem (like
 \texttt{samba}), it is good to start in its log files. The two log files
-of general interest are \texttt{dmesg},
+of general interest are \texttt{dmesg}, which holds kernel-level debug
+messages and usually is useful for debugging things like device driver
+issues. It can also be displayed directly with the
+\href{http://linux.die.net/man/8/dmesg}{\texttt{dmesg}} command. The
+other is \texttt{messages}, which holds more general "system" messages.
+\drsys{dmesg}{display kernel log}
 \index{files and directories!special!varlogdmesg@\texttt{/var/log/dmesg}}
-\index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)} which holds
-kernel-level debug messages and usually is useful for debugging things
-like device driver issues. It can also be displayed directly with the
-\href{http://linux.die.net/man/8/dmesg}{\texttt{dmesg}}\drsys{dmesg}{display kernel log}
-command. The other is \texttt{messages},
 \index{files and directories!special!varlogmessages@\texttt{/var/log/messages}}
-\index{varlogmessages@\texttt{/var/log/messages} (general log)} which
-holds more general "system" messages.
+\index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)}
+\index{varlogmessages@\texttt{/var/log/messages} (general log)}
 
 Let's look for kernel errors when booting:
 
@@ -6076,12 +6079,11 @@ Let's look for kernel errors when booting:
 \section*{It's All Temporary}\label{its-all-temporary}
 \addcontentsline{toc}{section}{It's All Temporary}
 
-By convention, temporary files are written to \texttt{/tmp}
-\index{files and directories!special!tmp@\texttt{/tmp/}}. You can place
-your own temporary or "work" files there, too. It's a great place to
-unzip install bits, for example. Just note that the temporariness is
+By convention, temporary files are written to \texttt{/tmp} . You can
+place your own temporary or "work" files there, too. It's a great place
+to unzip install bits, for example. Just note that the temporariness is
 enforced in that when the system reboots, \texttt{/tmp} is reset to
-empty.
+empty. \index{files and directories!special!tmp@\texttt{/tmp/}}
 
 \hypertarget{how-do-you-know-what-you-dont-know-man}{\chapter{\texorpdfstring{How
 Do You Know What You Don’t Know,
@@ -6099,10 +6101,10 @@ on the internet.}}
 The biggest issue with bootstrapping into "UNIX" is not the lack of
 documentation but almost the surplus of it, coupled with a severe "RTFM"
 attitude by most old-timers toward newbies. Besides the typical "Google"
-and \href{http://unix.stackexchange.com/}{"StackOverflow"}
-\index{documentation!http://unix.stackexchange.com/@\textit{http://unix.stackexchange.com/}}
-answers, there are actually lots of very reliable places to turn to for
+and \href{http://unix.stackexchange.com/}{"StackOverflow"} answers,
+there are actually lots of very reliable places to turn to for
 information
+\index{documentation!http://unix.stackexchange.com/@\textit{http://unix.stackexchange.com/}}
 
 \section*{\texorpdfstring{\texttt{man}, is that \texttt{info}
 \texttt{apropos}?}{man, is that info apropos?}}\label{man-is-that-info-apropos}
@@ -6111,10 +6113,10 @@ information
 
 There are three commands that are the basis for reading "UNIX"
 documentation within "UNIX" itself -
-\href{http://linux.die.net/man/1/man}{\texttt{man}}, \drdoc{man}
-\href{http://linux.die.net/man/1/info}{\texttt{info}} \drdoc{info} and
+\href{http://linux.die.net/man/1/man}{\texttt{man}},
+\href{http://linux.die.net/man/1/info}{\texttt{info}} and
 \href{http://linux.die.net/man/1/apropos}{\texttt{apropos}}.
-\drdoc{apropos}
+\drdoc{apropos} \drdoc{info} \drdoc{man}
 
 \texttt{man} is short for \emph{manual pages}, and is used to display
 the main help for most "UNIX" commands. For example, \texttt{man\ ls}
@@ -6154,9 +6156,9 @@ shows:
 \textbf{Note:} \texttt{man} uses \texttt{less} as a paginator, with all
 that means, including the same navigation and search keys, and most
 important to remember - \texttt{Q} to quit. How do I know this? Because
-of course you can \texttt{man\ man}! \drdoc{man} \drcmd{less}
-\index{pagination!\texttt{less} command}
+of course you can \texttt{man\ man}! \drcmd{less} \drdoc{man}
 \index{files and directories!paginate!less@\texttt{less} command}
+\index{pagination!\texttt{less} command}
 
 Notice the \texttt{LS(1)} part. The UNIX manual was originally divided
 into multiple sections by AT\&T. Section 1 is normal user commands.
@@ -6166,13 +6168,13 @@ system administration commands. You usually don't care, and can
 
 But sometimes there are duplicate names in the different sections. For
 example, there is both a
-\href{http://linux.die.net/man/1/passwd}{\texttt{passwd}}\drsys{passwd}{change password}
-command and a \texttt{passwd}
+\href{http://linux.die.net/man/1/passwd}{\texttt{passwd}} command and a
+\texttt{passwd} file format (for \texttt{/etc/passwd}). By default,
+\texttt{man\ passwd} will show you the documentation from the lowest
+numbered section with a match, in this case section 1, usually referred
+to as \texttt{passwd(1)} to disambiguate which thing we're talking
+about: \drsys{passwd}{change password}
 \index{files and directories!special!etcpasswd@\texttt{/etc/passwd}}
-file format (for \texttt{/etc/passwd}). By default, \texttt{man\ passwd}
-will show you the documentation from the lowest numbered section with a
-match, in this case section 1, usually referred to as \texttt{passwd(1)}
-to disambiguate which thing we're talking about:
 
 \drcap{Ambiguous \texttt{man passwd} command default to lowest documentation section}
 
@@ -6241,8 +6243,8 @@ have to explicitly specify the section, in this case by using
 \end{Shaded}
 
 Besides \texttt{man}, many GNU tools come with help in \texttt{info}
-\drdoc{info} format, which is originally from \texttt{emacs}. Here are
-the results of \texttt{info\ find}:
+format, which is originally from \texttt{emacs}. Here are the results of
+\texttt{info\ find}: \drdoc{info}
 
 \drcap{Running \texttt{info find} command}
 
@@ -6283,8 +6285,8 @@ in my head. The biggest thing to remember if you do something like
 Finally, what if you don't know the name of the command? Well, each "man
 page" has a title and brief description, e.g., "passwd - change user
 password" in the \texttt{man\ passwd} output above. The \texttt{apropos}
-\drdoc{apropos} command can simply search those titles and descriptions
-for a word or phrase and show you all the results:
+command can simply search those titles and descriptions for a word or
+phrase and show you all the results: \drdoc{apropos}
 
 \drcap{\texttt{apropos} command}
 
@@ -6349,7 +6351,7 @@ was a system administration ("section 8") command:
 
 Or maybe you can't remember whether it's \texttt{-r}, \texttt{-R} or
 \texttt{-\/-recursive} to copy subdirectories recursively with
-\texttt{cp}\drfnd{cp}{copy}:
+\texttt{cp}: \drfnd{cp}{copy}
 
 \drcap{Looking for specific parameter names in a \texttt{man} page}
 
@@ -6373,18 +6375,17 @@ And yes, you can \texttt{man\ man}, \texttt{man\ info},
 
 You can often search the internet for "UNIX" documentation, and the
 \texttt{man} pages have long been online. A site I like (and link to a
-lot here) is \url{http://linux.die.net/man/}
-\index{documentation!http://linux.die.net/man/@\textit{http://linux.die.net/man/}}.
-Often, though, you can just google
-\href{https://www.google.com/\#q=man+ls}{"man ls"} and the top hits will
-be what you want.
+lot here) is \url{http://linux.die.net/man/}. Often, though, you can
+just google \href{https://www.google.com/\#q=man+ls}{"man ls"} and the
+top hits will be what you want.
+\index{documentation!http://linux.die.net/man/@\textit{http://linux.die.net/man/}}
 
 \textbf{\emph{However}}, there are times you need to be careful.
-Googling for either \texttt{man\ touch} or \texttt{man\ tail}, for
-example, will probably not give you the results you seek and may set off
-filters at work, so be careful out there and remember to bookmark a
-couple of actual \texttt{man} page sites so that you can go there
-directly and look up a command.
+Searching the internet for either \texttt{man\ touch} or
+\texttt{man\ tail}, for example, will probably not give you the results
+you seek and may set off filters at work, so be careful out there and
+remember to bookmark a couple of actual \texttt{man} page sites so that
+you can go there directly and look up a command.
 
 \section*{Books and Stuff}\label{books-and-stuff}
 \addcontentsline{toc}{section}{Books and Stuff}
@@ -6395,39 +6396,36 @@ on various parts of Linux and related systems on the internet.
 \begin{itemize}
 \item
   \href{http://www.tldp.org/guides.html}{\textbf{The Linux Documentation
-  Project (LDP)}}\index{documentation!Linux Documentation Project} - has
-  fallen a bit behind over the years, but still has two of the best
-  \texttt{bash} scripting books out there,
+  Project (LDP)}} - has fallen a bit behind over the years, but still
+  has two of the best \texttt{bash} scripting books out there,
   \href{http://www.tldp.org/LDP/Bash-Beginners-Guide/html/index.html}{\emph{Bash
-  Guide for Beginners}}
-  \index{documentation!Bash Guide for Beginners@\textit{Bash Guide for Beginners}}\drshl{bash}
-  and \href{http://www.tldp.org/LDP/abs/html/index.html}{\emph{Advanced
-  Bash-Scripting Guide}}
-  \index{documentation!Advanced Bash-Scripting Guide@\textit{Advanced Bash-Scripting Guide}}.
-  I continue to use the latter all the time.
+  Guide for Beginners}} and
+  \href{http://www.tldp.org/LDP/abs/html/index.html}{\emph{Advanced
+  Bash-Scripting Guide}}. I continue to use the latter all the time.
+  \drshl{bash}
+  \index{documentation!Advanced Bash-Scripting Guide@\textit{Advanced Bash-Scripting Guide}}
+  \index{documentation!Bash Guide for Beginners@\textit{Bash Guide for Beginners}}
+  \index{documentation!Linux Documentation Project}
 \item
-  \href{https://wiki.archlinux.org/}{\textbf{Arch Linux Wiki}} -
-  \index{documentation!Arch wiki} \drdis{Arch} you may not think this
-  would be useful if you are running Debian or Fedora or something else,
-  but remember most "UNIX" systems are all very similar, and often the
-  best documentation on a package or setting something up in Linux is in
-  the Arch wiki.
+  \href{https://wiki.archlinux.org/}{\textbf{Arch Linux Wiki}} - you may
+  not think this would be useful if you are running Debian or Fedora or
+  something else, but remember most "UNIX" systems are all very similar,
+  and often the best documentation on a package or setting something up
+  in Linux is in the Arch wiki. \drdis{Arch}
+  \index{documentation!Arch wiki}
 \item
   \href{https://www.debian.org/doc/}{\textbf{Debian documentation}} -
-  \drdis{Debian} again, even if you are not running a Debian-based
-  distro, this can be handy because it describes how to administer Linux
-  in a way that often transcends distro specifics (and at least explains
-  how Debian approaches the differences). The best books in the series
-  are
+  again, even if you are not running a Debian-based distro, this can be
+  handy because it describes how to administer Linux in a way that often
+  transcends distro specifics (and at least explains how Debian
+  approaches the differences). The best books in the series are
   \href{https://www.debian.org/doc/manuals/debian-handbook/}{\emph{The
-  Debian Administrator's Handbook}}
-  \index{documentation!Debian Administrator's Handbook@\textit{Debian Administrator's Handbook}}
-  and the
+  Debian Administrator's Handbook}} and the
   \href{https://www.debian.org/doc/manuals/debian-reference/}{\emph{Debian
-  Reference}},
-  \index{documentation!Debian Reference@\textit{Debian Reference}} which
-  is a lot more formal attempt at the same type of territory this guide
-  covers.
+  Reference}}, which is a lot more formal attempt at the same type of
+  territory this guide covers. \drdis{Debian}
+  \index{documentation!Debian Administrator's Handbook@\textit{Debian Administrator's Handbook}}
+  \index{documentation!Debian Reference@\textit{Debian Reference}}
 \end{itemize}
 
 Ubuntu, Mint and some other distros have quite active message fora, and
@@ -6458,8 +6456,8 @@ up against.
 \addcontentsline{toc}{section}{One-Stop Shopping}
 
 In UNIX-like systems, most (not all) system configuration is stored in
-directories and text files under
-\texttt{/etc}\index{files and directories!special!etc@\texttt{/etc/}}.
+directories and text files under \texttt{/etc}.
+\index{files and directories!special!etc@\texttt{/etc/}}
 
 \textbf{Note:} In Linux \texttt{/etc} is almost universally pronounced
 "slash-et-see," \textbf{\emph{not}} "forward slash et cetera."
@@ -6501,29 +6499,33 @@ list of files and directories you may need to examine there:
 
 \begin{itemize}
 \item
-  \textbf{\texttt{fstab}}\index{files and directories!special!etcfstab@\texttt{/etc/fstab}}
-  - a listing of the file systems currently mounted and their types.
+  \textbf{\texttt{fstab}} - a listing of the file systems currently
+  mounted and their types.
+  \index{files and directories!special!etcfstab@\texttt{/etc/fstab}}
 \item
-  \textbf{\texttt{group}}\index{files and directories!special!etcgroup@\texttt{/etc/group}}
-  - the security groups on the system.
+  \textbf{\texttt{group}} - the security groups on the system.
+  \index{files and directories!special!etcgroup@\texttt{/etc/group}}
 \item
-  \textbf{\texttt{hosts}}\index{files and directories!special!etchosts@\texttt{/etc/hosts}}
-  - network aliases (overrides DNS, takes effect immediately).
+  \textbf{\texttt{hosts}} - network aliases (overrides DNS, takes effect
+  immediately).
+  \index{files and directories!special!etchosts@\texttt{/etc/hosts}}
 \item
-  \textbf{\texttt{init.d}}\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}}
-  - startup and shutdown scripts for "services."
+  \textbf{\texttt{init.d}} - startup and shutdown scripts for
+  "services."
+  \index{files and directories!special!etcinitd@\texttt{/etc/init.d/}}
 \item
-  \textbf{\texttt{mtab}}\index{files and directories!special!etcmtab@\texttt{/etc/mtab}}
-  - list of current "mounts."
+  \textbf{\texttt{mtab}} - list of current "mounts."
+  \index{files and directories!special!etcmtab@\texttt{/etc/mtab}}
 \item
-  \textbf{\texttt{passwd}}\index{files and directories!special!etcpasswd@\texttt{/etc/passwd}}
-  - "shadow" file containing all the user accounts on the system.
+  \textbf{\texttt{passwd}} - "shadow" file containing all the user
+  accounts on the system.
+  \index{files and directories!special!etcpasswd@\texttt{/etc/passwd}}
 \item
-  \textbf{\texttt{resolv.conf}}\index{files and directories!special!etcresolvconf@\texttt{/etc/resolv.conf}}
-  - DNS settings.
+  \textbf{\texttt{resolv.conf}} - DNS settings.
+  \index{files and directories!special!etcresolvconf@\texttt{/etc/resolv.conf}}
 \item
-  \textbf{\texttt{samba}}\index{files and directories!special!etcsamba@\texttt{/etc/samba/}}
-  - file sharing settings for CIFS-style shares.
+  \textbf{\texttt{samba}} - file sharing settings for CIFS-style shares.
+  \index{files and directories!special!etcsamba@\texttt{/etc/samba/}}
 \end{itemize}
 
 There are lots of other interesting files under \texttt{/etc}, but I
@@ -6540,6 +6542,7 @@ sometimes you want to restart a specific system service without
 rebooting the whole system, often to force re-reading changed
 configuration files. First check if the service has a script in
 \texttt{/etc/init.d}:
+\index{files and directories!special!etcinitd@\texttt{/etc/init.d/}}
 
 \drcap{init.d directory}
 
@@ -6590,11 +6593,11 @@ they would probably have required execution using \texttt{sudo}.
 
 Almost all Linux distros have the concept of "packages" which are used
 to install, update and uninstall software. There are different package
-managers, including \texttt{dpkg}\drpkg{dpkg} and
-\texttt{apt-get}\drpkg{apt-get} on Debian-based distros,
-\texttt{rpm}\drpkg{rpm} on Fedora descendants, etc. For the rest of this
+managers, including \texttt{dpkg} and \texttt{apt-get} on Debian-based
+distros, \texttt{rpm} on Fedora descendants, etc. For the rest of this
 section we will use Debian tools, but in general the concepts and
-problems are similar for the other toolsets.
+problems are similar for the other toolsets. \drpkg{apt-get}
+\drpkg{dpkg} \drpkg{rpm}
 
 One of the nicest things about Linux-style package managers (as opposed
 to traditional Windows installers) is that they can satisfy all a
@@ -6610,9 +6613,10 @@ releases of the distro. We won't go into setting up a system to point to
 these here.
 
 In Debian flavors,
-\href{http://linux.die.net/man/8/apt-get}{\texttt{apt-get}}\drpkg{apt-get}
-is usually the tool of choice for package management. Another option is
-\href{http://linux.die.net/man/8/aptitude}{\texttt{aptitude}}\drpkg{aptitude}.
+\href{http://linux.die.net/man/8/apt-get}{\texttt{apt-get}} is usually
+the tool of choice for package management. Another option is
+\href{http://linux.die.net/man/8/aptitude}{\texttt{aptitude}}.
+\drpkg{apt-get} \drpkg{aptitude}
 
 There are three common \texttt{apt-get} commands that get used over and
 over. The first downloads and \emph{updates} the local metadata cache
@@ -6672,7 +6676,7 @@ greatest release of the package):
 In this case there was nothing to upgrade.
 
 \textbf{Note:} In the example above I used
-\texttt{apt-get\ dist-upgrade}\drpkg{apt-get}. There is also an
+\texttt{apt-get\ dist-upgrade}. There is also an
 \texttt{apt-get\ upgrade} command. \texttt{apt-get\ dist-upgrade} will
 resolve any new dependencies and download new packages if needed, but
 \textbf{\emph{it may also remove packages it considers no longer
@@ -6681,7 +6685,7 @@ of already-installed packages and in no case will install new or remove
 unneeded packages. Which is appropriate for you will depend on your
 circumstances. You can use the \texttt{-\/-simulate} parameter with
 either to have \texttt{apt-get} show you what it would do without
-actually doing it.
+actually doing it. \drpkg{apt-get}
 
 And the final common command is obviously to install a package:
 
@@ -6715,9 +6719,9 @@ And the final common command is obviously to install a package:
 \end{Highlighting}
 \end{Shaded}
 
-You can also \texttt{apt-get\ remove}\drpkg{apt-get} or
-\texttt{apt-get\ purge} packages. See the \texttt{apt-get} \texttt{man}
-page for details.
+You can also \texttt{apt-get\ remove} or \texttt{apt-get\ purge}
+packages. See the \texttt{apt-get} \texttt{man} page for details.
+\drpkg{apt-get}
 
 This all looks very convenient, and it is. The problems arise because
 some distros are better at tracking current versions of packages in
@@ -6732,15 +6736,15 @@ other distros.
 Besides the distribution's repositories, you can install packages and
 other software from a variety of places. It may be an "official" site
 for the package, GitHub, a "personal package archive" (PPA) or whatever.
-The package may be in a binary installable format (\texttt{.deb}
+The package may be in a binary installable format (\texttt{.deb} files
+for Debian systems), in source format requiring it to be built, in a
+zipped "tarball," and more.
 \index{files and directories!debpackagefiles@\texttt{.deb} package files}
-files for Debian systems), in source format requiring it to be built, in
-a zipped "tarball," and more.
 
 If you want the latest and greatest version of a package you often have
 to go to its "official" site or GitHub repository. There, you may find a
 \texttt{.deb} file, in which case you could install it with
-\texttt{dpkg}\drpkg{dpkg}:
+\texttt{dpkg}: \drpkg{dpkg}
 
 \drcap{Installing a package with \texttt{dpkg}}
 
@@ -6752,10 +6756,10 @@ to go to its "official" site or GitHub repository. There, you may find a
 
 There is, however, a problem. You now have to remember that you
 installed that package by hand and keep it up to date by hand (or not).
-\texttt{apt-get\ upgrade}\drpkg{apt-get} isn't going to help you here.
-This is true no matter what way you get the alternative package -
-\texttt{.deb} file, tarball, source code, or whatever (although
-\texttt{apt-get} can work with PPAs in a more automated manner).
+\texttt{apt-get\ upgrade} isn't going to help you here. This is true no
+matter what way you get the alternative package - \texttt{.deb} file,
+tarball, source code, or whatever (although \texttt{apt-get} can work
+with PPAs in a more automated manner). \drpkg{apt-get}
 
 The second problem with third-party package sources is how do you know
 whether to trust them or not? If something is in an "official" distro
@@ -6786,13 +6790,13 @@ Now that we've seen that we can have multiple versions of the same
 command or executable on the system, an interesting question arises.
 \emph{Which} \texttt{foo} command am I going to call if I just type
 \texttt{foo} at the command prompt? In other words, after taking the
-\texttt{\$PATH}\drenv{PATH}{execution search path} variable into
-consideration and searching for the program through that from left to
-right, which version in which directory is going to be called?
+\texttt{\$PATH} variable into consideration and searching for the
+program through that from left to right, which version in which
+directory is going to be called? \drenv{PATH}{execution search path}
 
 Luckily we have the
-\href{http://linux.die.net/man/1/which}{\texttt{which}}\drcmd{which}
-command for just that!
+\href{http://linux.die.net/man/1/which}{\texttt{which}} command for just
+that! \drcmd{which}
 
 \drcap{\texttt{which} command}
 
@@ -6805,8 +6809,8 @@ command for just that!
 
 How can you tell if you have multiple versions of something installed?
 One way is with the
-\href{http://linux.die.net/man/1/locate}{\texttt{locate}}\drfnd{locate}{locate files}
-command:
+\href{http://linux.die.net/man/1/locate}{\texttt{locate}} command:
+\drfnd{locate}{locate files}
 
 \drcap{\texttt{locate} command}
 
@@ -6848,11 +6852,11 @@ quicker way to look than
 One final note on which thing gets executed. Unlike in Windows, "UNIX"
 environments do not consider the local directory (the current directory
 you are sitting at the command prompt, i.e., what
-\href{http://linux.die.net/man/1/pwd}{\texttt{pwd}}\drfnd{pwd}{print working directory}
-shows) as part of the path unless \texttt{.} is explicitly listed in
-\texttt{\$PATH} (and that is typically a bad idea). This is for security
-purposes. So it can be a bit unnerving to try and execute \texttt{foo}
-in the current directory and get:
+\href{http://linux.die.net/man/1/pwd}{\texttt{pwd}} shows) as part of
+the path unless \texttt{.} is explicitly listed in \texttt{\$PATH} (and
+that is typically a bad idea). This is for security purposes. So it can
+be a bit unnerving to try and execute \texttt{foo} in the current
+directory and get: \drfnd{pwd}{print working directory}
 
 \drcap{Command not found - but it's right there!}
 
@@ -6900,15 +6904,16 @@ Or you can prepend the \texttt{./} relative path to it, to indicate "the
 \addcontentsline{toc}{section}{Over and Over and Over}
 
 The function of scheduled tasks in Windows is performed by
-\href{http://linux.die.net/man/8/cron}{\texttt{cron}}\drsys{cron}{run scheduled jobs}
-in Linux. It reads in the various
-\href{http://linux.die.net/man/5/crontab}{\texttt{crontab(5)}}
-\index{crontab@\texttt{crontab} (file)} files on the system and executes
-the commands in them at the specified times. You use the
-\href{http://linux.die.net/man/1/crontab}{\texttt{crontab(1)}}\drsys{crontab}{edit scheduled jobs}
-command to view and edit the
-\texttt{crontab}\index{files and directories!special!crontab@\texttt{crontab}}
-files for your user (and other users if you have admin privileges).
+\href{http://linux.die.net/man/8/cron}{\texttt{cron}} in Linux. It reads
+in the various
+\href{http://linux.die.net/man/5/crontab}{\texttt{crontab(5)}} files on
+the system and executes the commands in them at the specified times. You
+use the \href{http://linux.die.net/man/1/crontab}{\texttt{crontab(1)}}
+command to view and edit the \texttt{crontab} files for your user (and
+other users if you have admin privileges).
+\drsys{cron}{run scheduled jobs} \drsys{crontab}{edit scheduled jobs}
+\index{crontab@\texttt{crontab} (file)}
+\index{files and directories!special!crontab@\texttt{crontab}}
 
 The sample given in the comments of the \texttt{crontab} when initially
 opened using \texttt{crontab\ -e} give a fine example of the syntax of
@@ -6963,18 +6968,18 @@ the commands from each \texttt{crontab}, they are typically not invoked
 with that particular user's environment settings, so it is best to fully
 specify the paths to files both in the \texttt{crontab} file itself and
 in any scripts or parameters to scripts it calls. Depending on the
-system and whether \texttt{\$PATH}\drenv{PATH}{execution search path} is
-set at all when a "\texttt{cron} job" runs, you may have to specify the
-full paths to binaries in installed packages or even what you would
-consider "system" libraries! The \texttt{which} command comes in handy
-here for finding out where each command is installed.
+system and whether \texttt{\$PATH} is set at all when a "\texttt{cron}
+job" runs, you may have to specify the full paths to binaries in
+installed packages or even what you would consider "system" libraries!
+The \texttt{which} command comes in handy here for finding out where
+each command is installed. \drenv{PATH}{execution search path}
 
 \section*{Start Me Up}\label{start-me-up}
 \addcontentsline{toc}{section}{Start Me Up}
 
 If you need to reboot the system the quickest way is with the
-\href{http://linux.die.net/man/8/reboot}{\texttt{reboot}}\drsys{reboot}{reboot system}
-command:
+\href{http://linux.die.net/man/8/reboot}{\texttt{reboot}} command:
+\drsys{reboot}{reboot system}
 
 \drcap{\texttt{reboot} command}
 
@@ -6985,10 +6990,10 @@ command:
 \end{Shaded}
 
 You can also use the
-\href{http://linux.die.net/man/8/shutdown}{\texttt{shutdown}}\drsys{shutdown}{shutdown or reboot system}
-command with the \texttt{-r} option, but why? The handier use for
+\href{http://linux.die.net/man/8/shutdown}{\texttt{shutdown}} command
+with the \texttt{-r} option, but why? The handier use for
 \texttt{shutdown} is to tell a system to halt and power off after
-shutting down:
+shutting down: \drsys{shutdown}{shutdown or reboot system}
 
 \drcap{Shutdown and power off}
 
@@ -7002,11 +7007,11 @@ shutting down:
 \addcontentsline{toc}{section}{Turn on Your Signals}
 
 One of the basic concepts in UNIX program is that of
-\href{https://en.wikipedia.org/wiki/Unix_signal}{"signals"}\index{signals}.
-You are probably already familiar with one way to send signals to a
-program, which is via \texttt{Ctrl-C} at the command prompt, which sends
-the \texttt{SIGINT} ("interrupt") signal to the program. Typically this
-will cause a program to terminate.
+\href{https://en.wikipedia.org/wiki/Unix_signal}{"signals"}. You are
+probably already familiar with one way to send signals to a program,
+which is via \texttt{Ctrl-C} at the command prompt, which sends the
+\texttt{SIGINT} ("interrupt") signal to the program. Typically this will
+cause a program to terminate. \index{signals}
 
 However, most signals can be "caught" by a program and coded around.
 There is one "uninterruptable" signal, however - \texttt{SIGKILL}. We
@@ -7060,11 +7065,10 @@ or not. "UNIX" programs are supposed to set an "exit status" when they
 end that by convention is \texttt{0} if the program exited successfully
 and a non-zero, (typically) positive number if there was an error. The
 exit status for the last executed command or program can be shown at the
-command line using the \texttt{\$?}
+command line using the \texttt{\$?} environment variable. Consider if
+the file \texttt{foo} exists and \texttt{bar} does not:
+\index{*@\texttt{?} (exit status environment variable)}
 \index{environment variables!\?@\texttt{\$}\texttt{?} (exit status code)}
-\index{*@\texttt{?} (exit status environment variable)} environment
-variable. Consider if the file \texttt{foo} exists and \texttt{bar} does
-not:
 
 \drcap{Examining exit codes}
 
@@ -7089,10 +7093,9 @@ we're not going to go into script logic here.
 However, sometimes even at the command line we want to be able to
 conditionally control a sequence of commands, and continue (or not)
 based on the success (or failure) of a previous command. In
-\texttt{bash} we have
-\texttt{\&\&}\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
-and \texttt{\textbar{}\textbar{}}
-\index{*@\texttt{"|"|} (logical "or" operator)} to the rescue!
+\texttt{bash} we have \texttt{\&\&} and \texttt{\textbar{}\textbar{}} to
+the rescue! \index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
+\index{*@\texttt{"|"|} (logical "or" operator)}
 
 \begin{itemize}
 \item
@@ -7169,14 +7172,14 @@ the "or", and the whole expression returns \texttt{0}.
 \end{Shaded}
 
 \textbf{Note:} There is actually a
-\href{http://linux.die.net/man/1/true}{\texttt{true}}\drcmd{true}
-command whose purpose is to, "do nothing, successfully." All it does is
-return a \texttt{0} (success) exit code. This can be useful in scripting
-and also sometimes when building "and" and "or" clauses like above.
+\href{http://linux.die.net/man/1/true}{\texttt{true}} command whose
+purpose is to "do nothing, successfully." All it does is return a
+\texttt{0} (success) exit code. This can be useful in scripting and also
+sometimes when building "and" and "or" clauses like above. \drcmd{true}
 
 And yes, of course, that means there is also a
-\href{http://linux.die.net/man/1/false}{\texttt{false}} \drcmd{false}
-command to "do nothing, unsuccessfully!"
+\href{http://linux.die.net/man/1/false}{\texttt{false}} command to "do
+nothing, unsuccessfully!" \drcmd{false}
 
 \drcap{\texttt{true} and \texttt{false} commands}
 
@@ -7223,12 +7226,12 @@ outlined in the book to find more information on them.
 \begin{itemize}
 \item
   \href{http://linux.die.net/abs-guide/exit-status.html}{\textbf{\texttt{\$?}}}
+  - the exit code for the last command or program executed.
+  \index{*@\texttt{?} (exit status environment variable)}
   \index{environment variables!\?@\texttt{\$}\texttt{?} (exit status code)}
-  \index{*@\texttt{?} (exit status environment variable)} - the exit
-  code for the last command or program executed.
 \item
-  \href{http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html}{\textbf{\texttt{\$PATH}}}\drenv{PATH}{execution search path}
-  - the execution search path.
+  \href{http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html}{\textbf{\texttt{\$PATH}}}
+  - the execution search path. \drenv{PATH}{execution search path}
 \end{itemize}
 
 \subsection*{Conditional Execution}\label{conditional-execution}
@@ -7238,11 +7241,13 @@ See \href{http://linux.die.net/abs-guide/ops.html}{"logical operators"}.
 
 \begin{itemize}
 \item
-  \textbf{\texttt{\&\&}}\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
-  - execute the second command only if the first command succeeds.
+  \textbf{\texttt{\&\&}} - execute the second command only if the first
+  command succeeds.
+  \index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
 \item
-  \textbf{\texttt{\textbar{}\textbar{}}}\index{*@\texttt{"|"|} (logical "or" operator)}
-  - execute the second command even if the first command fails.
+  \textbf{\texttt{\textbar{}\textbar{}}} - execute the second command
+  even if the first command fails.
+  \index{*@\texttt{"|"|} (logical "or" operator)}
 \end{itemize}
 
 \subsection*{Redirection}\label{redirection}
@@ -7253,33 +7258,34 @@ Redirection"}.
 
 \begin{itemize}
 \item
-  \textbf{\emph{stderr}}\drstd{stderr} - file descriptor 2, always open
-  for writing from a process, defaults to the screen on a terminal
-  session.
+  \textbf{\emph{stderr}} - file descriptor 2, always open for writing
+  from a process, defaults to the screen on a terminal session.
+  \drstd{stderr}
 \item
-  \textbf{\emph{stdin}}\drstd{stdin} - file descriptor 0, always open
-  for reading in a process, defaults to the keyboard input on a terminal
-  session.
+  \textbf{\emph{stdin}} - file descriptor 0, always open for reading in
+  a process, defaults to the keyboard input on a terminal session.
+  \drstd{stdin}
 \item
-  \textbf{\emph{stdout}}\drstd{stdout} - file descriptor 1, always open
-  for writing from a process, defaults to the screen on a terminal
-  session.
+  \textbf{\emph{stdout}} - file descriptor 1, always open for writing
+  from a process, defaults to the screen on a terminal session.
+  \drstd{stdout}
 \item
-  \textbf{\texttt{\textless{}}}\index{*@\texttt{<} (input redirection)}
-  \index{I/O!redirection!input (\texttt{<})} - redirect a file to
-  \emph{stdin}. \drstd{stdin}
+  \textbf{\texttt{\textless{}}} - redirect a file to \emph{stdin}.
+  \drstd{stdin} \index{*@\texttt{<} (input redirection)}
+  \index{I/O!redirection!input (\texttt{<})}
 \item
-  \textbf{\texttt{\textgreater{}}}\index{*@\texttt{>} (output redirection)}
-  \index{I/O!redirection!output (\texttt{>})} - redirect \emph{stdout}
-  to a file. \drstd{stdout}
+  \textbf{\texttt{\textgreater{}}} - redirect \emph{stdout} to a file.
+  \drstd{stdout} \index{*@\texttt{>} (output redirection)}
+  \index{I/O!redirection!output (\texttt{>})}
 \item
-  \textbf{\texttt{2\textgreater{}}}\index{*@\texttt{2>} (\textit{stderr} redirection)}
-  \index{I/O!redirection!error (\texttt{2>})} - redirect \emph{stderr}
-  to a file. \drstd{stderr}
+  \textbf{\texttt{2\textgreater{}}} - redirect \emph{stderr} to a file.
+  \drstd{stderr} \index{*@\texttt{2>} (\textit{stderr} redirection)}
+  \index{I/O!redirection!error (\texttt{2>})}
 \item
-  \textbf{\texttt{\textbar{}}}\index{*@\texttt{"|} (pipe)}\index{I/O!redirection!pipe (\texttt{"|})}
-  - pipe \emph{stdout} from one process into \emph{stdin} in another
-  process. \drstd{stdin} \drstd{stdout}
+  \textbf{\texttt{\textbar{}}} - pipe \emph{stdout} from one process
+  into \emph{stdin} in another process. \drstd{stdin} \drstd{stdout}
+  \index{*@\texttt{"|} (pipe)}
+  \index{I/O!redirection!pipe (\texttt{"|})}
 \end{itemize}
 
 \subsection*{Special Files and
@@ -7289,12 +7295,12 @@ Directories}\label{special-files-and-directories}
 \begin{itemize}
 \item
   \href{http://linux.die.net/Bash-Beginners-Guide/sect_03_04.html}{\textbf{\texttt{\textasciitilde{}}}}
-  \index{files and directories!home (\texttt{\~{}})} - shortcut for
-  current user's home directory.
+  - shortcut for current user's home directory.
+  \index{files and directories!home (\texttt{\~{}})}
 \item
-  \textbf{\texttt{.bash\_history}}\index{files and directories!special!bashhistory@\texttt{.bash\_history}}
-  - history of commands entered at the command prompt (also a nice
-  example of a hidden "dotfile").
+  \textbf{\texttt{.bash\_history}} - history of commands entered at the
+  command prompt (also a nice example of a hidden "dotfile").
+  \index{files and directories!special!bashhistory@\texttt{.bash\_history}}
 \end{itemize}
 
 \subsection*{System Directories}\label{system-directories}
@@ -7305,23 +7311,23 @@ System Directories}.
 
 \begin{itemize}
 \item
-  \textbf{\texttt{/etc}}\index{files and directories!special!etc@\texttt{/etc/}}
-  - configuration files location.
+  \textbf{\texttt{/etc}} - configuration files location.
+  \index{files and directories!special!etc@\texttt{/etc/}}
 \item
-  \textbf{\texttt{/home}}\index{files and directories!home (\texttt{/home/})}
-  - "home" or user profile directories.
+  \textbf{\texttt{/home}} - "home" or user profile directories.
+  \index{files and directories!home (\texttt{/home/})}
 \item
-  \textbf{\texttt{/proc}}\index{files and directories!special!proc@\texttt{/proc/}}
-  - system run-time information.
+  \textbf{\texttt{/proc}} - system run-time information.
+  \index{files and directories!special!proc@\texttt{/proc/}}
 \item
-  \textbf{\texttt{/root}}\index{files and directories!root "home" (\texttt{/root/})}
-  - "home" directory for "root" user (system admin).
+  \textbf{\texttt{/root}} - "home" directory for "root" user (system
+  admin). \index{files and directories!root "home" (\texttt{/root/})}
 \item
-  \textbf{\texttt{/tmp}}\index{files and directories!special!tmp@\texttt{/tmp/}}
-  - temporary files location.
+  \textbf{\texttt{/tmp}} - temporary files location.
+  \index{files and directories!special!tmp@\texttt{/tmp/}}
 \item
-  \textbf{\texttt{/var/log}}\index{files and directories!special!varlog@\texttt{/var/log/}}
-  - log files location.
+  \textbf{\texttt{/var/log}} - log files location.
+  \index{files and directories!special!varlog@\texttt{/var/log/}}
 \end{itemize}
 
 \subsection*{Commands}\label{commands}
@@ -7333,188 +7339,206 @@ access files and the like.
 
 \begin{itemize}
 \item
-  \href{http://linux.die.net/man/1/7z}{\textbf{\texttt{7z}}}\drcom{7z} -
-  compress and uncompress files and directories using the 7-zip
-  algorithm.
+  \href{http://linux.die.net/man/1/7z}{\textbf{\texttt{7z}}} - compress
+  and uncompress files and directories using the 7-zip algorithm.
+  \drcom{7z}
 \item
-  \href{http://linux.die.net/man/1/apropos}{\textbf{\texttt{apropos}}}\drdoc{apropos}
-  - search for help on commands by pattern.
+  \href{http://linux.die.net/man/1/apropos}{\textbf{\texttt{apropos}}} -
+  search for help on commands by pattern. \drdoc{apropos}
 \item
-  \href{http://linux.die.net/man/1/awk}{\textbf{\texttt{awk}}}\drcmd{awk}
-  - language for processing streams of data.
+  \href{http://linux.die.net/man/1/awk}{\textbf{\texttt{awk}}} -
+  language for processing streams of data. \drcmd{awk}
 \item
-  \href{http://linux.die.net/man/1/bash}{\textbf{\texttt{bash}}}\drcmd{bash}
-  - the Bourne-again shell.
+  \href{http://linux.die.net/man/1/bash}{\textbf{\texttt{bash}}} - the
+  Bourne-again shell. \drcmd{bash}
 \item
-  \href{http://linux.die.net/man/1/bzip2}{\textbf{\texttt{bzip2}}}\drcom{bzip2}
-  - compress and uncompress files using the \texttt{bzip2} algorithm.
+  \href{http://linux.die.net/man/1/bzip2}{\textbf{\texttt{bzip2}}} -
+  compress and uncompress files using the \texttt{bzip2} algorithm.
+  \drcom{bzip2}
 \item
-  \href{http://linux.die.net/man/1/cat}{\textbf{\texttt{cat}}}\drcmd{cat}
-  - concatenate the input files to \emph{stdout}. \drstd{stdout}
-\item
-  \href{http://linux.die.net/man/1/cd}{\textbf{\texttt{cd}}}\drfnd{cd}{change directory}
-  - change the current directory.
-\item
-  \href{http://linux.die.net/man/1/chgrp}{\textbf{\texttt{chgrp}}}\drcmd{chgrp}
-  - change the primary group of a file or directory.
-\item
-  \href{http://linux.die.net/man/1/chmod}{\textbf{\texttt{chmod}}}\drcmd{chmod}
-  - change the permissions (mode bits) of a file or directory.
-\item
-  \href{http://linux.die.net/man/1/chown}{\textbf{\texttt{chown}}}\drcmd{chown}
-  - change the owner of a file or directory.
-\item
-  \href{http://linux.die.net/man/1/cp}{\textbf{\texttt{cp}}}\drfnd{cp}{copy}
-  - copy files or directories.
-\item
-  \href{http://linux.die.net/man/1/crontab}{\textbf{\texttt{crontab}}}\drsys{crontab}{edit scheduled jobs}
-  - display or edit tasks to be run by \texttt{cron}.
-\item
-  \href{http://linux.die.net/man/1/curl}{\textbf{\texttt{curl}}}\drnet{curl}
-  - download files from the internet.
-\item
-  \href{http://linux.die.net/man/1/df}{\textbf{\texttt{df}}}\drfnd{df}{display file system disk space}
-  - show space utilization by file system.
-\item
-  \href{http://linux.die.net/man/1/diff}{\textbf{\texttt{diff}}}\drfnd{diff}{show differences between files}
-  - show the differences between files.
-\item
-  \href{http://linux.die.net/man/1/dig}{\textbf{\texttt{dig}}}\drnet{dig}
-  - look up DNS info on an address.
-\item
-  \href{http://linux.die.net/man/1/dpkg}{\textbf{\texttt{dpkg}}}\drpkg{dpkg}
-  - package manager for Debian flavors.
-\item
-  \href{http://linux.die.net/man/1/echo}{\textbf{\texttt{echo}}}\drcmd{echo}
-  - display passed parameters to \emph{stdout}. \drstd{stdout}
-\item
-  \href{http://linux.die.net/man/1/email}{\textbf{\texttt{email}}}\drnet{email}
-  - send email.
-\item
-  \href{http://linux.die.net/man/1/false}{\textbf{\texttt{false}}}\drcmd{false}
-  - do nothing, unsuccessfully.
-\item
-  \href{http://linux.die.net/man/1/file}{\textbf{\texttt{file}}}\drfnd{file}{detect file type}
-  - give best guess as to type of file.
-\item
-  \href{http://linux.die.net/man/1/find}{\textbf{\texttt{find}}}\drfnd{find}{find files}
-  - find files based on various conditions and execute actions against
-  the results.
-\item
-  \href{http://linux.die.net/man/1/grep}{\textbf{\texttt{grep}}}\drfnd{grep}{search files}
-  - search for a pattern (regular expression) in files.
-\item
-  \href{http://linux.die.net/man/1/help}{\textbf{\texttt{help}}}\drdoc{help}
-  - help for built-in commands in \texttt{bash}.
-\item
-  \href{http://linux.die.net/man/1/info}{\textbf{\texttt{info}}}\drdoc{info}
-  - an alternative for \texttt{man}, especially for GNU programs.
-  Remember \texttt{q} quits.
-\item
-  \href{http://linux.die.net/man/1/less}{\textbf{\texttt{less}}}\drcmd{less}\index{files and directories!paginate!less@\texttt{less} command}\index{pagination!\texttt{less} command}
-  - display the file one page at a time on \emph{stdout}. \drstd{stdout}
-\item
-  \href{http://linux.die.net/man/1/ln}{\textbf{\texttt{ln}}}\drfnd{ln}{link}
-  - create hard or soft (shortcut) links.
-\item
-  \href{http://linux.die.net/man/1/locate}{\textbf{\texttt{locate}}}\drfnd{locate}{locate files}
-  - locate files by name.
-\item
-  \href{http://linux.die.net/man/1/ls}{\textbf{\texttt{ls}}}\drfnd{ls}{list directory contents}
-  - list directory contents.
-\item
-  \href{http://linux.die.net/man/1/lynx}{\textbf{\texttt{lynx}}}\drnet{lynx}
-  - command line web browser.
-\item
-  \href{http://linux.die.net/man/1/man}{\textbf{\texttt{man}}}\drdoc{man}
-  - display manual pages. Remember \texttt{q} quits.
-\item
-  \href{http://linux.die.net/man/1/mkdir}{\textbf{\texttt{mkdir}}}\drfnd{mkdir}{make directory}
-  - make a new directory.
-\item
-  \href{http://linux.die.net/man/1/more}{\textbf{\texttt{more}}}\drcmd{more}\index{files and directories!paginate!more@\texttt{more} command}\index{pagination!\texttt{more} command}
-  - display the file one page at a time on \emph{stdout}. \drstd{stdout}
-\item
-  \href{http://linux.die.net/man/1/mutt}{\textbf{\texttt{mutt}}}\drnet{mutt}
-  - email client.
-\item
-  \href{http://linux.die.net/man/1/mv}{\textbf{\texttt{mv}}}\drfnd{mv}{move files}
-  - move files or directories.
-\item
-  \href{http://linux.die.net/man/1/pine}{\textbf{\texttt{pine}}}\drnet{pine}
-  - email client.
-\item
-  \href{http://linux.die.net/man/1/ps}{\textbf{\texttt{ps}}}\drsys{ps}{list processes}
-  - list running processes.
-\item
-  \href{http://linux.die.net/man/1/pwd}{\textbf{\texttt{pwd}}}\drfnd{pwd}{print working directory}
-  - print the current (working) directory name.
-\item
-  \href{http://linux.die.net/man/1/rename}{\textbf{\texttt{rename}}}\drfnd{rename}{rename file}
-  - rename files in more complex ways than \texttt{mv} can.
-\item
-  \href{http://linux.die.net/man/1/rm}{\textbf{\texttt{rm}}}\drfnd{rm}{remove file}
-  - delete (remove) files or directories.
-\item
-  \href{http://linux.die.net/man/1/scp}{\textbf{\texttt{scp}}}\drnet{scp}
-  - file copy over secure shell protocol.
-\item
-  \href{http://linux.die.net/man/1/set}{\textbf{\texttt{set}}}\drcmd{set}
-  - set an environment variable, or display all environment variables.
-\item
-  \href{http://linux.die.net/man/1/sort}{\textbf{\texttt{sort}}}\drcmd{sort}
-  - sort \emph{stdin} or a file to \emph{stdout}. \drstd{stdin}
+  \href{http://linux.die.net/man/1/cat}{\textbf{\texttt{cat}}} -
+  concatenate the input files to \emph{stdout}. \drcmd{cat}
   \drstd{stdout}
 \item
-  \href{http://linux.die.net/man/1/ssh}{\textbf{\texttt{ssh}}}\drnet{ssh}
-  - secure shell terminal progam and protocol.
+  \href{http://linux.die.net/man/1/cd}{\textbf{\texttt{cd}}} - change
+  the current directory. \drfnd{cd}{change directory}
 \item
-  \href{http://linux.die.net/man/1/tail}{\textbf{\texttt{tail}}}\drcmd{tail}
-  - display the last lines of a file.
+  \href{http://linux.die.net/man/1/chgrp}{\textbf{\texttt{chgrp}}} -
+  change the primary group of a file or directory. \drcmd{chgrp}
 \item
-  \href{http://linux.die.net/man/1/tar}{\textbf{\texttt{tar}}}\drcmd{tar}
-  - "tape archive", a way to combine directories into a single flat
-  file.
+  \href{http://linux.die.net/man/1/chmod}{\textbf{\texttt{chmod}}} -
+  change the permissions (mode bits) of a file or directory.
+  \drcmd{chmod}
+\item
+  \href{http://linux.die.net/man/1/chown}{\textbf{\texttt{chown}}} -
+  change the owner of a file or directory. \drcmd{chown}
+\item
+  \href{http://linux.die.net/man/1/cp}{\textbf{\texttt{cp}}} - copy
+  files or directories. \drfnd{cp}{copy}
+\item
+  \href{http://linux.die.net/man/1/crontab}{\textbf{\texttt{crontab}}} -
+  display or edit tasks to be run by \texttt{cron}.
+  \drsys{crontab}{edit scheduled jobs}
+\item
+  \href{http://linux.die.net/man/1/curl}{\textbf{\texttt{curl}}} -
+  download files from the internet. \drnet{curl}
+\item
+  \href{http://linux.die.net/man/1/df}{\textbf{\texttt{df}}} - show
+  space utilization by file system.
+  \drfnd{df}{display file system disk space}
+\item
+  \href{http://linux.die.net/man/1/diff}{\textbf{\texttt{diff}}} - show
+  the differences between files.
+  \drfnd{diff}{show differences between files}
+\item
+  \href{http://linux.die.net/man/1/dig}{\textbf{\texttt{dig}}} - look up
+  DNS info on an address. \drnet{dig}
+\item
+  \href{http://linux.die.net/man/1/dpkg}{\textbf{\texttt{dpkg}}} -
+  package manager for Debian flavors. \drpkg{dpkg}
+\item
+  \href{http://linux.die.net/man/1/echo}{\textbf{\texttt{echo}}} -
+  display passed parameters to \emph{stdout}. \drcmd{echo}
+  \drstd{stdout}
+\item
+  \href{http://linux.die.net/man/1/email}{\textbf{\texttt{email}}} -
+  send email. \drnet{email}
+\item
+  \href{http://linux.die.net/man/1/false}{\textbf{\texttt{false}}} - do
+  nothing, unsuccessfully. \drcmd{false}
+\item
+  \href{http://linux.die.net/man/1/file}{\textbf{\texttt{file}}} - give
+  best guess as to type of file. \drfnd{file}{detect file type}
+\item
+  \href{http://linux.die.net/man/1/find}{\textbf{\texttt{find}}} - find
+  files based on various conditions and execute actions against the
+  results. \drfnd{find}{find files}
+\item
+  \href{http://linux.die.net/man/1/grep}{\textbf{\texttt{grep}}} -
+  search for a pattern (regular expression) in files.
+  \drfnd{grep}{search files}
+\item
+  \href{http://linux.die.net/man/1/help}{\textbf{\texttt{help}}} - help
+  for built-in commands in \texttt{bash}. \drdoc{help}
+\item
+  \href{http://linux.die.net/man/1/info}{\textbf{\texttt{info}}} - an
+  alternative for \texttt{man}, especially for GNU programs. Remember
+  \texttt{q} quits. \drdoc{info}
+\item
+  \href{http://linux.die.net/man/1/less}{\textbf{\texttt{less}}} -
+  display the file one page at a time on \emph{stdout}. \drcmd{less}
+  \drstd{stdout}
+  \index{files and directories!paginate!less@\texttt{less} command}
+  \index{pagination!\texttt{less} command}
+\item
+  \href{http://linux.die.net/man/1/ln}{\textbf{\texttt{ln}}} - create
+  hard or soft (shortcut) links. \drfnd{ln}{link}
+\item
+  \href{http://linux.die.net/man/1/locate}{\textbf{\texttt{locate}}} -
+  locate files by name. \drfnd{locate}{locate files}
+\item
+  \href{http://linux.die.net/man/1/ls}{\textbf{\texttt{ls}}} - list
+  directory contents. \drfnd{ls}{list directory contents}
+\item
+  \href{http://linux.die.net/man/1/lynx}{\textbf{\texttt{lynx}}} -
+  command line web browser. \drnet{lynx}
+\item
+  \href{http://linux.die.net/man/1/man}{\textbf{\texttt{man}}} - display
+  manual pages. Remember \texttt{q} quits. \drdoc{man}
+\item
+  \href{http://linux.die.net/man/1/mkdir}{\textbf{\texttt{mkdir}}} -
+  make a new directory. \drfnd{mkdir}{make directory}
+\item
+  \href{http://linux.die.net/man/1/more}{\textbf{\texttt{more}}} -
+  display the file one page at a time on \emph{stdout}. \drcmd{more}
+  \drstd{stdout}
+  \index{files and directories!paginate!more@\texttt{more} command}
+  \index{pagination!\texttt{more} command}
+\item
+  \href{http://linux.die.net/man/1/mutt}{\textbf{\texttt{mutt}}} - email
+  client. \drnet{mutt}
+\item
+  \href{http://linux.die.net/man/1/mv}{\textbf{\texttt{mv}}} - move
+  files or directories. \drfnd{mv}{move files}
+\item
+  \href{http://linux.die.net/man/1/pine}{\textbf{\texttt{pine}}} - email
+  client. \drnet{pine}
+\item
+  \href{http://linux.die.net/man/1/ps}{\textbf{\texttt{ps}}} - list
+  running processes. \drsys{ps}{list processes}
+\item
+  \href{http://linux.die.net/man/1/pwd}{\textbf{\texttt{pwd}}} - print
+  the current (working) directory name.
+  \drfnd{pwd}{print working directory}
+\item
+  \href{http://linux.die.net/man/1/rename}{\textbf{\texttt{rename}}} -
+  rename files in more complex ways than \texttt{mv} can.
+  \drfnd{rename}{rename file}
+\item
+  \href{http://linux.die.net/man/1/rm}{\textbf{\texttt{rm}}} - delete
+  (remove) files or directories. \drfnd{rm}{remove file}
+\item
+  \href{http://linux.die.net/man/1/scp}{\textbf{\texttt{scp}}} - file
+  copy over secure shell protocol. \drnet{scp}
+\item
+  \href{http://linux.die.net/man/1/set}{\textbf{\texttt{set}}} - set an
+  environment variable, or display all environment variables.
+  \drcmd{set}
+\item
+  \href{http://linux.die.net/man/1/sort}{\textbf{\texttt{sort}}} - sort
+  \emph{stdin} or a file to \emph{stdout}. \drcmd{sort} \drstd{stdin}
+  \drstd{stdout}
+\item
+  \href{http://linux.die.net/man/1/ssh}{\textbf{\texttt{ssh}}} - secure
+  shell terminal progam and protocol. \drnet{ssh}
+\item
+  \href{http://linux.die.net/man/1/tail}{\textbf{\texttt{tail}}} -
+  display the last lines of a file. \drcmd{tail}
+\item
+  \href{http://linux.die.net/man/1/tar}{\textbf{\texttt{tar}}} - "tape
+  archive", a way to combine directories into a single flat file.
+  \drcmd{tar}
 \item
   \href{http://linux.die.net/man/1/tee}{\textbf{\texttt{tee}}}\drcmd{tee}
   - write to a file and \emph{stdout} at the same time. \drstd{stdout}
 \item
-  \href{http://linux.die.net/man/1/telnet}{\textbf{\texttt{telnet}}}\drnet{telnet}
-  - ancient terminal program and protocol.
+  \href{http://linux.die.net/man/1/telnet}{\textbf{\texttt{telnet}}} -
+  ancient terminal program and protocol. \drnet{telnet}
 \item
-  \href{http://linux.die.net/man/1/top}{\textbf{\texttt{top}}}\drsys{top}{list processes by resource use}
-  - list processes by resource utilization (CPU).
+  \href{http://linux.die.net/man/1/top}{\textbf{\texttt{top}}} - list
+  processes by resource utilization (CPU).
+  \drsys{top}{list processes by resource use}
 \item
-  \href{http://linux.die.net/man/1/touch}{\textbf{\texttt{touch}}}\drfnd{touch}{change modified date or create file}
-  - create an empty file or change the last-modified time of an existing
-  file.
+  \href{http://linux.die.net/man/1/touch}{\textbf{\texttt{touch}}} -
+  create an empty file or change the last-modified time of an existing
+  file. \drfnd{touch}{change modified date or create file}
 \item
-  \href{http://linux.die.net/man/1/true}{\textbf{\texttt{true}}}\drcmd{true}
-  - do nothing, successfully.
+  \href{http://linux.die.net/man/1/true}{\textbf{\texttt{true}}} - do
+  nothing, successfully. \drcmd{true}
 \item
-  \href{http://linux.die.net/man/1/uname}{\textbf{\texttt{uname}}}\drsys{uname}{system info}
-  - print system info.
+  \href{http://linux.die.net/man/1/uname}{\textbf{\texttt{uname}}} -
+  print system info. \drsys{uname}{system info}
 \item
-  \href{http://linux.die.net/man/1/unzip}{\textbf{\texttt{unzip}}}\drcom{unzip}
-  - uncompress \texttt{.zip} files.
+  \href{http://linux.die.net/man/1/unzip}{\textbf{\texttt{unzip}}} -
+  uncompress \texttt{.zip} files. \drcom{unzip}
 \item
-  \href{http://linux.die.net/man/1/vi}{\textbf{\texttt{vi}}}\dreds{vi} -
-  "visual" editor, a file editor.
+  \href{http://linux.die.net/man/1/vi}{\textbf{\texttt{vi}}} - "visual"
+  editor, a file editor. \dreds{vi}
 \item
-  \href{http://linux.die.net/man/1/wget}{\textbf{\texttt{wget}}}\drnet{wget}
-  - download files from the internet.
+  \href{http://linux.die.net/man/1/wget}{\textbf{\texttt{wget}}} -
+  download files from the internet. \drnet{wget}
 \item
-  \href{http://linux.die.net/man/1/whoami}{\textbf{\texttt{whoami}}}\drcmd{whoami}
-  - the answer to life's most existential question.
+  \href{http://linux.die.net/man/1/whoami}{\textbf{\texttt{whoami}}} -
+  the answer to life's most existential question. \drcmd{whoami}
 \item
-  \href{http://linux.die.net/man/1/whois}{\textbf{\texttt{whois}}}\drnet{whois}
-  - look up DNS ownership info on an address.
+  \href{http://linux.die.net/man/1/whois}{\textbf{\texttt{whois}}} -
+  look up DNS ownership info on an address. \drnet{whois}
 \item
-  \href{http://linux.die.net/man/1/xfreerdp}{\textbf{\texttt{xfreerdp}}}\drnet{xfreerdp}
-  - RDP protocol client.
+  \href{http://linux.die.net/man/1/xfreerdp}{\textbf{\texttt{xfreerdp}}}
+  - RDP protocol client. \drnet{xfreerdp}
 \item
-  \href{http://linux.die.net/man/1/zip}{\textbf{\texttt{zip}}}\drcom{zip}
-  - compress files and directories using the PKZip algorithm.
+  \href{http://linux.die.net/man/1/zip}{\textbf{\texttt{zip}}} -
+  compress files and directories using the PKZip algorithm. \drcom{zip}
 \end{itemize}
 
 \subsection*{System Commands}\label{system-commands}
@@ -7526,44 +7550,46 @@ some systems restrict the use of \texttt{ping}!
 
 \begin{itemize}
 \item
-  \href{http://linux.die.net/man/8/apt-get}{\textbf{\texttt{apt-get}}}\drpkg{apt-get}
-  - package manager for Debian flavors.
+  \href{http://linux.die.net/man/8/apt-get}{\textbf{\texttt{apt-get}}} -
+  package manager for Debian flavors. \drpkg{apt-get}
 \item
-  \href{http://linux.die.net/man/8/aptitude}{\textbf{\texttt{aptitude}}}\drpkg{aptitude}
-  - package manager for Debian flavors.
+  \href{http://linux.die.net/man/8/aptitude}{\textbf{\texttt{aptitude}}}
+  - package manager for Debian flavors. \drpkg{aptitude}
 \item
-  \href{http://linux.die.net/man/8/cron}{\textbf{\texttt{cron}}}\drsys{cron}{run scheduled jobs}
-  - system for running "scheduled tasks."
+  \href{http://linux.die.net/man/8/cron}{\textbf{\texttt{cron}}} -
+  system for running "scheduled tasks." \drsys{cron}{run scheduled jobs}
 \item
-  \href{http://linux.die.net/man/8/dmesg}{\textbf{\texttt{dmesg}}}\drsys{dmesg}{display kernel log}
-  - display kernel log messages.
+  \href{http://linux.die.net/man/8/dmesg}{\textbf{\texttt{dmesg}}} -
+  display kernel log messages. \drsys{dmesg}{display kernel log}
 \item
-  \href{http://linux.die.net/man/8/ifconfig}{\textbf{\texttt{ifconfig}}}\drnet{ifconfig}
-  - display network (interface) configuration.
+  \href{http://linux.die.net/man/8/ifconfig}{\textbf{\texttt{ifconfig}}}
+  - display network (interface) configuration. \drnet{ifconfig}
 \item
-  \href{http://linux.die.net/man/8/mount}{\textbf{\texttt{mount}}}\drsys{mount}{mount file system}
-  - mount a file system to a specific location.
+  \href{http://linux.die.net/man/8/mount}{\textbf{\texttt{mount}}} -
+  mount a file system to a specific location.
+  \drsys{mount}{mount file system}
 \item
-  \href{http://linux.die.net/man/1/passwd}{\textbf{\texttt{passwd}}}\drsys{passwd}{change password}
-  - change password.
+  \href{http://linux.die.net/man/1/passwd}{\textbf{\texttt{passwd}}} -
+  change password. \drsys{passwd}{change password}
 \item
-  \href{http://linux.die.net/man/8/ping}{\textbf{\texttt{ping}}}\drnet{ping}
-  - test for network connectivity to an IP address.
+  \href{http://linux.die.net/man/8/ping}{\textbf{\texttt{ping}}} - test
+  for network connectivity to an IP address. \drnet{ping}
 \item
-  \href{http://linux.die.net/man/8/reboot}{\textbf{\texttt{reboot}}}\drsys{reboot}{reboot system}
-  - restart the system.
+  \href{http://linux.die.net/man/8/reboot}{\textbf{\texttt{reboot}}} -
+  restart the system. \drsys{reboot}{reboot system}
 \item
-  \href{http://linux.die.net/man/8/rpm}{\textbf{\texttt{rpm}}}\drpkg{rpm}
-  - package manager for Fedora flavors.
+  \href{http://linux.die.net/man/8/rpm}{\textbf{\texttt{rpm}}} - package
+  manager for Fedora flavors. \drpkg{rpm}
 \item
-  \href{http://linux.die.net/man/8/shutdown}{\textbf{\texttt{shutdown}}}\drsys{shutdown}{shutdown or reboot system}
+  \href{http://linux.die.net/man/8/shutdown}{\textbf{\texttt{shutdown}}}
   - shutdown or restart the system.
+  \drsys{shutdown}{shutdown or reboot system}
 \item
-  \href{http://linux.die.net/man/8/sudo}{\textbf{\texttt{sudo}}}\drcmd{sudo}
-  - execute a command with elevated privileges.
+  \href{http://linux.die.net/man/8/sudo}{\textbf{\texttt{sudo}}} -
+  execute a command with elevated privileges. \drcmd{sudo}
 \item
-  \href{http://linux.die.net/man/8/traceroute}{\textbf{\texttt{traceroute}}}\drnet{traceroute}
-  - trace the route to an IP address.
+  \href{http://linux.die.net/man/8/traceroute}{\textbf{\texttt{traceroute}}}
+  - trace the route to an IP address. \drnet{traceroute}
 \end{itemize}
 
 \section*{Examples}\label{examples}
@@ -7621,11 +7647,10 @@ inverting the match logic (\texttt{-v}) on \texttt{{]}}.
 \subsection*{Chain Gangs}\label{chain-gangs}
 \addcontentsline{toc}{subsection}{Chain Gangs}
 
-Remembering that
-\texttt{\&\&}\index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
-only executes the next command if the prior one is successful, we can do
-things like set up a sample directory and (empty) files for playing
-around with files and directories in one fell swoop:
+Remembering that \texttt{\&\&} only executes the next command if the
+prior one is successful, we can do things like set up a sample directory
+and (empty) files for playing around with files and directories in one
+fell swoop: \index{*@\texttt{\&}\texttt{\&} (logical "and" operator)}
 
 \drcap{Make a bunch of files and directories at once}
 
@@ -7657,14 +7682,13 @@ That is roughly equivalent to:
 \addcontentsline{toc}{subsection}{Simple Scripts}
 
 I said I wasn't going to cover scripting, especially logical constructs
-like \texttt{if}/\texttt{fi}\drcmd{if}. But simple scripts that just "do
-things" in a certain order are within scope, and the following, which
-installs
-\href{https://github.com/freerdp/freerdp}{\texttt{freerdp}}\drnet{xfreerdp},
-is a good example of simply taking the guesswork out of doing something
-repetitive across multiple machines. I keep this \texttt{installrdp}
-script in Dropbox so I can run it quickly and easily on any new machine
-I set up (once I get Dropbox set up on the machine!)
+like \texttt{if}/\texttt{fi}. But simple scripts that just "do things"
+in a certain order are within scope, and the following, which installs
+\href{https://github.com/freerdp/freerdp}{\texttt{freerdp}}, is a good
+example of simply taking the guesswork out of doing something repetitive
+across multiple machines. I keep this \texttt{installrdp} script in
+Dropbox so I can run it quickly and easily on any new machine I set up
+(once I get Dropbox set up on the machine!) \drcmd{if} \drnet{xfreerdp}
 
 \drcap{A simple install script}
 
@@ -7721,23 +7745,25 @@ it's up to me to track and update the software (if I care).
 \end{quote}
 
 This document was produced in the environments it discusses, including
-(with their
-\href{http://linux.die.net/man/1/uname}{\texttt{uname\ -rv}}\drsys{uname}{system info}
-results):
+(with their \href{http://linux.die.net/man/1/uname}{\texttt{uname\ -rv}}
+results): \drsys{uname}{system info}
 
 \begin{itemize}
 \item
-  \href{https://cygwin.com/}{\textbf{Cygwin}}\drunx{Cygwin} -
-  \texttt{2.2.1(0.289/5/3)\ 2015-08-20\ 11:42}
+  \href{https://cygwin.com/}{\textbf{Cygwin}} -
+  \texttt{2.2.1(0.289/5/3)\ 2015-08-20\ 11:42} \drunx{Cygwin}
 \item
-  \href{http://www.debian.org/}{\textbf{Debian}}\drdis{Debian} -
+  \href{http://www.debian.org/}{\textbf{Debian}} -
   \texttt{3.2.0-4-amd64\ \#1\ SMP\ Debian\ 3.2.65-1+deb7u2}
+  \drdis{Debian}
 \item
-  \href{http://www.freebsd.org/}{\textbf{FreeBSD}}\drbsd{FreeBSD} -
+  \href{http://www.freebsd.org/}{\textbf{FreeBSD}} -
   \texttt{7.3-RELEASE-p2\ FreeBSD\ 7.3-RELEASE-p2\ \#0:\ Tue\ Nov\ \ 4\ 22:08:52\ EST\ 2014}
+  \drbsd{FreeBSD}
 \item
-  \href{http://linuxmint.com/}{\textbf{Linux Mint}}\drdis{Mint} -
+  \href{http://linuxmint.com/}{\textbf{Linux Mint}} -
   \texttt{3.16.0-38-generic\ \#52\textasciitilde{}14.04.1-Ubuntu\ SMP\ Fri\ May\ 8\ 09:43:57\ UTC\ 2015}
+  \drdis{Mint}
 \end{itemize}
 
 I could have done something with my Raspberry Pi, too, but that would
@@ -7745,24 +7771,23 @@ just be showing off.
 
 Written in
 \href{http://pandoc.org/README.html\#pandocs-markdown}{\texttt{pandoc}-flavored
-Markdown} using
-\href{http://linux.die.net/man/1/vi}{\texttt{vi}}\dreds{vi} and
+Markdown} using \href{http://linux.die.net/man/1/vi}{\texttt{vi}} and
 \href{https://github.com/Microsoft/vscode}{Visual Studio Code}, among
-others.
+others. \dreds{vi}
 
-Output produced using
-\href{http://pandoc.org/}{\texttt{pandoc}}\drcmd{pandoc},
-\href{http://www.tug.org/texlive/}{TeX Live}\drcmd{texlive},
-\href{http://linux.die.net/man/1/pdflatex}{\texttt{pdflatex}}\drcmd{pdflatex},
-\href{http://linux.die.net/man/1/make}{\texttt{make}}\drcmd{make},
-originally based on the
+Output produced using \href{http://pandoc.org/}{\texttt{pandoc}},
+\href{http://www.tug.org/texlive/}{TeX Live},
+\href{http://linux.die.net/man/1/pdflatex}{\texttt{pdflatex}},
+\href{http://linux.die.net/man/1/make}{\texttt{make}}, originally based
+on the
 \href{https://github.com/evangoer/pandoc-ebook-template}{@evangoer's
 pandoc ebook template} but long since modified so don't blame him.
+\drcmd{make} \drcmd{pandoc} \drcmd{pdflatex} \drcmd{texlive}
 
 Source code control is provided by
-\href{http://linux.die.net/man/1/git}{\texttt{git}}\drcmd{git}. You can
-view \href{https://github.com/dullroar/ten-steps-to-linux-survival}{the
-files used to create this book} on GitHub.
+\href{http://linux.die.net/man/1/git}{\texttt{git}}. You can view
+\href{https://github.com/dullroar/ten-steps-to-linux-survival}{the files
+used to create this book} on GitHub. \drcmd{git}
 
 The fonts used are
 \href{https://en.wikipedia.org/wiki/DejaVu_fonts}{DejaVu} Serif for the

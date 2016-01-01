@@ -12,7 +12,8 @@ commands may not be available to you, or may require `sudo` access.
 
 ## All Part of the Process{.unnumbered}
 
-To see what *processes* you are running, use [`ps`](http://linux.die.net/man/1/ps)\drsys{ps}{list processes}:
+To see what *processes* you are running, use [`ps`](http://linux.die.net/man/1/ps):
+\drsys{ps}{list processes}
 
 \drcap{\texttt{ps} command}
 ```bash
@@ -53,9 +54,10 @@ use `ps -AH`:
 ...and so on...
 ```
 
-You can *kill* a process using the [`kill`](http://linux.die.net/man/1/kill)\drcmd{kill} command,
-which takes a process id and optionally a "signal"\index{signals}. Here is an example looking for
-any running instance of `vi` and sending it a `kill` command:
+You can *kill* a process using the [`kill`](http://linux.die.net/man/1/kill) command, which takes a
+process id and optionally a "signal"\index{signals}. Here is an example looking for any running
+instance of `vi` and sending it a `kill` command:
+\drcmd{kill}
 
 \drcap{Hunting down and killing \texttt{vi} sessions}
 ```bash
@@ -72,18 +74,21 @@ That's:
 * **`grep vi`** - find all instances of `vi` (be careful, because that would include `view` and
 anything else containing the string `vi`, too).
 
-* **`|`** - pipe *stdout* from `grep`\drfnd{grep}{search files} to next command.
+* **`|`** - pipe *stdout* from `grep` to next command.
+\drfnd{grep}{search files}
 
-* **`kill`** - send a `SIGINT` signal\index{signals} to a process specified by:
+* **`kill`** - send a `SIGINT` signal to a process specified by:
+\index{signals}
 
-* **`` `cut -f2 -d" "` ``** - execute the [`cut`](http://linux.die.net/man/1/cut)\drcmd{cut}
-command and take the second space-delimited field (in this case the process id - the first "field"
-is just leading spaces), and place the results of the command execution as the parameter to the
-`kill` command.
+* **`` `cut -f2 -d" "` ``** - execute the [`cut`](http://linux.die.net/man/1/cut) command and take
+the second space-delimited field (in this case the process id - the first "field" is just leading
+spaces), and place the results of the command execution as the parameter to the `kill` command.
+\drcmd{cut}
 
 To monitor the ongoing CPU, memory and other resource utilization of the *top* processes, you use
-the [`top`](http://linux.die.net/man/1/top)\drsys{top}{list processes by resource use} command, which unlike most in this book
-updates dynamically every second by default:
+the [`top`](http://linux.die.net/man/1/top) command, which unlike most in this book updates
+dynamically every second by default:
+\drsys{top}{list processes by resource use}
 
 \drcap{\texttt{top} command}
 ```bash
@@ -119,9 +124,9 @@ look like a file, including network streams, device output and the like. This is
 concept, because it allows you to access things with tools that have ***no idea*** what they are
 working on, as long as it "looks like" a file (or stream of text).
 
-One of the places this has become really handy is in the `/proc`
-\index{files and directories!special!proc@\texttt{/proc/}} "file system." On modern Linux systems, there
-is typically a `/proc` directory that looks like directories and files:
+One of the places this has become really handy is in the `/proc` "file system." On modern Linux
+systems, there is typically a `/proc` directory that looks like directories and files:
+\index{files and directories!special!proc@\texttt{/proc/}}
 
 \drcap{\texttt{/proc} file system}
 ```bash
@@ -263,9 +268,9 @@ ogy nonstop_tsc ap
 
 ## Sawing Logs{.unnumbered}
 
-Many Linux components and subsystems log to `/var/log`.
-\index{files and directories!special!varlog@\texttt{/var/log/}} Here is a pretty standard directory
-listing for it on a Linux Mint system:
+Many Linux components and subsystems log to `/var/log`. Here is a pretty standard directory listing
+for it on a Linux Mint system:
+\index{files and directories!special!varlog@\texttt{/var/log/}}
 
 \drcap{Looking at logs}
 ```bash
@@ -300,17 +305,15 @@ that get "rotated" from the most current (no suffix) through ever older ones (in
 number, e.g., `mail.log.2`).
 
 If you are pursuing a problem with a specific subsystem (like `samba`), it is good to start in its
-log files. The two log files of general interest are `dmesg`,
+log files. The two log files of general interest are `dmesg`, which holds kernel-level debug
+messages and usually is useful for debugging things like device driver issues. It can also be
+displayed directly with the [`dmesg`](http://linux.die.net/man/8/dmesg) command. The other is
+`messages`, which holds more general "system" messages.
+\drsys{dmesg}{display kernel log}
 \index{files and directories!special!varlogdmesg@\texttt{/var/log/dmesg}}
-\index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)}
-which holds kernel-level debug
-messages and usually is useful for debugging things like device driver issues.
-It can also be displayed directly with the [`dmesg`](http://linux.die.net/man/8/dmesg)\drsys{dmesg}{display kernel log} command.
-The other is
-`messages`,
 \index{files and directories!special!varlogmessages@\texttt{/var/log/messages}}
+\index{varlogdmesg@\texttt{/var/log/dmesg} (kernel log)}
 \index{varlogmessages@\texttt{/var/log/messages} (general log)}
-which holds more general "system" messages.
 
 Let's look for kernel errors when booting: 
 
@@ -322,7 +325,7 @@ Let's look for kernel errors when booting:
 
 ## It's All Temporary{.unnumbered}
 
-By convention, temporary files are written to `/tmp`
-\index{files and directories!special!tmp@\texttt{/tmp/}}. You can place your own temporary or "work"
+By convention, temporary files are written to `/tmp` . You can place your own temporary or "work"
 files there, too. It's a great place to unzip install bits, for example. Just note that the
 temporariness is enforced in that when the system reboots, `/tmp` is reset to empty.
+\index{files and directories!special!tmp@\texttt{/tmp/}}
