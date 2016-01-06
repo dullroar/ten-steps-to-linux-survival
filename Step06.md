@@ -123,7 +123,7 @@ If you want to just cancel out of the file without writing any changes to disk, 
 \drvic{:q"!}{quit without saving (force)}
 
 If you want to protect yourself from inadvertent changes to a file you can always open it using
-`view`](http://linux.die.net/man/1/view), the alias for `vi` invoked in read-only mode.
+[`view`](http://linux.die.net/man/1/view), the alias for `vi` invoked in read-only mode.
 \dreds{view}
 
 ## Circumnavigating `vi`{.unnumbered}
@@ -350,7 +350,7 @@ Picking that apart, we have:
 * **`:`** - tells `vi` a special command is coming.
 
 * **`0,$`** - specifies a line range, in this case from the first (`0` - zero-relative) line to
-last (`$`) line in the file. You can of course use other lines numbers to restrict the range, and
+last (`$`) line in the file. You can of course use other line numbers to restrict the range, and
 there are other ways to create ranges as well (see about marking lines, below).
 
 * **`s`** - substitute (change) command.
@@ -378,7 +378,7 @@ First, let's capitalize all `t` characters, but only where they are at the begin
 
 \drcap{Regular expression for the start of a line}
 ```bash
-:1,$s/^t/T/
+:0,$s/^t/T/
 ```
 
 Yields:
@@ -396,7 +396,7 @@ Now let's change all instances of "that" at the end of a line to be "that."
 
 \drcap{Regular expression for the end of a line}
 ```bash
-:1,$s/that$/that./
+:0,$s/that$/that./
 ```
 
 Ends up with:
@@ -415,7 +415,7 @@ you can figure out how this is adding commas to the end of lines that don't alre
 
 \drcap{Say what?}
 ```bash
-:1,$s/\([^.]$\)/\1,/
+:0,$s/\([^.]$\)/\1,/
 ```
 
 Renders this:
@@ -537,7 +537,7 @@ to four spaces:
 
 \drcap{Change all tabs to four spaces as God meant them to be}
 ```bash
-:1,$s/\t/    /g
+:0,$s/\t/    /g
 ```
 
 ## Let's Get Small{.unnumbered}
@@ -554,8 +554,8 @@ Here are two jokes that are only funny once you've used `emacs`:
 
 If those are funny to you, then you have already been infected by `emacs`. The prognosis is grim.
 
-But there may also others, notably [`pico`](http://linux.die.net/man/1/pico) and its successor,
-`nano`](http://linux.die.net/man/1/nano). You can see the difference the second you see a file open
+But there may also be others, notably [`pico`](http://linux.die.net/man/1/pico) and its successor,
+[`nano`](http://linux.die.net/man/1/nano). You can see the difference the second you see a file open
 in `nano` - in this case, the generated Github-flavored Markdown of this document:
 \dreds{nano}
 \dreds{pico}

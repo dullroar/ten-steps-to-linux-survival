@@ -302,7 +302,7 @@
 \hspace*{0.333em}\\
  By James Lehmer ~\\
 \hspace*{0.333em}\\
- v0.8 ~\\
+ v0.9 ~\\
 \hspace*{0.333em}\\
  \includegraphics{./images/cc-by-sa.png}\\
 \emph{Ten Steps to Linux Survival - Bash for Windows People} by James
@@ -1360,7 +1360,12 @@ execution simply by separating them with spaces:
 
 Note that passing in values in this way does not safeguard sensitive
 information from other users on the system who can see the values at
-least while the script is running using the \texttt{ps\ -x} command.
+least while the script is running using the \texttt{ps\ -x} command. In
+addition, the entire command will be written to your
+\texttt{.bash\_history} file, too. Theoretically that should be safe,
+but if you are using this to pass in a password to a command, for
+example, and your id gets compromised, your \texttt{.bash\_history} will
+be just as exposed as if you had the password saved in a script file.
 \drsys{ps}{list processes}
 
 You can also set the value of environment variables to the output of
@@ -1496,7 +1501,7 @@ keep refining a command or commands until you get them working the way
 you want, then transfer their sequence to a script file to capture it.
 
 Real wizards at using the shell can often show off their magic with an
-incredible one-liner typed rom memory with lots of obscure commands
+incredible one-liner typed from memory with lots of obscure commands
 piped together and invoked with cryptic options.
 
 I am not a real shell wizard. See
@@ -1881,9 +1886,8 @@ system: \drnet{xfreerdp} \index{*@\texttt{\#"!} (shebang)}
 \end{enumerate}
 
 A better way to display a longer file is to use the
-\href{http://linux.die.net/man/1/less}{\texttt{less}}
-
-command (which is a derivative of the original
+\href{http://linux.die.net/man/1/less}{\texttt{less}} command (which is
+a derivative of the original
 \href{http://linux.die.net/man/1/more}{\texttt{more}}, hence the name).
 \texttt{less} is a paginator, where the \texttt{Space},
 \texttt{Page\ Down} or down arrow keys scroll down and the
@@ -4089,7 +4093,7 @@ the console, it is reading from \emph{stdin}. \drtxt{echo}
 In this example, \texttt{cat} is started with no file name, so it will
 read from \emph{stdin} (a quite common "UNIX" command convention), and
 echo each line typed by the user to \emph{stdout} until the "end of
-file, which in an interactive session can be emulated with
+file," which in an interactive session can be emulated with
 \texttt{Ctrl-D}, shown as \texttt{\^{}D} in the example below but not
 seen on the console in real life: \drtxt{cat}
 
@@ -4106,7 +4110,7 @@ seen on the console in real life: \drtxt{cat}
 \end{Highlighting}
 \end{Shaded}
 
-So in the above I typed in "This shows reading from stdin" and hit
+In the above I typed in "This shows reading from stdin" and hit
 \texttt{Enter} (which send a linefeed and hence marks the "end of the
 line") and \texttt{cat} echoed that line to \emph{stdout}. Then I typed
 "and writing to stdout." and hit \texttt{Enter} and that line was echoed
@@ -4116,7 +4120,7 @@ process. \drstd{stdout}
 \section*{All Magic is Redirection}\label{all-magic-is-redirection}
 \addcontentsline{toc}{section}{All Magic is Redirection}
 
-So one way to string things together in "the UNIX way" is with file
+One way to string things together in "the UNIX way" is with file
 redirection. This is a concept that also works in \texttt{CMD.EXE} and
 even with the same syntax. \drshl{CMD.EXE}
 
@@ -4357,7 +4361,7 @@ them to \emph{stdout} which in this case was a pipeline sending each
 line in order to another command to transform the data, before sending
 each line to the custom code in \texttt{mycmd}, that only expects a
 single line or value each time it is run. It has no idea about the
-\texttt{.txt} files or the ransformation or the pipeline!
+\texttt{.txt} files or the transformation or the pipeline!
 
 \textbf{\emph{That}} is the "UNIX philosophy" at work.
 
@@ -4542,7 +4546,7 @@ without saving). \drvic{:q"!}{quit without saving (force)}
 
 If you want to protect yourself from inadvertent changes to a file you
 can always open it using
-\texttt{view}{]}(http://linux.die.net/man/1/view), the alias for
+\href{http://linux.die.net/man/1/view}{\texttt{view}}, the alias for
 \texttt{vi} invoked in read-only mode. \dreds{view}
 
 \section{\texorpdfstring{Circumnavigating
@@ -4834,7 +4838,7 @@ Picking that apart, we have:
 \item
   \textbf{\texttt{0,\$}} - specifies a line range, in this case from the
   first (\texttt{0} - zero-relative) line to last (\texttt{\$}) line in
-  the file. You can of course use other lines numbers to restrict the
+  the file. You can of course use other line numbers to restrict the
   range, and there are other ways to create ranges as well (see about
   marking lines, below).
 \item
@@ -4871,7 +4875,7 @@ are at the beginning of the line:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{:}\KeywordTok{1}\NormalTok{,}\OtherTok{$s}\NormalTok{/^t/T/}
+\NormalTok{:}\KeywordTok{0}\NormalTok{,}\OtherTok{$s}\NormalTok{/^t/T/}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4896,7 +4900,7 @@ Now let's change all instances of "that" at the end of a line to be
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{:}\KeywordTok{1}\NormalTok{,}\OtherTok{$s}\NormalTok{/that$/that./}
+\NormalTok{:}\KeywordTok{0}\NormalTok{,}\OtherTok{$s}\NormalTok{/that$/that./}
 \end{Highlighting}
 \end{Shaded}
 
@@ -4922,7 +4926,7 @@ to the end of lines that don't already have a period:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{:}\KeywordTok{1}\NormalTok{,}\OtherTok{$s}\NormalTok{/}\DataTypeTok{\textbackslash{}(}\NormalTok{[^.]$}\DataTypeTok{\textbackslash{})}\NormalTok{/\textbackslash{}1,/}
+\NormalTok{:}\KeywordTok{0}\NormalTok{,}\OtherTok{$s}\NormalTok{/}\DataTypeTok{\textbackslash{}(}\NormalTok{[^.]$}\DataTypeTok{\textbackslash{})}\NormalTok{/\textbackslash{}1,/}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5093,7 +5097,7 @@ tab characters to four spaces:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{:}\KeywordTok{1}\NormalTok{,}\OtherTok{$s}\NormalTok{/\textbackslash{}t/    /g}
+\NormalTok{:}\KeywordTok{0}\NormalTok{,}\OtherTok{$s}\NormalTok{/\textbackslash{}t/    /g}
 \end{Highlighting}
 \end{Shaded}
 
@@ -5119,9 +5123,9 @@ Here are two jokes that are only funny once you've used \texttt{emacs}:
 If those are funny to you, then you have already been infected by
 \texttt{emacs}. The prognosis is grim.
 
-But there may also others, notably
+But there may also be others, notably
 \href{http://linux.die.net/man/1/pico}{\texttt{pico}} and its successor,
-\texttt{nano}{]}(http://linux.die.net/man/1/nano). You can see the
+\href{http://linux.die.net/man/1/nano}{\texttt{nano}}. You can see the
 difference the second you see a file open in \texttt{nano} - in this
 case, the generated Github-flavored Markdown of this document:
 \dreds{nano} \dreds{pico}
@@ -5335,7 +5339,7 @@ point where your normal user account may not have access to these tools.
 On many systems network commands are considered "system" or privileged
 commands and are restricted.
 
-One way to run restricted commands is to log in as a "elevated" or
+One way to run restricted commands is to log in as an "elevated" or
 privileged user, such as \texttt{root}. But this is frowned on, and many
 distros today rely on the
 \href{http://linux.die.net/man/8/sudo}{\texttt{sudo}} command to act as
@@ -5475,7 +5479,7 @@ executing arbitrary bits, and this technique doesn't lessen your
 responsibility there. It is often better to use something like
 \texttt{curl} to download the script but instead of piping it to
 \texttt{bash} to be executed, redirect it to a file and look at what the
-script is doinng first:
+script is doing first:
 
 \drcap{Check out what that script is doing first!}
 
@@ -5580,7 +5584,8 @@ return its home page: \drnet{telnet}
 \end{Highlighting}
 \end{Shaded}
 
-To get a modern, secure shell to a remote machine, use
+To get a modern, \emph{secure shell} to a remote machine over an
+encrypted connection, use
 \href{http://linux.die.net/man/1/ssh}{\texttt{ssh}}, passing in the
 userid and server like this: \drnet{ssh}
 
@@ -5596,7 +5601,7 @@ You will be prompted for credentials (or you can use certificates, but
 that is \textbf{\emph{way}} beyond this text's goals). Once logged in,
 you will be presented with a command prompt to the remote system.
 
-You can also use the \texttt{SSH} protocol to securely transfer files
+You can also use the \texttt{SSH} protocol to \emph{securely copy} files
 between systems with the
 \href{http://linux.die.net/man/1/scp}{\texttt{scp}} command. It works
 like this for a recursive directory copy: \drnet{scp}
@@ -5646,8 +5651,8 @@ server's "fingerprint." You can usually just say "yes":
 
 We won't dive too deep into configuring a network, but there are a few
 things you should know about right away. The first is the
-\href{http://linux.die.net/man/8/ifconfig}{\texttt{ifconfig}} command
-(in some ways is similar to \texttt{ipconfig} in \texttt{CMD.EXE}. While
+\href{http://linux.die.net/man/8/ifconfig}{\texttt{ifconfig}} command.
+In some ways is similar to \texttt{ipconfig} in \texttt{CMD.EXE}. While
 you can use \texttt{ifconfig} to alter your networking settings, it is
 most commonly used to get a quick display of them: \drnet{ifconfig}
 \drshl{CMD.EXE}
@@ -5726,7 +5731,7 @@ tape (\emph{Mission: Impossible})
 This section will cover some "background" techniques that are valuable
 for system monitoring, problem determination and the like. Depending on
 your role and access levels, some of these commands may not be available
-to you, or may require \texttt{sudo} access.
+to you, or may require \texttt{sudo} or \texttt{root} access.
 
 \section*{All Part of the Process}\label{all-part-of-the-process}
 \addcontentsline{toc}{section}{All Part of the Process}
@@ -6647,7 +6652,7 @@ for the repositories:
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{~} \NormalTok{$ }\KeywordTok{sudo} \NormalTok{apt-get update}
-\NormalTok{[}\KeywordTok{sudo}\NormalTok{] password for lehmer:}
+\NormalTok{[}\KeywordTok{sudo}\NormalTok{] password for myuser:}
 \KeywordTok{Ign} \NormalTok{http://packages.linuxmint.com rafaela InRelease}
 \KeywordTok{Ign} \NormalTok{http://extra.linuxmint.com rafaela InRelease}
 \KeywordTok{Hit} \NormalTok{http://extra.linuxmint.com rafaela Release.gpg                             }
@@ -7096,7 +7101,7 @@ the file \texttt{foo} exists and \texttt{bar} does not:
 \begin{Highlighting}[]
 \KeywordTok{~} \NormalTok{$ }\KeywordTok{ls} \NormalTok{foo}
 \KeywordTok{foo}
-\NormalTok{$ }\KeywordTok{echo} \OtherTok{$?}
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{echo} \OtherTok{$?}
 \KeywordTok{0}
 \KeywordTok{~} \NormalTok{$ }\KeywordTok{ls} \NormalTok{bar}
 \KeywordTok{ls}\NormalTok{: cannot access bar: No such file or directory}

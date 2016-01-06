@@ -213,9 +213,7 @@ In this example when we `cat installrdp` we can determine it is a `bash` shell s
 \drcmd{cmake}{configure makefiles}
 \drcmd{make}{build by recipes}
 
-A better way to display a longer file is to use the
-[`less`](http://linux.die.net/man/1/less)
-
+A better way to display a longer file is to use the [`less`](http://linux.die.net/man/1/less)
 command (which is a derivative of the original [`more`](http://linux.die.net/man/1/more), hence the
 name). `less` is a paginator, where the `Space`, `Page Down` or down arrow keys scroll down and the
 `Page Up` or up arrow keys scrolls up. `Q` quits.

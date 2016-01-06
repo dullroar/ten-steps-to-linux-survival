@@ -8,7 +8,7 @@
 
 This section will cover some "background" techniques that are valuable for system monitoring,
 problem determination and the like. Depending on your role and access levels, some of these
-commands may not be available to you, or may require `sudo` access.
+commands may not be available to you, or may require `sudo` or `root` access.
 
 ## All Part of the Process{.unnumbered}
 

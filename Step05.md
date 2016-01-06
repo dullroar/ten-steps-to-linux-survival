@@ -34,9 +34,9 @@ When a program written in C calls `printf`, it is writing to *stdout*. When a `b
 \drstd{stdout}
 
 In this example, `cat` is started with no file name, so it will read from *stdin* (a quite common
-"UNIX" command convention), and echo each line typed by the user to *stdout* until the "end of file,
-which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below
-but not seen on the console in real life:
+"UNIX" command convention), and echo each line typed by the user to *stdout* until the "end of
+file," which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example
+below but not seen on the console in real life:
 \drtxt{cat}
 
 \drcap{\textit{stdin} and \textit{stdout}}
@@ -49,7 +49,7 @@ and writing to stdout.
 ^D
 ```
 
-So in the above I typed in "This shows reading from stdin" and hit `Enter` (which send a linefeed
+In the above I typed in "This shows reading from stdin" and hit `Enter` (which send a linefeed
 and hence marks the "end of the line") and `cat` echoed that line to *stdout*. Then I typed "and
 writing to stdout." and hit `Enter` and that line was echoed to *stdout* as well. Finally I hit
 `Ctrl-D`, which ended the process.
@@ -57,7 +57,7 @@ writing to stdout." and hit `Enter` and that line was echoed to *stdout* as well
 
 ## All Magic is Redirection{.unnumbered}
 
-So one way to string things together in "the UNIX way" is with file redirection. This is a concept
+One way to string things together in "the UNIX way" is with file redirection. This is a concept
 that also works in `CMD.EXE` and even with the same syntax.
 \drshl{CMD.EXE}
 
@@ -248,7 +248,7 @@ shell expansion of the `*.txt` wildcard did that. It read all those files and ec
 *stdout* which in this case was a pipeline sending each line in order to another command to
 transform the data, before sending each line to the custom code in `mycmd`, that only expects a
 single line or value each time it is run. It has no idea about the `.txt` files or the
-ransformation or the pipeline!
+transformation or the pipeline!
 
 ***That*** is the "UNIX philosophy" at work.
 

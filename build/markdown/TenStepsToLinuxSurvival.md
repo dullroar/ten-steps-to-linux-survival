@@ -103,7 +103,7 @@
  
 <br/> <br/> By James Lehmer  
  
-<br/> <br/> v0.8  
+<br/> <br/> v0.9  
  
 <br/> <br/> ![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 International")
 *Ten Steps to Linux Survival - Bash for Windows People* by James Lehmer is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).  
@@ -609,7 +609,7 @@ You can assign multiple variables for a single command or script execution simpl
 ~ $ FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript
 ```
 
-Note that passing in values in this way does not safeguard sensitive information from other users on the system who can see the values at least while the script is running using the `ps -x` command.
+Note that passing in values in this way does not safeguard sensitive information from other users on the system who can see the values at least while the script is running using the `ps -x` command. In addition, the entire command will be written to your `.bash_history` file, too. Theoretically that should be safe, but if you are using this to pass in a password to a command, for example, and your id gets compromised, your `.bash_history` will be just as exposed as if you had the password saved in a script file.
 
 You can also set the value of environment variables to the output of another command by surrounding it with paired \` ("back ticks", or "grave accents"):
 
@@ -681,7 +681,7 @@ The actual "command prompt" is when you run a shell in an "interactive session" 
 
 Command prompts allow you to work in a so-called "REPL" environment (Read, Evaluate, Print, Loop). You can run a series of commands once, or keep refining a command or commands until you get them working the way you want, then transfer their sequence to a script file to capture it.
 
-Real wizards at using the shell can often show off their magic with an incredible one-liner typed rom memory with lots of obscure commands piped together and invoked with cryptic options.
+Real wizards at using the shell can often show off their magic with an incredible one-liner typed from memory with lots of obscure commands piped together and invoked with cryptic options.
 
 I am not a real shell wizard. See [chapter 9](#how-do-you-know-what-you-dont-know-man) for how you can fake it like I do.
 
@@ -911,9 +911,7 @@ In this example when we `cat installrdp` we can determine it is a `bash` shell s
 
 3.  **`cmake`** and **`make`** - configuring and building software from source.
 
-A better way to display a longer file is to use the [`less`](http://linux.die.net/man/1/less)
-
-command (which is a derivative of the original [`more`](http://linux.die.net/man/1/more), hence the name). `less` is a paginator, where the `Space`, `Page Down` or down arrow keys scroll down and the `Page Up` or up arrow keys scrolls up. `Q` quits.
+A better way to display a longer file is to use the [`less`](http://linux.die.net/man/1/less) command (which is a derivative of the original [`more`](http://linux.die.net/man/1/more), hence the name). `less` is a paginator, where the `Space`, `Page Down` or down arrow keys scroll down and the `Page Up` or up arrow keys scrolls up. `Q` quits.
 
 **Note:** The `vi` search (`/`, `?`, `n` and `p`) and navigation (`G`, `0`) keys work within `less`, too. In general `less` is a great lightweight way to motor around in a text file without editing it.
 
@@ -2219,7 +2217,7 @@ The first thing to note is there are three "file I/O streams" that are open by d
 
 When a program written in C calls `printf`, it is writing to *stdout*. When a `bash` script calls `echo`, it too is writing to *stdout*. When a command writes an error message, it is writing to *stderr*. If a command or program accepts input from the console, it is reading from *stdin*.
 
-In this example, `cat` is started with no file name, so it will read from *stdin* (a quite common "UNIX" command convention), and echo each line typed by the user to *stdout* until the "end of file, which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below but not seen on the console in real life:
+In this example, `cat` is started with no file name, so it will read from *stdin* (a quite common "UNIX" command convention), and echo each line typed by the user to *stdout* until the "end of file," which in an interactive session can be emulated with `Ctrl-D`, shown as `^D` in the example below but not seen on the console in real life:
 
 ``` bash
 ~ $ cat
@@ -2230,12 +2228,12 @@ and writing to stdout.
 ^D
 ```
 
-So in the above I typed in "This shows reading from stdin" and hit `Enter` (which send a linefeed and hence marks the "end of the line") and `cat` echoed that line to *stdout*. Then I typed "and writing to stdout." and hit `Enter` and that line was echoed to *stdout* as well. Finally I hit `Ctrl-D`, which ended the process.
+In the above I typed in "This shows reading from stdin" and hit `Enter` (which send a linefeed and hence marks the "end of the line") and `cat` echoed that line to *stdout*. Then I typed "and writing to stdout." and hit `Enter` and that line was echoed to *stdout* as well. Finally I hit `Ctrl-D`, which ended the process.
 
 All Magic is Redirection
 ------------------------
 
-So one way to string things together in "the UNIX way" is with file redirection. This is a concept that also works in `CMD.EXE` and even with the same syntax.
+One way to string things together in "the UNIX way" is with file redirection. This is a concept that also works in `CMD.EXE` and even with the same syntax.
 
 Let's create a file with a single line of text in it. One way would be to `vi newfilename`, edit the file, save it, and exit `vi`. A quicker way is to simply use file redirection:
 
@@ -2359,7 +2357,7 @@ This little one-liner starts showing off the usefulness of chaining several smal
 
 4.  Some custom script or program called `./mycmd` passing in the value of each `$line`.
 
-Think about the power of that. `cat` didn't know there were multiple `.txt` files or not - the shell expansion of the `*.txt` wildcard did that. It read all those files and echoed them to *stdout* which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in `mycmd`, that only expects a single line or value each time it is run. It has no idea about the `.txt` files or the ransformation or the pipeline!
+Think about the power of that. `cat` didn't know there were multiple `.txt` files or not - the shell expansion of the `*.txt` wildcard did that. It read all those files and echoed them to *stdout* which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in `mycmd`, that only expects a single line or value each time it is run. It has no idea about the `.txt` files or the transformation or the pipeline!
 
 ***That*** is the "UNIX philosophy" at work.
 
@@ -2442,7 +2440,7 @@ Undo Me
 
 If you want to just cancel out of the file without writing any changes to disk, use `:q!` (the `!` means to force the quit without saving).
 
-If you want to protect yourself from inadvertent changes to a file you can always open it using `view`\](http://linux.die.net/man/1/view), the alias for `vi` invoked in read-only mode.
+If you want to protect yourself from inadvertent changes to a file you can always open it using [`view`](http://linux.die.net/man/1/view), the alias for `vi` invoked in read-only mode.
 
 Circumnavigating `vi`
 ---------------------
@@ -2612,7 +2610,7 @@ Picking that apart, we have:
 
 -   **`:`** - tells `vi` a special command is coming.
 
--   **`0,$`** - specifies a line range, in this case from the first (`0` - zero-relative) line to last (`$`) line in the file. You can of course use other lines numbers to restrict the range, and there are other ways to create ranges as well (see about marking lines, below).
+-   **`0,$`** - specifies a line range, in this case from the first (`0` - zero-relative) line to last (`$`) line in the file. You can of course use other line numbers to restrict the range, and there are other ways to create ranges as well (see about marking lines, below).
 
 -   **`s`** - substitute (change) command.
 
@@ -2635,7 +2633,7 @@ that and that and that
 First, let's capitalize all `t` characters, but only where they are at the beginning of the line:
 
 ``` bash
-:1,$s/^t/T/
+:0,$s/^t/T/
 ```
 
 Yields:
@@ -2651,7 +2649,7 @@ That and that and that
 Now let's change all instances of "that" at the end of a line to be "that."
 
 ``` bash
-:1,$s/that$/that./
+:0,$s/that$/that./
 ```
 
 Ends up with:
@@ -2667,7 +2665,7 @@ That and that and that.
 And finally as a fun exercise for the reader, using the full power of regular expressions see if you can figure out how this is adding commas to the end of lines that don't already have a period:
 
 ``` bash
-:1,$s/\([^.]$\)/\1,/
+:0,$s/\([^.]$\)/\1,/
 ```
 
 Renders this:
@@ -2754,7 +2752,7 @@ This difference manifests in two ways:
 Since regular expressions have syntax for expressing control codes in either shorthand (`\t`) or as hexadecimal, you can alter control codes in `vi` easily. For example, to change all tab characters to four spaces:
 
 ``` bash
-:1,$s/\t/    /g
+:0,$s/\t/    /g
 ```
 
 Let's Get Small
@@ -2770,7 +2768,7 @@ Here are two jokes that are only funny once you've used `emacs`:
 
 If those are funny to you, then you have already been infected by `emacs`. The prognosis is grim.
 
-But there may also others, notably [`pico`](http://linux.die.net/man/1/pico) and its successor, `nano`\](http://linux.die.net/man/1/nano). You can see the difference the second you see a file open in `nano` - in this case, the generated Github-flavored Markdown of this document:
+But there may also be others, notably [`pico`](http://linux.die.net/man/1/pico) and its successor, [`nano`](http://linux.die.net/man/1/nano). You can see the difference the second you see a file open in `nano` - in this case, the generated Github-flavored Markdown of this document:
 
 ``` bash
     GNU nano 2.2.6        File: TenStepsToLinuxSurvival.md                        
@@ -2919,7 +2917,7 @@ sudo Make Me a Sandwich
 
 It may not be the best place to discuss it, but we've finally come to a point where your normal user account may not have access to these tools. On many systems network commands are considered "system" or privileged commands and are restricted.
 
-One way to run restricted commands is to log in as a "elevated" or privileged user, such as `root`. But this is frowned on, and many distros today rely on the [`sudo`](http://linux.die.net/man/8/sudo) command to act as a way for a normal user to signal they want to escalate their privileges temporarily, presuming they are allowed to do so, which is usually indicated by being a member of the `sudo` group or similar.
+One way to run restricted commands is to log in as an "elevated" or privileged user, such as `root`. But this is frowned on, and many distros today rely on the [`sudo`](http://linux.die.net/man/8/sudo) command to act as a way for a normal user to signal they want to escalate their privileges temporarily, presuming they are allowed to do so, which is usually indicated by being a member of the `sudo` group or similar.
 
 In a sense, `sudo` is similar to Windows User Access Control (UAC) prompts. They ensure a human is in control, in the case of `sudo` by prompting for the user's password. If multiple commands are invoked by `sudo` within a short time period, you will not be reprompted for a password each time, (unlike UAC).
 
@@ -3009,7 +3007,7 @@ Or:
 curl http://foocorp.com/installs/install.sh | bash
 ```
 
-**Note:** As always, you should be cautious when downloading and executing arbitrary bits, and this technique doesn't lessen your responsibility there. It is often better to use something like `curl` to download the script but instead of piping it to `bash` to be executed, redirect it to a file and look at what the script is doinng first:
+**Note:** As always, you should be cautious when downloading and executing arbitrary bits, and this technique doesn't lessen your responsibility there. It is often better to use something like `curl` to download the script but instead of piping it to `bash` to be executed, redirect it to a file and look at what the script is doing first:
 
 ``` bash
 ~ $ curl http://foocorp.com/installs/install.sh > install.sh
@@ -3078,7 +3076,7 @@ Transfer-Encoding: chunked
 ...and so on...
 ```
 
-To get a modern, secure shell to a remote machine, use [`ssh`](http://linux.die.net/man/1/ssh), passing in the userid and server like this:
+To get a modern, *secure shell* to a remote machine over an encrypted connection, use [`ssh`](http://linux.die.net/man/1/ssh), passing in the userid and server like this:
 
 ``` bash
 ssh myuser@remoteserver
@@ -3086,7 +3084,7 @@ ssh myuser@remoteserver
 
 You will be prompted for credentials (or you can use certificates, but that is ***way*** beyond this text's goals). Once logged in, you will be presented with a command prompt to the remote system.
 
-You can also use the `SSH` protocol to securely transfer files between systems with the [`scp`](http://linux.die.net/man/1/scp) command. It works like this for a recursive directory copy:
+You can also use the `SSH` protocol to *securely copy* files between systems with the [`scp`](http://linux.die.net/man/1/scp) command. It works like this for a recursive directory copy:
 
 ``` bash
 scp -r myfiles/* myuser@remoteserver:/home/myuser/.
@@ -3119,7 +3117,7 @@ $
 Network Configuration
 ---------------------
 
-We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig) command (in some ways is similar to `ipconfig` in `CMD.EXE`. While you can use `ifconfig` to alter your networking settings, it is most commonly used to get a quick display of them:
+We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig) command. In some ways is similar to `ipconfig` in `CMD.EXE`. While you can use `ifconfig` to alter your networking settings, it is most commonly used to get a quick display of them:
 
 ``` bash
 # ifconfig
@@ -3168,7 +3166,7 @@ The Man Behind the Curtain
 
 > *"As always, should any member of your team be caught or killed, the Secretary will disavow all knowledge of your actions."* - voice on tape (*Mission: Impossible*)
 
-This section will cover some "background" techniques that are valuable for system monitoring, problem determination and the like. Depending on your role and access levels, some of these commands may not be available to you, or may require `sudo` access.
+This section will cover some "background" techniques that are valuable for system monitoring, problem determination and the like. Depending on your role and access levels, some of these commands may not be available to you, or may require `sudo` or `root` access.
 
 All Part of the Process
 -----------------------
@@ -3777,7 +3775,7 @@ There are three common `apt-get` commands that get used over and over. The first
 
 ``` bash
 ~ $ sudo apt-get update
-[sudo] password for lehmer:
+[sudo] password for myuser:
 Ign http://packages.linuxmint.com rafaela InRelease
 Ign http://extra.linuxmint.com rafaela InRelease
 Hit http://extra.linuxmint.com rafaela Release.gpg                             
@@ -4035,7 +4033,7 @@ Sometimes a command runs and there isn't a good way to tell if it worked or not.
 ``` bash
 ~ $ ls foo
 foo
-$ echo $?
+~ $ echo $?
 0
 ~ $ ls bar
 ls: cannot access bar: No such file or directory

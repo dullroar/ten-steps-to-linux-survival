@@ -290,6 +290,10 @@ them with spaces:
 
 Note that passing in values in this way does not safeguard sensitive information from other users
 on the system who can see the values at least while the script is running using the `ps -x` command.
+In addition, the entire command will be written to your `.bash_history` file, too. Theoretically
+that should be safe, but if you are using this to pass in a password to a command, for example, and
+your id gets compromised, your `.bash_history` will be just as exposed as if you had the password
+saved in a script file.
 \drsys{ps}{list processes}
 
 You can also set the value of environment variables to the output of another command by surrounding
@@ -399,7 +403,7 @@ You can run a series of commands once, or keep refining a command or commands un
 working the way you want, then transfer their sequence to a script file to capture it.
 
 Real wizards at using the shell can often show off their magic with an incredible one-liner typed
-rom memory with lots of obscure commands piped together and invoked with cryptic options.
+from memory with lots of obscure commands piped together and invoked with cryptic options.
 
 I am not a real shell wizard. See [chapter 9](#how-do-you-know-what-you-dont-know-man) for how you
 can fake it like I do.

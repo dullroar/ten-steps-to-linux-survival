@@ -146,7 +146,7 @@
  <br />
 <br/> <br/> By James Lehmer  <br />
  <br />
-<br/> <br/> v0.8  <br />
+<br/> <br/> v0.9  <br />
  <br />
 <br/> <br/> <img src="./images/cc-by-sa.png" title="Creative Commons Attribution-ShareAlike 4.0 International" alt="" /><br />
 <em>Ten Steps to Linux Survival - Bash for Windows People</em> by James Lehmer is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.  <br />
@@ -487,7 +487,7 @@ PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 <p>You can assign multiple variables for a single command or script execution simply by separating them with spaces:</p>
 <p></p>
 <pre class="bash"><code>~ $ FOO=myval BAR=yourval BAZ=ourvals /home/myuser/myscript</code></pre>
-<p>Note that passing in values in this way does not safeguard sensitive information from other users on the system who can see the values at least while the script is running using the <code>ps -x</code> command. </p>
+<p>Note that passing in values in this way does not safeguard sensitive information from other users on the system who can see the values at least while the script is running using the <code>ps -x</code> command. In addition, the entire command will be written to your <code>.bash_history</code> file, too. Theoretically that should be safe, but if you are using this to pass in a password to a command, for example, and your id gets compromised, your <code>.bash_history</code> will be just as exposed as if you had the password saved in a script file. </p>
 <p>You can also set the value of environment variables to the output of another command by surrounding it with paired ` (&quot;back ticks&quot;, or &quot;grave accents&quot;):</p>
 <p></p>
 <pre class="bash"><code>~ $ FILETYPE=`file --brief --mime-type header.tex`
@@ -533,7 +533,7 @@ ver/120/Tools/Binn:/cygdrive/c/Program Files (x86)/Microsoft SDKs/Azure/CLI/wbin
 <h2 id="open-your-shell-and-interact" class="unnumbered">Open Your Shell and Interact</h2>
 <p>The actual &quot;command prompt&quot; is when you run a shell in an &quot;interactive session&quot; in a terminal window. This might be from logging into the console of a Linux VM, or starting a terminal window in a X window manager like GNOME or KDE, or <code>ssh</code>'ing into an interactive session of a remote machine, or even running a Cygwin command prompt under Windows.  </p>
 <p>Command prompts allow you to work in a so-called &quot;REPL&quot; environment (Read, Evaluate, Print, Loop). You can run a series of commands once, or keep refining a command or commands until you get them working the way you want, then transfer their sequence to a script file to capture it.</p>
-<p>Real wizards at using the shell can often show off their magic with an incredible one-liner typed rom memory with lots of obscure commands piped together and invoked with cryptic options.</p>
+<p>Real wizards at using the shell can often show off their magic with an incredible one-liner typed from memory with lots of obscure commands piped together and invoked with cryptic options.</p>
 <p>I am not a real shell wizard. See <a href="#how-do-you-know-what-you-dont-know-man">chapter 9</a> for how you can fake it like I do.</p>
 <h2 id="getting-lazy" class="unnumbered">Getting Lazy</h2>
 <p>Most modern interactive shells like <code>bash</code> and <code>CMD.EXE</code> allow for tab expansion and command history, at least for the current session of the shell. </p>
@@ -691,8 +691,7 @@ xfreerdp --version</code></pre>
 <li><p><strong><code>git clone</code></strong> - cloning package from <a href="http://github.com">GitHub</a>. </p></li>
 <li><p><strong><code>cmake</code></strong> and <strong><code>make</code></strong> - configuring and building software from source.  </p></li>
 </ol>
-<p>A better way to display a longer file is to use the <a href="http://linux.die.net/man/1/less"><code>less</code></a></p>
-<p>command (which is a derivative of the original <a href="http://linux.die.net/man/1/more"><code>more</code></a>, hence the name). <code>less</code> is a paginator, where the <code>Space</code>, <code>Page Down</code> or down arrow keys scroll down and the <code>Page Up</code> or up arrow keys scrolls up. <code>Q</code> quits.      </p>
+<p>A better way to display a longer file is to use the <a href="http://linux.die.net/man/1/less"><code>less</code></a> command (which is a derivative of the original <a href="http://linux.die.net/man/1/more"><code>more</code></a>, hence the name). <code>less</code> is a paginator, where the <code>Space</code>, <code>Page Down</code> or down arrow keys scroll down and the <code>Page Up</code> or up arrow keys scrolls up. <code>Q</code> quits.      </p>
 <p><strong>Note:</strong> The <code>vi</code> search (<code>/</code>, <code>?</code>, <code>n</code> and <code>p</code>) and navigation (<code>G</code>, <code>0</code>) keys work within <code>less</code>, too. In general <code>less</code> is a great lightweight way to motor around in a text file without editing it. </p>
 <p>We can also look at just the end or <em>tail</em> of a file (often the most interesting when looking at log files and troubleshooting a current problem) with the <a href="http://linux.die.net/man/1/tail"><code>tail</code></a> command. The next example shows the last 10 lines of the kernel <code>dmesg</code> log:    </p>
 <p></p>
@@ -1648,7 +1647,7 @@ username: uucp      uid:10
 </ul>
 <p><strong>Note:</strong> Those numeric file descriptors will go from being trivia to important in just a bit.</p>
 <p>When a program written in C calls <code>printf</code>, it is writing to <em>stdout</em>. When a <code>bash</code> script calls <code>echo</code>, it too is writing to <em>stdout</em>. When a command writes an error message, it is writing to <em>stderr</em>. If a command or program accepts input from the console, it is reading from <em>stdin</em>.  </p>
-<p>In this example, <code>cat</code> is started with no file name, so it will read from <em>stdin</em> (a quite common &quot;UNIX&quot; command convention), and echo each line typed by the user to <em>stdout</em> until the &quot;end of file, which in an interactive session can be emulated with <code>Ctrl-D</code>, shown as <code>^D</code> in the example below but not seen on the console in real life: </p>
+<p>In this example, <code>cat</code> is started with no file name, so it will read from <em>stdin</em> (a quite common &quot;UNIX&quot; command convention), and echo each line typed by the user to <em>stdout</em> until the &quot;end of file,&quot; which in an interactive session can be emulated with <code>Ctrl-D</code>, shown as <code>^D</code> in the example below but not seen on the console in real life: </p>
 <p></p>
 <pre class="bash"><code>~ $ cat
 This shows reading from stdin
@@ -1656,9 +1655,9 @@ This shows reading from stdin
 and writing to stdout.
 and writing to stdout.
 ^D</code></pre>
-<p>So in the above I typed in &quot;This shows reading from stdin&quot; and hit <code>Enter</code> (which send a linefeed and hence marks the &quot;end of the line&quot;) and <code>cat</code> echoed that line to <em>stdout</em>. Then I typed &quot;and writing to stdout.&quot; and hit <code>Enter</code> and that line was echoed to <em>stdout</em> as well. Finally I hit <code>Ctrl-D</code>, which ended the process. </p>
+<p>In the above I typed in &quot;This shows reading from stdin&quot; and hit <code>Enter</code> (which send a linefeed and hence marks the &quot;end of the line&quot;) and <code>cat</code> echoed that line to <em>stdout</em>. Then I typed &quot;and writing to stdout.&quot; and hit <code>Enter</code> and that line was echoed to <em>stdout</em> as well. Finally I hit <code>Ctrl-D</code>, which ended the process. </p>
 <h2 id="all-magic-is-redirection" class="unnumbered">All Magic is Redirection</h2>
-<p>So one way to string things together in &quot;the UNIX way&quot; is with file redirection. This is a concept that also works in <code>CMD.EXE</code> and even with the same syntax. </p>
+<p>One way to string things together in &quot;the UNIX way&quot; is with file redirection. This is a concept that also works in <code>CMD.EXE</code> and even with the same syntax. </p>
 <p>Let's create a file with a single line of text in it. One way would be to <code>vi newfilename</code>, edit the file, save it, and exit <code>vi</code>. A quicker way is to simply use file redirection: </p>
 <p></p>
 <pre class="bash"><code>~ $ echo Hello, world &gt; hw
@@ -1744,7 +1743,7 @@ cat: ./d: Is a directory</code></pre>
 <li><p>A <code>while</code> loop that reads each line into a variable called <code>$line</code> and then calls... </p></li>
 <li><p>Some custom script or program called <code>./mycmd</code> passing in the value of each <code>$line</code>.</p></li>
 </ol>
-<p>Think about the power of that. <code>cat</code> didn't know there were multiple <code>.txt</code> files or not - the shell expansion of the <code>*.txt</code> wildcard did that. It read all those files and echoed them to <em>stdout</em> which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in <code>mycmd</code>, that only expects a single line or value each time it is run. It has no idea about the <code>.txt</code> files or the ransformation or the pipeline!</p>
+<p>Think about the power of that. <code>cat</code> didn't know there were multiple <code>.txt</code> files or not - the shell expansion of the <code>*.txt</code> wildcard did that. It read all those files and echoed them to <em>stdout</em> which in this case was a pipeline sending each line in order to another command to transform the data, before sending each line to the custom code in <code>mycmd</code>, that only expects a single line or value each time it is run. It has no idea about the <code>.txt</code> files or the transformation or the pipeline!</p>
 <p><strong><em>That</em></strong> is the &quot;UNIX philosophy&quot; at work.</p>
 <p>There are some nice performance benefits for this approach, too. In general Linux &amp; Co. will overlap the processing by starting all the commands in the pipeline, with the ones on the right getting data from the ones further &quot;upstream&quot; to the left as soon as it is written, instead of using file redirection where one program would have to finish completely running and writing out to a file before the next program could start and read in that file as input.</p>
 <p>Finally, if you want to capture something to a file <strong><em>and</em></strong> see it on the console at the same time, that is where the <a href="http://linux.die.net/man/1/tee"><code>tee</code></a> command comes in: </p>
@@ -1785,7 +1784,7 @@ cat: ./d: Is a directory</code></pre>
 <h2 id="undo-me" class="unnumbered">Undo Me</h2>
 <p><code>u</code> is the &quot;undo&quot; command. It &quot;undoes&quot; or reverts the last change. You can undo the last <em>n</em> changes just as you'd expect, e.g., <code>3u</code> undoes the last three changes. </p>
 <p>If you want to just cancel out of the file without writing any changes to disk, use <code>:q!</code> (the <code>!</code> means to force the quit without saving). </p>
-<p>If you want to protect yourself from inadvertent changes to a file you can always open it using <code>view</code>](http://linux.die.net/man/1/view), the alias for <code>vi</code> invoked in read-only mode. </p>
+<p>If you want to protect yourself from inadvertent changes to a file you can always open it using <a href="http://linux.die.net/man/1/view"><code>view</code></a>, the alias for <code>vi</code> invoked in read-only mode. </p>
 <h2 id="circumnavigating-vi"><span class="header-section-number">6.1</span> Circumnavigating <code class="unnumbered">vi</code></h2>
 <p>In modern implementations of <code>vi</code> (like <code>vim</code>) running under modern shells the arrow and page keys will work as you expect, <strong><em>in general</em></strong>. However, you may want to be aware that when in insert mode, while the left and right arrows may work for navigation, often the up and down arrows can introduce &quot;garbage&quot; characters into the file (since you are in insert mode). This is because the keymappings for those keys aren't being interpreted correctly. I usually just swear, exit insert mode, hit <code>u</code> and try again. </p>
 <p>As an example, under Cygwin I went into <code>vi</code>, went into insert mode after the first line, typed in &quot;This is a new line&quot; and then hit the up arrow five times, yielding this:</p>
@@ -1889,7 +1888,7 @@ that and that and that</code></pre>
 <p>Picking that apart, we have:</p>
 <ul>
 <li><p><strong><code>:</code></strong> - tells <code>vi</code> a special command is coming.</p></li>
-<li><p><strong><code>0,$</code></strong> - specifies a line range, in this case from the first (<code>0</code> - zero-relative) line to last (<code>$</code>) line in the file. You can of course use other lines numbers to restrict the range, and there are other ways to create ranges as well (see about marking lines, below).</p></li>
+<li><p><strong><code>0,$</code></strong> - specifies a line range, in this case from the first (<code>0</code> - zero-relative) line to last (<code>$</code>) line in the file. You can of course use other line numbers to restrict the range, and there are other ways to create ranges as well (see about marking lines, below).</p></li>
 <li><p><strong><code>s</code></strong> - substitute (change) command.</p></li>
 <li><p><strong><code>/from</code></strong> - &quot;from&quot; pattern (regular expression).</p></li>
 <li><p><strong><code>/to</code></strong> - &quot;to&quot; (results).</p></li>
@@ -1904,7 +1903,7 @@ that and thus
 that and that and that</code></pre>
 <p>First, let's capitalize all <code>t</code> characters, but only where they are at the beginning of the line:</p>
 <p></p>
-<pre class="bash"><code>:1,$s/^t/T/</code></pre>
+<pre class="bash"><code>:0,$s/^t/T/</code></pre>
 <p>Yields:</p>
 <p></p>
 <pre class="bash"><code>That is a new line
@@ -1914,7 +1913,7 @@ That and thus
 That and that and that</code></pre>
 <p>Now let's change all instances of &quot;that&quot; at the end of a line to be &quot;that.&quot;</p>
 <p></p>
-<pre class="bash"><code>:1,$s/that$/that./</code></pre>
+<pre class="bash"><code>:0,$s/that$/that./</code></pre>
 <p>Ends up with:</p>
 <p></p>
 <pre class="bash"><code>That is a new line
@@ -1924,7 +1923,7 @@ That and thus
 That and that and that.</code></pre>
 <p>And finally as a fun exercise for the reader, using the full power of regular expressions see if you can figure out how this is adding commas to the end of lines that don't already have a period:</p>
 <p></p>
-<pre class="bash"><code>:1,$s/\([^.]$\)/\1,/</code></pre>
+<pre class="bash"><code>:0,$s/\([^.]$\)/\1,/</code></pre>
 <p>Renders this:</p>
 <p></p>
 <pre class="bash"><code>That is a new line,
@@ -1973,7 +1972,7 @@ This is last</code></pre>
 </ol>
 <p>Since regular expressions have syntax for expressing control codes in either shorthand (<code>\t</code>) or as hexadecimal, you can alter control codes in <code>vi</code> easily. For example, to change all tab characters to four spaces:</p>
 <p></p>
-<pre class="bash"><code>:1,$s/\t/    /g</code></pre>
+<pre class="bash"><code>:0,$s/\t/    /g</code></pre>
 <h2 id="lets-get-small" class="unnumbered">Let's Get Small</h2>
 <p>So, <code>vi</code> is the best we can do? No. On many Linux systems an alternative terminal-based editor will be installed, often several. There may be <a href="http://linux.die.net/man/1/emacs"><code>emacs</code></a>, which <strong><em>will</em></strong> make you yearn for the simplicity of <code>vi</code>. </p>
 <p>Here are two jokes that are only funny once you've used <code>emacs</code>:</p>
@@ -1984,7 +1983,7 @@ This is last</code></pre>
 <p><em>&quot;'emacs' is a good operating system, but it could use an editor.&quot;</em></p>
 </blockquote>
 <p>If those are funny to you, then you have already been infected by <code>emacs</code>. The prognosis is grim.</p>
-<p>But there may also others, notably <a href="http://linux.die.net/man/1/pico"><code>pico</code></a> and its successor, <code>nano</code>](http://linux.die.net/man/1/nano). You can see the difference the second you see a file open in <code>nano</code> - in this case, the generated Github-flavored Markdown of this document:  </p>
+<p>But there may also be others, notably <a href="http://linux.die.net/man/1/pico"><code>pico</code></a> and its successor, <a href="http://linux.die.net/man/1/nano"><code>nano</code></a>. You can see the difference the second you see a file open in <code>nano</code> - in this case, the generated Github-flavored Markdown of this document:  </p>
 <p></p>
 <pre class="bash"><code>    GNU nano 2.2.6        File: TenStepsToLinuxSurvival.md                        
 
@@ -2107,7 +2106,7 @@ for detailed information.
 ...and so on...</code></pre>
 <h2 id="sudo-make-me-a-sandwich" class="unnumbered">sudo Make Me a Sandwich</h2>
 <p>It may not be the best place to discuss it, but we've finally come to a point where your normal user account may not have access to these tools. On many systems network commands are considered &quot;system&quot; or privileged commands and are restricted.</p>
-<p>One way to run restricted commands is to log in as a &quot;elevated&quot; or privileged user, such as <code>root</code>. But this is frowned on, and many distros today rely on the <a href="http://linux.die.net/man/8/sudo"><code>sudo</code></a> command to act as a way for a normal user to signal they want to escalate their privileges temporarily, presuming they are allowed to do so, which is usually indicated by being a member of the <code>sudo</code> group or similar. </p>
+<p>One way to run restricted commands is to log in as an &quot;elevated&quot; or privileged user, such as <code>root</code>. But this is frowned on, and many distros today rely on the <a href="http://linux.die.net/man/8/sudo"><code>sudo</code></a> command to act as a way for a normal user to signal they want to escalate their privileges temporarily, presuming they are allowed to do so, which is usually indicated by being a member of the <code>sudo</code> group or similar. </p>
 <p>In a sense, <code>sudo</code> is similar to Windows User Access Control (UAC) prompts. They ensure a human is in control, in the case of <code>sudo</code> by prompting for the user's password. If multiple commands are invoked by <code>sudo</code> within a short time period, you will not be reprompted for a password each time, (unlike UAC).</p>
 <p>Here is a really common example on Debian-based systems: </p>
 <p></p>
@@ -2177,7 +2176,7 @@ Hit http://archive.canonical.com trusty Release.gpg
 <p>Or:</p>
 <p></p>
 <pre class="bash"><code>curl http://foocorp.com/installs/install.sh | bash</code></pre>
-<p><strong>Note:</strong> As always, you should be cautious when downloading and executing arbitrary bits, and this technique doesn't lessen your responsibility there. It is often better to use something like <code>curl</code> to download the script but instead of piping it to <code>bash</code> to be executed, redirect it to a file and look at what the script is doinng first:</p>
+<p><strong>Note:</strong> As always, you should be cautious when downloading and executing arbitrary bits, and this technique doesn't lessen your responsibility there. It is often better to use something like <code>curl</code> to download the script but instead of piping it to <code>bash</code> to be executed, redirect it to a file and look at what the script is doing first:</p>
 <p></p>
 <pre class="bash"><code>~ $ curl http://foocorp.com/installs/install.sh &gt; install.sh
 ~ $ cat install.sh
@@ -2228,11 +2227,11 @@ Vary: Accept-Encoding
 Transfer-Encoding: chunked
 
 ...and so on...</code></pre>
-<p>To get a modern, secure shell to a remote machine, use <a href="http://linux.die.net/man/1/ssh"><code>ssh</code></a>, passing in the userid and server like this: </p>
+<p>To get a modern, <em>secure shell</em> to a remote machine over an encrypted connection, use <a href="http://linux.die.net/man/1/ssh"><code>ssh</code></a>, passing in the userid and server like this: </p>
 <p></p>
 <pre class="bash"><code>ssh myuser@remoteserver</code></pre>
 <p>You will be prompted for credentials (or you can use certificates, but that is <strong><em>way</em></strong> beyond this text's goals). Once logged in, you will be presented with a command prompt to the remote system.</p>
-<p>You can also use the <code>SSH</code> protocol to securely transfer files between systems with the <a href="http://linux.die.net/man/1/scp"><code>scp</code></a> command. It works like this for a recursive directory copy: </p>
+<p>You can also use the <code>SSH</code> protocol to <em>securely copy</em> files between systems with the <a href="http://linux.die.net/man/1/scp"><code>scp</code></a> command. It works like this for a recursive directory copy: </p>
 <p></p>
 <pre class="bash"><code>scp -r myfiles/* myuser@remoteserver:/home/myuser/.</code></pre>
 <p>In this case we are copying the files in <code>myfiles</code> and its subdirectories to <code>/home/myuser/</code> on <code>remoteserver</code> logged in as <code>myuser</code>.</p>
@@ -2256,7 +2255,7 @@ permitted by applicable law.
 Last login: Tue Oct 20 09:37:10 2015 from otherhost
 $</code></pre>
 <h2 id="network-configuration" class="unnumbered">Network Configuration</h2>
-<p>We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the <a href="http://linux.die.net/man/8/ifconfig"><code>ifconfig</code></a> command (in some ways is similar to <code>ipconfig</code> in <code>CMD.EXE</code>. While you can use <code>ifconfig</code> to alter your networking settings, it is most commonly used to get a quick display of them:  </p>
+<p>We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the <a href="http://linux.die.net/man/8/ifconfig"><code>ifconfig</code></a> command. In some ways is similar to <code>ipconfig</code> in <code>CMD.EXE</code>. While you can use <code>ifconfig</code> to alter your networking settings, it is most commonly used to get a quick display of them:  </p>
 <p></p>
 <pre class="bash"><code># ifconfig
 eth0      Link encap:Ethernet  HWaddr 00:00:56:a3:35:fe
@@ -2293,7 +2292,7 @@ nameserver 10.0.2.2</code></pre>
 <blockquote>
 <p><em>&quot;As always, should any member of your team be caught or killed, the Secretary will disavow all knowledge of your actions.&quot;</em> - voice on tape (<em>Mission: Impossible</em>)</p>
 </blockquote>
-<p>This section will cover some &quot;background&quot; techniques that are valuable for system monitoring, problem determination and the like. Depending on your role and access levels, some of these commands may not be available to you, or may require <code>sudo</code> access.</p>
+<p>This section will cover some &quot;background&quot; techniques that are valuable for system monitoring, problem determination and the like. Depending on your role and access levels, some of these commands may not be available to you, or may require <code>sudo</code> or <code>root</code> access.</p>
 <h2 id="all-part-of-the-process" class="unnumbered">All Part of the Process</h2>
 <p>To see what <em>processes</em> you are running, use <a href="http://linux.die.net/man/1/ps"><code>ps</code></a>: </p>
 <p></p>
@@ -2773,7 +2772,7 @@ cups-browsed      nmbd               sendsigs</code></pre>
 <p>There are three common <code>apt-get</code> commands that get used over and over. The first downloads and <em>updates</em> the local metadata cache for the repositories:</p>
 <p></p>
 <pre class="bash"><code>~ $ sudo apt-get update
-[sudo] password for lehmer:
+[sudo] password for myuser:
 Ign http://packages.linuxmint.com rafaela InRelease
 Ign http://extra.linuxmint.com rafaela InRelease
 Hit http://extra.linuxmint.com rafaela Release.gpg                             
@@ -2953,7 +2952,7 @@ foo: command not found</code></pre>
 <p></p>
 <pre class="bash"><code>~ $ ls foo
 foo
-$ echo $?
+~ $ echo $?
 0
 ~ $ ls bar
 ls: cannot access bar: No such file or directory

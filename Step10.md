@@ -153,7 +153,7 @@ There are three common `apt-get` commands that get used over and over. The first
 \drcap{\texttt{apt-get update}}
 ```bash
 ~ $ sudo apt-get update
-[sudo] password for lehmer:
+[sudo] password for myuser:
 Ign http://packages.linuxmint.com rafaela InRelease
 Ign http://extra.linuxmint.com rafaela InRelease
 Hit http://extra.linuxmint.com rafaela Release.gpg                             
@@ -507,7 +507,7 @@ variable. Consider if the file `foo` exists and `bar` does not:
 ```bash
 ~ $ ls foo
 foo
-$ echo $?
+~ $ echo $?
 0
 ~ $ ls bar
 ls: cannot access bar: No such file or directory

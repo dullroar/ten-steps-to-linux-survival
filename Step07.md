@@ -123,7 +123,7 @@ It may not be the best place to discuss it, but we've finally come to a point wh
 user account may not have access to these tools. On many systems network commands are considered
 "system" or privileged commands and are restricted.
 
-One way to run restricted commands is to log in as a "elevated" or privileged user, such as `root`.
+One way to run restricted commands is to log in as an "elevated" or privileged user, such as `root`.
 But this is frowned on, and many distros today rely on the [`sudo`](http://linux.die.net/man/8/sudo)
 command to act as a way for a normal user to signal they want to escalate their privileges
 temporarily, presuming they are allowed to do so, which is usually indicated by being a member of
@@ -241,7 +241,7 @@ curl http://foocorp.com/installs/install.sh | bash
 **Note:** As always, you should be cautious when downloading and executing arbitrary bits, and this
 technique doesn't lessen your responsibility there. It is often better to use something like `curl`
 to download the script but instead of piping it to `bash` to be executed, redirect it to a file and
-look at what the script is doinng first:
+look at what the script is doing first:
 
 \drcap{Check out what that script is doing first!}
 ```bash
@@ -326,7 +326,8 @@ Transfer-Encoding: chunked
 ...and so on...
 ```
 
-To get a modern, secure shell to a remote machine, use [`ssh`](http://linux.die.net/man/1/ssh), passing in the userid and server like this:
+To get a modern, *secure shell* to a remote machine over an encrypted connection, use
+[`ssh`](http://linux.die.net/man/1/ssh), passing in the userid and server like this:
 \drnet{ssh}
 
 \drcap{\texttt{ssh} command}
@@ -338,7 +339,7 @@ You will be prompted for credentials (or you can use certificates, but that is *
 this text's goals). Once logged in, you will be presented with a command prompt to the remote
 system.
 
-You can also use the `SSH` protocol to securely transfer files between systems with the
+You can also use the `SSH` protocol to *securely copy* files between systems with the
 [`scp`](http://linux.die.net/man/1/scp) command. It works like this for a recursive directory copy:
 \drnet{scp}
 
@@ -377,7 +378,7 @@ $
 ## Network Configuration{.unnumbered}
 
 We won't dive too deep into configuring a network, but there are a few things you should know about
-right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig) command (in some
+right away. The first is the [`ifconfig`](http://linux.die.net/man/8/ifconfig) command. In some
 ways is similar to `ipconfig` in `CMD.EXE`. While you can use `ifconfig` to alter your networking
 settings, it is most commonly used to get a quick display of them:
 \drnet{ifconfig}
