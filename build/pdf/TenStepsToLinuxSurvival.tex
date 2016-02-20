@@ -302,7 +302,7 @@
 \hspace*{0.333em}\\
  By James Lehmer ~\\
 \hspace*{0.333em}\\
- v0.9 ~\\
+ v0.10 ~\\
 \hspace*{0.333em}\\
  \includegraphics{./images/cc-by-sa.png}\\
 \emph{Ten Steps to Linux Survival - Bash for Windows People} by James
@@ -657,14 +657,105 @@ uppercase to help distinguish it from the "UNIX" equivalent, even though
 be shown for \texttt{bash} and \texttt{SET} for \texttt{CMD.EXE}.
 \drshl{CMD.EXE}
 
+\section*{How to Get There from Here}\label{how-to-get-there-from-here}
+\addcontentsline{toc}{section}{How to Get There from Here}
+
+Before we get too far, let's talk about how to connect to a "UNIX"
+system in the first place. If you have an actual physical machine you
+can use the console. If you are running VMs you can use the VM
+software's console mechanism as well. But most such systems run
+\href{http://www.openssh.com/}{OpenSSH}, a "secure shell" service
+(\href{http://linux.die.net/man/8/sshd}{\texttt{sshd}}), which creates
+an encrypted terminal connection via TCP/IP over port 22 (so obviously,
+if you are connecting off-premise the appropriate firewall holes will
+have to be in place on both sides). This allows you to connect from
+anywhere you want to work, like from your laptop sitting on the couch
+watching TV. \drnet{sshd}
+
+On Windows there are generally two ways to establish SSH sessions with
+"UNIX" systems:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \href{http://www.chiark.greenend.org.uk/~sgtatham/putty/}{\textbf{PuTTY}}
+  - this is a Windows program and is pretty self-explanatory. Just give
+  it the remote system's address and connect.
+\end{enumerate}
+
+\drnet{PuTTY}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \href{http://linux.die.net/man/1/ssh}{\textbf{\texttt{ssh}}} - if you
+  are running \href{http://cygwin.com/}{Cygwin} on Windows or own a Mac,
+  you can simply use the \texttt{ssh} command from the Cygwin or Mac
+  command prompt:
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{ssh} \NormalTok{remotehost}
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{ssh} \NormalTok{myuser@remotehost}
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{ssh} \NormalTok{myuser%mypassword@remotehost}
+\end{Highlighting}
+\end{Shaded}
+
+\drnet{ssh} \drunx{Cygwin}
+
+With either PuTTY or \texttt{ssh}, you typically must supply
+credentials. On PuTTY you can specify them in advance in the Windows UI,
+or answer the userid and password prompts when the terminal window
+opens. With the \texttt{ssh} command you can answer the prompts or
+specify them on the command line, although it is not recommended to pass
+the password via the command line unless you have your \texttt{bash}
+history file set to not record the \texttt{ssh} command (covered later).
+
+\textbf{Note:} There are also ways to connect using public/private key
+pairs, but that is beyond the scope of this book.
+
+The first time you connect to a remote system via SSH you are going to
+see a prompt similar to the following:
+
+\drcap{First ssh connection}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{ssh} \NormalTok{myuser@remotehost}
+\KeywordTok{The} \NormalTok{authenticity of host }\StringTok{'remotehost (192.168.123.1)'} \NormalTok{can}\StringTok{'t be established.}
+\StringTok{ECDSA key fingerprint is 11:c4:c5:dd:75:b0:26:83:dc:94:34:ef:10:f5:d9:c7.}
+\StringTok{Are you sure you want to continue connecting (yes/no)? }
+\end{Highlighting}
+\end{Shaded}
+
+Simply answer \texttt{yes} and the remote host's key fingerprint will be
+stored so you don't have to answer it again. However, if you've already
+answered that prompt and you see it again \textbf{\emph{for the same
+machine}}, that means the remote machine's IP address or other
+configuration has changed. That is often OK if you know that happened -
+changing the hosting provider for your public web server will trigger it
+for sure. However, if you know of no such changes, it may be indication
+of a compromise, and you should abort the login and ask around first.
+
 \section*{Acknowledgments}\label{acknowledgments}
 \addcontentsline{toc}{section}{Acknowledgments}
 
-Thanks to Ken Astl for reading an early draft of this book. I appreciate
-the detailed and thoughtful discussions I had with Margaret Devere
-around designing good indexes. My boss, Bryan Henderson, has been
-supportive. And finally, I owe more than I can repay (as usual) to my
-wife Leslie for putting up with me while I obsessed over this project.
+Thanks to Ken Astl for reading an early draft of this book, and to Jason
+Koopmans for passing it around his work. I appreciate the detailed and
+thoughtful discussions I had with Margaret Devere around designing good
+indexes. I received excellent advice and promotion from Professor Allen
+Downey. My boss, Bryan Henderson, was supportive of the original
+"lunch-and-learn" concept and listened to me ramble about this book.
+Thanks to my coworkers who attended those lunch-and-learn sessions,
+asked questions and helped me refine this book - Aaron Vandegriff, Rob
+Harvey, Jason Walters, Carmen Samson, John Wieland, Patrick Mistler and
+our CIO, Rick Derks. And finally, I owe more than I can repay (as usual)
+to my wife Leslie for putting up with me while I obsessed over this
+project.
 
 \hypertarget{some-history}{\chapter{Some History}\label{some-history}}
 

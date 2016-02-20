@@ -4,6 +4,7 @@
     -   [Why?](#why)
     -   [Caveat Administrator](#caveat-administrator)
     -   [Conventions](#conventions)
+    -   [How to Get There from Here](#how-to-get-there-from-here)
     -   [Acknowledgments](#acknowledgments)
 -   [Some History](#some-history)
     -   [Why Does This Matter?](#why-does-this-matter)
@@ -103,7 +104,7 @@
  
 <br/> <br/> By James Lehmer  
  
-<br/> <br/> v0.9  
+<br/> <br/> v0.10  
  
 <br/> <br/> ![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 International")
 *Ten Steps to Linux Survival - Bash for Windows People* by James Lehmer is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).  
@@ -269,10 +270,42 @@ The examples in this book typically show something like `~ $` before the command
 
 In the few places where a "UNIX" command is shown in comparison to a "DOS" command run under `CMD.EXE`, the latter is shown in all uppercase to help distinguish it from the "UNIX" equivalent, even though `CMD.EXE` is case-insensitive. In other words, `set` will be shown for `bash` and `SET` for `CMD.EXE`.
 
+How to Get There from Here
+--------------------------
+
+Before we get too far, let's talk about how to connect to a "UNIX" system in the first place. If you have an actual physical machine you can use the console. If you are running VMs you can use the VM software's console mechanism as well. But most such systems run [OpenSSH](http://www.openssh.com/), a "secure shell" service ([`sshd`](http://linux.die.net/man/8/sshd)), which creates an encrypted terminal connection via TCP/IP over port 22 (so obviously, if you are connecting off-premise the appropriate firewall holes will have to be in place on both sides). This allows you to connect from anywhere you want to work, like from your laptop sitting on the couch watching TV.
+
+On Windows there are generally two ways to establish SSH sessions with "UNIX" systems:
+
+1.  [**PuTTY**](http://www.chiark.greenend.org.uk/~sgtatham/putty/) - this is a Windows program and is pretty self-explanatory. Just give it the remote system's address and connect.
+
+1.  [**`ssh`**](http://linux.die.net/man/1/ssh) - if you are running [Cygwin](http://cygwin.com/) on Windows or own a Mac, you can simply use the `ssh` command from the Cygwin or Mac command prompt:
+
+``` bash
+~ $ ssh remotehost
+~ $ ssh myuser@remotehost
+~ $ ssh myuser%mypassword@remotehost
+```
+
+With either PuTTY or `ssh`, you typically must supply credentials. On PuTTY you can specify them in advance in the Windows UI, or answer the userid and password prompts when the terminal window opens. With the `ssh` command you can answer the prompts or specify them on the command line, although it is not recommended to pass the password via the command line unless you have your `bash` history file set to not record the `ssh` command (covered later).
+
+**Note:** There are also ways to connect using public/private key pairs, but that is beyond the scope of this book.
+
+The first time you connect to a remote system via SSH you are going to see a prompt similar to the following:
+
+``` bash
+~ $ ssh myuser@remotehost
+The authenticity of host 'remotehost (192.168.123.1)' can't be established.
+ECDSA key fingerprint is 11:c4:c5:dd:75:b0:26:83:dc:94:34:ef:10:f5:d9:c7.
+Are you sure you want to continue connecting (yes/no)? 
+```
+
+Simply answer `yes` and the remote host's key fingerprint will be stored so you don't have to answer it again. However, if you've already answered that prompt and you see it again ***for the same machine***, that means the remote machine's IP address or other configuration has changed. That is often OK if you know that happened - changing the hosting provider for your public web server will trigger it for sure. However, if you know of no such changes, it may be indication of a compromise, and you should abort the login and ask around first.
+
 Acknowledgments
 ---------------
 
-Thanks to Ken Astl for reading an early draft of this book. I appreciate the detailed and thoughtful discussions I had with Margaret Devere around designing good indexes. My boss, Bryan Henderson, has been supportive. And finally, I owe more than I can repay (as usual) to my wife Leslie for putting up with me while I obsessed over this project.
+Thanks to Ken Astl for reading an early draft of this book, and to Jason Koopmans for passing it around his work. I appreciate the detailed and thoughtful discussions I had with Margaret Devere around designing good indexes. I received excellent advice and promotion from Professor Allen Downey. My boss, Bryan Henderson, was supportive of the original "lunch-and-learn" concept and listened to me ramble about this book. Thanks to my coworkers who attended those lunch-and-learn sessions, asked questions and helped me refine this book - Aaron Vandegriff, Rob Harvey, Jason Walters, Carmen Samson, John Wieland, Patrick Mistler and our CIO, Rick Derks. And finally, I owe more than I can repay (as usual) to my wife Leslie for putting up with me while I obsessed over this project.
 
 Some History
 ============

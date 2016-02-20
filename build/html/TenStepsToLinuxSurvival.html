@@ -28,6 +28,7 @@
 <li><a href="#why">Why?</a></li>
 <li><a href="#caveat-administrator">Caveat Administrator</a></li>
 <li><a href="#conventions">Conventions</a></li>
+<li><a href="#how-to-get-there-from-here">How to Get There from Here</a></li>
 <li><a href="#acknowledgments">Acknowledgments</a></li>
 </ul></li>
 <li><a href="#some-history"><span class="toc-section-number">0</span> Some History</a><ul>
@@ -146,7 +147,7 @@
  <br />
 <br/> <br/> By James Lehmer  <br />
  <br />
-<br/> <br/> v0.9  <br />
+<br/> <br/> v0.10  <br />
  <br />
 <br/> <br/> <img src="./images/cc-by-sa.png" title="Creative Commons Attribution-ShareAlike 4.0 International" alt="" /><br />
 <em>Ten Steps to Linux Survival - Bash for Windows People</em> by James Lehmer is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.  <br />
@@ -255,8 +256,31 @@
 <p>All such blocks have been normalized to only show a maximum of 80x24 characters. This is intentional. While most modern &quot;UNIX&quot; systems and terminal windows like <code>ssh</code> can handle any geometry, there are still systems and situations where you get the same terminal size that your grandfather would've used. It is best to learn how to deal with these by using <code>less</code>, redirection and the like.    </p>
 <p>The examples in this book typically show something like <code>~ $</code> before the command, or <code>~ #</code> (when logged in as root) or <code>%</code> (when running under <code>csh</code>). These &quot;command prompts&quot; are set in <code>bash</code> via the <a href="https://www.linux.com/learn/docs/ldp/443-bash-prompt-howto"><code>PS1</code> environment variable</a> and are not meant to be typed in as part of the command.   </p>
 <p>In the few places where a &quot;UNIX&quot; command is shown in comparison to a &quot;DOS&quot; command run under <code>CMD.EXE</code>, the latter is shown in all uppercase to help distinguish it from the &quot;UNIX&quot; equivalent, even though <code>CMD.EXE</code> is case-insensitive. In other words, <code>set</code> will be shown for <code>bash</code> and <code>SET</code> for <code>CMD.EXE</code>. </p>
+<h2 id="how-to-get-there-from-here" class="unnumbered">How to Get There from Here</h2>
+<p>Before we get too far, let's talk about how to connect to a &quot;UNIX&quot; system in the first place. If you have an actual physical machine you can use the console. If you are running VMs you can use the VM software's console mechanism as well. But most such systems run <a href="http://www.openssh.com/">OpenSSH</a>, a &quot;secure shell&quot; service (<a href="http://linux.die.net/man/8/sshd"><code>sshd</code></a>), which creates an encrypted terminal connection via TCP/IP over port 22 (so obviously, if you are connecting off-premise the appropriate firewall holes will have to be in place on both sides). This allows you to connect from anywhere you want to work, like from your laptop sitting on the couch watching TV. </p>
+<p>On Windows there are generally two ways to establish SSH sessions with &quot;UNIX&quot; systems:</p>
+<ol type="1">
+<li><a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/"><strong>PuTTY</strong></a> - this is a Windows program and is pretty self-explanatory. Just give it the remote system's address and connect.</li>
+</ol>
+<p></p>
+<ol start="2" type="1">
+<li><a href="http://linux.die.net/man/1/ssh"><strong><code>ssh</code></strong></a> - if you are running <a href="http://cygwin.com/">Cygwin</a> on Windows or own a Mac, you can simply use the <code>ssh</code> command from the Cygwin or Mac command prompt:</li>
+</ol>
+<pre class="bash"><code>~ $ ssh remotehost
+~ $ ssh myuser@remotehost
+~ $ ssh myuser%mypassword@remotehost</code></pre>
+<p> </p>
+<p>With either PuTTY or <code>ssh</code>, you typically must supply credentials. On PuTTY you can specify them in advance in the Windows UI, or answer the userid and password prompts when the terminal window opens. With the <code>ssh</code> command you can answer the prompts or specify them on the command line, although it is not recommended to pass the password via the command line unless you have your <code>bash</code> history file set to not record the <code>ssh</code> command (covered later).</p>
+<p><strong>Note:</strong> There are also ways to connect using public/private key pairs, but that is beyond the scope of this book.</p>
+<p>The first time you connect to a remote system via SSH you are going to see a prompt similar to the following:</p>
+<p></p>
+<pre class="bash"><code>~ $ ssh myuser@remotehost
+The authenticity of host &#39;remotehost (192.168.123.1)&#39; can&#39;t be established.
+ECDSA key fingerprint is 11:c4:c5:dd:75:b0:26:83:dc:94:34:ef:10:f5:d9:c7.
+Are you sure you want to continue connecting (yes/no)? </code></pre>
+<p>Simply answer <code>yes</code> and the remote host's key fingerprint will be stored so you don't have to answer it again. However, if you've already answered that prompt and you see it again <strong><em>for the same machine</em></strong>, that means the remote machine's IP address or other configuration has changed. That is often OK if you know that happened - changing the hosting provider for your public web server will trigger it for sure. However, if you know of no such changes, it may be indication of a compromise, and you should abort the login and ask around first.</p>
 <h2 id="acknowledgments" class="unnumbered">Acknowledgments</h2>
-<p>Thanks to Ken Astl for reading an early draft of this book. I appreciate the detailed and thoughtful discussions I had with Margaret Devere around designing good indexes. My boss, Bryan Henderson, has been supportive. And finally, I owe more than I can repay (as usual) to my wife Leslie for putting up with me while I obsessed over this project.</p>
+<p>Thanks to Ken Astl for reading an early draft of this book, and to Jason Koopmans for passing it around his work. I appreciate the detailed and thoughtful discussions I had with Margaret Devere around designing good indexes. I received excellent advice and promotion from Professor Allen Downey. My boss, Bryan Henderson, was supportive of the original &quot;lunch-and-learn&quot; concept and listened to me ramble about this book. Thanks to my coworkers who attended those lunch-and-learn sessions, asked questions and helped me refine this book - Aaron Vandegriff, Rob Harvey, Jason Walters, Carmen Samson, John Wieland, Patrick Mistler and our CIO, Rick Derks. And finally, I owe more than I can repay (as usual) to my wife Leslie for putting up with me while I obsessed over this project.</p>
 <h1 id="some-history"><span class="header-section-number">0</span> Some History</h1>
 <p><strong><em>UNIX vs. BSD, System V vs. BSD, Linux vs. BSD, POSIX, “UNIX-like,” Cygwin, and why any of this matters now. “Why does this script off the internet work on this system and not on that one?”</em></strong></p>
 <blockquote>
