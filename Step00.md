@@ -32,7 +32,7 @@ command syntax, networking and much more. It is this release and AT&T's copyrigh
 basis of all the SCO-vs-Linux lawsuits 2-3 decades later.
 \drios{System V}
 
-* **Explosion of "UNIX"** -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I,
+* **Explosion of "UNIX"** - late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I,
 proliferation of proprietary (and different) "UNIX" platforms:
 
     * **HP HP-UX**

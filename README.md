@@ -324,7 +324,7 @@ UNIX and its successors such as Linux have a long history reaching into the dept
 
 -   **UNIX goes commercial** - 1980s, Reagan, Iran Contra, *E.T.*, AT&T releases [System V](https://en.wikipedia.org/wiki/UNIX_System_V) as first commercial UNIX. From the same background as Bell Labs UNIX, System V evolved with subtle and not so subtle differences in approaches to command syntax, networking and much more. It is this release and AT&T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later.
 
--   **Explosion of "UNIX"** -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) "UNIX" platforms:
+-   **Explosion of "UNIX"** - late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) "UNIX" platforms:
 
     -   **HP HP-UX**
 
@@ -1772,6 +1772,24 @@ none                         102400       24    102376   1% /run/user
 ```
 
 The ones of interest are the `/dev` entries, and we see that everything mounted under `/` is on one file system, except for whatever happens to be on the file system mounted under `/boot`. So outside of `/boot`, on this system we could hard link away to our heart's content.
+
+`df` is a good command to see the disk space utilization of each file system. If you want to see the space used by a directory and its subdirectories, use `du`:
+
+``` bash
+/tmp $ du
+4   ./icedteaplugin-mdm-EMmQCt
+4   ./ssh-IaP0RC1l4XCL
+4   ./hsperfdata_mdm
+4   ./.ICE-unix
+4   ./VSCode Crashes
+4   ./.X11-unix
+8   ./mintUpdate
+4   ./orbit-myuser
+4   ./pulse-PKdhtXMmr18n
+84  .
+```
+
+The default size unit for `du` is 1,024 bytes, but that can be changed. So in the above, `/tmp` and its children are taking 84KB of disk space.
 
 **Note:** - It is (barely) beyond the scope of this book to cover the [`mount`](http://linux.die.net/man/8/mount) command. I wanted to, really bad, but with all the different file systems and device types and all the options for both it can get so complex so fast that I decided not to. Maybe if you ask, real nice...
 

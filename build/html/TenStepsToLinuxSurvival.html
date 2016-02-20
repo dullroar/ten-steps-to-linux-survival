@@ -292,7 +292,7 @@ Are you sure you want to continue connecting (yes/no)? </code></pre>
 <li><p><strong>In the beginning</strong> - early 1970s, Nixon drags on, Watergate, Bell Labs, <a href="https://en.wikipedia.org/wiki/Ken_Thompson">Thompson</a> &amp; <a href="https://en.wikipedia.org/wiki/Dennis_Ritchie">Ritchie</a>, <a href="https://en.wikipedia.org/wiki/History_of_Unix">UNIX</a> is born. </p></li>
 <li><p><strong>More trouble from Berkeley</strong> - late 1970s, Carter, disco, Iran hostages, UC Berkeley releases the <a href="https://en.wikipedia.org/wiki/Berkeley_Software_Distribution">Berkeley Software Distribution</a> (BSD), a port based on the Bell Labs UNIX. Let the forking begin! </p></li>
 <li><p><strong>UNIX goes commercial</strong> - 1980s, Reagan, Iran Contra, <em>E.T.</em>, AT&amp;T releases <a href="https://en.wikipedia.org/wiki/UNIX_System_V">System V</a> as first commercial UNIX. From the same background as Bell Labs UNIX, System V evolved with subtle and not so subtle differences in approaches to command syntax, networking and much more. It is this release and AT&amp;T's copyrights that are the basis of all the SCO-vs-Linux lawsuits 2-3 decades later. </p></li>
-<li><p><strong>Explosion of &quot;UNIX&quot;</strong> -late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) &quot;UNIX&quot; platforms:</p>
+<li><p><strong>Explosion of &quot;UNIX&quot;</strong> - late 1980s/early 1990s, Bush I, Berlin Wall falls, Gulf War I, proliferation of proprietary (and different) &quot;UNIX&quot; platforms:</p>
 <ul>
 <li><p><strong>HP HP-UX</strong> </p></li>
 <li><p><strong>Sun SunOS</strong> - BSD flavor. </p></li>
@@ -1336,6 +1336,20 @@ none                        1981068      840   1980228   1% /run/shm
 none                         102400       24    102376   1% /run/user
 /dev/sda1                    240972    50153    178378  22% /boot</code></pre>
 <p>The ones of interest are the <code>/dev</code> entries, and we see that everything mounted under <code>/</code> is on one file system, except for whatever happens to be on the file system mounted under <code>/boot</code>. So outside of <code>/boot</code>, on this system we could hard link away to our heart's content.</p>
+<p><code>df</code> is a good command to see the disk space utilization of each file system. If you want to see the space used by a directory and its subdirectories, use <code>du</code>: </p>
+<p></p>
+<pre class="bash"><code>/tmp $ du
+4   ./icedteaplugin-mdm-EMmQCt
+4   ./ssh-IaP0RC1l4XCL
+4   ./hsperfdata_mdm
+4   ./.ICE-unix
+4   ./VSCode Crashes
+4   ./.X11-unix
+8   ./mintUpdate
+4   ./orbit-myuser
+4   ./pulse-PKdhtXMmr18n
+84  .</code></pre>
+<p>The default size unit for <code>du</code> is 1,024 bytes, but that can be changed. So in the above, <code>/tmp</code> and its children are taking 84KB of disk space.</p>
 <p><strong>Note:</strong> - It is (barely) beyond the scope of this book to cover the <a href="http://linux.die.net/man/8/mount"><code>mount</code></a> command. I wanted to, really bad, but with all the different file systems and device types and all the options for both it can get so complex so fast that I decided not to. Maybe if you ask, real nice... </p>
 <h3 id="im-seeing-double" class="unnumbered">I'm Seeing Double</h3>
 <p>So, both hard and soft links can have some interesting side effects if you think about them. For one, if you are backing things up, then you may get duplicates in your backup set. In fact, with hard links you will, by definition, unless the backup software is very smart and doing things like de-duplication.  </p>

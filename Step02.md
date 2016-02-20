@@ -1197,7 +1197,7 @@ link is a directory (metadata) entry pointing to an inode, deleting one simply d
 directory entry. As long as the file has other hard links pointing to it, it "exists." Only when
 the last remaining hard link is removed has it been "deleted." Let's play:
 
-\drcap{Many hard linkes, one inode}
+\drcap{Many hard links, one inode}
 ```bash
 ~ $ echo "This is b." > b
 ~ $ cat b
@@ -1262,6 +1262,28 @@ none                         102400       24    102376   1% /run/user
 The ones of interest are the `/dev` entries, and we see that everything mounted under `/` is on one
 file system, except for whatever happens to be on the file system mounted under `/boot`. So outside
 of `/boot`, on this system we could hard link away to our heart's content.
+
+`df` is a good command to see the disk space utilization of each file system. If you want to see the
+space used by a directory and its subdirectories, use `du`:
+\drfnd{du}{disk use by directory}
+
+\drcap{\texttt{du} command}
+```bash
+/tmp $ du
+4	./icedteaplugin-mdm-EMmQCt
+4	./ssh-IaP0RC1l4XCL
+4	./hsperfdata_mdm
+4	./.ICE-unix
+4	./VSCode Crashes
+4	./.X11-unix
+8	./mintUpdate
+4	./orbit-myuser
+4	./pulse-PKdhtXMmr18n
+84	.
+```
+
+The default size unit for `du` is 1,024 bytes, but that can be changed. So in the above, `/tmp` and
+its children are taking 84KB of disk space.
 
 **Note:** - It is (barely) beyond the scope of this book to cover the
 [`mount`](http://linux.die.net/man/8/mount) command. I wanted to, really bad, but with all the

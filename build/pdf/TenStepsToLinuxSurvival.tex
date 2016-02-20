@@ -798,7 +798,7 @@ the depths of time:
   AT\&T's copyrights that are the basis of all the SCO-vs-Linux lawsuits
   2-3 decades later. \drios{System V}
 \item
-  \textbf{Explosion of "UNIX"} -late 1980s/early 1990s, Bush I, Berlin
+  \textbf{Explosion of "UNIX"} - late 1980s/early 1990s, Bush I, Berlin
   Wall falls, Gulf War I, proliferation of proprietary (and different)
   "UNIX" platforms:
 
@@ -3216,7 +3216,7 @@ an inode, deleting one simply deletes that directory entry. As long as
 the file has other hard links pointing to it, it "exists." Only when the
 last remaining hard link is removed has it been "deleted." Let's play:
 
-\drcap{Many hard linkes, one inode}
+\drcap{Many hard links, one inode}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3299,6 +3299,32 @@ everything mounted under \texttt{/} is on one file system, except for
 whatever happens to be on the file system mounted under \texttt{/boot}.
 So outside of \texttt{/boot}, on this system we could hard link away to
 our heart's content.
+
+\texttt{df} is a good command to see the disk space utilization of each
+file system. If you want to see the space used by a directory and its
+subdirectories, use \texttt{du}: \drfnd{du}{disk use by directory}
+
+\drcap{\texttt{du} command}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{/tmp} \NormalTok{$ du}
+\KeywordTok{4}   \NormalTok{./icedteaplugin-mdm-EMmQCt}
+\KeywordTok{4}   \NormalTok{./ssh-IaP0RC1l4XCL}
+\KeywordTok{4}   \NormalTok{./hsperfdata_mdm}
+\KeywordTok{4}   \NormalTok{./.ICE-unix}
+\KeywordTok{4}   \NormalTok{./VSCode Crashes}
+\KeywordTok{4}   \NormalTok{./.X11-unix}
+\KeywordTok{8}   \NormalTok{./mintUpdate}
+\KeywordTok{4}   \NormalTok{./orbit-myuser}
+\KeywordTok{4}   \NormalTok{./pulse-PKdhtXMmr18n}
+\KeywordTok{84}  \NormalTok{.}
+\end{Highlighting}
+\end{Shaded}
+
+The default size unit for \texttt{du} is 1,024 bytes, but that can be
+changed. So in the above, \texttt{/tmp} and its children are taking 84KB
+of disk space.
 
 \textbf{Note:} - It is (barely) beyond the scope of this book to cover
 the \href{http://linux.die.net/man/8/mount}{\texttt{mount}} command. I
