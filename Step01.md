@@ -306,6 +306,18 @@ it with paired \` ("back ticks", or "grave accents"):
 text/plain
 ```
 
+Sometimes you want to keep certain sensitive commands from being records in your `.bash_history`
+file, since it is a simple text file and if you ever got hacked, the attacker could peruse it.
+For example, some commands take userids and passwords as parameters. To keep a command like that
+from being recorded in your command history, export the following, preferably in the `.profile`
+or `.bashrc` scripts in your home directory:
+\drenv{HISTIGNORE}{commands to ignore in command history}
+
+\drcap{Hiding commands from command history}
+```bash
+export HISTIGNORE="*smbclient*"
+```
+
 ### Who Am I?{.unnumbered}
 
 When writing scripts that can be run by any user, it may be helpful to know their user name at

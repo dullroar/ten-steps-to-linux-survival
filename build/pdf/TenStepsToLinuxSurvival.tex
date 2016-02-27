@@ -1473,6 +1473,23 @@ accents"):
 \end{Highlighting}
 \end{Shaded}
 
+Sometimes you want to keep certain sensitive commands from being records
+in your \texttt{.bash\_history} file, since it is a simple text file and
+if you ever got hacked, the attacker could peruse it. For example, some
+commands take userids and passwords as parameters. To keep a command
+like that from being recorded in your command history, export the
+following, preferably in the \texttt{.profile} or \texttt{.bashrc}
+scripts in your home directory:
+\drenv{HISTIGNORE}{commands to ignore in command history}
+
+\drcap{Hiding commands from command history}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{export} \OtherTok{HISTIGNORE=}\StringTok{"*smbclient*"}
+\end{Highlighting}
+\end{Shaded}
+
 \subsection*{Who Am I?}\label{who-am-i}
 \addcontentsline{toc}{subsection}{Who Am I?}
 
@@ -7529,6 +7546,11 @@ outlined in the book to find more information on them.
   - the exit code for the last command or program executed.
   \index{*@\texttt{?} (exit status environment variable)}
   \index{environment variables!\?@\texttt{\$}\texttt{?} (exit status code)}
+\item
+  \href{http://linux.die.net/man/1/sh}{\textbf{\texttt{\$HISTIGNORE}}} -
+  a colon-separated list of patterns to keep from being recorded in the
+  command history file.
+  \drenv{HISTIGNORE}{commands to ignore in command history}
 \item
   \href{http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html}{\textbf{\texttt{\$PATH}}}
   - the execution search path. \drenv{PATH}{execution search path}

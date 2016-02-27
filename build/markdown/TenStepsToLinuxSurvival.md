@@ -653,6 +653,12 @@ You can also set the value of environment variables to the output of another com
 text/plain
 ```
 
+Sometimes you want to keep certain sensitive commands from being records in your `.bash_history` file, since it is a simple text file and if you ever got hacked, the attacker could peruse it. For example, some commands take userids and passwords as parameters. To keep a command like that from being recorded in your command history, export the following, preferably in the `.profile` or `.bashrc` scripts in your home directory:
+
+``` bash
+export HISTIGNORE="*smbclient*"
+```
+
 ### Who Am I?
 
 When writing scripts that can be run by any user, it may be helpful to know their user name at run-time. There are at least two different ways to determine that. The first is via the `USER` environment variable:
@@ -4253,6 +4259,8 @@ This list outlines all the commands, files and other UNIX items of interest brou
 ### Environment Variables
 
 -   [**`$?`**](http://linux.die.net/abs-guide/exit-status.html) - the exit code for the last command or program executed.
+
+-   [**`$HISTIGNORE`**](http://linux.die.net/man/1/sh) - a colon-separated list of patterns to keep from being recorded in the command history file.
 
 -   [**`$PATH`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html) - the execution search path.
 

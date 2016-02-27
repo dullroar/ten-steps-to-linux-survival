@@ -518,6 +518,9 @@ PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC
 <pre class="bash"><code>~ $ FILETYPE=`file --brief --mime-type header.tex`
 ~ $ echo $FILETYPE
 text/plain</code></pre>
+<p>Sometimes you want to keep certain sensitive commands from being records in your <code>.bash_history</code> file, since it is a simple text file and if you ever got hacked, the attacker could peruse it. For example, some commands take userids and passwords as parameters. To keep a command like that from being recorded in your command history, export the following, preferably in the <code>.profile</code> or <code>.bashrc</code> scripts in your home directory: </p>
+<p></p>
+<pre class="bash"><code>export HISTIGNORE=&quot;*smbclient*&quot;</code></pre>
 <h3 id="who-am-i" class="unnumbered">Who Am I?</h3>
 <p>When writing scripts that can be run by any user, it may be helpful to know their user name at run-time. There are at least two different ways to determine that. The first is via the <code>USER</code> environment variable: </p>
 <p></p>
@@ -3108,6 +3111,7 @@ foo
 <h3 id="environment-variables" class="unnumbered">Environment Variables</h3>
 <ul>
 <li><p><a href="http://linux.die.net/abs-guide/exit-status.html"><strong><code>$?</code></strong></a> - the exit code for the last command or program executed.  </p></li>
+<li><p><a href="http://linux.die.net/man/1/sh"><strong><code>$HISTIGNORE</code></strong></a> - a colon-separated list of patterns to keep from being recorded in the command history file. </p></li>
 <li><p><a href="http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html"><strong><code>$PATH</code></strong></a> - the execution search path. </p></li>
 </ul>
 <h3 id="conditional-execution" class="unnumbered">Conditional Execution</h3>

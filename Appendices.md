@@ -18,6 +18,10 @@ or program executed.
 \index{*@\texttt{?} (exit status environment variable)}
 \index{environment variables!\?@\texttt{\$}\texttt{?} (exit status code)}
 
+* [**`$HISTIGNORE`**](http://linux.die.net/man/1/sh) - a colon-separated list of patterns to keep
+from being recorded in the command history file.
+\drenv{HISTIGNORE}{commands to ignore in command history}
+
 * [**`$PATH`**](http://linux.die.net/Bash-Beginners-Guide/sect_03_02.html) - the execution search
 path.
 \drenv{PATH}{execution search path}
