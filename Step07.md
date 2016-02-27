@@ -377,6 +377,46 @@ Transfer-Encoding: chunked
 ...and so on...
 ```
 
+The `SMTP` protocol can also be diagnosed this way:
+
+\drcap{Using \texttt{telnet} to diagnose SMTP}
+```bash
+~ $ telnet smtp 25
+Trying 10.1.1.8...
+Connected to mail.mydomain.com.
+Escape character is '^]'.
+220 MAIL.MYDOMAIN.COM
+HELO
+250 MAIL.MYDOMAIN.COM Hello [10.1.1.8]
+MAIL FROM:<myuser@mydomain.com>
+250 2.1.0 Sender OK
+RCPT TO:<youruser@yourdomain.com>
+250 2.1.5 Recipient OK
+DATA
+354 Start mail input; end with <CRLF>.<CRLF>
+This is an email. A single period terminates it.
+.
+250 2.6.0 <ea43bfd5-5f3f-4335-9c3e-e739f196c56f@MAIL.MYDOMAIN.COM>
+Queued mail for delivery
+```
+
+In the above, after entering `telnet smtp 25` (our internal email DNS CNAME is `smtp`), I entered:
+
+* **`HELO`** - the starting command for the protocol.
+
+* **`MAIL FROM:<myuser@mydomain.com>`** - the "from" email address.
+
+* **`RCPT TO:<youruser@yourdomain.com>`** - the "to" email address.
+
+* **`DATA`** - indicating I am ready to start the email body, which is `This is an email, a single
+period terminates it.` And you will notice there is a single period on the following line, which
+tells the SMTP server the body is done and to send the email. If all is successful, then an email
+should shortly show up in the inbox of `youruser@yourdomain.com`.
+
+**NOTE:** - diagnosing SMTP connectivity like this can be ***very*** handy sometimes. It is a good
+tool to have in your toolchest, and you can do it under Cygwin or a PuTTY Telnet session on a
+Windows box just as easily as from a Linux machine.
+
 To get a modern, *secure shell* to a remote machine over an encrypted connection, use
 [`ssh`](http://linux.die.net/man/1/ssh), passing in the userid and server like this:
 \drnet{ssh}

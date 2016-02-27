@@ -2284,6 +2284,33 @@ Vary: Accept-Encoding
 Transfer-Encoding: chunked
 
 ...and so on...</code></pre>
+<p>The <code>SMTP</code> protocol can also be diagnosed this way:</p>
+<p></p>
+<pre class="bash"><code>~ $ telnet smtp 25
+Trying 10.1.1.8...
+Connected to mail.mydomain.com.
+Escape character is &#39;^]&#39;.
+220 MAIL.MYDOMAIN.COM
+HELO
+250 MAIL.MYDOMAIN.COM Hello [10.1.1.8]
+MAIL FROM:&lt;myuser@mydomain.com&gt;
+250 2.1.0 Sender OK
+RCPT TO:&lt;youruser@yourdomain.com&gt;
+250 2.1.5 Recipient OK
+DATA
+354 Start mail input; end with &lt;CRLF&gt;.&lt;CRLF&gt;
+This is an email. A single period terminates it.
+.
+250 2.6.0 &lt;ea43bfd5-5f3f-4335-9c3e-e739f196c56f@MAIL.MYDOMAIN.COM&gt;
+Queued mail for delivery</code></pre>
+<p>In the above, after entering <code>telnet smtp 25</code> (our internal email DNS CNAME is <code>smtp</code>), I entered:</p>
+<ul>
+<li><p><strong><code>HELO</code></strong> - the starting command for the protocol.</p></li>
+<li><p><strong><code>MAIL FROM:&lt;myuser@mydomain.com&gt;</code></strong> - the &quot;from&quot; email address.</p></li>
+<li><p><strong><code>RCPT TO:&lt;youruser@yourdomain.com&gt;</code></strong> - the &quot;to&quot; email address.</p></li>
+<li><p><strong><code>DATA</code></strong> - indicating I am ready to start the email body, which is <code>This is an email, a single period terminates it.</code> And you will notice there is a single period on the following line, which tells the SMTP server the body is done and to send the email. If all is successful, then an email should shortly show up in the inbox of <code>youruser@yourdomain.com</code>.</p></li>
+</ul>
+<p><strong>NOTE:</strong> - diagnosing SMTP connectivity like this can be <strong><em>very</em></strong> handy sometimes. It is a good tool to have in your toolchest, and you can do it under Cygwin or a PuTTY Telnet session on a Windows box just as easily as from a Linux machine.</p>
 <p>To get a modern, <em>secure shell</em> to a remote machine over an encrypted connection, use <a href="http://linux.die.net/man/1/ssh"><code>ssh</code></a>, passing in the userid and server like this: </p>
 <p></p>
 <pre class="bash"><code>ssh myuser@remoteserver</code></pre>

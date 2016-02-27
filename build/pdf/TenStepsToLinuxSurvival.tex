@@ -5779,6 +5779,59 @@ return its home page: \drnet{telnet}
 \end{Highlighting}
 \end{Shaded}
 
+The \texttt{SMTP} protocol can also be diagnosed this way:
+
+\drcap{Using \texttt{telnet} to diagnose SMTP}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{telnet} \NormalTok{smtp 25}
+\KeywordTok{Trying} \NormalTok{10.1.1.8...}
+\KeywordTok{Connected} \NormalTok{to mail.mydomain.com.}
+\KeywordTok{Escape} \NormalTok{character is }\StringTok{'^]'}\NormalTok{.}
+\KeywordTok{220} \NormalTok{MAIL.MYDOMAIN.COM}
+\KeywordTok{HELO}
+\KeywordTok{250} \NormalTok{MAIL.MYDOMAIN.COM Hello [10.1.1.8]}
+\KeywordTok{MAIL} \NormalTok{FROM:}\KeywordTok{<}\NormalTok{myuser@mydomain.com}\KeywordTok{>}
+\KeywordTok{250} \NormalTok{2.1.0 Sender OK}
+\KeywordTok{RCPT} \NormalTok{TO:}\KeywordTok{<}\NormalTok{youruser@yourdomain.com}\KeywordTok{>}
+\KeywordTok{250} \NormalTok{2.1.5 Recipient OK}
+\KeywordTok{DATA}
+\KeywordTok{354} \NormalTok{Start mail input}\KeywordTok{;} \KeywordTok{end} \NormalTok{with }\KeywordTok{<}\NormalTok{CRLF}\KeywordTok{>}\NormalTok{.}\KeywordTok{<}\NormalTok{CRLF}\KeywordTok{>}
+\KeywordTok{This} \NormalTok{is an email. A single period terminates it.}
+\KeywordTok{.}
+\KeywordTok{250} \NormalTok{2.6.0 }\KeywordTok{<}\NormalTok{ea43bfd5-5f3f-4335-9c3e-e739f196c56f@MAIL.MYDOMAIN.COM}\KeywordTok{>}
+\KeywordTok{Queued} \NormalTok{mail for delivery}
+\end{Highlighting}
+\end{Shaded}
+
+In the above, after entering \texttt{telnet\ smtp\ 25} (our internal
+email DNS CNAME is \texttt{smtp}), I entered:
+
+\begin{itemize}
+\item
+  \textbf{\texttt{HELO}} - the starting command for the protocol.
+\item
+  \textbf{\texttt{MAIL\ FROM:\textless{}myuser@mydomain.com\textgreater{}}}
+  - the "from" email address.
+\item
+  \textbf{\texttt{RCPT\ TO:\textless{}youruser@yourdomain.com\textgreater{}}}
+  - the "to" email address.
+\item
+  \textbf{\texttt{DATA}} - indicating I am ready to start the email
+  body, which is
+  \texttt{This\ is\ an\ email,\ a\ single\ period\ terminates\ it.} And
+  you will notice there is a single period on the following line, which
+  tells the SMTP server the body is done and to send the email. If all
+  is successful, then an email should shortly show up in the inbox of
+  \texttt{youruser@yourdomain.com}.
+\end{itemize}
+
+\textbf{NOTE:} - diagnosing SMTP connectivity like this can be
+\textbf{\emph{very}} handy sometimes. It is a good tool to have in your
+toolchest, and you can do it under Cygwin or a PuTTY Telnet session on a
+Windows box just as easily as from a Linux machine.
+
 To get a modern, \emph{secure shell} to a remote machine over an
 encrypted connection, use
 \href{http://linux.die.net/man/1/ssh}{\texttt{ssh}}, passing in the
