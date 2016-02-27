@@ -3302,7 +3302,8 @@ our heart's content.
 
 \texttt{df} is a good command to see the disk space utilization of each
 file system. If you want to see the space used by a directory and its
-subdirectories, use \texttt{du}: \drfnd{du}{disk use by directory}
+subdirectories, use \href{http://linux.die.net/man/1/du}{\texttt{du}}:
+\drfnd{du}{disk use by directory}
 
 \drcap{\texttt{du} command}
 
@@ -5629,6 +5630,77 @@ it:
 \end{Highlighting}
 \end{Shaded}
 
+\section{It's Nice to Share}\label{its-nice-to-share}
+
+Linux boxes can be set up to share files to Windows machines using the
+SMB/CIFS protocols via a system called
+\href{https://www.samba.org/}{Samba}. However, that is beyond the scope
+of this book, since the intended audience will not likely need to do
+that.
+
+However, there is often a need in the scenarios I envision the reader
+has been thrust into, where they have to share files back and forth
+between a local *IX box and a Windows machine. Maybe it's to pull files
+over to Windows to be backed up by the shop's normal backup mechanisms.
+Or it could be to bring over log files for forensics. It could even be
+to copy files from Windows to the Linux machine.
+
+For example, in my company we keep copies of our Windows servers
+application configuration files (such as various \texttt{web.config}
+files) in Git, specifically on a
+\href{https://about.gitlab.com/}{GitLab} server. There is a
+\texttt{cron} job (coming up later) that copies the files every day from
+the Windows servers and then commits them to GitLab if there are any
+changes. It's a nice way to keep track of environment changes over time.
+
+How do you copy files from Windows to Linux or vice versa? With the
+\href{http://linux.die.net/man/1/smbclient}{\texttt{smbclient}} command.
+It works somewhat similarly to the
+\href{http://linux.die.net/man/1/ftp}{\texttt{ftp}} (but again, if
+you're going to copy using the FTP protocol, I think \texttt{curl} or
+\texttt{wget} are better). Here is an example of \texttt{smbclient} to
+get you started. \drnet{ftp} \drnet{smbclient}
+
+\drcap{Copying multiple files from a Windows machine with `mget`}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{smbclient} \NormalTok{//winbox/myshare -U myuser%mypassword -W mywindomain \textbackslash{}}
+\NormalTok{-c }\StringTok{"prompt;cd configs;mget *.config;exit"}
+\end{Highlighting}
+\end{Shaded}
+
+To understand the above:
+
+\begin{itemize}
+\item
+  \textbf{\texttt{//winbox/myshare}} - is the Windows share. Note in
+  this case you use forward slashes (\texttt{/}), not the typical
+  backslashes (\texttt{\textbackslash{}}) that Windows uses.
+\item
+  \textbf{\texttt{-U\ myuser\%mypassword}} - userid and password. If you
+  don't specify them, you will be prompted, but if you are using this
+  command in a script you either have to specify them or have the share
+  set up with guest permissions. It is a good idea to make sure the
+  script file is locked down, and that the \texttt{smbclient} command is
+  not recorded in your \texttt{.bash\_history} file (covered later).
+\item
+  \textbf{\texttt{-W\ mywindomain}} - the Active Directory domain the
+  Windows machine is a member of (or often \texttt{WORKGROUP} if it is a
+  standalone machine).
+\item
+  \textbf{\texttt{-c\ "prompt;cd\ configs;mget\ *.config;exit"}} - the
+  remote commands to execute, in this case turning the
+  \texttt{smbclient} prompting off (useful for scripts), changing to the
+  \texttt{settings} directory on the remote Windows machine with
+  \texttt{cd}, then getting multiple (\texttt{mget}) files using the
+  wildcard \texttt{*.config}, and then \texttt{exit} to end the command
+  sequence and disconnect.
+\end{itemize}
+
+\textbf{Note:} You can send files \textbf{\emph{to}} a Windows machine
+by using \texttt{mput} rather than \texttt{mget}.
+
 \section*{You've Got Mail}\label{youve-got-mail}
 \addcontentsline{toc}{section}{You've Got Mail}
 
@@ -5649,7 +5721,7 @@ straightforward enough: \drnet{email}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\KeywordTok{email} \NormalTok{--blank-mail --subject }\StringTok{"Possibly corrupted files found..."} \NormalTok{\textbackslash{}}
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{email} \NormalTok{--blank-mail --subject }\StringTok{"Possibly corrupted files found..."} \NormalTok{\textbackslash{}}
   \NormalTok{--smtp-server smtp --attach badfiles.csv --from-name NoReply \textbackslash{}}
   \NormalTok{--from-addr noreply@mycorp.com alert@mycorp.com}
 \end{Highlighting}
@@ -7545,6 +7617,9 @@ access files and the like.
   \href{http://linux.die.net/man/1/dpkg}{\textbf{\texttt{dpkg}}} -
   package manager for Debian flavors. \drpkg{dpkg}
 \item
+  \href{http://linux.die.net/man/1/du}{\textbf{\texttt{du}}} - estimate
+  disk usage. \drfnd{du}{disk use by directory}
+\item
   \href{http://linux.die.net/man/1/echo}{\textbf{\texttt{echo}}} -
   display passed parameters to \emph{stdout}. \drtxt{echo}
   \drstd{stdout}
@@ -7665,6 +7740,10 @@ access files and the like.
   \href{http://linux.die.net/man/1/set}{\textbf{\texttt{set}}} - set an
   environment variable, or display all environment variables.
   \drcmd{set}{set shell options}
+\item
+  \href{http://linux.die.net/man/1/smbclient}{\textbf{\texttt{smbclient}}}
+  - copy files to and from Windows using the SMB/CIFS (Windows file
+  share) protocol. \drnet{smbclient}
 \item
   \href{http://linux.die.net/man/1/sort}{\textbf{\texttt{sort}}} - sort
   \emph{stdin} or a file to \emph{stdout}. \drtxt{sort} \drstd{stdin}

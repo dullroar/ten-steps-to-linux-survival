@@ -167,6 +167,9 @@ directory.
 * [**`dpkg`**](http://linux.die.net/man/1/dpkg) - package manager for Debian flavors.
 \drpkg{dpkg}
 
+* [**`du`** ](http://linux.die.net/man/1/du) - estimate disk usage.
+\drfnd{du}{disk use by directory}
+
 * [**`echo`**](http://linux.die.net/man/1/echo) - display passed parameters to *stdout*.
 \drtxt{echo}
 \drstd{stdout}
@@ -285,6 +288,10 @@ can.
 * [**`set`**](http://linux.die.net/man/1/set) - set an environment variable, or display all
 environment variables.
 \drcmd{set}{set shell options}
+
+* [**`smbclient`**](http://linux.die.net/man/1/smbclient) - copy files to and from Windows using the
+SMB/CIFS (Windows file share) protocol.
+\drnet{smbclient}
 
 * [**`sort`**](http://linux.die.net/man/1/sort) - sort *stdin* or a file to *stdout*.
 \drtxt{sort}

@@ -1264,7 +1264,7 @@ file system, except for whatever happens to be on the file system mounted under 
 of `/boot`, on this system we could hard link away to our heart's content.
 
 `df` is a good command to see the disk space utilization of each file system. If you want to see the
-space used by a directory and its subdirectories, use `du`:
+space used by a directory and its subdirectories, use [`du`](http://linux.die.net/man/1/du):
 \drfnd{du}{disk use by directory}
 
 \drcap{\texttt{du} command}

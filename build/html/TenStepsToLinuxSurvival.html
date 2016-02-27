@@ -94,6 +94,7 @@
 <li><a href="#the-whole-wide-world"><span class="toc-section-number">7</span> The Whole Wide World</a><ul>
 <li><a href="#sudo-make-me-a-sandwich">sudo Make Me a Sandwich</a></li>
 <li><a href="#surfin-the-command-prompt">Surfin' the Command Prompt</a></li>
+<li><a href="#its-nice-to-share"><span class="toc-section-number">7.1</span> It's Nice to Share</a></li>
 <li><a href="#youve-got-mail">You've Got Mail</a></li>
 <li><a href="#lets-connect">Let's Connect</a></li>
 <li><a href="#network-configuration">Network Configuration</a></li>
@@ -1336,7 +1337,7 @@ none                        1981068      840   1980228   1% /run/shm
 none                         102400       24    102376   1% /run/user
 /dev/sda1                    240972    50153    178378  22% /boot</code></pre>
 <p>The ones of interest are the <code>/dev</code> entries, and we see that everything mounted under <code>/</code> is on one file system, except for whatever happens to be on the file system mounted under <code>/boot</code>. So outside of <code>/boot</code>, on this system we could hard link away to our heart's content.</p>
-<p><code>df</code> is a good command to see the disk space utilization of each file system. If you want to see the space used by a directory and its subdirectories, use <code>du</code>: </p>
+<p><code>df</code> is a good command to see the disk space utilization of each file system. If you want to see the space used by a directory and its subdirectories, use <a href="http://linux.die.net/man/1/du"><code>du</code></a>: </p>
 <p></p>
 <pre class="bash"><code>/tmp $ du
 4   ./icedteaplugin-mdm-EMmQCt
@@ -2231,11 +2232,27 @@ rm -rf /*</code></pre>
 # Do some stuff...
 ~ $ chmod 770 install.sh
 ~ $ ./install.sh</code></pre>
+<h2 id="its-nice-to-share"><span class="header-section-number">7.1</span> It's Nice to Share</h2>
+<p>Linux boxes can be set up to share files to Windows machines using the SMB/CIFS protocols via a system called <a href="https://www.samba.org/">Samba</a>. However, that is beyond the scope of this book, since the intended audience will not likely need to do that.</p>
+<p>However, there is often a need in the scenarios I envision the reader has been thrust into, where they have to share files back and forth between a local *IX box and a Windows machine. Maybe it's to pull files over to Windows to be backed up by the shop's normal backup mechanisms. Or it could be to bring over log files for forensics. It could even be to copy files from Windows to the Linux machine.</p>
+<p>For example, in my company we keep copies of our Windows servers application configuration files (such as various <code>web.config</code> files) in Git, specifically on a <a href="https://about.gitlab.com/">GitLab</a> server. There is a <code>cron</code> job (coming up later) that copies the files every day from the Windows servers and then commits them to GitLab if there are any changes. It's a nice way to keep track of environment changes over time.</p>
+<p>How do you copy files from Windows to Linux or vice versa? With the <a href="http://linux.die.net/man/1/smbclient"><code>smbclient</code></a> command. It works somewhat similarly to the <a href="http://linux.die.net/man/1/ftp"><code>ftp</code></a> (but again, if you're going to copy using the FTP protocol, I think <code>curl</code> or <code>wget</code> are better). Here is an example of <code>smbclient</code> to get you started.  </p>
+<p></p>
+<pre class="bash"><code>~ $ smbclient //winbox/myshare -U myuser%mypassword -W mywindomain \
+-c &quot;prompt;cd configs;mget *.config;exit&quot;</code></pre>
+<p>To understand the above:</p>
+<ul>
+<li><p><strong><code>//winbox/myshare</code></strong> - is the Windows share. Note in this case you use forward slashes (<code>/</code>), not the typical backslashes (<code>\</code>) that Windows uses.</p></li>
+<li><p><strong><code>-U myuser%mypassword</code></strong> - userid and password. If you don't specify them, you will be prompted, but if you are using this command in a script you either have to specify them or have the share set up with guest permissions. It is a good idea to make sure the script file is locked down, and that the <code>smbclient</code> command is not recorded in your <code>.bash_history</code> file (covered later).</p></li>
+<li><p><strong><code>-W mywindomain</code></strong> - the Active Directory domain the Windows machine is a member of (or often <code>WORKGROUP</code> if it is a standalone machine).</p></li>
+<li><p><strong><code>-c &quot;prompt;cd configs;mget *.config;exit&quot;</code></strong> - the remote commands to execute, in this case turning the <code>smbclient</code> prompting off (useful for scripts), changing to the <code>settings</code> directory on the remote Windows machine with <code>cd</code>, then getting multiple (<code>mget</code>) files using the wildcard <code>*.config</code>, and then <code>exit</code> to end the command sequence and disconnect.</p></li>
+</ul>
+<p><strong>Note:</strong> You can send files <strong><em>to</em></strong> a Windows machine by using <code>mput</code> rather than <code>mget</code>.</p>
 <h2 id="youve-got-mail" class="unnumbered">You've Got Mail</h2>
 <p>You can send and receive email from the command prompt. Reading email will be rare, but if the system has <a href="http://linux.die.net/man/1/pine"><code>pine</code></a> installed, that's probably the most intuitive from a non-UNIX perspective (although it is still obviously a terminal program). Otherwise look for <a href="http://linux.die.net/man/1/mutt"><code>mutt</code></a>.  </p>
 <p>Sending email is more interesting, especially from shell scripts. There are multiple ways, but <a href="http://linux.die.net/man/1/email"><code>email</code></a> is straightforward enough: </p>
 <p></p>
-<pre class="bash"><code>email --blank-mail --subject &quot;Possibly corrupted files found...&quot; \
+<pre class="bash"><code>~ $ email --blank-mail --subject &quot;Possibly corrupted files found...&quot; \
   --smtp-server smtp --attach badfiles.csv --from-name NoReply \
   --from-addr noreply@mycorp.com alert@mycorp.com</code></pre>
 <h2 id="lets-connect" class="unnumbered">Let's Connect</h2>
@@ -3105,6 +3122,7 @@ foo
 <li><p><a href="http://linux.die.net/man/1/diff"><strong><code>diff</code></strong></a> - show the differences between files. </p></li>
 <li><p><a href="http://linux.die.net/man/1/dig"><strong><code>dig</code></strong></a> - look up DNS info on an address. </p></li>
 <li><p><a href="http://linux.die.net/man/1/dpkg"><strong><code>dpkg</code></strong></a> - package manager for Debian flavors. </p></li>
+<li><p><a href="http://linux.die.net/man/1/du"><strong><code>du</code></strong></a> - estimate disk usage. </p></li>
 <li><p><a href="http://linux.die.net/man/1/echo"><strong><code>echo</code></strong></a> - display passed parameters to <em>stdout</em>.  </p></li>
 <li><p><a href="http://linux.die.net/man/1/emacs"><strong><code>emacs</code></strong></a> - great operating system, but it could use an editor. </p></li>
 <li><p><a href="http://linux.die.net/man/1/email"><strong><code>email</code></strong></a> - send email. </p></li>
@@ -3140,6 +3158,7 @@ foo
 <li><p><a href="http://linux.die.net/man/1/rm"><strong><code>rm</code></strong></a> - delete (remove) files or directories. </p></li>
 <li><p><a href="http://linux.die.net/man/1/scp"><strong><code>scp</code></strong></a> - file copy over secure shell protocol. </p></li>
 <li><p><a href="http://linux.die.net/man/1/set"><strong><code>set</code></strong></a> - set an environment variable, or display all environment variables. </p></li>
+<li><p><a href="http://linux.die.net/man/1/smbclient"><strong><code>smbclient</code></strong></a> - copy files to and from Windows using the SMB/CIFS (Windows file share) protocol. </p></li>
 <li><p><a href="http://linux.die.net/man/1/sort"><strong><code>sort</code></strong></a> - sort <em>stdin</em> or a file to <em>stdout</em>.   </p></li>
 <li><p><a href="http://linux.die.net/man/1/ssh"><strong><code>ssh</code></strong></a> - secure shell terminal progam and protocol. </p></li>
 <li><p><a href="http://linux.die.net/man/1/tail"><strong><code>tail</code></strong></a> - display the last lines of a file. </p></li>

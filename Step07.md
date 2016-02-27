@@ -267,6 +267,57 @@ But if the script looks right, then you can `chmod` it and run it:
 ~ $ ./install.sh
 ```
 
+## It's Nice to Share
+
+Linux boxes can be set up to share files to Windows machines using the SMB/CIFS protocols via a
+system called [Samba](https://www.samba.org/). However, that is beyond the scope of this book,
+since the intended audience will not likely need to do that.
+
+However, there is often a need in the scenarios I envision the reader has been thrust into, where
+they have to share files back and forth between a local *IX box and a Windows machine. Maybe it's
+to pull files over to Windows to be backed up by the shop's normal backup mechanisms. Or it could
+be to bring over log files for forensics. It could even be to copy files from Windows to the Linux
+machine.
+
+For example, in my company we keep copies of our Windows servers application configuration
+files (such as various `web.config` files) in Git, specifically on a
+[GitLab](https://about.gitlab.com/) server. There is a `cron` job (coming up later) that copies
+the files every day from the Windows servers and then commits them to GitLab if there are any
+changes. It's a nice way to keep track of environment changes over time.
+
+How do you copy files from Windows to Linux or vice versa? With the
+[`smbclient`](http://linux.die.net/man/1/smbclient) command. It works somewhat similarly to the
+[`ftp`](http://linux.die.net/man/1/ftp) (but again, if you're going to copy using the FTP protocol,
+I think `curl` or `wget` are better). Here is an example of `smbclient` to get you started.
+\drnet{ftp}
+\drnet{smbclient}
+
+\drcap{Copying multiple files from a Windows machine with `mget`}
+```bash
+~ $ smbclient //winbox/myshare -U myuser%mypassword -W mywindomain \
+-c "prompt;cd configs;mget *.config;exit"
+```
+
+To understand the above:
+
+* **`//winbox/myshare`** - is the Windows share. Note in this case you use forward slashes (`/`),
+not the typical backslashes (`\`) that Windows uses.
+
+* **`-U myuser%mypassword`** - userid and password. If you don't specify them, you will be prompted,
+but if you are using this command in a script you either have to specify them or have the share set
+up with guest permissions. It is a good idea to make sure the script file is locked down, and that
+the `smbclient` command is not recorded in your `.bash_history` file (covered later).
+
+* **`-W mywindomain`** - the Active Directory domain the Windows machine is a member of (or often
+`WORKGROUP` if it is a standalone machine).
+
+* **`-c "prompt;cd configs;mget *.config;exit"`** - the remote commands to execute, in this case
+turning the `smbclient` prompting off (useful for scripts), changing to the `settings`
+directory on the remote Windows machine with `cd`, then getting multiple (`mget`) files using the
+wildcard `*.config`, and then `exit` to end the command sequence and disconnect.
+
+**Note:** You can send files ***to*** a Windows machine by using `mput` rather than `mget`.
+
 ## You've Got Mail{.unnumbered}
 
 You can send and receive email from the command prompt. Reading email will be rare, but if the
@@ -282,7 +333,7 @@ Sending email is more interesting, especially from shell scripts. There are mult
 
 \drcap{Sending email from the command line}
 ```bash
-email --blank-mail --subject "Possibly corrupted files found..." \
+~ $ email --blank-mail --subject "Possibly corrupted files found..." \
   --smtp-server smtp --attach badfiles.csv --from-name NoReply \
   --from-addr noreply@mycorp.com alert@mycorp.com
 ```
