@@ -289,6 +289,9 @@ can.
 * [**`scp`**](http://linux.die.net/man/1/scp) - file copy over secure shell protocol.
 \drnet{scp}
 
+* [**`sed`**](http://linux.die.net/man/1/sed) - stream editor for editing from the command line.
+\dreds{sed}
+
 * [**`set`**](http://linux.die.net/man/1/set) - set an environment variable, or display all
 environment variables.
 \drcmd{set}{set shell options}

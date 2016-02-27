@@ -302,7 +302,7 @@
 \hspace*{0.333em}\\
  By James Lehmer ~\\
 \hspace*{0.333em}\\
- v0.10 ~\\
+ v1.0 ~\\
 \hspace*{0.333em}\\
  \includegraphics{./images/cc-by-sa.png}\\
 \emph{Ten Steps to Linux Survival - Bash for Windows People} by James
@@ -5333,6 +5333,39 @@ and use \texttt{vi}.
 
 And if you have the opportunity to use \texttt{emacs}...don't.
 
+\section{Editing on the Command Line}\label{editing-on-the-command-line}
+
+Sometimes you want to script an edit, typically something similar to a
+"replace all" that needs to occur on a file without human intervention.
+The \href{http://linux.die.net/man/1/sed}{\texttt{sed}} (stream editor)
+command to the rescue! \texttt{sed} has a similar syntax to the
+"substitute" commands in \texttt{vi} (in fact, the latter got its syntax
+from the former). \dreds{sed}
+
+Here is a real-world example. A \href{https://www.mysql.com/}{MySQL}
+database backup is in reality a text file containing a large number of
+SQL statements - the \texttt{DROP}, \texttt{CREATE} and \texttt{INSERT}
+statements necessary to recreate the database from scratch. Let's say
+you have two Wordpress sites, \texttt{www.mysite.com} for production,
+and \texttt{dev.mysite.com} for a testing environment. When Wordpress is
+configured, it puts its site address, e.g., \texttt{www.mysite.com}, in
+multiple places in the database. If you want to refresh your dev site
+from production, you would backup the MySQL database to a file like
+\texttt{mysqlbak.sql}. But before loading it in the dev site's database,
+you would like to change all those \texttt{www.mysite.com} references to
+\texttt{dev.mysite.com}. \texttt{sed} to the rescue! Behold:
+
+\drcap{Editing a file with \texttt{sed}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{~} \NormalTok{$ }\KeywordTok{cat} \NormalTok{mysqlbak.sql }\KeywordTok{|} \KeywordTok{sed} \StringTok{'s/www.mysite.com/dev.mysite.com/g'} \KeywordTok{>} \NormalTok{devbak.sql}
+\end{Highlighting}
+\end{Shaded}
+
+How cool is that? If you remember the "substitute" command examples for
+\texttt{vi}, above, it should be perfectly clear what is going on here.
+
 \hypertarget{the-whole-wide-world}{\chapter{The Whole Wide
 World}\label{the-whole-wide-world}}
 
@@ -7844,6 +7877,9 @@ access files and the like.
 \item
   \href{http://linux.die.net/man/1/scp}{\textbf{\texttt{scp}}} - file
   copy over secure shell protocol. \drnet{scp}
+\item
+  \href{http://linux.die.net/man/1/sed}{\textbf{\texttt{sed}}} - stream
+  editor for editing from the command line. \dreds{sed}
 \item
   \href{http://linux.die.net/man/1/set}{\textbf{\texttt{set}}} - set an
   environment variable, or display all environment variables.

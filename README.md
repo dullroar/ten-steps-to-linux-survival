@@ -57,6 +57,7 @@
     -   [Executing External Commands](#executing-external-commands)
     -   [The Unseen World](#the-unseen-world)
     -   [Let's Get Small](#lets-get-small)
+    -   [Editing on the Command Line](#editing-on-the-command-line)
 -   [The Whole Wide World](#the-whole-wide-world)
     -   [sudo Make Me a Sandwich](#sudo-make-me-a-sandwich)
     -   [Surfin' the Command Prompt](#surfin-the-command-prompt)
@@ -105,7 +106,7 @@
  
 <br/> <br/> By James Lehmer  
  
-<br/> <br/> v0.10  
+<br/> <br/> v1.0  
  
 <br/> <br/> ![](./images/cc-by-sa.png "Creative Commons Attribution-ShareAlike 4.0 International")
 *Ten Steps to Linux Survival - Bash for Windows People* by James Lehmer is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).  
@@ -2869,6 +2870,19 @@ So why not always use `nano`? Why does this book harp on and on `vi`? Why do I i
 
 And if you have the opportunity to use `emacs`...don't.
 
+Editing on the Command Line
+---------------------------
+
+Sometimes you want to script an edit, typically something similar to a "replace all" that needs to occur on a file without human intervention. The [`sed`](http://linux.die.net/man/1/sed) (stream editor) command to the rescue! `sed` has a similar syntax to the "substitute" commands in `vi` (in fact, the latter got its syntax from the former).
+
+Here is a real-world example. A [MySQL](https://www.mysql.com/) database backup is in reality a text file containing a large number of SQL statements - the `DROP`, `CREATE` and `INSERT` statements necessary to recreate the database from scratch. Let's say you have two Wordpress sites, `www.mysite.com` for production, and `dev.mysite.com` for a testing environment. When Wordpress is configured, it puts its site address, e.g., `www.mysite.com`, in multiple places in the database. If you want to refresh your dev site from production, you would backup the MySQL database to a file like `mysqlbak.sql`. But before loading it in the dev site's database, you would like to change all those `www.mysite.com` references to `dev.mysite.com`. `sed` to the rescue! Behold:
+
+``` bash
+~ $ cat mysqlbak.sql | sed 's/www.mysite.com/dev.mysite.com/g' > devbak.sql
+```
+
+How cool is that? If you remember the "substitute" command examples for `vi`, above, it should be perfectly clear what is going on here.
+
 The Whole Wide World
 ====================
 
@@ -4423,6 +4437,8 @@ These are "section 1" commands, i.e., normal user commands that typically don't 
 -   [**`rm`**](http://linux.die.net/man/1/rm) - delete (remove) files or directories.
 
 -   [**`scp`**](http://linux.die.net/man/1/scp) - file copy over secure shell protocol.
+
+-   [**`sed`**](http://linux.die.net/man/1/sed) - stream editor for editing from the command line.
 
 -   [**`set`**](http://linux.die.net/man/1/set) - set an environment variable, or display all environment variables.
 

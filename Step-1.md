@@ -12,7 +12,7 @@ By James Lehmer
 \ \
 <br/>
 <br/>
-v0.10
+v1.0
 \ \
 \ \
 <br/>

@@ -606,3 +606,28 @@ have `vi`. So if you have `nano` (or `pico`), use it! You can find out simply by
 grit your teeth, remember "insert mode" vs. "command mode", and use `vi`.
 
 And if you have the opportunity to use `emacs`...don't.
+
+## Editing on the Command Line
+
+Sometimes you want to script an edit, typically something similar to a "replace all" that needs
+to occur on a file without human intervention. The [`sed`](http://linux.die.net/man/1/sed) (stream
+editor) command to the rescue! `sed` has a similar syntax to the "substitute" commands in `vi` (in
+fact, the latter got its syntax from the former).
+\dreds{sed}
+
+Here is a real-world example. A [MySQL](https://www.mysql.com/) database backup is in reality a text
+file containing a large number of SQL statements - the `DROP`, `CREATE` and `INSERT` statements
+necessary to recreate the database from scratch. Let's say you have two Wordpress sites,
+`www.mysite.com` for production, and `dev.mysite.com` for a testing environment. When Wordpress is
+configured, it puts its site address, e.g., `www.mysite.com`, in multiple places in the database. If
+you want to refresh your dev site from production, you would backup the MySQL database to a file
+like `mysqlbak.sql`. But before loading it in the dev site's database, you would like to change all
+those `www.mysite.com` references to `dev.mysite.com`. `sed` to the rescue! Behold:
+
+\drcap{Editing a file with \texttt{sed}}
+```bash
+~ $ cat mysqlbak.sql | sed 's/www.mysite.com/dev.mysite.com/g' > devbak.sql
+```
+
+How cool is that? If you remember the "substitute" command examples for `vi`, above, it should be
+perfectly clear what is going on here.

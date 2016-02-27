@@ -90,6 +90,7 @@
 <li><a href="#executing-external-commands">Executing External Commands</a></li>
 <li><a href="#the-unseen-world">The Unseen World</a></li>
 <li><a href="#lets-get-small">Let's Get Small</a></li>
+<li><a href="#editing-on-the-command-line"><span class="toc-section-number">6.2</span> Editing on the Command Line</a></li>
 </ul></li>
 <li><a href="#the-whole-wide-world"><span class="toc-section-number">7</span> The Whole Wide World</a><ul>
 <li><a href="#sudo-make-me-a-sandwich">sudo Make Me a Sandwich</a></li>
@@ -148,7 +149,7 @@
  <br />
 <br/> <br/> By James Lehmer  <br />
  <br />
-<br/> <br/> v0.10  <br />
+<br/> <br/> v1.0  <br />
  <br />
 <br/> <br/> <img src="./images/cc-by-sa.png" title="Creative Commons Attribution-ShareAlike 4.0 International" alt="" /><br />
 <em>Ten Steps to Linux Survival - Bash for Windows People</em> by James Lehmer is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.  <br />
@@ -2060,6 +2061,12 @@ This is my little &quot;Linux and Bash in 10 steps&quot; guide. It&#39;s based a
 </ol>
 <p>So why not always use <code>nano</code>? Why does this book harp on and on <code>vi</code>? Why do I insist on keeping all this arcane <code>vi</code> nonsense loaded in my head (and I do!)? Because often, like in the nightmare scenario I posed in the <em>Introduction</em>, you may not have control over the system, no ability to install packages - you have to take what the system has. And it's a pretty sure bet it is going to have <code>vi</code>. So if you have <code>nano</code> (or <code>pico</code>), use it! You can find out simply by typing in <code>nano &lt;filename&gt;</code> on what you want to edit and see if it works. But if <code>nano</code> or <code>pico</code> aren't installed, grit your teeth, remember &quot;insert mode&quot; vs. &quot;command mode&quot;, and use <code>vi</code>.</p>
 <p>And if you have the opportunity to use <code>emacs</code>...don't.</p>
+<h2 id="editing-on-the-command-line"><span class="header-section-number">6.2</span> Editing on the Command Line</h2>
+<p>Sometimes you want to script an edit, typically something similar to a &quot;replace all&quot; that needs to occur on a file without human intervention. The <a href="http://linux.die.net/man/1/sed"><code>sed</code></a> (stream editor) command to the rescue! <code>sed</code> has a similar syntax to the &quot;substitute&quot; commands in <code>vi</code> (in fact, the latter got its syntax from the former). </p>
+<p>Here is a real-world example. A <a href="https://www.mysql.com/">MySQL</a> database backup is in reality a text file containing a large number of SQL statements - the <code>DROP</code>, <code>CREATE</code> and <code>INSERT</code> statements necessary to recreate the database from scratch. Let's say you have two Wordpress sites, <code>www.mysite.com</code> for production, and <code>dev.mysite.com</code> for a testing environment. When Wordpress is configured, it puts its site address, e.g., <code>www.mysite.com</code>, in multiple places in the database. If you want to refresh your dev site from production, you would backup the MySQL database to a file like <code>mysqlbak.sql</code>. But before loading it in the dev site's database, you would like to change all those <code>www.mysite.com</code> references to <code>dev.mysite.com</code>. <code>sed</code> to the rescue! Behold:</p>
+<p></p>
+<pre class="bash"><code>~ $ cat mysqlbak.sql | sed &#39;s/www.mysite.com/dev.mysite.com/g&#39; &gt; devbak.sql</code></pre>
+<p>How cool is that? If you remember the &quot;substitute&quot; command examples for <code>vi</code>, above, it should be perfectly clear what is going on here.</p>
 <h1 id="the-whole-wide-world"><span class="header-section-number">7</span> The Whole Wide World</h1>
 <p><strong><em><code>curl</code>, <code>wget</code>, <code>ifconfig</code>, <code>ping</code>, <code>ssh</code>, <code>telnet</code>, <code>/etc/hosts</code> and email before Outlook.</em></strong></p>
 <blockquote>
@@ -3203,6 +3210,7 @@ foo
 <li><p><a href="http://linux.die.net/man/1/rename"><strong><code>rename</code></strong></a> - rename files in more complex ways than <code>mv</code> can. </p></li>
 <li><p><a href="http://linux.die.net/man/1/rm"><strong><code>rm</code></strong></a> - delete (remove) files or directories. </p></li>
 <li><p><a href="http://linux.die.net/man/1/scp"><strong><code>scp</code></strong></a> - file copy over secure shell protocol. </p></li>
+<li><p><a href="http://linux.die.net/man/1/sed"><strong><code>sed</code></strong></a> - stream editor for editing from the command line. </p></li>
 <li><p><a href="http://linux.die.net/man/1/set"><strong><code>set</code></strong></a> - set an environment variable, or display all environment variables. </p></li>
 <li><p><a href="http://linux.die.net/man/1/smbclient"><strong><code>smbclient</code></strong></a> - copy files to and from Windows using the SMB/CIFS (Windows file share) protocol. </p></li>
 <li><p><a href="http://linux.die.net/man/1/sort"><strong><code>sort</code></strong></a> - sort <em>stdin</em> or a file to <em>stdout</em>.   </p></li>
