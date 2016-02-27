@@ -132,6 +132,15 @@ DESCRIPTION
  Manual page passwd(5) line 1 (press h for help or q to quit)
 ```
 
+`man` pages can be long and sometimes obscure to a beginner, but it is recommended you get used to
+reading them, especially any warnings. There is a great quote that explains why:
+
+> "Unix will give you enough rope to shoot yourself in the foot. If you didn't think rope would do
+> that, you should have read the man page." - unknown
+
+**Note:** If you know who originally said the above and can send proof, let me know and I will give
+them credit.
+
 Besides `man`, many GNU tools come with help in `info` format, which is originally from `emacs`.
 Here are the results of `info find`:
 \drdoc{info}
