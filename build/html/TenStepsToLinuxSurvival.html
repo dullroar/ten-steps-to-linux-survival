@@ -1477,6 +1477,8 @@ SAME=ALWAYS</code></pre>
 <li><p><strong><code>-executable</code></strong> - the file is executable or the directory is searchable (in other words, the file or directory's <code>x</code> mode bit is set true for user, group or other (&quot;ugo&quot;), per the file permissions discussion above), and the user executing the <code>find</code> command falls into one of the categories for which it is set.</p></li>
 <li><p><strong><code>-group &lt;gname&gt;</code></strong> - file belongs to group <em>gname</em>.</p></li>
 <li><p><strong><code>-iname &lt;pattern&gt;</code></strong> - case-insensitive name search. Any wildcard characters should be escaped.</p></li>
+<li><p><strong><code>-maxdepth &lt;number&gt;</code></strong> - limits the number of directory levels to recurse into.</p></li>
+<li><p><strong><code>-mindepth &lt;number&gt;</code></strong> - sets a starting directory level below the current one to recurse into.</p></li>
 <li><p><strong><code>-name &lt;pattern&gt;</code></strong> - case-sensitive name search. Any wildcard characters should be escaped.</p></li>
 <li><p><strong><code>-newer &lt;file&gt;</code></strong> - each file is tested to see if it is newer than <em>file</em>.</p></li>
 <li><p><strong><code>-size &lt;n&gt;</code></strong> - file uses <em>n</em> units of space, which can be specified in various measures like 512-byte blocks (<code>b</code>) through gigabytes (<code>G</code>).</p></li>

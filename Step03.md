@@ -126,6 +126,10 @@ categories for which it is set.
 
 * **`-iname <pattern>`** - case-insensitive name search. Any wildcard characters should be escaped.
 
+* **`-maxdepth <number>`** - limits the number of directory levels to recurse into.
+
+* **`-mindepth <number>`** - sets a starting directory level below the current one to recurse into.
+
 * **`-name <pattern>`** - case-sensitive name search. Any wildcard characters should be escaped.
 
 * **`-newer <file>`** - each file is tested to see if it is newer than *file*.
