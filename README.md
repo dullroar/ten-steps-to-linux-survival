@@ -3019,6 +3019,15 @@ Hit http://archive.canonical.com trusty Release.gpg
 
 Now you should get the punchline to [this comic](https://xkcd.com/149/), and hence the title of this section.
 
+**NOTE:** The first time you ever run `sudo` on a machine, you will probably see the following. They are good words to live by:
+
+    We trust you have received the usual lecture from the local System
+    Administrator. It usually boils down to these three things:
+
+        #1) Respect the privacy of others.
+        #2) Think before you type.
+        #3) With great power comes great responsibility.
+
 Surfin' the Command Prompt
 --------------------------
 
