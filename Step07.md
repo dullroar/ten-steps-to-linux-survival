@@ -479,6 +479,67 @@ Last login: Tue Oct 20 09:37:10 2015 from otherhost
 $
 ```
 
+The `scp` command does a naive copy, that is, it simply copies everything from the source to the
+target. But what if you want to "mirror" the source to the target, meaning that if you delete
+something on the source side, it will get deleted on the target as well? `scp` won't help you with
+that. You could delete the target directory completely each time before copying, but that may not
+be safe (what happens if the copy fails after you've deleted the target?) Another problem with `scp`
+is it copies every byte of every file every time, even if the files haven't changed. That can be
+really slow and inefficient when copying a large, complex directory containing gigabytes of files
+over the Internet.
+
+This is where the [`rsync`](http://linux.die.net/man/1/rsync) command comes in handy. `rsync` does
+three things well:
+\drnet{rsync}
+
+1. It copies using the `ssh` protocol by default, just like `scp`, so it is secure. And it uses
+the `scp` commands compression capabilities by default to increase efficiency. You can turn that
+behavior off via a parameter when copying files that are already compressed, such as JPEGs.
+
+2. It copies only the ***changed blocks*** (not even just the changed files), which means if there
+are no or few changes, it is very fast.
+
+3. It deletes files on the target if they've been deleted from the source, which allows you to
+mirror all changes between the two servers or sites.
+
+**NOTE**: For `rsync` to work, it has to be installed on both servers.
+
+\drcap{Using \texttt{rsync} to mirror directories between servers}
+```bash
+~ $ rsync --delete --progress --recursive --verbose --exclude '.git' \
+--exclude '.bak' ~/dev/website/ myuser@mysite.com:public_html
+```
+
+This invokes `rsync` as follows:
+
+* **`--delete`** - deletes files on the target server.
+
+* **`--progress`** - shows progress as it copies.
+
+* **`--recursive`** - does a recursive copy.
+
+* **`--verbose`** - shows verbose output.
+
+* **`--exclude '.git'`** - exclude any directory or file named `.git`.
+
+* **`--exclude '.bak'`** - also exclude any directory or file named `.bak`.
+
+* **`~/dev/website/`** - copy from this directory on the local machine, including all files under
+it (trailing slash).
+
+* **`myuser@mysite.com:public_html`** - copy to the `public_html` directory under the home directory
+of `myuser` on the `mysite.com` server.
+
+**NOTE:** `rsync` can be used to efficiently mirror directories even on the local server. If there
+are two large and complex directories on a single server you want to keep synchronized, you can
+simply use local addresses for both directories:
+
+\drcap{Using \texttt{rsync} to mirror local directories}
+```bash
+~ $ rsync --delete --progress --recursive --verbose --exclude '.git' \
+--exclude '.bak' ~/dev/website/ /var/nginx/staging/website
+```
+
 ## Network Configuration{.unnumbered}
 
 We won't dive too deep into configuring a network, but there are a few things you should know about

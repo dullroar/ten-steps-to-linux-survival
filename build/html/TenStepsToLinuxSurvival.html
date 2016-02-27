@@ -2356,6 +2356,32 @@ Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 Last login: Tue Oct 20 09:37:10 2015 from otherhost
 $</code></pre>
+<p>The <code>scp</code> command does a naive copy, that is, it simply copies everything from the source to the target. But what if you want to &quot;mirror&quot; the source to the target, meaning that if you delete something on the source side, it will get deleted on the target as well? <code>scp</code> won't help you with that. You could delete the target directory completely each time before copying, but that may not be safe (what happens if the copy fails after you've deleted the target?) Another problem with <code>scp</code> is it copies every byte of every file every time, even if the files haven't changed. That can be really slow and inefficient when copying a large, complex directory containing gigabytes of files over the Internet.</p>
+<p>This is where the <a href="http://linux.die.net/man/1/rsync"><code>rsync</code></a> command comes in handy. <code>rsync</code> does three things well: </p>
+<ol type="1">
+<li><p>It copies using the <code>ssh</code> protocol by default, just like <code>scp</code>, so it is secure. And it uses the <code>scp</code> commands compression capabilities by default to increase efficiency. You can turn that behavior off via a parameter when copying files that are already compressed, such as JPEGs.</p></li>
+<li><p>It copies only the <strong><em>changed blocks</em></strong> (not even just the changed files), which means if there are no or few changes, it is very fast.</p></li>
+<li><p>It deletes files on the target if they've been deleted from the source, which allows you to mirror all changes between the two servers or sites.</p></li>
+</ol>
+<p><strong>NOTE</strong>: For <code>rsync</code> to work, it has to be installed on both servers.</p>
+<p></p>
+<pre class="bash"><code>~ $ rsync --delete --progress --recursive --verbose --exclude &#39;.git&#39; \
+--exclude &#39;.bak&#39; ~/dev/website/ myuser@mysite.com:public_html</code></pre>
+<p>This invokes <code>rsync</code> as follows:</p>
+<ul>
+<li><p><strong><code>--delete</code></strong> - deletes files on the target server.</p></li>
+<li><p><strong><code>--progress</code></strong> - shows progress as it copies.</p></li>
+<li><p><strong><code>--recursive</code></strong> - does a recursive copy.</p></li>
+<li><p><strong><code>--verbose</code></strong> - shows verbose output.</p></li>
+<li><p><strong><code>--exclude '.git'</code></strong> - exclude any directory or file named <code>.git</code>.</p></li>
+<li><p><strong><code>--exclude '.bak'</code></strong> - also exclude any directory or file named <code>.bak</code>.</p></li>
+<li><p><strong><code>~/dev/website/</code></strong> - copy from this directory on the local machine, including all files under it (trailing slash).</p></li>
+<li><p><strong><code>myuser@mysite.com:public_html</code></strong> - copy to the <code>public_html</code> directory under the home directory of <code>myuser</code> on the <code>mysite.com</code> server.</p></li>
+</ul>
+<p><strong>NOTE:</strong> <code>rsync</code> can be used to efficiently mirror directories even on the local server. If there are two large and complex directories on a single server you want to keep synchronized, you can simply use local addresses for both directories:</p>
+<p></p>
+<pre class="bash"><code>~ $ rsync --delete --progress --recursive --verbose --exclude &#39;.git&#39; \
+--exclude &#39;.bak&#39; ~/dev/website/ /var/nginx/staging/website</code></pre>
 <h2 id="network-configuration" class="unnumbered">Network Configuration</h2>
 <p>We won't dive too deep into configuring a network, but there are a few things you should know about right away. The first is the <a href="http://linux.die.net/man/8/ifconfig"><code>ifconfig</code></a> command. In some ways is similar to <code>ipconfig</code> in <code>CMD.EXE</code>. While you can use <code>ifconfig</code> to alter your networking settings, it is most commonly used to get a quick display of them:  </p>
 <p></p>
@@ -3209,6 +3235,7 @@ foo
 <li><p><a href="http://linux.die.net/man/1/pwd"><strong><code>pwd</code></strong></a> - print the current (working) directory name. </p></li>
 <li><p><a href="http://linux.die.net/man/1/rename"><strong><code>rename</code></strong></a> - rename files in more complex ways than <code>mv</code> can. </p></li>
 <li><p><a href="http://linux.die.net/man/1/rm"><strong><code>rm</code></strong></a> - delete (remove) files or directories. </p></li>
+<li><p><a href="http://linux.die.net/man/1/rsync"><strong><code>rsync</code></strong></a> - efficiently and securely &quot;mirror&quot; directories between local and remote locations. </p></li>
 <li><p><a href="http://linux.die.net/man/1/scp"><strong><code>scp</code></strong></a> - file copy over secure shell protocol. </p></li>
 <li><p><a href="http://linux.die.net/man/1/sed"><strong><code>sed</code></strong></a> - stream editor for editing from the command line. </p></li>
 <li><p><a href="http://linux.die.net/man/1/set"><strong><code>set</code></strong></a> - set an environment variable, or display all environment variables. </p></li>

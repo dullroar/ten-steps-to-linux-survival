@@ -286,6 +286,10 @@ can.
 * [**`rm`**](http://linux.die.net/man/1/rm) - delete (remove) files or directories.
 \drfnd{rm}{remove file}
 
+* [**`rsync`**](http://linux.die.net/man/1/rsync) - efficiently and securely "mirror" directories
+between local and remote locations.
+\drnet{rsync} 
+
 * [**`scp`**](http://linux.die.net/man/1/scp) - file copy over secure shell protocol.
 \drnet{scp}
 
