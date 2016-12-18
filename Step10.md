@@ -527,8 +527,7 @@ of commands, and continue (or not) based on the success (or failure) of a previo
 
 * **`a && b`** - execute `a` ***and*** `b`, i.e., execute `b` only if `a` is successful.
 
-* **`a || b`** - execute `a` ***or*** `b`, that is execute `b` whether ***or*** not `a` is
-successful.
+* **`a || b`** - execute `a` ***or*** `b`, that is execute `b` only if `a` is ***not*** successful.
 
 Our example of file `foo` (which exists) and file `bar` (which does not) and the effect on the exit
 code of `ls` can be illustrative here, too:
