@@ -1,27 +1,9 @@
-# Project Memory
+# MEMORY.md
 
-> Version-controlled, cross-LLM continuity notes. Keep this file compact, factual, and useful to a future contributor.
+Non-obvious findings about this codebase and its operating environment, discovered during work but not designed for anywhere else — not in README.md (what it is and how to use it), DESIGN.md (architectural decisions), or agent-instruction files (rules). This is background context for whichever LLM works in this repository next, so it does not have to rediscover these findings the hard way.
 
-## Status
+If you (an LLM) make a finding like the ones below — a gotcha, an environment quirk, or a non-obvious reason one component reads or uses another — add it here rather than only mentioning it in chat. Keep entries factual and dated; note when something might have been fixed since.
 
-This is an intentionally minimal memory stub. No project-specific working memory has been recorded here yet.
+## Findings
 
-## Recording conventions
-
-- Add durable facts, decisions, verified workflows, and unresolved questions.
-- Prefer dated entries with links to code, issues, tests, or commits that support them.
-- Separate observed facts from proposals or hypotheses.
-- Remove or update notes that no longer match the repository.
-
-## Project facts
-
-- None recorded.
-
-## Decisions
-
-- None recorded.
-
-## Open questions
-
-- None recorded.
-
+- No project-specific findings have been recorded yet.
